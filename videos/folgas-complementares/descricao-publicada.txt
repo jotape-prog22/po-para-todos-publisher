@@ -1,0 +1,42 @@
+Você resolveu o Primal e achou o ótimo. Mas e o Dual — precisa rodar o Simplex tudo de novo? 🤔 Não precisa. Nesta aula vamos usar o Teorema das Folgas Complementares para achar a solução ótima do Dual direto a partir do Primal.
+
+Nesta aula, você vai aprender:
+
+O que é a "folga" de uma restrição e por que ela decide se a variável dual vale zero.
+
+As duas relações de complementaridade, enunciadas e explicadas na intuição antes da fórmula.
+
+Como montar o Dual de um problema de maximização e resolvê-lo sem refazer o Simplex.
+
+O que é o Preço-Sombra e por que ele é a base da análise de sensibilidade.
+
+Fechamos com um exemplo completo, do Primal até a confirmação da Dualidade Forte: W* = Z* = 36.
+
+⏱️ Capítulos:
+00:00 Abertura
+00:36 Objetivos
+01:14 Relembrando: Primal e Dual
+02:08 A intuição: o que é uma "folga"?
+03:22 O Teorema — Enunciado
+04:12 As relações de complementaridade
+05:22 Por que o teorema é útil?
+06:30 Exemplo — O Primal
+07:20 Exemplo — Montando o Dual
+12:06 Exemplo — Analisando as folgas
+13:54 Exemplo — Resolvendo o Dual
+14:44 Exemplo — Dualidade Forte
+16:00 Resumo — Pontos-chave
+16:48 Encerramento
+
+⚠️ Quer ver o Preço-Sombra aparecendo na prática, dentro do Excel? Assista à aula sobre o Relatório de Sensibilidade do Solver: https://youtu.be/yGP0LK19R30
+
+📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.
+
+💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:
+
+📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/
+🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html
+
+👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está penando com dualidade!
+
+#PesquisaOperacional #PO #FolgasComplementares #Dualidade #ProgramacaoLinear #PrecoSombra #Otimização #UNIRIO
