@@ -5,3 +5,4 @@ thumbnails/out/
 *client_secret*.json
 token.json
 .DS_Store
+.superpowers/
