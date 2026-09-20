@@ -7,9 +7,9 @@
 // Tipos de slide (fundamentos-slides.md): capa, conteudo, exemplo, encerramento.
 // O gerador recusa texto que não cabe; encurte o texto, nunca a fonte.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import pptxgen from "pptxgenjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -64,10 +64,15 @@ export function validarSlides(spec) {
     if (s.tipo === "conteudo") {
       if (!s.blocos?.length) erros.push(`${n}: slide de conteúdo sem "blocos"`);
       let linhas = 0;
-      for (const b of s.blocos ?? []) {
+      (s.blocos ?? []).forEach((b, j) => {
+        const m = j + 1;
+        if ("rotulo" in b && b.rotulo === "") erros.push(`${n}: rótulo vazio no bloco ${m}`);
         if (b.rotulo) linhas += 1;
-        for (const it of b.itens ?? []) linhas += Math.ceil(semMarcas(it).length / LIMITES.charsPorLinha);
-      }
+        for (const it of b.itens ?? []) {
+          if (!it.trim() || !semMarcas(it).trim()) erros.push(`${n}: item vazio no bloco ${m}`);
+          linhas += Math.ceil(semMarcas(it).length / LIMITES.charsPorLinha);
+        }
+      });
       if (linhas > LIMITES.linhasCorpo) erros.push(`${n}: corpo ocupa ~${linhas} linhas — máximo ${LIMITES.linhasCorpo}; encurte ou divida em dois slides`);
     }
     if (s.tipo === "exemplo") {
@@ -94,7 +99,7 @@ function runs(texto, base, { bullet = false, breakLine = true } = {}) {
 // ---------- slides ----------
 function marca(slide, T) {
   slide.background = { color: T.cor.surface };
-  slide.addImage({ path: LOGO_UNIRIO, x: G.logoX, y: G.logoY, w: G.logo, h: G.logo });
+  slide.addImage({ path: LOGO_UNIRIO, x: G.logoX, y: G.logoY, w: G.logo, h: G.logo, altText: "Logo UNIRIO" });
 }
 function titulo(slide, T, texto) {
   slide.addText(texto, {
@@ -135,7 +140,44 @@ function slideConteudo(pres, T, s) {
   motivo(slide);
 }
 
-const GERADORES = { capa: slideCapa, conteudo: slideConteudo };
+function slideExemplo(pres, T, s) {
+  const slide = pres.addSlide();
+  marca(slide, T);
+  titulo(slide, T, s.titulo);
+  const linhaAlt = 0.42;                                   // 20pt × 1,5 de entrelinha
+  const painelH = s.formulacao.length * linhaAlt + 0.5;   // + preenchimento (space-md ≈ 0,25 pol por lado)
+  const painelW = 8.4;
+  slide.addShape(pres.ShapeType.roundRect, {
+    x: G.margem, y: G.corpoY, w: painelW, h: painelH,
+    fill: { color: T.cor["surface-panel"] }, line: { color: T.cor["surface-panel"] }, rectRadius: 0.17,
+  });
+  slide.addText(s.formulacao.map((l, i) => ({ text: l, options: { breakLine: i < s.formulacao.length - 1 } })), {
+    x: G.margem + 0.25, y: G.corpoY + 0.25, w: painelW - 0.5, h: painelH - 0.5, margin: 0, valign: "top",
+    fontFace: T.fonte.body, fontSize: T.pt.corpo, color: T.cor.ink, lineSpacingMultiple: 1.5,
+  });
+  slide.addText(s.resultado, {
+    x: G.margem, y: G.corpoY + painelH + 0.3, w: painelW, h: 0.6, margin: 0, valign: "top",
+    fontFace: T.fonte.body, fontSize: T.pt.corpo, bold: true, color: T.cor["accent-blue"],
+  });
+  motivo(slide);
+}
+
+function slideEncerramento(pres, T, s, spec) {
+  const slide = pres.addSlide();
+  slide.background = { color: T.cor.surface };
+  slide.addText("Obrigado!", {
+    x: G.margem, y: 2.2, w: 7.6, h: 1.3, margin: 0, valign: "bottom",
+    fontFace: T.fonte.title, fontSize: T.pt.titulo, bold: true, color: T.cor["brand-navy"],
+  });
+  slide.addText([
+    { text: spec.apresentador, options: { breakLine: true } },
+    { text: "Projeto PO para Todos – UNIRIO", options: { breakLine: true } },
+    { text: LINK_PROJETO },
+  ], { x: G.margem, y: 3.7, w: 7.6, h: 1.4, margin: 0, valign: "top", fontFace: T.fonte.body, fontSize: T.pt.caption, color: T.cor["ink-muted"] });
+  slide.addImage({ path: LOGO_UNIRIO, x: 9.4, y: 2.5, w: 2.5, h: 2.5, altText: "Logo UNIRIO" });
+}
+
+const GERADORES = { capa: slideCapa, conteudo: slideConteudo, exemplo: slideExemplo, encerramento: slideEncerramento };
 
 export async function gerarSlides(spec, { saida }) {
   const erros = validarSlides(spec);
@@ -146,9 +188,31 @@ export async function gerarSlides(spec, { saida }) {
   pres.title = spec.slides[0].titulo ?? "PO para Todos";
   pres.author = spec.apresentador;
   for (const s of spec.slides) {
-    const gerar = GERADORES[s.tipo] ?? ((pres, T) => marca(pres.addSlide(), T)); // TODO Task 6: slideExemplo e slideEncerramento
-    gerar(pres, T, s, spec);
+    GERADORES[s.tipo](pres, T, s, spec);
   }
   await pres.writeFile({ fileName: saida });
   return saida;
+}
+
+// ---------- CLI ----------
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const args = process.argv.slice(2);
+  const soValidar = args.includes("--validar");
+  const iSaida = args.indexOf("--saida");
+  const saidaArg = iSaida >= 0 ? args[iSaida + 1] : null;
+  const pasta = args.find((a) => !a.startsWith("--") && a !== saidaArg);
+  if (!pasta) { console.error("uso: node design-system/scripts/gerar-slides.mjs videos/<slug> [--saida arquivo.pptx] [--validar]"); process.exit(1); }
+  const specPath = join(resolve(pasta), "slides.json");
+  try {
+    if (!existsSync(specPath)) throw new Error(`não achei ${specPath}`);
+    const spec = JSON.parse(readFileSync(specPath, "utf8"));
+    const erros = validarSlides(spec);
+    if (erros.length) throw new Error(`slides.json inválido:\n- ${erros.join("\n- ")}`);
+    if (soValidar) { console.log(`ok: ${spec.slides.length} slides cabem`); process.exit(0); }
+    const saida = saidaArg ? resolve(saidaArg) : join(resolve(pasta), "slides.pptx");
+    console.log(await gerarSlides(spec, { saida }));
+  } catch (e) {
+    console.error(`erro: ${e.message}`);
+    process.exit(1);
+  }
 }
