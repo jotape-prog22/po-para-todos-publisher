@@ -162,6 +162,20 @@ Reconstruído a partir do vídeo publicado (título, descrição e capítulos re
 - Descrição: função pura `montarDescricao(roteiro, metadados, canal)` em `scripts/` com teste que compara com a descrição real do Folgas Complementares.
 - Skills: rodadas de ponta a ponta sobre o exemplo antes de publicar o repo; a saída é comparada com os arquivos do exemplo.
 
+## Fluxo de trabalho de quem desenvolve o repositório
+
+Documentado em `CLAUDE.md` e no README (seção "Quero mudar a pipeline"):
+
+1. **Desenhar**: `/grill-me` para qualquer mudança de comportamento; `/grill-with-docs` quando a mudança cria ou altera vocabulário do domínio (registra ADR e atualiza o glossário). `superpowers:brainstorming` **não** é usado neste repositório — o `CLAUDE.md` diz isso explicitamente.
+2. **Planejar**: superpowers `writing-plans`.
+3. **Executar**: superpowers `executing-plans` ou `subagent-driven-development`, com `test-driven-development` e `verification-before-completion`.
+
+Para o `grill-with-docs` funcionar, o repo tem `CONTEXT.md` na raiz (glossário: briefing, roteiro, bloco, formato, slug, playlist, metadados, publicação) e `docs/adr/` com um ADR por decisão registrada — as decisões desta spec (PPTX, molde de descrição, upload privado) viram os primeiros ADRs.
+
+Ferramentas que o participante instala (README ensina): plugin `superpowers` (`/plugin install superpowers@claude-plugins-official`) e os skills do Matt Pocock (`npx skills add mattpocock/skills`).
+
+A skill `roteiro`, quando o briefing não responde algo que ela precisa, pergunta no formato de rodadas do `grilling` (perguntas numeradas, cada uma com resposta recomendada), em vez de uma pergunta por vez.
+
 ## Fora de escopo
 
 Shorts (9:16), legendas, geração de áudio/vídeo, analytics, atualizar descrições de vídeos antigos, paridade entre PPTX e os modelos HTML, virar plugin do Claude Code (possível depois sem refazer as skills).

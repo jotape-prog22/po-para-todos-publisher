@@ -1,4 +1,4 @@
-# Base de conhecimento para geração de miniaturas — PO para Todos
+s# Base de conhecimento para geração de miniaturas — PO para Todos
 
 Data: 2026-09-20. Aprovado em conversa.
 
