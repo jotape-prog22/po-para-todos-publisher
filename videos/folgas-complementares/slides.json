@@ -1,0 +1,57 @@
+{
+  "apresentador": "Apresentador do PO para Todos",
+  "slides": [
+    { "tipo": "capa", "titulo": "Teorema das Folgas Complementares" },
+    { "tipo": "conteudo", "titulo": "Objetivos", "blocos": [ { "itens": [
+      "O que é a \"folga\" de uma restrição e por que ela decide se a variável dual vale zero.",
+      "As duas relações de complementaridade, na intuição antes da fórmula.",
+      "Como montar o Dual de um problema de maximização e resolvê-lo sem refazer o Simplex.",
+      "O que é o Preço-Sombra e por que ele é a base da análise de sensibilidade."
+    ] } ] },
+    { "tipo": "conteudo", "titulo": "Relembrando: Primal e Dual", "blocos": [ { "itens": [
+      "Todo problema de PL tem um par: maximização com ≤ vira minimização com ≥.",
+      "Cada restrição do Primal gera **uma variável** do Dual; cada variável gera **uma restrição**.",
+      "Dualidade Forte: no ótimo, **Z* = W***."
+    ] } ] },
+    { "tipo": "conteudo", "titulo": "A intuição: o que é uma \"folga\"?", "blocos": [ { "itens": [
+      "Folga é o quanto **sobra** de um recurso na solução ótima.",
+      "Restrição com folga = recurso sobrando = aumentar esse recurso **não muda** o lucro.",
+      "Se não muda o lucro, o \"preço\" desse recurso no Dual é **zero**."
+    ] } ] },
+    { "tipo": "conteudo", "titulo": "O Teorema — Enunciado", "blocos": [ { "itens": [
+      "Sejam x* ótimo do Primal e y* ótimo do Dual.",
+      "Para cada restrição i do Primal: **folga_i × y*_i = 0**.",
+      "Para cada variável j do Primal: **x*_j × folga_dual_j = 0**."
+    ] } ] },
+    { "tipo": "conteudo", "titulo": "As relações de complementaridade", "blocos": [
+      { "rotulo": "Condição 1", "itens": [ "Se uma restrição do Primal tem **folga**, a variável dual correspondente vale zero." ] },
+      { "rotulo": "Condição 2", "itens": [ "Se uma variável do Primal é **positiva**, a restrição dual correspondente é ativa.", "Vale o contrário também: as duas condições são simétricas." ] }
+    ] },
+    { "tipo": "conteudo", "titulo": "Por que o teorema é útil?", "blocos": [ { "itens": [
+      "Com x* em mãos, as condições viram um **sistema linear** em y.",
+      "Resolver esse sistema é muito mais rápido do que rodar o Simplex de novo.",
+      "Os y* são os **Preços-Sombra**: quanto vale uma unidade a mais de cada recurso."
+    ] } ] },
+    { "tipo": "exemplo", "titulo": "Exemplo — O Primal",
+      "formulacao": [ "max Z = 3x₁ + 5x₂", "s.a.  x₁ ≤ 4", "      2x₂ ≤ 12", "      3x₁ + 2x₂ ≤ 18", "      x₁, x₂ ≥ 0" ],
+      "resultado": "x* = (2, 6), Z* = 36" },
+    { "tipo": "exemplo", "titulo": "Exemplo — Montando o Dual",
+      "formulacao": [ "min W = 4y₁ + 12y₂ + 18y₃", "s.a.  y₁ + 3y₃ ≥ 3", "      2y₂ + 2y₃ ≥ 5", "      y₁, y₂, y₃ ≥ 0" ],
+      "resultado": "Uma variável dual por recurso" },
+    { "tipo": "exemplo", "titulo": "Exemplo — Analisando as folgas",
+      "formulacao": [ "Restrição 1: x₁ = 2 < 4 → folga 2 → y₁ = 0", "Restrição 2: 2·6 = 12 → sem folga", "Restrição 3: 3·2 + 2·6 = 18 → sem folga" ],
+      "resultado": "y₁* = 0; y₂ e y₃ vêm das restrições ativas" },
+    { "tipo": "exemplo", "titulo": "Exemplo — Resolvendo o Dual",
+      "formulacao": [ "x₁ > 0 → y₁ + 3y₃ = 3 → y₃ = 1", "x₂ > 0 → 2y₂ + 2y₃ = 5 → y₂ = 3/2" ],
+      "resultado": "y* = (0, 3/2, 1)" },
+    { "tipo": "exemplo", "titulo": "Exemplo — Dualidade Forte",
+      "formulacao": [ "W* = 4·0 + 12·(3/2) + 18·1", "W* = 18 + 18 = 36" ],
+      "resultado": "W* = Z* = 36" },
+    { "tipo": "conteudo", "titulo": "Resumo — Pontos-chave", "blocos": [ { "itens": [
+      "Folga positiva ⇒ variável dual zero; variável positiva ⇒ restrição dual ativa.",
+      "Com o ótimo do Primal, o Dual vira um sistema linear.",
+      "Os y* são os Preços-Sombra."
+    ] } ] },
+    { "tipo": "encerramento" }
+  ]
+}
