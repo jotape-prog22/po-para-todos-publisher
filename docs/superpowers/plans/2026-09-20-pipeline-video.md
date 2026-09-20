@@ -20,7 +20,7 @@
 - Título de vídeo: `PALAVRA-CHAVE EM CAIXA ALTA - Complemento em Title Case[ - Parte N]`, ≤ 70 caracteres, sem `!`.
 - Upload sempre `privacy_status: "private"`, `category_id: "27"`.
 - Commits em português, terminando com `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
-- Testes: `npm test` = `node --test tests/`.
+- Testes: `npm test` = `node --test` (sem caminho; `node --test tests/` falha no Node 26).
 
 ---
 
@@ -802,8 +802,8 @@ Expected: `# pass 6`. Se o teste de igualdade falhar, rode `node -e` com um diff
 
 - [ ] **Step 8: Rodar a CLI sobre o exemplo e conferir que gravou**
 
-Run: `node scripts/descricao.mjs videos/folgas-complementares > /dev/null && node -e "const m=require('./videos/folgas-complementares/metadados.json'); console.log(m.capitulos.length, m.descricao.length)"`
-Expected: `14 1873` (14 capítulos; 1873 caracteres = o tamanho de `descricao-publicada.txt` sem quebra final; confira com `wc -m`).
+Run: `node scripts/descricao.mjs videos/folgas-complementares > /dev/null && node -e "const m=require('./videos/folgas-complementares/metadados.json'); console.log(m.capitulos.length, [...m.descricao].length)"`
+Expected: `14 1873` (14 capítulos; 1873 caracteres Unicode — `[...s].length` conta code points, como `wc -m`; `s.length` daria 1879 por causa dos emojis).
 
 - [ ] **Step 9: Commit**
 
@@ -1347,7 +1347,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const args = process.argv.slice(2);
   const soValidar = args.includes("--validar");
   const iSaida = args.indexOf("--saida");
-  const pasta = args.find((a) => !a.startsWith("--") && a !== args[iSaida + 1]);
+  const saidaArg = iSaida >= 0 ? args[iSaida + 1] : null;
+  const pasta = args.find((a) => !a.startsWith("--") && a !== saidaArg);
   if (!pasta) { console.error("uso: node design-system/scripts/gerar-slides.mjs videos/<slug> [--saida arquivo.pptx] [--validar]"); process.exit(1); }
   const specPath = join(resolve(pasta), "slides.json");
   try {
@@ -1356,7 +1357,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const erros = validarSlides(spec);
     if (erros.length) throw new Error(`slides.json inválido:\n- ${erros.join("\n- ")}`);
     if (soValidar) { console.log(`ok: ${spec.slides.length} slides cabem`); process.exit(0); }
-    const saida = iSaida >= 0 ? resolve(args[iSaida + 1]) : join(resolve(pasta), "slides.pptx");
+    const saida = saidaArg ? resolve(saidaArg) : join(resolve(pasta), "slides.pptx");
     console.log(await gerarSlides(spec, { saida }));
   } catch (e) {
     console.error(`erro: ${e.message}`);

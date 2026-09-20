@@ -1,0 +1,91 @@
+{
+  "titulos_candidatos": [
+    "TEOREMA DAS FOLGAS COMPLEMENTARES - Dualidade e Preços-Sombra",
+    "FOLGAS COMPLEMENTARES - Do Primal ao Dual sem Refazer o Simplex",
+    "DUALIDADE - O Teorema das Folgas Complementares Explicado",
+    "FOLGAS COMPLEMENTARES - Como Achar o Dual a Partir do Primal",
+    "PREÇO-SOMBRA - De Onde Ele Vem? Folgas Complementares"
+  ],
+  "titulo": "TEOREMA DAS FOLGAS COMPLEMENTARES - Dualidade e Preços-Sombra",
+  "fechamento": "Fechamos com um exemplo completo, do Primal até a confirmação da Dualidade Forte: W* = Z* = 36.",
+  "cta_complemento": "está penando com dualidade",
+  "hashtags_tema": [
+    "#FolgasComplementares",
+    "#Dualidade",
+    "#ProgramacaoLinear",
+    "#PrecoSombra"
+  ],
+  "tags": [
+    "folgas complementares",
+    "teorema das folgas complementares",
+    "dualidade",
+    "primal e dual",
+    "preço sombra",
+    "programação linear",
+    "pesquisa operacional",
+    "simplex",
+    "otimização",
+    "análise de sensibilidade",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:36",
+      "titulo": "Objetivos"
+    },
+    {
+      "tempo": "01:14",
+      "titulo": "Relembrando: Primal e Dual"
+    },
+    {
+      "tempo": "02:08",
+      "titulo": "A intuição: o que é uma \"folga\"?"
+    },
+    {
+      "tempo": "03:22",
+      "titulo": "O Teorema — Enunciado"
+    },
+    {
+      "tempo": "04:12",
+      "titulo": "As relações de complementaridade"
+    },
+    {
+      "tempo": "05:22",
+      "titulo": "Por que o teorema é útil?"
+    },
+    {
+      "tempo": "06:30",
+      "titulo": "Exemplo — O Primal"
+    },
+    {
+      "tempo": "07:20",
+      "titulo": "Exemplo — Montando o Dual"
+    },
+    {
+      "tempo": "12:06",
+      "titulo": "Exemplo — Analisando as folgas"
+    },
+    {
+      "tempo": "13:54",
+      "titulo": "Exemplo — Resolvendo o Dual"
+    },
+    {
+      "tempo": "14:44",
+      "titulo": "Exemplo — Dualidade Forte"
+    },
+    {
+      "tempo": "16:00",
+      "titulo": "Resumo — Pontos-chave"
+    },
+    {
+      "tempo": "16:48",
+      "titulo": "Encerramento"
+    }
+  ],
+  "descricao": "Você resolveu o Primal e achou o ótimo. Mas e o Dual — precisa rodar o Simplex tudo de novo? 🤔 Não precisa. Nesta aula vamos usar o Teorema das Folgas Complementares para achar a solução ótima do Dual direto a partir do Primal.\n\nNesta aula, você vai aprender:\n\nO que é a \"folga\" de uma restrição e por que ela decide se a variável dual vale zero.\n\nAs duas relações de complementaridade, enunciadas e explicadas na intuição antes da fórmula.\n\nComo montar o Dual de um problema de maximização e resolvê-lo sem refazer o Simplex.\n\nO que é o Preço-Sombra e por que ele é a base da análise de sensibilidade.\n\nFechamos com um exemplo completo, do Primal até a confirmação da Dualidade Forte: W* = Z* = 36.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:36 Objetivos\n01:14 Relembrando: Primal e Dual\n02:08 A intuição: o que é uma \"folga\"?\n03:22 O Teorema — Enunciado\n04:12 As relações de complementaridade\n05:22 Por que o teorema é útil?\n06:30 Exemplo — O Primal\n07:20 Exemplo — Montando o Dual\n12:06 Exemplo — Analisando as folgas\n13:54 Exemplo — Resolvendo o Dual\n14:44 Exemplo — Dualidade Forte\n16:00 Resumo — Pontos-chave\n16:48 Encerramento\n\n⚠️ Quer ver o Preço-Sombra aparecendo na prática, dentro do Excel? Assista à aula sobre o Relatório de Sensibilidade do Solver: https://youtu.be/yGP0LK19R30\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está penando com dualidade!\n\n#PesquisaOperacional #PO #FolgasComplementares #Dualidade #ProgramacaoLinear #PrecoSombra #Otimização #UNIRIO"
+}

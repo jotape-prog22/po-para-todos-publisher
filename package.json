@@ -1,0 +1,24 @@
+{
+  "name": "po-para-todos-publisher",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pipeline de produção de vídeos do canal Pesquisa Operacional para Todos (UNIRIO)",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "slides": "node design-system/scripts/gerar-slides.mjs",
+    "descricao": "node scripts/descricao.mjs",
+    "roteiro": "node scripts/roteiro.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "jszip": "^3.10.2"
+  }
+}

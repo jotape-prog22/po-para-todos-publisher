@@ -1,0 +1,25 @@
+{
+  "nome": "Pesquisa Operacional para Todos",
+  "site": "https://pesquisaoperacional.uniriotec.br/index.html",
+  "instagram": "https://www.instagram.com/pesquisaoperacionalparatodos/",
+  "categoriaYoutube": "27",
+  "rodape": {
+    "projeto": "📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.",
+    "convite": "💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:",
+    "cta": "👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem {complemento}!"
+  },
+  "hashtags": {
+    "abertura": ["#PesquisaOperacional", "#PO"],
+    "fechamento": ["#Otimização", "#UNIRIO"]
+  },
+  "playlists": {
+    "programacao-inteira": { "id": "PLdARkEgZLCfwLNUJKQEMnVmdasoqkQROX", "nome": "Programação Inteira" },
+    "teoria-dos-jogos": { "id": "PLdARkEgZLCfwK11_FYfBVMT-C2ugC9qui", "nome": "Teoria dos Jogos" },
+    "arvore-geradora": { "id": "PLdARkEgZLCfzpZRjpkkrvNgnBA_16eLFW", "nome": "Árvore Geradora" },
+    "po2": { "id": "PLdARkEgZLCfyhA7Y5PFICBoACdjekfTh1", "nome": "Pesquisa Operacional 2" },
+    "sensibilidade": { "id": "PLdARkEgZLCfw128oRJMF9CCGON8H2jy11", "nome": "Análise de Sensibilidade e Pós-otimização" },
+    "dualidade": { "id": "PLdARkEgZLCfxTCwI7DcHPVcik0RxXKO5v", "nome": "Dualidade" },
+    "solver": { "id": "PLdARkEgZLCfxokilvmCWKp1EMR3UWzC2n", "nome": "Resolução de PPL utilizando o Solver" },
+    "po1": { "id": "PLdARkEgZLCfwKLFUREqCiN9qaPctEUXbS", "nome": "Pesquisa Operacional 1" }
+  }
+}

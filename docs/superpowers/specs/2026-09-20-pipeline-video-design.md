@@ -21,7 +21,7 @@ Já existe: design system (`design-system/`), gerador de miniaturas (`design-sys
 po-para-todos-publisher/
 ├── CLAUDE.md                 # atualizado: fluxo e ponteiros para as skills
 ├── README.md                 # guia passo a passo para participante novo
-├── .mcp.json                 # youtube-studio-mcp via uvx; segredo por variável de ambiente
+├── .mcp.json                 # youtube-studio-mcp via uvx; lê ~/.youtube-mcp/client_secret.json por padrão
 ├── canal.json                # links fixos, playlists, hashtags fixas, bloco de rodapé
 ├── .claude/skills/
 │   ├── video/                # orquestradora
@@ -147,10 +147,10 @@ Superpowers **não** é vendorizado: o README instrui `/plugin install superpowe
 `.mcp.json` na raiz:
 
 ```json
-{ "mcpServers": { "youtube": { "command": "uvx", "args": ["--from", "git+https://github.com/felipefontoura/youtube-studio-mcp", "youtube-studio-mcp"], "env": { "YOUTUBE_MCP_CLIENT_SECRET": "${YOUTUBE_MCP_CLIENT_SECRET}" } } } }
+{ "mcpServers": { "youtube": { "command": "uvx", "args": ["--from", "git+https://github.com/felipefontoura/youtube-studio-mcp", "youtube-studio-mcp"] } } }
 ```
 
-O README explica como criar o `client_secret.json` no Google Cloud (linkando o passo a passo do próprio MCP) e onde colocá-lo. Limitação conhecida: o MCP corta descrições lidas em 500 caracteres — irrelevante para a pipeline, que só escreve.
+O MCP lê `~/.youtube-mcp/client_secret.json` por padrão, então não precisa de variável de ambiente. O README explica como criar esse `client_secret.json` no Google Cloud (linkando o passo a passo do próprio MCP) e onde colocá-lo. Limitação conhecida: o MCP corta descrições lidas em 500 caracteres — irrelevante para a pipeline, que só escreve.
 
 ## Exemplo vivo: `videos/folgas-complementares/`
 
