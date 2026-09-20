@@ -10,7 +10,7 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
 2. **Node.js** (versão 22 ou mais nova) — o programa que gera os slides e a descrição a partir dos arquivos do vídeo. Baixe o instalador em https://nodejs.org (escolha a versão "LTS", a mais estável) e instale como qualquer outro programa. Confira que funcionou abrindo o Terminal e digitando `node -v` → deve aparecer algo como `v22...` (ou um número maior).
 3. **uv** — instala e roda o conector que fala com o YouTube (chamado de "MCP", explicado mais abaixo). No Terminal, cole o comando abaixo, aperte Enter, e depois feche e abra o Terminal de novo:
    - Mac/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-   - Windows (no PowerShell): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+   - Windows (no PowerShell): cole exatamente como está abaixo, sem alterar nada — `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
    Confira digitando `uv --version` → deve aparecer um número de versão, sem erro.
 4. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item.
 5. **PowerPoint** — para abrir e apresentar os slides que o Claude gera (arquivo `.pptx`).
@@ -19,13 +19,15 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
 
 Se você nunca usou o `git` (o programa que guarda o histórico e as cópias deste projeto) antes, o caminho mais simples é: abra a página do repositório no navegador, clique no botão verde **Code** e depois em **Download ZIP**; extraia o arquivo ZIP baixado em uma pasta de fácil acesso (por exemplo, a Área de Trabalho).
 
-Quem já tem `git` instalado pode preferir clonar (baixar uma cópia sincronizável) pelo Terminal — troque o endereço abaixo pelo link do repositório que você recebeu de quem coordena o projeto, caso seja diferente:
+Quem já tem `git` instalado pode preferir clonar (baixar uma cópia sincronizável) pelo Terminal. O endereço abaixo é um exemplo — use o link do repositório que você recebeu do projeto:
 
 ```bash
 git clone https://github.com/po-para-todos/po-para-todos-publisher.git
 ```
 
-Depois, entre na pasta do projeto pelo Terminal e instale as dependências (bibliotecas de código que os scripts usam):
+Depois, entre na pasta do projeto pelo Terminal e instale as dependências (bibliotecas de código que os scripts usam). Se você baixou o ZIP (em vez de clonar), o GitHub extrai uma pasta com um nome como `po-para-todos-publisher-main`; renomeie-a para `po-para-todos-publisher` antes de continuar, para que os comandos deste guia funcionem sem ajustes.
+
+Para entrar na pasta pelo Terminal sem precisar digitar o caminho todo: digite `cd ` (com um espaço depois) e, sem apertar Enter ainda, arraste a pasta do projeto do Finder (Mac) ou do Explorador de Arquivos (Windows) para dentro da janela do Terminal — o caminho completo é colado sozinho. Só então aperte Enter. Ou, se preferir digitar o caminho direto:
 
 ```bash
 cd po-para-todos-publisher
@@ -44,7 +46,7 @@ O upload do vídeo é feito por um "MCP" — a peça (Model Context Protocol) qu
 4. Crie uma credencial do tipo **ID do cliente OAuth**, escolhendo **App para computador** (Desktop app) como tipo de aplicativo.
 5. Baixe o arquivo JSON gerado para essa credencial — JSON é só um formato de arquivo de texto para guardar essas chaves de acesso; o Google oferece um botão de download assim que a credencial é criada.
 6. Renomeie esse arquivo para `client_secret.json` e mova-o para a pasta `.youtube-mcp` dentro da sua pasta pessoal (se a pasta não existir, crie-a):
-   - No Mac: abra o Finder, aperte Cmd+Shift+G, digite `~/.youtube-mcp` e Enter (crie a pasta antes se ela ainda não existir) — depois arraste o arquivo renomeado para lá.
+   - No Mac: essa pasta (`.youtube-mcp`) começa com ponto, então é oculta e o Finder sozinho não a cria. Abra o Terminal e rode `mkdir -p ~/.youtube-mcp` (cria a pasta, sem erro se ela já existir) e depois `open ~/.youtube-mcp` (abre a pasta no Finder) — aí é só arrastar o arquivo renomeado para dentro dela.
    - No Windows: abra o Explorador de Arquivos, digite `%USERPROFILE%\.youtube-mcp` na barra de endereço e Enter (crie a pasta se pedir), e mova o arquivo renomeado para lá.
 
    O passo a passo oficial, com capturas de tela, está em https://github.com/felipefontoura/youtube-studio-mcp#google-cloud-setup .
@@ -88,14 +90,14 @@ O upload sempre sobe como **privado** — só quem tem o link consegue ver. Para
 
 ## O que tem na pasta de um vídeo
 
-Cada vídeo tem sua própria pasta em `videos/<slug>/`. Um exemplo real e completo, para você abrir e ver como cada arquivo fica pronto, está em `videos/folgas-complementares/`.
+Cada vídeo tem sua própria pasta em `videos/<slug>/` (o slug é o nome da pasta do vídeo: tema em minúsculas com hífens, ex.: `folgas-complementares`). Um exemplo real e completo, para você abrir e ver como cada arquivo fica pronto, está em `videos/folgas-complementares/`.
 
 | Arquivo | O que é |
 |---|---|
 | `briefing.md` | O formulário inicial: tema, formato, duração alvo, público, playlist e vídeos relacionados. |
 | `roteiro.md` | O roteiro do vídeo — gancho, objetivos e os blocos com o que será dito e mostrado em cada parte. |
 | `slides.json` | Os dados de cada slide, derivados do roteiro (um item por slide). |
-| `slides.pptx` | Os slides prontos para abrir no PowerPoint. É gerado a partir de `slides.json` (comando `node design-system/scripts/gerar-slides.mjs videos/<slug>`) e não fica salvo no repositório — cada pessoa gera o seu ao rodar o `/video`. |
+| `slides.pptx` | Os slides prontos para abrir no PowerPoint. É gerado a partir de `slides.json` (comando `node design-system/scripts/gerar-slides.mjs videos/<slug>`, onde `<slug>` é o nome da pasta do vídeo) e não fica salvo no repositório — cada pessoa gera o seu ao rodar o `/video`. |
 | `metadados.json` | Títulos candidatos, título escolhido, tags, capítulos e a descrição final que vai para o YouTube. |
 | `miniatura.png` | A imagem de capa do vídeo no YouTube (2560×1440). |
 | `publicacao.json` | O registro do upload: link do vídeo, data e playlist usada. |
