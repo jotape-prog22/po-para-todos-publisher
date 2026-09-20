@@ -8,7 +8,7 @@ Este guia é para um agente (ou pessoa) que recebe o título/assunto de um víde
 2. **Escolha o formato** pela natureza do vídeo (tabela abaixo). O tópico tem um formato padrão, mas o vídeo manda: um vídeo de Simplex "no Excel" é `tutorial`, não `conceito`.
 3. **Ajuste o texto só se precisar.** O catálogo já traz headline e subhead que cabem. Troque apenas quando o vídeo pede outra ênfase — e obedeça às regras de copy abaixo. O gerador rejeita o que não cabe.
 4. **Gere:** `node design-system/scripts/gerar-miniatura.mjs --topico <id> --formato <formato> [--numero N] [--icone2 id] --saida thumbnails/out/<slug>.png`. Saída em 2560×1440 (o YouTube pede ≥ 1280×720, ≤ 2 MB). Leia os `avisos` do JSON de retorno.
-5. **Olhe o PNG antes de publicar.** Reduza mentalmente a 120px de largura: a headline ainda lê? Só um ícone? Faixa preenchida? Depois, `youtube_set_thumbnail` com o PNG.
+5. **Olhe o PNG antes de publicar.** Reduza mentalmente a 120px de largura: a headline ainda lê? Só um ícone? Faixa preenchida? Dentro da pipeline, quem envia o PNG ao YouTube é a skill `publicar`.
 
 ## Qual formato
 

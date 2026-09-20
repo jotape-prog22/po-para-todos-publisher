@@ -10,4 +10,5 @@ videos/**/*.mp4
 videos/**/*.mov
 videos/**/slides.pptx
 videos/**/miniatura.png
+videos/**/miniatura.html
 !videos/folgas-complementares/miniatura.png
