@@ -9,7 +9,7 @@ Diga antes, em linguagem simples: "Vamos fazer o vídeo em 5 etapas: roteiro →
 
 ## Etapa 0 — Pasta
 
-- Defina o slug (tema em minúsculas com hífens) e confira que `videos/<slug>/` não existe. Se existir, pergunte se é para continuar de onde parou (veja quais arquivos já estão lá e pule as etapas prontas).
+- Defina o slug (tema em minúsculas com hífens) e confira que `videos/<slug>/` não existe. Se existir, veja quais arquivos já estão lá para saber por onde retomar: um `roteiro.md` só conta como aprovado (PARADA 1 já passada) se `metadados.json` também já existir na pasta — é o primeiro arquivo produzido depois da aprovação. Se `roteiro.md` existir mas `metadados.json` não, volte para a Etapa 1 e peça o "sim" de novo, mesmo que o roteiro pareça pronto. Pule só as etapas cujo arquivo de saída já existe.
 - Crie `videos/<slug>/briefing.md` a partir de `videos/_modelo/briefing.md` com o que a pessoa disse.
 
 ## Etapa 1 — Roteiro → **PARADA 1**
@@ -31,7 +31,7 @@ Nesta ordem, cada uma com a própria skill: `titulo-descricao` (primeiro, porque
 
 ## Etapa 3 — **PARADA 2**: gravação
 
-Espere a pessoa informar o arquivo gravado. Não invente caminho.
+Espere a pessoa informar o arquivo gravado. Não invente caminho. **Não avance sem o caminho do arquivo informado pela pessoa.**
 
 ## Etapa 4 — Publicar
 
