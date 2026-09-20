@@ -6,3 +6,8 @@ thumbnails/out/
 token.json
 .DS_Store
 .superpowers/
+videos/**/*.mp4
+videos/**/*.mov
+videos/**/slides.pptx
+videos/**/miniatura.png
+!videos/folgas-complementares/miniatura.png
