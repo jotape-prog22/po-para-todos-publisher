@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>{{titulo}}</title>
+<link rel="stylesheet" href="{{ds}}/tokens.css">
+<link rel="stylesheet" href="{{ds}}/assets/fontes/fontes.css">
+<link rel="stylesheet" href="{{ds}}/components/base.css">
+</head>
+<body>
+<!-- Layout empilhado: lockup, título e ícone (130px) empilhados à esquerda. Gerado por scripts/gerar-miniatura.mjs. -->
+<main class="canvas thumb thumb--empilhado">
+  <img class="thumb__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
+  <h1 class="thumb__titulo">
+    <span class="thumb__headline thumb-headline">{{headline}}</span>
+    <span class="thumb__subhead thumb-subhead">{{subhead}}</span>
+  </h1>
+  <div class="thumb__icone">
+    <img src="{{ds}}/miniaturas/icones/{{icone}}.svg" alt="">
+    {{#selo}}<span class="thumb__selo"><img src="{{ds}}/miniaturas/icones/{{selo}}.svg" alt=""></span>{{/selo}}
+  </div>
+  <p class="thumb__faixa thumb-banner">{{faixa}}</p>
+</main>
+</body>
+</html>

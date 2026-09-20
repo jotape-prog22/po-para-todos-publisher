@@ -1,0 +1,31 @@
+{
+  "name": "Formatos de vídeo — PO para Todos",
+  "version": 1,
+  "meta": {
+    "uso": "Cada formato define a faixa inferior padrão, o que vai no slot de ícone e o layout padrão. Placeholders na faixa: {FERRAMENTA} (campo `ferramenta` do tópico), {N} (número da aula), {AREA} (campo `curto` da área).",
+    "layouts": {
+      "empilhado": "Lockup, título e ícone (130px) empilhados à esquerda — o modelo original. Exige subhead de uma linha.",
+      "dividido": "Título à esquerda, ícone grande (200–320px) à direita, centrado na vertical. Só cabe quando a linha mais larga do título deixa ≥ 232px livres; senão o gerador cai para empilhado.",
+      "comparativo": "Como o empilhado, mas com dois ícones e 'VS' entre eles na fileira de baixo.",
+      "numerado": "Título à esquerda, número da aula grande em brand-green-soft no canto inferior direito, com o rótulo 'AULA' acima."
+    }
+  },
+  "formatos": {
+    "tutorial":    { "nome": "Tutorial passo a passo", "faixa": "PASSO A PASSO COMPLETO", "layout": "empilhado", "icone": "topico", "selo": "alvo",
+                     "quando": "O vídeo ensina a fazer algo numa ferramenta (Excel, Python…). Subhead diz a ferramenta: 'NO EXCEL'." },
+    "conceito":    { "nome": "Conceito / teoria", "faixa": "TEORIA EXPLICADA", "layout": "dividido", "icone": "topico",
+                     "quando": "O vídeo explica um teorema, método ou ideia, sem software." },
+    "exercicio":   { "nome": "Exercício resolvido", "faixa": "EXERCÍCIO RESOLVIDO", "layout": "dividido", "icone": "topico",
+                     "quando": "O vídeo resolve um problema numérico do início ao fim." },
+    "serie":       { "nome": "Aula de uma série", "faixa": "AULA {N} · {AREA}", "layout": "numerado", "icone": "topico",
+                     "quando": "O vídeo é a aula N de um curso/playlist. Exige `numero`." },
+    "erros":       { "nome": "Erros comuns", "faixa": "ERROS COMUNS", "layout": "dividido", "icone": "topico", "selo": "erro",
+                     "quando": "O vídeo lista armadilhas e enganos frequentes do assunto." },
+    "comparativo": { "nome": "Comparativo", "faixa": "QUAL USAR?", "layout": "comparativo", "icone": "topico", "icone2": "obrigatorio",
+                     "quando": "O vídeo compara dois métodos ou ferramentas. Exige `icone2`; subhead costuma ser 'X OU Y?'." },
+    "ferramenta":  { "nome": "Código / ferramenta", "faixa": "CÓDIGO NA DESCRIÇÃO", "layout": "dividido", "icone": "topico",
+                     "quando": "O foco é o código ou o arquivo, não o conceito. Subhead nomeia a linguagem: 'NO PYTHON'." },
+    "rapido":      { "nome": "Explicação rápida", "faixa": "EM 5 MINUTOS", "layout": "dividido", "icone": "topico", "selo": "relogio",
+                     "quando": "Vídeo curto (< 6 min) que resume um assunto." }
+  }
+}

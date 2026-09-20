@@ -1,0 +1,200 @@
+{
+  "name": "Catálogo de assuntos — PO para Todos",
+  "version": 1,
+  "meta": {
+    "uso": "Base de conhecimento para gerar miniaturas. Cada tópico traz headline/subhead que cabem na escala tipográfica (thumb-headline 128px, thumb-subhead 92px, área útil 1088px), o ícone padrão de miniaturas/icones/ e o formato padrão de formatos.json. Apelidos servem para busca por título de vídeo.",
+    "regras_de_copy": [
+      "Headline = a palavra que o aluno digitaria no YouTube (nome técnico correto), caixa alta, uma linha.",
+      "Subhead completa a headline (contexto, ferramenta ou área), até duas linhas.",
+      "Nunca frase inteira; nunca jargão de marketing; nunca abreviação inventada — se não cabe, troque a palavra de lugar (a longa vai para o subhead)."
+    ]
+  },
+  "areas": [
+    {
+      "id": "programacao-linear",
+      "nome": "Programação Linear",
+      "curto": "PROG. LINEAR",
+      "apelidos": ["PL", "otimização linear", "LP", "linear programming"],
+      "icone": "regiao-viavel",
+      "topicos": [
+        { "id": "modelagem-pl", "nome": "Modelagem de problemas de PL", "apelidos": ["formulação", "variáveis de decisão", "função objetivo", "restrições", "modelar"], "headline": "MODELAGEM", "subhead": "DE PROBLEMAS", "icone": "regiao-viavel", "formato": "conceito" },
+        { "id": "metodo-grafico", "nome": "Método gráfico", "apelidos": ["solução gráfica", "duas variáveis", "região viável"], "headline": "MÉTODO", "subhead": "GRÁFICO", "icone": "regiao-viavel", "formato": "exercicio" },
+        { "id": "simplex", "nome": "Método Simplex", "apelidos": ["tableau", "quadro simplex", "pivoteamento", "Dantzig"], "headline": "SIMPLEX", "subhead": "PASSO A PASSO", "icone": "tabela-simplex", "formato": "tutorial" },
+        { "id": "big-m", "nome": "Big-M e duas fases", "apelidos": ["variáveis artificiais", "método das duas fases", "grande M"], "headline": "BIG-M", "subhead": "E DUAS FASES", "icone": "tabela-simplex", "formato": "conceito" },
+        { "id": "simplex-dual", "nome": "Simplex dual", "apelidos": ["dual simplex"], "headline": "SIMPLEX", "subhead": "DUAL", "icone": "dualidade", "formato": "conceito" },
+        { "id": "dualidade", "nome": "Dualidade", "apelidos": ["problema dual", "primal e dual", "dualidade forte", "dualidade fraca", "teorema da dualidade"], "headline": "DUALIDADE", "subhead": "PRIMAL E DUAL", "icone": "dualidade", "formato": "conceito" },
+        { "id": "folgas-complementares", "nome": "Folgas complementares", "apelidos": ["teorema das folgas", "complementary slackness"], "headline": "FOLGAS", "subhead": "COMPLEMENTARES", "icone": "dualidade", "formato": "conceito" },
+        { "id": "sensibilidade", "nome": "Análise de sensibilidade", "apelidos": ["preço sombra", "custo reduzido", "pós-otimização", "shadow price", "intervalo de otimalidade"], "headline": "PREÇO", "subhead": "SOMBRA", "icone": "sensibilidade", "formato": "conceito" },
+        { "id": "casos-especiais", "nome": "Casos especiais (degeneração, múltiplas soluções, ilimitado, inviável)", "apelidos": ["degeneração", "soluções múltiplas", "problema ilimitado", "inviável", "infactível"], "headline": "SOLUÇÃO", "subhead": "ILIMITADA?", "icone": "regiao-viavel", "formato": "erros" }
+      ]
+    },
+    {
+      "id": "programacao-inteira",
+      "nome": "Programação Inteira",
+      "curto": "PROG. INTEIRA",
+      "apelidos": ["PI", "PLI", "otimização inteira", "integer programming", "MIP", "variáveis binárias"],
+      "icone": "arvore-bb",
+      "topicos": [
+        { "id": "modelagem-binaria", "nome": "Modelagem com variáveis binárias", "apelidos": ["0-1", "variável binária", "restrições lógicas", "ou-exclusivo"], "headline": "VARIÁVEIS", "subhead": "BINÁRIAS", "icone": "arvore-bb", "formato": "conceito" },
+        { "id": "branch-and-bound", "nome": "Branch and Bound", "apelidos": ["B&B", "ramificar e limitar", "ramificação", "poda"], "headline": "BRANCH", "subhead": "AND BOUND", "icone": "arvore-bb", "formato": "conceito" },
+        { "id": "planos-de-corte", "nome": "Planos de corte", "apelidos": ["cortes de Gomory", "cutting planes"], "headline": "PLANOS", "subhead": "DE CORTE", "icone": "plano-corte", "formato": "conceito" },
+        { "id": "mochila", "nome": "Problema da mochila", "apelidos": ["knapsack"], "headline": "MOCHILA", "subhead": "O PROBLEMA CLÁSSICO", "icone": "mochila", "formato": "exercicio" },
+        { "id": "localizacao", "nome": "Localização de facilidades e cobertura", "apelidos": ["facility location", "cobertura de conjuntos", "p-mediana"], "headline": "ONDE", "subhead": "INSTALAR?", "icone": "grafo-caminho", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "redes",
+      "nome": "Redes e Grafos",
+      "curto": "REDES",
+      "apelidos": ["otimização em redes", "teoria dos grafos", "network"],
+      "icone": "grafo-caminho",
+      "topicos": [
+        { "id": "caminho-minimo", "nome": "Caminho mínimo", "apelidos": ["Dijkstra", "menor caminho", "shortest path", "Bellman-Ford"], "headline": "DIJKSTRA", "subhead": "CAMINHO MÍNIMO", "icone": "grafo-caminho", "formato": "conceito" },
+        { "id": "fluxo-maximo", "nome": "Fluxo máximo", "apelidos": ["Ford-Fulkerson", "corte mínimo", "max flow"], "headline": "FLUXO", "subhead": "MÁXIMO", "icone": "fluxo", "formato": "conceito" },
+        { "id": "custo-minimo", "nome": "Fluxo de custo mínimo", "apelidos": ["min cost flow"], "headline": "FLUXO", "subhead": "DE CUSTO MÍNIMO", "icone": "fluxo", "formato": "conceito" },
+        { "id": "arvore-geradora", "nome": "Árvore geradora mínima", "apelidos": ["Kruskal", "Prim", "spanning tree", "AGM"], "headline": "KRUSKAL", "subhead": "ÁRVORE GERADORA", "icone": "arvore-geradora", "formato": "conceito" },
+        { "id": "transporte", "nome": "Problema do transporte", "apelidos": ["canto noroeste", "Vogel", "MODI", "custo mínimo"], "headline": "TRANSPORTE", "subhead": "O PROBLEMA", "icone": "transporte", "formato": "exercicio" },
+        { "id": "designacao", "nome": "Problema da designação", "apelidos": ["método húngaro", "atribuição", "assignment"], "headline": "HÚNGARO", "subhead": "DESIGNAÇÃO", "icone": "designacao", "formato": "tutorial" },
+        { "id": "caixeiro-viajante", "nome": "Caixeiro viajante", "apelidos": ["TSP", "PCV", "rota"], "headline": "CAIXEIRO", "subhead": "VIAJANTE", "icone": "caixeiro", "formato": "conceito" },
+        { "id": "roteamento", "nome": "Roteamento de veículos", "apelidos": ["VRP", "rotas de entrega", "logística"], "headline": "ROTAS", "subhead": "DE ENTREGA", "icone": "caixeiro", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "projetos",
+      "nome": "Gestão de Projetos",
+      "curto": "PROJETOS",
+      "apelidos": ["PERT", "CPM", "cronograma"],
+      "icone": "gantt",
+      "topicos": [
+        { "id": "pert-cpm", "nome": "PERT/CPM", "apelidos": ["rede de atividades", "caminho crítico", "folga de atividade"], "headline": "PERT/CPM", "subhead": "CAMINHO CRÍTICO", "icone": "gantt", "formato": "conceito" },
+        { "id": "gantt", "nome": "Gráfico de Gantt", "apelidos": ["cronograma", "barras"], "headline": "GANTT", "subhead": "CRONOGRAMA", "icone": "gantt", "formato": "tutorial" },
+        { "id": "crashing", "nome": "Compressão de projeto (crashing)", "apelidos": ["acelerar projeto", "custo-duração"], "headline": "CRASHING", "subhead": "ACELERE O PROJETO", "icone": "gantt", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "estoques",
+      "nome": "Gestão de Estoques",
+      "curto": "ESTOQUES",
+      "apelidos": ["inventário", "inventory"],
+      "icone": "estoque",
+      "topicos": [
+        { "id": "eoq", "nome": "Lote econômico (EOQ)", "apelidos": ["lote econômico de compra", "Wilson", "LEC"], "headline": "LOTE", "subhead": "ECONÔMICO", "icone": "estoque", "formato": "conceito" },
+        { "id": "ponto-de-pedido", "nome": "Ponto de pedido e estoque de segurança", "apelidos": ["reorder point", "estoque de segurança", "lead time"], "headline": "PONTO", "subhead": "DE PEDIDO", "icone": "estoque", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "filas",
+      "nome": "Teoria das Filas",
+      "curto": "FILAS",
+      "apelidos": ["queueing", "sistemas de espera"],
+      "icone": "fila",
+      "topicos": [
+        { "id": "mm1", "nome": "Fila M/M/1", "apelidos": ["um servidor", "Poisson", "exponencial"], "headline": "M/M/1", "subhead": "A FILA MAIS SIMPLES", "icone": "fila", "formato": "conceito" },
+        { "id": "little", "nome": "Lei de Little", "apelidos": ["L = λW"], "headline": "LITTLE", "subhead": "A LEI DAS FILAS", "icone": "fila", "formato": "conceito" },
+        { "id": "mmc", "nome": "Fila M/M/c", "apelidos": ["vários servidores", "múltiplos servidores"], "headline": "M/M/C", "subhead": "VÁRIOS SERVIDORES", "icone": "fila", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "simulacao",
+      "nome": "Simulação",
+      "curto": "SIMULAÇÃO",
+      "apelidos": ["simulation"],
+      "icone": "dados",
+      "topicos": [
+        { "id": "monte-carlo", "nome": "Simulação de Monte Carlo", "apelidos": ["números aleatórios", "amostragem"], "headline": "MONTE", "subhead": "CARLO", "icone": "dados", "formato": "conceito" },
+        { "id": "eventos-discretos", "nome": "Simulação de eventos discretos", "apelidos": ["DES", "relógio de simulação", "lista de eventos"], "headline": "EVENTOS", "subhead": "DISCRETOS", "icone": "relogio", "formato": "conceito" },
+        { "id": "variaveis-aleatorias", "nome": "Geração de variáveis aleatórias", "apelidos": ["transformada inversa", "distribuições"], "headline": "ALEATÓRIO", "subhead": "COMO GERAR", "icone": "dados", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "programacao-dinamica",
+      "nome": "Programação Dinâmica",
+      "curto": "PROG. DINÂMICA",
+      "apelidos": ["PD", "Bellman", "estágios", "recursão"],
+      "icone": "escada",
+      "topicos": [
+        { "id": "principio-bellman", "nome": "Princípio de otimalidade de Bellman", "apelidos": ["otimalidade", "subproblemas"], "headline": "BELLMAN", "subhead": "PROG. DINÂMICA", "icone": "escada", "formato": "conceito" },
+        { "id": "pd-estagios", "nome": "Resolução por estágios", "apelidos": ["recursão para trás", "tabela de estágios"], "headline": "ESTÁGIOS", "subhead": "PROG. DINÂMICA", "icone": "escada", "formato": "exercicio" }
+      ]
+    },
+    {
+      "id": "jogos",
+      "nome": "Teoria dos Jogos",
+      "curto": "JOGOS",
+      "apelidos": ["game theory"],
+      "icone": "payoff",
+      "topicos": [
+        { "id": "matriz-payoff", "nome": "Matriz de payoff e estratégias dominantes", "apelidos": ["estratégia dominante", "dilema do prisioneiro"], "headline": "PAYOFF", "subhead": "A MATRIZ DO JOGO", "icone": "payoff", "formato": "conceito" },
+        { "id": "nash", "nome": "Equilíbrio de Nash", "apelidos": ["equilíbrio"], "headline": "NASH", "subhead": "EQUILÍBRIO", "icone": "payoff", "formato": "conceito" },
+        { "id": "soma-zero", "nome": "Jogos de soma zero e estratégias mistas", "apelidos": ["minimax", "estratégia mista", "ponto de sela"], "headline": "SOMA ZERO", "subhead": "ESTRATÉGIA MISTA", "icone": "payoff", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "decisao",
+      "nome": "Teoria da Decisão",
+      "curto": "DECISÃO",
+      "apelidos": ["análise de decisão", "decision analysis"],
+      "icone": "arvore-decisao",
+      "topicos": [
+        { "id": "arvore-decisao", "nome": "Árvore de decisão", "apelidos": ["valor esperado", "VME", "nó de chance"], "headline": "ÁRVORE", "subhead": "DE DECISÃO", "icone": "arvore-decisao", "formato": "conceito" },
+        { "id": "incerteza", "nome": "Decisão sob incerteza", "apelidos": ["maximin", "maximax", "Laplace", "Hurwicz", "arrependimento", "Savage"], "headline": "MAXIMIN", "subhead": "OU MAXIMAX?", "icone": "arvore-decisao", "icone2": "payoff", "formato": "comparativo" },
+        { "id": "ahp", "nome": "AHP e decisão multicritério", "apelidos": ["Saaty", "multicritério", "pesos", "critérios"], "headline": "AHP", "subhead": "MULTICRITÉRIO", "icone": "hierarquia", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "metaheuristicas",
+      "nome": "Heurísticas e Metaheurísticas",
+      "curto": "HEURÍSTICAS",
+      "apelidos": ["otimização aproximada", "busca local"],
+      "icone": "cromossomo",
+      "topicos": [
+        { "id": "heuristica-gulosa", "nome": "Heurísticas gulosas e construtivas", "apelidos": ["greedy", "vizinho mais próximo"], "headline": "GULOSA", "subhead": "A HEURÍSTICA", "icone": "grafo-caminho", "formato": "conceito" },
+        { "id": "algoritmo-genetico", "nome": "Algoritmo genético", "apelidos": ["GA", "cruzamento", "mutação", "população"], "headline": "GENÉTICO", "subhead": "O ALGORITMO", "icone": "cromossomo", "formato": "conceito" },
+        { "id": "recozimento", "nome": "Simulated annealing", "apelidos": ["recozimento simulado", "têmpera simulada", "temperatura"], "headline": "ANNEALING", "subhead": "SIMULATED", "icone": "cromossomo", "formato": "conceito" },
+        { "id": "busca-tabu", "nome": "Busca tabu", "apelidos": ["tabu search", "lista tabu"], "headline": "TABU", "subhead": "BUSCA", "icone": "cromossomo", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "nao-linear",
+      "nome": "Programação Não Linear",
+      "curto": "NÃO LINEAR",
+      "apelidos": ["PNL", "otimização não linear", "NLP"],
+      "icone": "gradiente",
+      "topicos": [
+        { "id": "gradiente", "nome": "Método do gradiente", "apelidos": ["descida do gradiente", "gradient descent", "passo"], "headline": "GRADIENTE", "subhead": "O MÉTODO", "icone": "gradiente", "formato": "conceito" },
+        { "id": "kkt", "nome": "Condições de KKT", "apelidos": ["Karush-Kuhn-Tucker", "multiplicadores de Lagrange", "Lagrange"], "headline": "KKT", "subhead": "AS CONDIÇÕES", "icone": "gradiente", "formato": "conceito" },
+        { "id": "convexidade", "nome": "Convexidade", "apelidos": ["função convexa", "conjunto convexo", "ótimo global"], "headline": "CONVEXO", "subhead": "OU NÃO?", "icone": "gradiente", "formato": "conceito" }
+      ]
+    },
+    {
+      "id": "previsao",
+      "nome": "Previsão de Demanda",
+      "curto": "PREVISÃO",
+      "apelidos": ["forecasting", "séries temporais"],
+      "icone": "previsao",
+      "topicos": [
+        { "id": "media-movel", "nome": "Média móvel e suavização exponencial", "apelidos": ["suavização", "Holt", "exponencial"], "headline": "MÉDIA", "subhead": "MÓVEL", "icone": "previsao", "formato": "conceito" },
+        { "id": "regressao", "nome": "Regressão linear para previsão", "apelidos": ["mínimos quadrados", "tendência"], "headline": "REGRESSÃO", "subhead": "LINEAR", "icone": "previsao", "formato": "tutorial" }
+      ]
+    },
+    {
+      "id": "ferramentas",
+      "nome": "Ferramentas",
+      "curto": "FERRAMENTAS",
+      "apelidos": ["software", "solver"],
+      "icone": "terminal",
+      "topicos": [
+        { "id": "excel-solver", "nome": "Solver do Excel", "apelidos": ["Excel", "Solver", "planilha", "suplemento"], "headline": "SOLVER", "subhead": "NO EXCEL", "icone": "planilha", "formato": "tutorial", "ferramenta": "EXCEL" },
+        { "id": "google-sheets", "nome": "Google Sheets (Solver do Sheets)", "apelidos": ["Sheets", "planilha Google"], "headline": "SOLVER", "subhead": "NO GOOGLE SHEETS", "icone": "planilha", "formato": "tutorial", "ferramenta": "GOOGLE SHEETS" },
+        { "id": "python-pulp", "nome": "Python com PuLP", "apelidos": ["PuLP", "Python", "CBC"], "headline": "PULP", "subhead": "NO PYTHON", "icone": "terminal", "formato": "tutorial", "ferramenta": "PYTHON" },
+        { "id": "python-ortools", "nome": "Python com OR-Tools", "apelidos": ["OR-Tools", "Google OR-Tools", "CP-SAT"], "headline": "OR-TOOLS", "subhead": "NO PYTHON", "icone": "terminal", "formato": "tutorial", "ferramenta": "PYTHON" },
+        { "id": "python-scipy", "nome": "Python com SciPy (linprog)", "apelidos": ["SciPy", "linprog"], "headline": "SCIPY", "subhead": "NO PYTHON", "icone": "terminal", "formato": "tutorial", "ferramenta": "PYTHON" },
+        { "id": "lingo", "nome": "LINGO / LINDO", "apelidos": ["LINGO", "LINDO"], "headline": "LINGO", "subhead": "PASSO A PASSO", "icone": "terminal", "formato": "tutorial", "ferramenta": "LINGO" },
+        { "id": "gams-ampl", "nome": "GAMS e AMPL", "apelidos": ["GAMS", "AMPL", "linguagem de modelagem"], "headline": "GAMS", "subhead": "OU AMPL?", "icone": "terminal", "icone2": "planilha", "formato": "comparativo", "ferramenta": "GAMS" },
+        { "id": "gurobi-cplex", "nome": "Gurobi e CPLEX", "apelidos": ["Gurobi", "CPLEX", "solver comercial", "licença acadêmica"], "headline": "GUROBI", "subhead": "NO PYTHON", "icone": "terminal", "formato": "tutorial", "ferramenta": "PYTHON" },
+        { "id": "julia-jump", "nome": "Julia com JuMP", "apelidos": ["Julia", "JuMP"], "headline": "JUMP", "subhead": "EM JULIA", "icone": "terminal", "formato": "tutorial", "ferramenta": "JULIA" },
+        { "id": "r-lpsolve", "nome": "R com lpSolve", "apelidos": ["R", "lpSolve", "ompr"], "headline": "LPSOLVE", "subhead": "NO R", "icone": "terminal", "formato": "tutorial", "ferramenta": "R" }
+      ]
+    }
+  ]
+}

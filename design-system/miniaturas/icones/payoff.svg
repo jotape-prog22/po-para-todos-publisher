@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Matriz de payoff">
+  <!-- Teoria dos jogos: matriz 2×2 com pares de resultados; a célula de equilíbrio em brand-green -->
+  <rect x="35" y="35" width="130" height="130" rx="8" fill="none" stroke="#A7C973" stroke-width="4"/>
+  <path d="M35 100 H165 M100 35 V165" stroke="#A7C973" stroke-width="3"/>
+  <g fill="#A7C973"><circle cx="58" cy="67" r="6"/><circle cx="77" cy="67" r="6"/><circle cx="123" cy="67" r="6"/><circle cx="142" cy="67" r="6"/><circle cx="58" cy="132" r="6"/><circle cx="77" cy="132" r="6"/></g>
+  <rect x="103" y="103" width="59" height="59" rx="6" fill="#51AA04" fill-opacity=".25"/>
+  <g fill="#51AA04"><circle cx="123" cy="132" r="8"/><circle cx="142" cy="132" r="8"/></g>
+</svg>

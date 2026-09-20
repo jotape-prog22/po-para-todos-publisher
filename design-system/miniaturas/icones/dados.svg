@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Dado e histograma">
+  <!-- Monte Carlo: um dado com as pintas como nós, histograma de resultados ao fundo -->
+  <g fill="#A7C973" fill-opacity=".6"><rect x="112" y="120" width="16" height="50" rx="4"/><rect x="134" y="95" width="16" height="75" rx="4"/><rect x="156" y="135" width="16" height="35" rx="4"/></g>
+  <rect x="30" y="40" width="100" height="100" rx="18" fill="none" stroke="#A7C973" stroke-width="4"/>
+  <g fill="#A7C973"><circle cx="55" cy="65" r="8"/><circle cx="105" cy="65" r="8"/><circle cx="55" cy="115" r="8"/><circle cx="105" cy="115" r="8"/></g>
+  <circle cx="80" cy="90" r="10" fill="#51AA04"/>
+</svg>

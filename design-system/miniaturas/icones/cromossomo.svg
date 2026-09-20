@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Cromossomo com cruzamento">
+  <!-- Metaheurísticas: dois pais como cadeias de nós, ponto de cruzamento, filho com o trecho herdado em brand-green -->
+  <g stroke="#A7C973" stroke-width="4" stroke-linecap="round"><path d="M30 55 H170 M30 100 H170"/></g>
+  <path d="M30 150 H170" stroke="#51AA04" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#A7C973"><circle cx="40" cy="55" r="8"/><circle cx="70" cy="55" r="8"/><circle cx="100" cy="55" r="8"/><circle cx="130" cy="55" r="8"/><circle cx="160" cy="55" r="8"/></g>
+  <g fill="none" stroke="#A7C973" stroke-width="4"><circle cx="40" cy="100" r="6"/><circle cx="70" cy="100" r="6"/><circle cx="100" cy="100" r="6"/><circle cx="130" cy="100" r="6"/><circle cx="160" cy="100" r="6"/></g>
+  <g fill="#A7C973"><circle cx="40" cy="150" r="8"/><circle cx="70" cy="150" r="8"/></g>
+  <g fill="#51AA04"><circle cx="100" cy="150" r="8"/><circle cx="130" cy="150" r="8"/><circle cx="160" cy="150" r="8"/></g>
+  <path d="M85 40 V115" stroke="#51AA04" stroke-width="3" stroke-dasharray="6 6"/>
+</svg>

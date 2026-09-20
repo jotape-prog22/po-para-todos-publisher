@@ -1,0 +1,241 @@
+/* PO para Todos — base de layout dos modelos vivos.
+ * Consome tokens.css (gerado) e fontes.css. As medidas abaixo vêm de
+ * fundamentos-slides.md e fundamentos-youtube.md (polegadas → px a 96 dpi);
+ * o que não estava escrito em nenhum lugar está marcado como "decisão".
+ */
+
+:root {
+  /* --- Canvas --- */
+  --canvas-w: 1280px;
+  --canvas-h: 720px;
+
+  /* --- Slides --- */
+  --slide-margin-x: var(--space-2xl);          /* 0,7 pol ≈ 64px */
+  --slide-title-top: var(--space-md);          /* "começa a space-md do topo" */
+  --slide-body-top: 168px;                     /* 1,75 pol */
+  --slide-logo-size: 134px;                    /* ~1,4 pol */
+  --slide-logo-top: var(--space-2xs);          /* "quase encostado no topo" — decisão: 8px */
+  --slide-motif-size: 141px;                   /* ~1,47 pol */
+  --slide-motif-bottom: var(--space-lg);       /* "respiro do rodapé" — decisão: 32px */
+  /* Título não invade a zona do logo (logo + respiro space-lg) */
+  --slide-title-max-w: calc(var(--canvas-w) - 2 * var(--slide-margin-x) - var(--slide-logo-size) - var(--space-lg));
+  --slide-capa-motif-size: 400px;              /* decisão: motivo ampliado na capa */
+  --slide-encerramento-logo-size: 280px;       /* decisão: ~2× o logo padrão */
+
+  /* --- Miniaturas --- */
+  --thumb-margin-x: var(--space-3xl);          /* 96px */
+  --thumb-lockup-top: var(--space-xl);         /* decisão: 48px */
+  --thumb-lockup-size: 150px;                  /* decisão: o PNG é quadrado */
+  --thumb-icon-size: 130px;                    /* decisão: o que sobra entre título e faixa */
+  --thumb-banner-height: calc(var(--thumb-banner-line) + 2 * var(--space-md)); /* 92px */
+  --thumb-banner-gap: var(--space-xl);         /* respiro acima da faixa */
+  /* Decisão: peças novas usam brand-navy sobre o verde (5,08:1) em vez do
+     branco fiel à referência (2,96:1). Troque por var(--ink-on-brand-green)
+     para reproduzir a peça original. */
+  --thumb-banner-ink: var(--brand-navy);
+
+}
+
+/* ---------- canvas ---------- */
+html, body { margin: 0; padding: 0; }
+body { background: var(--surface); }
+
+.canvas {
+  position: relative;
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- motivo de nós ----------
+   <img src="../assets/Marca/motivo-nos.svg">: a cor (brand-green-soft) vai dentro do
+   SVG porque <img> não herda cor e mask-image não funciona em file:// (origem). */
+.motivo { display: block; object-fit: contain; }
+
+/* ---------- slides ---------- */
+.slide { }
+
+.slide__logo-unirio {
+  position: absolute;
+  top: var(--slide-logo-top);
+  right: var(--slide-margin-x);
+  width: var(--slide-logo-size);
+  height: var(--slide-logo-size);
+  object-fit: contain;
+}
+
+/* Título e corpo ficam num só bloco em fluxo: título de mais de uma linha
+   empurra o corpo para baixo, nunca sobrepõe. */
+.slide__conteudo {
+  position: absolute;
+  top: var(--slide-title-top);
+  left: var(--slide-margin-x);
+  right: var(--slide-margin-x);
+  display: flex;
+  flex-direction: column;
+}
+.slide__title {
+  max-width: var(--slide-title-max-w);
+  margin: 0;
+  color: var(--brand-navy);
+}
+.slide__body {
+  color: var(--ink);
+  /* corpo em 168px quando o título tem uma linha; com mais linhas, título + space-md */
+  margin-top: max(var(--space-md), calc(var(--slide-body-top) - var(--slide-title-top) - var(--slide-title-line)));
+}
+
+.slide__body ul { margin: 0; padding-left: 1.1em; }
+.slide__body li + li { margin-top: var(--space-sm); }
+.slide__body p { margin: 0; }
+.slide__body p + p { margin-top: var(--space-sm); }
+/* índices (x₁, x₂) sem abrir a entrelinha */
+.slide__body sub { font-size: 0.7em; line-height: 0; vertical-align: -0.25em; }
+.slide__body .slide-label { color: var(--accent-blue); display: block; margin-bottom: var(--space-2xs); }
+.slide__body .slide-emphasis { color: var(--ink); }
+.slide__body .slide-emphasis--blue { color: var(--accent-blue); }
+.slide__body .bloco + .bloco { margin-top: var(--space-lg); }
+
+.slide__painel {
+  background: var(--surface-panel);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.slide__motivo {
+  position: absolute;
+  right: var(--slide-margin-x);
+  bottom: var(--slide-motif-bottom);
+  width: var(--slide-motif-size);
+  height: var(--slide-motif-size);
+}
+
+.slide__caption { color: var(--ink-muted); margin: 0; }
+.slide__caption a { color: var(--accent-blue); text-decoration: none; }
+
+/* Capa: bloco título+autoria centrado na vertical, ≤ 60% da largura; motivo grande à direita */
+.slide--capa .slide__bloco-capa {
+  position: absolute;
+  left: var(--slide-margin-x);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+}
+.slide--capa .slide__title { position: static; max-width: none; }
+.slide--capa .slide__caption { margin-top: var(--space-lg); }
+.slide--capa .slide__motivo {
+  width: var(--slide-capa-motif-size);
+  height: var(--slide-capa-motif-size);
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+/* Encerramento: um logo só, maior, centrado na metade direita */
+.slide--encerramento .slide__bloco-capa { width: 50%; }
+.slide--encerramento .slide__logo-unirio {
+  width: var(--slide-encerramento-logo-size);
+  height: var(--slide-encerramento-logo-size);
+  top: 50%;
+  left: 75%;
+  right: auto;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- miniaturas ---------- */
+.thumb { text-transform: uppercase; }
+
+.thumb__lockup {
+  position: absolute;
+  top: var(--thumb-lockup-top);
+  left: var(--thumb-margin-x);
+  width: var(--thumb-lockup-size);
+  height: var(--thumb-lockup-size);
+}
+
+.thumb__titulo {
+  position: absolute;
+  left: var(--thumb-margin-x);
+  top: calc(var(--thumb-lockup-top) + var(--thumb-lockup-size) + var(--space-md));
+  right: var(--thumb-margin-x);
+  margin: 0;
+}
+.thumb__headline { display: block; color: var(--brand-green); }
+.thumb__subhead  { display: block; color: var(--ink); }
+
+.thumb__icone {
+  position: absolute;
+  left: var(--thumb-margin-x);
+  bottom: calc(var(--thumb-banner-height) + var(--thumb-banner-gap));
+  width: var(--thumb-icon-size);
+  height: var(--thumb-icon-size);
+}
+.thumb__icone--cartao {
+  background: var(--surface-panel);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+}
+
+.thumb__faixa {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: var(--thumb-banner-height);
+  background: var(--brand-green);
+  color: var(--thumb-banner-ink);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--thumb-margin-x);
+  margin: 0;
+}
+
+/* ---------- layouts de miniatura (miniaturas/layouts/*.html) ----------
+   O gerador (scripts/gerar-miniatura.mjs) escolhe o layout e mede o texto;
+   estes blocos só posicionam. Zona útil entre lockup e faixa: y 222–580. */
+:root {
+  --thumb-zona-topo: calc(var(--thumb-lockup-top) + var(--thumb-lockup-size) + var(--space-md)); /* 222px */
+  --thumb-zona-fundo: calc(var(--thumb-banner-height) + var(--thumb-banner-gap));               /* 140px do rodapé */
+  --thumb-zona-centro: 401px;                                                                     /* meio de 222–580 */
+  --thumb-icone-tamanho: 260px;      /* dividido: o gerador sobrescreve conforme o espaço livre */
+  --thumb-numero-size: 200px;        /* numerado */
+}
+
+/* ícone com selo opcional no canto (alvo, erro, relógio) */
+.thumb__icone { position: absolute; }
+.thumb__icone > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.thumb__selo {
+  position: absolute; right: -10%; bottom: -10%;
+  width: 40%; height: 40%;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  padding: 4%;
+  box-sizing: border-box;
+}
+.thumb__selo img { display: block; width: 100%; height: 100%; }
+
+/* dividido: título e ícone centrados na vertical, ícone à direita */
+.thumb--dividido .thumb__titulo { top: var(--thumb-zona-centro); transform: translateY(-50%); }
+.thumb--dividido .thumb__icone {
+  left: auto; right: var(--thumb-margin-x); bottom: auto;
+  top: var(--thumb-zona-centro); transform: translateY(-50%);
+  width: var(--thumb-icone-tamanho); height: var(--thumb-icone-tamanho);
+}
+
+/* comparativo: dois ícones e "VS" na fileira de baixo */
+.thumb__duelo {
+  position: absolute; left: var(--thumb-margin-x); bottom: var(--thumb-zona-fundo);
+  display: flex; align-items: center; gap: var(--space-md);
+}
+.thumb__duelo .thumb__icone { position: static; width: var(--thumb-icon-size); height: var(--thumb-icon-size); }
+.thumb__vs { font-family: var(--font-display); font-size: 56px; line-height: 1; color: var(--ink-muted); }
+
+/* numerado: número da aula grande no canto inferior direito */
+.thumb__numero {
+  position: absolute; right: var(--thumb-margin-x); bottom: var(--thumb-zona-fundo);
+  text-align: right; line-height: 1;
+}
+.thumb__numero-rotulo { display: block; color: var(--ink-muted); }
+.thumb__numero-valor { display: block; font-family: var(--font-display); font-size: var(--thumb-numero-size); line-height: .8; color: var(--brand-green-soft); }

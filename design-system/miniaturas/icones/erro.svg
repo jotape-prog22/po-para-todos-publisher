@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Erro">
+  <!-- Selo do formato "erros comuns": anel soft com X em accent-red -->
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#A7C973" stroke-width="10"/>
+  <path d="M68 68 L132 132 M132 68 L68 132" stroke="#FC3739" stroke-width="14" stroke-linecap="round"/>
+</svg>

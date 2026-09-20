@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Alvo">
+  <!-- Alvo do formato tutorial: accent-red, uso decorativo (selo), nunca texto -->
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#FC3739" stroke-width="12"/>
+  <circle cx="100" cy="100" r="42" fill="none" stroke="#FC3739" stroke-width="12"/>
+  <circle cx="100" cy="100" r="13" fill="#FC3739"/>
+</svg>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="slides">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Slide-Exemplo — PO para Todos</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fontes/fontes.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+<!-- Exemplo / fórmula: formulação em slide-body/slide-emphasis (sem monoespaçada),
+     painel surface-panel + radius-md para a fórmula longa, resultado em accent-blue negrito. -->
+<main class="canvas slide slide--exemplo">
+  <img class="slide__logo-unirio" src="../assets/Marca/logo-unirio.png" alt="UNIRIO — Universidade Federal do Estado do Rio de Janeiro">
+
+  <div class="slide__conteudo">
+    <h1 class="slide__title slide-title">Exemplo — O Primal</h1>
+    <div class="slide__body slide-body">
+      <p>Vamos maximizar o lucro de duas mercadorias, x<sub>1</sub> e x<sub>2</sub>:</p>
+      <div class="slide__painel" style="margin-top: var(--space-md)">
+        <p><strong class="slide-emphasis">Max Z = 3x<sub>1</sub> + 5x<sub>2</sub></strong></p>
+        <p>sujeito a: x<sub>1</sub> ≤ 4 &nbsp;&nbsp; 2x<sub>2</sub> ≤ 12 &nbsp;&nbsp; 3x<sub>1</sub> + 2x<sub>2</sub> ≤ 18 &nbsp;&nbsp; x<sub>1</sub>, x<sub>2</sub> ≥ 0</p>
+      </div>
+      <p style="margin-top: var(--space-lg)">Resolvendo pelo Simplex chegamos a x<sub>1</sub> = 2, x<sub>2</sub> = 6 e <strong class="slide-emphasis slide-emphasis--blue">Z* = 36</strong>.</p>
+    </div>
+  </div>
+
+  <img class="slide__motivo motivo" src="../assets/Marca/motivo-nos.svg" alt="">
+</main>
+</body>
+</html>

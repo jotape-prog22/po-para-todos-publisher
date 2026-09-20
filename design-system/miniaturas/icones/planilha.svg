@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Planilha">
+  <!-- Planilha genérica (sem marca): cabeçalho, grade e a célula-alvo em brand-green. Serve para Excel, Sheets, LibreOffice. -->
+  <rect x="25" y="35" width="150" height="130" rx="8" fill="none" stroke="#A7C973" stroke-width="4"/>
+  <rect x="25" y="35" width="150" height="26" rx="8" fill="#A7C973" fill-opacity=".45"/>
+  <path d="M25 61 H175 M25 96 H175 M25 131 H175 M75 61 V165 M125 61 V165" stroke="#A7C973" stroke-width="3"/>
+  <rect x="125" y="96" width="50" height="35" fill="#51AA04"/>
+  <g fill="#A7C973"><circle cx="50" cy="113" r="5"/><circle cx="100" cy="113" r="5"/><circle cx="50" cy="148" r="5"/></g>
+</svg>

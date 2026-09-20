@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Série temporal com tendência">
+  <!-- Previsão: pontos observados como nós, reta de tendência em brand-green prolongada tracejada no futuro -->
+  <path d="M30 30 V170 H175" fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#A7C973"><circle cx="50" cy="135" r="7"/><circle cx="75" cy="120" r="7"/><circle cx="100" cy="128" r="7"/><circle cx="125" cy="95" r="7"/></g>
+  <path d="M40 145 L130 92" stroke="#51AA04" stroke-width="5" stroke-linecap="round"/>
+  <path d="M130 92 L175 66" stroke="#51AA04" stroke-width="5" stroke-dasharray="8 8" stroke-linecap="round"/>
+  <circle cx="155" cy="78" r="9" fill="none" stroke="#51AA04" stroke-width="4"/>
+</svg>

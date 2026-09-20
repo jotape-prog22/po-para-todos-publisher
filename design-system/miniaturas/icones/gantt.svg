@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Gráfico de Gantt e caminho crítico">
+  <!-- Gantt: barras escalonadas no tempo; as do caminho crítico em brand-green -->
+  <path d="M30 30 V175 H175" fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <rect x="40" y="45" width="60" height="18" rx="9" fill="#51AA04"/>
+  <rect x="55" y="75" width="45" height="18" rx="9" fill="#A7C973"/>
+  <rect x="100" y="105" width="55" height="18" rx="9" fill="#51AA04"/>
+  <rect x="85" y="135" width="40" height="18" rx="9" fill="#A7C973"/>
+  <path d="M100 54 L100 114" stroke="#51AA04" stroke-width="3" stroke-dasharray="5 5"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Problema do transporte">
+  <!-- Transporte: origens à esquerda, destinos à direita, grafo bipartido; rotas usadas em brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="3" stroke-linecap="round">
+    <path d="M45 50 L155 100 M45 50 L155 150 M45 100 L155 50 M45 150 L155 50 M45 150 L155 100 M45 100 L155 150"/>
+  </g>
+  <g fill="none" stroke="#51AA04" stroke-width="6" stroke-linecap="round">
+    <path d="M45 50 L155 50 M45 100 L155 100 M45 150 L155 150"/>
+  </g>
+  <g fill="#A7C973"><circle cx="45" cy="50" r="12"/><circle cx="45" cy="100" r="12"/><circle cx="45" cy="150" r="12"/></g>
+  <g fill="none" stroke="#A7C973" stroke-width="5"><circle cx="155" cy="50" r="10"/><circle cx="155" cy="100" r="10"/><circle cx="155" cy="150" r="10"/></g>
+</svg>

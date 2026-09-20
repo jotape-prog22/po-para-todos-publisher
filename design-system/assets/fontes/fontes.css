@@ -1,0 +1,48 @@
+/* PO para Todos — fontes livres embutidas (SIL Open Font License 1.1).
+ * Só as famílias que podem ser redistribuídas estão aqui. Aharoni (Microsoft)
+ * e Hagrid Text (comercial) dependem de instalação local — ver FONTES.md.
+ * Subconjunto "latin" do Google Fonts: cobre todo o português (ã, ç, é, õ…).
+ */
+
+/* Fallback de "title" (Aharoni) */
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("Baloo2-Bold.woff2") format("woff2");
+}
+
+/* Fallback de "body" (Hagrid Text) — fonte variável, cobre 400 a 700 */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("Nunito-Variable.woff2") format("woff2");
+}
+
+/* "display" — miniaturas */
+@font-face {
+  font-family: "Archivo Black";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ArchivoBlack-Regular.woff2") format("woff2");
+}
+
+/* "label" — kicker (600) e faixa inferior (800) das miniaturas */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("Poppins-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("Poppins-ExtraBold.woff2") format("woff2");
+}

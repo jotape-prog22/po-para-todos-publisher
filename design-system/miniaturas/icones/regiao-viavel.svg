@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Região viável com ponto ótimo">
+  <!-- Região viável de um PL: eixos, polígono, reta de nível e o vértice ótimo em brand-green -->
+  <path d="M30 20 V170 H180" fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <path d="M30 170 V95 L75 55 L135 62 L165 115 V170 Z" fill="#A7C973" fill-opacity=".22" stroke="#A7C973" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M95 30 L185 120" stroke="#51AA04" stroke-width="4" stroke-dasharray="10 8" stroke-linecap="round"/>
+  <circle cx="135" cy="62" r="10" fill="#51AA04"/>
+</svg>

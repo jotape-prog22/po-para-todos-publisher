@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Terminal de código">
+  <!-- Código: janela de terminal com prompt; o cursor em brand-green. Serve para Python, Julia, R, LINGO, GAMS… -->
+  <rect x="25" y="40" width="150" height="120" rx="12" fill="none" stroke="#A7C973" stroke-width="4"/>
+  <path d="M25 66 H175" stroke="#A7C973" stroke-width="3"/>
+  <g fill="#A7C973"><circle cx="42" cy="53" r="4"/><circle cx="56" cy="53" r="4"/><circle cx="70" cy="53" r="4"/></g>
+  <path d="M50 95 L72 112 L50 129" fill="none" stroke="#A7C973" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="84" y="121" width="34" height="8" rx="4" fill="#A7C973"/>
+  <rect x="124" y="103" width="14" height="26" rx="3" fill="#51AA04"/>
+</svg>

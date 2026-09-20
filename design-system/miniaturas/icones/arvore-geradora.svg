@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Árvore geradora mínima">
+  <!-- Árvore geradora: arestas do grafo tracejadas, as da árvore sólidas em brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="3" stroke-dasharray="7 7" stroke-linecap="round">
+    <path d="M40 60 L160 45 M40 60 L60 150 M100 100 L160 45 M60 150 L150 160 M100 100 L150 160"/>
+  </g>
+  <g fill="none" stroke="#51AA04" stroke-width="6" stroke-linecap="round">
+    <path d="M40 60 L100 100 M100 100 L60 150 M160 45 L150 160 M100 100 L150 160"/>
+  </g>
+  <g fill="#A7C973"><circle cx="40" cy="60" r="9"/><circle cx="160" cy="45" r="9"/><circle cx="60" cy="150" r="9"/><circle cx="150" cy="160" r="9"/></g>
+  <circle cx="100" cy="100" r="12" fill="#51AA04"/>
+</svg>

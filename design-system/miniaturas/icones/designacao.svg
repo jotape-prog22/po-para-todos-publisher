@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Matriz de designação">
+  <!-- Designação: matriz 3×3, uma célula escolhida por linha e por coluna em brand-green -->
+  <rect x="30" y="30" width="140" height="140" rx="8" fill="none" stroke="#A7C973" stroke-width="4"/>
+  <path d="M30 76.7 H170 M30 123.3 H170 M76.7 30 V170 M123.3 30 V170" stroke="#A7C973" stroke-width="3"/>
+  <g fill="#A7C973"><circle cx="53.3" cy="53.3" r="5"/><circle cx="100" cy="53.3" r="5"/><circle cx="53.3" cy="100" r="5"/><circle cx="146.7" cy="100" r="5"/><circle cx="100" cy="146.7" r="5"/><circle cx="146.7" cy="146.7" r="5"/></g>
+  <g fill="#51AA04"><circle cx="146.7" cy="53.3" r="11"/><circle cx="100" cy="100" r="11"/><circle cx="53.3" cy="146.7" r="11"/></g>
+</svg>

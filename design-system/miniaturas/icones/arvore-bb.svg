@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Árvore de Branch and Bound">
+  <!-- Branch and Bound: árvore binária; ramos podados terminam num traço, a folha ótima é brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round">
+    <path d="M100 35 L55 85 M100 35 L145 85 M55 85 L30 140 M55 85 L80 140 M145 85 L120 140 M145 85 L170 140"/>
+  </g>
+  <path d="M20 152 H40 M110 152 H130" stroke="#A7C973" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#A7C973"><circle cx="100" cy="35" r="10"/><circle cx="55" cy="85" r="9"/><circle cx="145" cy="85" r="9"/><circle cx="30" cy="140" r="7"/><circle cx="120" cy="140" r="7"/><circle cx="170" cy="140" r="7"/></g>
+  <circle cx="80" cy="140" r="11" fill="#51AA04"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Caixeiro viajante">
+  <!-- Caixeiro viajante: cidades como nós, o ciclo hamiltoniano em brand-green, arestas não usadas tracejadas -->
+  <g fill="none" stroke="#A7C973" stroke-width="3" stroke-dasharray="7 7" stroke-linecap="round">
+    <path d="M60 50 L150 140 M140 45 L50 130 M60 50 L100 165"/>
+  </g>
+  <path d="M60 50 L140 45 L170 100 L150 140 L100 165 L50 130 L35 90 Z" fill="none" stroke="#51AA04" stroke-width="6" stroke-linejoin="round"/>
+  <g fill="#A7C973"><circle cx="140" cy="45" r="8"/><circle cx="170" cy="100" r="8"/><circle cx="150" cy="140" r="8"/><circle cx="100" cy="165" r="8"/><circle cx="50" cy="130" r="8"/><circle cx="35" cy="90" r="8"/></g>
+  <circle cx="60" cy="50" r="12" fill="#51AA04"/>
+</svg>

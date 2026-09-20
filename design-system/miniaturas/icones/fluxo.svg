@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Fluxo em rede">
+  <!-- Fluxo máximo: fonte à esquerda, sorvedouro à direita, arestas com espessura proporcional ao fluxo -->
+  <g fill="none" stroke="#A7C973" stroke-linecap="round">
+    <path d="M30 100 L85 50" stroke-width="7"/>
+    <path d="M30 100 L85 150" stroke-width="4"/>
+    <path d="M85 50 L170 100" stroke-width="7"/>
+    <path d="M85 150 L170 100" stroke-width="4"/>
+    <path d="M85 50 L85 150" stroke-width="3" stroke-dasharray="6 7"/>
+  </g>
+  <g fill="#A7C973"><circle cx="85" cy="50" r="9"/><circle cx="85" cy="150" r="9"/></g>
+  <circle cx="30" cy="100" r="13" fill="#51AA04"/>
+  <circle cx="170" cy="100" r="13" fill="none" stroke="#51AA04" stroke-width="6"/>
+</svg>

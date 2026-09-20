@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Thumbnail-Tutorial — PO para Todos</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fontes/fontes.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+<!-- Tutorial passo a passo: lockup no topo, palavra-chave em thumb-headline (≤ ~11
+     caracteres), "NO [FERRAMENTA]" em thumb-subhead (≤ ~16), ícone da ferramenta no
+     cartão inferior esquerdo, faixa "PASSO A PASSO COMPLETO".
+     Troque o conteúdo do cartão pelo ícone da ferramenta (PNG/SVG) — um só por peça. -->
+<main class="canvas thumb thumb--tutorial">
+  <img class="thumb__lockup" src="../assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
+
+  <h1 class="thumb__titulo">
+    <span class="thumb__headline thumb-headline">Solver</span>
+    <span class="thumb__subhead thumb-subhead">no Excel</span>
+  </h1>
+
+  <div class="thumb__icone thumb__icone--cartao" role="img" aria-label="Ícone da ferramenta com alvo">
+    <!-- Ícone-alvo (accent-red) do formato tutorial; o ícone da ferramenta entra por cima/ao lado -->
+    <svg width="84" height="84" viewBox="0 0 84 84" fill="none" stroke="var(--accent-red)" stroke-width="7">
+      <circle cx="42" cy="42" r="36"/>
+      <circle cx="42" cy="42" r="21"/>
+      <circle cx="42" cy="42" r="6" fill="var(--accent-red)" stroke="none"/>
+    </svg>
+  </div>
+
+  <p class="thumb__faixa thumb-banner">Passo a passo completo</p>
+</main>
+</body>
+</html>

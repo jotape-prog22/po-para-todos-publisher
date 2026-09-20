@@ -1,0 +1,174 @@
+/* PO para Todos — tokens.css (v1)
+ * ARQUIVO GERADO por scripts/gerar-tokens-css.mjs a partir de tokens.json.
+ * Não edite à mão: altere tokens.json e rode o script de novo.
+ * Extraído de Teorema_Folgas_Complementares.pptx (tema, cores, fontes reais), do logo do canal (fundo escuro) e de uma miniatura de referência (Solver no Excel).
+ */
+
+:root {
+  /* Cores independentes de tema */
+  --brand-navy: #0E2841;
+  --brand-green: #51AA04;
+  --brand-green-soft: #A7C973;
+  --accent-blue: #156082;
+  --unirio-navy: #1C1E45;
+  --accent-red: #FC3739;
+  --ink-on-brand-green: #FFFFFF;
+
+  /* Famílias tipográficas */
+  --font-title: "Aharoni", "Baloo 2", sans-serif;
+  --font-body: "Hagrid Text", "Nunito", sans-serif;
+  --font-display: "Archivo Black", sans-serif;
+  --font-label: "Poppins", sans-serif;
+
+  /* Estilos tipográficos (tamanho / entrelinha / peso / família) */
+  --slide-title-size: 59px;
+  --slide-title-line: 64px;
+  --slide-title-weight: 700;
+  --slide-title-family: var(--font-title);
+  --slide-label-size: 27px;
+  --slide-label-line: 34px;
+  --slide-label-weight: 700;
+  --slide-label-family: var(--font-body);
+  --slide-body-size: 27px;
+  --slide-body-line: 38px;
+  --slide-body-weight: 400;
+  --slide-body-family: var(--font-body);
+  --slide-emphasis-size: 27px;
+  --slide-emphasis-line: 38px;
+  --slide-emphasis-weight: 700;
+  --slide-emphasis-family: var(--font-body);
+  --slide-caption-size: 24px;
+  --slide-caption-line: 30px;
+  --slide-caption-weight: 400;
+  --slide-caption-family: var(--font-body);
+  --thumb-kicker-size: 24px;
+  --thumb-kicker-line: 28px;
+  --thumb-kicker-weight: 600;
+  --thumb-kicker-family: var(--font-label);
+  --thumb-headline-size: 128px;
+  --thumb-headline-line: 116px;
+  --thumb-headline-weight: 400;
+  --thumb-headline-family: var(--font-display);
+  --thumb-subhead-size: 92px;
+  --thumb-subhead-line: 88px;
+  --thumb-subhead-weight: 400;
+  --thumb-subhead-family: var(--font-display);
+  --thumb-banner-size: 40px;
+  --thumb-banner-line: 44px;
+  --thumb-banner-weight: 800;
+  --thumb-banner-family: var(--font-label);
+
+  /* Espaçamento */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* Raio */
+  --radius-none: 0px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-full: 999px;
+}
+
+/* Tema Slides (padrão) */
+:root,
+[data-theme="slides"] {
+  color-scheme: light;
+  --surface: #FFFFFF;
+  --surface-panel: #F3F4F5;
+  --ink: #000000;
+  --ink-muted: #4A4A4A;
+}
+
+/* Tema YouTube */
+[data-theme="youtube"] {
+  color-scheme: dark;
+  --surface: #2C2C2C;
+  --surface-panel: #3A3A3A;
+  --ink: #FFFFFF;
+  --ink-muted: #C9C9C9;
+}
+
+/* Classes de estilo tipográfico — uma por token de tipo */
+.slide-title {
+  font-family: var(--slide-title-family);
+  font-size: var(--slide-title-size);
+  line-height: var(--slide-title-line);
+  font-weight: var(--slide-title-weight);
+}
+.slide-label {
+  font-family: var(--slide-label-family);
+  font-size: var(--slide-label-size);
+  line-height: var(--slide-label-line);
+  font-weight: var(--slide-label-weight);
+}
+.slide-body {
+  font-family: var(--slide-body-family);
+  font-size: var(--slide-body-size);
+  line-height: var(--slide-body-line);
+  font-weight: var(--slide-body-weight);
+}
+.slide-emphasis {
+  font-family: var(--slide-emphasis-family);
+  font-size: var(--slide-emphasis-size);
+  line-height: var(--slide-emphasis-line);
+  font-weight: var(--slide-emphasis-weight);
+}
+.slide-caption {
+  font-family: var(--slide-caption-family);
+  font-size: var(--slide-caption-size);
+  line-height: var(--slide-caption-line);
+  font-weight: var(--slide-caption-weight);
+}
+.thumb-kicker {
+  font-family: var(--thumb-kicker-family);
+  font-size: var(--thumb-kicker-size);
+  line-height: var(--thumb-kicker-line);
+  font-weight: var(--thumb-kicker-weight);
+}
+.thumb-headline {
+  font-family: var(--thumb-headline-family);
+  font-size: var(--thumb-headline-size);
+  line-height: var(--thumb-headline-line);
+  font-weight: var(--thumb-headline-weight);
+}
+.thumb-subhead {
+  font-family: var(--thumb-subhead-family);
+  font-size: var(--thumb-subhead-size);
+  line-height: var(--thumb-subhead-line);
+  font-weight: var(--thumb-subhead-weight);
+}
+.thumb-banner {
+  font-family: var(--thumb-banner-family);
+  font-size: var(--thumb-banner-size);
+  line-height: var(--thumb-banner-line);
+  font-weight: var(--thumb-banner-weight);
+}
+
+/* Contraste (WCAG 2.x) dos pares usados pelo sistema — calculado na geração
+ *
+ * Tema slides:
+ *   brand-navy           sobre surface        15.02:1  AA
+ *   ink                  sobre surface        21.00:1  AA
+ *   ink-muted            sobre surface         8.86:1  AA
+ *   accent-blue          sobre surface         6.94:1  AA
+ *   accent-blue          sobre surface-panel   6.30:1  AA
+ *   ink                  sobre surface-panel  19.07:1  AA
+ *   brand-green          sobre surface         2.96:1  abaixo de 3:1
+ *   brand-green-soft     sobre surface         1.87:1  abaixo de 3:1
+ *
+ * Tema youtube:
+ *   brand-green          sobre surface         4.72:1  AA
+ *   ink                  sobre surface        13.97:1  AA
+ *   ink-muted            sobre surface         8.43:1  AA
+ *   brand-green-soft     sobre surface         7.48:1  AA
+ *   ink-on-brand-green   sobre brand-green     2.96:1  abaixo de 3:1
+ *   brand-navy           sobre brand-green     5.08:1  AA
+ *   unirio-navy          sobre surface         1.14:1  abaixo de 3:1
+ */

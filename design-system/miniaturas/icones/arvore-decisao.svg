@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Árvore de decisão">
+  <!-- Árvore de decisão: nó de decisão quadrado, nós de chance circulares, o ramo escolhido em brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round">
+    <path d="M40 100 L95 145 M95 145 L150 125 M95 145 L150 165 M95 55 L150 35 M95 55 L150 75"/>
+  </g>
+  <path d="M40 100 L95 55" stroke="#51AA04" stroke-width="6" stroke-linecap="round"/>
+  <rect x="26" y="86" width="28" height="28" rx="5" fill="#51AA04"/>
+  <g fill="#A7C973"><circle cx="95" cy="145" r="10"/><circle cx="150" cy="35" r="6"/><circle cx="150" cy="75" r="6"/><circle cx="150" cy="125" r="6"/><circle cx="150" cy="165" r="6"/></g>
+  <circle cx="95" cy="55" r="10" fill="#51AA04"/>
+</svg>

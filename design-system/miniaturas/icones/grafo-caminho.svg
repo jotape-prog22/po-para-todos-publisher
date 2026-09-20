@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Caminho mínimo em um grafo">
+  <!-- Caminho mínimo: grafo com sete nós; o caminho origem→destino em brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round">
+    <path d="M30 150 L70 60 M70 60 L130 40 M130 40 L170 90 M70 60 L100 110 M100 110 L60 170 M170 90 L150 165 M100 110 L150 165 M60 170 L150 165"/>
+  </g>
+  <path d="M30 150 L100 110 L170 90" fill="none" stroke="#51AA04" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#A7C973"><circle cx="70" cy="60" r="8"/><circle cx="130" cy="40" r="8"/><circle cx="60" cy="170" r="7"/><circle cx="150" cy="165" r="8"/></g>
+  <g fill="#51AA04"><circle cx="30" cy="150" r="11"/><circle cx="100" cy="110" r="9"/><circle cx="170" cy="90" r="11"/></g>
+</svg>

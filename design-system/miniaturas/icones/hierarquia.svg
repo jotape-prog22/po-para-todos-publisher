@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Hierarquia de critérios">
+  <!-- AHP: objetivo no topo, critérios no meio, alternativas embaixo; a alternativa escolhida em brand-green -->
+  <g fill="none" stroke="#A7C973" stroke-width="4" stroke-linecap="round">
+    <path d="M100 35 L45 95 M100 35 L100 95 M100 35 L155 95 M45 95 L35 160 M45 95 L75 160 M100 95 L75 160 M100 95 L125 160 M155 95 L125 160 M155 95 L165 160"/>
+  </g>
+  <circle cx="100" cy="35" r="11" fill="#A7C973"/>
+  <g fill="#A7C973"><circle cx="45" cy="95" r="8"/><circle cx="100" cy="95" r="8"/><circle cx="155" cy="95" r="8"/></g>
+  <g fill="#A7C973"><circle cx="35" cy="160" r="7"/><circle cx="125" cy="160" r="7"/><circle cx="165" cy="160" r="7"/></g>
+  <circle cx="75" cy="160" r="11" fill="#51AA04"/>
+</svg>

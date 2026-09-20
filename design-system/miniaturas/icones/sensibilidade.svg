@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Análise de sensibilidade">
+  <!-- Sensibilidade: reta de restrição que gira em torno de um nó; trilho com o intervalo permitido e o cursor em brand-green -->
+  <path d="M30 150 L170 60" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <path d="M30 120 L170 90" stroke="#A7C973" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/>
+  <circle cx="100" cy="105" r="9" fill="#A7C973"/>
+  <path d="M35 175 H165" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 165 V185 M140 165 V185" stroke="#A7C973" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="100" cy="175" r="11" fill="#51AA04"/>
+</svg>

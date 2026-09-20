@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galeria de miniaturas — PO para Todos</title>
+<link rel="stylesheet" href="../assets/fontes/fontes.css">
+<style>
+  body { margin: 0; padding: 40px; background: #E9EAEC; color: #1A1A1A; font: 14px/1.5 "Nunito", sans-serif; }
+  h1 { font: 700 30px/1.2 "Baloo 2", sans-serif; margin: 0 0 4px; }
+  h2 { font: 700 20px/1.2 "Baloo 2", sans-serif; margin: 40px 0 12px; }
+  p.lead { margin: 0; color: #4A4A4A; max-width: 80ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .card { margin: 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .moldura { width: 320px; height: 180px; overflow: hidden; }
+  iframe { width: 1280px; height: 720px; border: 0; transform: scale(.25); transform-origin: 0 0; pointer-events: none; }
+  figcaption { padding: 8px 12px; font-size: 12px; display: grid; grid-template-columns: 1fr auto; gap: 0 8px; }
+  figcaption b { font-family: ui-monospace, monospace; }
+  figcaption span { grid-column: 1; color: #4A4A4A; }
+  figcaption a { grid-row: 1 / 3; align-self: center; color: #156082; }
+</style>
+</head>
+<body>
+<h1>Galeria de miniaturas</h1>
+<p class="lead">Gerada por <code>scripts/gerar-galeria.mjs</code> a partir de <code>catalogo.json</code> e <code>formatos.json</code>. 68 miniaturas em escala 25%. Não edite os arquivos de <code>galeria/</code> à mão — rode o script.</p>
+
+<h2>Os oito formatos (tópico: Simplex)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-tutorial.html" title="formato-tutorial" loading="lazy"></iframe></div>
+      <figcaption><b>formato-tutorial</b><span>tutorial · empilhado · tabela-simplex · selo alvo</span><a href="galeria/formato-tutorial.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-conceito.html" title="formato-conceito" loading="lazy"></iframe></div>
+      <figcaption><b>formato-conceito</b><span>conceito · dividido · tabela-simplex</span><a href="galeria/formato-conceito.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-exercicio.html" title="formato-exercicio" loading="lazy"></iframe></div>
+      <figcaption><b>formato-exercicio</b><span>exercicio · dividido · tabela-simplex</span><a href="galeria/formato-exercicio.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-serie.html" title="formato-serie" loading="lazy"></iframe></div>
+      <figcaption><b>formato-serie</b><span>serie · numerado · tabela-simplex</span><a href="galeria/formato-serie.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-erros.html" title="formato-erros" loading="lazy"></iframe></div>
+      <figcaption><b>formato-erros</b><span>erros · dividido · tabela-simplex · selo erro</span><a href="galeria/formato-erros.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-comparativo.html" title="formato-comparativo" loading="lazy"></iframe></div>
+      <figcaption><b>formato-comparativo</b><span>comparativo · comparativo · tabela-simplex + regiao-viavel</span><a href="galeria/formato-comparativo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-ferramenta.html" title="formato-ferramenta" loading="lazy"></iframe></div>
+      <figcaption><b>formato-ferramenta</b><span>ferramenta · dividido · tabela-simplex</span><a href="galeria/formato-ferramenta.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/formato-rapido.html" title="formato-rapido" loading="lazy"></iframe></div>
+      <figcaption><b>formato-rapido</b><span>rapido · dividido · tabela-simplex · selo relogio</span><a href="galeria/formato-rapido.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Programação Linear (programacao-linear)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/modelagem-pl.html" title="modelagem-pl" loading="lazy"></iframe></div>
+      <figcaption><b>modelagem-pl</b><span>conceito · empilhado · regiao-viavel</span><a href="galeria/modelagem-pl.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/metodo-grafico.html" title="metodo-grafico" loading="lazy"></iframe></div>
+      <figcaption><b>metodo-grafico</b><span>exercicio · dividido · regiao-viavel</span><a href="galeria/metodo-grafico.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/simplex.html" title="simplex" loading="lazy"></iframe></div>
+      <figcaption><b>simplex</b><span>tutorial · empilhado · tabela-simplex · selo alvo</span><a href="galeria/simplex.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/big-m.html" title="big-m" loading="lazy"></iframe></div>
+      <figcaption><b>big-m</b><span>conceito · dividido · tabela-simplex</span><a href="galeria/big-m.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/simplex-dual.html" title="simplex-dual" loading="lazy"></iframe></div>
+      <figcaption><b>simplex-dual</b><span>conceito · dividido · dualidade</span><a href="galeria/simplex-dual.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/dualidade.html" title="dualidade" loading="lazy"></iframe></div>
+      <figcaption><b>dualidade</b><span>conceito · dividido · dualidade</span><a href="galeria/dualidade.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/folgas-complementares.html" title="folgas-complementares" loading="lazy"></iframe></div>
+      <figcaption><b>folgas-complementares</b><span>conceito · empilhado · dualidade</span><a href="galeria/folgas-complementares.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/sensibilidade.html" title="sensibilidade" loading="lazy"></iframe></div>
+      <figcaption><b>sensibilidade</b><span>conceito · dividido · sensibilidade</span><a href="galeria/sensibilidade.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/casos-especiais.html" title="casos-especiais" loading="lazy"></iframe></div>
+      <figcaption><b>casos-especiais</b><span>erros · dividido · regiao-viavel · selo erro</span><a href="galeria/casos-especiais.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Programação Inteira (programacao-inteira)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/modelagem-binaria.html" title="modelagem-binaria" loading="lazy"></iframe></div>
+      <figcaption><b>modelagem-binaria</b><span>conceito · dividido · arvore-bb</span><a href="galeria/modelagem-binaria.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/branch-and-bound.html" title="branch-and-bound" loading="lazy"></iframe></div>
+      <figcaption><b>branch-and-bound</b><span>conceito · dividido · arvore-bb</span><a href="galeria/branch-and-bound.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/planos-de-corte.html" title="planos-de-corte" loading="lazy"></iframe></div>
+      <figcaption><b>planos-de-corte</b><span>conceito · dividido · plano-corte</span><a href="galeria/planos-de-corte.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/mochila.html" title="mochila" loading="lazy"></iframe></div>
+      <figcaption><b>mochila</b><span>exercicio · dividido · mochila</span><a href="galeria/mochila.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/localizacao.html" title="localizacao" loading="lazy"></iframe></div>
+      <figcaption><b>localizacao</b><span>conceito · dividido · grafo-caminho</span><a href="galeria/localizacao.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Redes e Grafos (redes)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/caminho-minimo.html" title="caminho-minimo" loading="lazy"></iframe></div>
+      <figcaption><b>caminho-minimo</b><span>conceito · empilhado · grafo-caminho</span><a href="galeria/caminho-minimo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/fluxo-maximo.html" title="fluxo-maximo" loading="lazy"></iframe></div>
+      <figcaption><b>fluxo-maximo</b><span>conceito · dividido · fluxo</span><a href="galeria/fluxo-maximo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/custo-minimo.html" title="custo-minimo" loading="lazy"></iframe></div>
+      <figcaption><b>custo-minimo</b><span>conceito · empilhado · fluxo</span><a href="galeria/custo-minimo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/arvore-geradora.html" title="arvore-geradora" loading="lazy"></iframe></div>
+      <figcaption><b>arvore-geradora</b><span>conceito · empilhado · arvore-geradora</span><a href="galeria/arvore-geradora.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/transporte.html" title="transporte" loading="lazy"></iframe></div>
+      <figcaption><b>transporte</b><span>exercicio · empilhado · transporte</span><a href="galeria/transporte.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/designacao.html" title="designacao" loading="lazy"></iframe></div>
+      <figcaption><b>designacao</b><span>tutorial · empilhado · designacao · selo alvo</span><a href="galeria/designacao.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/caixeiro-viajante.html" title="caixeiro-viajante" loading="lazy"></iframe></div>
+      <figcaption><b>caixeiro-viajante</b><span>conceito · dividido · caixeiro</span><a href="galeria/caixeiro-viajante.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/roteamento.html" title="roteamento" loading="lazy"></iframe></div>
+      <figcaption><b>roteamento</b><span>conceito · dividido · caixeiro</span><a href="galeria/roteamento.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Gestão de Projetos (projetos)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/pert-cpm.html" title="pert-cpm" loading="lazy"></iframe></div>
+      <figcaption><b>pert-cpm</b><span>conceito · empilhado · gantt</span><a href="galeria/pert-cpm.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/gantt.html" title="gantt" loading="lazy"></iframe></div>
+      <figcaption><b>gantt</b><span>tutorial · empilhado · gantt · selo alvo</span><a href="galeria/gantt.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/crashing.html" title="crashing" loading="lazy"></iframe></div>
+      <figcaption><b>crashing</b><span>conceito · dividido · gantt</span><a href="galeria/crashing.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Gestão de Estoques (estoques)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/eoq.html" title="eoq" loading="lazy"></iframe></div>
+      <figcaption><b>eoq</b><span>conceito · dividido · estoque</span><a href="galeria/eoq.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/ponto-de-pedido.html" title="ponto-de-pedido" loading="lazy"></iframe></div>
+      <figcaption><b>ponto-de-pedido</b><span>conceito · dividido · estoque</span><a href="galeria/ponto-de-pedido.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Teoria das Filas (filas)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/mm1.html" title="mm1" loading="lazy"></iframe></div>
+      <figcaption><b>mm1</b><span>conceito · dividido · fila</span><a href="galeria/mm1.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/little.html" title="little" loading="lazy"></iframe></div>
+      <figcaption><b>little</b><span>conceito · dividido · fila</span><a href="galeria/little.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/mmc.html" title="mmc" loading="lazy"></iframe></div>
+      <figcaption><b>mmc</b><span>conceito · dividido · fila</span><a href="galeria/mmc.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Simulação (simulacao)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/monte-carlo.html" title="monte-carlo" loading="lazy"></iframe></div>
+      <figcaption><b>monte-carlo</b><span>conceito · dividido · dados</span><a href="galeria/monte-carlo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/eventos-discretos.html" title="eventos-discretos" loading="lazy"></iframe></div>
+      <figcaption><b>eventos-discretos</b><span>conceito · dividido · relogio</span><a href="galeria/eventos-discretos.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/variaveis-aleatorias.html" title="variaveis-aleatorias" loading="lazy"></iframe></div>
+      <figcaption><b>variaveis-aleatorias</b><span>conceito · dividido · dados</span><a href="galeria/variaveis-aleatorias.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Programação Dinâmica (programacao-dinamica)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/principio-bellman.html" title="principio-bellman" loading="lazy"></iframe></div>
+      <figcaption><b>principio-bellman</b><span>conceito · empilhado · escada</span><a href="galeria/principio-bellman.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/pd-estagios.html" title="pd-estagios" loading="lazy"></iframe></div>
+      <figcaption><b>pd-estagios</b><span>exercicio · empilhado · escada</span><a href="galeria/pd-estagios.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Teoria dos Jogos (jogos)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/matriz-payoff.html" title="matriz-payoff" loading="lazy"></iframe></div>
+      <figcaption><b>matriz-payoff</b><span>conceito · empilhado · payoff</span><a href="galeria/matriz-payoff.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/nash.html" title="nash" loading="lazy"></iframe></div>
+      <figcaption><b>nash</b><span>conceito · dividido · payoff</span><a href="galeria/nash.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/soma-zero.html" title="soma-zero" loading="lazy"></iframe></div>
+      <figcaption><b>soma-zero</b><span>conceito · empilhado · payoff</span><a href="galeria/soma-zero.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Teoria da Decisão (decisao)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/arvore-decisao.html" title="arvore-decisao" loading="lazy"></iframe></div>
+      <figcaption><b>arvore-decisao</b><span>conceito · dividido · arvore-decisao</span><a href="galeria/arvore-decisao.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/incerteza.html" title="incerteza" loading="lazy"></iframe></div>
+      <figcaption><b>incerteza</b><span>comparativo · comparativo · arvore-decisao + payoff</span><a href="galeria/incerteza.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/ahp.html" title="ahp" loading="lazy"></iframe></div>
+      <figcaption><b>ahp</b><span>conceito · dividido · hierarquia</span><a href="galeria/ahp.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Heurísticas e Metaheurísticas (metaheuristicas)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/heuristica-gulosa.html" title="heuristica-gulosa" loading="lazy"></iframe></div>
+      <figcaption><b>heuristica-gulosa</b><span>conceito · dividido · grafo-caminho</span><a href="galeria/heuristica-gulosa.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/algoritmo-genetico.html" title="algoritmo-genetico" loading="lazy"></iframe></div>
+      <figcaption><b>algoritmo-genetico</b><span>conceito · dividido · cromossomo</span><a href="galeria/algoritmo-genetico.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/recozimento.html" title="recozimento" loading="lazy"></iframe></div>
+      <figcaption><b>recozimento</b><span>conceito · dividido · cromossomo</span><a href="galeria/recozimento.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/busca-tabu.html" title="busca-tabu" loading="lazy"></iframe></div>
+      <figcaption><b>busca-tabu</b><span>conceito · dividido · cromossomo</span><a href="galeria/busca-tabu.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Programação Não Linear (nao-linear)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/gradiente.html" title="gradiente" loading="lazy"></iframe></div>
+      <figcaption><b>gradiente</b><span>conceito · dividido · gradiente</span><a href="galeria/gradiente.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/kkt.html" title="kkt" loading="lazy"></iframe></div>
+      <figcaption><b>kkt</b><span>conceito · dividido · gradiente</span><a href="galeria/kkt.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/convexidade.html" title="convexidade" loading="lazy"></iframe></div>
+      <figcaption><b>convexidade</b><span>conceito · dividido · gradiente</span><a href="galeria/convexidade.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Previsão de Demanda (previsao)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/media-movel.html" title="media-movel" loading="lazy"></iframe></div>
+      <figcaption><b>media-movel</b><span>conceito · dividido · previsao</span><a href="galeria/media-movel.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/regressao.html" title="regressao" loading="lazy"></iframe></div>
+      <figcaption><b>regressao</b><span>tutorial · empilhado · previsao · selo alvo</span><a href="galeria/regressao.html">abrir</a></figcaption>
+    </figure>
+</div>
+
+<h2>Ferramentas (ferramentas)</h2>
+<div class="grid">
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/excel-solver.html" title="excel-solver" loading="lazy"></iframe></div>
+      <figcaption><b>excel-solver</b><span>tutorial · empilhado · planilha · selo alvo</span><a href="galeria/excel-solver.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/google-sheets.html" title="google-sheets" loading="lazy"></iframe></div>
+      <figcaption><b>google-sheets</b><span>tutorial · empilhado · planilha · selo alvo</span><a href="galeria/google-sheets.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/python-pulp.html" title="python-pulp" loading="lazy"></iframe></div>
+      <figcaption><b>python-pulp</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/python-pulp.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/python-ortools.html" title="python-ortools" loading="lazy"></iframe></div>
+      <figcaption><b>python-ortools</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/python-ortools.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/python-scipy.html" title="python-scipy" loading="lazy"></iframe></div>
+      <figcaption><b>python-scipy</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/python-scipy.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/lingo.html" title="lingo" loading="lazy"></iframe></div>
+      <figcaption><b>lingo</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/lingo.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/gams-ampl.html" title="gams-ampl" loading="lazy"></iframe></div>
+      <figcaption><b>gams-ampl</b><span>comparativo · comparativo · terminal + planilha</span><a href="galeria/gams-ampl.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/gurobi-cplex.html" title="gurobi-cplex" loading="lazy"></iframe></div>
+      <figcaption><b>gurobi-cplex</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/gurobi-cplex.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/julia-jump.html" title="julia-jump" loading="lazy"></iframe></div>
+      <figcaption><b>julia-jump</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/julia-jump.html">abrir</a></figcaption>
+    </figure>
+    <figure class="card">
+      <div class="moldura"><iframe src="galeria/r-lpsolve.html" title="r-lpsolve" loading="lazy"></iframe></div>
+      <figcaption><b>r-lpsolve</b><span>tutorial · empilhado · terminal · selo alvo</span><a href="galeria/r-lpsolve.html">abrir</a></figcaption>
+    </figure>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Curvas de nível e gradiente">
+  <!-- Não linear: curvas de nível de uma função, o caminho de descida do gradiente em brand-green até o ótimo -->
+  <g fill="none" stroke="#A7C973" stroke-width="3">
+    <ellipse cx="110" cy="105" rx="70" ry="52" transform="rotate(-20 110 105)"/>
+    <ellipse cx="110" cy="105" rx="48" ry="34" transform="rotate(-20 110 105)"/>
+    <ellipse cx="110" cy="105" rx="26" ry="17" transform="rotate(-20 110 105)"/>
+  </g>
+  <path d="M30 165 L70 130 L95 118 L108 108" fill="none" stroke="#51AA04" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#A7C973"><circle cx="30" cy="165" r="8"/><circle cx="70" cy="130" r="6"/><circle cx="95" cy="118" r="6"/></g>
+  <circle cx="110" cy="105" r="9" fill="#51AA04"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Tabela Simplex com pivô">
+  <!-- Quadro Simplex: grade 4×4, linha e coluna do pivô realçadas, célula-pivô em brand-green -->
+  <rect x="25" y="25" width="150" height="150" fill="none" stroke="#A7C973" stroke-width="4" rx="6"/>
+  <path d="M25 62.5 H175 M25 100 H175 M25 137.5 H175 M62.5 25 V175 M100 25 V175 M137.5 25 V175" stroke="#A7C973" stroke-width="3"/>
+  <rect x="25" y="100" width="150" height="37.5" fill="#A7C973" fill-opacity=".25"/>
+  <rect x="100" y="25" width="37.5" height="150" fill="#A7C973" fill-opacity=".25"/>
+  <circle cx="118.75" cy="118.75" r="12" fill="#51AA04"/>
+</svg>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="slides">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelos vivos — PO para Todos</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fontes/fontes.css">
+<style>
+  /* Página de revisão: mostra tokens, motivo e os seis modelos lado a lado.
+     Não é um componente — não copie a estrutura daqui. */
+  body { margin: 0; padding: 48px; background: #E9EAEC; color: #1A1A1A; font: 15px/1.5 "Nunito", sans-serif; }
+  h1 { font: 700 32px/1.2 "Baloo 2", sans-serif; margin: 0 0 8px; }
+  h2 { font: 700 22px/1.2 "Baloo 2", sans-serif; margin: 48px 0 16px; }
+  p.lead { margin: 0 0 8px; max-width: 70ch; color: #4A4A4A; }
+  .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .swatch { border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .swatch__cor { height: 72px; display: flex; gap: 0; }
+  .swatch__cor > span { flex: 1; }
+  .swatch__meta { padding: 10px 14px; font-size: 13px; }
+  .swatch__meta b { display: block; font-family: ui-monospace, monospace; }
+  .tipo { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 12px; display: flex; gap: 32px; align-items: baseline; }
+  .tipo__nome { width: 200px; flex: none; font: 13px ui-monospace, monospace; color: #4A4A4A; }
+  .tipo__amostra { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .tipo--escuro { background: #2C2C2C; color: #fff; }
+  .tipo--escuro .tipo__nome { color: #C9C9C9; }
+  .variacoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .variacao { background: #fff; border-radius: 8px; overflow: hidden; }
+  .variacao h3 { margin: 0; padding: 12px 16px; font: 700 16px "Baloo 2", sans-serif; }
+  .variacao p { margin: 0; padding: 0 16px 12px; font-size: 13px; color: #4A4A4A; }
+  .variacao__amostras { display: grid; grid-template-columns: 1fr 1fr; }
+  .amostra { display: grid; place-items: center; padding: 20px; }
+  .amostra--claro { background: #FFFFFF; }
+  .amostra--escuro { background: #2C2C2C; }
+  .amostra--grande { grid-column: 1 / -1; padding: 24px; }
+  .amostra img { display: block; }
+  .amostra small { display: block; font-size: 11px; margin-top: 8px; }
+  .amostra--escuro small { color: #C9C9C9; }
+  .modelos { display: grid; grid-template-columns: repeat(auto-fill, minmax(640px, 1fr)); gap: 24px; }
+  .modelo { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .modelo__moldura { width: 640px; height: 360px; overflow: hidden; }
+  .modelo iframe { width: 1280px; height: 720px; border: 0; transform: scale(.5); transform-origin: 0 0; }
+  .modelo__meta { padding: 10px 14px; font-size: 13px; display: flex; justify-content: space-between; }
+  .modelo__meta a { color: #156082; }
+</style>
+</head>
+<body>
+<h1>PO para Todos — modelos vivos</h1>
+<p class="lead">Tokens de <code>tokens.json</code> (via <code>tokens.css</code>), o motivo de nós e os seis componentes em escala 50%. Abra cada modelo em tamanho real pelo link. Para miniaturas de qualquer assunto de PO, veja a <a href="../miniaturas/galeria.html">galeria gerada pelo catálogo</a> e o <code>miniaturas/GUIA-AGENTE.md</code>.</p>
+
+<h2>Paleta</h2>
+<div class="grid">
+  <div class="swatch"><div class="swatch__cor"><span style="background:#FFFFFF;border-bottom:1px solid #ddd"></span><span style="background:#2C2C2C"></span></div><div class="swatch__meta"><b>surface</b>#FFFFFF · #2C2C2C</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:#F3F4F5"></span><span style="background:#3A3A3A"></span></div><div class="swatch__meta"><b>surface-panel</b>#F3F4F5 · #3A3A3A</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:#000000"></span><span style="background:#FFFFFF"></span></div><div class="swatch__meta"><b>ink</b>#000000 · #FFFFFF</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:#4A4A4A"></span><span style="background:#C9C9C9"></span></div><div class="swatch__meta"><b>ink-muted</b>#4A4A4A · #C9C9C9</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--brand-navy)"></span></div><div class="swatch__meta"><b>brand-navy</b>#0E2841 — títulos dos slides</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--brand-green)"></span></div><div class="swatch__meta"><b>brand-green</b>#51AA04 — headline e faixa das miniaturas</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--brand-green-soft)"></span></div><div class="swatch__meta"><b>brand-green-soft</b>#A7C973 — motivo de nós, washes</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--accent-blue)"></span></div><div class="swatch__meta"><b>accent-blue</b>#156082 — termos-chave e resultados</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--unirio-navy)"></span></div><div class="swatch__meta"><b>unirio-navy</b>#1C1E45 — só o logotipo UNIRIO</div></div>
+  <div class="swatch"><div class="swatch__cor"><span style="background:var(--accent-red)"></span></div><div class="swatch__meta"><b>accent-red</b>#FC3739 — ícone-alvo, nunca texto</div></div>
+</div>
+
+<h2>Tipografia</h2>
+<div class="tipo"><span class="tipo__nome">slide-title · 59/64 · 700</span><span class="tipo__amostra slide-title" style="color:var(--brand-navy)">Teorema das Folgas Complementares</span></div>
+<div class="tipo"><span class="tipo__nome">slide-label · 27/34 · 700</span><span class="tipo__amostra slide-label" style="color:var(--accent-blue)">Condição 1</span></div>
+<div class="tipo"><span class="tipo__nome">slide-body · 27/38 · 400</span><span class="tipo__amostra slide-body">Se uma restrição do Primal tem folga, a variável dual correspondente vale zero.</span></div>
+<div class="tipo"><span class="tipo__nome">slide-emphasis · 27/38 · 700</span><span class="tipo__amostra slide-emphasis">Z* = 36</span></div>
+<div class="tipo"><span class="tipo__nome">slide-caption · 24/30 · 400</span><span class="tipo__amostra slide-caption" style="color:var(--ink-muted)">Projeto PO para Todos – UNIRIO</span></div>
+<div class="tipo tipo--escuro"><span class="tipo__nome">thumb-kicker · 24/28 · 600</span><span class="tipo__amostra thumb-kicker">PESQUISA OPERACIONAL para todos.</span></div>
+<div class="tipo tipo--escuro"><span class="tipo__nome">thumb-headline · 128/116</span><span class="tipo__amostra thumb-headline" style="color:var(--brand-green)">SOLVER</span></div>
+<div class="tipo tipo--escuro"><span class="tipo__nome">thumb-subhead · 92/88</span><span class="tipo__amostra thumb-subhead">NO EXCEL</span></div>
+<div class="tipo" style="background:var(--brand-green);color:var(--brand-navy)"><span class="tipo__nome" style="color:var(--brand-navy)">thumb-banner · 40/44 · 800</span><span class="tipo__amostra thumb-banner">PASSO A PASSO COMPLETO</span></div>
+
+<h2>Motivo de nós</h2>
+<p class="lead"><code>assets/Marca/motivo-nos.svg</code> nos dois temas: canto do slide (141px), slot da miniatura (130px) e ampliado como na capa.</p>
+<div class="variacoes">
+  <div class="variacao">
+    <h3>motivo-nos.svg</h3>
+    <p>Anel de seis nós com hub deslocado e cauda solta — ecoa a metade direita do logo.</p>
+    <div class="variacao__amostras">
+      <div class="amostra amostra--claro"><img src="../assets/Marca/motivo-nos.svg" width="141" height="141" alt=""><small>slide · 141px</small></div>
+      <div class="amostra amostra--escuro"><img src="../assets/Marca/motivo-nos.svg" width="130" height="130" alt=""><small>miniatura · 130px</small></div>
+      <div class="amostra amostra--claro amostra--grande"><img src="../assets/Marca/motivo-nos.svg" width="300" height="300" alt=""><small>capa · ampliado</small></div>
+    </div>
+  </div>
+</div>
+
+<h2>Componentes</h2>
+<div class="modelos">
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Slide-Capa.html" title="Slide-Capa"></iframe></div><div class="modelo__meta"><span>Slide-Capa</span><a href="Slide-Capa.html">abrir 1280×720</a></div></div>
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Slide-Conteudo.html" title="Slide-Conteúdo"></iframe></div><div class="modelo__meta"><span>Slide-Conteúdo</span><a href="Slide-Conteudo.html">abrir 1280×720</a></div></div>
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Slide-Exemplo.html" title="Slide-Exemplo"></iframe></div><div class="modelo__meta"><span>Slide-Exemplo</span><a href="Slide-Exemplo.html">abrir 1280×720</a></div></div>
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Slide-Encerramento.html" title="Slide-Encerramento"></iframe></div><div class="modelo__meta"><span>Slide-Encerramento</span><a href="Slide-Encerramento.html">abrir 1280×720</a></div></div>
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Thumbnail-Tutorial.html" title="Thumbnail-Tutorial"></iframe></div><div class="modelo__meta"><span>Thumbnail-Tutorial</span><a href="Thumbnail-Tutorial.html">abrir 1280×720</a></div></div>
+  <div class="modelo"><div class="modelo__moldura"><iframe src="Thumbnail-Conceito.html" title="Thumbnail-Conceito"></iframe></div><div class="modelo__meta"><span>Thumbnail-Conceito</span><a href="Thumbnail-Conceito.html">abrir 1280×720</a></div></div>
+</div>
+</body>
+</html>
