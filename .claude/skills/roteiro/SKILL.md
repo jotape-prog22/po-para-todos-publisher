@@ -27,7 +27,7 @@ A pessoa pode responder só "ok" para aceitar todas as sugestões. Pergunte no m
 
 ## 3. Escreva o roteiro
 
-Formato obrigatório (o validador recusa qualquer desvio):
+Formato obrigatório (o validador confere a **estrutura** — seções, durações, tipos, numeração, 3–5 objetivos; as regras de conteúdo abaixo — gancho em pergunta, ≤ 30 s, ~9 linhas por slide, 3 itens no resumo, ±15 % de duração — são responsabilidade sua: releia antes de entregar):
 
 - Frontmatter YAML com `titulo_provisorio`, `formato`, `duracao_alvo_min`, `playlist`, `apresentador`, `relacionados` (lista de `url` + `contexto`; `[]` se não houver).
 - `## Gancho` — `Duração: N s` na primeira linha; ≤ 30 s de fala; abre com uma pergunta e termina dizendo o que a aula vai fazer ("Nesta aula vamos…"). Vai literalmente para a descrição do YouTube.
