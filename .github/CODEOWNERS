@@ -1,0 +1,4 @@
+# Quem pode aprovar mudanças na master. Toda alteração entra por Pull Request
+# e precisa da aprovação de alguém desta lista. Para dar esse poder a mais
+# alguém, acrescente o @usuário do GitHub na linha abaixo.
+* @jotape-prog22

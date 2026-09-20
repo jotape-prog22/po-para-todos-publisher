@@ -21,12 +21,12 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
 
 ## Baixar o projeto
 
-Se você nunca usou o `git` (o programa que guarda o histórico e as cópias deste projeto) antes, o caminho mais simples é: abra a página do repositório no navegador, clique no botão verde **Code** e depois em **Download ZIP**; extraia o arquivo ZIP baixado em uma pasta de fácil acesso (por exemplo, a Área de Trabalho).
+Se você nunca usou o `git` (o programa que guarda o histórico e as cópias deste projeto) antes, o caminho mais simples é: abra a página do repositório no navegador (https://github.com/jotape-prog22/po-para-todos-publisher), clique no botão verde **Code** e depois em **Download ZIP**; extraia o arquivo ZIP baixado em uma pasta de fácil acesso (por exemplo, a Área de Trabalho).
 
-Quem já tem `git` instalado pode preferir clonar (baixar uma cópia sincronizável) pelo Terminal. O endereço abaixo é um exemplo — use o link do repositório que você recebeu do projeto:
+Quem já tem `git` instalado pode preferir clonar (baixar uma cópia sincronizável) pelo Terminal:
 
 ```bash
-git clone https://github.com/po-para-todos/po-para-todos-publisher.git
+git clone https://github.com/jotape-prog22/po-para-todos-publisher.git
 ```
 
 Depois, entre na pasta do projeto pelo Terminal e instale as dependências (bibliotecas de código que os scripts usam). Se você baixou o ZIP (em vez de clonar), o GitHub extrai uma pasta com um nome como `po-para-todos-publisher-main`; renomeie-a para `po-para-todos-publisher` antes de continuar, para que os comandos deste guia funcionem sem ajustes.
@@ -121,3 +121,7 @@ Esta seção é para quem programa e quer alterar o funcionamento deste reposit�
 ## Créditos
 
 Projeto de extensão **PO para Todos** (Pesquisa Operacional), UNIRIO. Feito com o MCP de YouTube [felipefontoura/youtube-studio-mcp](https://github.com/felipefontoura/youtube-studio-mcp) e as skills de [obra/superpowers](https://github.com/obra/superpowers) e [mattpocock/skills](https://github.com/mattpocock/skills). Licença MIT.
+
+## Como o projeto recebe mudanças
+
+Qualquer pessoa pode ler, baixar e propor mudanças (abrindo um *Pull Request* — um pedido de alteração que aparece na aba **Pull requests** do GitHub). Ninguém escreve direto na `master`: a mudança só entra depois que alguém listado em `.github/CODEOWNERS` aprovar. Para incluir uma pessoa nessa lista, edite esse arquivo (também por Pull Request) e convide-a como colaboradora em **Settings → Collaborators**.
