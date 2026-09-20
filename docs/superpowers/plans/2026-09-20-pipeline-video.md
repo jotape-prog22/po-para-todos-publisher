@@ -20,7 +20,7 @@
 - Título de vídeo: `PALAVRA-CHAVE EM CAIXA ALTA - Complemento em Title Case[ - Parte N]`, ≤ 70 caracteres, sem `!`.
 - Upload sempre `privacy_status: "private"`, `category_id: "27"`.
 - Commits em português, terminando com `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
-- Testes: `npm test` = `node --test tests/`.
+- Testes: `npm test` = `node --test` (sem caminho; `node --test tests/` falha no Node 26).
 
 ---
 
