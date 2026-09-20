@@ -4,7 +4,7 @@
 //
 //   node design-system/scripts/rasterizar-motivo.mjs
 
-import { writeFileSync, mkdtempSync, existsSync } from "node:fs";
+import { writeFileSync, mkdtempSync, existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -34,10 +34,14 @@ export function rasterizar() {
     html,body{margin:0;background:transparent}
     img{display:block;width:600px;height:600px}
   </style></head><body><img src="${pathToFileURL(SVG).href}"></body></html>`);
-  execFileSync(acharChrome(), [
-    "--headless=new", "--disable-gpu", "--hide-scrollbars", "--default-background-color=00000000",
-    "--window-size=600,600", `--screenshot=${PNG}`, pathToFileURL(html).href,
-  ], { stdio: "ignore" });
+  try {
+    execFileSync(acharChrome(), [
+      "--headless=new", "--disable-gpu", "--hide-scrollbars", "--default-background-color=00000000",
+      "--window-size=600,600", `--screenshot=${PNG}`, pathToFileURL(html).href,
+    ], { stdio: "ignore" });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
   return PNG;
 }
 
