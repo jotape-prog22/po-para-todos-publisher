@@ -5,7 +5,7 @@ description: Fluxo completo de um vídeo do PO para Todos — do tema ao link pr
 
 # Vídeo — do tema ao YouTube
 
-Diga antes, em linguagem simples: "Vamos fazer o vídeo em 5 etapas: roteiro → slides → título e descrição → miniatura → publicação. Eu paro duas vezes: para você aprovar o roteiro e para você gravar."
+Diga antes, em linguagem simples: "Vamos fazer o vídeo em 5 etapas: roteiro → título e descrição → slides → miniatura → publicação. Eu paro duas vezes: para você aprovar o roteiro e para você gravar."
 
 ## Etapa 0 — Pasta
 

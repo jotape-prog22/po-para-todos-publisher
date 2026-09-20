@@ -14,7 +14,7 @@ Siga `design-system/miniaturas/GUIA-AGENTE.md` do início ao fim — ele é a re
 - **Número** (formato `serie`): pergunte à pessoa qual é o número da aula.
 - **Saída**: `--saida videos/<slug>/miniatura.png` (não `thumbnails/out/`).
 
-Passos: `--buscar "<título>" --so-buscar` → escolha o tópico → gere → leia os `avisos` → abra o PNG (`open videos/<slug>/miniatura.png`) e faça o teste dos 120 px do guia. Se o tópico não existe, siga "Tópico fora do catálogo" do guia e pergunte à pessoa antes de adicionar ao catálogo.
+Passos: `--buscar "<título>" --so-buscar` → escolha o tópico → gere → leia os `avisos` → abra o PNG (`open …` no Mac, `start …` no Windows) e faça o teste dos 120 px do guia. Se o tópico não existe, siga "Tópico fora do catálogo" do guia e pergunte à pessoa antes de adicionar ao catálogo.
 
 O gerador também cria um `miniatura.html` do lado do PNG (é só o material de trabalho para exportar a imagem). Apague esse `.html` depois de conferir o PNG — só o `.png` é versionado.
 

@@ -42,6 +42,20 @@ test("roteiro do exemplo é válido", () => {
   assert.deepEqual(validarRoteiro(lerRoteiro(md)), []);
 });
 
+test("tolera CRLF (arquivo editado no Windows)", () => {
+  const crlf = md.replace(/\n/g, "\r\n");
+  assert.deepEqual(lerRoteiro(crlf), lerRoteiro(md));
+});
+
+test("validação recusa relacionados sem url ou contexto", () => {
+  const r = lerRoteiro(md);
+  r.meta.relacionados = [{ url: "https://youtu.be/x" }, { contexto: "sem url" }, { url: "", contexto: "" }];
+  const erros = validarRoteiro(r);
+  assert.ok(erros.includes('relacionados[0]: precisa de "url" e "contexto"'));
+  assert.ok(erros.includes('relacionados[1]: precisa de "url" e "contexto"'));
+  assert.ok(erros.includes('relacionados[2]: precisa de "url" e "contexto"'));
+});
+
 test("validação aponta o que falta", () => {
   const quebrado = md
     .replace("Tipo: conteudo · Duração: 54 s", "Tipo: video · Duração: 54 s")

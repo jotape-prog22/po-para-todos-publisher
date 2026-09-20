@@ -8,12 +8,16 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
 
 1. **Claude Code** — o assistente que roda tudo, dentro do Terminal (o programa de linha de comando do computador; no Mac procure por "Terminal" no Spotlight, atalho Cmd+Espaço; no Windows procure por "PowerShell" no menu Iniciar). Siga o guia oficial em https://docs.claude.com/en/docs/claude-code/quickstart . No final, abrir o Terminal e digitar `claude` deve mostrar uma tela de boas-vindas do Claude Code.
 2. **Node.js** (versão 22 ou mais nova) — o programa que gera os slides e a descrição a partir dos arquivos do vídeo. Baixe o instalador em https://nodejs.org (escolha a versão "LTS", a mais estável) e instale como qualquer outro programa. Confira que funcionou abrindo o Terminal e digitando `node -v` → deve aparecer algo como `v22...` (ou um número maior).
-3. **uv** — instala e roda o conector que fala com o YouTube (chamado de "MCP", explicado mais abaixo). No Terminal, cole o comando abaixo, aperte Enter, e depois feche e abra o Terminal de novo:
+3. **git** — o programa que guarda o histórico e as cópias deste projeto; o conector que fala com o YouTube (o "uv" do próximo item) é baixado por ele nos bastidores, então é preciso instalar mesmo que você prefira baixar o projeto pelo ZIP (veja "Baixar o projeto" abaixo).
+   - Mac: abra o Terminal e digite `xcode-select --install` — aparece uma janela pedindo confirmação; a instalação leva alguns minutos.
+   - Windows: baixe o instalador em https://git-scm.com/download/win e aceite as opções padrão.
+   Confira digitando `git --version` → deve aparecer um número de versão.
+4. **uv** — instala e roda o conector que fala com o YouTube (chamado de "MCP", explicado mais abaixo). No Terminal, cole o comando abaixo, aperte Enter, e depois feche e abra o Terminal de novo:
    - Mac/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
    - Windows (no PowerShell): cole exatamente como está abaixo, sem alterar nada — `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
    Confira digitando `uv --version` → deve aparecer um número de versão, sem erro.
-4. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item.
-5. **PowerPoint** — para abrir e apresentar os slides que o Claude gera (arquivo `.pptx`).
+5. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item.
+6. **PowerPoint** — para abrir e apresentar os slides que o Claude gera (arquivo `.pptx`).
 
 ## Baixar o projeto
 
@@ -100,12 +104,12 @@ Cada vídeo tem sua própria pasta em `videos/<slug>/` (o slug é o nome da past
 | `slides.pptx` | Os slides prontos para abrir no PowerPoint. É gerado a partir de `slides.json` (comando `node design-system/scripts/gerar-slides.mjs videos/<slug>`, onde `<slug>` é o nome da pasta do vídeo) e não fica salvo no repositório — cada pessoa gera o seu ao rodar o `/video`. |
 | `metadados.json` | Títulos candidatos, título escolhido, tags, capítulos e a descrição final que vai para o YouTube. |
 | `miniatura.png` | A imagem de capa do vídeo no YouTube (2560×1440). |
-| `publicacao.json` | O registro do upload: link do vídeo, data e playlist usada. |
+| `publicacao.json` | O registro do upload: link do vídeo, data e playlist usada. Na pasta de exemplo ele diz `"privacidade": "public"` porque registra o vídeo já publicado de verdade; a skill sempre grava `"private"`, já que todo upload novo sobe como privado. |
 
 ## Quando algo dá errado
 
 - **"erro: roteiro inválido"** — normalmente o próprio Claude corrige sozinho e tenta de novo. Se ele insistir no erro, peça: "valide o roteiro e me mostre os erros".
-- **"nenhum Chrome/Chromium/Edge encontrado"** — falta instalar o Google Chrome ou o Microsoft Edge (item 4 da lista de instalação); instale um dos dois e tente de novo.
+- **"nenhum Chrome/Chromium/Edge encontrado"** — falta instalar o Google Chrome ou o Microsoft Edge (item 5 da lista de instalação); instale um dos dois e tente de novo. Se você já tem um dos dois instalado mas em um local não padrão, defina a variável `CHROME` com o caminho do executável antes de rodar o comando — no Mac: `CHROME="/caminho/para/Google Chrome" node design-system/scripts/gerar-miniatura.mjs …`; no Windows (PowerShell): `$env:CHROME="C:\caminho\para\chrome.exe"`.
 - **"não autenticado" no YouTube** — o login salvo expirou ou nunca foi feito; peça ao Claude: "faça login no YouTube".
 - **Cota do YouTube esgotada** — a conta atingiu o limite diário de uso da API; espere até o dia seguinte, a cota é renovada à meia-noite no horário do Pacífico (EUA), o que costuma cair de madrugada no horário de Brasília.
 - **Slides com uma fonte diferente da esperada** — é normal: o PowerPoint, ao abrir o arquivo, substitui as fontes da marca (Aharoni, Hagrid) por uma fonte parecida disponível no seu computador; isso não afeta o conteúdo.

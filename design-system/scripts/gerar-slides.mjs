@@ -13,10 +13,12 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import pptxgen from "pptxgenjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const RAIZ = resolve(DS, "..");
 const MARCA = join(DS, "assets/Marca");
 const LOGO_UNIRIO = join(MARCA, "logo-unirio.png");
 const MOTIVO = join(MARCA, "motivo-nos-600.png");
-const LINK_PROJETO = "pesquisaoperacional.uniriotec.br";
+const CANAL = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
+const LINK_PROJETO = CANAL.site.replace(/^https?:\/\//, "").replace(/\/index\.html$/, "").replace(/\/$/, "");
 
 // ---------- tokens ----------
 export function carregarTokens() {
@@ -66,9 +68,11 @@ export function validarSlides(spec) {
       let linhas = 0;
       (s.blocos ?? []).forEach((b, j) => {
         const m = j + 1;
-        if ("rotulo" in b && b.rotulo === "") erros.push(`${n}: rótulo vazio no bloco ${m}`);
+        if ("rotulo" in b && !semMarcas(b.rotulo ?? "").trim()) erros.push(`${n}: rótulo vazio no bloco ${m}`);
         if (b.rotulo) linhas += 1;
-        for (const it of b.itens ?? []) {
+        if (!Array.isArray(b.itens) || b.itens.length < 1) { erros.push(`${n}: bloco ${m} sem itens`); return; }
+        for (const it of b.itens) {
+          if (typeof it !== "string") { erros.push(`${n}: item não é texto no bloco ${m}`); continue; }
           if (!it.trim() || !semMarcas(it).trim()) erros.push(`${n}: item vazio no bloco ${m}`);
           linhas += Math.ceil(semMarcas(it).length / LIMITES.charsPorLinha);
         }

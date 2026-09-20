@@ -27,6 +27,7 @@ function itensDeLista(texto) {
 }
 
 export function lerRoteiro(md) {
+  md = md.replace(/\r\n?/g, "\n");
   const fm = md.match(/^---\n([\s\S]*?)\n---\n/);
   const meta = fm ? YAML.parse(fm[1]) ?? {} : {};
   const corpo = fm ? md.slice(fm[0].length) : md;
@@ -49,7 +50,7 @@ export function lerRoteiro(md) {
       const [cab, ...resto] = parte.split("\n");
       const texto = resto.join("\n");
       const m = cab.match(/^(\d+)\.\s*(.+)$/);
-      const tipo = (texto.match(/Tipo:\s*([\wçã]+)/) ?? [])[1] ?? null;
+      const tipo = (texto.match(/Tipo:\s*(\S+)/) ?? [])[1] ?? null;
       const [antes, depoisSlide = ""] = texto.split("**No slide**");
       const [noSlide, fala = ""] = depoisSlide.split("**Fala**");
       blocos.push({
@@ -82,6 +83,12 @@ export function validarRoteiro(r) {
   for (const campo of ["titulo_provisorio", "formato", "playlist"]) {
     if (!r.meta[campo]) erros.push(`frontmatter sem "${campo}"`);
   }
+  (r.meta.relacionados ?? []).forEach((rel, i) => {
+    const valido = rel && typeof rel === "object" && !Array.isArray(rel)
+      && typeof rel.url === "string" && rel.url.trim()
+      && typeof rel.contexto === "string" && rel.contexto.trim();
+    if (!valido) erros.push(`relacionados[${i}]: precisa de "url" e "contexto"`);
+  });
   if (!r.gancho) erros.push('falta a seção "## Gancho"');
   else {
     if (r.gancho.duracao_s == null) erros.push("Gancho sem linha de duração (ex.: Duração: 30 s)");

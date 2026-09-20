@@ -66,6 +66,21 @@ test("validação recusa item vazio ou rótulo vazio em bloco de conteúdo", () 
     { tipo: "conteudo", titulo: "t", blocos: [{ rotulo: "", itens: ["x"] }] },
   ] };
   assert.deepEqual(validarSlides(rotuloVazio), ["slide 1: rótulo vazio no bloco 1"]);
+
+  const rotuloSoMarcas = { apresentador: "x", slides: [
+    { tipo: "conteudo", titulo: "t", blocos: [{ rotulo: "**", itens: ["x"] }] },
+  ] };
+  assert.deepEqual(validarSlides(rotuloSoMarcas), ["slide 1: rótulo vazio no bloco 1"]);
+
+  const semItens = { apresentador: "x", slides: [
+    { tipo: "conteudo", titulo: "t", blocos: [{ itens: [] }] },
+  ] };
+  assert.deepEqual(validarSlides(semItens), ["slide 1: bloco 1 sem itens"]);
+
+  const itemNaoTexto = { apresentador: "x", slides: [
+    { tipo: "conteudo", titulo: "t", blocos: [{ itens: [42] }] },
+  ] };
+  assert.deepEqual(validarSlides(itemNaoTexto), ["slide 1: item não é texto no bloco 1"]);
 });
 
 test("gera um slide por entrada, com logo UNIRIO em todos", async () => {

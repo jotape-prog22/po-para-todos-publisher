@@ -21,7 +21,7 @@ Chame, nesta ordem, parando e reportando se qualquer uma falhar (não tente corr
 
 1. `youtube_upload_video` com `file_path` = caminho absoluto do vídeo, `title` = `metadados.titulo`, `description` = `metadados.descricao`, `tags` = `metadados.tags`, `category_id` = `canal.json.categoriaYoutube` ("27"), `privacy_status` = `"private"`. Guarde o `id` retornado. (Custa 1.600 unidades da cota diária de 10.000 — avise a pessoa se `youtube_auth_status` mostrar menos de 2.000 disponíveis.)
 2. `youtube_set_thumbnail` com `video_id` e `file_path` = caminho absoluto de `miniatura.png`.
-3. `youtube_add_to_playlist` com `playlist_id` = `canal.json.playlists[<playlist do roteiro>].id`.
+3. `youtube_add_to_playlist` com `playlist_id` = `canal.json.playlists[<playlist do roteiro>].id` e `video_id` = o id retornado no passo 1.
 
 ## 3. Registre
 
