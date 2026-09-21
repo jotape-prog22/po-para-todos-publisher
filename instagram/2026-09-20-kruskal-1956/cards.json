@@ -1,0 +1,10 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    { "tipo": "capa", "titulo": "On the Shortest Spanning Subtree of a Graph and the Traveling Salesman Problem", "autores": "Joseph B. Kruskal", "onde": "Proc. of the AMS, 1956" },
+    { "tipo": "ideia", "titulo": "O problema", "texto": "Conectar todos os vértices de um grafo gastando o mínimo: é a árvore geradora mínima. Em 1956, com redes elétricas e de telefone crescendo, era um problema muito prático." },
+    { "tipo": "ideia", "titulo": "O algoritmo", "texto": "Ordene as arestas da mais barata para a mais cara. Acrescente uma por vez, pulando toda aresta que fecharia um ciclo. Quando todos os vértices estiverem ligados, pare." },
+    { "tipo": "ideia", "titulo": "Por que funciona", "texto": "Kruskal prova que escolher sempre a aresta mais barata que não fecha ciclo nunca leva a uma árvore pior. E mostra o elo com o caixeiro viajante: toda rota contém uma árvore geradora." },
+    { "tipo": "fim", "texto": "KRUSKAL, J. B. On the shortest spanning subtree of a graph and the traveling salesman problem. Proceedings of the American Mathematical Society, v. 7, n. 1, p. 48–50, 1956.", "link": "doi.org/10.1090/S0002-9939-1956-0078686-7" }
+  ]
+}

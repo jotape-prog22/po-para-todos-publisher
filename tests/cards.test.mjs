@@ -16,3 +16,60 @@ test("formatos do Instagram: feed 4:5, story 9:16, um layout por card", () => {
   assert.ok(existsSync(new URL("instagram/layouts/story-video.html", DS)));
   assert.deepEqual(formatos.tipos, { artigo: { min: 3, max: 10 }, aviso: { min: 1, max: 1 } });
 });
+
+import { mkdtempSync, copyFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { validarCards, variaveisDoCard, gerarCards, ErroCards } from "../design-system/scripts/gerar-cards.mjs";
+
+const exemplo = fileURLToPath(new URL("../instagram/2026-09-20-kruskal-1956/", import.meta.url));
+const dados = JSON.parse(readFileSync(join(exemplo, "cards.json"), "utf8"));
+
+test("o exemplo passa na validação", () => {
+  assert.deepEqual(validarCards(dados), []);
+});
+
+test("validação: sequência do artigo, limites e campos desconhecidos", () => {
+  const capa = { tipo: "capa", titulo: "T", autores: "A" };
+  const ideia = { tipo: "ideia", titulo: "I", texto: "x" };
+  const fim = { tipo: "fim", texto: "ref" };
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, ideia] }).some((e) => e.includes("3 a 10")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [ideia, ideia, fim] }).some((e) => e.includes("primeiro card é a capa")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, ideia, ideia] }).some((e) => e.includes("último card")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { ...ideia, texto: "x".repeat(281) }, fim] }).some((e) => e.includes("máximo 280")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { ...ideia, cor: "azul" }, fim] }).some((e) => e.includes('campo "cor"')));
+  assert.ok(validarCards({ tipo: "artigo", cards: [{ tipo: "capa", titulo: "T" }, ideia, fim] }).some((e) => e.includes('falta "autores"')));
+  assert.ok(validarCards({ tipo: "aviso", cards: [capa] }).some((e) => e.includes("tipo aviso")));
+  assert.ok(validarCards({ tipo: "reel", cards: [] })[0].includes('tipo "reel" não existe'));
+  assert.deepEqual(validarCards({ tipo: "aviso", cards: [{ tipo: "aviso", titulo: "SBPO", data: "ATÉ 15/03" }] }), []);
+});
+
+test("variáveis do card: kicker padrão, numeração, contador, título médio e quebras de linha", () => {
+  const v = variaveisDoCard({ tipo: "ideia", titulo: "I", texto: "a<b\nc" }, 1, 5, { ds: ".", usuario: "po" });
+  assert.equal(v.numero, "01");
+  assert.equal(v.contador, "2/5");
+  assert.equal(v.texto_html, "a&lt;b<br>c");
+  assert.equal(v.usuario, "po");
+  assert.equal(variaveisDoCard({ tipo: "capa", titulo: "T", autores: "A" }, 0, 3, { ds: ".", usuario: "po" }).kicker, "RESUMO DE ARTIGO");
+  assert.equal(variaveisDoCard({ tipo: "capa", titulo: "T".repeat(61), autores: "A" }, 0, 3, { ds: ".", usuario: "po" }).titulo_classe, "ig__titulo--medio");
+  assert.equal(variaveisDoCard({ tipo: "aviso", titulo: "T", kicker: "Prazo" }, 0, 1, { ds: ".", usuario: "po" }).kicker, "Prazo");
+});
+
+test("gerarCards --so-html escreve um HTML por card com o layout certo", () => {
+  const pasta = mkdtempSync(join(tmpdir(), "cards-"));
+  copyFileSync(join(exemplo, "cards.json"), join(pasta, "cards.json"));
+  const saidas = gerarCards(pasta, { soHtml: true });
+  assert.equal(saidas.length, 5);
+  const capa = readFileSync(saidas[0], "utf8");
+  assert.ok(capa.includes("ig--feed") && capa.includes("RESUMO DE ARTIGO") && capa.includes("Joseph B. Kruskal") && capa.includes("1/5"));
+  assert.ok(readFileSync(saidas[1], "utf8").includes('class="ig__numero">01<'));
+  assert.ok(readFileSync(saidas[4], "utf8").includes("doi.org/10.1090"));
+  assert.match(capa, /href="[^"]*design-system\/tokens\.css"/);
+});
+
+test("gerarCards recusa cards.json inválido", () => {
+  const pasta = mkdtempSync(join(tmpdir(), "cards-"));
+  writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo: "aviso", cards: [] }));
+  assert.throws(() => gerarCards(pasta, { soHtml: true }), ErroCards);
+});
