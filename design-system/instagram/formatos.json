@@ -1,0 +1,26 @@
+{
+  "name": "Formatos do Instagram — PO para Todos",
+  "version": 1,
+  "meta": {
+    "uso": "Tamanhos de página e limites de texto por card. Quem valida é design-system/scripts/gerar-cards.mjs; quem desenha é instagram.css + layouts/. Limites em caracteres, dimensionados para a grade de 1080px com margem de 72px (área útil 936px).",
+    "story": "Os 250px do topo e do rodapé do story ficam livres: o app desenha a barra de progresso, o nome do perfil e a caixa de resposta ali."
+  },
+  "formatos": {
+    "feed":  { "largura": 1080, "altura": 1350, "proporcao": "4:5" },
+    "story": { "largura": 1080, "altura": 1920, "proporcao": "9:16" }
+  },
+  "cards": {
+    "capa":  { "layout": "capa",  "campos": { "kicker": 24, "titulo": 110, "autores": 120, "onde": 50 }, "obrigatorios": ["titulo", "autores"],
+               "quando": "Primeiro card do artigo: título em caixa alta, autores, evento/revista." },
+    "ideia": { "layout": "ideia", "campos": { "titulo": 40, "texto": 280 }, "obrigatorios": ["titulo", "texto"],
+               "quando": "Uma ideia principal por card, numerada. De 1 a 8 por artigo." },
+    "fim":   { "layout": "fim",   "campos": { "kicker": 24, "texto": 280, "link": 60 }, "obrigatorios": ["texto"],
+               "quando": "Último card do artigo: referência bibliográfica e link curto." },
+    "aviso": { "layout": "aviso", "campos": { "kicker": 24, "titulo": 60, "data": 30, "texto": 200, "link": 60 }, "obrigatorios": ["titulo"],
+               "quando": "Card único: edital, evento, prazo, vaga ou reconhecimento (sem data)." }
+  },
+  "tipos": {
+    "artigo": { "min": 3, "max": 10 },
+    "aviso":  { "min": 1, "max": 1 }
+  }
+}

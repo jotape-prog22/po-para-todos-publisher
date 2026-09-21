@@ -1,0 +1,67 @@
+/* PO para Todos — cards do Instagram (feed 1080×1350) e story (1080×1920).
+ * Consome tokens.css e fontes.css no tema YouTube (grafite). Tamanhos de fonte
+ * abaixo são decisões deste arquivo (tokens.json só conhece slides e miniaturas):
+ * a grade é de 1080px vistos em ~400px no celular, ~2,7× a redução da miniatura.
+ */
+:root {
+  --ig-margem: 72px;
+  --ig-lockup: 120px;               /* logo quadrado do canal */
+  --ig-rodape-altura: 96px;         /* faixa verde com o @ */
+  --ig-kicker-size: 32px;  --ig-kicker-line: 40px;
+  --ig-titulo-size: 76px;  --ig-titulo-line: 82px;       /* Archivo Black, caixa alta */
+  --ig-titulo-medio-size: 58px; --ig-titulo-medio-line: 64px;
+  --ig-corpo-size: 42px;   --ig-corpo-line: 58px;        /* Poppins 600 */
+  --ig-apoio-size: 34px;   --ig-apoio-line: 44px;
+  --ig-data-size: 96px;    --ig-data-line: 100px;
+  --ig-numero-size: 160px;
+  --ig-story-seguro: 250px;         /* zona da interface do app, em cima e embaixo */
+  --ig-icone: 320px;
+}
+
+html, body { margin: 0; padding: 0; }
+body { background: var(--surface); }
+
+.ig {
+  position: relative; overflow: hidden;
+  width: var(--canvas-w); height: var(--canvas-h);
+  background: var(--surface); color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.ig--feed  { --canvas-w: 1080px; --canvas-h: 1350px; }
+.ig--story { --canvas-w: 1080px; --canvas-h: 1920px; }
+
+.ig__lockup { position: absolute; top: var(--ig-margem); left: var(--ig-margem); width: var(--ig-lockup); height: var(--ig-lockup); }
+
+/* zona de conteúdo: entre o lockup e o rodapé, centrada na vertical */
+.ig__conteudo {
+  position: absolute; left: var(--ig-margem); right: var(--ig-margem);
+  top: calc(var(--ig-margem) + var(--ig-lockup) + var(--space-xl));
+  bottom: calc(var(--ig-rodape-altura) + var(--space-xl));
+  display: flex; flex-direction: column; justify-content: center; gap: var(--space-md);
+  overflow: hidden;
+}
+.ig__kicker { margin: 0; font: 800 var(--ig-kicker-size)/var(--ig-kicker-line) var(--font-label); letter-spacing: .04em; text-transform: uppercase; color: var(--brand-green-soft); }
+.ig__titulo { margin: 0; font: 400 var(--ig-titulo-size)/var(--ig-titulo-line) var(--font-display); text-transform: uppercase; color: var(--brand-green); overflow-wrap: anywhere; }
+.ig__titulo--medio { font-size: var(--ig-titulo-medio-size); line-height: var(--ig-titulo-medio-line); }
+.ig__subhead { display: block; color: var(--ink); font-size: var(--ig-titulo-medio-size); line-height: var(--ig-titulo-medio-line); }
+.ig__corpo { margin: 0; font: 600 var(--ig-corpo-size)/var(--ig-corpo-line) var(--font-label); color: var(--ink); }
+.ig__apoio { margin: 0; font: 600 var(--ig-apoio-size)/var(--ig-apoio-line) var(--font-label); color: var(--ink-muted); overflow-wrap: anywhere; }
+.ig__data  { margin: 0; font: 400 var(--ig-data-size)/var(--ig-data-line) var(--font-display); text-transform: uppercase; color: var(--ink); }
+.ig__numero { margin: 0; font: 400 var(--ig-numero-size)/1 var(--font-display); color: var(--brand-green-soft); }
+.ig__icone { width: var(--ig-icone); height: var(--ig-icone); }
+.ig__icone img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+/* rodapé: @ do perfil à esquerda, contador do carrossel à direita (brand-navy sobre verde, 5,08:1) */
+.ig__rodape {
+  position: absolute; left: 0; right: 0; bottom: 0; height: var(--ig-rodape-altura); margin: 0;
+  background: var(--brand-green); color: var(--brand-navy);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 var(--ig-margem);
+  font: 800 var(--ig-kicker-size)/1 var(--font-label);
+}
+
+/* story: conteúdo começa abaixo da zona segura; rodapé sobe para cima dela;
+   o espaço livre acima do rodapé é onde a pessoa cola o sticker de link */
+.ig--story .ig__lockup { top: var(--ig-story-seguro); }
+.ig--story .ig__conteudo { top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl)); bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + 360px); justify-content: center; }
+.ig--story .ig__rodape { bottom: var(--ig-story-seguro); justify-content: center; }
+.ig--story .ig__faixa { position: absolute; left: 0; right: 0; bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); height: var(--ig-rodape-altura); margin: 0; display: flex; align-items: center; justify-content: center; font: 800 var(--ig-kicker-size)/1 var(--font-label); color: var(--brand-green-soft); letter-spacing: .04em; }
