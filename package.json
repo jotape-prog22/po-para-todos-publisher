@@ -11,7 +11,9 @@
     "test": "node --test",
     "slides": "node design-system/scripts/gerar-slides.mjs",
     "descricao": "node scripts/descricao.mjs",
-    "roteiro": "node scripts/roteiro.mjs"
+    "roteiro": "node scripts/roteiro.mjs",
+    "cards": "node design-system/scripts/gerar-cards.mjs",
+    "legenda": "node scripts/legenda.mjs"
   },
   "license": "MIT",
   "dependencies": {
