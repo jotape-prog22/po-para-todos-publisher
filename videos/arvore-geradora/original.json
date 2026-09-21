@@ -1,0 +1,35 @@
+{
+  "video_id": "00hL3kAjiZw",
+  "url": "https://youtu.be/00hL3kAjiZw",
+  "published_at": "2025-11-09T20:21:18Z",
+  "title": "PO2: Árvore Geradora",
+  "description": "O conteúdo explora a motivação do problema, as definições teóricas e apresenta os algoritmos usados para encontrar a solução de custo mínimo.\n\n🎯 Motivação e Definições Fundamentais\nO problema é introduzido com um exemplo de planejamento urbano (asfaltamento de ruas) para ilustrar a necessidade de interligar todos os pontos de uma rede com o custo total mínimo [00:30].\nTradução para Grafos:\nAs edificações se tornam vértices.\nAs ruas se tornam arestas [01:46].\nO custo de asfaltar é o peso atribuído a cada aresta [02:08].\nObjetivos da AGM: O problema busca criar uma estrutura que seja:\nConexa: Deve haver um caminho entre todos os vértices [02:42].\nAcíclica (Árvore): Deve usar o mínimo de arestas, sem formar ciclos [02:52].\nGeradora: Deve incluir todos os vértices do grafo original [03:10].\nMínima: A soma dos pesos das arestas deve ser a menor possível [03:28].\n\n🌲 Conceitos de Árvore Geradora\nÁrvore Geradora: É um subgrafo gerador e acíclico de um grafo conexo ponderado [04:01].\nPeso da Árvore: É calculado pela soma dos pesos de todas as arestas que a compõem [04:11].\nObjetivo Final: Obter a Árvore Geradora com o peso total mínimo [05:39].\n\n⚙️ Algoritmos de Solução\nO vídeo apresenta os dois principais algoritmos gulosos (greedy) usados para resolver o problema da AGM:\nAlgoritmo de Kruskal: Inclui arestas de menor peso na AGM, desde que essa inclusão não forme um ciclo [06:22].\nAlgoritmo de Prim: Inicia a árvore a partir de um vértice e, a cada passo, anexa a aresta de menor peso que liga um vértice fora da árvore a um já incluso [06:38].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/00hL3kAjiZw/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/00hL3kAjiZw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/00hL3kAjiZw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/00hL3kAjiZw/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/00hL3kAjiZw/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

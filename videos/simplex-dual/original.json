@@ -1,0 +1,35 @@
+{
+  "video_id": "i2fcz5FRRos",
+  "url": "https://youtu.be/i2fcz5FRRos",
+  "published_at": "2025-10-26T16:52:48Z",
+  "title": "PO1: Algoritmo Simplex Dual",
+  "description": "Conheça o Algoritmo Simplex Dual, um método poderoso para resolver Problemas de Programação Linear (PPL) que se encontram em uma solução básica inviável para o Primal, mas viável para o Dual, sendo frequentemente aplicado em problemas de Pós-Otimização.\nEste vídeo apresenta a motivação e os passos do Algoritmo Simplex Dual, explicando como ele navega em direção à otimalidade enquanto restaura a viabilidade do problema Primal, eliminando a necessidade de métodos como o BIG-M.\n\n💡 Conceitos Chave e Timestamps\nProblema Primal e Dual: Retoma-se o exemplo de maximização de lucro com restrições de recursos (Primal) e seu respectivo problema de minimização de custos (Dual) [00:37].\nOnde o Dual Simplex se Aplica: O algoritmo é ideal para situações onde a solução básica atual é inviável para o problema Primal (devido a valores negativos no lado direito das restrições, RHS), mas é viável para o problema Dual (satisfaz as condições de otimalidade do Dual). Ele é muito usado em Pós-Otimização (e.g., após adicionar uma nova restrição) [02:54] - [05:11].\nVantagem do Dual Simplex: Ele elimina a necessidade de usar o Método BIG-M, simplificando a resolução em certos casos [04:16].\nPassos do Algoritmo Dual Simplex:\nInicialização: Transformar todas as restrições em $\\le$ (multiplicando por -1 as restrições $\\ge$) e introduzir variáveis de folga [05:22].\nTeste de Viabilidade: Se todas as variáveis básicas forem não-negativas, a solução é ótima e o algoritmo para. Caso contrário, inicia-se a iteração [06:17].\nDeterminar a Variável que Sai (Variável Básica): É a variável básica com o valor mais negativo no RHS (regra contrária ao Simplex Primal) [06:33] - [06:48].\nDeterminar a Variável que Entra (Variável Não-Básica): Calcula-se a razão entre os coeficientes da linha $Z$ (ou linha 0) e os elementos da linha pivô correspondente, mas apenas para elementos negativos na linha pivô. A variável que entra é aquela que fornece a menor razão (em módulo) [06:56] - [07:50].\nIteração: Aplicar a eliminação Gaussiana para transformar o elemento pivô e repetir os passos até que todas as variáveis básicas sejam não-negativas [08:26].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/i2fcz5FRRos/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/i2fcz5FRRos/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/i2fcz5FRRos/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/i2fcz5FRRos/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/i2fcz5FRRos/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

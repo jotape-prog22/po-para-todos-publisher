@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "PESQUISA OPERACIONAL - O Que É e Por Onde Começar",
+    "INTRODUÇÃO À PESQUISA OPERACIONAL - Histórico, Fases e PPL",
+    "PROGRAMAÇÃO LINEAR - Aula Inaugural de Pesquisa Operacional",
+    "O QUE É PESQUISA OPERACIONAL? - História, Fases de um Estudo e PPL",
+    "PO - O Que É, Como Surgiu e as Fases de um Estudo"
+  ],
+  "titulo": "PESQUISA OPERACIONAL - O Que É e Por Onde Começar",
+  "gancho": "Afinal, o que é Pesquisa Operacional e por que ela nasceu em plena Segunda Guerra? 🤔 Nesta aula inaugural, a Professora Andreia Bonifácio conta como a PO surgiu, mostra as seis fases de um estudo de PO e apresenta o Problema de Programação Linear (PPL), a ferramenta central do curso.",
+  "objetivos": [
+    "Como a PO surgiu na Segunda Guerra Mundial, chegou ao Brasil e o papel de George Dantzig na criação do Método Simplex.",
+    "A diferença entre a visão hard e a visão soft da PO, e por que hoje se defende juntar as duas.",
+    "As seis fases de um estudo de PO segundo Hillier e Lieberman, da definição do problema à implementação, e o que a equipe faz em cada uma.",
+    "A forma geral de um PPL: variáveis de decisão, função objetivo, restrições e as quatro hipóteses (proporcionalidade, aditividade, divisibilidade e certeza) que fazem um modelo ser linear.",
+    "A diferença entre Simplex e pontos interiores, e os quatro casos possíveis ao resolver um PPL: solução única, infinitas, inviável ou ilimitado."
+  ],
+  "fechamento": "Fechamos formulando o modelo completo de uma fábrica de tintas: duas variáveis de decisão, quatro restrições e uma função objetivo de lucro, pronta para ser resolvida nas próximas aulas.",
+  "cta_complemento": "está começando em Pesquisa Operacional",
+  "hashtags_tema": [
+    "#ProgramacaoLinear",
+    "#PPL",
+    "#Modelagem",
+    "#EngenhariaDeProducao"
+  ],
+  "tags": [
+    "pesquisa operacional",
+    "introdução à pesquisa operacional",
+    "o que é pesquisa operacional",
+    "programação linear",
+    "PPL",
+    "problema de programação linear",
+    "modelagem matemática",
+    "fases de um estudo de PO",
+    "história da pesquisa operacional",
+    "George Dantzig",
+    "simplex",
+    "otimização",
+    "engenharia de produção",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: como surgiu a PO"
+    },
+    {
+      "tempo": "02:05",
+      "titulo": "A PO no mundo e no Brasil"
+    },
+    {
+      "tempo": "04:10",
+      "titulo": "Visão hard e visão soft"
+    },
+    {
+      "tempo": "05:35",
+      "titulo": "Ferramentas e aplicações da PO"
+    },
+    {
+      "tempo": "07:15",
+      "titulo": "O que é Pesquisa Operacional?"
+    },
+    {
+      "tempo": "08:30",
+      "titulo": "As seis fases de um estudo de PO"
+    },
+    {
+      "tempo": "17:50",
+      "titulo": "O que é um PPL? Forma geral"
+    },
+    {
+      "tempo": "21:20",
+      "titulo": "Solução viável e solução ótima"
+    },
+    {
+      "tempo": "22:25",
+      "titulo": "As quatro hipóteses da PL"
+    },
+    {
+      "tempo": "24:30",
+      "titulo": "Exemplo: modelando a fábrica de tintas"
+    },
+    {
+      "tempo": "28:50",
+      "titulo": "Simplex x pontos interiores"
+    },
+    {
+      "tempo": "31:20",
+      "titulo": "Casos possíveis de um PPL"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "O próximo passo é aprender a modelar: veja a aula de Modelagem Matemática de PPL",
+      "url": "https://youtu.be/mw9Mpe-PvZ4"
+    },
+    {
+      "contexto": "Quer resolver um PPL no computador? Veja como usar o Solver do Excel, Parte 1",
+      "url": "https://youtu.be/pNNsL4GzNg8"
+    }
+  ],
+  "descricao": "Afinal, o que é Pesquisa Operacional e por que ela nasceu em plena Segunda Guerra? 🤔 Nesta aula inaugural, a Professora Andreia Bonifácio conta como a PO surgiu, mostra as seis fases de um estudo de PO e apresenta o Problema de Programação Linear (PPL), a ferramenta central do curso.\n\nNesta aula, você vai aprender:\n\nComo a PO surgiu na Segunda Guerra Mundial, chegou ao Brasil e o papel de George Dantzig na criação do Método Simplex.\n\nA diferença entre a visão hard e a visão soft da PO, e por que hoje se defende juntar as duas.\n\nAs seis fases de um estudo de PO segundo Hillier e Lieberman, da definição do problema à implementação, e o que a equipe faz em cada uma.\n\nA forma geral de um PPL: variáveis de decisão, função objetivo, restrições e as quatro hipóteses (proporcionalidade, aditividade, divisibilidade e certeza) que fazem um modelo ser linear.\n\nA diferença entre Simplex e pontos interiores, e os quatro casos possíveis ao resolver um PPL: solução única, infinitas, inviável ou ilimitado.\n\nFechamos formulando o modelo completo de uma fábrica de tintas: duas variáveis de decisão, quatro restrições e uma função objetivo de lucro, pronta para ser resolvida nas próximas aulas.\n\n⏱️ Capítulos:\n00:00 Abertura: como surgiu a PO\n02:05 A PO no mundo e no Brasil\n04:10 Visão hard e visão soft\n05:35 Ferramentas e aplicações da PO\n07:15 O que é Pesquisa Operacional?\n08:30 As seis fases de um estudo de PO\n17:50 O que é um PPL? Forma geral\n21:20 Solução viável e solução ótima\n22:25 As quatro hipóteses da PL\n24:30 Exemplo: modelando a fábrica de tintas\n28:50 Simplex x pontos interiores\n31:20 Casos possíveis de um PPL\n\n⚠️ O próximo passo é aprender a modelar: veja a aula de Modelagem Matemática de PPL: https://youtu.be/mw9Mpe-PvZ4\n\n⚠️ Quer resolver um PPL no computador? Veja como usar o Solver do Excel, Parte 1: https://youtu.be/pNNsL4GzNg8\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está começando em Pesquisa Operacional!\n\n#PesquisaOperacional #PO #ProgramacaoLinear #PPL #Modelagem #EngenhariaDeProducao #Otimização #UNIRIO"
+}

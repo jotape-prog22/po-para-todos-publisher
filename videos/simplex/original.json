@@ -1,0 +1,35 @@
+{
+  "video_id": "JTcUGbG8pg0",
+  "url": "https://youtu.be/JTcUGbG8pg0",
+  "published_at": "2025-10-26T16:16:10Z",
+  "title": "PO1: Algoritmo  Simplex",
+  "description": "PO1: Algoritmo Simplex | Introdução, Estrutura e Conceitos Fundamentais\nInicie seus estudos no Algoritmo Simplex em tabelas, a ferramenta mais importante da Programação Linear para encontrar a solução ótima de um PPL de forma iterativa!\nEsta aula aborda a teoria e os pré-requisitos matemáticos (Álgebra Linear) necessários para entender o funcionamento do Simplex, um método que busca a solução ótima percorrendo os vértices da região de soluções viáveis.\nNeste vídeo você aprenderá sobre:\nEstrutura do Simplex: A ideia de iniciar em um vértice (a origem, se possível), testar a otimalidade e mover para um vértice melhor [01:02].\nDefinições Chave: Conceitos de base, matriz básica (B), variáveis básicas (XB) e variáveis não básicas (XN) [02:16].\nSolução Básica Viável (SBV): Como obter a solução básica (XB = B⁻¹b) e o que a torna viável e não degenerada [07:35].\nTeoremas Fundamentais: A relação entre vértices da região de soluções viáveis e as Soluções Básicas Viáveis (Teorema 1 e 3) [08:35].\nForma Padrão para o Simplex: Por que as restrições devem ser equações e como transformar a desigualdade $\\le$ em equações usando Variáveis de Folga [11:40].\nTabela Simplex Inicial: A estrutura da tabela (Linha Z, RHS) e como as Variáveis de Folga se tornam as Variáveis Básicas Iniciais (Matriz Identidade) [15:33].\nPrepare-se para a prática! Acompanhe o próximo vídeo para a execução passo a passo do Algoritmo Simplex em um exemplo.\nLink para o vídeo: PO1: Algoritmo Simplex",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/JTcUGbG8pg0/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/JTcUGbG8pg0/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/JTcUGbG8pg0/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/JTcUGbG8pg0/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/JTcUGbG8pg0/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

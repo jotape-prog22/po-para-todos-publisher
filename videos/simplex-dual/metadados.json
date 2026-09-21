@@ -1,0 +1,100 @@
+{
+  "titulos_candidatos": [
+    "SIMPLEX DUAL - Quando o Primal Começa Inviável",
+    "ALGORITMO SIMPLEX DUAL - Motivação e Passos Explicados",
+    "DUAL SIMPLEX - A Alternativa ao Big M na Pós-Otimização",
+    "SIMPLEX DUAL - Como Restaurar a Viabilidade do Primal",
+    "PÓS-OTIMIZAÇÃO - Nova Restrição? Use o Simplex Dual"
+  ],
+  "titulo": "SIMPLEX DUAL - Quando o Primal Começa Inviável",
+  "gancho": "Apareceu um valor negativo no lado direito da tabela Simplex e a solução ficou inviável para o Primal? 🤔 Não precisa recomeçar do zero nem apelar para o Big M. Nesta aula você conhece o Algoritmo Simplex Dual: a motivação por trás dele e os passos para restaurar a viabilidade caminhando rumo ao ótimo.",
+  "objetivos": [
+    "Quando usar o Simplex Dual: a solução é inviável para o Primal, mas viável para o Dual, o que se enxerga direto na tabela Simplex.",
+    "Por que ele é o parceiro natural da pós-otimização: ao incluir uma nova restrição no modelo, você não roda o Simplex todo de novo.",
+    "Como o Simplex Dual elimina a necessidade do Método Big M, simplificando a resolução em muitos casos.",
+    "A inicialização do algoritmo: converter as restrições ≥ em ≤ multiplicando por -1 e introduzir as variáveis de folga.",
+    "A regra invertida da iteração: primeiro escolher a variável que sai (o RHS mais negativo) e só depois a que entra, pelo teste da razão com os elementos negativos da linha pivô."
+  ],
+  "fechamento": "Fechamos com os três passos da iteração — quem sai, quem entra e a eliminação gaussiana — repetidos até nenhuma variável básica ficar negativa.",
+  "cta_complemento": "ainda está preso no Big M",
+  "hashtags_tema": [
+    "#SimplexDual",
+    "#Dualidade",
+    "#ProgramacaoLinear",
+    "#PosOtimizacao"
+  ],
+  "tags": [
+    "simplex dual",
+    "dual simplex",
+    "algoritmo simplex dual",
+    "método simplex dual",
+    "dualidade",
+    "primal e dual",
+    "pós-otimização",
+    "big M",
+    "programação linear",
+    "tabela simplex",
+    "simplex",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:37",
+      "titulo": "Relembrando: Primal e Dual"
+    },
+    {
+      "tempo": "01:46",
+      "titulo": "Tabela ótima e preços-sombra"
+    },
+    {
+      "tempo": "02:54",
+      "titulo": "Onde o Simplex Dual se aplica"
+    },
+    {
+      "tempo": "04:16",
+      "titulo": "Vantagem: sem Big M"
+    },
+    {
+      "tempo": "04:29",
+      "titulo": "Uso na pós-otimização"
+    },
+    {
+      "tempo": "05:22",
+      "titulo": "Passo 0 — Inicialização"
+    },
+    {
+      "tempo": "06:17",
+      "titulo": "Teste de viabilidade"
+    },
+    {
+      "tempo": "06:33",
+      "titulo": "Passo 1 — Variável que sai"
+    },
+    {
+      "tempo": "06:56",
+      "titulo": "Passo 2 — Variável que entra"
+    },
+    {
+      "tempo": "08:26",
+      "titulo": "Passo 3 — Eliminação gaussiana"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer entender a teoria por trás do Primal e do Dual? Comece pela aula de Dualidade, Parte 1",
+      "url": "https://youtu.be/LkJlsxEtaE4"
+    },
+    {
+      "contexto": "Para comparar com o que o Simplex Dual evita, veja a aula sobre o Método Big M",
+      "url": "https://youtu.be/gQP8WfzwFU8"
+    }
+  ],
+  "descricao": "Apareceu um valor negativo no lado direito da tabela Simplex e a solução ficou inviável para o Primal? 🤔 Não precisa recomeçar do zero nem apelar para o Big M. Nesta aula você conhece o Algoritmo Simplex Dual: a motivação por trás dele e os passos para restaurar a viabilidade caminhando rumo ao ótimo.\n\nNesta aula, você vai aprender:\n\nQuando usar o Simplex Dual: a solução é inviável para o Primal, mas viável para o Dual, o que se enxerga direto na tabela Simplex.\n\nPor que ele é o parceiro natural da pós-otimização: ao incluir uma nova restrição no modelo, você não roda o Simplex todo de novo.\n\nComo o Simplex Dual elimina a necessidade do Método Big M, simplificando a resolução em muitos casos.\n\nA inicialização do algoritmo: converter as restrições ≥ em ≤ multiplicando por -1 e introduzir as variáveis de folga.\n\nA regra invertida da iteração: primeiro escolher a variável que sai (o RHS mais negativo) e só depois a que entra, pelo teste da razão com os elementos negativos da linha pivô.\n\nFechamos com os três passos da iteração — quem sai, quem entra e a eliminação gaussiana — repetidos até nenhuma variável básica ficar negativa.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:37 Relembrando: Primal e Dual\n01:46 Tabela ótima e preços-sombra\n02:54 Onde o Simplex Dual se aplica\n04:16 Vantagem: sem Big M\n04:29 Uso na pós-otimização\n05:22 Passo 0 — Inicialização\n06:17 Teste de viabilidade\n06:33 Passo 1 — Variável que sai\n06:56 Passo 2 — Variável que entra\n08:26 Passo 3 — Eliminação gaussiana\n\n⚠️ Quer entender a teoria por trás do Primal e do Dual? Comece pela aula de Dualidade, Parte 1: https://youtu.be/LkJlsxEtaE4\n\n⚠️ Para comparar com o que o Simplex Dual evita, veja a aula sobre o Método Big M: https://youtu.be/gQP8WfzwFU8\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda está preso no Big M!\n\n#PesquisaOperacional #PO #SimplexDual #Dualidade #ProgramacaoLinear #PosOtimizacao #Otimização #UNIRIO"
+}

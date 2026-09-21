@@ -1,0 +1,107 @@
+{
+  "titulos_candidatos": [
+    "MODELAGEM DE PPL - Exemplos Clássicos de Programação Linear",
+    "MODELAGEM MATEMÁTICA - Como Montar um Modelo de Programação Linear",
+    "PROGRAMAÇÃO LINEAR - Dieta, Mistura, Corte e Mix de Produção",
+    "MODELAGEM - Variáveis de Decisão, Função Objetivo e Restrições",
+    "COMO MODELAR UM PPL? - Cinco Problemas Clássicos Resolvidos"
+  ],
+  "titulo": "MODELAGEM DE PPL - Exemplos Clássicos de Programação Linear",
+  "gancho": "Você leu o enunciado, tem a tabela de dados na mão… e agora, como isso vira um modelo de Programação Linear? 🤔 Nesta aula vamos modelar cinco problemas clássicos da Pesquisa Operacional, passo a passo: variáveis de decisão, função objetivo e restrições.",
+  "objetivos": [
+    "Por que a modelagem é a fase crucial de um estudo de PO e por onde todo modelo começa: definir as variáveis de decisão com significado claro.",
+    "Como montar a função objetivo e as restrições do Problema da Dieta e do Problema da Mistura, escolhendo o sinal certo (≥, ≤ ou =) em cada uma.",
+    "Como modelar o Problema da Perda por Corte, em que a variável não é intuitiva: o número de rolos cortados em cada ajuste de facas.",
+    "Como montar o Mix de Produção respeitando a capacidade de cada processo, e por que conferir as unidades (horas × minutos) antes de escrever as restrições.",
+    "Como tratar um Planejamento da Produção e Estoque com vários períodos, contratação e demissão, transformando uma variável livre em duas não negativas."
+  ],
+  "fechamento": "Fechamos com o modelo completo do planejamento de 4 meses: custo de estoque, contratação e demissão na função objetivo, e as restrições de demanda e de balanço de mão de obra mês a mês.",
+  "cta_complemento": "trava na hora de montar o modelo",
+  "hashtags_tema": [
+    "#Modelagem",
+    "#ProgramacaoLinear",
+    "#PPL"
+  ],
+  "tags": [
+    "modelagem matemática",
+    "modelagem de PPL",
+    "programação linear",
+    "problema de programação linear",
+    "variáveis de decisão",
+    "função objetivo",
+    "restrições",
+    "problema da dieta",
+    "problema da mistura",
+    "perda por corte",
+    "mix de produção",
+    "planejamento da produção",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: a fase da modelagem"
+    },
+    {
+      "tempo": "01:06",
+      "titulo": "Problema da Dieta"
+    },
+    {
+      "tempo": "03:47",
+      "titulo": "Dieta: função objetivo e restrições"
+    },
+    {
+      "tempo": "05:01",
+      "titulo": "Problema da Mistura (ração)"
+    },
+    {
+      "tempo": "09:27",
+      "titulo": "Problema da Perda por Corte"
+    },
+    {
+      "tempo": "14:19",
+      "titulo": "Corte: modelo por ajuste de facas"
+    },
+    {
+      "tempo": "15:24",
+      "titulo": "Problema do Mix de Produção"
+    },
+    {
+      "tempo": "18:26",
+      "titulo": "Cuidado com as unidades: horas e minutos"
+    },
+    {
+      "tempo": "19:47",
+      "titulo": "Planejamento da Produção e Estoque"
+    },
+    {
+      "tempo": "25:08",
+      "titulo": "Variáveis livres e equivalência"
+    },
+    {
+      "tempo": "28:28",
+      "titulo": "Restrições de demanda e mão de obra"
+    },
+    {
+      "tempo": "32:40",
+      "titulo": "Encerramento"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a aula anterior? Comece pela Introdução à Pesquisa Operacional",
+      "url": "https://youtu.be/v5KRSzU2E4U"
+    },
+    {
+      "contexto": "Quer levar o modelo à forma padrão? Veja a aula de Equivalência entre PPLs",
+      "url": "https://youtu.be/xQtosRABD2E"
+    },
+    {
+      "contexto": "Modelo pronto? Resolva no Solver do Excel, Parte 1",
+      "url": "https://youtu.be/pNNsL4GzNg8"
+    }
+  ],
+  "descricao": "Você leu o enunciado, tem a tabela de dados na mão… e agora, como isso vira um modelo de Programação Linear? 🤔 Nesta aula vamos modelar cinco problemas clássicos da Pesquisa Operacional, passo a passo: variáveis de decisão, função objetivo e restrições.\n\nNesta aula, você vai aprender:\n\nPor que a modelagem é a fase crucial de um estudo de PO e por onde todo modelo começa: definir as variáveis de decisão com significado claro.\n\nComo montar a função objetivo e as restrições do Problema da Dieta e do Problema da Mistura, escolhendo o sinal certo (≥, ≤ ou =) em cada uma.\n\nComo modelar o Problema da Perda por Corte, em que a variável não é intuitiva: o número de rolos cortados em cada ajuste de facas.\n\nComo montar o Mix de Produção respeitando a capacidade de cada processo, e por que conferir as unidades (horas × minutos) antes de escrever as restrições.\n\nComo tratar um Planejamento da Produção e Estoque com vários períodos, contratação e demissão, transformando uma variável livre em duas não negativas.\n\nFechamos com o modelo completo do planejamento de 4 meses: custo de estoque, contratação e demissão na função objetivo, e as restrições de demanda e de balanço de mão de obra mês a mês.\n\n⏱️ Capítulos:\n00:00 Abertura: a fase da modelagem\n01:06 Problema da Dieta\n03:47 Dieta: função objetivo e restrições\n05:01 Problema da Mistura (ração)\n09:27 Problema da Perda por Corte\n14:19 Corte: modelo por ajuste de facas\n15:24 Problema do Mix de Produção\n18:26 Cuidado com as unidades: horas e minutos\n19:47 Planejamento da Produção e Estoque\n25:08 Variáveis livres e equivalência\n28:28 Restrições de demanda e mão de obra\n32:40 Encerramento\n\n⚠️ Ainda não viu a aula anterior? Comece pela Introdução à Pesquisa Operacional: https://youtu.be/v5KRSzU2E4U\n\n⚠️ Quer levar o modelo à forma padrão? Veja a aula de Equivalência entre PPLs: https://youtu.be/xQtosRABD2E\n\n⚠️ Modelo pronto? Resolva no Solver do Excel, Parte 1: https://youtu.be/pNNsL4GzNg8\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem trava na hora de montar o modelo!\n\n#PesquisaOperacional #PO #Modelagem #ProgramacaoLinear #PPL #Otimização #UNIRIO"
+}

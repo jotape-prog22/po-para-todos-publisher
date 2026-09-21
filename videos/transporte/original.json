@@ -1,0 +1,35 @@
+{
+  "video_id": "4kpQ1V1OjGA",
+  "url": "https://youtu.be/4kpQ1V1OjGA",
+  "published_at": "2025-12-02T00:11:09Z",
+  "title": "PO1: Problema do Transporte",
+  "description": "O objetivo principal do vídeo é ensinar a determinar a maneira mais econômica de transportar bens de múltiplas origens (fábricas) para múltiplos destinos (centros de distribuição), minimizando o custo total [01:25].\n\nPontos chave abordados no video:\n\nConceitos e Formulação Matemática [02:12]:\n\nO problema do transporte é apresentado como um caso especial de Programação Linear.\n\nA aula detalha a função objetivo (minimizar o custo total) e as restrições de oferta (limite de envio de cada origem) e demanda (requisito de recebimento de cada destino) [02:19].\n\nÉ discutida a importância do balanceamento entre oferta total e demanda total e como lidar com problemas desbalanceados ou de maximização [03:46].\n\nMétodos de Solução [04:52]:\n\nA resolução é dividida em duas fases: encontrar uma solução inicial e aplicar um teste de otimalidade.\n\nO método em foco para a solução inicial é o Método do Menor Custo, que busca alocar o máximo possível na célula com o menor custo unitário disponível [05:26].\n\nO vídeo exemplifica o uso do Método do Menor Custo com um problema prático envolvendo três fábricas e quatro centros de consumo [06:28].\n\nPara o teste de otimalidade, é utilizado o Método MODI (Multiplicadores), que calcula custos reduzidos para as células não ocupadas para verificar se a solução encontrada é a melhor possível [13:03].\n\nMelhoria da Solução [15:08]:\n\nCaso a solução inicial não seja ótima (se houver custos reduzidos negativos), o vídeo demonstra como realizar trocas de variáveis na base usando o conceito de ciclo fechado para encontrar uma nova solução com custo menor [15:12].\n\nA solução ótima final do exemplo é encontrada com um custo total mínimo de 137 unidades monetárias [21:37].\n\nImportância Prática [01:46] e Ferramentas Computacionais [21:43]:\n\nO problema é fundamental em áreas como logística e distribuição.\n\nPara problemas grandes, o uso de ferramentas computacionais como planilhas eletrônicas (Solver do Excel), softwares especializados (Lingo, Gurobi), ou ambientes de programação (Python, R) é essencial [21:47].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/4kpQ1V1OjGA/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/4kpQ1V1OjGA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/4kpQ1V1OjGA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/4kpQ1V1OjGA/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/4kpQ1V1OjGA/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

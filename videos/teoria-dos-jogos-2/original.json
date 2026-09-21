@@ -1,0 +1,35 @@
+{
+  "video_id": "mlJtplCFGqQ",
+  "url": "https://youtu.be/mlJtplCFGqQ",
+  "published_at": "2026-01-02T20:29:04Z",
+  "title": "PO2: Teoria dos Jogos - Parte 2",
+  "description": "📌 O que você vai aprender neste vídeo: \nEstratégias Mistas: Entenda por que e como atribuir probabilidades às estratégias puras quando não há ponto de sela [01:02].\nTeorema do Minimax: A prova matemática de que estratégias mistas sempre garantem uma solução estável [01:28].\nMétodo Gráfico: Passo a passo para resolver jogos onde um jogador tem apenas 2 estratégias (ex: matrizes 2xN ou Mx2) [03:02].Cálculo do Retorno Esperado: Como montar as equações de reta baseadas nas probabilidades $X_1$ e $(1-X_1)$ [05:46].\nMaximin no Gráfico: Identificação da envoltória inferior e busca pelo ponto mais alto (o melhor do pior) [15:32].Valor do Jogo: Como encontrar o ganho médio esperado após encontrar as probabilidades ótimas [17:26].\nModelagem via Programação Linear (PPL): Como transformar o jogo em um modelo de maximização/minimização para softwares [23:16].\nDualidade na Teoria dos Jogos: Por que o problema do Jogador A é o dual do Jogador B [28:10].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/mlJtplCFGqQ/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/mlJtplCFGqQ/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/mlJtplCFGqQ/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/mlJtplCFGqQ/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/mlJtplCFGqQ/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

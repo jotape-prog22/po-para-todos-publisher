@@ -1,0 +1,79 @@
+{
+  "titulos_candidatos": [
+    "LINDO - Resolvendo um PPL em 3 Minutos",
+    "LINDO - Como Resolver um PPL no Software",
+    "LINDO - Programação Linear do Modelo à Solução Ótima",
+    "PROGRAMAÇÃO LINEAR NO LINDO - Resolvendo um PPL Passo a Passo",
+    "PPL NO LINDO - Como Montar e Resolver o Modelo"
+  ],
+  "titulo": "LINDO - Resolvendo um PPL em 3 Minutos",
+  "gancho": "Já modelou o seu PPL e quer a solução ótima sem montar tableau nenhum? 🤔 Em 3 minutos, esta aula mostra como transcrever o problema da empresa de tintas para o LINDO e ler a resposta direto no relatório do software.",
+  "objetivos": [
+    "Como escrever a função objetivo no LINDO, começando o modelo com o comando MAX (ou MIN).",
+    "Como listar as restrições do problema depois de SUBJECT TO, do mesmo jeito que você escreve no papel.",
+    "Por que não é preciso escrever as restrições de não negatividade: o LINDO já assume x ≥ 0, e basta fechar o modelo com END.",
+    "Como rodar o SOLVE e ler no relatório o valor ótimo de Z, os valores de X1 e X2 e a folga (slack) de cada restrição."
+  ],
+  "fechamento": "Fechamos com a solução ótima do PPL da empresa de tintas na tela do LINDO: Z = 21, com X1 = 3 e X2 = 1,5, e a folga de cada restrição no relatório.",
+  "cta_complemento": "quer resolver um PPL sem passar pelo Simplex na mão",
+  "hashtags_tema": [
+    "#LINDO",
+    "#ProgramacaoLinear",
+    "#PPL",
+    "#Modelagem"
+  ],
+  "tags": [
+    "LINDO",
+    "software LINDO",
+    "LINDO tutorial",
+    "resolução de PPL",
+    "PPL",
+    "problema de programação linear",
+    "programação linear",
+    "solução ótima",
+    "modelagem",
+    "LINGO",
+    "Solver",
+    "otimização",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: o PPL da empresa de tintas"
+    },
+    {
+      "tempo": "00:22",
+      "titulo": "MAX e a função objetivo"
+    },
+    {
+      "tempo": "01:06",
+      "titulo": "SUBJECT TO: as restrições"
+    },
+    {
+      "tempo": "01:58",
+      "titulo": "Não negatividade e END"
+    },
+    {
+      "tempo": "02:18",
+      "titulo": "SOLVE: a solução ótima"
+    },
+    {
+      "tempo": "02:43",
+      "titulo": "Lendo o relatório: X1, X2 e folgas"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o mesmo PPL resolvido no LINGO? Assista aqui",
+      "url": "https://youtu.be/BCnLTTcSDGg"
+    },
+    {
+      "contexto": "Próximo passo no LINDO: a Análise de Sensibilidade, Parte 3",
+      "url": "https://youtu.be/nHPLI1uM0ks"
+    }
+  ],
+  "descricao": "Já modelou o seu PPL e quer a solução ótima sem montar tableau nenhum? 🤔 Em 3 minutos, esta aula mostra como transcrever o problema da empresa de tintas para o LINDO e ler a resposta direto no relatório do software.\n\nNesta aula, você vai aprender:\n\nComo escrever a função objetivo no LINDO, começando o modelo com o comando MAX (ou MIN).\n\nComo listar as restrições do problema depois de SUBJECT TO, do mesmo jeito que você escreve no papel.\n\nPor que não é preciso escrever as restrições de não negatividade: o LINDO já assume x ≥ 0, e basta fechar o modelo com END.\n\nComo rodar o SOLVE e ler no relatório o valor ótimo de Z, os valores de X1 e X2 e a folga (slack) de cada restrição.\n\nFechamos com a solução ótima do PPL da empresa de tintas na tela do LINDO: Z = 21, com X1 = 3 e X2 = 1,5, e a folga de cada restrição no relatório.\n\n⏱️ Capítulos:\n00:00 Abertura: o PPL da empresa de tintas\n00:22 MAX e a função objetivo\n01:06 SUBJECT TO: as restrições\n01:58 Não negatividade e END\n02:18 SOLVE: a solução ótima\n02:43 Lendo o relatório: X1, X2 e folgas\n\n⚠️ Quer ver o mesmo PPL resolvido no LINGO? Assista aqui: https://youtu.be/BCnLTTcSDGg\n\n⚠️ Próximo passo no LINDO: a Análise de Sensibilidade, Parte 3: https://youtu.be/nHPLI1uM0ks\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem quer resolver um PPL sem passar pelo Simplex na mão!\n\n#PesquisaOperacional #PO #LINDO #ProgramacaoLinear #PPL #Modelagem #Otimização #UNIRIO"
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "yGP0LK19R30",
+  "url": "https://youtu.be/yGP0LK19R30",
+  "published_at": "2026-05-20T15:48:58Z",
+  "title": "COMO USAR SOLVER NO EXCEL - Análise de Sensibilidade - Parte 2",
+  "description": "Você encontrou a solução ideal para o seu problema, mas e se o cenário mudar? 🤔 Nesta Parte 2, vamos dar o próximo passo e explorar o Relatório de Sensibilidade do Solver no Excel.\n\nNesta aula prática, você vai aprender a interpretar:\n\nComo as mudanças nos lucros ou custos afetam a sua solução.\n\nComo ler os limites \"Permitido Aumentar\" e \"Permitido Reduzir\".\n\nO que é o Preço Sombra e como identificar sua restrição gargalo.\n\nAté que ponto vale a pena investir em mais recursos para o seu negócio?\n\n⚠️ Ainda não viu a Parte 1? Assista aqui e entenda como montamos esse problema do zero: https://youtu.be/AT7hG6yOK6U\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem também precisa dominar essa ferramenta!\n\n#PesquisaOperacional #PO #Solver #Excel #AnaliseDeSensibilidade #Otimização #UNIRIO",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/yGP0LK19R30/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/yGP0LK19R30/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/yGP0LK19R30/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/yGP0LK19R30/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/yGP0LK19R30/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

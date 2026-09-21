@@ -1,0 +1,35 @@
+{
+  "video_id": "xQtosRABD2E",
+  "url": "https://youtu.be/xQtosRABD2E",
+  "published_at": "2025-10-26T00:41:37Z",
+  "title": "PO1: Equivalência entre PPLs",
+  "description": "PO1: Equivalência entre PPLs | Transformando Problemas para a Forma Padrão\nEntenda as regras fundamentais para transformar qualquer Problema de Programação Linear (PPL) em um formato equivalente, essencial para a aplicação de métodos de solução como o Simplex!\nNesta aula, a Professora Andreia Bonifácio detalha as técnicas de conversão que garantem a equivalência matemática de diferentes formulações de PPLs, permitindo que todos os problemas sejam resolvidos por um único algoritmo.\nNeste vídeo você aprenderá sobre as principais regras de equivalência:\nO Conceito de Equivalência: Por que é necessário transformar um PPL em uma forma padrão para a resolução [00:21].\nRegra 1: Inversão da Função Objetivo: Como converter um problema de minimização em um problema de maximização (e vice-versa) [00:51].\nRestrições de Desigualdade: Como lidar com restrições de $\\le$ (menor ou igual) e $\\ge$ (maior ou igual).\nVariáveis Irrestritas em Sinal (Livre): O método para substituir uma variável que pode assumir valores positivos, negativos ou zero, garantindo a não-negatividade de todas as variáveis do modelo.\nDomine a teoria por trás do método Simplex e garanta que seus modelos estejam prontos para a otimização!\nLink para o vídeo: PO1: Equivalência entre PPLs",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/xQtosRABD2E/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/xQtosRABD2E/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/xQtosRABD2E/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/xQtosRABD2E/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/xQtosRABD2E/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "titulos_candidatos": [
+    "ANÁLISE DE SENSIBILIDADE - Preço-Sombra e Custo Reduzido - Parte 1",
+    "ANÁLISE DE SENSIBILIDADE - Os Fundamentos da Pós-Otimização - Parte 1",
+    "ANÁLISE DE SENSIBILIDADE - De Onde Vem o Preço-Sombra? - Parte 1",
+    "ANÁLISE DE SENSIBILIDADE - Da Tabela Simplex ao Solver - Parte 1",
+    "ANÁLISE DE SENSIBILIDADE - Preço-Sombra e Faixas de Validade - Parte 1"
+  ],
+  "titulo": "ANÁLISE DE SENSIBILIDADE - Preço-Sombra e Custo Reduzido - Parte 1",
+  "gancho": "O Solver te entrega um Preço-Sombra e um Custo Reduzido para cada linha do relatório. Mas de onde vêm esses números — e até quando eles continuam valendo? 🤔 Nesta aula vamos aos fundamentos da Análise de Sensibilidade: o que cada valor significa, onde ele mora na tabela Simplex final e como o Solver o apresenta.",
+  "objetivos": [
+    "O que a Análise de Sensibilidade responde e qual a diferença entre a análise simples e a Pós-otimização.",
+    "Como ler a tabela Simplex final: as fórmulas que geram cada valor e onde a inversa da base aparece.",
+    "O que é o Preço-Sombra, por que ele é zero em recurso sobrando e onde encontrá-lo na linha Z.",
+    "O que é o Custo Reduzido, nas duas interpretações, e o que ele diz sobre uma variável que ficou fora da solução.",
+    "O que são as faixas de viabilidade e de otimalidade e por que elas limitam até onde cada número vale."
+  ],
+  "fechamento": "Fechamos lendo o relatório do Solver de um exemplo: os intervalos de otimalidade da Função Objetivo e os intervalos de viabilidade do lado direito, que dizem até onde o Preço-Sombra continua válido.",
+  "cta_complemento": "vai encarar o relatório de sensibilidade na prova",
+  "hashtags_tema": [
+    "#AnaliseDeSensibilidade",
+    "#PrecoSombra",
+    "#CustoReduzido",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "análise de sensibilidade",
+    "pós-otimização",
+    "preço sombra",
+    "preço-sombra",
+    "custo reduzido",
+    "dual price",
+    "reduced cost",
+    "relatório de sensibilidade",
+    "solver excel",
+    "tabela simplex",
+    "programação linear",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "01:15",
+      "titulo": "O que é Análise de Sensibilidade"
+    },
+    {
+      "tempo": "02:57",
+      "titulo": "Análise simples x Pós-otimização"
+    },
+    {
+      "tempo": "04:44",
+      "titulo": "Fórmulas da tabela Simplex final"
+    },
+    {
+      "tempo": "06:45",
+      "titulo": "Onde fica a inversa da base (B⁻¹)"
+    },
+    {
+      "tempo": "07:24",
+      "titulo": "Preço-Sombra: conceito"
+    },
+    {
+      "tempo": "09:33",
+      "titulo": "Preço-Sombra na tabela Simplex"
+    },
+    {
+      "tempo": "10:28",
+      "titulo": "Custo Reduzido: duas interpretações"
+    },
+    {
+      "tempo": "12:15",
+      "titulo": "Custo Reduzido na tabela Simplex"
+    },
+    {
+      "tempo": "13:26",
+      "titulo": "Faixas de viabilidade e otimalidade"
+    },
+    {
+      "tempo": "14:15",
+      "titulo": "Exemplo — resolvendo no Solver"
+    },
+    {
+      "tempo": "30:03",
+      "titulo": "Exemplo — intervalos no relatório"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde interpretamos o relatório do Solver linha por linha",
+      "url": "https://youtu.be/C0tpwFouwMA"
+    },
+    {
+      "contexto": "Na Parte 3, a mesma análise feita no LINDO",
+      "url": "https://youtu.be/nHPLI1uM0ks"
+    },
+    {
+      "contexto": "Quer gerar o Relatório de Sensibilidade do Solver no Excel? Veja o passo a passo",
+      "url": "https://youtu.be/yGP0LK19R30"
+    },
+    {
+      "contexto": "De onde vem o Preço-Sombra? Assista à aula sobre o Teorema das Folgas Complementares",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    }
+  ],
+  "descricao": "O Solver te entrega um Preço-Sombra e um Custo Reduzido para cada linha do relatório. Mas de onde vêm esses números — e até quando eles continuam valendo? 🤔 Nesta aula vamos aos fundamentos da Análise de Sensibilidade: o que cada valor significa, onde ele mora na tabela Simplex final e como o Solver o apresenta.\n\nNesta aula, você vai aprender:\n\nO que a Análise de Sensibilidade responde e qual a diferença entre a análise simples e a Pós-otimização.\n\nComo ler a tabela Simplex final: as fórmulas que geram cada valor e onde a inversa da base aparece.\n\nO que é o Preço-Sombra, por que ele é zero em recurso sobrando e onde encontrá-lo na linha Z.\n\nO que é o Custo Reduzido, nas duas interpretações, e o que ele diz sobre uma variável que ficou fora da solução.\n\nO que são as faixas de viabilidade e de otimalidade e por que elas limitam até onde cada número vale.\n\nFechamos lendo o relatório do Solver de um exemplo: os intervalos de otimalidade da Função Objetivo e os intervalos de viabilidade do lado direito, que dizem até onde o Preço-Sombra continua válido.\n\n⏱️ Capítulos:\n00:00 Abertura\n01:15 O que é Análise de Sensibilidade\n02:57 Análise simples x Pós-otimização\n04:44 Fórmulas da tabela Simplex final\n06:45 Onde fica a inversa da base (B⁻¹)\n07:24 Preço-Sombra: conceito\n09:33 Preço-Sombra na tabela Simplex\n10:28 Custo Reduzido: duas interpretações\n12:15 Custo Reduzido na tabela Simplex\n13:26 Faixas de viabilidade e otimalidade\n14:15 Exemplo — resolvendo no Solver\n30:03 Exemplo — intervalos no relatório\n\n⚠️ Continue na Parte 2, onde interpretamos o relatório do Solver linha por linha: https://youtu.be/C0tpwFouwMA\n\n⚠️ Na Parte 3, a mesma análise feita no LINDO: https://youtu.be/nHPLI1uM0ks\n\n⚠️ Quer gerar o Relatório de Sensibilidade do Solver no Excel? Veja o passo a passo: https://youtu.be/yGP0LK19R30\n\n⚠️ De onde vem o Preço-Sombra? Assista à aula sobre o Teorema das Folgas Complementares: https://youtu.be/6n6oPR70LSA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai encarar o relatório de sensibilidade na prova!\n\n#PesquisaOperacional #PO #AnaliseDeSensibilidade #PrecoSombra #CustoReduzido #ProgramacaoLinear #Otimização #UNIRIO"
+}

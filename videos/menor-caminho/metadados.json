@@ -1,0 +1,95 @@
+{
+  "titulos_candidatos": [
+    "CAMINHO MÍNIMO - O Problema por Trás do Dijkstra - Parte 1",
+    "CAMINHO MÍNIMO - Como Modelar o Problema em Grafos - Parte 1",
+    "PROBLEMA DO CAMINHO MAIS CURTO - Definição e Modelagem - Parte 1",
+    "DIJKSTRA - De Onde Vem o Problema do Caminho Mínimo? - Parte 1",
+    "CAMINHO MÍNIMO - Grafos, Pesos e a Propriedade Fundamental - Parte 1"
+  ],
+  "titulo": "CAMINHO MÍNIMO - O Problema por Trás do Dijkstra - Parte 1",
+  "gancho": "Qual é o caminho mais curto da sua casa até a universidade? O GPS responde em segundos — mas o que ele está resolvendo, exatamente? 🤔 Nesta aula vamos entender o problema do caminho mínimo por dentro: o que ele pede, como vira um grafo e qual propriedade permite que o algoritmo de Dijkstra funcione.",
+  "objetivos": [
+    "O que é o problema do caminho mais curto e por que \"melhor caminho\" pode significar menor distância, menor tempo ou menor custo.",
+    "Como transformar um problema real em um grafo: pontos de interesse viram vértices, ruas viram arestas e distâncias viram pesos.",
+    "A propriedade dos caminhos mínimos, com a prova por contradição que garante que todo pedaço de um caminho mínimo também é mínimo.",
+    "A história do algoritmo de Dijkstra, criado em 1956 para demonstrar um computador e hoje um dos algoritmos mais executados do mundo.",
+    "As definições de grafo, dígrafo e adjacência, e a definição formal do problema que a Parte 2 vai resolver."
+  ],
+  "fechamento": "Fechamos com a definição formal do problema e a condição que o Dijkstra exige: um dígrafo com pesos não negativos.",
+  "cta_complemento": "vai encarar grafos e o Dijkstra este semestre",
+  "hashtags_tema": [
+    "#CaminhoMinimo",
+    "#Dijkstra",
+    "#Grafos",
+    "#TeoriaDosGrafos"
+  ],
+  "tags": [
+    "caminho mínimo",
+    "problema do caminho mais curto",
+    "menor caminho",
+    "shortest path",
+    "algoritmo de Dijkstra",
+    "Dijkstra",
+    "grafos",
+    "dígrafo",
+    "teoria dos grafos",
+    "otimização em redes",
+    "pesquisa operacional",
+    "PO2",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:30",
+      "titulo": "O que é o problema do caminho mais curto"
+    },
+    {
+      "tempo": "01:35",
+      "titulo": "Aplicações além do GPS"
+    },
+    {
+      "tempo": "02:18",
+      "titulo": "Modelagem: vértices, arestas e pesos"
+    },
+    {
+      "tempo": "04:30",
+      "titulo": "Propriedade dos caminhos mínimos"
+    },
+    {
+      "tempo": "05:11",
+      "titulo": "A prova por contradição"
+    },
+    {
+      "tempo": "06:38",
+      "titulo": "A história do algoritmo de Dijkstra"
+    },
+    {
+      "tempo": "08:25",
+      "titulo": "Definições: grafo, dígrafo e adjacência"
+    },
+    {
+      "tempo": "09:58",
+      "titulo": "Exemplo: dígrafo versus grafo"
+    },
+    {
+      "tempo": "11:00",
+      "titulo": "Definição formal do problema"
+    },
+    {
+      "tempo": "11:49",
+      "titulo": "Dijkstra exige pesos não negativos"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde executamos o algoritmo de Dijkstra passo a passo",
+      "url": "https://youtu.be/uDP1Rg8INUU"
+    }
+  ],
+  "descricao": "Qual é o caminho mais curto da sua casa até a universidade? O GPS responde em segundos — mas o que ele está resolvendo, exatamente? 🤔 Nesta aula vamos entender o problema do caminho mínimo por dentro: o que ele pede, como vira um grafo e qual propriedade permite que o algoritmo de Dijkstra funcione.\n\nNesta aula, você vai aprender:\n\nO que é o problema do caminho mais curto e por que \"melhor caminho\" pode significar menor distância, menor tempo ou menor custo.\n\nComo transformar um problema real em um grafo: pontos de interesse viram vértices, ruas viram arestas e distâncias viram pesos.\n\nA propriedade dos caminhos mínimos, com a prova por contradição que garante que todo pedaço de um caminho mínimo também é mínimo.\n\nA história do algoritmo de Dijkstra, criado em 1956 para demonstrar um computador e hoje um dos algoritmos mais executados do mundo.\n\nAs definições de grafo, dígrafo e adjacência, e a definição formal do problema que a Parte 2 vai resolver.\n\nFechamos com a definição formal do problema e a condição que o Dijkstra exige: um dígrafo com pesos não negativos.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:30 O que é o problema do caminho mais curto\n01:35 Aplicações além do GPS\n02:18 Modelagem: vértices, arestas e pesos\n04:30 Propriedade dos caminhos mínimos\n05:11 A prova por contradição\n06:38 A história do algoritmo de Dijkstra\n08:25 Definições: grafo, dígrafo e adjacência\n09:58 Exemplo: dígrafo versus grafo\n11:00 Definição formal do problema\n11:49 Dijkstra exige pesos não negativos\n\n⚠️ Continue na Parte 2, onde executamos o algoritmo de Dijkstra passo a passo: https://youtu.be/uDP1Rg8INUU\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai encarar grafos e o Dijkstra este semestre!\n\n#PesquisaOperacional #PO #CaminhoMinimo #Dijkstra #Grafos #TeoriaDosGrafos #Otimização #UNIRIO"
+}

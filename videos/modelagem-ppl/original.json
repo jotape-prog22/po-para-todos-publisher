@@ -1,0 +1,35 @@
+{
+  "video_id": "mw9Mpe-PvZ4",
+  "url": "https://youtu.be/mw9Mpe-PvZ4",
+  "published_at": "2025-10-26T00:53:11Z",
+  "title": "PO1: Modelagem Matemática de PPL",
+  "description": "PO1: Modelagem Matemática de PPL | Exemplos Clássicos e Complexos da Pesquisa Operacional\nAprenda a arte de traduzir problemas de gestão e negócios para a linguagem da Programação Linear!\n\nNesta aula completa, exploramos a Fase 2 do estudo de Pesquisa Operacional: a modelagem matemática. A professora demonstra o passo a passo para definir variáveis de decisão, funções objetivo e restrições, usando exemplos clássicos e essenciais na área.\n\nTópicos e Problemas Abordados (Com Timestamps):\n\nIntrodução à Modelagem: Entenda a importância da fase de modelagem na PO [00:00].\n\nProblema da Dieta: Modelando a minimização de custos para atender a requisitos nutricionais mínimos [01:06].\n\nDefinindo a Função Objetivo e Restrições de Vitaminas [03:47].\n\nProblema da Mistura (Blending Problem): Como determinar a proporção de ingredientes para uma ração que atenda a requisitos mínimos de nutrientes com custo mínimo [05:01].\n\nModelando restrições de Proteína, Cálcio e a restrição de peso total [08:18].\n\nProblema da Perda por Corte (Cutting Stock): Minimizando o desperdício de matéria-prima (rolos de papel) ao atender a pedidos de diferentes tamanhos [09:27].\n\nModelando em função dos diferentes ajustes de faca e demandas [14:19].\n\nProblema do Mix de Produção: Maximizando o lucro semanal ao definir a quantidade ideal de produtos (carrinhos e triciclos), respeitando a capacidade limitada de recursos (usinagem, pintura, montagem) [15:24].\n\nAtenção à conversão de unidades (horas para minutos) [18:26].\n\nProblema de Planejamento da Produção e Estoque (Complexo): Um modelo multiperíodo que envolve custos de estoque, contratação e demissão de funcionários temporários e demanda variável [19:47].\n\nDefinindo Variáveis Livres e a Estratégia de Equivalência [25:08].\n\nMontando as restrições de demanda e balanço de mão de obra [28:28].\n\nDomine a Modelagem Matemática e prepare seus problemas para a otimização!\n\nLink para o vídeo: PO1: Modelagem Matemática de PPL",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/mw9Mpe-PvZ4/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/mw9Mpe-PvZ4/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/mw9Mpe-PvZ4/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/mw9Mpe-PvZ4/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/mw9Mpe-PvZ4/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "z2_XpNuRJ7w",
+  "url": "https://youtu.be/z2_XpNuRJ7w",
+  "published_at": "2026-01-04T20:13:17Z",
+  "title": "PO2: Programação Inteira - Parte 4 - Método Gráfico",
+  "description": "📌 O que você vai aprender neste vídeo:\n\nExemplo Prático: Apresentação de um problema de Programação Inteira (PI) com duas variáveis de decisão para aplicação do método gráfico [00:01].\n\nRelaxação Linear: Como transformar o problema de PI em um Problema de Programação Linear (PPL) removendo a restrição de integridade [00:05].\n\nResolução Gráfica: Visualização da região de soluções viáveis da relaxação linear e identificação do ponto ótimo contínuo [00:25].\n\nAnálise da Solução Ótima: Observação de que o ótimo contínuo (x1=3,75; x2=1,5) não atende aos critérios de integridade [00:33].\n\nOs Perigos do Arredondamento: Por que simplesmente arredondar a solução contínua pode ser perigoso e não garantir a solução ótima ou até mesmo viável [00:54].\n\nIntrodução Conceitual ao Branch and Bound: Como a solução da relaxação serve como ponto de partida (raiz) para a árvore de busca do algoritmo Branch and Bound [01:33].\n\nRamificação (Branching): Demonstração visual de como criar subproblemas adicionando restrições de \"teto\" e \"piso\" à variável X1 [02:00].\n\nEliminação de Espaço de Busca: Como o algoritmo identifica intervalos (como entre 3 e 4 para X1) onde comprovadamente não existem soluções inteiras viáveis [02:35].\n\nEspaço de Soluções Discreto: Explicação de que, na programação inteira, o conjunto de soluções viáveis é composto por pontos discretos dentro da região em vez de uma área contínua [02:51].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/z2_XpNuRJ7w/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/z2_XpNuRJ7w/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/z2_XpNuRJ7w/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/z2_XpNuRJ7w/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/z2_XpNuRJ7w/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

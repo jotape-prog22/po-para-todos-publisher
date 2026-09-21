@@ -1,0 +1,35 @@
+{
+  "video_id": "uDP1Rg8INUU",
+  "url": "https://youtu.be/uDP1Rg8INUU",
+  "published_at": "2025-12-19T01:29:41Z",
+  "title": "PO2: Problema do menor caminho - Parte 2-  Algoritmo de Dijkstra",
+  "description": "Requisitos do Algoritmo [00:52]Para aplicar o algoritmo de Dijkstra, é necessário que:O grafo seja ponderado (tenha pesos nas arestas).Os pesos sejam não negativos (Dijkstra não funciona com pesos negativos).Haja um vértice inicial (origem) definido.2. Estrutura e Variáveis [02:22]O vídeo explica as variáveis de saída do algoritmo:Distância ($dist$): O custo acumulado do vértice inicial até o vértice atual. Inicia-se como 0 para a origem e infinito para os demais [03:55].Anterior ($ant$): Armazena qual vértice veio antes no caminho mais curto, permitindo reconstruir a rota no final [02:50].Fila de Prioridade: Uma estrutura que organiza os vértices a serem analisados, sempre priorizando o de menor distância acumulada [03:22].3. Passo a Passo da Execução (Exemplo Prático) [05:44]O instrutor utiliza um exemplo com 7 vértices e resolve o problema usando uma tabela auxiliar:Inicialização: V1 (origem) recebe distância 0 e entra na fila. Todos os outros recebem distância $\\infty$ [07:27].Iterações: O algoritmo retira o vértice de menor distância da fila e \"relaxa\" suas arestas vizinhas. Isso significa verificar se passar por esse vértice reduz a distância conhecida dos seus vizinhos [05:10].Exemplo de Relaxação: Ao analisar V1, as distâncias de V2 e V4 são atualizadas de infinito para 2 e 1, respectivamente [10:58].4. Reconstrução do Caminho [21:30]Após processar todos os vértices, o instrutor mostra como descobrir a rota exata. Por exemplo, para encontrar o caminho de V1 até V6 (custo total 6):Olha-se o anterior de V6, que é V7.Olha-se o anterior de V7, que é V4.Olha-se o anterior de V4, que é V1 (origem).O caminho final é: V1 → V4 → V7 → V6 [22:32].5. Conclusão [23:09]O vídeo reforça que o algoritmo é eficiente (tempo polinomial) e simples de executar manualmente com o auxílio de uma tabela de anteriores e distâncias.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/uDP1Rg8INUU/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/uDP1Rg8INUU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/uDP1Rg8INUU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/uDP1Rg8INUU/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/uDP1Rg8INUU/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

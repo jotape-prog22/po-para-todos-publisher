@@ -1,0 +1,100 @@
+{
+  "titulos_candidatos": [
+    "FLUXO DE CUSTO MÍNIMO - Modelo de Programação Linear em Redes",
+    "FLUXO DE CUSTO MÍNIMO - Como Montar o Modelo de PL",
+    "PROBLEMA DO FLUXO DE CUSTO MÍNIMO - Modelagem e Exemplo com 5 Nós",
+    "OTIMIZAÇÃO EM REDES - O Modelo Geral do Fluxo de Custo Mínimo",
+    "FLUXO DE CUSTO MÍNIMO - O Que É e Como Modelar em PL"
+  ],
+  "titulo": "FLUXO DE CUSTO MÍNIMO - Modelo de Programação Linear em Redes",
+  "gancho": "Fábricas, centros de distribuição e clientes ligados por uma rede: como mandar tudo que a demanda pede gastando o mínimo possível? 🤔 Esse é o problema do fluxo de custo mínimo, o caso mais geral da otimização em redes. Nesta aula vamos entender a rede, escrever o modelo de programação linear e montar o modelo de um exemplo com 5 nós.",
+  "objetivos": [
+    "O que são nós de suprimento, de demanda e de transbordo, e como identificar cada um pelo fluxo líquido.",
+    "Onde o problema aparece na prática: redes de distribuição, controle de resíduos sólidos e mix de produtos em fábricas.",
+    "Como escrever o modelo de PL: a função objetivo de minimização e uma restrição de balanço de fluxo para cada nó.",
+    "Como tratar as capacidades dos arcos e por que o modelo pode ir direto para o Solver, o LINDO ou o LINGO.",
+    "Como transformar o caminho mínimo e o fluxo máximo em um fluxo de custo mínimo, sem rodar Dijkstra ou o caminho aumentado."
+  ],
+  "fechamento": "Fechamos com a rede de 5 nós do Hillier e Lieberman modelada por completo: função objetivo, cinco restrições de balanço de fluxo e as capacidades dos arcos AB (10) e CE (80).",
+  "cta_complemento": "vai cair em otimização em redes na prova",
+  "hashtags_tema": [
+    "#FluxoDeCustoMinimo",
+    "#OtimizacaoEmRedes",
+    "#ProgramacaoLinear",
+    "#Modelagem"
+  ],
+  "tags": [
+    "fluxo de custo mínimo",
+    "problema do fluxo de custo mínimo",
+    "minimum cost flow",
+    "otimização em redes",
+    "modelagem de redes",
+    "programação linear",
+    "restrição de balanço de fluxo",
+    "nós de suprimento e demanda",
+    "transbordo",
+    "fluxo máximo",
+    "caminho mínimo",
+    "problema do transporte",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura e capacidade do arco"
+    },
+    {
+      "tempo": "00:31",
+      "titulo": "Nós de suprimento, demanda e transbordo"
+    },
+    {
+      "tempo": "01:09",
+      "titulo": "Hipóteses da rede e objetivo"
+    },
+    {
+      "tempo": "02:13",
+      "titulo": "Aplicações"
+    },
+    {
+      "tempo": "04:03",
+      "titulo": "Variáveis de decisão e dados"
+    },
+    {
+      "tempo": "05:15",
+      "titulo": "O modelo de PL: balanço de fluxo"
+    },
+    {
+      "tempo": "07:21",
+      "titulo": "Exemplo: rede com 5 nós"
+    },
+    {
+      "tempo": "09:23",
+      "titulo": "Exemplo: escrevendo o modelo"
+    },
+    {
+      "tempo": "12:30",
+      "titulo": "Casos particulares em redes"
+    },
+    {
+      "tempo": "13:52",
+      "titulo": "Caminho mínimo como custo mínimo"
+    },
+    {
+      "tempo": "14:33",
+      "titulo": "Fluxo máximo como custo mínimo"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o fluxo máximo resolvido pelo algoritmo do caminho aumentado? Assista",
+      "url": "https://youtu.be/DfByg1nYDOk"
+    },
+    {
+      "contexto": "O problema do transporte é um caso particular deste modelo. Veja a aula",
+      "url": "https://youtu.be/4kpQ1V1OjGA"
+    }
+  ],
+  "descricao": "Fábricas, centros de distribuição e clientes ligados por uma rede: como mandar tudo que a demanda pede gastando o mínimo possível? 🤔 Esse é o problema do fluxo de custo mínimo, o caso mais geral da otimização em redes. Nesta aula vamos entender a rede, escrever o modelo de programação linear e montar o modelo de um exemplo com 5 nós.\n\nNesta aula, você vai aprender:\n\nO que são nós de suprimento, de demanda e de transbordo, e como identificar cada um pelo fluxo líquido.\n\nOnde o problema aparece na prática: redes de distribuição, controle de resíduos sólidos e mix de produtos em fábricas.\n\nComo escrever o modelo de PL: a função objetivo de minimização e uma restrição de balanço de fluxo para cada nó.\n\nComo tratar as capacidades dos arcos e por que o modelo pode ir direto para o Solver, o LINDO ou o LINGO.\n\nComo transformar o caminho mínimo e o fluxo máximo em um fluxo de custo mínimo, sem rodar Dijkstra ou o caminho aumentado.\n\nFechamos com a rede de 5 nós do Hillier e Lieberman modelada por completo: função objetivo, cinco restrições de balanço de fluxo e as capacidades dos arcos AB (10) e CE (80).\n\n⏱️ Capítulos:\n00:00 Abertura e capacidade do arco\n00:31 Nós de suprimento, demanda e transbordo\n01:09 Hipóteses da rede e objetivo\n02:13 Aplicações\n04:03 Variáveis de decisão e dados\n05:15 O modelo de PL: balanço de fluxo\n07:21 Exemplo: rede com 5 nós\n09:23 Exemplo: escrevendo o modelo\n12:30 Casos particulares em redes\n13:52 Caminho mínimo como custo mínimo\n14:33 Fluxo máximo como custo mínimo\n\n⚠️ Quer ver o fluxo máximo resolvido pelo algoritmo do caminho aumentado? Assista: https://youtu.be/DfByg1nYDOk\n\n⚠️ O problema do transporte é um caso particular deste modelo. Veja a aula: https://youtu.be/4kpQ1V1OjGA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai cair em otimização em redes na prova!\n\n#PesquisaOperacional #PO #FluxoDeCustoMinimo #OtimizacaoEmRedes #ProgramacaoLinear #Modelagem #Otimização #UNIRIO"
+}

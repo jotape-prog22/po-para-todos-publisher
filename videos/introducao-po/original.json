@@ -1,0 +1,35 @@
+{
+  "video_id": "v5KRSzU2E4U",
+  "url": "https://youtu.be/v5KRSzU2E4U",
+  "published_at": "2025-10-25T02:28:04Z",
+  "title": "PO1: Introdução à Pesquisa Operacional",
+  "description": "Esta é a aula inaugural da disciplina de Pesquisa Operacional (PO), com a Professora Andreia Bonifácio, focada nos conceitos fundamentais e na introdução à Programação Linear (PL).\n\nO que você vai aprender:\n\nDefinição e Histórico da PO: Entenda como a Pesquisa Operacional surgiu durante a Segunda Guerra Mundial e o desenvolvimento do famoso Método Simplex por George Dantzig.\n\nFases de um Estudo em PO: Conheça o processo completo de um projeto de PO, desde a definição do problema e coleta de dados até a formulação do modelo matemático e sua implementação.\n\nFundamentos da Programação Linear: Aprenda a estrutura de um Problema de Programação Linear (PPL), incluindo a função objetivo, variáveis de decisão e restrições.\n\nAplicações e Exemplos: Veja as áreas de aplicação da PO e acompanhe a formulação de um modelo matemático a partir de um exemplo prático de otimização de produção.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/v5KRSzU2E4U/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/v5KRSzU2E4U/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/v5KRSzU2E4U/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/v5KRSzU2E4U/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/v5KRSzU2E4U/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

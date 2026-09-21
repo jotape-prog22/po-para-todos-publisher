@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "PPL NO SOLVER - Configurando e Resolvendo no Excel - Parte 2",
+    "PPL NO SOLVER - Solução Ótima e Relatório de Resposta - Parte 2",
+    "PPL NO SOLVER - Da Configuração à Solução Ótima - Parte 2",
+    "PPL NO SOLVER - Como Achar a Solução Ótima no Excel - Parte 2",
+    "PPL NO SOLVER - Restrições, Simplex LP e Resolver - Parte 2"
+  ],
+  "titulo": "PPL NO SOLVER - Configurando e Resolvendo no Excel - Parte 2",
+  "gancho": "A planilha do PPL já está montada. E agora, como dizer ao Solver o que maximizar, o que ele pode mudar e quais regras respeitar? 🤔 Nesta aula vamos configurar o suplemento Solver do Excel passo a passo, escolher o método Simplex LP e encontrar a solução ótima do PPL da empresa de tintas.",
+  "objetivos": [
+    "Como definir a célula da Função Objetivo e as Células Variáveis (as variáveis de decisão) no painel do Solver.",
+    "Como adicionar as restrições de uma vez só, aproveitando que todas têm o mesmo sinal, e por que a não negatividade tem uma caixinha própria.",
+    "Por que escolher o método Simplex LP quando o problema é de Programação Linear.",
+    "Como ler a solução ótima que o Solver devolve na própria planilha: valores das variáveis e valor da Função Objetivo.",
+    "Como gerar o Relatório de Resposta e descobrir quais restrições foram usadas até o limite e quais sobraram folga."
+  ],
+  "fechamento": "Fechamos com a solução ótima do PPL da empresa de tintas: lucro máximo de 21 mil, com as duas primeiras restrições esgotadas e folga nas demais.",
+  "cta_complemento": "ainda resolve PPL na mão",
+  "hashtags_tema": [
+    "#Solver",
+    "#Excel",
+    "#ProgramacaoLinear",
+    "#PPL"
+  ],
+  "tags": [
+    "solver",
+    "solver excel",
+    "suplemento solver",
+    "PPL no solver",
+    "resolução de PPL",
+    "problema de programação linear",
+    "programação linear",
+    "simplex LP",
+    "solução ótima",
+    "relatório de resposta",
+    "otimização no excel",
+    "pesquisa operacional",
+    "PO1",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:38",
+      "titulo": "Função Objetivo e Células Variáveis"
+    },
+    {
+      "tempo": "01:05",
+      "titulo": "Adicionando as restrições"
+    },
+    {
+      "tempo": "02:26",
+      "titulo": "Restrições de não negatividade"
+    },
+    {
+      "tempo": "02:42",
+      "titulo": "Escolhendo o método Simplex LP"
+    },
+    {
+      "tempo": "03:05",
+      "titulo": "Resolver: a solução ótima"
+    },
+    {
+      "tempo": "03:18",
+      "titulo": "Lendo os valores na planilha"
+    },
+    {
+      "tempo": "03:34",
+      "titulo": "Gerando o Relatório de Resposta"
+    },
+    {
+      "tempo": "04:28",
+      "titulo": "Restrições esgotadas e folgas"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1, onde montamos a planilha? Comece por aqui",
+      "url": "https://youtu.be/pNNsL4GzNg8"
+    },
+    {
+      "contexto": "Achou a solução ótima? O próximo passo é a Análise de Sensibilidade e Pós-otimização, Parte 1",
+      "url": "https://youtu.be/Z-duqQJFa-4"
+    }
+  ],
+  "descricao": "A planilha do PPL já está montada. E agora, como dizer ao Solver o que maximizar, o que ele pode mudar e quais regras respeitar? 🤔 Nesta aula vamos configurar o suplemento Solver do Excel passo a passo, escolher o método Simplex LP e encontrar a solução ótima do PPL da empresa de tintas.\n\nNesta aula, você vai aprender:\n\nComo definir a célula da Função Objetivo e as Células Variáveis (as variáveis de decisão) no painel do Solver.\n\nComo adicionar as restrições de uma vez só, aproveitando que todas têm o mesmo sinal, e por que a não negatividade tem uma caixinha própria.\n\nPor que escolher o método Simplex LP quando o problema é de Programação Linear.\n\nComo ler a solução ótima que o Solver devolve na própria planilha: valores das variáveis e valor da Função Objetivo.\n\nComo gerar o Relatório de Resposta e descobrir quais restrições foram usadas até o limite e quais sobraram folga.\n\nFechamos com a solução ótima do PPL da empresa de tintas: lucro máximo de 21 mil, com as duas primeiras restrições esgotadas e folga nas demais.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:38 Função Objetivo e Células Variáveis\n01:05 Adicionando as restrições\n02:26 Restrições de não negatividade\n02:42 Escolhendo o método Simplex LP\n03:05 Resolver: a solução ótima\n03:18 Lendo os valores na planilha\n03:34 Gerando o Relatório de Resposta\n04:28 Restrições esgotadas e folgas\n\n⚠️ Ainda não viu a Parte 1, onde montamos a planilha? Comece por aqui: https://youtu.be/pNNsL4GzNg8\n\n⚠️ Achou a solução ótima? O próximo passo é a Análise de Sensibilidade e Pós-otimização, Parte 1: https://youtu.be/Z-duqQJFa-4\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda resolve PPL na mão!\n\n#PesquisaOperacional #PO #Solver #Excel #ProgramacaoLinear #PPL #Otimização #UNIRIO"
+}

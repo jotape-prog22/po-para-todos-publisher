@@ -1,0 +1,83 @@
+{
+  "titulos_candidatos": [
+    "FORMA PADRÃO - Como Transformar Qualquer PPL para o Simplex",
+    "EQUIVALÊNCIA DE PPL - As Regras para Chegar à Forma Padrão",
+    "FORMA PADRÃO DO PPL - Min, Max, Desigualdades e Variável Livre",
+    "PROGRAMAÇÃO LINEAR - Como Deixar o PPL Pronto para o Simplex",
+    "VARIÁVEL LIVRE E DESIGUALDADES - Transformando o PPL em Forma Padrão"
+  ],
+  "titulo": "FORMA PADRÃO - Como Transformar Qualquer PPL para o Simplex",
+  "gancho": "Seu PPL é de minimização, tem restrição de ≥ e uma variável que pode ser negativa. Como fazer o Simplex resolver um problema assim? 🤔 Nesta aula vamos ver as regras de equivalência que transformam qualquer PPL em um problema equivalente na forma padrão — sem mudar a solução ótima.",
+  "objetivos": [
+    "O que significa dois PPLs serem equivalentes e por que todo problema precisa chegar à forma padrão antes de rodar o Simplex.",
+    "Como transformar um problema de minimização em maximização (e vice-versa) trocando o sinal da função objetivo.",
+    "Como lidar com restrições de ≤ e ≥: inverter o sentido da desigualdade e transformá-la em igualdade.",
+    "Como substituir uma variável irrestrita em sinal (livre) para que todas as variáveis do modelo sejam não-negativas."
+  ],
+  "fechamento": "Fechamos com o conjunto completo de regras que deixa qualquer PPL pronto para o Simplex: maximização, restrições de igualdade e todas as variáveis não-negativas.",
+  "cta_complemento": "vai começar a estudar o Simplex",
+  "hashtags_tema": [
+    "#FormaPadrao",
+    "#ProgramacaoLinear",
+    "#Simplex",
+    "#Modelagem"
+  ],
+  "tags": [
+    "forma padrão",
+    "forma padrão programação linear",
+    "equivalência entre PPLs",
+    "problema de programação linear",
+    "PPL",
+    "programação linear",
+    "variável livre",
+    "variável irrestrita em sinal",
+    "variável de folga",
+    "minimização e maximização",
+    "simplex",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:21",
+      "titulo": "Por que transformar um PPL"
+    },
+    {
+      "tempo": "00:51",
+      "titulo": "Regra 1: Minimização vira maximização"
+    },
+    {
+      "tempo": "02:47",
+      "titulo": "Restrições de ≤ e ≥"
+    },
+    {
+      "tempo": "04:52",
+      "titulo": "Desigualdade vira igualdade"
+    },
+    {
+      "tempo": "07:02",
+      "titulo": "Variável livre (irrestrita em sinal)"
+    },
+    {
+      "tempo": "09:18",
+      "titulo": "Encerramento"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Com o PPL na forma padrão, o próximo passo é o Algoritmo Simplex",
+      "url": "https://youtu.be/JTcUGbG8pg0"
+    },
+    {
+      "contexto": "Ainda não viu como montar um PPL? Comece pela aula de Modelagem Matemática",
+      "url": "https://youtu.be/mw9Mpe-PvZ4"
+    }
+  ],
+  "descricao": "Seu PPL é de minimização, tem restrição de ≥ e uma variável que pode ser negativa. Como fazer o Simplex resolver um problema assim? 🤔 Nesta aula vamos ver as regras de equivalência que transformam qualquer PPL em um problema equivalente na forma padrão — sem mudar a solução ótima.\n\nNesta aula, você vai aprender:\n\nO que significa dois PPLs serem equivalentes e por que todo problema precisa chegar à forma padrão antes de rodar o Simplex.\n\nComo transformar um problema de minimização em maximização (e vice-versa) trocando o sinal da função objetivo.\n\nComo lidar com restrições de ≤ e ≥: inverter o sentido da desigualdade e transformá-la em igualdade.\n\nComo substituir uma variável irrestrita em sinal (livre) para que todas as variáveis do modelo sejam não-negativas.\n\nFechamos com o conjunto completo de regras que deixa qualquer PPL pronto para o Simplex: maximização, restrições de igualdade e todas as variáveis não-negativas.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:21 Por que transformar um PPL\n00:51 Regra 1: Minimização vira maximização\n02:47 Restrições de ≤ e ≥\n04:52 Desigualdade vira igualdade\n07:02 Variável livre (irrestrita em sinal)\n09:18 Encerramento\n\n⚠️ Com o PPL na forma padrão, o próximo passo é o Algoritmo Simplex: https://youtu.be/JTcUGbG8pg0\n\n⚠️ Ainda não viu como montar um PPL? Comece pela aula de Modelagem Matemática: https://youtu.be/mw9Mpe-PvZ4\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai começar a estudar o Simplex!\n\n#PesquisaOperacional #PO #FormaPadrao #ProgramacaoLinear #Simplex #Modelagem #Otimização #UNIRIO"
+}

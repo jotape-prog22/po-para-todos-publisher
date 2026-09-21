@@ -1,0 +1,11 @@
+{
+  "gancho": "Como uma fábrica de válvulas cardíacas em Minas descobriu que podia ganhar 14% a mais só planejando melhor?",
+  "corpo": "Artigo publicado este ano na PODes, a revista aplicada da SOBRAPO. Pesquisadores ligados à UFMG modelaram a cadeia inteira de uma indústria de biopróteses cardíacas — fornecedores de pericárdio, nove etapas de produção manual, quinze produtos — como um problema de programação linear inteira mista, e resolveram com software livre (GLPK) em segundos.\n\nO modelo não só achou o plano de produção mais lucrativo: mostrou onde está o gargalo (a esterilização), quanto custa aliviá-lo e por que treinar as montadoras para fazer válvulas e enxertos vale mais pela flexibilidade do que pelo dinheiro.\n\nÉ um exemplo bonito de S&OP com otimização em um setor onde PO ainda é pouco usada. No carrossel, as quatro ideias do artigo.",
+  "autores": "Ana Luiza V. A. Vasconcelos, Lígia de Castro B. Soares, João Flávio de Freitas Almeida",
+  "hashtags_tema": [
+    "#ProgramacaoInteira",
+    "#Modelagem",
+    "#CadeiaDeSuprimentos",
+    "#SOP"
+  ]
+}

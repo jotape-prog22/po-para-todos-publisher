@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "DUALIDADE - Relações entre o Primal e o Dual - Parte 2",
+    "DUALIDADE - Teoremas que Ligam o Primal ao Dual - Parte 2",
+    "TEOREMA DA DUALIDADE - Fraca, Forte e Folgas Complementares - Parte 2",
+    "PRIMAL E DUAL - Por que Têm o Mesmo Valor Ótimo? Dualidade - Parte 2",
+    "DUALIDADE - Resolver o Dual para Achar o Primal - Parte 2"
+  ],
+  "titulo": "DUALIDADE - Relações entre o Primal e o Dual - Parte 2",
+  "gancho": "Você montou o Dual de um PPL. Mas o que a solução dele tem a ver com a solução do Primal? 🤔 Nesta aula vamos demonstrar os teoremas da Dualidade que ligam os dois problemas e usar essa ponte para achar o ótimo do Primal resolvendo só o Dual.",
+  "objetivos": [
+    "O Lema da Dualidade Fraca, com demonstração: o valor da função objetivo do problema de minimização nunca fica abaixo do valor do problema de maximização, para quaisquer soluções viáveis.",
+    "O Corolário da Dualidade: se Primal e Dual têm soluções viáveis com o mesmo valor de função objetivo, essas soluções são ótimas.",
+    "O Teorema Fundamental da Dualidade e as três relações possíveis entre Primal e Dual: ambos ótimos com valores iguais, um ilimitado e o outro inviável, ou um inviável e o outro inviável ou ilimitado.",
+    "O Teorema das Folgas Complementares: na otimalidade, o produto entre uma variável de um problema e a folga da restrição correspondente no outro é sempre zero.",
+    "Como interpretar essas folgas: variável positiva de um lado significa restrição valendo na igualdade do outro, e vice-versa."
+  ],
+  "fechamento": "Fechamos com uma atividade em que um PPL de 5 variáveis é resolvido a partir do seu Dual de apenas 2 variáveis, usando o Teorema das Folgas Complementares.",
+  "cta_complemento": "quer entender a dualidade de verdade, não só decorar",
+  "hashtags_tema": [
+    "#Dualidade",
+    "#PrimalEDual",
+    "#FolgasComplementares",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "dualidade",
+    "teorema da dualidade",
+    "dualidade fraca",
+    "dualidade forte",
+    "teorema fundamental da dualidade",
+    "folgas complementares",
+    "teorema das folgas complementares",
+    "primal e dual",
+    "problema dual",
+    "programação linear",
+    "pesquisa operacional",
+    "otimização",
+    "simplex",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:12",
+      "titulo": "Lema da Dualidade Fraca — demonstração"
+    },
+    {
+      "tempo": "02:37",
+      "titulo": "Corolário: valores iguais, soluções ótimas"
+    },
+    {
+      "tempo": "03:34",
+      "titulo": "Teorema Fundamental da Dualidade"
+    },
+    {
+      "tempo": "04:44",
+      "titulo": "Ilimitado e inviável: os outros casos"
+    },
+    {
+      "tempo": "05:36",
+      "titulo": "Teorema das Folgas Complementares"
+    },
+    {
+      "tempo": "12:12",
+      "titulo": "Interpretando as folgas complementares"
+    },
+    {
+      "tempo": "15:24",
+      "titulo": "Atividade: resolver o Primal pelo Dual"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui",
+      "url": "https://youtu.be/LkJlsxEtaE4"
+    },
+    {
+      "contexto": "Continue na Parte 3, com exemplos e preços-sombra",
+      "url": "https://youtu.be/7Gc2aiE7M7U"
+    },
+    {
+      "contexto": "Quer se aprofundar no Teorema das Folgas Complementares? Veja a aula dedicada a ele",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    }
+  ],
+  "descricao": "Você montou o Dual de um PPL. Mas o que a solução dele tem a ver com a solução do Primal? 🤔 Nesta aula vamos demonstrar os teoremas da Dualidade que ligam os dois problemas e usar essa ponte para achar o ótimo do Primal resolvendo só o Dual.\n\nNesta aula, você vai aprender:\n\nO Lema da Dualidade Fraca, com demonstração: o valor da função objetivo do problema de minimização nunca fica abaixo do valor do problema de maximização, para quaisquer soluções viáveis.\n\nO Corolário da Dualidade: se Primal e Dual têm soluções viáveis com o mesmo valor de função objetivo, essas soluções são ótimas.\n\nO Teorema Fundamental da Dualidade e as três relações possíveis entre Primal e Dual: ambos ótimos com valores iguais, um ilimitado e o outro inviável, ou um inviável e o outro inviável ou ilimitado.\n\nO Teorema das Folgas Complementares: na otimalidade, o produto entre uma variável de um problema e a folga da restrição correspondente no outro é sempre zero.\n\nComo interpretar essas folgas: variável positiva de um lado significa restrição valendo na igualdade do outro, e vice-versa.\n\nFechamos com uma atividade em que um PPL de 5 variáveis é resolvido a partir do seu Dual de apenas 2 variáveis, usando o Teorema das Folgas Complementares.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:12 Lema da Dualidade Fraca — demonstração\n02:37 Corolário: valores iguais, soluções ótimas\n03:34 Teorema Fundamental da Dualidade\n04:44 Ilimitado e inviável: os outros casos\n05:36 Teorema das Folgas Complementares\n12:12 Interpretando as folgas complementares\n15:24 Atividade: resolver o Primal pelo Dual\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui: https://youtu.be/LkJlsxEtaE4\n\n⚠️ Continue na Parte 3, com exemplos e preços-sombra: https://youtu.be/7Gc2aiE7M7U\n\n⚠️ Quer se aprofundar no Teorema das Folgas Complementares? Veja a aula dedicada a ele: https://youtu.be/6n6oPR70LSA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem quer entender a dualidade de verdade, não só decorar!\n\n#PesquisaOperacional #PO #Dualidade #PrimalEDual #FolgasComplementares #ProgramacaoLinear #Otimização #UNIRIO"
+}

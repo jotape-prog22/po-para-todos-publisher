@@ -1,0 +1,35 @@
+{
+  "video_id": "IMG0vcnQeX0",
+  "url": "https://youtu.be/IMG0vcnQeX0",
+  "published_at": "2025-10-25T23:22:18Z",
+  "title": "PO1: Resolução de PPL utilizando o Solver - Parte 2",
+  "description": "PO1: Resolução de PPL utilizando o Solver - Parte 2 | Configuração e Solução Ótima\nChegou a hora de resolver o Problema de Programação Linear (PPL)!\n\nNesta Parte 2 do nosso tutorial, você aprenderá a configurar o suplemento Solver do Excel e a executar o algoritmo para encontrar a solução ótima do PPL. Continuamos com o \"PPL da empresa de tintas\" (cuja modelagem foi feita na Parte 1) e exploramos os resultados gerados pelo software.\n\nO que você verá neste vídeo:\n\nConfiguração do Solver: Aprenda a definir a Função Objetivo, as Células Variáveis (Decisão) e adicionar as restrições no painel do Solver [00:38].\n\nRestrições de Não Negatividade: Como garantir que as variáveis de decisão sejam maiores ou iguais a zero [02:26].\n\nSeleção do Método Simplex: Escolha do método de resolução (\"Simplex LP\") para problemas de Programação Linear [02:42].\n\nEncontrando a Solução Ótima: Execução do Solver e interpretação do resultado final [03:05].\n\nAnálise dos Relatórios: Como gerar e ler os relatórios de Resposta e Sensibilidade, fundamentais para a análise pós-otimização [03:34].\n\nInterpretação da Solução: Entenda os valores ótimos das variáveis de decisão e o lucro máximo (valor da Função Objetivo) [03:18].\n\nAssista e domine a ferramenta Solver para resolver seus problemas de otimização de forma rápida e eficiente!\n\nLink para o vídeo: PO1: Resolução de PPL utilizando o Solver - Parte 2\n\nAssista também:\n\nPO1: Resolução de PPL utilizando o Solver - Parte 1 - Para ver a modelagem e a preparação da planilha.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/IMG0vcnQeX0/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/IMG0vcnQeX0/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/IMG0vcnQeX0/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/IMG0vcnQeX0/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/IMG0vcnQeX0/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

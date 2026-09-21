@@ -1,0 +1,107 @@
+{
+  "titulos_candidatos": [
+    "BRANCH AND BOUND - Exemplo Resolvido Passo a Passo - Parte 3",
+    "BRANCH AND BOUND - Execução do Algoritmo em um Exemplo - Parte 3",
+    "PROGRAMAÇÃO INTEIRA - Resolvendo com Branch and Bound - Parte 3",
+    "BRANCH AND BOUND - Montando a Árvore Até a Solução Ótima - Parte 3",
+    "BRANCH AND BOUND - Como Ramificar e Podar na Prática? - Parte 3"
+  ],
+  "titulo": "BRANCH AND BOUND - Exemplo Resolvido Passo a Passo - Parte 3",
+  "gancho": "Você já entendeu a ramificação e os critérios de poda, mas como o Branch and Bound roda de verdade, do primeiro nó até a solução ótima? 🤔 Nesta aula executamos o algoritmo passo a passo em um problema de maximização, montando a árvore BB até chegar à solução inteira.",
+  "objetivos": [
+    "Como inicializar o algoritmo com Z limite = −∞ e por que o primeiro passo é resolver a relaxação linear do problema inteiro.",
+    "O que fazer quando a solução relaxada viola a integridade: colocar o nó no conjunto A de nós abertos e ramificar pela variável escolhida, com as restrições de teto e de piso.",
+    "Como atualizar o Z limite quando aparece uma solução inteira e usar esse valor para descartar nós que não podem melhorar.",
+    "Como podar um ramo inviável e reconhecer o critério de parada, quando não resta nenhum nó aberto.",
+    "Quais trocas fazer no algoritmo para resolver problemas de minimização."
+  ],
+  "fechamento": "Fechamos com a solução ótima inteira do exemplo: x1 = 3, x2 = 2 e Z = 23.",
+  "cta_complemento": "está montando a árvore do Branch and Bound",
+  "hashtags_tema": [
+    "#BranchAndBound",
+    "#ProgramacaoInteira",
+    "#ArvoreBB",
+    "#RelaxacaoLinear"
+  ],
+  "tags": [
+    "branch and bound",
+    "algoritmo branch and bound",
+    "B&B",
+    "ramificar e limitar",
+    "ramificação e poda",
+    "árvore branch and bound",
+    "programação inteira",
+    "programação linear inteira",
+    "relaxação linear",
+    "exemplo resolvido",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: o algoritmo e a árvore BB"
+    },
+    {
+      "tempo": "00:58",
+      "titulo": "O problema de maximização"
+    },
+    {
+      "tempo": "01:16",
+      "titulo": "Inicialização: Z limite = −∞ e relaxação"
+    },
+    {
+      "tempo": "02:12",
+      "titulo": "Solução gráfica do PPL relaxado"
+    },
+    {
+      "tempo": "02:54",
+      "titulo": "Conjunto A: os nós abertos"
+    },
+    {
+      "tempo": "05:20",
+      "titulo": "Ramificação: P1 e P2 a partir de x1"
+    },
+    {
+      "tempo": "06:21",
+      "titulo": "Resolvendo os subproblemas no Lindo"
+    },
+    {
+      "tempo": "07:04",
+      "titulo": "Atualizando o Z limite para 23"
+    },
+    {
+      "tempo": "07:45",
+      "titulo": "Ramificando P1: P3 e P4 a partir de x2"
+    },
+    {
+      "tempo": "09:30",
+      "titulo": "Poda: P3 é inviável"
+    },
+    {
+      "tempo": "10:25",
+      "titulo": "Critério de parada e solução ótima"
+    },
+    {
+      "tempo": "11:05",
+      "titulo": "Adaptação para minimização"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 2? Lá estão a ramificação e os critérios de poda",
+      "url": "https://youtu.be/z3CRhX1oLoI"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui",
+      "url": "https://youtu.be/fXvZ2FejRBY"
+    },
+    {
+      "contexto": "Quer ver o método gráfico para o mesmo tipo de problema? Assista à Parte 3 de Programação Inteira",
+      "url": "https://youtu.be/z2_XpNuRJ7w"
+    }
+  ],
+  "descricao": "Você já entendeu a ramificação e os critérios de poda, mas como o Branch and Bound roda de verdade, do primeiro nó até a solução ótima? 🤔 Nesta aula executamos o algoritmo passo a passo em um problema de maximização, montando a árvore BB até chegar à solução inteira.\n\nNesta aula, você vai aprender:\n\nComo inicializar o algoritmo com Z limite = −∞ e por que o primeiro passo é resolver a relaxação linear do problema inteiro.\n\nO que fazer quando a solução relaxada viola a integridade: colocar o nó no conjunto A de nós abertos e ramificar pela variável escolhida, com as restrições de teto e de piso.\n\nComo atualizar o Z limite quando aparece uma solução inteira e usar esse valor para descartar nós que não podem melhorar.\n\nComo podar um ramo inviável e reconhecer o critério de parada, quando não resta nenhum nó aberto.\n\nQuais trocas fazer no algoritmo para resolver problemas de minimização.\n\nFechamos com a solução ótima inteira do exemplo: x1 = 3, x2 = 2 e Z = 23.\n\n⏱️ Capítulos:\n00:00 Abertura: o algoritmo e a árvore BB\n00:58 O problema de maximização\n01:16 Inicialização: Z limite = −∞ e relaxação\n02:12 Solução gráfica do PPL relaxado\n02:54 Conjunto A: os nós abertos\n05:20 Ramificação: P1 e P2 a partir de x1\n06:21 Resolvendo os subproblemas no Lindo\n07:04 Atualizando o Z limite para 23\n07:45 Ramificando P1: P3 e P4 a partir de x2\n09:30 Poda: P3 é inviável\n10:25 Critério de parada e solução ótima\n11:05 Adaptação para minimização\n\n⚠️ Ainda não viu a Parte 2? Lá estão a ramificação e os critérios de poda: https://youtu.be/z3CRhX1oLoI\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui: https://youtu.be/fXvZ2FejRBY\n\n⚠️ Quer ver o método gráfico para o mesmo tipo de problema? Assista à Parte 3 de Programação Inteira: https://youtu.be/z2_XpNuRJ7w\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está montando a árvore do Branch and Bound!\n\n#PesquisaOperacional #PO #BranchAndBound #ProgramacaoInteira #ArvoreBB #RelaxacaoLinear #Otimização #UNIRIO"
+}

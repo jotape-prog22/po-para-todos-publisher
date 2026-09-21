@@ -1,0 +1,35 @@
+{
+  "video_id": "DfByg1nYDOk",
+  "url": "https://youtu.be/DfByg1nYDOk",
+  "published_at": "2026-01-02T19:33:19Z",
+  "title": "PO2: Problema do fluxo máximo -  Algoritmo do caminho aumentado",
+  "description": "📌 O que você vai aprender neste vídeo:\nConceitos Básicos: Entenda o que é a capacidade de um arco e como funciona uma rede direcionada e conexa [01:32].\n\nAplicações Práticas: Exemplos no mundo real, como logística de suprimentos, sistemas de tubulações (água/petróleo) e tráfego urbano [00:44].\n\nRede Residual: Como transformar a rede original para facilitar os cálculos de fluxos remanescentes [02:36].\n\nCaminho Aumentado: A definição e a importância de encontrar caminhos com capacidade residual positiva [06:21].\n\nAlgoritmo Passo a Passo: O processo iterativo para encontrar o fluxo ótimo [07:46].\n\nTeorema do Corte Mínimo: A relação matemática que prova quando o fluxo máximo foi atingido [10:12].\n\nMúltiplas Origens/Destinos: O uso de \"nós fantasmas\" para simplificar redes complexas [13:15].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/DfByg1nYDOk/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/DfByg1nYDOk/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/DfByg1nYDOk/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/DfByg1nYDOk/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/DfByg1nYDOk/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

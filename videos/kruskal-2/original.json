@@ -1,0 +1,35 @@
+{
+  "video_id": "GCUj5iVwc-w",
+  "url": "https://youtu.be/GCUj5iVwc-w",
+  "published_at": "2025-11-09T20:53:11Z",
+  "title": "PO2: Árvore Geradora - Algoritmo de Kruskal - Parte 2",
+  "description": "O vídeo retoma a execução do algoritmo, que segue selecionando as arestas de menor custo (após a ordenação inicial) e as incluindo na árvore ($T$), desde que não conectem dois vértices que já estão na mesma subárvore (o que formaria um ciclo):\nArestas Incluídas:\nAC (Custo 3): Incluída por conectar subárvores distintas. O contador aumenta para 2 [00:01] - [00:31].\nDF (Custo 4): Incluída. O contador aumenta para 3 [01:23] - [01:32].\nEF (Custo 4): Incluída. O contador aumenta para 4 [01:32] - [01:47].\nCD (Custo 6): Incluída por ligar subárvores separadas (A-B-C a D-E-F). O contador chega a 5 [02:10] - [02:29].\nArestas Descartadas (Regra do Ciclo):\nAB (Custo 4): Descartada, pois A e B já estavam na mesma subárvore (formaria o ciclo A-B-C-A) [00:40] - [01:14].\nDE (Custo 5): Descartada, pois D e E já estavam na mesma subárvore (D-F-E) [01:56] - [02:04].\n🎯 Conclusão e Resultados\nFinalização: O algoritmo é concluído assim que o contador de arestas atinge o valor de $V-1$ (número de vértices menos um), que no exemplo é 5 [02:29] - [02:44].\nCusto da AGM: O peso total da Árvore Geradora Mínima obtida é calculado pela soma dos pesos das arestas incluídas [02:44] - [03:00].\nClassificação: O Algoritmo de Kruskal é classificado como um algoritmo guloso (greedy), pois em cada passo ele escolhe a aresta mais barata antes de testar a condição de ciclo [03:08] - [03:16].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/GCUj5iVwc-w/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/GCUj5iVwc-w/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/GCUj5iVwc-w/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/GCUj5iVwc-w/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/GCUj5iVwc-w/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

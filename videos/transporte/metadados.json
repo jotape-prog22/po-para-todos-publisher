@@ -1,0 +1,103 @@
+{
+  "titulos_candidatos": [
+    "PROBLEMA DO TRANSPORTE - Modelagem e Solução Passo a Passo",
+    "PROBLEMA DO TRANSPORTE - Custo Mínimo e Teste de Otimalidade MODI",
+    "TRANSPORTE - Formulação, Método do Custo Mínimo e MODI",
+    "MÉTODO DO CUSTO MÍNIMO - Resolvendo o Problema do Transporte",
+    "PROBLEMA DO TRANSPORTE - Como Achar a Rota Mais Barata?"
+  ],
+  "titulo": "PROBLEMA DO TRANSPORTE - Modelagem e Solução Passo a Passo",
+  "gancho": "Três fábricas, quatro centros de consumo e um custo diferente para cada rota: como decidir quem manda quanto para quem gastando o mínimo? 🤔 Nesta aula vamos formular o Problema do Transporte como um modelo de Programação Linear e resolvê-lo à mão, do Método do Custo Mínimo ao teste de otimalidade MODI.",
+  "objetivos": [
+    "O que é o Problema do Transporte e por que ele é um caso especial de Programação Linear, com origens, destinos, ofertas e demandas.",
+    "Como escrever a formulação matemática: a função objetivo de custo e as restrições de oferta e de demanda.",
+    "O que fazer quando o problema é desbalanceado, quando o objetivo é maximizar ou quando uma rota é impossível.",
+    "Como obter uma solução inicial com o Método do Custo Mínimo, alocando o máximo na célula mais barata.",
+    "Como aplicar o teste de otimalidade MODI e melhorar a solução com o ciclo fechado até chegar ao ótimo."
+  ],
+  "fechamento": "Fechamos com um exemplo completo: a solução inicial de 161 é melhorada em duas trocas até o custo total mínimo de 137 unidades monetárias.",
+  "cta_complemento": "vai precisar mandar produto de fábrica para cliente gastando o mínimo",
+  "hashtags_tema": [
+    "#ProblemaDoTransporte",
+    "#CustoMinimo",
+    "#MODI",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "problema do transporte",
+    "modelo de transporte",
+    "método do custo mínimo",
+    "método do menor custo",
+    "método MODI",
+    "teste de otimalidade",
+    "canto noroeste",
+    "método de Vogel",
+    "programação linear",
+    "pesquisa operacional",
+    "logística",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura e objetivos"
+    },
+    {
+      "tempo": "01:25",
+      "titulo": "O que é o Problema do Transporte"
+    },
+    {
+      "tempo": "02:15",
+      "titulo": "Formulação matemática"
+    },
+    {
+      "tempo": "03:27",
+      "titulo": "Balanceamento e casos particulares"
+    },
+    {
+      "tempo": "04:53",
+      "titulo": "As duas fases da resolução"
+    },
+    {
+      "tempo": "05:30",
+      "titulo": "Método do Custo Mínimo — os passos"
+    },
+    {
+      "tempo": "06:29",
+      "titulo": "Exemplo — 3 fábricas e 4 centros"
+    },
+    {
+      "tempo": "09:17",
+      "titulo": "Exemplo — Solução inicial (custo 161)"
+    },
+    {
+      "tempo": "13:01",
+      "titulo": "Teste de otimalidade (MODI)"
+    },
+    {
+      "tempo": "15:11",
+      "titulo": "Ciclo fechado — melhorando a solução"
+    },
+    {
+      "tempo": "20:42",
+      "titulo": "Solução ótima — custo mínimo 137"
+    },
+    {
+      "tempo": "21:46",
+      "titulo": "Ferramentas computacionais e resumo"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o caso particular em que cada origem atende um único destino? Assista à aula sobre o Problema da Designação e o Método Húngaro",
+      "url": "https://youtu.be/t2vUhtY1rbo"
+    },
+    {
+      "contexto": "Quer ir além e ver a generalização do transporte em redes? Assista à aula sobre o Fluxo de Custo Mínimo",
+      "url": "https://youtu.be/ZVFg5FZzPn0"
+    }
+  ],
+  "descricao": "Três fábricas, quatro centros de consumo e um custo diferente para cada rota: como decidir quem manda quanto para quem gastando o mínimo? 🤔 Nesta aula vamos formular o Problema do Transporte como um modelo de Programação Linear e resolvê-lo à mão, do Método do Custo Mínimo ao teste de otimalidade MODI.\n\nNesta aula, você vai aprender:\n\nO que é o Problema do Transporte e por que ele é um caso especial de Programação Linear, com origens, destinos, ofertas e demandas.\n\nComo escrever a formulação matemática: a função objetivo de custo e as restrições de oferta e de demanda.\n\nO que fazer quando o problema é desbalanceado, quando o objetivo é maximizar ou quando uma rota é impossível.\n\nComo obter uma solução inicial com o Método do Custo Mínimo, alocando o máximo na célula mais barata.\n\nComo aplicar o teste de otimalidade MODI e melhorar a solução com o ciclo fechado até chegar ao ótimo.\n\nFechamos com um exemplo completo: a solução inicial de 161 é melhorada em duas trocas até o custo total mínimo de 137 unidades monetárias.\n\n⏱️ Capítulos:\n00:00 Abertura e objetivos\n01:25 O que é o Problema do Transporte\n02:15 Formulação matemática\n03:27 Balanceamento e casos particulares\n04:53 As duas fases da resolução\n05:30 Método do Custo Mínimo — os passos\n06:29 Exemplo — 3 fábricas e 4 centros\n09:17 Exemplo — Solução inicial (custo 161)\n13:01 Teste de otimalidade (MODI)\n15:11 Ciclo fechado — melhorando a solução\n20:42 Solução ótima — custo mínimo 137\n21:46 Ferramentas computacionais e resumo\n\n⚠️ Quer ver o caso particular em que cada origem atende um único destino? Assista à aula sobre o Problema da Designação e o Método Húngaro: https://youtu.be/t2vUhtY1rbo\n\n⚠️ Quer ir além e ver a generalização do transporte em redes? Assista à aula sobre o Fluxo de Custo Mínimo: https://youtu.be/ZVFg5FZzPn0\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai precisar mandar produto de fábrica para cliente gastando o mínimo!\n\n#PesquisaOperacional #PO #ProblemaDoTransporte #CustoMinimo #MODI #ProgramacaoLinear #Otimização #UNIRIO"
+}

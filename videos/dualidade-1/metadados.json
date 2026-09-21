@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "DUALIDADE - O Problema Dual e Seus Teoremas - Parte 1",
+    "DUALIDADE - Como Montar o Problema Dual - Parte 1",
+    "PROBLEMA DUAL - Regras de Construção e Dualidade Fraca - Parte 1",
+    "PRIMAL E DUAL - O Que É Dualidade em Programação Linear - Parte 1",
+    "DUALIDADE EM PROGRAMAÇÃO LINEAR - Primal, Dual e Teoremas - Parte 1"
+  ],
+  "titulo": "DUALIDADE - O Problema Dual e Seus Teoremas - Parte 1",
+  "gancho": "Todo problema de Programação Linear tem um \"gêmeo\" escondido: o Problema Dual. Mas de onde ele vem e o que a solução de um diz sobre a do outro? 🤔 Nesta aula, a primeira da série sobre Dualidade, vamos construir o Dual a partir do Primal e ver os resultados teóricos que ligam os dois.",
+  "objetivos": [
+    "O que são o Problema Primal e o Problema Dual, e por que as soluções ótimas de um trazem informação sobre o outro.",
+    "A forma canônica da dualidade em notação matricial: como fica o Dual quando o Primal é de minimização (restrições ≥) ou de maximização (restrições ≤).",
+    "As regras de construção: cada variável de um problema vira uma restrição do outro, e os coeficientes da função objetivo trocam de lugar com o lado direito das restrições.",
+    "Por que o Dual do Dual é o Primal, com a demonstração de que a dualidade é uma relação de mão dupla.",
+    "Como usar a tabela de equivalências para montar o Dual de qualquer PPL, mesmo fora da forma canônica, acertando os sinais de variáveis e restrições."
+  ],
+  "fechamento": "Fechamos com o Lema da Dualidade Fraca: para quaisquer soluções viáveis, o valor da função objetivo do problema de minimização é sempre maior ou igual ao do problema de maximização.",
+  "cta_complemento": "está começando a estudar dualidade",
+  "hashtags_tema": [
+    "#Dualidade",
+    "#ProgramacaoLinear",
+    "#PrimalDual",
+    "#DualidadeFraca"
+  ],
+  "tags": [
+    "dualidade",
+    "problema dual",
+    "primal e dual",
+    "problema primal",
+    "dualidade fraca",
+    "lema da dualidade fraca",
+    "dual do dual",
+    "tabela de equivalências",
+    "programação linear",
+    "PPL",
+    "pesquisa operacional",
+    "otimização",
+    "simplex",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:48",
+      "titulo": "Problema Primal e Problema Dual"
+    },
+    {
+      "tempo": "01:22",
+      "titulo": "Forma canônica da dualidade"
+    },
+    {
+      "tempo": "05:46",
+      "titulo": "Variáveis de um, restrições do outro"
+    },
+    {
+      "tempo": "06:57",
+      "titulo": "Função objetivo e lado direito"
+    },
+    {
+      "tempo": "10:29",
+      "titulo": "O Dual do Dual é o Primal"
+    },
+    {
+      "tempo": "16:15",
+      "titulo": "Tabela de equivalências"
+    },
+    {
+      "tempo": "21:19",
+      "titulo": "Lema da Dualidade Fraca"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, com as relações entre o Primal e o Dual",
+      "url": "https://youtu.be/RU10F3dU0Xo"
+    },
+    {
+      "contexto": "Na Parte 3, exemplos resolvidos e a interpretação econômica com os preços-sombra",
+      "url": "https://youtu.be/7Gc2aiE7M7U"
+    },
+    {
+      "contexto": "Quer achar o Dual sem refazer o Simplex? Veja o Teorema das Folgas Complementares",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    }
+  ],
+  "descricao": "Todo problema de Programação Linear tem um \"gêmeo\" escondido: o Problema Dual. Mas de onde ele vem e o que a solução de um diz sobre a do outro? 🤔 Nesta aula, a primeira da série sobre Dualidade, vamos construir o Dual a partir do Primal e ver os resultados teóricos que ligam os dois.\n\nNesta aula, você vai aprender:\n\nO que são o Problema Primal e o Problema Dual, e por que as soluções ótimas de um trazem informação sobre o outro.\n\nA forma canônica da dualidade em notação matricial: como fica o Dual quando o Primal é de minimização (restrições ≥) ou de maximização (restrições ≤).\n\nAs regras de construção: cada variável de um problema vira uma restrição do outro, e os coeficientes da função objetivo trocam de lugar com o lado direito das restrições.\n\nPor que o Dual do Dual é o Primal, com a demonstração de que a dualidade é uma relação de mão dupla.\n\nComo usar a tabela de equivalências para montar o Dual de qualquer PPL, mesmo fora da forma canônica, acertando os sinais de variáveis e restrições.\n\nFechamos com o Lema da Dualidade Fraca: para quaisquer soluções viáveis, o valor da função objetivo do problema de minimização é sempre maior ou igual ao do problema de maximização.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:48 Problema Primal e Problema Dual\n01:22 Forma canônica da dualidade\n05:46 Variáveis de um, restrições do outro\n06:57 Função objetivo e lado direito\n10:29 O Dual do Dual é o Primal\n16:15 Tabela de equivalências\n21:19 Lema da Dualidade Fraca\n\n⚠️ Continue na Parte 2, com as relações entre o Primal e o Dual: https://youtu.be/RU10F3dU0Xo\n\n⚠️ Na Parte 3, exemplos resolvidos e a interpretação econômica com os preços-sombra: https://youtu.be/7Gc2aiE7M7U\n\n⚠️ Quer achar o Dual sem refazer o Simplex? Veja o Teorema das Folgas Complementares: https://youtu.be/6n6oPR70LSA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está começando a estudar dualidade!\n\n#PesquisaOperacional #PO #Dualidade #ProgramacaoLinear #PrimalDual #DualidadeFraca #Otimização #UNIRIO"
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "pNNsL4GzNg8",
+  "url": "https://youtu.be/pNNsL4GzNg8",
+  "published_at": "2025-10-25T23:00:51Z",
+  "title": "PO1: Resolução de PPL utilizando o Solver - Parte 1",
+  "description": "Aprenda a configurar um Problema de Programação Linear (PPL) no Excel e prepare a planilha para a otimização utilizando o suplemento Solver!\n\nNesta primeira parte do nosso tutorial, utilizamos o conhecido \"PPL da empresa de tintas\" para estruturar o modelo de otimização dentro da planilha. O Solver é uma ferramenta poderosa que permite encontrar a solução ótima (máxima ou mínima) para problemas de tomada de decisão.\n\nNeste vídeo você verá:\n\nIntrodução ao Solver: Entenda como usar o Solver do Excel para resolver problemas de Programação Linear [00:00].\n\nVariáveis de Decisão: Definição das células que representarão as quantidades a serem otimizadas (X1 e X2) [01:10].\n\nFunção Objetivo (FO): Como escrever a expressão matemática da Função Objetivo na planilha (Max Z = 5X1 + 4X2) [02:23].\n\nEstrutura de Restrições: Organização da planilha com as colunas para o Lado Esquerdo (LHS), o Sinal e o Lado Direito (RHS) das restrições [03:53].\n\nInclusão das Restrições: O passo a passo para inserir todas as restrições funcionais do PPL [04:21].\n\nPreparo Final: Onde encontrar e como se preparar para configurar a ferramenta Solver [06:15].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/pNNsL4GzNg8/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/pNNsL4GzNg8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/pNNsL4GzNg8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/pNNsL4GzNg8/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/pNNsL4GzNg8/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

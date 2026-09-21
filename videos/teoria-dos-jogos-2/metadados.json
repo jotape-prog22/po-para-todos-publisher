@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "TEORIA DOS JOGOS - Estratégias Mistas e Método Gráfico - Parte 2",
+    "TEORIA DOS JOGOS - Sem Ponto de Sela? Estratégias Mistas - Parte 2",
+    "ESTRATÉGIAS MISTAS - Método Gráfico e Teorema do Minimax - Parte 2",
+    "TEORIA DOS JOGOS - Jogo 2×N pelo Método Gráfico - Parte 2",
+    "TEORIA DOS JOGOS - Estratégias Mistas e Valor do Jogo - Parte 2"
+  ],
+  "titulo": "TEORIA DOS JOGOS - Estratégias Mistas e Método Gráfico - Parte 2",
+  "gancho": "E quando o jogo de soma zero não tem ponto de sela — o que cada jogador deve fazer? 🤔 A resposta é misturar as estratégias com probabilidades. Nesta aula vamos entender as estratégias mistas, o Teorema do Minimax e resolver um jogo 2×4 pelo método gráfico até as probabilidades ótimas e o valor do jogo.",
+  "objetivos": [
+    "Por que nem todo jogo de soma zero tem ponto de sela e como as estratégias mistas resolvem isso, atribuindo probabilidades às estratégias puras.",
+    "O que diz o Teorema do Minimax e por que ele garante uma solução estável quando estratégias mistas são permitidas.",
+    "Como calcular o retorno esperado do jogador A para cada estratégia pura de B e transformar cada um numa reta em função de x1.",
+    "Como aplicar o método gráfico em jogos 2×N ou M×2: traçar as retas, achar a envoltória inferior e o ponto de Maximin.",
+    "Como modelar o jogo como um Problema de Programação Linear quando os dois jogadores têm mais de duas estratégias, e por que o PPL de A é o dual do PPL de B."
+  ],
+  "fechamento": "Fechamos com o jogo 2×4 resolvido: A mistura suas estratégias com 1/2 e 1/2, B mistura B3 e B4 com 7/8 e 1/8, e o valor do jogo é 5/2.",
+  "cta_complemento": "ainda acha que jogo sem ponto de sela não tem solução",
+  "hashtags_tema": [
+    "#TeoriaDosJogos",
+    "#EstrategiasMistas",
+    "#MetodoGrafico",
+    "#SomaZero"
+  ],
+  "tags": [
+    "teoria dos jogos",
+    "estratégias mistas",
+    "estratégia mista",
+    "método gráfico",
+    "jogo de soma zero",
+    "teorema do minimax",
+    "maximin",
+    "valor do jogo",
+    "matriz de payoff",
+    "ponto de sela",
+    "retorno esperado",
+    "programação linear",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: quando não há ponto de sela"
+    },
+    {
+      "tempo": "01:02",
+      "titulo": "Estratégias mistas e o Teorema do Minimax"
+    },
+    {
+      "tempo": "03:02",
+      "titulo": "Método gráfico: quando usar"
+    },
+    {
+      "tempo": "04:42",
+      "titulo": "Retorno esperado: as equações das retas"
+    },
+    {
+      "tempo": "07:32",
+      "titulo": "Exemplo: jogo 2×4"
+    },
+    {
+      "tempo": "11:08",
+      "titulo": "Traçando as retas do jogador A"
+    },
+    {
+      "tempo": "14:30",
+      "titulo": "Envoltória inferior e Maximin"
+    },
+    {
+      "tempo": "16:41",
+      "titulo": "Probabilidades ótimas e valor do jogo"
+    },
+    {
+      "tempo": "17:53",
+      "titulo": "Estratégia ótima do jogador B"
+    },
+    {
+      "tempo": "21:45",
+      "titulo": "Interpretando a solução"
+    },
+    {
+      "tempo": "22:55",
+      "titulo": "Modelagem via Programação Linear"
+    },
+    {
+      "tempo": "28:10",
+      "titulo": "Um PPL é o dual do outro"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1, sobre soma zero e matriz de payoff? Comece por aqui",
+      "url": "https://youtu.be/xlhA_VnJQJo"
+    },
+    {
+      "contexto": "Continue na Parte 3, onde chegamos ao Equilíbrio de Nash",
+      "url": "https://youtu.be/Y7aezjpwCjU"
+    }
+  ],
+  "descricao": "E quando o jogo de soma zero não tem ponto de sela — o que cada jogador deve fazer? 🤔 A resposta é misturar as estratégias com probabilidades. Nesta aula vamos entender as estratégias mistas, o Teorema do Minimax e resolver um jogo 2×4 pelo método gráfico até as probabilidades ótimas e o valor do jogo.\n\nNesta aula, você vai aprender:\n\nPor que nem todo jogo de soma zero tem ponto de sela e como as estratégias mistas resolvem isso, atribuindo probabilidades às estratégias puras.\n\nO que diz o Teorema do Minimax e por que ele garante uma solução estável quando estratégias mistas são permitidas.\n\nComo calcular o retorno esperado do jogador A para cada estratégia pura de B e transformar cada um numa reta em função de x1.\n\nComo aplicar o método gráfico em jogos 2×N ou M×2: traçar as retas, achar a envoltória inferior e o ponto de Maximin.\n\nComo modelar o jogo como um Problema de Programação Linear quando os dois jogadores têm mais de duas estratégias, e por que o PPL de A é o dual do PPL de B.\n\nFechamos com o jogo 2×4 resolvido: A mistura suas estratégias com 1/2 e 1/2, B mistura B3 e B4 com 7/8 e 1/8, e o valor do jogo é 5/2.\n\n⏱️ Capítulos:\n00:00 Abertura: quando não há ponto de sela\n01:02 Estratégias mistas e o Teorema do Minimax\n03:02 Método gráfico: quando usar\n04:42 Retorno esperado: as equações das retas\n07:32 Exemplo: jogo 2×4\n11:08 Traçando as retas do jogador A\n14:30 Envoltória inferior e Maximin\n16:41 Probabilidades ótimas e valor do jogo\n17:53 Estratégia ótima do jogador B\n21:45 Interpretando a solução\n22:55 Modelagem via Programação Linear\n28:10 Um PPL é o dual do outro\n\n⚠️ Ainda não viu a Parte 1, sobre soma zero e matriz de payoff? Comece por aqui: https://youtu.be/xlhA_VnJQJo\n\n⚠️ Continue na Parte 3, onde chegamos ao Equilíbrio de Nash: https://youtu.be/Y7aezjpwCjU\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda acha que jogo sem ponto de sela não tem solução!\n\n#PesquisaOperacional #PO #TeoriaDosJogos #EstrategiasMistas #MetodoGrafico #SomaZero #Otimização #UNIRIO"
+}

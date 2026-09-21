@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "SOLVER NO EXCEL - Como Usar Passo a Passo - Parte 1",
+    "SOLVER NO EXCEL - Como Instalar e Resolver um PPL - Parte 1",
+    "SOLVER NO EXCEL - Do Modelo à Solução Ótima - Parte 1",
+    "SOLVER NO EXCEL - Resolvendo Programação Linear - Parte 1",
+    "SOLVER NO EXCEL - Instalar, Montar e Resolver - Parte 1"
+  ],
+  "titulo": "SOLVER NO EXCEL - Como Usar Passo a Passo - Parte 1",
+  "gancho": "Já modelou o problema de Programação Linear e cansou de resolver o Simplex na mão? 🤔 O Excel resolve para você. Nesta aula vamos instalar o Solver, transcrever um PPL para a planilha e encontrar a solução ótima em poucos cliques.",
+  "objetivos": [
+    "Como ativar o Solver no Excel, um suplemento nativo que já vem instalado e só precisa ser habilitado.",
+    "Como modelar um problema de produção (mesas e cadeiras) com variáveis de decisão, função objetivo e restrições.",
+    "Como transcrever o modelo para a planilha usando a função SOMARPRODUTO, separando dados, totais utilizados e função objetivo.",
+    "Como preencher a janela do Solver: célula objetivo, células variáveis, restrições, não negatividade e o método LP Simplex.",
+    "O que significa um problema ter múltiplas soluções ótimas e por que a escolha entre elas depende de fatores externos ao modelo."
+  ],
+  "fechamento": "Fechamos com a Marcenaria Madeira Nobre resolvida: 40 mesas e nenhuma cadeira, lucro ótimo de R$ 6.000, e uma segunda solução ótima (20 mesas e 30 cadeiras) com o mesmo lucro.",
+  "cta_complemento": "ainda resolve o Simplex na mão",
+  "hashtags_tema": [
+    "#Solver",
+    "#Excel",
+    "#ProgramacaoLinear",
+    "#Simplex"
+  ],
+  "tags": [
+    "solver excel",
+    "solver no excel",
+    "como usar o solver",
+    "como instalar o solver no excel",
+    "solver",
+    "excel",
+    "programação linear",
+    "PPL",
+    "simplex",
+    "somarproduto",
+    "otimização",
+    "múltiplas soluções ótimas",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:43",
+      "titulo": "Instalando o Solver no Excel"
+    },
+    {
+      "tempo": "01:36",
+      "titulo": "O problema: Marcenaria Madeira Nobre"
+    },
+    {
+      "tempo": "03:24",
+      "titulo": "Modelagem matemática do PPL"
+    },
+    {
+      "tempo": "05:23",
+      "titulo": "Transcrevendo para a planilha (SOMARPRODUTO)"
+    },
+    {
+      "tempo": "08:17",
+      "titulo": "Preenchendo a janela do Solver"
+    },
+    {
+      "tempo": "10:22",
+      "titulo": "Resolvendo: 40 mesas, lucro de R$ 6.000"
+    },
+    {
+      "tempo": "11:42",
+      "titulo": "Múltiplas soluções ótimas"
+    },
+    {
+      "tempo": "13:26",
+      "titulo": "Resumo e encerramento"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde lemos o Relatório de Sensibilidade do Solver",
+      "url": "https://youtu.be/yGP0LK19R30"
+    },
+    {
+      "contexto": "Quer entender melhor como montar o modelo antes de levar ao Solver? Veja a aula de Modelagem de PPL",
+      "url": "https://youtu.be/mw9Mpe-PvZ4"
+    }
+  ],
+  "descricao": "Já modelou o problema de Programação Linear e cansou de resolver o Simplex na mão? 🤔 O Excel resolve para você. Nesta aula vamos instalar o Solver, transcrever um PPL para a planilha e encontrar a solução ótima em poucos cliques.\n\nNesta aula, você vai aprender:\n\nComo ativar o Solver no Excel, um suplemento nativo que já vem instalado e só precisa ser habilitado.\n\nComo modelar um problema de produção (mesas e cadeiras) com variáveis de decisão, função objetivo e restrições.\n\nComo transcrever o modelo para a planilha usando a função SOMARPRODUTO, separando dados, totais utilizados e função objetivo.\n\nComo preencher a janela do Solver: célula objetivo, células variáveis, restrições, não negatividade e o método LP Simplex.\n\nO que significa um problema ter múltiplas soluções ótimas e por que a escolha entre elas depende de fatores externos ao modelo.\n\nFechamos com a Marcenaria Madeira Nobre resolvida: 40 mesas e nenhuma cadeira, lucro ótimo de R$ 6.000, e uma segunda solução ótima (20 mesas e 30 cadeiras) com o mesmo lucro.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:43 Instalando o Solver no Excel\n01:36 O problema: Marcenaria Madeira Nobre\n03:24 Modelagem matemática do PPL\n05:23 Transcrevendo para a planilha (SOMARPRODUTO)\n08:17 Preenchendo a janela do Solver\n10:22 Resolvendo: 40 mesas, lucro de R$ 6.000\n11:42 Múltiplas soluções ótimas\n13:26 Resumo e encerramento\n\n⚠️ Continue na Parte 2, onde lemos o Relatório de Sensibilidade do Solver: https://youtu.be/yGP0LK19R30\n\n⚠️ Quer entender melhor como montar o modelo antes de levar ao Solver? Veja a aula de Modelagem de PPL: https://youtu.be/mw9Mpe-PvZ4\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda resolve o Simplex na mão!\n\n#PesquisaOperacional #PO #Solver #Excel #ProgramacaoLinear #Simplex #Otimização #UNIRIO"
+}

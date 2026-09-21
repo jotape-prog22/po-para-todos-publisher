@@ -1,0 +1,35 @@
+{
+  "video_id": "ZVFg5FZzPn0",
+  "url": "https://youtu.be/ZVFg5FZzPn0",
+  "published_at": "2026-01-02T19:42:02Z",
+  "title": "PO2: Modelo linear para o Fluxo de custo mínimo",
+  "description": "📌 O que você vai aprender neste vídeo:\nConceitos Fundamentais: Entenda a diferença entre nós de suprimento, demanda e transbordo (intermediários) [00:36].\n\nAplicações Reais: Exemplos práticos em redes de distribuição, controle de resíduos sólidos e mix de produtos [02:21].\n\nModelagem Matemática: Como construir a função objetivo de minimização e as restrições de balanço de fluxo [05:24].\n\nExemplo Prático Detalhado: Resolução de uma rede com 5 nós, identificando custos, capacidades e fluxos líquidos [07:38].\n\nGeneralização de Redes: Como converter problemas de Caminho Mais Curto [14:07] e Fluxo Máximo [14:46] para o modelo de custo mínimo.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/ZVFg5FZzPn0/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/ZVFg5FZzPn0/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/ZVFg5FZzPn0/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/ZVFg5FZzPn0/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/ZVFg5FZzPn0/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

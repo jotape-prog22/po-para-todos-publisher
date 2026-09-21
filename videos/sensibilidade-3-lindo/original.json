@@ -1,0 +1,35 @@
+{
+  "video_id": "nHPLI1uM0ks",
+  "url": "https://youtu.be/nHPLI1uM0ks",
+  "published_at": "2025-10-26T17:10:14Z",
+  "title": "PO1: Análise de Sensibilidade e Pós-otimização (Utilizando o LINDO) - Parte 3",
+  "description": "Programação Linear (PPL) usando o software LINDO, e como interpretar os resultados econômicos!\nEste vídeo demonstra como gerar e analisar relatórios do LINDO para entender a robustez da solução ótima (Análise de Sensibilidade) e como encontrar outros vértices ótimos quando o problema possui múltiplas soluções (Pós-Otimização).\nNeste vídeo você aprenderá sobre:\nUso do Software LINDO: O procedimento para inserir um PPL no LINDO e solicitar a Análise de Sensibilidade durante a resolução [00:32].\nCusto Reduzido (Reduced Cost):\nA interpretação de que o Custo Reduzido de uma variável não básica (com valor zero na solução ótima) indica quanto o lucro (Z) diminuiria se uma unidade desse produto fosse produzida [02:44].\nEle também indica o quanto o coeficiente de lucro dessa variável na Função Objetivo precisaria aumentar para que ela se tornasse lucrativa e entrasse na solução [03:18].\nPreço Sombra (Dual Price):\nA variável dual, ou Preço Sombra, indica o aumento (ou diminuição) no valor da Função Objetivo (Z) para cada unidade adicional (ou retirada) do recurso daquela restrição [04:09].\nEle será nulo para restrições que possuem folga (recurso não totalmente utilizado) [04:26].\nIntervalos de Validade:\nFunção Objetivo (Condições de Otimilidade): O intervalo (permissible increase/decrease) dentro do qual os coeficientes da Função Objetivo podem variar sem alterar o vetor de solução ótima (quais produtos e em que proporções produzir) [06:35].\nLado Direito (RHS): O intervalo dentro do qual a disponibilidade do recurso (Lado Direito da Restrição) pode variar sem alterar o valor do Preço Sombra [05:12].\nIdentificação de Múltiplas Soluções Ótimas: O critério para identificar a existência de múltiplas soluções: a presença de um acréscimo ou decréscimo permissível nulo em uma das variáveis básicas no relatório de Análise de Sensibilidade [08:34].\nPós-Otimização para Múltiplas Soluções: Como encontrar outro vértice ótimo ao adicionar a Função Objetivo original como uma nova restrição, usando o valor de Z ótimo, e alterando a nova Função Objetivo para maximizar ou minimizar a variável com acréscimo/decréscimo nulo [10:52].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/nHPLI1uM0ks/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/nHPLI1uM0ks/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/nHPLI1uM0ks/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/nHPLI1uM0ks/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/nHPLI1uM0ks/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

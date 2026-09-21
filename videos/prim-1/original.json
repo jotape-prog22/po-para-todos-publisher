@@ -1,0 +1,35 @@
+{
+  "video_id": "lUUDScqcXtY",
+  "url": "https://youtu.be/lUUDScqcXtY",
+  "published_at": "2025-11-09T22:18:33Z",
+  "title": "PO2: Árvore Geradora - Algoritmo de Prim - Parte 1",
+  "description": "Este vídeo apresenta o Algoritmo de Prim, um método alternativo e igualmente eficiente ao Kruskal para determinar a Árvore Geradora de Peso Mínimo (AGM) em um grafo conexo ponderado [00:03].\n\n⚙️ Características e Funcionamento do Algoritmo de Prim\nAo contrário do Algoritmo de Kruskal (que seleciona a aresta mais barata em todo o grafo), Prim adota uma abordagem de expansão de uma única árvore a partir de um ponto inicial:\nPonto de Partida: O algoritmo começa com um único vértice escolhido arbitrariamente no grafo [00:20] - [00:29].\nExpansão: Em cada iteração, a árvore em construção é expandida, juntando um vértice que ainda não está na árvore a um vértice que já está na árvore, utilizando sempre a aresta de menor peso disponível para fazer essa conexão [00:35] - [00:40].\nProcedimento: O loop continua até que o número de arestas na árvore seja igual a $V-1$ (número de vértices menos um) [01:05]. A cada passo, busca-se a aresta de peso mínimo $(U, V)$ onde $V$ está na árvore atual e $U$ está fora dela [01:12].\n\n📝 Execução e Análise (Exemplo)\nO vídeo demonstra o algoritmo usando uma matriz auxiliar (ou tabela) que facilita a visualização dos pesos entre todos os vértices [01:44] - [02:33].\nEscolha Inicial: O algoritmo começa com o vértice A [02:41].\nIteração 1 (Analisando A): Ao analisar as arestas conectadas a A, a de menor peso é A-C (custo 3). A aresta A-C é incluída na árvore [03:05] - [03:20].\nIteração 2 (Analisando A e C): Agora, a análise inclui as arestas conectadas aos vértices A e C (que estão na árvore). A aresta de menor peso nessas colunas é B-C (custo 1). A aresta B-C é incluída [03:30] - [03:57].\nIteração 3 (Analisando A, B e C): A próxima aresta de menor peso que conecta a árvore (A, B, C) a um vértice fora dela é C-D (custo 6). A aresta C-D é adicionada [04:15] - [04:23].\nA execução continua de forma semelhante até que todos os vértices estejam conectados.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/lUUDScqcXtY/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/lUUDScqcXtY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/lUUDScqcXtY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/lUUDScqcXtY/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/lUUDScqcXtY/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

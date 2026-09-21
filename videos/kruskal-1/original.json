@@ -1,0 +1,35 @@
+{
+  "video_id": "bmofX3L464c",
+  "url": "https://youtu.be/bmofX3L464c",
+  "published_at": "2025-11-09T20:07:52Z",
+  "title": "PO2: Árvore Geradora - Algoritmo de Kruskal - Parte 1",
+  "description": "Aprenda a aplicar o Algoritmo de Kruskal, um método guloso (greedy) essencial da Pesquisa Operacional, para determinar a Árvore Geradora Mínima (AGM) de um grafo.\nO problema da Árvore Geradora Mínima (AGM) busca interligar todos os vértices de uma rede com o custo total mínimo, sem formar ciclos. Este algoritmo é crucial para projetos de infraestrutura, como redes de computadores ou de distribuição.\n\n💡 Algoritmo de Kruskal: Passos e Execução\nO Algoritmo de Kruskal é simples e direto, focando na seleção de arestas de menor custo que não criem um ciclo:\nCriação e Ordenação da Lista de Arestas ($L$):\nCriar uma lista $L$ com todas as arestas do grafo, ordenadas em ordem não decrescente de peso (do menor para o maior custo) [00:30].\nInicialmente, cada vértice é considerado uma subárvore isolada [00:50] - [01:11].\nInicialização:\nO conjunto de arestas da árvore ($T$) é vazio.\nUm contador ($t$) é definido como zero, representando o número de arestas na árvore [01:11] - [01:28].\nLoop de Construção da AGM:\nO algoritmo continua enquanto o contador de arestas ($t$) for menor que o número de vértices menos um ($V-1$) e a lista $L$ não estiver vazia [01:34] - [01:41].\nSeleção e Regra de Ciclo:\nPegar a próxima aresta de menor peso da lista $L$ (aresta $U, V$) [01:48].\nRemover essa aresta da lista $L$ [01:50].\nVerificar a Regra do Ciclo: Se os vértices $U$ e $V$ não estiverem na mesma subárvore, a aresta é incluída no conjunto $T$ (pois não forma ciclo), e o contador $t$ é incrementado [02:01] - [02:25].\nSe os vértices $U$ e $V$ já estiverem na mesma subárvore, a aresta é descartada, pois formaria um ciclo.\nUnião (Conexão):\nQuando uma aresta é incluída em $T$, as subárvores que contêm $U$ e $V$ são unidas em uma única subárvore maior [02:25].\nO vídeo demonstra a execução deste algoritmo em um grafo com 6 vértices, começando pela aresta de menor custo (BC) [03:07] - [04:46].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/bmofX3L464c/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/bmofX3L464c/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/bmofX3L464c/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/bmofX3L464c/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/bmofX3L464c/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

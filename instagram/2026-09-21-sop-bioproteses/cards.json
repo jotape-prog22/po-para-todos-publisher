@@ -1,0 +1,11 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    { "tipo": "capa", "titulo": "PLANEJAMENTO DE VENDAS E OPERAÇÕES BASEADO EM OTIMIZAÇÃO NA PRODUÇÃO DE BIOPRÓTESES CARDÍACAS", "autores": "Ana Luiza Vasconcelos, Lígia Soares, João Flávio Almeida", "onde": "PODes, v. 20, 2026" },
+    { "tipo": "ideia", "titulo": "O problema", "texto": "Uma fábrica de válvulas e enxertos cardíacos em Contagem (MG): matéria-prima biológica, produção quase toda manual e refugo de 85 a 90%. Cada área planejava com seus próprios dados, e o estoque crescia." },
+    { "tipo": "ideia", "titulo": "O modelo", "texto": "Programação linear inteira mista com a cadeia inteira: 3 grupos de fornecedores, 9 etapas produtivas, 15 produtos, 12 meses. Objetivo: maximizar a margem de contribuição. No GLPK, cada cenário resolve em menos de 30 segundos." },
+    { "tipo": "ideia", "titulo": "O gargalo", "texto": "A esterilização fica a 88,8% de uso em média e perto de 100% em 5 dos 12 meses. Ampliar só essa etapa em 25% absorve até 30% a mais de demanda e rende mais de R$ 300 mil por ano." },
+    { "tipo": "ideia", "titulo": "O resultado", "texto": "Com os dados reais de 2021 e 2022, o plano ótimo eleva a margem de contribuição em 14%, para R$ 7,5 milhões. As quatro recomendações principais, juntas, passam de 30%." },
+    { "tipo": "fim", "texto": "VASCONCELOS, A. L. V. A.; SOARES, L. C. B.; ALMEIDA, J. F. F. Planejamento de vendas e operações baseado em otimização na produção de biopróteses cardíacas. PODes, v. 20, e20002, 2026.", "link": "doi.org/10.4322/PODes.2026.002" }
+  ]
+}

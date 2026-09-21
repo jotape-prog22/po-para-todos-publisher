@@ -1,0 +1,35 @@
+{
+  "video_id": "RU10F3dU0Xo",
+  "url": "https://youtu.be/RU10F3dU0Xo",
+  "published_at": "2025-10-26T16:39:08Z",
+  "title": "PO1: Dualidade - Parte 2 - Relações entre o Primal e o Dual",
+  "description": "PO1: Dualidade - Parte 2 - Relações entre o Primal e o Dual\nAprofunde-se nas relações entre o Problema Primal e o Dual e utilize o poder da Dualidade para resolver PPLs de maneira mais eficiente!\nEsta aula demonstra e explica os teoremas mais importantes da Dualidade, que são a base teórica para análises avançadas em Pesquisa Operacional. A professora Andreia Bonifácio demonstra como esses teoremas fornecem uma ponte para encontrar a solução ótima do Primal resolvendo apenas o Dual.\nNeste vídeo você aprenderá sobre:\nLema da Dualidade Fraca (Demonstração): A prova de que o valor da função objetivo do problema de minimização é sempre maior ou igual ao valor da função objetivo do problema de maximização para quaisquer soluções viáveis [00:12].\nCorolário da Dualidade: Se os valores das funções objetivo do Primal e do Dual forem iguais para soluções viáveis, então essas soluções são ótimas [02:37].\nTeorema Fundamental da Dualidade (TFD): As três relações possíveis entre o Primal e o Dual:\nAmbos têm soluções ótimas, e seus valores de função objetivo são iguais [03:34].\nSe um é ilimitado, o outro é inviável [04:44].\nSe um é inviável, o outro é inviável ou ilimitado [04:58].\nTeorema das Folgas Complementares (TFC): O resultado crucial que afirma que, na otimalidade, o produto entre uma variável de um problema e a folga (ou excesso) da restrição correspondente no outro problema deve ser zero [05:36].\nInterpretação: Se uma variável ótima é positiva, a restrição correspondente no dual deve valer na igualdade (folga nula), e vice-versa [12:12].\nAplicação Prática (Atividade): Demonstração de como usar o TFC para encontrar a solução ótima de um PPL complexo (com 5 variáveis) resolvendo apenas o seu Dual, que é mais simples (com 2 variáveis) [15:24].\nEste teorema é essencial para quem busca atalhos inteligentes na resolução de problemas de Programação Linear!\nLink para o vídeo: PO1: Dualidade - Parte 2 - Relações entre o Primal e o Dual",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/RU10F3dU0Xo/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/RU10F3dU0Xo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/RU10F3dU0Xo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/RU10F3dU0Xo/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/RU10F3dU0Xo/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "fF1V3v4Lso8",
+  "url": "https://youtu.be/fF1V3v4Lso8",
+  "published_at": "2026-01-04T20:02:20Z",
+  "title": "PO2: Programação Inteira - Parte 3.3 - Algoritmo Branch and bound (Execução)",
+  "description": "📌 O que você vai aprender neste vídeo:\n\nIntrodução à Execução: Uma visão geral de como aplicar o algoritmo Branch and Bound em problemas de programação inteira mista e pura [00:11].\n\nProblema de Maximização: Apresentação do exemplo prático que será resolvido passo a passo ao longo da aula [00:58].\n\nInicialização e Relaxação Linear: O primeiro passo do algoritmo: definir o limite inicial (Z limite = -∞) e resolver o problema relaxado [01:16].\n\nAnálise de Resultados Iniciais: Como interpretar a solução gráfica da relaxação linear quando as condições de integridade são violadas [02:12].\n\nGestão de Nós Abertos: A criação do conjunto \"A\" para gerenciar os subproblemas que ainda precisam ser explorados [02:54].\n\nProcesso de Ramificação (Branch): A escolha da variável a ser ramificada (X1) e a criação dos subproblemas P1 e P2 com restrições de teto e piso [05:20].\n\nUso de Softwares de Apoio: A sugestão de utilizar ferramentas como o Lindo para resolver os subproblemas de forma mais rápida [06:21].\n\nAtualização do Z Limite: Como o algoritmo identifica a \"melhor solução encontrada até o momento\" e atualiza o valor limitante [07:04].\n\nPoda por Inviabilidade: Demonstração de como descartar um ramo da árvore quando um subproblema se torna infactível [09:30].\n\nCritério de Parada e Solução Ótima: O momento em que não restam mais nós abertos e a solução final (Z = 23) é consolidada [10:25].\n\nAdaptação para Minimização: As mudanças necessárias no algoritmo para resolver problemas de minimização, como inverter o infinito e os sinais de desigualdade [11:05].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/fF1V3v4Lso8/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/fF1V3v4Lso8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/fF1V3v4Lso8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/fF1V3v4Lso8/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/fF1V3v4Lso8/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

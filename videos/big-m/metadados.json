@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "MÉTODO BIG M - Simplex com Restrições de Igualdade e ≥",
+    "BIG M - Variáveis Artificiais e Penalidade no Simplex",
+    "VARIÁVEIS ARTIFICIAIS - Como Aplicar o Simplex com Restrições = e ≥",
+    "SIMPLEX COM BIG M - Do PPL Original ao Artificial",
+    "BIG M - Como Resolver PPL que Não Está no Formato Padrão?"
+  ],
+  "titulo": "MÉTODO BIG M - Simplex com Restrições de Igualdade e ≥",
+  "gancho": "Seu PPL tem restrição de igualdade ou de maior ou igual — e agora, como montar a tabela Simplex sem a matriz identidade? 🤔 Nesta aula vamos usar o Método Big M: criamos variáveis artificiais para formar a base inicial e penalizamos essas variáveis com um M bem grande para o algoritmo zerá-las sozinho.",
+  "objetivos": [
+    "Por que o Simplex em tabelas exige restrições do tipo ≤ e o que muda quando aparecem restrições = e ≥.",
+    "O que é uma variável artificial, por que ela não é folga nem excesso e como ela cria a matriz identidade que o Simplex precisa.",
+    "Como penalizar as variáveis artificiais na função objetivo: -M na maximização e +M na minimização.",
+    "O caminho completo do PPL original ao PPL aumentado e, dele, ao PPL artificial, já convertido para maximização.",
+    "Como montar a tabela Simplex inicial e identificar as variáveis básicas seguindo a ordem das colunas da identidade."
+  ],
+  "fechamento": "Fechamos com a tabela Simplex inicial do exemplo montada: base x̄5 = 3, x̄6 = 6 e x4 = 4, e o critério para saber se o PPL tem solução ótima — todas as artificiais precisam terminar em zero.",
+  "cta_complemento": "travou na primeira restrição de igualdade",
+  "hashtags_tema": [
+    "#BigM",
+    "#Simplex",
+    "#ProgramacaoLinear",
+    "#VariaveisArtificiais"
+  ],
+  "tags": [
+    "big m",
+    "método big m",
+    "método do m grande",
+    "variáveis artificiais",
+    "simplex",
+    "algoritmo simplex",
+    "tabela simplex",
+    "restrição de igualdade",
+    "variável de excesso",
+    "PPL artificial",
+    "programação linear",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: adaptar o PPL ao Simplex"
+    },
+    {
+      "tempo": "00:42",
+      "titulo": "Restrições = e ≥: por que adaptar"
+    },
+    {
+      "tempo": "01:05",
+      "titulo": "Variáveis artificiais"
+    },
+    {
+      "tempo": "02:05",
+      "titulo": "Por que penalizar as artificiais"
+    },
+    {
+      "tempo": "03:41",
+      "titulo": "A penalidade: -M ou +M"
+    },
+    {
+      "tempo": "05:13",
+      "titulo": "Exemplo: o PPL original"
+    },
+    {
+      "tempo": "05:51",
+      "titulo": "PPL aumentado"
+    },
+    {
+      "tempo": "06:48",
+      "titulo": "PPL artificial"
+    },
+    {
+      "tempo": "08:22",
+      "titulo": "Passando para maximização"
+    },
+    {
+      "tempo": "09:31",
+      "titulo": "Tabela Simplex inicial"
+    },
+    {
+      "tempo": "10:08",
+      "titulo": "Identidade e variáveis básicas"
+    },
+    {
+      "tempo": "12:05",
+      "titulo": "O PPL tem solução ótima?"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não domina o Simplex em tabelas? Comece pela base",
+      "url": "https://youtu.be/JTcUGbG8pg0"
+    },
+    {
+      "contexto": "Quer resolver restrições ≥ sem variáveis artificiais? Veja o Simplex Dual",
+      "url": "https://youtu.be/i2fcz5FRRos"
+    }
+  ],
+  "descricao": "Seu PPL tem restrição de igualdade ou de maior ou igual — e agora, como montar a tabela Simplex sem a matriz identidade? 🤔 Nesta aula vamos usar o Método Big M: criamos variáveis artificiais para formar a base inicial e penalizamos essas variáveis com um M bem grande para o algoritmo zerá-las sozinho.\n\nNesta aula, você vai aprender:\n\nPor que o Simplex em tabelas exige restrições do tipo ≤ e o que muda quando aparecem restrições = e ≥.\n\nO que é uma variável artificial, por que ela não é folga nem excesso e como ela cria a matriz identidade que o Simplex precisa.\n\nComo penalizar as variáveis artificiais na função objetivo: -M na maximização e +M na minimização.\n\nO caminho completo do PPL original ao PPL aumentado e, dele, ao PPL artificial, já convertido para maximização.\n\nComo montar a tabela Simplex inicial e identificar as variáveis básicas seguindo a ordem das colunas da identidade.\n\nFechamos com a tabela Simplex inicial do exemplo montada: base x̄5 = 3, x̄6 = 6 e x4 = 4, e o critério para saber se o PPL tem solução ótima — todas as artificiais precisam terminar em zero.\n\n⏱️ Capítulos:\n00:00 Abertura: adaptar o PPL ao Simplex\n00:42 Restrições = e ≥: por que adaptar\n01:05 Variáveis artificiais\n02:05 Por que penalizar as artificiais\n03:41 A penalidade: -M ou +M\n05:13 Exemplo: o PPL original\n05:51 PPL aumentado\n06:48 PPL artificial\n08:22 Passando para maximização\n09:31 Tabela Simplex inicial\n10:08 Identidade e variáveis básicas\n12:05 O PPL tem solução ótima?\n\n⚠️ Ainda não domina o Simplex em tabelas? Comece pela base: https://youtu.be/JTcUGbG8pg0\n\n⚠️ Quer resolver restrições ≥ sem variáveis artificiais? Veja o Simplex Dual: https://youtu.be/i2fcz5FRRos\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem travou na primeira restrição de igualdade!\n\n#PesquisaOperacional #PO #BigM #Simplex #ProgramacaoLinear #VariaveisArtificiais #Otimização #UNIRIO"
+}

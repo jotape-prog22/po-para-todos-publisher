@@ -1,0 +1,83 @@
+{
+  "titulos_candidatos": [
+    "LINGO - Resolvendo um PPL em 4 Minutos",
+    "LINGO - Como Modelar e Resolver um PPL",
+    "PPL NO LINGO - Modelagem e Solução Passo a Passo",
+    "PROGRAMAÇÃO LINEAR NO LINGO - Do Modelo à Solução Ótima",
+    "LINGO - Sintaxe Básica e Comando SOLVE para PPL"
+  ],
+  "titulo": "LINGO - Resolvendo um PPL em 4 Minutos",
+  "gancho": "Já resolveu o PPL da empresa de tintas no Excel e quer ver como fica num software feito para otimização? 🤔 Nesta aula rápida, digitamos o mesmo modelo no LINGO, do MAX= ao SOLVE, e lemos a solução ótima na tela.",
+  "objetivos": [
+    "Como transcrever a Função Objetivo e as restrições de um PPL direto no editor do LINGO, sem montar planilha.",
+    "A sintaxe básica do LINGO: MAX= ou MIN= para a Função Objetivo e ponto e vírgula ao final de cada expressão.",
+    "Por que uma linguagem de modelagem como a do LINGO é mais prática que o Solver do Excel em problemas de grande porte.",
+    "Como executar o modelo com o comando SOLVE e ler no relatório o valor ótimo e os valores das variáveis de decisão."
+  ],
+  "fechamento": "Fechamos com o LINGO encontrando a solução ótima do problema das tintas: X1 = 3, X2 = 1,5 e lucro máximo Z = 21.",
+  "cta_complemento": "ainda só resolve PPL no Excel",
+  "hashtags_tema": [
+    "#LINGO",
+    "#ProgramacaoLinear",
+    "#PPL",
+    "#Modelagem"
+  ],
+  "tags": [
+    "LINGO",
+    "software LINGO",
+    "LINGO tutorial",
+    "PPL",
+    "problema de programação linear",
+    "programação linear",
+    "modelagem",
+    "linguagem de modelagem",
+    "solução ótima",
+    "otimização",
+    "LINDO",
+    "Solver Excel",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:34",
+      "titulo": "Função Objetivo no LINGO"
+    },
+    {
+      "tempo": "00:53",
+      "titulo": "Digitando as restrições"
+    },
+    {
+      "tempo": "01:13",
+      "titulo": "Sintaxe: MAX= e ponto e vírgula"
+    },
+    {
+      "tempo": "02:10",
+      "titulo": "LINGO ou Excel? Problemas de grande porte"
+    },
+    {
+      "tempo": "03:33",
+      "titulo": "Comando SOLVE"
+    },
+    {
+      "tempo": "03:42",
+      "titulo": "Solução ótima: Z, X1 e X2"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o mesmo PPL resolvido no LINDO? Assista aqui",
+      "url": "https://youtu.be/vFSXrhpg3r8"
+    },
+    {
+      "contexto": "Prefere planilha? O mesmo PPL no Solver do Excel, Parte 1",
+      "url": "https://youtu.be/pNNsL4GzNg8"
+    }
+  ],
+  "descricao": "Já resolveu o PPL da empresa de tintas no Excel e quer ver como fica num software feito para otimização? 🤔 Nesta aula rápida, digitamos o mesmo modelo no LINGO, do MAX= ao SOLVE, e lemos a solução ótima na tela.\n\nNesta aula, você vai aprender:\n\nComo transcrever a Função Objetivo e as restrições de um PPL direto no editor do LINGO, sem montar planilha.\n\nA sintaxe básica do LINGO: MAX= ou MIN= para a Função Objetivo e ponto e vírgula ao final de cada expressão.\n\nPor que uma linguagem de modelagem como a do LINGO é mais prática que o Solver do Excel em problemas de grande porte.\n\nComo executar o modelo com o comando SOLVE e ler no relatório o valor ótimo e os valores das variáveis de decisão.\n\nFechamos com o LINGO encontrando a solução ótima do problema das tintas: X1 = 3, X2 = 1,5 e lucro máximo Z = 21.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:34 Função Objetivo no LINGO\n00:53 Digitando as restrições\n01:13 Sintaxe: MAX= e ponto e vírgula\n02:10 LINGO ou Excel? Problemas de grande porte\n03:33 Comando SOLVE\n03:42 Solução ótima: Z, X1 e X2\n\n⚠️ Quer ver o mesmo PPL resolvido no LINDO? Assista aqui: https://youtu.be/vFSXrhpg3r8\n\n⚠️ Prefere planilha? O mesmo PPL no Solver do Excel, Parte 1: https://youtu.be/pNNsL4GzNg8\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda só resolve PPL no Excel!\n\n#PesquisaOperacional #PO #LINGO #ProgramacaoLinear #PPL #Modelagem #Otimização #UNIRIO"
+}

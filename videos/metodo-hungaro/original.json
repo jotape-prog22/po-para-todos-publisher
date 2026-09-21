@@ -1,0 +1,35 @@
+{
+  "video_id": "t2vUhtY1rbo",
+  "url": "https://youtu.be/t2vUhtY1rbo",
+  "published_at": "2025-10-26T17:13:01Z",
+  "title": "PO1: Problema da Designação - Método Húngaro",
+  "description": "Aprenda a modelar e resolver o clássico Problema da Designação, um tipo especial de Problema de Programação Linear (PPL) em Redes, utilizando o eficiente Método Húngaro.\nO Problema da Designação (ou Alocação) visa atribuir designados a tarefas de forma a minimizar o custo total, garantindo que cada designado execute exatamente uma tarefa e vice-versa.\nNeste vídeo você aprenderá sobre:\nDefinição e Hipóteses: As condições básicas para um problema ser classificado como de designação (número igual de designados e tarefas, alocação de um para um) [00:13].\nModelagem Matemática: A formulação do PPL utilizando variáveis de decisão binárias ($X_{ij}$), onde o objetivo é minimizar o custo total sujeito a restrições que garantem que cada designado e cada tarefa seja alocado exatamente uma vez [01:21].\nAdaptação para Maximizar: Como converter um problema de maximização (por exemplo, de produtividade ou retorno) para um problema de minimização, que é o formato padrão para o Método Húngaro [05:13].\nMétodo Húngaro (Passo a Passo): O algoritmo de seis passos para encontrar a solução ótima:\nRedução por Linha: Subtrair o menor custo de cada linha [06:53].\nRedução por Coluna: Subtrair o menor custo de cada coluna da nova tabela [07:41].\nTeste de Otimização: Tentar cobrir todos os zeros com o menor número de retas horizontais ou verticais. Se o número de retas for igual ao número de linhas, a solução é ótima [08:21].\nModificação da Tabela: Se o número de retas for menor que o número de linhas, modificar a tabela (subtrair o menor valor descoberto, adicionar em interseções) e repetir o teste [09:21].\nDesignação Final: Alocar os designados nas posições dos zeros, começando por linhas ou colunas que contenham apenas um zero, para garantir o menor custo total [10:57].\nDomine o Método Húngaro para resolver problemas de alocação de recursos em cenários práticos!",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/t2vUhtY1rbo/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/t2vUhtY1rbo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/t2vUhtY1rbo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/t2vUhtY1rbo/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/t2vUhtY1rbo/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

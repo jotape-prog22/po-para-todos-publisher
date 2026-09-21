@@ -1,0 +1,35 @@
+{
+  "video_id": "gQP8WfzwFU8",
+  "url": "https://youtu.be/gQP8WfzwFU8",
+  "published_at": "2025-10-26T16:24:41Z",
+  "title": "PO1: Big M",
+  "description": "PO1: Método Big M | Adaptando PPLs com Restrições de Igualdade e Maior ou Igual (≥)\nAprenda a adaptar PPLs que possuem restrições de igualdade (=) ou de maior ou igual (≥) para que o Algoritmo Simplex em tabelas possa ser aplicado!\nO Método Big M é um artifício essencial na Pesquisa Operacional que utiliza Variáveis Artificiais e uma grande penalidade (M) na Função Objetivo para forçar a solução a ignorar essas variáveis auxiliares.\nNeste vídeo você aprenderá:\nA Necessidade de Adaptação: Por que o Simplex exige restrições no formato de equações e como lidar com PPLs de formato diferente [00:46].\nVariáveis Artificiais: Entenda o papel dessas variáveis como um substituto temporário das variáveis de folga para criar a Matriz Identidade (Base) inicial [01:07].\nA Penalidade Big M: Como penalizar as Variáveis Artificiais na Função Objetivo (usando $-M$ para maximização e $+M$ para minimização) para que o algoritmo as force a zero [02:36].\nO PPL Aumentado e Artificial: O passo a passo da transformação de um PPL original (com $\\ge$ e $=$) para a forma aumentada (com variáveis de excesso e folga) e, em seguida, para a forma artificial (com as variáveis artificiais) [05:43].\nTabela Simplex Inicial com Big M: Como montar a tabela inicial e identificar as Variáveis Básicas quando o modelo inclui variáveis artificiais [10:14].\nConclusão de Solução: Como o valor final das variáveis artificiais indica se o PPL original possui ou não uma solução ótima [03:02].\nDomine o Método Big M e amplie o leque de problemas que você pode resolver com o Algoritmo Simplex!\nLink para o vídeo: PO1: Big M",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/gQP8WfzwFU8/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/gQP8WfzwFU8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/gQP8WfzwFU8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/gQP8WfzwFU8/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/gQP8WfzwFU8/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

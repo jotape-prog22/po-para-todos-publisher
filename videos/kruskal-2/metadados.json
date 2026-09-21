@@ -1,0 +1,79 @@
+{
+  "titulos_candidatos": [
+    "KRUSKAL - Terminando a Árvore Geradora Mínima - Parte 2",
+    "ALGORITMO DE KRUSKAL - Execução Completa e Peso da Árvore - Parte 2",
+    "ÁRVORE GERADORA MÍNIMA - Fechando a Execução de Kruskal - Parte 2",
+    "KRUSKAL - Por Que É um Algoritmo Guloso? - Parte 2",
+    "KRUSKAL - Descartando Ciclos e Fechando a Árvore - Parte 2"
+  ],
+  "titulo": "KRUSKAL - Terminando a Árvore Geradora Mínima - Parte 2",
+  "gancho": "A próxima aresta da lista é a mais barata, mas liga dois vértices que já estão na mesma subárvore. Entra ou não entra? 🤔 Nesta aula terminamos a execução do algoritmo de Kruskal que começou na Parte 1: aresta por aresta, até o contador chegar em 5 e a Árvore Geradora Mínima ficar pronta.",
+  "objetivos": [
+    "Como aplicar a regra do ciclo: uma aresta só entra na árvore se ligar duas subárvores distintas, e por isso AB e DE são descartadas.",
+    "O que acontece com a lista, o conjunto de arestas e o contador a cada aresta aceita (AC, DF, EF e CD) e a cada aresta descartada.",
+    "Quando o algoritmo para: assim que o contador chega a V − 1, que no exemplo é 5, não é preciso olhar o resto da lista.",
+    "Como calcular o peso da Árvore Geradora Mínima somando os pesos das arestas escolhidas.",
+    "Por que Kruskal é um algoritmo guloso: ele sempre escolhe a aresta mais barata disponível antes de testar a formação de ciclo."
+  ],
+  "fechamento": "Fechamos com a Árvore Geradora Mínima do exemplo pronta: 5 arestas e peso total 3 + 1 + 5 + 4 + 4 = 17.",
+  "cta_complemento": "ainda se enrola com ciclo em grafo",
+  "hashtags_tema": [
+    "#Kruskal",
+    "#ArvoreGeradoraMinima",
+    "#Grafos",
+    "#AlgoritmoGuloso"
+  ],
+  "tags": [
+    "kruskal",
+    "algoritmo de kruskal",
+    "árvore geradora mínima",
+    "árvore geradora",
+    "AGM",
+    "spanning tree",
+    "minimum spanning tree",
+    "grafos",
+    "teoria dos grafos",
+    "algoritmo guloso",
+    "otimização em redes",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Aresta AC entra na árvore"
+    },
+    {
+      "tempo": "00:40",
+      "titulo": "AB formaria ciclo: descartada"
+    },
+    {
+      "tempo": "01:19",
+      "titulo": "DF e EF entram na árvore"
+    },
+    {
+      "tempo": "01:56",
+      "titulo": "DE formaria ciclo: descartada"
+    },
+    {
+      "tempo": "02:14",
+      "titulo": "CD entra e o contador chega a 5"
+    },
+    {
+      "tempo": "02:44",
+      "titulo": "Peso da árvore e por que Kruskal é guloso"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui, com os passos do algoritmo e o início da execução",
+      "url": "https://youtu.be/bmofX3L464c"
+    },
+    {
+      "contexto": "Quer conhecer a alternativa? Veja o Algoritmo de Prim",
+      "url": "https://youtu.be/lUUDScqcXtY"
+    }
+  ],
+  "descricao": "A próxima aresta da lista é a mais barata, mas liga dois vértices que já estão na mesma subárvore. Entra ou não entra? 🤔 Nesta aula terminamos a execução do algoritmo de Kruskal que começou na Parte 1: aresta por aresta, até o contador chegar em 5 e a Árvore Geradora Mínima ficar pronta.\n\nNesta aula, você vai aprender:\n\nComo aplicar a regra do ciclo: uma aresta só entra na árvore se ligar duas subárvores distintas, e por isso AB e DE são descartadas.\n\nO que acontece com a lista, o conjunto de arestas e o contador a cada aresta aceita (AC, DF, EF e CD) e a cada aresta descartada.\n\nQuando o algoritmo para: assim que o contador chega a V − 1, que no exemplo é 5, não é preciso olhar o resto da lista.\n\nComo calcular o peso da Árvore Geradora Mínima somando os pesos das arestas escolhidas.\n\nPor que Kruskal é um algoritmo guloso: ele sempre escolhe a aresta mais barata disponível antes de testar a formação de ciclo.\n\nFechamos com a Árvore Geradora Mínima do exemplo pronta: 5 arestas e peso total 3 + 1 + 5 + 4 + 4 = 17.\n\n⏱️ Capítulos:\n00:00 Aresta AC entra na árvore\n00:40 AB formaria ciclo: descartada\n01:19 DF e EF entram na árvore\n01:56 DE formaria ciclo: descartada\n02:14 CD entra e o contador chega a 5\n02:44 Peso da árvore e por que Kruskal é guloso\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui, com os passos do algoritmo e o início da execução: https://youtu.be/bmofX3L464c\n\n⚠️ Quer conhecer a alternativa? Veja o Algoritmo de Prim: https://youtu.be/lUUDScqcXtY\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda se enrola com ciclo em grafo!\n\n#PesquisaOperacional #PO #Kruskal #ArvoreGeradoraMinima #Grafos #AlgoritmoGuloso #Otimização #UNIRIO"
+}

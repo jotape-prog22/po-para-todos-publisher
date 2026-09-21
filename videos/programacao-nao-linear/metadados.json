@@ -1,0 +1,95 @@
+{
+  "titulos_candidatos": [
+    "PROGRAMAÇÃO NÃO LINEAR - Condições KKT, Convexidade e Solver",
+    "CONDIÇÕES KKT - Programação Não Linear Passo a Passo",
+    "PROGRAMAÇÃO NÃO LINEAR - Do Cálculo às Condições KKT",
+    "OTIMIZAÇÃO NÃO LINEAR - KKT, Convexidade e Ótimo Global",
+    "SOLVER NÃO LINEAR - Por Que Ele Pode Dar um Ótimo Local?"
+  ],
+  "titulo": "PROGRAMAÇÃO NÃO LINEAR - Condições KKT, Convexidade e Solver",
+  "gancho": "E quando a função objetivo ou uma restrição deixa de ser linear? O Simplex não serve mais — e o ótimo pode nem estar num vértice. 🤔 Nesta aula vamos entrar na Programação Não Linear: os tipos de problema, as condições KKT e o que muda quando você resolve com o Solver.",
+  "objetivos": [
+    "O que caracteriza um problema de Programação Não Linear e os tipos principais: otimização irrestrita, programação quadrática, convexa e não convexa.",
+    "Por que a solução ótima de um problema não linear pode ficar na fronteira sem ser um vértice, vista em três exemplos gráficos.",
+    "Como resolver a otimização irrestrita com uma ou várias variáveis usando derivadas, e quando é preciso recorrer a métodos como bissecção, Newton e gradiente.",
+    "As seis condições KKT (Karush-Kuhn-Tucker) para problemas com restrições, e a ligação dos multiplicadores de Lagrange com as variáveis duais e o preço-sombra.",
+    "Por que a convexidade garante o ótimo global e por que o Solver, com o método GRG, pode devolver apenas um ótimo local em problemas não convexos."
+  ],
+  "fechamento": "Fechamos resolvendo um exemplo pelas condições KKT: λ₁ = 1, x* = (0, 3) é o ótimo global, e um exercício no Solver para ver o ótimo local aparecer.",
+  "cta_complemento": "achava que tudo em PO era linear",
+  "hashtags_tema": [
+    "#ProgramacaoNaoLinear",
+    "#KKT",
+    "#Convexidade",
+    "#Solver"
+  ],
+  "tags": [
+    "programação não linear",
+    "otimização não linear",
+    "condições KKT",
+    "Karush-Kuhn-Tucker",
+    "multiplicadores de Lagrange",
+    "programação convexa",
+    "otimização irrestrita",
+    "programação quadrática",
+    "ótimo local e global",
+    "gradiente reduzido generalizado",
+    "solver excel",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:40",
+      "titulo": "O que é Programação Não Linear"
+    },
+    {
+      "tempo": "01:16",
+      "titulo": "Tipos: irrestrita, quadrática, convexa"
+    },
+    {
+      "tempo": "03:08",
+      "titulo": "Onde aparecem funções não lineares"
+    },
+    {
+      "tempo": "04:27",
+      "titulo": "Exemplos gráficos: o ótimo não é vértice"
+    },
+    {
+      "tempo": "09:17",
+      "titulo": "Otimização irrestrita: uma variável"
+    },
+    {
+      "tempo": "12:16",
+      "titulo": "Otimização irrestrita: várias variáveis"
+    },
+    {
+      "tempo": "14:43",
+      "titulo": "Condições KKT — Enunciado"
+    },
+    {
+      "tempo": "21:40",
+      "titulo": "Convexidade e o ótimo global"
+    },
+    {
+      "tempo": "24:23",
+      "titulo": "Exemplo — Resolvendo com KKT"
+    },
+    {
+      "tempo": "32:48",
+      "titulo": "Programação convexa e o Solver (GRG)"
+    },
+    {
+      "tempo": "37:37",
+      "titulo": "Exercício e encerramento"
+    }
+  ],
+  "relacionados": [],
+  "descricao": "E quando a função objetivo ou uma restrição deixa de ser linear? O Simplex não serve mais — e o ótimo pode nem estar num vértice. 🤔 Nesta aula vamos entrar na Programação Não Linear: os tipos de problema, as condições KKT e o que muda quando você resolve com o Solver.\n\nNesta aula, você vai aprender:\n\nO que caracteriza um problema de Programação Não Linear e os tipos principais: otimização irrestrita, programação quadrática, convexa e não convexa.\n\nPor que a solução ótima de um problema não linear pode ficar na fronteira sem ser um vértice, vista em três exemplos gráficos.\n\nComo resolver a otimização irrestrita com uma ou várias variáveis usando derivadas, e quando é preciso recorrer a métodos como bissecção, Newton e gradiente.\n\nAs seis condições KKT (Karush-Kuhn-Tucker) para problemas com restrições, e a ligação dos multiplicadores de Lagrange com as variáveis duais e o preço-sombra.\n\nPor que a convexidade garante o ótimo global e por que o Solver, com o método GRG, pode devolver apenas um ótimo local em problemas não convexos.\n\nFechamos resolvendo um exemplo pelas condições KKT: λ₁ = 1, x* = (0, 3) é o ótimo global, e um exercício no Solver para ver o ótimo local aparecer.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:40 O que é Programação Não Linear\n01:16 Tipos: irrestrita, quadrática, convexa\n03:08 Onde aparecem funções não lineares\n04:27 Exemplos gráficos: o ótimo não é vértice\n09:17 Otimização irrestrita: uma variável\n12:16 Otimização irrestrita: várias variáveis\n14:43 Condições KKT — Enunciado\n21:40 Convexidade e o ótimo global\n24:23 Exemplo — Resolvendo com KKT\n32:48 Programação convexa e o Solver (GRG)\n37:37 Exercício e encerramento\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem achava que tudo em PO era linear!\n\n#PesquisaOperacional #PO #ProgramacaoNaoLinear #KKT #Convexidade #Solver #Otimização #UNIRIO"
+}

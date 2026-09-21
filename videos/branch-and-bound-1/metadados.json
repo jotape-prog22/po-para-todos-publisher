@@ -1,0 +1,100 @@
+{
+  "titulos_candidatos": [
+    "BRANCH AND BOUND - Relaxação Linear e a Árvore de Busca - Parte 1",
+    "BRANCH AND BOUND - Como Resolver Programação Inteira - Parte 1",
+    "ALGORITMO BRANCH AND BOUND - Introdução e Relaxação Linear - Parte 1",
+    "BRANCH AND BOUND - Por Que Ramificar e Limitar? - Parte 1",
+    "PROGRAMAÇÃO INTEIRA - O Algoritmo Branch and Bound - Parte 1"
+  ],
+  "titulo": "BRANCH AND BOUND - Relaxação Linear e a Árvore de Busca - Parte 1",
+  "gancho": "Se o Simplex já resolve Programação Linear, por que ele não basta quando as variáveis precisam ser inteiras? 🤔 Nesta aula, a primeira da série sobre o Branch and Bound, vamos entender por que Programação Inteira é mais difícil, o que é a relaxação linear e como o algoritmo monta uma árvore para explorar as soluções.",
+  "objetivos": [
+    "Por que um problema de Programação Inteira é mais difícil de resolver que um de Programação Linear, mesmo tendo um número finito de soluções viáveis.",
+    "O que é a relaxação linear de um problema inteiro e por que o valor ótimo dela é um limitante superior para o valor ótimo do problema inteiro.",
+    "Como o Branch and Bound constrói uma árvore enraizada, partindo da relaxação linear no nó raiz, para explorar as soluções possíveis.",
+    "O que significa ramificar (branch): dividir o problema P em subproblemas menores, geralmente dois a cada passo, cuja união recompõe o problema original.",
+    "Por que o algoritmo é exato mas pode ser ineficiente (2 elevado a n nós para n variáveis binárias) e como a poda por limites (bound) é a chave para acelerá-lo."
+  ],
+  "fechamento": "Fechamos começando a montar a árvore B&B: quando x1 sai fracionário na relaxação linear, o problema P é dividido nos subproblemas P1 e P2, que resolvemos na Parte 2.",
+  "cta_complemento": "está começando a estudar programação inteira",
+  "hashtags_tema": [
+    "#BranchAndBound",
+    "#ProgramacaoInteira",
+    "#RelaxacaoLinear",
+    "#OtimizacaoCombinatoria"
+  ],
+  "tags": [
+    "branch and bound",
+    "algoritmo branch and bound",
+    "branch e bound",
+    "b&b",
+    "programação inteira",
+    "programação linear inteira",
+    "relaxação linear",
+    "limitante superior",
+    "árvore de busca",
+    "ramificação e poda",
+    "otimização combinatória",
+    "pesquisa operacional",
+    "PO2",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Métodos de solução para PI"
+    },
+    {
+      "tempo": "00:16",
+      "titulo": "Por que PI é mais difícil que PL"
+    },
+    {
+      "tempo": "01:00",
+      "titulo": "Os algoritmos que existem"
+    },
+    {
+      "tempo": "01:22",
+      "titulo": "Relaxação linear e limitante superior"
+    },
+    {
+      "tempo": "03:08",
+      "titulo": "A árvore enraizada do B&B"
+    },
+    {
+      "tempo": "04:00",
+      "titulo": "Ramificar (branch)"
+    },
+    {
+      "tempo": "04:31",
+      "titulo": "Exato, mas 2^n nós"
+    },
+    {
+      "tempo": "05:19",
+      "titulo": "A poda por limites e as heurísticas"
+    },
+    {
+      "tempo": "05:53",
+      "titulo": "Limitar (bound)"
+    },
+    {
+      "tempo": "06:16",
+      "titulo": "Montando a árvore: P1 e P2"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde ramificamos e podamos a árvore",
+      "url": "https://youtu.be/z3CRhX1oLoI"
+    },
+    {
+      "contexto": "Na Parte 3, o algoritmo executado do início ao fim",
+      "url": "https://youtu.be/fF1V3v4Lso8"
+    },
+    {
+      "contexto": "Quer relembrar os modelos que o Branch and Bound resolve? Veja Programação Inteira, Parte 2",
+      "url": "https://youtu.be/iBXL2aUR29Y"
+    }
+  ],
+  "descricao": "Se o Simplex já resolve Programação Linear, por que ele não basta quando as variáveis precisam ser inteiras? 🤔 Nesta aula, a primeira da série sobre o Branch and Bound, vamos entender por que Programação Inteira é mais difícil, o que é a relaxação linear e como o algoritmo monta uma árvore para explorar as soluções.\n\nNesta aula, você vai aprender:\n\nPor que um problema de Programação Inteira é mais difícil de resolver que um de Programação Linear, mesmo tendo um número finito de soluções viáveis.\n\nO que é a relaxação linear de um problema inteiro e por que o valor ótimo dela é um limitante superior para o valor ótimo do problema inteiro.\n\nComo o Branch and Bound constrói uma árvore enraizada, partindo da relaxação linear no nó raiz, para explorar as soluções possíveis.\n\nO que significa ramificar (branch): dividir o problema P em subproblemas menores, geralmente dois a cada passo, cuja união recompõe o problema original.\n\nPor que o algoritmo é exato mas pode ser ineficiente (2 elevado a n nós para n variáveis binárias) e como a poda por limites (bound) é a chave para acelerá-lo.\n\nFechamos começando a montar a árvore B&B: quando x1 sai fracionário na relaxação linear, o problema P é dividido nos subproblemas P1 e P2, que resolvemos na Parte 2.\n\n⏱️ Capítulos:\n00:00 Métodos de solução para PI\n00:16 Por que PI é mais difícil que PL\n01:00 Os algoritmos que existem\n01:22 Relaxação linear e limitante superior\n03:08 A árvore enraizada do B&B\n04:00 Ramificar (branch)\n04:31 Exato, mas 2^n nós\n05:19 A poda por limites e as heurísticas\n05:53 Limitar (bound)\n06:16 Montando a árvore: P1 e P2\n\n⚠️ Continue na Parte 2, onde ramificamos e podamos a árvore: https://youtu.be/z3CRhX1oLoI\n\n⚠️ Na Parte 3, o algoritmo executado do início ao fim: https://youtu.be/fF1V3v4Lso8\n\n⚠️ Quer relembrar os modelos que o Branch and Bound resolve? Veja Programação Inteira, Parte 2: https://youtu.be/iBXL2aUR29Y\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está começando a estudar programação inteira!\n\n#PesquisaOperacional #PO #BranchAndBound #ProgramacaoInteira #RelaxacaoLinear #OtimizacaoCombinatoria #Otimização #UNIRIO"
+}

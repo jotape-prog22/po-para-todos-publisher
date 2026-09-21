@@ -1,0 +1,103 @@
+{
+  "titulos_candidatos": [
+    "TEORIA DOS JOGOS - Equilíbrio de Nash Passo a Passo - Parte 3",
+    "TEORIA DOS JOGOS - Nash e o Dilema do Prisioneiro - Parte 3",
+    "TEORIA DOS JOGOS - Jogos de Soma Não Constante - Parte 3",
+    "TEORIA DOS JOGOS - Batalha dos Sexos e Dilema do Prisioneiro - Parte 3",
+    "TEORIA DOS JOGOS - Como Achar o Equilíbrio de Nash - Parte 3"
+  ],
+  "titulo": "TEORIA DOS JOGOS - Equilíbrio de Nash Passo a Passo - Parte 3",
+  "gancho": "E quando o que um jogador ganha não é exatamente o que o outro perde? 🤔 Nos jogos de soma não constante, cada célula da matriz de payoff traz um par de retornos, e a solução deixa de ser única. Nesta aula vamos definir o Equilíbrio de Nash e aplicar o algoritmo das melhores respostas em dois clássicos: a Batalha dos Sexos e o Dilema do Prisioneiro.",
+  "objetivos": [
+    "Como reconhecer um jogo de soma não constante pela matriz de payoff, em que cada par de estratégias está associado a um par de retornos, um para cada jogador.",
+    "O que é o Equilíbrio de Nash e por que, nesse ponto, nenhum dos jogadores tem interesse em mudar de estratégia sozinho.",
+    "O algoritmo para encontrar o equilíbrio: eliminar estratégias dominadas quando der e, se não der, marcar a melhor resposta de cada jogador a cada estratégia do oponente.",
+    "Por que a Batalha dos Sexos tem dois equilíbrios de Nash e por que, num jogo de soma não constante, não existe uma solução aceita como a única.",
+    "Por que no Dilema do Prisioneiro a racionalidade individual leva a um resultado pior para os dois, mesmo com um benefício claro na cooperação."
+  ],
+  "fechamento": "Fechamos com o Dilema do Prisioneiro resolvido: o único equilíbrio de Nash é ambos confessarem e pegarem 5 anos, embora não confessar (1 ano cada) fosse melhor para os dois.",
+  "cta_complemento": "ainda acha que todo jogo tem uma solução só",
+  "hashtags_tema": [
+    "#TeoriaDosJogos",
+    "#EquilibrioDeNash",
+    "#DilemaDoPrisioneiro",
+    "#SomaNaoConstante"
+  ],
+  "tags": [
+    "teoria dos jogos",
+    "equilíbrio de nash",
+    "dilema do prisioneiro",
+    "batalha dos sexos",
+    "jogos de soma não constante",
+    "melhores respostas",
+    "estratégias dominadas",
+    "matriz de payoff",
+    "estratégias mistas",
+    "programação quadrática",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Jogos de soma não constante"
+    },
+    {
+      "tempo": "00:19",
+      "titulo": "Batalha dos Sexos — a matriz de payoff"
+    },
+    {
+      "tempo": "03:08",
+      "titulo": "O que é o Equilíbrio de Nash"
+    },
+    {
+      "tempo": "03:38",
+      "titulo": "Algoritmo das melhores respostas"
+    },
+    {
+      "tempo": "04:36",
+      "titulo": "Existe estratégia dominada?"
+    },
+    {
+      "tempo": "06:02",
+      "titulo": "Marcando as melhores respostas"
+    },
+    {
+      "tempo": "07:13",
+      "titulo": "Dois equilíbrios de Nash"
+    },
+    {
+      "tempo": "09:00",
+      "titulo": "Dilema do Prisioneiro — o problema"
+    },
+    {
+      "tempo": "11:40",
+      "titulo": "Eliminando estratégias dominadas"
+    },
+    {
+      "tempo": "14:33",
+      "titulo": "Por que (-5, -5) é o equilíbrio"
+    },
+    {
+      "tempo": "15:22",
+      "titulo": "O dilema: individual vs. coletivo"
+    },
+    {
+      "tempo": "18:01",
+      "titulo": "Estratégias mistas e prog. quadrática"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Perdeu a Parte 2? Lá vêm as estratégias mistas e o método gráfico",
+      "url": "https://youtu.be/mlJtplCFGqQ"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui, com os jogos de soma zero e a matriz de payoff",
+      "url": "https://youtu.be/xlhA_VnJQJo"
+    }
+  ],
+  "descricao": "E quando o que um jogador ganha não é exatamente o que o outro perde? 🤔 Nos jogos de soma não constante, cada célula da matriz de payoff traz um par de retornos, e a solução deixa de ser única. Nesta aula vamos definir o Equilíbrio de Nash e aplicar o algoritmo das melhores respostas em dois clássicos: a Batalha dos Sexos e o Dilema do Prisioneiro.\n\nNesta aula, você vai aprender:\n\nComo reconhecer um jogo de soma não constante pela matriz de payoff, em que cada par de estratégias está associado a um par de retornos, um para cada jogador.\n\nO que é o Equilíbrio de Nash e por que, nesse ponto, nenhum dos jogadores tem interesse em mudar de estratégia sozinho.\n\nO algoritmo para encontrar o equilíbrio: eliminar estratégias dominadas quando der e, se não der, marcar a melhor resposta de cada jogador a cada estratégia do oponente.\n\nPor que a Batalha dos Sexos tem dois equilíbrios de Nash e por que, num jogo de soma não constante, não existe uma solução aceita como a única.\n\nPor que no Dilema do Prisioneiro a racionalidade individual leva a um resultado pior para os dois, mesmo com um benefício claro na cooperação.\n\nFechamos com o Dilema do Prisioneiro resolvido: o único equilíbrio de Nash é ambos confessarem e pegarem 5 anos, embora não confessar (1 ano cada) fosse melhor para os dois.\n\n⏱️ Capítulos:\n00:00 Jogos de soma não constante\n00:19 Batalha dos Sexos — a matriz de payoff\n03:08 O que é o Equilíbrio de Nash\n03:38 Algoritmo das melhores respostas\n04:36 Existe estratégia dominada?\n06:02 Marcando as melhores respostas\n07:13 Dois equilíbrios de Nash\n09:00 Dilema do Prisioneiro — o problema\n11:40 Eliminando estratégias dominadas\n14:33 Por que (-5, -5) é o equilíbrio\n15:22 O dilema: individual vs. coletivo\n18:01 Estratégias mistas e prog. quadrática\n\n⚠️ Perdeu a Parte 2? Lá vêm as estratégias mistas e o método gráfico: https://youtu.be/mlJtplCFGqQ\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui, com os jogos de soma zero e a matriz de payoff: https://youtu.be/xlhA_VnJQJo\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda acha que todo jogo tem uma solução só!\n\n#PesquisaOperacional #PO #TeoriaDosJogos #EquilibrioDeNash #DilemaDoPrisioneiro #SomaNaoConstante #Otimização #UNIRIO"
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "7Gc2aiE7M7U",
+  "url": "https://youtu.be/7Gc2aiE7M7U",
+  "published_at": "2025-10-26T16:47:42Z",
+  "title": "PO1: Exemplos de dualidade",
+  "description": "PO1: Exemplos de Dualidade | Interpretação Econômica e Preços Sombra\nEntenda o significado das variáveis duais e como elas podem informar a tomada de decisão sobre recursos.\nEsta aula explora a relação prática entre o Problema Primal e o Problema Dual, focando na interpretação econômica das variáveis duais em um cenário de otimização de lucro para uma empresa. O vídeo utiliza um exemplo detalhado para ilustrar o conceito de Preços Sombra e sua aplicação gerencial.\nNeste vídeo você aprenderá sobre:\nProblema Primal e Dual: Apresentação de um exemplo de maximização de lucro com restrições de recursos (Trabalho, Matéria-prima, Espaço físico) e a montagem do seu problema Dual, que é um problema de minimização do custo dos recursos [00:26].\nSoluções Otimais e a Tabela Simplex: Demonstração de que a solução ótima do Dual ($W_1=1, W_2=1/2, W_3=0$) pode ser encontrada automaticamente na linha $Z$ da tabela Simplex ótima do Primal, especificamente nas colunas das variáveis de folga [04:15].\nInterpretação Econômica da Dualidade: A Primal é vista como o problema de alocação de recursos (maximização do lucro), enquanto a Dual é o problema de determinação do valor marginal (minimização do custo) desses recursos [05:57].\nConceito de Preço Sombra (Shadow Price): As variáveis duais ($W_i$) representam o valor marginal ou preço sombra de cada recurso. Este valor indica o impacto (aumento ou diminuição) no lucro (Função Objetivo) se a disponibilidade do recurso correspondente for alterada em uma unidade [09:04].\nAnálise de Recursos com Preços Sombra:\nTrabalho ($W_1=1$): Indica que a empresa está disposta a pagar no máximo 1 real a mais por cada hora extra de trabalho [10:48].\nMatéria-Prima ($W_2=1/2$): O lucro aumentaria em $0,50 por cada quilograma extra de matéria-prima [11:09].\nEspaço Físico ($W_3=0$): O preço sombra é zero porque a restrição teve folga (recurso não limitante), indicando que adquirir mais espaço não aumentaria o lucro total [11:57].\nUse o conceito de Preço Sombra para justificar investimentos em recursos limitantes e tomar decisões de gestão mais eficazes!\nLink para o vídeo: PO1: Exemplos de dualidade",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/7Gc2aiE7M7U/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/7Gc2aiE7M7U/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/7Gc2aiE7M7U/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/7Gc2aiE7M7U/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/7Gc2aiE7M7U/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "xlhA_VnJQJo",
+  "url": "https://youtu.be/xlhA_VnJQJo",
+  "published_at": "2026-01-02T20:04:13Z",
+  "title": "PO2: Teoria dos Jogos - Parte 1",
+  "description": "📌 O que você vai aprender neste vídeo:\nContexto Histórico: Da origem no século XVI até as contribuições fundamentais de Von Neumann e o Equilíbrio de Nash [00:13].\n\nO que é um Jogo? Definição de situações de conflito envolvendo jogadores racionais (países, empresas, pessoas) [01:25].\n\nJogos de Soma Zero: Características dos jogos onde os interesses são puramente conflitantes [03:00].\n\nTabela de Prêmios (Matriz Payoff): Como ler e construir a representação dos ganhos e perdas [04:14].\n\nHipóteses do Jogo: A importância de assumir que o oponente é inteligente e racional [05:40].\n\nEstratégias Dominadas: Técnica de redução de matrizes através da eliminação de opções inferiores [07:16].\n\nPrincípio Maximin e Minimax: A busca pelo \"melhor do pior\" para garantir resultados seguros [15:32].\n\nPonto de Sela: Como identificar o equilíbrio estável em um jogo [20:08].\n\nJogos Instáveis: O que acontece quando o jogo não possui ponto de sela e a introdução às estratégias mistas [23:30].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/xlhA_VnJQJo/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/xlhA_VnJQJo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/xlhA_VnJQJo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/xlhA_VnJQJo/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/xlhA_VnJQJo/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

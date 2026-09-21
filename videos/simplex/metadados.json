@@ -1,0 +1,100 @@
+{
+  "titulos_candidatos": [
+    "SIMPLEX - Como o Algoritmo Funciona, Passo a Passo",
+    "ALGORITMO SIMPLEX - Como Funciona e a Tabela Inicial",
+    "SIMPLEX - Base, Solução Básica Viável e Tabela Inicial",
+    "MÉTODO SIMPLEX EM TABELAS - Conceitos Fundamentais",
+    "SIMPLEX - Por Que Ele Só Visita Vértices?"
+  ],
+  "titulo": "ALGORITMO SIMPLEX - Como Funciona e a Tabela Inicial",
+  "gancho": "Você já resolveu um PPL pelo método gráfico — mas e quando são três, dez, cem variáveis? 🤔 O Simplex faz o que o desenho não alcança: caminha de vértice em vértice até o ótimo. Nesta aula você entende a ideia por trás do algoritmo, a álgebra linear que o sustenta e como montar a tabela Simplex inicial.",
+  "objetivos": [
+    "Como o Simplex funciona: começa num vértice (a origem, se possível), testa se ele é ótimo e, se não for, pula para um vértice melhor.",
+    "O que são base, matriz básica (B), variáveis básicas (XB) e não básicas (XN), e por que a solução básica é XB = B⁻¹b.",
+    "Quando uma solução básica é viável e quando é não degenerada, e o que isso muda no algoritmo.",
+    "Os teoremas que sustentam o Simplex: vértice = solução básica viável, número finito de vértices e ótimo sempre num vértice.",
+    "Como levar o PPL à forma padrão com variáveis de folga e montar a tabela inicial, onde a matriz identidade vira a base de partida."
+  ],
+  "fechamento": "Fechamos com a tabela Simplex inicial do exemplo da empresa de brinquedos: linha do Z com -5 e -4, folgas x3 a x6 como variáveis básicas e a origem como vértice de partida.",
+  "cta_complemento": "está começando no Simplex",
+  "hashtags_tema": [
+    "#Simplex",
+    "#ProgramacaoLinear",
+    "#AlgoritmoSimplex",
+    "#PPL"
+  ],
+  "tags": [
+    "simplex",
+    "algoritmo simplex",
+    "método simplex",
+    "simplex em tabelas",
+    "tableau simplex",
+    "tabela simplex",
+    "programação linear",
+    "PPL",
+    "solução básica viável",
+    "variáveis de folga",
+    "variáveis básicas",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: Simplex em tabelas"
+    },
+    {
+      "tempo": "00:54",
+      "titulo": "Estrutura do algoritmo"
+    },
+    {
+      "tempo": "02:04",
+      "titulo": "Base e variáveis básicas"
+    },
+    {
+      "tempo": "02:57",
+      "titulo": "Partição básica: matrizes B e N"
+    },
+    {
+      "tempo": "07:27",
+      "titulo": "Solução básica viável"
+    },
+    {
+      "tempo": "08:34",
+      "titulo": "Teoremas fundamentais"
+    },
+    {
+      "tempo": "11:12",
+      "titulo": "Forma padrão e variáveis de folga"
+    },
+    {
+      "tempo": "15:25",
+      "titulo": "Estrutura da tabela inicial"
+    },
+    {
+      "tempo": "16:59",
+      "titulo": "Exemplo: empresa de brinquedos"
+    },
+    {
+      "tempo": "18:31",
+      "titulo": "Matriz identidade e base inicial"
+    },
+    {
+      "tempo": "20:17",
+      "titulo": "Fases do algoritmo e próximos passos"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "E quando a origem não é viável e o Simplex precisa de variáveis artificiais? Veja o Método Big M",
+      "url": "https://youtu.be/gQP8WfzwFU8"
+    },
+    {
+      "contexto": "Quer ver a variante que parte de uma solução dual viável? Assista ao Simplex Dual",
+      "url": "https://youtu.be/i2fcz5FRRos"
+    }
+  ],
+  "descricao": "Você já resolveu um PPL pelo método gráfico — mas e quando são três, dez, cem variáveis? 🤔 O Simplex faz o que o desenho não alcança: caminha de vértice em vértice até o ótimo. Nesta aula você entende a ideia por trás do algoritmo, a álgebra linear que o sustenta e como montar a tabela Simplex inicial.\n\nNesta aula, você vai aprender:\n\nComo o Simplex funciona: começa num vértice (a origem, se possível), testa se ele é ótimo e, se não for, pula para um vértice melhor.\n\nO que são base, matriz básica (B), variáveis básicas (XB) e não básicas (XN), e por que a solução básica é XB = B⁻¹b.\n\nQuando uma solução básica é viável e quando é não degenerada, e o que isso muda no algoritmo.\n\nOs teoremas que sustentam o Simplex: vértice = solução básica viável, número finito de vértices e ótimo sempre num vértice.\n\nComo levar o PPL à forma padrão com variáveis de folga e montar a tabela inicial, onde a matriz identidade vira a base de partida.\n\nFechamos com a tabela Simplex inicial do exemplo da empresa de brinquedos: linha do Z com -5 e -4, folgas x3 a x6 como variáveis básicas e a origem como vértice de partida.\n\n⏱️ Capítulos:\n00:00 Abertura: Simplex em tabelas\n00:54 Estrutura do algoritmo\n02:04 Base e variáveis básicas\n02:57 Partição básica: matrizes B e N\n07:27 Solução básica viável\n08:34 Teoremas fundamentais\n11:12 Forma padrão e variáveis de folga\n15:25 Estrutura da tabela inicial\n16:59 Exemplo: empresa de brinquedos\n18:31 Matriz identidade e base inicial\n20:17 Fases do algoritmo e próximos passos\n\n⚠️ E quando a origem não é viável e o Simplex precisa de variáveis artificiais? Veja o Método Big M: https://youtu.be/gQP8WfzwFU8\n\n⚠️ Quer ver a variante que parte de uma solução dual viável? Assista ao Simplex Dual: https://youtu.be/i2fcz5FRRos\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está começando no Simplex!\n\n#PesquisaOperacional #PO #Simplex #ProgramacaoLinear #AlgoritmoSimplex #PPL #Otimização #UNIRIO"
+}

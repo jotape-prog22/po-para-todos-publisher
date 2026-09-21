@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "PROGRAMAÇÃO INTEIRA - Tipos e Variáveis Binárias - Parte 1",
+    "PROGRAMAÇÃO INTEIRA - Pura, Mista e Binária - Parte 1",
+    "PROGRAMAÇÃO INTEIRA - O Que É e Como Modelar com Binárias - Parte 1",
+    "PROGRAMAÇÃO INTEIRA - Modelagem com Variáveis 0-1 - Parte 1",
+    "PROGRAMAÇÃO INTEIRA - Quando Arredondar Não Resolve? - Parte 1"
+  ],
+  "titulo": "PROGRAMAÇÃO INTEIRA - Tipos e Variáveis Binárias - Parte 1",
+  "gancho": "Quantos caminhões, quantas fábricas, fazer ou não fazer o investimento? 🤔 Na vida real, muita decisão só faz sentido em número inteiro — e a Programação Linear sozinha não garante isso. Nesta aula, a primeira da série sobre Programação Inteira, você vê os tipos de modelo inteiro e aprende a usar variáveis binárias para escrever decisões lógicas dentro de um modelo de otimização.",
+  "objetivos": [
+    "O que é Programação Inteira e a diferença entre os modelos puro, misto e binário (0-1).",
+    "Por que problemas reais de planejamento, produção, localização e distribuição exigem variáveis inteiras.",
+    "Como uma variável binária representa uma decisão de \"sim\" ou \"não\", como escolher ou não um investimento.",
+    "Como modelar restrições lógicas entre decisões: \"no máximo três\", \"exatamente um\" e \"se A, então B\".",
+    "Como usar uma binária auxiliar e um M grande para deixar o modelo escolher entre duas restrições alternativas e para representar custo fixo de produção."
+  ],
+  "fechamento": "Fechamos com a modelagem do custo fixo: o custo total vira K·y + c·x, e a restrição x ≤ M·y garante que a parcela fixa só entra quando há produção.",
+  "cta_complemento": "achou que bastava arredondar a solução do Simplex",
+  "hashtags_tema": [
+    "#ProgramacaoInteira",
+    "#VariaveisBinarias",
+    "#Modelagem",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "programação inteira",
+    "programação linear inteira",
+    "programação inteira mista",
+    "programação binária",
+    "variáveis binárias",
+    "variáveis 0-1",
+    "restrições lógicas",
+    "M grande",
+    "big M",
+    "custo fixo",
+    "modelagem matemática",
+    "otimização",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:31",
+      "titulo": "Tipos: pura, mista e binária (0-1)"
+    },
+    {
+      "tempo": "01:33",
+      "titulo": "Por que a prática exige inteiros"
+    },
+    {
+      "tempo": "02:33",
+      "titulo": "Exemplo de modelo inteiro puro"
+    },
+    {
+      "tempo": "03:15",
+      "titulo": "Aplicação 1: cinco investimentos"
+    },
+    {
+      "tempo": "04:09",
+      "titulo": "Aplicação 2: dois recursos alternativos"
+    },
+    {
+      "tempo": "05:20",
+      "titulo": "Aplicação 3: custo fixo de instalação"
+    },
+    {
+      "tempo": "07:36",
+      "titulo": "Variáveis binárias: sim ou não"
+    },
+    {
+      "tempo": "08:07",
+      "titulo": "Modelando as restrições lógicas"
+    },
+    {
+      "tempo": "10:52",
+      "titulo": "Restrições alternativas com M grande"
+    },
+    {
+      "tempo": "13:58",
+      "titulo": "Custo fixo com binária auxiliar"
+    },
+    {
+      "tempo": "16:07",
+      "titulo": "A restrição x ≤ My"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, com as formulações clássicas (mochila, caixeiro viajante, roteamento)",
+      "url": "https://youtu.be/iBXL2aUR29Y"
+    },
+    {
+      "contexto": "E como resolver um problema inteiro? Veja o Branch and Bound, Parte 1",
+      "url": "https://youtu.be/fXvZ2FejRBY"
+    }
+  ],
+  "descricao": "Quantos caminhões, quantas fábricas, fazer ou não fazer o investimento? 🤔 Na vida real, muita decisão só faz sentido em número inteiro — e a Programação Linear sozinha não garante isso. Nesta aula, a primeira da série sobre Programação Inteira, você vê os tipos de modelo inteiro e aprende a usar variáveis binárias para escrever decisões lógicas dentro de um modelo de otimização.\n\nNesta aula, você vai aprender:\n\nO que é Programação Inteira e a diferença entre os modelos puro, misto e binário (0-1).\n\nPor que problemas reais de planejamento, produção, localização e distribuição exigem variáveis inteiras.\n\nComo uma variável binária representa uma decisão de \"sim\" ou \"não\", como escolher ou não um investimento.\n\nComo modelar restrições lógicas entre decisões: \"no máximo três\", \"exatamente um\" e \"se A, então B\".\n\nComo usar uma binária auxiliar e um M grande para deixar o modelo escolher entre duas restrições alternativas e para representar custo fixo de produção.\n\nFechamos com a modelagem do custo fixo: o custo total vira K·y + c·x, e a restrição x ≤ M·y garante que a parcela fixa só entra quando há produção.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:31 Tipos: pura, mista e binária (0-1)\n01:33 Por que a prática exige inteiros\n02:33 Exemplo de modelo inteiro puro\n03:15 Aplicação 1: cinco investimentos\n04:09 Aplicação 2: dois recursos alternativos\n05:20 Aplicação 3: custo fixo de instalação\n07:36 Variáveis binárias: sim ou não\n08:07 Modelando as restrições lógicas\n10:52 Restrições alternativas com M grande\n13:58 Custo fixo com binária auxiliar\n16:07 A restrição x ≤ My\n\n⚠️ Continue na Parte 2, com as formulações clássicas (mochila, caixeiro viajante, roteamento): https://youtu.be/iBXL2aUR29Y\n\n⚠️ E como resolver um problema inteiro? Veja o Branch and Bound, Parte 1: https://youtu.be/fXvZ2FejRBY\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem achou que bastava arredondar a solução do Simplex!\n\n#PesquisaOperacional #PO #ProgramacaoInteira #VariaveisBinarias #Modelagem #ProgramacaoLinear #Otimização #UNIRIO"
+}

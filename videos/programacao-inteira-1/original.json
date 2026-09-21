@@ -1,0 +1,35 @@
+{
+  "video_id": "aE3Ihiqg6wo",
+  "url": "https://youtu.be/aE3Ihiqg6wo",
+  "published_at": "2026-01-02T21:13:17Z",
+  "title": "PO2: Programação Inteira - Parte 1",
+  "description": "📌 O que você vai aprender neste vídeo:Tipos de Programação Inteira: A diferença entre modelos Puros, Mistos e Binários (0-1) [00:31].\nImportância na Prática: Por que muitos problemas reais de logística e produção exigem soluções inteiras [01:33].\nVariáveis Binárias: O uso de 0 e 1 para representar decisões lógicas de \"sim\" ou \"não\" [07:36].\nAplicação 1 (Investimentos): Como modelar restrições lógicas, como \"se o investimento A for feito, o B também deve ser\" [08:07].\nAplicações 2 (Restrições Alternativas): O uso do \"M grande\" para permitir que o modelo escolha entre diferentes recursos [10:52].\nAplicação 3 (Custo Fixo): Como lidar com a descontinuidade de custos de instalação e produção usando binárias [13:58].\nGarantia de Ativação: O papel da restrição $x \\le My$ para garantir que custos fixos sejam contabilizados apenas se houver produção [16:07].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/aE3Ihiqg6wo/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/aE3Ihiqg6wo/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/aE3Ihiqg6wo/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/aE3Ihiqg6wo/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/aE3Ihiqg6wo/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

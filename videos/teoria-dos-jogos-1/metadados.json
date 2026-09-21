@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "TEORIA DOS JOGOS - Soma Zero e a Matriz de Payoff - Parte 1",
+    "TEORIA DOS JOGOS - Estratégias Dominadas e Ponto de Sela - Parte 1",
+    "TEORIA DOS JOGOS - O Que É um Jogo de Soma Zero? - Parte 1",
+    "TEORIA DOS JOGOS - Maximin, Minimax e Ponto de Sela - Parte 1",
+    "TEORIA DOS JOGOS - Introdução e Jogos de Soma Zero - Parte 1"
+  ],
+  "titulo": "TEORIA DOS JOGOS - Soma Zero e a Matriz de Payoff - Parte 1",
+  "gancho": "Duas empresas disputando o mesmo mercado, dois países negociando, dois jogadores numa mesa: como decidir a melhor jogada quando o outro lado também é inteligente e quer ganhar de você? 🤔 Nesta primeira aula de Teoria dos Jogos, você aprende o que é um jogo de soma zero, como ler a matriz de payoff e dois jeitos de encontrar a solução: eliminando estratégias dominadas e buscando o ponto de sela.",
+  "objetivos": [
+    "De onde veio a Teoria dos Jogos: de Von Neumann ao Equilíbrio de Nash, e por que ela é uma teoria matemática do conflito entre oponentes racionais.",
+    "O que caracteriza um jogo de soma zero com dois jogadores e como a tabela de prêmios (matriz de payoff) resume todos os ganhos e perdas em uma única tabela.",
+    "Quais são as hipóteses do jogo (jogadores racionais que conhecem a tabela) e por que elas obrigam você a pensar do ponto de vista do oponente.",
+    "Como reduzir um jogo eliminando estratégias dominadas, até sobrar a jogada ótima de cada lado e o valor do jogo.",
+    "Como aplicar o princípio do melhor do pior (maximin e minimax) para encontrar o ponto de sela, e o que acontece quando o jogo não tem nenhum."
+  ],
+  "fechamento": "Fechamos com dois jogos resolvidos: um por eliminação de estratégias dominadas (valor do jogo V = 1) e outro pelo ponto de sela onde maximin = minimax = 0, além de um jogo instável, sem ponto de sela, que só se resolve com estratégias mistas.",
+  "cta_complemento": "quer entender como pensar quando o adversário também está pensando",
+  "hashtags_tema": [
+    "#TeoriaDosJogos",
+    "#SomaZero",
+    "#Payoff",
+    "#PontoDeSela"
+  ],
+  "tags": [
+    "teoria dos jogos",
+    "jogos de soma zero",
+    "matriz de payoff",
+    "tabela de prêmios",
+    "estratégias dominadas",
+    "estratégia dominante",
+    "ponto de sela",
+    "maximin",
+    "minimax",
+    "valor do jogo",
+    "von neumann",
+    "equilíbrio de nash",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura e contexto histórico"
+    },
+    {
+      "tempo": "01:16",
+      "titulo": "O que é um jogo?"
+    },
+    {
+      "tempo": "02:43",
+      "titulo": "Jogos de soma zero com dois jogadores"
+    },
+    {
+      "tempo": "03:51",
+      "titulo": "Tabela de prêmios (matriz de payoff)"
+    },
+    {
+      "tempo": "05:31",
+      "titulo": "Hipóteses do jogo"
+    },
+    {
+      "tempo": "07:06",
+      "titulo": "Estratégias dominadas"
+    },
+    {
+      "tempo": "08:06",
+      "titulo": "Exemplo 1: eliminando estratégias dominadas"
+    },
+    {
+      "tempo": "14:12",
+      "titulo": "Exemplo 2: o melhor do pior"
+    },
+    {
+      "tempo": "19:47",
+      "titulo": "Maximin e Minimax"
+    },
+    {
+      "tempo": "20:37",
+      "titulo": "Ponto de sela e equilíbrio"
+    },
+    {
+      "tempo": "23:16",
+      "titulo": "Jogo sem ponto de sela: instável"
+    },
+    {
+      "tempo": "25:48",
+      "titulo": "Estratégias mistas: o que vem na Parte 2"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde resolvemos o jogo sem ponto de sela com estratégias mistas e o método gráfico",
+      "url": "https://youtu.be/mlJtplCFGqQ"
+    },
+    {
+      "contexto": "Na Parte 3, saímos da soma zero e chegamos ao Equilíbrio de Nash",
+      "url": "https://youtu.be/Y7aezjpwCjU"
+    }
+  ],
+  "descricao": "Duas empresas disputando o mesmo mercado, dois países negociando, dois jogadores numa mesa: como decidir a melhor jogada quando o outro lado também é inteligente e quer ganhar de você? 🤔 Nesta primeira aula de Teoria dos Jogos, você aprende o que é um jogo de soma zero, como ler a matriz de payoff e dois jeitos de encontrar a solução: eliminando estratégias dominadas e buscando o ponto de sela.\n\nNesta aula, você vai aprender:\n\nDe onde veio a Teoria dos Jogos: de Von Neumann ao Equilíbrio de Nash, e por que ela é uma teoria matemática do conflito entre oponentes racionais.\n\nO que caracteriza um jogo de soma zero com dois jogadores e como a tabela de prêmios (matriz de payoff) resume todos os ganhos e perdas em uma única tabela.\n\nQuais são as hipóteses do jogo (jogadores racionais que conhecem a tabela) e por que elas obrigam você a pensar do ponto de vista do oponente.\n\nComo reduzir um jogo eliminando estratégias dominadas, até sobrar a jogada ótima de cada lado e o valor do jogo.\n\nComo aplicar o princípio do melhor do pior (maximin e minimax) para encontrar o ponto de sela, e o que acontece quando o jogo não tem nenhum.\n\nFechamos com dois jogos resolvidos: um por eliminação de estratégias dominadas (valor do jogo V = 1) e outro pelo ponto de sela onde maximin = minimax = 0, além de um jogo instável, sem ponto de sela, que só se resolve com estratégias mistas.\n\n⏱️ Capítulos:\n00:00 Abertura e contexto histórico\n01:16 O que é um jogo?\n02:43 Jogos de soma zero com dois jogadores\n03:51 Tabela de prêmios (matriz de payoff)\n05:31 Hipóteses do jogo\n07:06 Estratégias dominadas\n08:06 Exemplo 1: eliminando estratégias dominadas\n14:12 Exemplo 2: o melhor do pior\n19:47 Maximin e Minimax\n20:37 Ponto de sela e equilíbrio\n23:16 Jogo sem ponto de sela: instável\n25:48 Estratégias mistas: o que vem na Parte 2\n\n⚠️ Continue na Parte 2, onde resolvemos o jogo sem ponto de sela com estratégias mistas e o método gráfico: https://youtu.be/mlJtplCFGqQ\n\n⚠️ Na Parte 3, saímos da soma zero e chegamos ao Equilíbrio de Nash: https://youtu.be/Y7aezjpwCjU\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem quer entender como pensar quando o adversário também está pensando!\n\n#PesquisaOperacional #PO #TeoriaDosJogos #SomaZero #Payoff #PontoDeSela #Otimização #UNIRIO"
+}

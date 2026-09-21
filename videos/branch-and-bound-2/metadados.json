@@ -1,0 +1,82 @@
+{
+  "titulos_candidatos": [
+    "BRANCH AND BOUND - Ramificação e Critérios de Poda - Parte 2",
+    "BRANCH AND BOUND - Como Ramificar e Podar a Árvore - Parte 2",
+    "BRANCH AND BOUND - Teto, Piso e Poda da Árvore - Parte 2",
+    "BRANCH AND BOUND - Quando Podar um Ramo? - Parte 2",
+    "BRANCH AND BOUND - Ramificação, Poda e Relaxação Linear - Parte 2"
+  ],
+  "titulo": "BRANCH AND BOUND - Ramificação e Critérios de Poda - Parte 2",
+  "gancho": "A relaxação linear deu x1 = 3,75 e x2 = 1,5. E agora — arredonda? 🤔 Não: arredondar pode cair fora da região viável. Nesta aula você vê como o Branch and Bound ramifica o problema com teto e piso e quais critérios permitem podar um ramo da árvore sem perder o ótimo.",
+  "objetivos": [
+    "Como ramificar (branching): dividir o problema em dois subproblemas, um com x ≥ teto e outro com x ≤ piso da variável que ainda não é inteira.",
+    "Os critérios de poda (bounding): quando um ramo pode ser descartado por inviabilidade, por já ter solução inteira ou porque seu limite não supera a melhor solução inteira encontrada.",
+    "Por que a poda importa: descartar ramos reduz o espaço de busca sem correr o risco de perder a solução ótima.",
+    "O que é a relaxação linear de um problema de Programação Inteira e como ela vira o nó raiz da árvore.",
+    "A diferença entre a região viável contínua e os pontos discretos da solução inteira, e por que arredondar pode gerar uma solução inviável."
+  ],
+  "fechamento": "Fechamos com o ciclo completo do algoritmo: da relaxação linear no nó raiz, ramificando, limitando e podando até chegar à solução ótima inteira.",
+  "cta_complemento": "vai encarar programação inteira na prova",
+  "hashtags_tema": [
+    "#BranchAndBound",
+    "#ProgramacaoInteira",
+    "#RelaxacaoLinear"
+  ],
+  "tags": [
+    "branch and bound",
+    "branch & bound",
+    "algoritmo branch and bound",
+    "programação inteira",
+    "programação linear inteira",
+    "ramificação e poda",
+    "poda da árvore",
+    "relaxação linear",
+    "teto e piso",
+    "árvore de busca",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Ramificação: teto e piso da variável"
+    },
+    {
+      "tempo": "01:18",
+      "titulo": "Critérios de poda: limites e inviabilidade"
+    },
+    {
+      "tempo": "01:47",
+      "titulo": "Reduzindo o espaço de busca"
+    },
+    {
+      "tempo": "02:05",
+      "titulo": "Exemplo: a relaxação linear"
+    },
+    {
+      "tempo": "02:41",
+      "titulo": "Por que arredondar não funciona"
+    },
+    {
+      "tempo": "03:15",
+      "titulo": "Região contínua vs pontos inteiros"
+    },
+    {
+      "tempo": "03:40",
+      "titulo": "Do nó raiz até a solução ótima"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 3, onde o algoritmo é executado do início ao fim",
+      "url": "https://youtu.be/fF1V3v4Lso8"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1, sobre relaxação linear e a árvore? Comece por aqui",
+      "url": "https://youtu.be/fXvZ2FejRBY"
+    }
+  ],
+  "descricao": "A relaxação linear deu x1 = 3,75 e x2 = 1,5. E agora — arredonda? 🤔 Não: arredondar pode cair fora da região viável. Nesta aula você vê como o Branch and Bound ramifica o problema com teto e piso e quais critérios permitem podar um ramo da árvore sem perder o ótimo.\n\nNesta aula, você vai aprender:\n\nComo ramificar (branching): dividir o problema em dois subproblemas, um com x ≥ teto e outro com x ≤ piso da variável que ainda não é inteira.\n\nOs critérios de poda (bounding): quando um ramo pode ser descartado por inviabilidade, por já ter solução inteira ou porque seu limite não supera a melhor solução inteira encontrada.\n\nPor que a poda importa: descartar ramos reduz o espaço de busca sem correr o risco de perder a solução ótima.\n\nO que é a relaxação linear de um problema de Programação Inteira e como ela vira o nó raiz da árvore.\n\nA diferença entre a região viável contínua e os pontos discretos da solução inteira, e por que arredondar pode gerar uma solução inviável.\n\nFechamos com o ciclo completo do algoritmo: da relaxação linear no nó raiz, ramificando, limitando e podando até chegar à solução ótima inteira.\n\n⏱️ Capítulos:\n00:00 Ramificação: teto e piso da variável\n01:18 Critérios de poda: limites e inviabilidade\n01:47 Reduzindo o espaço de busca\n02:05 Exemplo: a relaxação linear\n02:41 Por que arredondar não funciona\n03:15 Região contínua vs pontos inteiros\n03:40 Do nó raiz até a solução ótima\n\n⚠️ Continue na Parte 3, onde o algoritmo é executado do início ao fim: https://youtu.be/fF1V3v4Lso8\n\n⚠️ Ainda não viu a Parte 1, sobre relaxação linear e a árvore? Comece por aqui: https://youtu.be/fXvZ2FejRBY\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai encarar programação inteira na prova!\n\n#PesquisaOperacional #PO #BranchAndBound #ProgramacaoInteira #RelaxacaoLinear #Otimização #UNIRIO"
+}

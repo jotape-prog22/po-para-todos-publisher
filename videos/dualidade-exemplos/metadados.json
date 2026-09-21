@@ -1,0 +1,112 @@
+{
+  "titulos_candidatos": [
+    "DUALIDADE - Exemplos e Interpretação Econômica - Parte 3",
+    "DUALIDADE - Preço-Sombra e Valor Marginal do Recurso - Parte 3",
+    "PREÇO-SOMBRA - O Que a Variável Dual Significa - Parte 3",
+    "VARIÁVEIS DUAIS - Interpretação Econômica com Exemplo - Parte 3",
+    "DUALIDADE - Quanto Vale uma Hora a Mais de Trabalho? - Parte 3"
+  ],
+  "titulo": "DUALIDADE - Exemplos e Interpretação Econômica - Parte 3",
+  "gancho": "Você montou o Dual e achou W1 = 1, W2 = 1/2 e W3 = 0. Mas o que esses números dizem sobre a empresa? 🤔 Nesta aula vamos interpretar as variáveis duais como o valor marginal de cada recurso — o Preço-Sombra — num exemplo de maximização de lucro.",
+  "objetivos": [
+    "Como montar o Dual de um problema de maximização de lucro com três recursos (trabalho, matéria-prima e espaço físico) e ler a solução ótima dos dois problemas.",
+    "Onde a solução ótima do Dual aparece na tabela Simplex ótima do Primal: na linha Z, nas colunas das variáveis de folga.",
+    "Por que o Primal é o problema de alocar recursos para maximizar o lucro e o Dual é o problema de precificar esses mesmos recursos minimizando o custo.",
+    "O que é o Preço-Sombra e por que a variável dual mede o impacto no lucro quando a disponibilidade de um recurso muda em uma unidade.",
+    "Por que um recurso com folga tem preço-sombra zero, e como usar isso para decidir quanto vale pagar por uma hora ou um quilo a mais."
+  ],
+  "fechamento": "Fechamos com a leitura dos três preços-sombra do exemplo: cada hora extra de trabalho vale R$ 1, cada quilo extra de matéria-prima vale R$ 0,50, e mais espaço físico não vale nada, porque sobraram 8 m².",
+  "cta_complemento": "ainda não sabe o que fazer com a variável dual",
+  "hashtags_tema": [
+    "#Dualidade",
+    "#PrecoSombra",
+    "#ProgramacaoLinear",
+    "#VariaveisDuais"
+  ],
+  "tags": [
+    "dualidade",
+    "exemplos de dualidade",
+    "interpretação econômica da dualidade",
+    "preço sombra",
+    "shadow price",
+    "variáveis duais",
+    "valor marginal",
+    "primal e dual",
+    "programação linear",
+    "tabela simplex",
+    "análise de sensibilidade",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:26",
+      "titulo": "Exemplo — Maximização de lucro"
+    },
+    {
+      "tempo": "01:35",
+      "titulo": "Solução ótima do Primal e a folga"
+    },
+    {
+      "tempo": "02:38",
+      "titulo": "Montando o Dual"
+    },
+    {
+      "tempo": "04:02",
+      "titulo": "O Dual na tabela Simplex ótima"
+    },
+    {
+      "tempo": "05:54",
+      "titulo": "Interpretação econômica: Primal e Dual"
+    },
+    {
+      "tempo": "07:02",
+      "titulo": "A derivada em relação ao recurso"
+    },
+    {
+      "tempo": "09:04",
+      "titulo": "Preço-Sombra: valor marginal do recurso"
+    },
+    {
+      "tempo": "10:20",
+      "titulo": "Trabalho: W1 = 1"
+    },
+    {
+      "tempo": "11:04",
+      "titulo": "Matéria-prima: W2 = 1/2"
+    },
+    {
+      "tempo": "12:00",
+      "titulo": "Espaço físico: W3 = 0"
+    },
+    {
+      "tempo": "12:42",
+      "titulo": "Resumo — Alocar e precificar recursos"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Veio da Parte 2? Lá estão as relações entre o Primal e o Dual",
+      "url": "https://youtu.be/RU10F3dU0Xo"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui",
+      "url": "https://youtu.be/LkJlsxEtaE4"
+    },
+    {
+      "contexto": "Por que a folga zera a variável dual? Veja o Teorema das Folgas Complementares",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    },
+    {
+      "contexto": "Quer ver o Preço-Sombra virando decisão? Continue na Análise de Sensibilidade, Parte 1",
+      "url": "https://youtu.be/Z-duqQJFa-4"
+    }
+  ],
+  "descricao": "Você montou o Dual e achou W1 = 1, W2 = 1/2 e W3 = 0. Mas o que esses números dizem sobre a empresa? 🤔 Nesta aula vamos interpretar as variáveis duais como o valor marginal de cada recurso — o Preço-Sombra — num exemplo de maximização de lucro.\n\nNesta aula, você vai aprender:\n\nComo montar o Dual de um problema de maximização de lucro com três recursos (trabalho, matéria-prima e espaço físico) e ler a solução ótima dos dois problemas.\n\nOnde a solução ótima do Dual aparece na tabela Simplex ótima do Primal: na linha Z, nas colunas das variáveis de folga.\n\nPor que o Primal é o problema de alocar recursos para maximizar o lucro e o Dual é o problema de precificar esses mesmos recursos minimizando o custo.\n\nO que é o Preço-Sombra e por que a variável dual mede o impacto no lucro quando a disponibilidade de um recurso muda em uma unidade.\n\nPor que um recurso com folga tem preço-sombra zero, e como usar isso para decidir quanto vale pagar por uma hora ou um quilo a mais.\n\nFechamos com a leitura dos três preços-sombra do exemplo: cada hora extra de trabalho vale R$ 1, cada quilo extra de matéria-prima vale R$ 0,50, e mais espaço físico não vale nada, porque sobraram 8 m².\n\n⏱️ Capítulos:\n00:00 Abertura\n00:26 Exemplo — Maximização de lucro\n01:35 Solução ótima do Primal e a folga\n02:38 Montando o Dual\n04:02 O Dual na tabela Simplex ótima\n05:54 Interpretação econômica: Primal e Dual\n07:02 A derivada em relação ao recurso\n09:04 Preço-Sombra: valor marginal do recurso\n10:20 Trabalho: W1 = 1\n11:04 Matéria-prima: W2 = 1/2\n12:00 Espaço físico: W3 = 0\n12:42 Resumo — Alocar e precificar recursos\n\n⚠️ Veio da Parte 2? Lá estão as relações entre o Primal e o Dual: https://youtu.be/RU10F3dU0Xo\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui: https://youtu.be/LkJlsxEtaE4\n\n⚠️ Por que a folga zera a variável dual? Veja o Teorema das Folgas Complementares: https://youtu.be/6n6oPR70LSA\n\n⚠️ Quer ver o Preço-Sombra virando decisão? Continue na Análise de Sensibilidade, Parte 1: https://youtu.be/Z-duqQJFa-4\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem ainda não sabe o que fazer com a variável dual!\n\n#PesquisaOperacional #PO #Dualidade #PrecoSombra #ProgramacaoLinear #VariaveisDuais #Otimização #UNIRIO"
+}

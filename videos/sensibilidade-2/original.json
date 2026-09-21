@@ -1,0 +1,35 @@
+{
+  "video_id": "C0tpwFouwMA",
+  "url": "https://youtu.be/C0tpwFouwMA",
+  "published_at": "2025-10-26T17:05:36Z",
+  "title": "PO1: Análise de Sensibilidade e Pós-otimização (Utilizando o Solver) - Parte 2",
+  "description": "Aprenda a interpretar as informações essenciais da Pós-Otimização para entender a estabilidade e o valor econômico da sua solução ótima de Programação Linear (PPL).\nEste vídeo explora o significado das métricas de sensibilidade (Custo Reduzido e Preço Sombra) e seus limites de validade. O foco principal é na interpretação gerencial dos resultados para a tomada de decisões.\n\n💡 Conceitos Chave e Timestamps\nConfiguração e Solução do PPL (Uso do Solver): A introdução e a configuração do problema de exemplo no Excel, culminando na geração dos relatórios de sensibilidade. [00:00:19] -\nIntervalo de Otimilidade da Função Objetivo (FO):\nEste intervalo mostra o limite dentro do qual os coeficientes de lucro/custo (os $C_j$) podem variar individualmente sem alterar a base ótima, ou seja, sem mudar quais produtos você deve produzir e em que proporções. [00:04:20] -\nCusto Reduzido (Reduced Cost):\nPara uma variável não básica, o Custo Reduzido informa o quanto o lucro total seria reduzido se uma unidade desse produto fosse forçada a entrar na solução. [00:05:28] -\nAlternativamente, ele indica o valor mínimo que o coeficiente de lucro dessa variável precisa alcançar para que valha a pena produzi-la. [00:06:22] -\nPreço Sombra (Dual Price):\nO Preço Sombra representa o valor marginal de um recurso. Ele quantifica o quanto o valor ótimo da Função Objetivo (lucro) irá aumentar ou diminuir se a disponibilidade daquele recurso (RHS) for alterada em uma unidade. [00:07:37]\nRegra Fundamental: Se uma restrição tem folga (o recurso não foi totalmente utilizado), seu Preço Sombra é nulo (zero).\nIntervalo de Validade do Preço Sombra (RHS):\nEste intervalo mostra o limite dentro do qual a disponibilidade de um recurso (RHS) pode ser alterada individualmente sem alterar o valor do seu Preço Sombra, ou seja, mantendo a validade daquele valor marginal. [00:08:21] -",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/C0tpwFouwMA/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/C0tpwFouwMA/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/C0tpwFouwMA/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/C0tpwFouwMA/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/C0tpwFouwMA/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

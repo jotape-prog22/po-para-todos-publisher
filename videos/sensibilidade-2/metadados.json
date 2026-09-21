@@ -1,0 +1,87 @@
+{
+  "titulos_candidatos": [
+    "ANÁLISE DE SENSIBILIDADE - Lendo o Relatório do Solver - Parte 2",
+    "ANÁLISE DE SENSIBILIDADE - Custo Reduzido e Preço-Sombra - Parte 2",
+    "ANÁLISE DE SENSIBILIDADE - Como Ler o Relatório do Solver - Parte 2",
+    "PREÇO-SOMBRA - Como Ler o Relatório do Solver - Parte 2",
+    "SOLVER NO EXCEL - Relatório de Sensibilidade Explicado - Parte 2"
+  ],
+  "titulo": "ANÁLISE DE SENSIBILIDADE - Lendo o Relatório do Solver - Parte 2",
+  "gancho": "O Solver achou a solução ótima e gerou o Relatório de Sensibilidade. E agora, o que significam aqueles números de custo reduzido, preço-sombra e os tais limites? 🤔 Nesta aula vamos ler o relatório linha por linha e traduzir cada valor em uma decisão gerencial.",
+  "objetivos": [
+    "Como montar o problema de exemplo no Excel, rodar o Solver e gerar o Relatório de Sensibilidade.",
+    "O que é o intervalo de otimalidade e até onde o lucro de um produto pode variar sem mudar o que você deve produzir.",
+    "O que o custo reduzido diz sobre um produto que ficou de fora da solução e qual lucro ele precisaria ter para valer a pena.",
+    "O que é o preço-sombra de um recurso, por que ele é zero quando sobra folga e quanto vale uma unidade a mais desse recurso.",
+    "Como usar o intervalo de validade do preço-sombra para saber até onde esse valor marginal continua verdadeiro."
+  ],
+  "fechamento": "Fechamos com o relatório do exemplo inteiramente interpretado: o que produzir, quanto vale cada recurso e até onde os dados podem mudar sem invalidar a resposta.",
+  "cta_complemento": "vai fazer prova de análise de sensibilidade",
+  "hashtags_tema": [
+    "#AnaliseDeSensibilidade",
+    "#PrecoSombra",
+    "#Solver",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "análise de sensibilidade",
+    "pós-otimização",
+    "relatório de sensibilidade",
+    "solver excel",
+    "preço sombra",
+    "custo reduzido",
+    "intervalo de otimalidade",
+    "dual price",
+    "programação linear",
+    "PPL",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:19",
+      "titulo": "Montando e resolvendo o PPL no Solver"
+    },
+    {
+      "tempo": "04:20",
+      "titulo": "Intervalo de otimalidade dos coeficientes"
+    },
+    {
+      "tempo": "05:28",
+      "titulo": "Custo reduzido: o que ele diz"
+    },
+    {
+      "tempo": "06:22",
+      "titulo": "Custo reduzido: lucro mínimo para produzir"
+    },
+    {
+      "tempo": "07:37",
+      "titulo": "Preço-sombra: o valor de cada recurso"
+    },
+    {
+      "tempo": "08:21",
+      "titulo": "Intervalo de validade do preço-sombra"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece pela teoria por trás do preço-sombra e do custo reduzido",
+      "url": "https://youtu.be/Z-duqQJFa-4"
+    },
+    {
+      "contexto": "Continue na Parte 3, onde fazemos a mesma análise no LINDO",
+      "url": "https://youtu.be/nHPLI1uM0ks"
+    },
+    {
+      "contexto": "Veja o Relatório de Sensibilidade do Solver sendo gerado no Excel, passo a passo",
+      "url": "https://youtu.be/yGP0LK19R30"
+    }
+  ],
+  "descricao": "O Solver achou a solução ótima e gerou o Relatório de Sensibilidade. E agora, o que significam aqueles números de custo reduzido, preço-sombra e os tais limites? 🤔 Nesta aula vamos ler o relatório linha por linha e traduzir cada valor em uma decisão gerencial.\n\nNesta aula, você vai aprender:\n\nComo montar o problema de exemplo no Excel, rodar o Solver e gerar o Relatório de Sensibilidade.\n\nO que é o intervalo de otimalidade e até onde o lucro de um produto pode variar sem mudar o que você deve produzir.\n\nO que o custo reduzido diz sobre um produto que ficou de fora da solução e qual lucro ele precisaria ter para valer a pena.\n\nO que é o preço-sombra de um recurso, por que ele é zero quando sobra folga e quanto vale uma unidade a mais desse recurso.\n\nComo usar o intervalo de validade do preço-sombra para saber até onde esse valor marginal continua verdadeiro.\n\nFechamos com o relatório do exemplo inteiramente interpretado: o que produzir, quanto vale cada recurso e até onde os dados podem mudar sem invalidar a resposta.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:19 Montando e resolvendo o PPL no Solver\n04:20 Intervalo de otimalidade dos coeficientes\n05:28 Custo reduzido: o que ele diz\n06:22 Custo reduzido: lucro mínimo para produzir\n07:37 Preço-sombra: o valor de cada recurso\n08:21 Intervalo de validade do preço-sombra\n\n⚠️ Ainda não viu a Parte 1? Comece pela teoria por trás do preço-sombra e do custo reduzido: https://youtu.be/Z-duqQJFa-4\n\n⚠️ Continue na Parte 3, onde fazemos a mesma análise no LINDO: https://youtu.be/nHPLI1uM0ks\n\n⚠️ Veja o Relatório de Sensibilidade do Solver sendo gerado no Excel, passo a passo: https://youtu.be/yGP0LK19R30\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai fazer prova de análise de sensibilidade!\n\n#PesquisaOperacional #PO #AnaliseDeSensibilidade #PrecoSombra #Solver #ProgramacaoLinear #Otimização #UNIRIO"
+}

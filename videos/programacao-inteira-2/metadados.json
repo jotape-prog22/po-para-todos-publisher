@@ -1,0 +1,104 @@
+{
+  "titulos_candidatos": [
+    "PROGRAMAÇÃO INTEIRA - Mochila, Caixeiro Viajante e Mais - Parte 2",
+    "PROGRAMAÇÃO INTEIRA - Formulações Clássicas - Parte 2",
+    "PROGRAMAÇÃO INTEIRA - Mochila, Bin Packing, TSP e VRP - Parte 2",
+    "PROGRAMAÇÃO INTEIRA - Modelos Clássicos de Otimização - Parte 2",
+    "PROGRAMAÇÃO INTEIRA - Como Modelar Mochila, Rotas e Mais - Parte 2"
+  ],
+  "titulo": "PROGRAMAÇÃO INTEIRA - Mochila, Caixeiro Viajante e Mais - Parte 2",
+  "gancho": "Quais projetos escolher com um capital limitado? Quantos contêineres bastam para uma carga? Qual a rota mais curta que visita todas as cidades e volta ao ponto de partida? 🤔 Todos esses problemas são, no fundo, o mesmo tipo de modelo. Nesta aula vamos conhecer as formulações clássicas da Programação Inteira, uma a uma: variáveis de decisão, função objetivo e restrições.",
+  "objetivos": [
+    "Como formular os três problemas da mochila (0-1, múltiplas mochilas e empacotamento) e por que uma variável binária extra decide se uma mochila é usada.",
+    "Como modelar o corte unidimensional de barras para atender à demanda usando o menor número de barras.",
+    "Como formular o Problema do Caixeiro Viajante como um ciclo hamiltoniano de distância mínima, no grafo não orientado e no orientado.",
+    "O que são sub-rotas, por que a restrição de grau dois não as impede e como o conjunto de restrições de eliminação de sub-rotas resolve isso.",
+    "Como o Roteamento de Veículos estende o Caixeiro Viajante com frota, capacidade e tempo, e como se formula a localização de facilidades."
+  ],
+  "fechamento": "Fechamos com o modelo de localização de facilidades: escolher onde abrir instalações para atender toda a demanda com o menor custo de transporte e de manutenção.",
+  "cta_complemento": "vive se perguntando como modelar um problema de logística",
+  "hashtags_tema": [
+    "#ProgramacaoInteira",
+    "#ProblemaDaMochila",
+    "#CaixeiroViajante",
+    "#Roteamento"
+  ],
+  "tags": [
+    "programação inteira",
+    "problema da mochila",
+    "mochila 0-1",
+    "bin packing",
+    "problema de corte",
+    "caixeiro viajante",
+    "TSP",
+    "sub-rotas",
+    "roteamento de veículos",
+    "VRP",
+    "localização de facilidades",
+    "p-medianas",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura — formulações clássicas"
+    },
+    {
+      "tempo": "00:56",
+      "titulo": "Problema da Mochila 0-1"
+    },
+    {
+      "tempo": "02:14",
+      "titulo": "Problema das Múltiplas Mochilas"
+    },
+    {
+      "tempo": "04:31",
+      "titulo": "Empacotamento em Mochilas (Bin Packing)"
+    },
+    {
+      "tempo": "06:58",
+      "titulo": "Problema de Corte Unidimensional"
+    },
+    {
+      "tempo": "09:40",
+      "titulo": "Problema do Caixeiro Viajante (TSP)"
+    },
+    {
+      "tempo": "16:05",
+      "titulo": "Como evitar a formação de sub-rotas"
+    },
+    {
+      "tempo": "18:36",
+      "titulo": "Quando o exato não dá conta: heurísticas"
+    },
+    {
+      "tempo": "19:31",
+      "titulo": "Caixeiro Viajante no grafo orientado"
+    },
+    {
+      "tempo": "21:31",
+      "titulo": "Roteamento de Veículos (VRP)"
+    },
+    {
+      "tempo": "27:25",
+      "titulo": "Localização de Facilidades (p-medianas)"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1 (tipos de programação inteira e variáveis binárias)? Comece por aqui",
+      "url": "https://youtu.be/aE3Ihiqg6wo"
+    },
+    {
+      "contexto": "Quer ver como esses modelos são resolvidos? Assista à Parte 1 do Branch and Bound",
+      "url": "https://youtu.be/fXvZ2FejRBY"
+    },
+    {
+      "contexto": "Continue na Parte 3, com o método gráfico para programação inteira",
+      "url": "https://youtu.be/z2_XpNuRJ7w"
+    }
+  ],
+  "descricao": "Quais projetos escolher com um capital limitado? Quantos contêineres bastam para uma carga? Qual a rota mais curta que visita todas as cidades e volta ao ponto de partida? 🤔 Todos esses problemas são, no fundo, o mesmo tipo de modelo. Nesta aula vamos conhecer as formulações clássicas da Programação Inteira, uma a uma: variáveis de decisão, função objetivo e restrições.\n\nNesta aula, você vai aprender:\n\nComo formular os três problemas da mochila (0-1, múltiplas mochilas e empacotamento) e por que uma variável binária extra decide se uma mochila é usada.\n\nComo modelar o corte unidimensional de barras para atender à demanda usando o menor número de barras.\n\nComo formular o Problema do Caixeiro Viajante como um ciclo hamiltoniano de distância mínima, no grafo não orientado e no orientado.\n\nO que são sub-rotas, por que a restrição de grau dois não as impede e como o conjunto de restrições de eliminação de sub-rotas resolve isso.\n\nComo o Roteamento de Veículos estende o Caixeiro Viajante com frota, capacidade e tempo, e como se formula a localização de facilidades.\n\nFechamos com o modelo de localização de facilidades: escolher onde abrir instalações para atender toda a demanda com o menor custo de transporte e de manutenção.\n\n⏱️ Capítulos:\n00:00 Abertura — formulações clássicas\n00:56 Problema da Mochila 0-1\n02:14 Problema das Múltiplas Mochilas\n04:31 Empacotamento em Mochilas (Bin Packing)\n06:58 Problema de Corte Unidimensional\n09:40 Problema do Caixeiro Viajante (TSP)\n16:05 Como evitar a formação de sub-rotas\n18:36 Quando o exato não dá conta: heurísticas\n19:31 Caixeiro Viajante no grafo orientado\n21:31 Roteamento de Veículos (VRP)\n27:25 Localização de Facilidades (p-medianas)\n\n⚠️ Ainda não viu a Parte 1 (tipos de programação inteira e variáveis binárias)? Comece por aqui: https://youtu.be/aE3Ihiqg6wo\n\n⚠️ Quer ver como esses modelos são resolvidos? Assista à Parte 1 do Branch and Bound: https://youtu.be/fXvZ2FejRBY\n\n⚠️ Continue na Parte 3, com o método gráfico para programação inteira: https://youtu.be/z2_XpNuRJ7w\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vive se perguntando como modelar um problema de logística!\n\n#PesquisaOperacional #PO #ProgramacaoInteira #ProblemaDaMochila #CaixeiroViajante #Roteamento #Otimização #UNIRIO"
+}

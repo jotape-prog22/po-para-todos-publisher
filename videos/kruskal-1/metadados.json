@@ -1,0 +1,96 @@
+{
+  "titulos_candidatos": [
+    "KRUSKAL - Árvore Geradora Mínima Passo a Passo - Parte 1",
+    "ALGORITMO DE KRUSKAL - Como Montar a Árvore Geradora Mínima - Parte 1",
+    "ÁRVORE GERADORA MÍNIMA - O Algoritmo de Kruskal Explicado - Parte 1",
+    "KRUSKAL - Os Passos do Algoritmo e o Início do Exemplo - Parte 1",
+    "KRUSKAL - Como Ligar Todos os Vértices com Custo Mínimo? - Parte 1"
+  ],
+  "titulo": "KRUSKAL - Árvore Geradora Mínima Passo a Passo - Parte 1",
+  "gancho": "Como ligar todos os vértices de uma rede gastando o mínimo possível, sem formar ciclo? 🤔 O Algoritmo de Kruskal faz isso escolhendo sempre a aresta mais barata que ainda serve. Nesta aula vamos ler os passos do algoritmo um a um e começar a executá-lo num grafo de 6 vértices.",
+  "objetivos": [
+    "A ideia do Kruskal: incluir arestas de menor peso, sem formar ciclo, até que todos os vértices estejam interligados.",
+    "Como montar a lista L de arestas em ordem não decrescente de peso e por que ela guia toda a execução.",
+    "O que são as subárvores iniciais, o conjunto T e o contador t, e por que o loop roda enquanto t é menor que n − 1.",
+    "A regra do ciclo: uma aresta entra em T só se seus dois vértices estão em subárvores diferentes, e aí as subárvores se unem.",
+    "Como executar as primeiras iterações no exemplo, retirando a aresta da lista e atualizando o contador."
+  ],
+  "fechamento": "Terminamos a Parte 1 com as duas primeiras arestas na árvore, BC e AC, e o contador em t = 2 de 5.",
+  "cta_complemento": "vai ter grafos na prova",
+  "hashtags_tema": [
+    "#Kruskal",
+    "#ArvoreGeradoraMinima",
+    "#Grafos",
+    "#AlgoritmoGuloso"
+  ],
+  "tags": [
+    "algoritmo de kruskal",
+    "kruskal",
+    "árvore geradora mínima",
+    "árvore geradora",
+    "AGM",
+    "minimum spanning tree",
+    "MST",
+    "grafos",
+    "teoria dos grafos",
+    "algoritmo guloso",
+    "algoritmo de prim",
+    "redes",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "A ideia do Algoritmo de Kruskal"
+    },
+    {
+      "tempo": "00:28",
+      "titulo": "Passo 1: a lista L de arestas ordenada"
+    },
+    {
+      "tempo": "00:42",
+      "titulo": "Passo 2: subárvores, T vazio e contador"
+    },
+    {
+      "tempo": "01:28",
+      "titulo": "O loop: enquanto t é menor que n − 1"
+    },
+    {
+      "tempo": "01:56",
+      "titulo": "A regra do ciclo e a união das subárvores"
+    },
+    {
+      "tempo": "02:32",
+      "titulo": "Exemplo: o grafo de 6 vértices e a lista L"
+    },
+    {
+      "tempo": "03:00",
+      "titulo": "Subárvores iniciais e contador em zero"
+    },
+    {
+      "tempo": "03:54",
+      "titulo": "Iteração 1: a aresta BC entra na árvore"
+    },
+    {
+      "tempo": "05:18",
+      "titulo": "Iteração 2: a aresta AC entra na árvore"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, com o fim da execução e a árvore final",
+      "url": "https://youtu.be/GCUj5iVwc-w"
+    },
+    {
+      "contexto": "Ainda não viu o problema da Árvore Geradora Mínima e as definições? Comece por aqui",
+      "url": "https://youtu.be/00hL3kAjiZw"
+    },
+    {
+      "contexto": "Quer conhecer a alternativa? Veja o Algoritmo de Prim",
+      "url": "https://youtu.be/lUUDScqcXtY"
+    }
+  ],
+  "descricao": "Como ligar todos os vértices de uma rede gastando o mínimo possível, sem formar ciclo? 🤔 O Algoritmo de Kruskal faz isso escolhendo sempre a aresta mais barata que ainda serve. Nesta aula vamos ler os passos do algoritmo um a um e começar a executá-lo num grafo de 6 vértices.\n\nNesta aula, você vai aprender:\n\nA ideia do Kruskal: incluir arestas de menor peso, sem formar ciclo, até que todos os vértices estejam interligados.\n\nComo montar a lista L de arestas em ordem não decrescente de peso e por que ela guia toda a execução.\n\nO que são as subárvores iniciais, o conjunto T e o contador t, e por que o loop roda enquanto t é menor que n − 1.\n\nA regra do ciclo: uma aresta entra em T só se seus dois vértices estão em subárvores diferentes, e aí as subárvores se unem.\n\nComo executar as primeiras iterações no exemplo, retirando a aresta da lista e atualizando o contador.\n\nTerminamos a Parte 1 com as duas primeiras arestas na árvore, BC e AC, e o contador em t = 2 de 5.\n\n⏱️ Capítulos:\n00:00 A ideia do Algoritmo de Kruskal\n00:28 Passo 1: a lista L de arestas ordenada\n00:42 Passo 2: subárvores, T vazio e contador\n01:28 O loop: enquanto t é menor que n − 1\n01:56 A regra do ciclo e a união das subárvores\n02:32 Exemplo: o grafo de 6 vértices e a lista L\n03:00 Subárvores iniciais e contador em zero\n03:54 Iteração 1: a aresta BC entra na árvore\n05:18 Iteração 2: a aresta AC entra na árvore\n\n⚠️ Continue na Parte 2, com o fim da execução e a árvore final: https://youtu.be/GCUj5iVwc-w\n\n⚠️ Ainda não viu o problema da Árvore Geradora Mínima e as definições? Comece por aqui: https://youtu.be/00hL3kAjiZw\n\n⚠️ Quer conhecer a alternativa? Veja o Algoritmo de Prim: https://youtu.be/lUUDScqcXtY\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai ter grafos na prova!\n\n#PesquisaOperacional #PO #Kruskal #ArvoreGeradoraMinima #Grafos #AlgoritmoGuloso #Otimização #UNIRIO"
+}

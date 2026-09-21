@@ -1,0 +1,98 @@
+{
+  "titulos_candidatos": [
+    "MÉTODO HÚNGARO - Problema da Designação Passo a Passo",
+    "MÉTODO HÚNGARO - Como Resolver o Problema da Designação",
+    "PROBLEMA DA DESIGNAÇÃO - Modelagem e Método Húngaro",
+    "MÉTODO HÚNGARO - Exemplo Resolvido em 6 Passos",
+    "DESIGNAÇÃO - Quem Faz o Quê? Método Húngaro"
+  ],
+  "titulo": "MÉTODO HÚNGARO - Problema da Designação Passo a Passo",
+  "gancho": "Você tem n pessoas (ou máquinas) e n tarefas, cada combinação com um custo, e cada um só pode fazer uma coisa: quem vai para onde? 🤔 Esse é o Problema da Designação, e nesta aula vamos modelá-lo como um PPL e resolvê-lo com o Método Húngaro, passo a passo, num exemplo completo.",
+  "objetivos": [
+    "O que caracteriza um Problema da Designação: as três hipóteses (n designados e n tarefas, um para um, custo por par) e como usar designados ou tarefas fantasmas quando elas não valem.",
+    "Como escrever o modelo matemático com variáveis binárias x_ij, minimizando o custo total sujeito a cada designado fazer exatamente uma tarefa e cada tarefa ter exatamente um designado.",
+    "Os seis passos do Método Húngaro: redução por linha, redução por coluna, teste de otimalidade cobrindo os zeros com retas, modificação da tabela e designação final.",
+    "Como adaptar um problema de maximização (produtividade, retorno) para o formato de minimização que o método exige."
+  ],
+  "fechamento": "Fechamos resolvendo do início ao fim a designação de 4 máquinas a 4 fábricas, chegando à alocação ótima com custo total de transporte igual a 50.",
+  "cta_complemento": "vai cair em designação na prova",
+  "hashtags_tema": [
+    "#MetodoHungaro",
+    "#ProblemaDaDesignacao",
+    "#ProgramacaoLinear",
+    "#OtimizacaoEmRedes"
+  ],
+  "tags": [
+    "método húngaro",
+    "metodo hungaro",
+    "problema da designação",
+    "problema de designação",
+    "problema de atribuição",
+    "problema de alocação",
+    "assignment problem",
+    "algoritmo húngaro",
+    "otimização em redes",
+    "programação linear",
+    "pesquisa operacional",
+    "PPL",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:13",
+      "titulo": "O Problema da Designação e suas hipóteses"
+    },
+    {
+      "tempo": "01:21",
+      "titulo": "Modelagem matemática com variáveis binárias"
+    },
+    {
+      "tempo": "02:50",
+      "titulo": "Os 6 passos do Método Húngaro"
+    },
+    {
+      "tempo": "05:13",
+      "titulo": "E se for maximização?"
+    },
+    {
+      "tempo": "06:20",
+      "titulo": "Exemplo — Máquinas e fábricas"
+    },
+    {
+      "tempo": "06:53",
+      "titulo": "Passo 1 — Redução por linha"
+    },
+    {
+      "tempo": "07:41",
+      "titulo": "Passo 2 — Redução por coluna"
+    },
+    {
+      "tempo": "08:21",
+      "titulo": "Passo 3 — Teste: cobrindo os zeros"
+    },
+    {
+      "tempo": "09:21",
+      "titulo": "Passo 4 — Modificando a tabela"
+    },
+    {
+      "tempo": "10:19",
+      "titulo": "Novo teste: designação ótima"
+    },
+    {
+      "tempo": "10:57",
+      "titulo": "Passo 6 — Designação final e custo total"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o outro problema clássico de PL em redes? Assista à aula sobre o Problema do Transporte",
+      "url": "https://youtu.be/4kpQ1V1OjGA"
+    }
+  ],
+  "descricao": "Você tem n pessoas (ou máquinas) e n tarefas, cada combinação com um custo, e cada um só pode fazer uma coisa: quem vai para onde? 🤔 Esse é o Problema da Designação, e nesta aula vamos modelá-lo como um PPL e resolvê-lo com o Método Húngaro, passo a passo, num exemplo completo.\n\nNesta aula, você vai aprender:\n\nO que caracteriza um Problema da Designação: as três hipóteses (n designados e n tarefas, um para um, custo por par) e como usar designados ou tarefas fantasmas quando elas não valem.\n\nComo escrever o modelo matemático com variáveis binárias x_ij, minimizando o custo total sujeito a cada designado fazer exatamente uma tarefa e cada tarefa ter exatamente um designado.\n\nOs seis passos do Método Húngaro: redução por linha, redução por coluna, teste de otimalidade cobrindo os zeros com retas, modificação da tabela e designação final.\n\nComo adaptar um problema de maximização (produtividade, retorno) para o formato de minimização que o método exige.\n\nFechamos resolvendo do início ao fim a designação de 4 máquinas a 4 fábricas, chegando à alocação ótima com custo total de transporte igual a 50.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:13 O Problema da Designação e suas hipóteses\n01:21 Modelagem matemática com variáveis binárias\n02:50 Os 6 passos do Método Húngaro\n05:13 E se for maximização?\n06:20 Exemplo — Máquinas e fábricas\n06:53 Passo 1 — Redução por linha\n07:41 Passo 2 — Redução por coluna\n08:21 Passo 3 — Teste: cobrindo os zeros\n09:21 Passo 4 — Modificando a tabela\n10:19 Novo teste: designação ótima\n10:57 Passo 6 — Designação final e custo total\n\n⚠️ Quer ver o outro problema clássico de PL em redes? Assista à aula sobre o Problema do Transporte: https://youtu.be/4kpQ1V1OjGA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem vai cair em designação na prova!\n\n#PesquisaOperacional #PO #MetodoHungaro #ProblemaDaDesignacao #ProgramacaoLinear #OtimizacaoEmRedes #Otimização #UNIRIO"
+}

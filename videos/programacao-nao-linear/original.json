@@ -1,0 +1,35 @@
+{
+  "video_id": "6UDE7T9epzQ",
+  "url": "https://youtu.be/6UDE7T9epzQ",
+  "published_at": "2026-01-04T20:25:46Z",
+  "title": "PO2: Programação não Linear",
+  "description": "📌 O que você vai aprender neste vídeo:\n\nExemplo Prático de Maximização: A aplicação passo a passo do Branch and Bound em um problema de Programação Inteira [00:00].\n\nRelaxação Linear Inicial: Como resolver a versão contínua do problema para encontrar o primeiro limitante [00:43].\n\nPrimeira Ramificação (Branch): A lógica para escolher a variável de decisão e dividir o problema em subproblemas (P1 e P2) [01:50].\n\nAnálise de Inviabilidade: O que ocorre quando um ramo da árvore não encontra uma região factível e como ocorre a \"poda\" [05:20].\n\nRamificações Sucessivas: Como proceder quando o resultado de um subproblema ainda apresenta valores decimais [06:15].\n\nEncontrando a Primeira Solução Inteira: O momento em que o algoritmo identifica um nó com solução inteira viável [11:00].\n\nComparação de Limitantes (Z): Como os valores da função objetivo são usados para descartar ramos menos promissores (Poda por Otimalidade) [12:30].\n\nSolução Ótima Final: A conclusão do processo e a definição dos valores inteiros ideais para as variáveis de decisão [15:20].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/6UDE7T9epzQ/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/6UDE7T9epzQ/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/6UDE7T9epzQ/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/6UDE7T9epzQ/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/6UDE7T9epzQ/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

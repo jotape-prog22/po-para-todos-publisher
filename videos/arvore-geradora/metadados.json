@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "ÁRVORE GERADORA MÍNIMA - O Problema e as Definições",
+    "ÁRVORE GERADORA MÍNIMA - Motivação, Definições e Algoritmos",
+    "ÁRVORE GERADORA - O Que É e Por Que Buscar a Mínima",
+    "AGM - Introdução à Árvore Geradora Mínima em Grafos",
+    "KRUSKAL OU PRIM? - Introdução à Árvore Geradora Mínima"
+  ],
+  "titulo": "ÁRVORE GERADORA MÍNIMA - O Problema e as Definições",
+  "gancho": "Um prefeito quer asfaltar ruas para ligar todas as edificações da cidade, mas a verba é curta. Quais ruas escolher para gastar o mínimo? 🤔 Nesta aula vamos transformar esse problema em um grafo e chegar à definição de Árvore Geradora Mínima, a base para os algoritmos de Kruskal e Prim.",
+  "objetivos": [
+    "Como modelar um problema real com grafos: edificações viram vértices, ruas viram arestas e o custo de asfaltar vira o peso de cada aresta.",
+    "O que as condições do prefeito significam na teoria dos grafos: um subgrafo conexo, acíclico, gerador e de peso mínimo.",
+    "O que é uma árvore geradora de um grafo conexo ponderado e como calcular o seu peso somando as arestas.",
+    "Por que um mesmo grafo tem várias árvores geradoras e o que significa procurar a de peso mínimo.",
+    "A ideia por trás dos algoritmos de Kruskal e de Prim, que resolvem o problema e ganham aulas próprias."
+  ],
+  "fechamento": "Fechamos com um exemplo de grafo com seis vértices, uma árvore geradora de peso 32 e a pergunta que os próximos vídeos respondem: qual é a de peso mínimo?",
+  "cta_complemento": "está começando a estudar grafos",
+  "hashtags_tema": [
+    "#ArvoreGeradoraMinima",
+    "#Grafos",
+    "#Kruskal",
+    "#Prim"
+  ],
+  "tags": [
+    "árvore geradora mínima",
+    "árvore geradora",
+    "AGM",
+    "minimum spanning tree",
+    "grafos",
+    "teoria dos grafos",
+    "algoritmo de Kruskal",
+    "algoritmo de Prim",
+    "grafo ponderado",
+    "redes",
+    "otimização em redes",
+    "pesquisa operacional",
+    "pesquisa operacional 2",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:25",
+      "titulo": "Motivação: asfaltar as ruas de um lugarejo"
+    },
+    {
+      "tempo": "01:34",
+      "titulo": "Modelagem com grafos: vértices e arestas"
+    },
+    {
+      "tempo": "01:58",
+      "titulo": "Grafo ponderado: o custo vira peso"
+    },
+    {
+      "tempo": "02:22",
+      "titulo": "Conexo, acíclico, gerador e de peso mínimo"
+    },
+    {
+      "tempo": "03:33",
+      "titulo": "Definições: árvore geradora e seu peso"
+    },
+    {
+      "tempo": "04:23",
+      "titulo": "Exemplo: uma árvore geradora de peso 32"
+    },
+    {
+      "tempo": "05:36",
+      "titulo": "O objetivo: árvore geradora de peso mínimo"
+    },
+    {
+      "tempo": "06:09",
+      "titulo": "Os algoritmos: Kruskal e Prim"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o primeiro algoritmo em ação? Continue com o Algoritmo de Kruskal, Parte 1",
+      "url": "https://youtu.be/bmofX3L464c"
+    },
+    {
+      "contexto": "Prefere começar pelo outro caminho? Veja o Algoritmo de Prim",
+      "url": "https://youtu.be/lUUDScqcXtY"
+    }
+  ],
+  "descricao": "Um prefeito quer asfaltar ruas para ligar todas as edificações da cidade, mas a verba é curta. Quais ruas escolher para gastar o mínimo? 🤔 Nesta aula vamos transformar esse problema em um grafo e chegar à definição de Árvore Geradora Mínima, a base para os algoritmos de Kruskal e Prim.\n\nNesta aula, você vai aprender:\n\nComo modelar um problema real com grafos: edificações viram vértices, ruas viram arestas e o custo de asfaltar vira o peso de cada aresta.\n\nO que as condições do prefeito significam na teoria dos grafos: um subgrafo conexo, acíclico, gerador e de peso mínimo.\n\nO que é uma árvore geradora de um grafo conexo ponderado e como calcular o seu peso somando as arestas.\n\nPor que um mesmo grafo tem várias árvores geradoras e o que significa procurar a de peso mínimo.\n\nA ideia por trás dos algoritmos de Kruskal e de Prim, que resolvem o problema e ganham aulas próprias.\n\nFechamos com um exemplo de grafo com seis vértices, uma árvore geradora de peso 32 e a pergunta que os próximos vídeos respondem: qual é a de peso mínimo?\n\n⏱️ Capítulos:\n00:00 Abertura\n00:25 Motivação: asfaltar as ruas de um lugarejo\n01:34 Modelagem com grafos: vértices e arestas\n01:58 Grafo ponderado: o custo vira peso\n02:22 Conexo, acíclico, gerador e de peso mínimo\n03:33 Definições: árvore geradora e seu peso\n04:23 Exemplo: uma árvore geradora de peso 32\n05:36 O objetivo: árvore geradora de peso mínimo\n06:09 Os algoritmos: Kruskal e Prim\n\n⚠️ Quer ver o primeiro algoritmo em ação? Continue com o Algoritmo de Kruskal, Parte 1: https://youtu.be/bmofX3L464c\n\n⚠️ Prefere começar pelo outro caminho? Veja o Algoritmo de Prim: https://youtu.be/lUUDScqcXtY\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está começando a estudar grafos!\n\n#PesquisaOperacional #PO #ArvoreGeradoraMinima #Grafos #Kruskal #Prim #Otimização #UNIRIO"
+}

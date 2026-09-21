@@ -1,0 +1,92 @@
+{
+  "titulos_candidatos": [
+    "ANÁLISE DE SENSIBILIDADE - No LINDO e Múltiplas Soluções - Parte 3",
+    "ANÁLISE DE SENSIBILIDADE - Como Ler o Relatório do LINDO - Parte 3",
+    "ANÁLISE DE SENSIBILIDADE - Múltiplas Soluções no LINDO - Parte 3",
+    "ANÁLISE DE SENSIBILIDADE - Pós-otimização no LINDO - Parte 3",
+    "ANÁLISE DE SENSIBILIDADE - Preço Sombra no LINDO - Parte 3"
+  ],
+  "titulo": "ANÁLISE DE SENSIBILIDADE - No LINDO e Múltiplas Soluções - Parte 3",
+  "gancho": "Você já sabe ler o relatório de sensibilidade do Solver — mas e no LINDO, onde ficam o preço sombra e o custo reduzido? E se o relatório avisar que existe mais de uma solução ótima, como achar a outra? 🤔 Nesta aula vamos resolver um PPL no LINDO, ler o relatório de Análise de Sensibilidade linha por linha e usar a pós-otimização para encontrar outro vértice ótimo.",
+  "objetivos": [
+    "Como inserir um PPL no LINDO e pedir a Análise de Sensibilidade na hora de resolver.",
+    "O que o Custo Reduzido (Reduced Cost) diz sobre uma variável que ficou fora da solução: quanto Z cairia se ela entrasse e quanto seu lucro precisaria subir para valer a pena.",
+    "Como interpretar o Preço Sombra (Dual Price) de cada restrição e por que ele é zero quando o recurso sobra.",
+    "Os intervalos de validade: até onde os coeficientes da função objetivo e o lado direito das restrições podem variar sem mudar a solução ou o preço sombra.",
+    "Como reconhecer múltiplas soluções ótimas no relatório (acréscimo ou decréscimo permissível igual a zero) e como encontrar outro vértice ótimo por pós-otimização."
+  ],
+  "fechamento": "Fechamos fixando Z no valor ótimo como nova restrição e trocando a função objetivo, o que leva o LINDO a um segundo vértice ótimo do mesmo problema.",
+  "cta_complemento": "está aprendendo a usar o LINDO",
+  "hashtags_tema": [
+    "#AnaliseDeSensibilidade",
+    "#LINDO",
+    "#PrecoSombra",
+    "#ProgramacaoLinear"
+  ],
+  "tags": [
+    "análise de sensibilidade",
+    "pós-otimização",
+    "LINDO",
+    "relatório de sensibilidade",
+    "preço sombra",
+    "dual price",
+    "custo reduzido",
+    "reduced cost",
+    "múltiplas soluções ótimas",
+    "programação linear",
+    "PPL",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:32",
+      "titulo": "Inserindo o PPL no LINDO"
+    },
+    {
+      "tempo": "02:44",
+      "titulo": "Custo Reduzido (Reduced Cost)"
+    },
+    {
+      "tempo": "04:09",
+      "titulo": "Preço Sombra (Dual Price)"
+    },
+    {
+      "tempo": "05:12",
+      "titulo": "Intervalos do Lado Direito (RHS)"
+    },
+    {
+      "tempo": "06:35",
+      "titulo": "Intervalos da Função Objetivo"
+    },
+    {
+      "tempo": "08:34",
+      "titulo": "Identificando Múltiplas Soluções"
+    },
+    {
+      "tempo": "10:52",
+      "titulo": "Pós-otimização: Outro Vértice Ótimo"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Na Parte 2, o mesmo relatório dentro do Solver do Excel",
+      "url": "https://youtu.be/C0tpwFouwMA"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui",
+      "url": "https://youtu.be/Z-duqQJFa-4"
+    },
+    {
+      "contexto": "Nunca usou o LINDO? Veja os primeiros passos",
+      "url": "https://youtu.be/vFSXrhpg3r8"
+    }
+  ],
+  "descricao": "Você já sabe ler o relatório de sensibilidade do Solver — mas e no LINDO, onde ficam o preço sombra e o custo reduzido? E se o relatório avisar que existe mais de uma solução ótima, como achar a outra? 🤔 Nesta aula vamos resolver um PPL no LINDO, ler o relatório de Análise de Sensibilidade linha por linha e usar a pós-otimização para encontrar outro vértice ótimo.\n\nNesta aula, você vai aprender:\n\nComo inserir um PPL no LINDO e pedir a Análise de Sensibilidade na hora de resolver.\n\nO que o Custo Reduzido (Reduced Cost) diz sobre uma variável que ficou fora da solução: quanto Z cairia se ela entrasse e quanto seu lucro precisaria subir para valer a pena.\n\nComo interpretar o Preço Sombra (Dual Price) de cada restrição e por que ele é zero quando o recurso sobra.\n\nOs intervalos de validade: até onde os coeficientes da função objetivo e o lado direito das restrições podem variar sem mudar a solução ou o preço sombra.\n\nComo reconhecer múltiplas soluções ótimas no relatório (acréscimo ou decréscimo permissível igual a zero) e como encontrar outro vértice ótimo por pós-otimização.\n\nFechamos fixando Z no valor ótimo como nova restrição e trocando a função objetivo, o que leva o LINDO a um segundo vértice ótimo do mesmo problema.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:32 Inserindo o PPL no LINDO\n02:44 Custo Reduzido (Reduced Cost)\n04:09 Preço Sombra (Dual Price)\n05:12 Intervalos do Lado Direito (RHS)\n06:35 Intervalos da Função Objetivo\n08:34 Identificando Múltiplas Soluções\n10:52 Pós-otimização: Outro Vértice Ótimo\n\n⚠️ Na Parte 2, o mesmo relatório dentro do Solver do Excel: https://youtu.be/C0tpwFouwMA\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui: https://youtu.be/Z-duqQJFa-4\n\n⚠️ Nunca usou o LINDO? Veja os primeiros passos: https://youtu.be/vFSXrhpg3r8\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está aprendendo a usar o LINDO!\n\n#PesquisaOperacional #PO #AnaliseDeSensibilidade #LINDO #PrecoSombra #ProgramacaoLinear #Otimização #UNIRIO"
+}

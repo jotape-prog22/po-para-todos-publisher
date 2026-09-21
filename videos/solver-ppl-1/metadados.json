@@ -1,0 +1,79 @@
+{
+  "titulos_candidatos": [
+    "PPL NO SOLVER - Montando a Planilha no Excel - Parte 1",
+    "PPL NO SOLVER - Como Montar a Planilha do Modelo - Parte 1",
+    "PPL NO SOLVER - Variáveis, Função Objetivo e Restrições - Parte 1",
+    "PPL NO SOLVER - Preparando o Excel para Otimizar - Parte 1",
+    "PPL NO SOLVER - Como Colocar o Modelo na Planilha? - Parte 1"
+  ],
+  "titulo": "PPL NO SOLVER - Montando a Planilha no Excel - Parte 1",
+  "gancho": "Você já resolveu o PPL da empresa de tintas pelo método gráfico. Mas e se o problema tivesse dez variáveis e vinte restrições — como resolver? 🤔 Nesta primeira parte, você vai montar o modelo inteiro numa planilha do Excel, do jeito que o Solver precisa para encontrar a solução ótima.",
+  "objetivos": [
+    "Como representar as variáveis de decisão X1 e X2 em células da planilha, começando com valor zero, para o Solver preenchê-las depois.",
+    "Como escrever a Função Objetivo Max Z = 5X1 + 4X2 como uma fórmula do Excel que aponta para as células das variáveis.",
+    "Como organizar as restrições em três colunas — lado esquerdo (LHS), sinal e lado direito (RHS) — para o Solver ler cada uma delas.",
+    "Por que as condições de não negatividade não entram na planilha e onde elas serão informadas ao Solver."
+  ],
+  "fechamento": "Fechamos com a planilha completa: variáveis, Função Objetivo e as quatro restrições do PPL da empresa de tintas, prontas para configurar o Solver na Parte 2.",
+  "cta_complemento": "quer resolver PPL sem fazer conta na mão",
+  "hashtags_tema": [
+    "#Solver",
+    "#Excel",
+    "#ProgramacaoLinear",
+    "#PPL"
+  ],
+  "tags": [
+    "solver",
+    "solver excel",
+    "solver do excel",
+    "PPL no solver",
+    "PPL",
+    "problema de programação linear",
+    "programação linear",
+    "modelagem",
+    "planilha",
+    "excel",
+    "otimização",
+    "empresa de tintas",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura — o PPL da empresa de tintas"
+    },
+    {
+      "tempo": "01:10",
+      "titulo": "Variáveis de decisão X1 e X2"
+    },
+    {
+      "tempo": "02:23",
+      "titulo": "Função Objetivo na planilha"
+    },
+    {
+      "tempo": "03:53",
+      "titulo": "Estrutura das restrições: LHS, sinal e RHS"
+    },
+    {
+      "tempo": "04:21",
+      "titulo": "Inserindo as quatro restrições"
+    },
+    {
+      "tempo": "06:00",
+      "titulo": "Não negatividade e onde fica o Solver"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Continue na Parte 2, onde configuramos o Solver e achamos a solução ótima",
+      "url": "https://youtu.be/IMG0vcnQeX0"
+    },
+    {
+      "contexto": "Quer o tutorial completo e mais recente de como usar o Solver do Excel? Assista aqui",
+      "url": "https://youtu.be/AT7hG6yOK6U"
+    }
+  ],
+  "descricao": "Você já resolveu o PPL da empresa de tintas pelo método gráfico. Mas e se o problema tivesse dez variáveis e vinte restrições — como resolver? 🤔 Nesta primeira parte, você vai montar o modelo inteiro numa planilha do Excel, do jeito que o Solver precisa para encontrar a solução ótima.\n\nNesta aula, você vai aprender:\n\nComo representar as variáveis de decisão X1 e X2 em células da planilha, começando com valor zero, para o Solver preenchê-las depois.\n\nComo escrever a Função Objetivo Max Z = 5X1 + 4X2 como uma fórmula do Excel que aponta para as células das variáveis.\n\nComo organizar as restrições em três colunas — lado esquerdo (LHS), sinal e lado direito (RHS) — para o Solver ler cada uma delas.\n\nPor que as condições de não negatividade não entram na planilha e onde elas serão informadas ao Solver.\n\nFechamos com a planilha completa: variáveis, Função Objetivo e as quatro restrições do PPL da empresa de tintas, prontas para configurar o Solver na Parte 2.\n\n⏱️ Capítulos:\n00:00 Abertura — o PPL da empresa de tintas\n01:10 Variáveis de decisão X1 e X2\n02:23 Função Objetivo na planilha\n03:53 Estrutura das restrições: LHS, sinal e RHS\n04:21 Inserindo as quatro restrições\n06:00 Não negatividade e onde fica o Solver\n\n⚠️ Continue na Parte 2, onde configuramos o Solver e achamos a solução ótima: https://youtu.be/IMG0vcnQeX0\n\n⚠️ Quer o tutorial completo e mais recente de como usar o Solver do Excel? Assista aqui: https://youtu.be/AT7hG6yOK6U\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem quer resolver PPL sem fazer conta na mão!\n\n#PesquisaOperacional #PO #Solver #Excel #ProgramacaoLinear #PPL #Otimização #UNIRIO"
+}

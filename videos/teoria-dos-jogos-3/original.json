@@ -1,0 +1,35 @@
+{
+  "video_id": "Y7aezjpwCjU",
+  "url": "https://youtu.be/Y7aezjpwCjU",
+  "published_at": "2026-01-02T20:43:51Z",
+  "title": "PO2: Teoria dos Jogos - Parte 3",
+  "description": "📌 O que você vai aprender neste vídeo:\nJogos de Soma Não Constante: Entenda a diferença fundamental na matriz de prêmios (payoff) e como identificar esses jogos [00:07].\n\nEquilíbrio de Nash: Definição técnica e a importância da estabilidade nas estratégias [03:23].\n\nAlgoritmo para Encontrar o Equilíbrio: Como identificar as melhores respostas de cada jogador passo a passo [03:58].\n\nBatalha dos Sexos: Um exemplo prático de jogo com múltiplos equilíbrios de Nash e a necessidade de coordenação [00:23].\n\nDilema do Prisioneiro: A análise detalhada de um dos problemas mais famosos da teoria dos jogos e sua aplicação na economia [09:08].\n\nRacionalidade Coletiva vs. Individual: Por que jogadores racionais muitas vezes falham em cooperar, mesmo quando há um benefício claro [15:30].\n\nEstratégias Mistas em Soma Não Constante: Uma introdução à complexidade da Programação Quadrática para resolver jogos instáveis [18:26].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/Y7aezjpwCjU/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/Y7aezjpwCjU/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/Y7aezjpwCjU/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/Y7aezjpwCjU/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/Y7aezjpwCjU/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

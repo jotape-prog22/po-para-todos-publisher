@@ -1,0 +1,35 @@
+{
+  "video_id": "Z-duqQJFa-4",
+  "url": "https://youtu.be/Z-duqQJFa-4",
+  "published_at": "2025-10-26T17:02:22Z",
+  "title": "PO1: Análise de Sensibilidade e Pós-otimização (Utilizando o Solver)",
+  "description": "Aprofunde-se nos fundamentos teóricos da Análise de Sensibilidade e Pós-Otimização e aprenda a interpretar os resultados cruciais para a tomada de decisão gerencial em Programação Linear (PPL).\nEste vídeo detalha os conceitos de Preço Sombra e Custo Reduzido, explicando como eles surgem na tabela Simplex e como os softwares de otimização (como o Solver do Excel) os utilizam para fornecer informações sobre a robustez da solução.\n\n💡 Conceitos Chave e Timestamps\nDefinição e Objetivos da Análise de Sensibilidade:\nA Análise de Sensibilidade é fundamental para avaliar o efeito de alterações nos parâmetros (coeficientes da Função Objetivo e constantes do Lado Direito das Restrições) na solução ótima de um modelo de PPL [01:15].\nEla é dividida em dois casos: Análise Simples (avaliação de variação dentro de limites) [01:35] e Pós-Otimização (recalculando a solução após alterações que afetem a otimalidade/viabilidade) [02:57].\nEstrutura da Tabela Simplex e Fórmulas:\nApresentação das fórmulas que geram os valores da tabela Simplex final (ótima) [04:44].\nA matriz inversa da base ($B^{-1}$) pode ser identificada diretamente na tabela Simplex final, na área das restrições, sob as colunas das variáveis de folga originais [06:45] - [07:11].\nPreço Sombra (Dual Price):\nConceito: É o benefício (melhoria) na Função Objetivo (Z) ao se acrescentar uma unidade de um determinado recurso [07:24]. É também o valor da variável dual [08:38].\nPreço Sombra Nulo: O preço sombra é zero para recursos que estão em excesso (restrições com folga), pois adicionar mais desse recurso não aumenta o valor da Função Objetivo [08:46] - [09:04].\nLocalização: Encontrado diretamente na linha Z (ou linha 0) da tabela Simplex final, nas colunas das variáveis de folga [09:33] - [10:02].\nCusto Reduzido (Reduced Cost):\nInterpretação 1 (Otimalidade): O total pelo qual o coeficiente de lucro de uma variável não básica (zero na solução ótima) deve melhorar para que ela se torne lucrativa e entre na solução ótima [10:28] - [11:32].\nInterpretação 2 (Piora): O quanto a Função Objetivo irá piorar para cada unidade produzida de uma variável não básica [11:41] - [12:15].\nLocalização: Encontrado na linha Z (ou linha 0) da tabela Simplex final, nas colunas das variáveis originais não básicas [12:15] - [12:22].\nFaixas de Sensibilidade (Intervalos de Validade):\nFaixas de Viabilidade: O intervalo (para mais ou para menos) no qual o Lado Direito (RHS) de uma restrição pode variar individualmente sem alterar o valor do Preço Sombra [13:26] - [13:43].\nFaixas de Otimalidade: O intervalo no qual os coeficientes da Função Objetivo podem variar individualmente sem alterar o vetor de solução ótima (quais produtos e em que proporções produzir) [13:51] - [14:11].\nDemonstração no Exemplo (Intervalos do Solver): Exibição e interpretação prática dos intervalos de otimalidade para os coeficientes da FO [30:03] - [31:59] e dos intervalos de viabilidade para o RHS, garantindo a validade do Preço Sombra [32:17] - [33:55]",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/Z-duqQJFa-4/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/Z-duqQJFa-4/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/Z-duqQJFa-4/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/Z-duqQJFa-4/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/Z-duqQJFa-4/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

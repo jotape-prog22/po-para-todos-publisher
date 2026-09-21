@@ -1,0 +1,35 @@
+{
+  "video_id": "fXvZ2FejRBY",
+  "url": "https://youtu.be/fXvZ2FejRBY",
+  "published_at": "2026-01-02T22:23:53Z",
+  "title": "PO2: Programação Inteira - Parte 3.1 - Algoritmo Branch and bound",
+  "description": "📌O que você vai aprender neste vídeo:\n\nIntrodução aos métodos de solução: Uma visão geral de como resolver problemas de Programação Inteira (PI) [00:02].\n\nCaracterísticas dos problemas de PI: Por que a programação inteira é mais complexa que a linear [00:16].\n\nRelaxação Linear: A relação entre PL e PI e como a solução linear serve como um limitante superior [01:22].\n\nO Algoritmo Branch and Bound: O conceito de criação de uma árvore enraizada para explorar soluções [03:13].\n\nProcesso de Ramificação (Branch): Como dividir o problema principal em subproblemas menores [04:00].\n\nEficiência e Complexidade: O desafio do crescimento exponencial de nós (2^n) em variáveis binárias [04:31].\n\nTécnica de Limitação (Bound): Como a poda de subárvores melhora a eficiência do algoritmo [05:22].\n\nUso de Heurísticas: Por que recorrer a algoritmos aproximados quando o tempo computacional é alto [05:33].\n\nConstrução da Árvore B&B: O passo a passo inicial para criar os subproblemas P1 e P2 [06:17].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/fXvZ2FejRBY/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/fXvZ2FejRBY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/fXvZ2FejRBY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/fXvZ2FejRBY/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/fXvZ2FejRBY/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

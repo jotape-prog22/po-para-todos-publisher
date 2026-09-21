@@ -1,0 +1,35 @@
+{
+  "video_id": "vFSXrhpg3r8",
+  "url": "https://youtu.be/vFSXrhpg3r8",
+  "published_at": "2025-10-26T00:35:59Z",
+  "title": "PO1: Resolução de PPL utilizando o LINDO",
+  "description": "PO1: Resolução de PPL utilizando o LINDO | Modelagem e Solução no Software\nAprenda a usar o LINDO (Linear Interactive and Discrete Optimizer), uma ferramenta clássica e poderosa para resolver problemas de otimização linear!\n\nNeste tutorial, a professora demonstra como é simples transcrever um Problema de Programação Linear (PPL) para o ambiente do LINDO e obter a solução ótima rapidamente. O software é conhecido por sua interface direta para a modelagem de problemas.\n\nNeste vídeo você aprenderá:\n\nModelagem no LINDO: Como iniciar a modelagem usando o comando MAX (ou MIN) e escrever a Função Objetivo [00:22].\n\nDefinindo Restrições: O uso do comando SUBJECT TO para listar todas as restrições funcionais do modelo [01:06].\n\nRestrições de Não Negatividade: Entenda que o LINDO assume as restrições de não negatividade por padrão, bastando finalizar o modelo com END [01:58].\n\nExecução e Solução: Como usar o comando SOLVE e obter a solução ótima para a Função Objetivo e para as variáveis de decisão (X1 e X2) [02:18].\n\nResultados e Análise: Como interpretar o relatório de resultados, que mostra o valor ótimo das variáveis e as informações sobre folga (slack) das restrições [02:43].\n\nO LINDO é mais uma ferramenta essencial no seu kit de Pesquisa Operacional!\n\nLink para o vídeo: PO1: Resolução de PPL utilizando o LINDO\n\nVeja também outras resoluções:\n\nPO1: Resolução de PPL utilizando o Solver - Parte 1\n\nPO1: Resolução de PPL utilizando o LINGO",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/vFSXrhpg3r8/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/vFSXrhpg3r8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/vFSXrhpg3r8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/vFSXrhpg3r8/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/vFSXrhpg3r8/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

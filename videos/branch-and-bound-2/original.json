@@ -1,0 +1,35 @@
+{
+  "video_id": "z3CRhX1oLoI",
+  "url": "https://youtu.be/z3CRhX1oLoI",
+  "published_at": "2026-01-02T22:43:51Z",
+  "title": "PO2: Programação Inteira - Parte 3.2 - Algoritmo Branch and bound",
+  "description": "📌 O que você vai aprender neste vídeo:\n\nLógica de Ramificação (Branching): Como dividir o problema principal em subproblemas usando o \"teto\" e o \"piso\" de variáveis não inteiras [00:01].\n\nCritérios de Poda da Árvore: Quando é possível descartar um ramo por inviabilidade, otimalidade ou por limites de solução [01:21].\n\nRedução do Espaço de Busca: Como o algoritmo descarta ramos para tornar a busca por soluções ótimas mais eficiente [01:47].\n\nRelaxação Linear na Prática: A transformação de um problema de Programação Inteira em Programação Linear para análise inicial [02:05].\n\nInterpretação Gráfica: A diferença visual entre a região factível contínua e os pontos discretos da solução inteira [02:41].\n\nRiscos da Aproximação: Por que arredondar valores pode levar a soluções inviáveis e a importância do método exato [03:05].\n\nCiclo do Algoritmo: Do nó raiz às sucessivas ramificações até encontrar a solução ótima final [03:42].",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/z3CRhX1oLoI/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/z3CRhX1oLoI/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/z3CRhX1oLoI/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/z3CRhX1oLoI/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/z3CRhX1oLoI/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

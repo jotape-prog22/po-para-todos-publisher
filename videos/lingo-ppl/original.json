@@ -1,0 +1,35 @@
+{
+  "video_id": "BCnLTTcSDGg",
+  "url": "https://youtu.be/BCnLTTcSDGg",
+  "published_at": "2025-10-26T00:33:51Z",
+  "title": "PO1: Resolução de PPL utilizando o LINGO",
+  "description": "O1: Resolução de PPL utilizando o LINGO | Modelagem e Solução no Software\nExplore mais uma ferramenta de otimização!\n\nNeste vídeo, demonstramos como utilizar o software LINGO para modelar e resolver o conhecido Problema de Programação Linear (PPL) da empresa de tintas. O LINGO utiliza uma linguagem de programação específica que se torna muito mais útil e eficiente do que o Excel Solver quando lidamos com problemas de grande porte e complexidade.\n\nNeste tutorial rápido, você aprenderá:\n\nModelagem no LINGO: Como transcrever a Função Objetivo e as Restrições diretamente no ambiente do software [00:34].\n\nLinguagem de Otimização: A sintaxe básica do LINGO, que utiliza comandos como MAX= ou MIN= e exige o ponto e vírgula (;) ao final de cada expressão [01:13].\n\nExecução do Modelo: Como utilizar o comando SOLVE para que o LINGO encontre a solução ótima [03:33].\n\nAnálise dos Resultados: Visualização da solução ótima, incluindo o valor máximo da Função Objetivo e os valores ideais das variáveis de decisão (X1 e X2) [03:42].\n\nAmplie suas opções de otimização!\n\nLink para o vídeo: PO1: Resolução de PPL utilizando o LINGO\n\nVeja também outras resoluções:\n\nPO1: Resolução de PPL utilizando o Solver - Parte 1\n\nPO1: Resolução de PPL utilizando o Solver - Parte 2",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/BCnLTTcSDGg/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/BCnLTTcSDGg/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/BCnLTTcSDGg/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/BCnLTTcSDGg/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/BCnLTTcSDGg/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

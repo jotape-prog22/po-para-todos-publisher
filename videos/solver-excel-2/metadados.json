@@ -1,0 +1,112 @@
+{
+  "titulos_candidatos": [
+    "SOLVER NO EXCEL - Relatório de Sensibilidade - Parte 2",
+    "SOLVER NO EXCEL - Preço-Sombra e Restrição Gargalo - Parte 2",
+    "SOLVER NO EXCEL - Como Ler o Relatório de Sensibilidade - Parte 2",
+    "SOLVER NO EXCEL - Permitido Aumentar e Preço-Sombra - Parte 2",
+    "SOLVER NO EXCEL - Análise de Sensibilidade na Prática - Parte 2"
+  ],
+  "titulo": "SOLVER NO EXCEL - Relatório de Sensibilidade - Parte 2",
+  "gancho": "Você encontrou a solução ótima no Solver, mas e se o lucro de um produto mudar ou se der para comprar mais matéria-prima? 🤔 Nesta Parte 2, voltamos ao problema da marcenaria e aprendemos a gerar e ler o Relatório de Sensibilidade do Solver no Excel: até onde a solução continua ótima e em qual recurso vale a pena investir.",
+  "objetivos": [
+    "Como gerar o Relatório de Sensibilidade na tela de resultados do Solver, em dois cliques.",
+    "O que significam Valor Final, Custo Reduzido e Objetivo Coeficiente nas células variáveis, e por que um custo reduzido zero indica um empate entre mesa e cadeira.",
+    "Como ler os limites Permitido Aumentar e Permitido Reduzir, e o que é aquele 1E+30 que aparece no relatório (é o infinito).",
+    "Como identificar a restrição gargalo (ativa) e a restrição com folga comparando o Valor Final com o lado direito da restrição.",
+    "O que é o Preço-Sombra, quanto vale pagar por mais uma unidade do recurso e até que ponto esse valor continua válido."
+  ],
+  "fechamento": "Fechamos testando na planilha: com 120 chapas de madeira a mais (240 no total), o lucro da marcenaria dobra e passamos a produzir 80 mesas; na chapa 241, o preço-sombra da madeira cai a zero e o gargalo vira a mão de obra.",
+  "cta_complemento": "também precisa dominar o Solver",
+  "hashtags_tema": [
+    "#Solver",
+    "#Excel",
+    "#AnaliseDeSensibilidade",
+    "#PrecoSombra"
+  ],
+  "tags": [
+    "solver excel",
+    "relatório de sensibilidade",
+    "relatório de sensibilidade solver",
+    "análise de sensibilidade",
+    "preço sombra",
+    "permitido aumentar permitido reduzir",
+    "custo reduzido",
+    "restrição gargalo",
+    "programação linear",
+    "solver excel tutorial",
+    "como usar solver no excel",
+    "otimização no excel",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura — o problema da marcenaria"
+    },
+    {
+      "tempo": "00:31",
+      "titulo": "O que é o Relatório de Sensibilidade"
+    },
+    {
+      "tempo": "01:04",
+      "titulo": "Gerando o relatório no Solver"
+    },
+    {
+      "tempo": "02:16",
+      "titulo": "Células variáveis: Valor Final"
+    },
+    {
+      "tempo": "03:36",
+      "titulo": "Custo Reduzido e o empate mesa × cadeira"
+    },
+    {
+      "tempo": "04:45",
+      "titulo": "Testando na prática: lucro de R$ 100,01"
+    },
+    {
+      "tempo": "05:11",
+      "titulo": "Permitido Aumentar e Permitido Reduzir"
+    },
+    {
+      "tempo": "06:42",
+      "titulo": "Restrições: folga × gargalo"
+    },
+    {
+      "tempo": "07:47",
+      "titulo": "Preço-Sombra: quanto vale mais uma chapa"
+    },
+    {
+      "tempo": "09:08",
+      "titulo": "Preço-Sombra zero na mão de obra"
+    },
+    {
+      "tempo": "09:50",
+      "titulo": "Até onde o Preço-Sombra vale (limite 120)"
+    },
+    {
+      "tempo": "11:30",
+      "titulo": "Testando: 240 e 241 chapas de madeira"
+    },
+    {
+      "tempo": "13:33",
+      "titulo": "Encerramento"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui e aprenda a usar o Solver passo a passo",
+      "url": "https://youtu.be/AT7hG6yOK6U"
+    },
+    {
+      "contexto": "Quer saber de onde vem o Preço-Sombra? Veja o Teorema das Folgas Complementares",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    },
+    {
+      "contexto": "Para a teoria completa por trás do relatório, assista à Análise de Sensibilidade, Parte 1",
+      "url": "https://youtu.be/Z-duqQJFa-4"
+    }
+  ],
+  "descricao": "Você encontrou a solução ótima no Solver, mas e se o lucro de um produto mudar ou se der para comprar mais matéria-prima? 🤔 Nesta Parte 2, voltamos ao problema da marcenaria e aprendemos a gerar e ler o Relatório de Sensibilidade do Solver no Excel: até onde a solução continua ótima e em qual recurso vale a pena investir.\n\nNesta aula, você vai aprender:\n\nComo gerar o Relatório de Sensibilidade na tela de resultados do Solver, em dois cliques.\n\nO que significam Valor Final, Custo Reduzido e Objetivo Coeficiente nas células variáveis, e por que um custo reduzido zero indica um empate entre mesa e cadeira.\n\nComo ler os limites Permitido Aumentar e Permitido Reduzir, e o que é aquele 1E+30 que aparece no relatório (é o infinito).\n\nComo identificar a restrição gargalo (ativa) e a restrição com folga comparando o Valor Final com o lado direito da restrição.\n\nO que é o Preço-Sombra, quanto vale pagar por mais uma unidade do recurso e até que ponto esse valor continua válido.\n\nFechamos testando na planilha: com 120 chapas de madeira a mais (240 no total), o lucro da marcenaria dobra e passamos a produzir 80 mesas; na chapa 241, o preço-sombra da madeira cai a zero e o gargalo vira a mão de obra.\n\n⏱️ Capítulos:\n00:00 Abertura — o problema da marcenaria\n00:31 O que é o Relatório de Sensibilidade\n01:04 Gerando o relatório no Solver\n02:16 Células variáveis: Valor Final\n03:36 Custo Reduzido e o empate mesa × cadeira\n04:45 Testando na prática: lucro de R$ 100,01\n05:11 Permitido Aumentar e Permitido Reduzir\n06:42 Restrições: folga × gargalo\n07:47 Preço-Sombra: quanto vale mais uma chapa\n09:08 Preço-Sombra zero na mão de obra\n09:50 Até onde o Preço-Sombra vale (limite 120)\n11:30 Testando: 240 e 241 chapas de madeira\n13:33 Encerramento\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui e aprenda a usar o Solver passo a passo: https://youtu.be/AT7hG6yOK6U\n\n⚠️ Quer saber de onde vem o Preço-Sombra? Veja o Teorema das Folgas Complementares: https://youtu.be/6n6oPR70LSA\n\n⚠️ Para a teoria completa por trás do relatório, assista à Análise de Sensibilidade, Parte 1: https://youtu.be/Z-duqQJFa-4\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem também precisa dominar o Solver!\n\n#PesquisaOperacional #PO #Solver #Excel #AnaliseDeSensibilidade #PrecoSombra #Otimização #UNIRIO"
+}

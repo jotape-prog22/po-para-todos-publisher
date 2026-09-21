@@ -1,0 +1,75 @@
+{
+  "titulos_candidatos": [
+    "PROGRAMAÇÃO INTEIRA - Método Gráfico em 3 Minutos - Parte 3",
+    "PROGRAMAÇÃO INTEIRA - Relaxação Linear e Método Gráfico - Parte 3",
+    "PROGRAMAÇÃO INTEIRA - Por Que Arredondar Não Funciona? - Parte 3",
+    "PROGRAMAÇÃO INTEIRA - Método Gráfico e Relaxação Linear - Parte 3",
+    "PROGRAMAÇÃO INTEIRA - Resolvendo pelo Método Gráfico - Parte 3"
+  ],
+  "titulo": "PROGRAMAÇÃO INTEIRA - Método Gráfico em 3 Minutos - Parte 3",
+  "gancho": "O ótimo da relaxação linear deu x1 = 3,75 e x2 = 1,5. Dá para arredondar e pronto? 🤔 Nesta aula rápida resolvemos um problema de Programação Inteira com duas variáveis pelo método gráfico e mostramos por que o arredondamento é perigoso — e por onde o Branch and Bound começa.",
+  "objetivos": [
+    "O que é a relaxação linear de um problema de Programação Inteira: basta tirar a exigência de x1 e x2 serem inteiros.",
+    "Como resolver a relaxação pelo método gráfico, desenhando a região viável e achando o ótimo contínuo na interseção das retas.",
+    "Por que arredondar o ótimo contínuo não garante a solução ótima nem sequer uma solução viável.",
+    "Como o Branch and Bound usa a relaxação como nó raiz e ramifica com x1 ≤ 3 e x1 ≥ 4, descartando o trecho entre 3 e 4.",
+    "Por que o conjunto de soluções viáveis de um problema inteiro é um conjunto discreto de pontos, e não uma área."
+  ],
+  "fechamento": "Fechamos vendo que o ótimo contínuo (x1 = 3,75; x2 = 1,5) não serve e que as soluções viáveis do problema inteiro são só os pontos de coordenadas inteiras dentro da região.",
+  "cta_complemento": "achou que era só arredondar",
+  "hashtags_tema": [
+    "#ProgramacaoInteira",
+    "#MetodoGrafico",
+    "#RelaxacaoLinear",
+    "#BranchAndBound"
+  ],
+  "tags": [
+    "programação inteira",
+    "método gráfico",
+    "relaxação linear",
+    "programação linear inteira",
+    "branch and bound",
+    "arredondamento",
+    "solução inteira",
+    "região viável",
+    "programação linear",
+    "otimização",
+    "pesquisa operacional",
+    "PLI",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "O problema e a relaxação linear"
+    },
+    {
+      "tempo": "00:25",
+      "titulo": "Resolução gráfica: o ótimo contínuo"
+    },
+    {
+      "tempo": "00:54",
+      "titulo": "Por que arredondar é perigoso"
+    },
+    {
+      "tempo": "01:33",
+      "titulo": "Branch and Bound: raiz e ramificação"
+    },
+    {
+      "tempo": "02:51",
+      "titulo": "Soluções viáveis são pontos discretos"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o método geral para resolver programação inteira? Assista ao Branch and Bound, Parte 1",
+      "url": "https://youtu.be/fXvZ2FejRBY"
+    },
+    {
+      "contexto": "Ainda não viu a Parte 1 de Programação Inteira? Comece por aqui",
+      "url": "https://youtu.be/aE3Ihiqg6wo"
+    }
+  ],
+  "descricao": "O ótimo da relaxação linear deu x1 = 3,75 e x2 = 1,5. Dá para arredondar e pronto? 🤔 Nesta aula rápida resolvemos um problema de Programação Inteira com duas variáveis pelo método gráfico e mostramos por que o arredondamento é perigoso — e por onde o Branch and Bound começa.\n\nNesta aula, você vai aprender:\n\nO que é a relaxação linear de um problema de Programação Inteira: basta tirar a exigência de x1 e x2 serem inteiros.\n\nComo resolver a relaxação pelo método gráfico, desenhando a região viável e achando o ótimo contínuo na interseção das retas.\n\nPor que arredondar o ótimo contínuo não garante a solução ótima nem sequer uma solução viável.\n\nComo o Branch and Bound usa a relaxação como nó raiz e ramifica com x1 ≤ 3 e x1 ≥ 4, descartando o trecho entre 3 e 4.\n\nPor que o conjunto de soluções viáveis de um problema inteiro é um conjunto discreto de pontos, e não uma área.\n\nFechamos vendo que o ótimo contínuo (x1 = 3,75; x2 = 1,5) não serve e que as soluções viáveis do problema inteiro são só os pontos de coordenadas inteiras dentro da região.\n\n⏱️ Capítulos:\n00:00 O problema e a relaxação linear\n00:25 Resolução gráfica: o ótimo contínuo\n00:54 Por que arredondar é perigoso\n01:33 Branch and Bound: raiz e ramificação\n02:51 Soluções viáveis são pontos discretos\n\n⚠️ Quer ver o método geral para resolver programação inteira? Assista ao Branch and Bound, Parte 1: https://youtu.be/fXvZ2FejRBY\n\n⚠️ Ainda não viu a Parte 1 de Programação Inteira? Comece por aqui: https://youtu.be/aE3Ihiqg6wo\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem achou que era só arredondar!\n\n#PesquisaOperacional #PO #ProgramacaoInteira #MetodoGrafico #RelaxacaoLinear #BranchAndBound #Otimização #UNIRIO"
+}

@@ -1,0 +1,99 @@
+{
+  "titulos_candidatos": [
+    "DIJKSTRA - Caminho Mínimo Passo a Passo - Parte 2",
+    "ALGORITMO DE DIJKSTRA - Menor Caminho Executado na Tabela - Parte 2",
+    "DIJKSTRA - Como Achar o Menor Caminho em um Grafo - Parte 2",
+    "MENOR CAMINHO - Algoritmo de Dijkstra Passo a Passo - Parte 2",
+    "DIJKSTRA - Por Que os Pesos Não Podem Ser Negativos? - Parte 2"
+  ],
+  "titulo": "DIJKSTRA - Caminho Mínimo Passo a Passo - Parte 2",
+  "gancho": "Você já sabe o que é o problema do caminho mínimo. Mas como achar, na mão, o menor caminho de um vértice a todos os outros? 🤔 Nesta aula executamos o algoritmo de Dijkstra passo a passo, com uma tabela auxiliar, num grafo de 7 vértices.",
+  "objetivos": [
+    "Quais são os requisitos do Dijkstra: um digrafo ponderado, pesos não negativos e um vértice de partida definido.",
+    "O que guardam as variáveis dist e ant de cada vértice, e por que ant é o que permite reconstruir o caminho no final.",
+    "Como funciona a fila de vértices e a regra de relaxação: quando a distância de um vizinho é atualizada e quando ela fica como está.",
+    "Como montar a tabela auxiliar (vértice, vizinhos e anterior) para executar o algoritmo sem se perder.",
+    "Como ler o resultado: as distâncias finais e o caminho mais curto, seguindo a lista de anteriores de trás para frente."
+  ],
+  "fechamento": "Fechamos com a execução completa no grafo de 7 vértices e o caminho mais curto de V1 até V6 reconstruído pelos anteriores: V1 → V4 → V7 → V6, com custo total 6.",
+  "cta_complemento": "está estudando grafos e caminho mínimo",
+  "hashtags_tema": [
+    "#Dijkstra",
+    "#CaminhoMinimo",
+    "#Grafos",
+    "#TeoriaDosGrafos"
+  ],
+  "tags": [
+    "dijkstra",
+    "algoritmo de dijkstra",
+    "caminho mínimo",
+    "menor caminho",
+    "caminho mais curto",
+    "shortest path",
+    "grafos",
+    "teoria dos grafos",
+    "redes",
+    "otimização em redes",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura: o que o Dijkstra faz"
+    },
+    {
+      "tempo": "00:52",
+      "titulo": "Requisitos: pesos não negativos"
+    },
+    {
+      "tempo": "02:22",
+      "titulo": "Saída: dist, ant e a fila"
+    },
+    {
+      "tempo": "03:41",
+      "titulo": "Os passos do algoritmo"
+    },
+    {
+      "tempo": "05:44",
+      "titulo": "O exemplo e a tabela auxiliar"
+    },
+    {
+      "tempo": "07:27",
+      "titulo": "Inicialização: V1 com distância 0"
+    },
+    {
+      "tempo": "09:01",
+      "titulo": "Iteração 1: relaxando V2 e V4"
+    },
+    {
+      "tempo": "12:20",
+      "titulo": "Iteração 2: os vizinhos de V4"
+    },
+    {
+      "tempo": "15:57",
+      "titulo": "Iterações seguintes: V2, V3, V5 e V7"
+    },
+    {
+      "tempo": "20:37",
+      "titulo": "Fim: as distâncias de V1 a todos"
+    },
+    {
+      "tempo": "21:30",
+      "titulo": "Reconstruindo o caminho V1 → V6"
+    },
+    {
+      "tempo": "23:09",
+      "titulo": "Conclusão"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não viu a Parte 1? Comece por aqui: o problema do caminho mínimo e a propriedade que o Dijkstra usa",
+      "url": "https://youtu.be/pqxwwsqnU44"
+    }
+  ],
+  "descricao": "Você já sabe o que é o problema do caminho mínimo. Mas como achar, na mão, o menor caminho de um vértice a todos os outros? 🤔 Nesta aula executamos o algoritmo de Dijkstra passo a passo, com uma tabela auxiliar, num grafo de 7 vértices.\n\nNesta aula, você vai aprender:\n\nQuais são os requisitos do Dijkstra: um digrafo ponderado, pesos não negativos e um vértice de partida definido.\n\nO que guardam as variáveis dist e ant de cada vértice, e por que ant é o que permite reconstruir o caminho no final.\n\nComo funciona a fila de vértices e a regra de relaxação: quando a distância de um vizinho é atualizada e quando ela fica como está.\n\nComo montar a tabela auxiliar (vértice, vizinhos e anterior) para executar o algoritmo sem se perder.\n\nComo ler o resultado: as distâncias finais e o caminho mais curto, seguindo a lista de anteriores de trás para frente.\n\nFechamos com a execução completa no grafo de 7 vértices e o caminho mais curto de V1 até V6 reconstruído pelos anteriores: V1 → V4 → V7 → V6, com custo total 6.\n\n⏱️ Capítulos:\n00:00 Abertura: o que o Dijkstra faz\n00:52 Requisitos: pesos não negativos\n02:22 Saída: dist, ant e a fila\n03:41 Os passos do algoritmo\n05:44 O exemplo e a tabela auxiliar\n07:27 Inicialização: V1 com distância 0\n09:01 Iteração 1: relaxando V2 e V4\n12:20 Iteração 2: os vizinhos de V4\n15:57 Iterações seguintes: V2, V3, V5 e V7\n20:37 Fim: as distâncias de V1 a todos\n21:30 Reconstruindo o caminho V1 → V6\n23:09 Conclusão\n\n⚠️ Ainda não viu a Parte 1? Comece por aqui: o problema do caminho mínimo e a propriedade que o Dijkstra usa: https://youtu.be/pqxwwsqnU44\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está estudando grafos e caminho mínimo!\n\n#PesquisaOperacional #PO #Dijkstra #CaminhoMinimo #Grafos #TeoriaDosGrafos #Otimização #UNIRIO"
+}

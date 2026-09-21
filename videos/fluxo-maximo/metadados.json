@@ -1,0 +1,103 @@
+{
+  "titulos_candidatos": [
+    "FLUXO MÁXIMO - Rede Residual e Algoritmo do Caminho Aumentado",
+    "FLUXO MÁXIMO - Algoritmo do Caminho Aumentado Passo a Passo",
+    "PROBLEMA DO FLUXO MÁXIMO - Rede Residual e Caminho Aumentado",
+    "CAMINHO AUMENTADO - O Algoritmo do Fluxo Máximo em Redes",
+    "FLUXO MÁXIMO E CORTE MÍNIMO - Como Funciona o Algoritmo"
+  ],
+  "titulo": "FLUXO MÁXIMO - Rede Residual e Algoritmo do Caminho Aumentado",
+  "gancho": "Quanto fluxo cabe numa rede? Quantos carros passam por um sistema de estradas, quanta água escoa por uma tubulação, quanto uma rede de distribuição consegue entregar? 🤔 Nesta aula vamos apresentar o Problema do Fluxo Máximo e o Algoritmo do Caminho Aumentado, com os conceitos de rede residual e corte mínimo.",
+  "objetivos": [
+    "O que é o Problema do Fluxo Máximo e por que ele é diferente dos outros problemas em redes: aqui o objetivo é maximizar, não minimizar.",
+    "O que são capacidade de arco, origem e escoadouro numa rede direcionada e conexa.",
+    "Como montar a rede residual e atualizar as capacidades residuais à medida que o fluxo é enviado.",
+    "O que é um caminho aumentado e como o Algoritmo do Caminho Aumentado usa esse conceito para chegar ao fluxo ótimo.",
+    "O Teorema do Corte Mínimo: por que o fluxo máximo é igual à capacidade do corte mínimo, e como tratar redes com várias origens e destinos usando nós fantasmas."
+  ],
+  "fechamento": "Fechamos calculando os cortes da rede do exemplo (16, 15, 16 e 15) e concluindo que o fluxo máximo não pode passar de 15; a execução completa do algoritmo fica para o próximo vídeo.",
+  "cta_complemento": "está estudando problemas em redes",
+  "hashtags_tema": [
+    "#FluxoMaximo",
+    "#CaminhoAumentado",
+    "#Redes",
+    "#Grafos"
+  ],
+  "tags": [
+    "fluxo máximo",
+    "problema do fluxo máximo",
+    "algoritmo do caminho aumentado",
+    "caminho aumentado",
+    "rede residual",
+    "corte mínimo",
+    "teorema do fluxo máximo e corte mínimo",
+    "ford fulkerson",
+    "fluxo em redes",
+    "otimização em redes",
+    "grafos",
+    "pesquisa operacional",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "O problema do fluxo máximo"
+    },
+    {
+      "tempo": "00:44",
+      "titulo": "Aplicações"
+    },
+    {
+      "tempo": "01:32",
+      "titulo": "Rede direcionada e capacidade do arco"
+    },
+    {
+      "tempo": "02:36",
+      "titulo": "Rede residual"
+    },
+    {
+      "tempo": "04:00",
+      "titulo": "Exemplo — Montando a rede residual"
+    },
+    {
+      "tempo": "06:21",
+      "titulo": "Caminho aumentado"
+    },
+    {
+      "tempo": "07:46",
+      "titulo": "Algoritmo do caminho aumentado"
+    },
+    {
+      "tempo": "09:00",
+      "titulo": "Como achar um caminho aumentado"
+    },
+    {
+      "tempo": "10:12",
+      "titulo": "Corte e teorema do corte mínimo"
+    },
+    {
+      "tempo": "11:07",
+      "titulo": "Exemplo — Cortes da rede"
+    },
+    {
+      "tempo": "13:15",
+      "titulo": "Múltiplas origens e destinos"
+    },
+    {
+      "tempo": "14:27",
+      "titulo": "Encerramento"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer ver o outro problema de fluxo em redes, em que o custo entra na conta? Assista à aula de Fluxo de Custo Mínimo",
+      "url": "https://youtu.be/ZVFg5FZzPn0"
+    },
+    {
+      "contexto": "Ainda não viu o primeiro problema em redes do curso? Comece pelo Caminho Mínimo, Parte 1",
+      "url": "https://youtu.be/pqxwwsqnU44"
+    }
+  ],
+  "descricao": "Quanto fluxo cabe numa rede? Quantos carros passam por um sistema de estradas, quanta água escoa por uma tubulação, quanto uma rede de distribuição consegue entregar? 🤔 Nesta aula vamos apresentar o Problema do Fluxo Máximo e o Algoritmo do Caminho Aumentado, com os conceitos de rede residual e corte mínimo.\n\nNesta aula, você vai aprender:\n\nO que é o Problema do Fluxo Máximo e por que ele é diferente dos outros problemas em redes: aqui o objetivo é maximizar, não minimizar.\n\nO que são capacidade de arco, origem e escoadouro numa rede direcionada e conexa.\n\nComo montar a rede residual e atualizar as capacidades residuais à medida que o fluxo é enviado.\n\nO que é um caminho aumentado e como o Algoritmo do Caminho Aumentado usa esse conceito para chegar ao fluxo ótimo.\n\nO Teorema do Corte Mínimo: por que o fluxo máximo é igual à capacidade do corte mínimo, e como tratar redes com várias origens e destinos usando nós fantasmas.\n\nFechamos calculando os cortes da rede do exemplo (16, 15, 16 e 15) e concluindo que o fluxo máximo não pode passar de 15; a execução completa do algoritmo fica para o próximo vídeo.\n\n⏱️ Capítulos:\n00:00 O problema do fluxo máximo\n00:44 Aplicações\n01:32 Rede direcionada e capacidade do arco\n02:36 Rede residual\n04:00 Exemplo — Montando a rede residual\n06:21 Caminho aumentado\n07:46 Algoritmo do caminho aumentado\n09:00 Como achar um caminho aumentado\n10:12 Corte e teorema do corte mínimo\n11:07 Exemplo — Cortes da rede\n13:15 Múltiplas origens e destinos\n14:27 Encerramento\n\n⚠️ Quer ver o outro problema de fluxo em redes, em que o custo entra na conta? Assista à aula de Fluxo de Custo Mínimo: https://youtu.be/ZVFg5FZzPn0\n\n⚠️ Ainda não viu o primeiro problema em redes do curso? Comece pelo Caminho Mínimo, Parte 1: https://youtu.be/pqxwwsqnU44\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está estudando problemas em redes!\n\n#PesquisaOperacional #PO #FluxoMaximo #CaminhoAumentado #Redes #Grafos #Otimização #UNIRIO"
+}

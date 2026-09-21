@@ -1,0 +1,35 @@
+{
+  "video_id": "LkJlsxEtaE4",
+  "url": "https://youtu.be/LkJlsxEtaE4",
+  "published_at": "2025-10-26T16:29:26Z",
+  "title": "PO1: Dualidade",
+  "description": "PO1: Dualidade em Programação Linear | Teoremas, Lema e Relações Primal-Dual\nA Dualidade é um dos conceitos mais elegantes e úteis da Pesquisa Operacional, revelando a profunda interconexão entre dois problemas de otimização!\nNesta aula teórica, a professora Andreia Bonifácio apresenta os resultados teóricos que regem a relação entre o Problema Primal e o Problema Dual, mostrando como a solução de um fornece informações cruciais sobre o outro.\nNeste vídeo você aprenderá sobre:\nProblema Primal (P) e Dual (D): A associação entre o problema original (primal) e o problema associado (dual), e como as soluções ótimas de ambos se inter-relacionam [00:48].\nForma Canônica da Dualidade: A estrutura matricial e as regras de construção do Dual quando o Primal está no formato de minimização (restrições $\\ge$) ou maximização (restrições $\\le$) [01:22].\nRegras de Construção: A correspondência entre:\nVariáveis de um problema e Restrições do outro [05:46].\nCoeficientes da Função Objetivo de um problema e o Lado Direito (RHS) do outro [06:57].\nO Dual do Dual é o Primal: Demonstração matemática de que a dualidade é uma relação reversa, ou seja, ao dualizar o problema dual, você retorna ao primal [10:29].\nTabela de Equivalências: O uso da tabela que permite construir o Dual de qualquer PPL, independentemente de sua forma (canônica ou não), definindo corretamente os sinais das variáveis e restrições [16:15].\nO Lema da Dualidade Fraca: Um resultado fundamental que prova que o valor da Função Objetivo do problema de minimização é sempre maior ou igual ao valor da Função Objetivo do problema de maximização para quaisquer soluções viáveis [21:19].\nDomine o conceito de Dualidade para interpretar as soluções do Simplex e realizar análises de sensibilidade!\nLink para o vídeo: PO1: Dualidade",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/LkJlsxEtaE4/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/LkJlsxEtaE4/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/LkJlsxEtaE4/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/LkJlsxEtaE4/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/LkJlsxEtaE4/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "titulos_candidatos": [
+    "PRIM - Árvore Geradora Mínima a Partir de um Vértice",
+    "ALGORITMO DE PRIM - Árvore Geradora Mínima Passo a Passo",
+    "PRIM - A Outra Forma de Achar a Árvore Geradora Mínima",
+    "ÁRVORE GERADORA MÍNIMA - Algoritmo de Prim com Tabela",
+    "PRIM OU KRUSKAL? - Árvore Geradora Mínima Expandindo a Árvore"
+  ],
+  "titulo": "PRIM - Árvore Geradora Mínima a Partir de um Vértice",
+  "gancho": "Já sabe achar a Árvore Geradora Mínima com o Kruskal, mas dá para chegar no mesmo resultado de outro jeito? 🤔 Dá. Nesta aula vamos conhecer o Algoritmo de Prim, que parte de um único vértice e vai expandindo uma só árvore, sempre pela aresta mais barata, usando uma tabela de pesos para não se perder.",
+  "objetivos": [
+    "O que muda do Kruskal para o Prim: em vez de escolher a aresta mais barata do grafo inteiro, o Prim cresce uma única árvore a partir de um vértice escolhido arbitrariamente.",
+    "Os passos do algoritmo: o conjunto de vértices da árvore, o conjunto de arestas e o contador que vai de 1 até o número de vértices menos 1.",
+    "Como montar a matriz de pesos do grafo, com traço na diagonal e infinito onde não há aresta, para enxergar de uma vez todas as ligações possíveis.",
+    "Como usar a tabela em cada iteração: cortar a linha do vértice que entrou na árvore e procurar o menor peso nas colunas dos vértices que já estão nela."
+  ],
+  "fechamento": "Fechamos com as três primeiras iterações no mesmo grafo do Kruskal: partindo de A, entram as arestas A-C (peso 3), B-C (peso 1) e C-D (peso 6), e a árvore já tem os vértices A, B, C e D.",
+  "cta_complemento": "está estudando árvore geradora mínima",
+  "hashtags_tema": [
+    "#Prim",
+    "#ArvoreGeradoraMinima",
+    "#Grafos",
+    "#AlgoritmoDePrim"
+  ],
+  "tags": [
+    "algoritmo de prim",
+    "prim",
+    "árvore geradora mínima",
+    "árvore geradora de peso mínimo",
+    "AGM",
+    "minimum spanning tree",
+    "prim ou kruskal",
+    "kruskal",
+    "teoria dos grafos",
+    "grafos",
+    "otimização em redes",
+    "pesquisa operacional",
+    "pesquisa operacional 2",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Prim: a alternativa ao Kruskal"
+    },
+    {
+      "tempo": "00:25",
+      "titulo": "Como o Prim expande uma única árvore"
+    },
+    {
+      "tempo": "00:52",
+      "titulo": "Os passos do algoritmo"
+    },
+    {
+      "tempo": "01:42",
+      "titulo": "Exemplo: montando a matriz de pesos"
+    },
+    {
+      "tempo": "02:39",
+      "titulo": "Iteração 1: começando pelo vértice A"
+    },
+    {
+      "tempo": "03:29",
+      "titulo": "Iteração 2: analisando A e C"
+    },
+    {
+      "tempo": "04:07",
+      "titulo": "Iteração 3: analisando A, B e C"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Ainda não sabe o que é uma Árvore Geradora Mínima? Comece pelo problema e pelas definições",
+      "url": "https://youtu.be/00hL3kAjiZw"
+    },
+    {
+      "contexto": "Quer comparar com a outra forma de resolver? Veja o Algoritmo de Kruskal no mesmo exemplo",
+      "url": "https://youtu.be/bmofX3L464c"
+    }
+  ],
+  "descricao": "Já sabe achar a Árvore Geradora Mínima com o Kruskal, mas dá para chegar no mesmo resultado de outro jeito? 🤔 Dá. Nesta aula vamos conhecer o Algoritmo de Prim, que parte de um único vértice e vai expandindo uma só árvore, sempre pela aresta mais barata, usando uma tabela de pesos para não se perder.\n\nNesta aula, você vai aprender:\n\nO que muda do Kruskal para o Prim: em vez de escolher a aresta mais barata do grafo inteiro, o Prim cresce uma única árvore a partir de um vértice escolhido arbitrariamente.\n\nOs passos do algoritmo: o conjunto de vértices da árvore, o conjunto de arestas e o contador que vai de 1 até o número de vértices menos 1.\n\nComo montar a matriz de pesos do grafo, com traço na diagonal e infinito onde não há aresta, para enxergar de uma vez todas as ligações possíveis.\n\nComo usar a tabela em cada iteração: cortar a linha do vértice que entrou na árvore e procurar o menor peso nas colunas dos vértices que já estão nela.\n\nFechamos com as três primeiras iterações no mesmo grafo do Kruskal: partindo de A, entram as arestas A-C (peso 3), B-C (peso 1) e C-D (peso 6), e a árvore já tem os vértices A, B, C e D.\n\n⏱️ Capítulos:\n00:00 Prim: a alternativa ao Kruskal\n00:25 Como o Prim expande uma única árvore\n00:52 Os passos do algoritmo\n01:42 Exemplo: montando a matriz de pesos\n02:39 Iteração 1: começando pelo vértice A\n03:29 Iteração 2: analisando A e C\n04:07 Iteração 3: analisando A, B e C\n\n⚠️ Ainda não sabe o que é uma Árvore Geradora Mínima? Comece pelo problema e pelas definições: https://youtu.be/00hL3kAjiZw\n\n⚠️ Quer comparar com a outra forma de resolver? Veja o Algoritmo de Kruskal no mesmo exemplo: https://youtu.be/bmofX3L464c\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está estudando árvore geradora mínima!\n\n#PesquisaOperacional #PO #Prim #ArvoreGeradoraMinima #Grafos #AlgoritmoDePrim #Otimização #UNIRIO"
+}
