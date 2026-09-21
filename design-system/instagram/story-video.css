@@ -1,0 +1,46 @@
+/* PO para Todos — story em vídeo (1080×1920, sequência de cenas animadas).
+ * Complementa instagram.css: mesma marca, mesma grade, mesma zona segura.
+ * Cada elemento entra em cena no instante --t (segundos), definido pelo gerador
+ * (design-system/scripts/gerar-story-video.mjs); o vídeo é gravado quadro a quadro
+ * a partir dessas animações, por isso nada aqui depende de tempo real.
+ */
+:root {
+  --sv-zona-sticker: 460px;         /* espaço livre acima do rodapé para o sticker (quiz, enquete, link) */
+  --sv-item-numero-size: 64px;
+  --sv-item-titulo-size: 46px;  --sv-item-titulo-line: 52px;
+  --sv-item-texto-size: 36px;   --sv-item-texto-line: 48px;
+  --sv-pergunta-size: 52px;     --sv-pergunta-line: 60px;
+  --sv-icone: 220px;
+}
+
+/* conteúdo entre o lockup e a zona do sticker; faixa (quando há) fica dentro da zona do sticker, colada ao rodapé */
+.ig--story-video .ig__conteudo {
+  bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + var(--sv-zona-sticker));
+  justify-content: center; gap: var(--space-md);
+}
+.ig--story-video .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
+
+.sv__pergunta { margin: 0; font: 400 var(--sv-pergunta-size)/var(--sv-pergunta-line) var(--font-display); color: var(--ink); }
+.ig--story-video .ig__icone { width: var(--sv-icone); height: var(--sv-icone); }
+
+/* itens numerados (passos) */
+.sv__itens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-lg); }
+.sv__item { display: grid; grid-template-columns: 96px 1fr; column-gap: var(--space-sm); align-items: baseline; }
+.sv__item-numero { font: 400 var(--sv-item-numero-size)/1 var(--font-display); color: var(--brand-green-soft); }
+.sv__item-titulo { margin: 0; font: 400 var(--sv-item-titulo-size)/var(--sv-item-titulo-line) var(--font-display); text-transform: uppercase; color: var(--brand-green); }
+.sv__item-texto  { margin: 0; grid-column: 2; font: 600 var(--sv-item-texto-size)/var(--sv-item-texto-line) var(--font-label); color: var(--ink); }
+
+/* dica no topo da zona do sticker ("Responda no quiz" + seta), pulsando */
+.sv__dica {
+  position: absolute; left: var(--ig-margem); right: var(--ig-margem);
+  bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + var(--sv-zona-sticker) - var(--space-2xl) - var(--ig-apoio-line));
+  margin: 0; text-align: center;
+  font: 600 var(--ig-apoio-size)/var(--ig-apoio-line) var(--font-label); color: var(--ink-muted);
+}
+.sv__dica::after { content: "↓"; display: block; color: var(--brand-green-soft); }
+
+/* entrada: cada .sv__anim aparece no instante --t; fill "both" mantém o estado antes e depois */
+.sv__anim { opacity: 0; animation: sv-entrar .6s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--t, 0s); }
+.sv__dica.sv__anim { animation: sv-entrar .6s cubic-bezier(.2, .7, .2, 1) both, sv-pulsar 1.6s ease-in-out infinite; animation-delay: var(--t, 0s), calc(var(--t, 0s) + .6s); }
+@keyframes sv-entrar { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes sv-pulsar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(12px); } }

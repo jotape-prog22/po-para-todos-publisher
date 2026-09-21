@@ -11,6 +11,7 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node scripts/descricao.mjs videos/<slug>` — monta a descrição em `metadados.json`.
 - `node design-system/scripts/gerar-miniatura.mjs …` — ver `design-system/miniaturas/GUIA-AGENTE.md`.
 - `node design-system/scripts/gerar-story.mjs videos/<slug>` — `story.png` de vídeo novo (a skill `publicar` chama).
+- `node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` — `stories.json` → `story-NN.mp4` (sequência de stories em vídeo; stickers e ordem em `stories.md` da pasta).
 - `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` são fixtures: não as altere sem atualizar os testes.
 
 Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists, rodapés e o repositório.

@@ -1,0 +1,64 @@
+{
+  "tipo": "stories",
+  "stories": [
+    {
+      "duracao": 13,
+      "kicker": "UM DESAFIO",
+      "titulo": "VOCÊ TEM UMA PADARIA",
+      "linhas": [
+        "Pão: 1 h de forno, lucro de R$ 30",
+        "Bolo: 2 h de forno, lucro de R$ 50",
+        "O forno funciona 8 h por dia",
+        "E só dá para vender 5 pães"
+      ],
+      "pergunta": "O que rende mais?",
+      "dica": "Responda no quiz"
+    },
+    {
+      "duracao": 12,
+      "kicker": "A RESPOSTA",
+      "titulo": "4 PÃES E 2 BOLOS",
+      "linhas": [
+        "4 × 30 + 2 × 50 = R$ 220",
+        "Só pães: R$ 150. Só bolos: R$ 200.",
+        "A melhor combinação não é óbvia.\nEla aparece quando a decisão vira conta.",
+        "Isso é Pesquisa Operacional."
+      ],
+      "dica": "Acertou?"
+    },
+    {
+      "duracao": 13,
+      "kicker": "O MODELO DA PADARIA",
+      "titulo": "A DECISÃO VIRA CONTA",
+      "linhas": [
+        "x = pães por dia, y = bolos por dia",
+        "Maximizar 30x + 50y",
+        "x + 2y ≤ 8 (horas de forno)",
+        "x ≤ 5 (pães que vendem)",
+        "Solução: x = 4, y = 2"
+      ],
+      "dica": "Já viu uma decisão assim?"
+    },
+    {
+      "duracao": 12,
+      "kicker": "COMO A PO FUNCIONA",
+      "itens": [
+        { "titulo": "Modelar", "texto": "Traduzir a decisão: o que escolher, o que maximizar, o que limita." },
+        { "titulo": "Resolver", "texto": "Um algoritmo (o Simplex, por exemplo) encontra a melhor combinação." },
+        { "titulo": "Decidir", "texto": "A resposta volta ao mundo real e vira ação." }
+      ],
+      "dica": "Qual é o mais difícil?"
+    },
+    {
+      "duracao": 10,
+      "kicker": "ONDE A PO ESTÁ",
+      "titulo": "EM TODO LUGAR",
+      "linhas": [
+        "Rota do entregador. Escala do hospital.\nTabela do campeonato. Malha aérea.",
+        "Quer começar do começo?"
+      ],
+      "icone": "alvo",
+      "faixa": "AULA INAUGURAL NO CANAL"
+    }
+  ]
+}

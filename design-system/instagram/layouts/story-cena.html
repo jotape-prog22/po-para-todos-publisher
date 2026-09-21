@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>{{titulo_pagina}}</title>
+<link rel="stylesheet" href="{{ds}}/tokens.css">
+<link rel="stylesheet" href="{{ds}}/assets/fontes/fontes.css">
+<link rel="stylesheet" href="{{ds}}/instagram/instagram.css">
+<link rel="stylesheet" href="{{ds}}/instagram/story-video.css">
+</head>
+<body>
+<!-- Uma cena do story em vídeo: kicker, título, linhas ou itens numerados, pergunta,
+     ícone; cada bloco entra no instante --t. A zona acima do rodapé fica livre para o
+     sticker que a pessoa adiciona no app (quiz, enquete, link). -->
+<main class="ig ig--story ig--story-video">
+  <img class="ig__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
+  <div class="ig__conteudo">
+{{conteudo}}
+  </div>
+{{#dica}}  <p class="sv__dica sv__anim" style="--t: {{dica_t}}s">{{dica}}</p>
+{{/dica}}{{#faixa}}  <p class="ig__faixa">{{faixa}}</p>
+{{/faixa}}  <p class="ig__rodape"><span>@{{usuario}}</span></p>
+</main>
+</body>
+</html>

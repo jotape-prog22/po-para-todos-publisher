@@ -18,3 +18,6 @@ instagram/**/*.jpg
 !instagram/2026-09-20-kruskal-1956/card-*.png
 videos/**/story.png
 videos/**/story.html
+instagram/**/story-*.mp4
+instagram/**/story-*.png
+instagram/**/story-*.html

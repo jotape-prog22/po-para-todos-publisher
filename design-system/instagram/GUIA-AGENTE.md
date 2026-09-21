@@ -39,6 +39,7 @@ node scripts/legenda.mjs instagram/<pasta>                              # legend
 node scripts/instagram.mjs --status                                     # conta, token, cota
 node scripts/instagram.mjs --publicar instagram/<pasta>                 # publica (skill post decide quando)
 node design-system/scripts/gerar-story.mjs videos/<slug>                # story.png de vídeo novo
+node design-system/scripts/gerar-story-video.mjs instagram/<pasta>      # story-NN.mp4 de stories.json (sequência didática; stickers à mão, ver stories.md)
 ```
 
 ## Nunca
