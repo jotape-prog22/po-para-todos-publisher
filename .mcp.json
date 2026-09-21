@@ -2,7 +2,7 @@
   "mcpServers": {
     "youtube": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/felipefontoura/youtube-studio-mcp", "youtube-studio-mcp"]
+      "args": ["--from", "git+https://github.com/jotape-prog22/youtube-studio-mcp@73db1b3819df8889f8c32eca8bde60272be69715", "youtube-studio-mcp"]
     }
   }
 }
