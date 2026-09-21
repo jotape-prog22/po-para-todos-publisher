@@ -151,17 +151,21 @@ export async function esperarContainer(ig, id, dormir, tentativas = 20) {
     const { status_code, status } = await ig.get(id, "status_code,status");
     if (status_code === "FINISHED") return;
     if (status_code === "ERROR" || status_code === "EXPIRED") throw new ErroInstagram(`a Meta rejeitou a mídia (${status_code})${status ? `: ${status}` : ""}`);
-    await dormir(3000);
+    if (i < tentativas - 1) await dormir(3000);
   }
-  throw new ErroInstagram("a Meta não terminou de processar a mídia em 60 s — tente de novo em alguns minutos");
+  throw new ErroInstagram(`a Meta não terminou de processar a mídia em ${tentativas * 3} s — tente de novo em alguns minutos`);
 }
 
 const nn = (i) => String(i + 1).padStart(2, "0");
 
 export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
   // 1. pré-checagem local
-  const cards = JSON.parse(readFileSync(join(pasta, "cards.json"), "utf8"));
-  const legenda = readFileSync(join(pasta, "legenda.txt"), "utf8").trim();
+  const arquivoCards = join(pasta, "cards.json");
+  if (!existsSync(arquivoCards)) throw new ErroInstagram(`falta cards.json em ${pasta} — rode a skill post`);
+  const arquivoLegenda = join(pasta, "legenda.txt");
+  if (!existsSync(arquivoLegenda)) throw new ErroInstagram(`falta legenda.txt — rode: node scripts/legenda.mjs ${pasta}`);
+  const cards = JSON.parse(readFileSync(arquivoCards, "utf8"));
+  const legenda = readFileSync(arquivoLegenda, "utf8").trim();
   const pngs = cards.cards.map((_, i) => join(pasta, `card-${nn(i)}.png`));
   for (const p of pngs) if (!existsSync(p)) throw new ErroInstagram(`falta ${basename(p)} — rode: node design-system/scripts/gerar-cards.mjs ${pasta}`);
   if (existsSync(join(pasta, "publicacao.json"))) throw new ErroInstagram("este post já foi publicado (publicacao.json existe) — apague o arquivo se quiser publicar de novo");
@@ -197,7 +201,10 @@ export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImp
         log(`enviando card ${nn(i)}…`);
         filhos.push((await ig.post(`${igId}/media`, { image_url: url, is_carousel_item: "true" })).id);
       }
-      for (const id of filhos) await esperarContainer(ig, id, dormir);
+      for (const [i, id] of filhos.entries()) {
+        log(`aguardando card ${nn(i)}…`);
+        await esperarContainer(ig, id, dormir);
+      }
       log("montando o carrossel…");
       criacaoId = (await ig.post(`${igId}/media`, { media_type: "CAROUSEL", children: filhos.join(","), caption: legenda })).id;
     }
@@ -209,9 +216,14 @@ export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImp
     writeFileSync(join(pasta, "publicacao.json"), JSON.stringify(registro, null, 2) + "\n");
     return registro;
   } finally {
-    // 5. esvazia o branch mesmo quando a Meta falhou
+    // 5. esvazia o branch mesmo quando a Meta falhou — uma falha aqui não pode mascarar
+    // o resultado do bloco acima (return ou throw), então fica isolada num try/catch.
     log("esvaziando o branch midia…");
-    await limparMidia(gh, { repo: canal.github });
+    try {
+      await limparMidia(gh, { repo: canal.github });
+    } catch (e) {
+      log(`aviso: não consegui esvaziar o branch midia (${e.message}) — o próximo --publicar sobrescreve`);
+    }
   }
 }
 

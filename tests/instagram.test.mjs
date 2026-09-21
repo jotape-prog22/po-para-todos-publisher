@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, existsSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, existsSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram, criarApiGithub, subirMidia, limparMidia, paraJpeg, README_MIDIA, publicarPost, esperarContainer } from "../scripts/instagram.mjs";
@@ -15,7 +15,7 @@ export function fetchFalso(rotas) {
     const rota = rotas.find((r) => r.metodo === metodo && r.url.test(url));
     if (!rota) return { ok: false, status: 404, text: async () => JSON.stringify({ error: { message: `sem rota: ${metodo} ${url}` } }) };
     const json = typeof rota.json === "function" ? rota.json({ url, corpo, n: chamadas.length }) : rota.json;
-    const status = rota.status ?? 200;
+    const status = typeof rota.status === "function" ? rota.status({ url, corpo, n: chamadas.length }) : (rota.status ?? 200);
     return { ok: status < 400, status, text: async () => JSON.stringify(json) };
   };
   f.chamadas = chamadas;
@@ -223,4 +223,40 @@ test("esperarContainer desiste depois das tentativas", async () => {
   const ig = (await import("../scripts/instagram.mjs")).criarApiInstagram("T", f);
   await assert.rejects(esperarContainer(ig, "c1", semDormir, 3), /não terminou/);
   assert.equal(f.chamadas.length, 3);
+});
+
+// rotas do GitHub em que a primeira PATCH (subida da mídia) funciona e a segunda (limpeza no finally) falha
+function rotasGithubFalhaNaLimpeza() {
+  let blobs = 0, patches = 0;
+  return [
+    { metodo: "POST", url: /\/git\/blobs$/, json: () => ({ sha: `blob${++blobs}` }) },
+    { metodo: "POST", url: /\/git\/trees$/, json: { sha: "tree1" } },
+    { metodo: "POST", url: /\/git\/commits$/, json: { sha: "c0ffee" } },
+    { metodo: "GET", url: /\/git\/ref\/heads\/midia$/, json: { ref: "refs/heads/midia" } },
+    { metodo: "PATCH", url: /\/git\/refs\/heads\/midia$/, json: () => (++patches === 2 ? { message: "credenciais expiraram" } : { ref: "refs/heads/midia" }), status: () => (patches === 2 ? 500 : 200) },
+  ];
+}
+
+test("limpeza do branch midia falha depois de publicar: o resultado não é mascarado, só um aviso", async () => {
+  const pasta = await pastaDePost(1);
+  const avisos = [];
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithubFalhaNaLimpeza()]);
+  const r = await publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: (m) => avisos.push(m) });
+  assert.equal(r.media_id, "midia77");
+  assert.ok(existsSync(join(pasta, "publicacao.json")));
+  assert.ok(avisos.some((m) => /não consegui esvaziar o branch midia/.test(m) && /credenciais expiraram/.test(m)));
+});
+
+test("Meta rejeita a mídia e a limpeza também falha: o erro reportado continua sendo o da Meta", async () => {
+  const pasta = await pastaDePost(1);
+  const f = fetchFalso([...rotasInstagram({ status: ["ERROR"] }), ...rotasGithubFalhaNaLimpeza()]);
+  await assert.rejects(publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} }), /rejeitou a mídia \(ERROR\)/);
+});
+
+test("falta legenda.txt: erro amigável e nenhuma chamada de rede", async () => {
+  const pasta = await pastaDePost(1);
+  unlinkSync(join(pasta, "legenda.txt"));
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  await assert.rejects(publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} }), /legenda\.txt/);
+  assert.equal(f.chamadas.length, 0);
 });
