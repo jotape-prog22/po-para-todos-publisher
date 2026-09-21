@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join, resolve, relative, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { execFileSync } from "node:child_process";
+import { preencher, exportarPng } from "./modelo-html.mjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAIZ = resolve(DS, "..");
@@ -141,14 +141,10 @@ export function resolver(spec) {
 }
 
 // ---------- render ----------
-const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-
 export function montarHtml(r, { ds }) {
-  let html = readFileSync(join(DS, "miniaturas/layouts", `${r.layout}.html`), "utf8");
+  const html = readFileSync(join(DS, "miniaturas/layouts", `${r.layout}.html`), "utf8");
   const vars = { ds, titulo: `${r.headline} ${r.subhead} — PO para Todos`.trim(), headline: r.headline, subhead: r.subhead, faixa: r.faixa, icone: r.icone, icone2: r.icone2 ?? "", selo: r.selo ?? "", numero: r.numero != null ? String(r.numero).padStart(2, "0") : "", icone_tamanho: r.iconeTamanho || 260 };
-  html = html.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (_, k, corpo) => (vars[k] ? corpo : ""));
-  html = html.replace(/\{\{(\w+)\}\}/g, (_, k) => (k === "ds" ? vars.ds : esc(vars[k] ?? "")));
-  return html;
+  return preencher(html, vars);
 }
 
 export function gerar(spec) {
@@ -161,7 +157,7 @@ export function gerar(spec) {
   writeFileSync(saidaHtml, montarHtml(r, { ds }));
   let png = null;
   if (!spec.soHtml) {
-    execFileSync(join(DS, "scripts/exportar.sh"), [saidaHtml, saidaPng, String(spec.escala ?? 2)], { stdio: "pipe" });
+    exportarPng(saidaHtml, saidaPng, { escala: spec.escala ?? 2 });
     png = saidaPng;
   }
   return { ...r, html: saidaHtml, png };
