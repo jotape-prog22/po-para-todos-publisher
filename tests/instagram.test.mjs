@@ -1,9 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, existsSync } from "node:fs";
+import { mkdtempSync, readFileSync, existsSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram, criarApiGithub, subirMidia, limparMidia, paraJpeg, README_MIDIA } from "../scripts/instagram.mjs";
+import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram, criarApiGithub, subirMidia, limparMidia, paraJpeg, README_MIDIA, publicarPost, esperarContainer } from "../scripts/instagram.mjs";
 
 // fetch falso: rotas por método + regex da URL; registra as chamadas
 export function fetchFalso(rotas) {
@@ -138,4 +138,89 @@ test("paraJpeg converte PNG em JPEG", async () => {
   const jpg = await paraJpeg(png);
   assert.equal(jpg[0], 0xff); assert.equal(jpg[1], 0xd8);
   assert.deepEqual((({ width, height, format }) => ({ width, height, format }))(await sharp(jpg).metadata()), { width: 4, height: 5, format: "jpeg" });
+});
+
+async function pastaDePost(nCards) {
+  const sharp = (await import("sharp")).default;
+  const pasta = mkdtempSync(join(tmpdir(), "post-"));
+  const tipo = nCards === 1 ? "aviso" : "artigo";
+  const cards = nCards === 1 ? [{ tipo: "aviso", titulo: "X" }] : [{ tipo: "capa", titulo: "T", autores: "A" }, ...Array(nCards - 2).fill({ tipo: "ideia", titulo: "I", texto: "t" }), { tipo: "fim", texto: "ref" }];
+  writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo, cards }));
+  writeFileSync(join(pasta, "legenda.txt"), "Gancho.\n\n#PO\n");
+  for (let i = 1; i <= nCards; i++) writeFileSync(join(pasta, `card-0${i}.png`), await sharp({ create: { width: 4, height: 5, channels: 3, background: "#000" } }).png().toBuffer());
+  return pasta;
+}
+const tokensOk = { instagram: { access_token: "T", usuario: "po", ig_id: "9", expira_em: "2099-01-01T00:00:00.000Z" }, github_token: "ghp" };
+function rotasInstagram({ status = ["FINISHED"] } = {}) {
+  let containers = 0, consultas = 0;
+  return [
+    { metodo: "GET", url: /\/9\/content_publishing_limit/, json: { data: [{ quota_usage: 1 }] } },
+    { metodo: "POST", url: /\/9\/media$/, json: () => ({ id: `cont${++containers}` }) },
+    { metodo: "GET", url: /\/cont\d+\?/, json: () => ({ status_code: status[Math.min(consultas++, status.length - 1)] }) },
+    { metodo: "POST", url: /\/9\/media_publish$/, json: { id: "midia77" } },
+    { metodo: "GET", url: /\/midia77\?/, json: { permalink: "https://www.instagram.com/p/abc/" } },
+    { metodo: "GET", url: /api\.github\.com\/repos\/dono\/repo$/, json: { private: false } },
+  ];
+}
+const semDormir = async () => {};
+
+test("publicar carrossel: cota → mídia → itens → carrossel → publish → permalink → publicacao.json → limpeza", async () => {
+  const pasta = await pastaDePost(3);
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const r = await publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  assert.deepEqual(r, { media_id: "midia77", url: "https://www.instagram.com/p/abc/", publicado_em: new Date(AGORA).toISOString(), tipo: "artigo", cards: 3 });
+  assert.deepEqual(JSON.parse(readFileSync(join(pasta, "publicacao.json"), "utf8")), r);
+  const posts = f.chamadas.filter((c) => c.metodo === "POST" && /graph\.instagram/.test(c.url)).map((c) => Object.fromEntries(new URLSearchParams(c.corpo)));
+  assert.equal(posts.length, 5);                                          // 3 itens + carrossel + publish
+  assert.match(posts[0].image_url, /^https:\/\/raw\.githubusercontent\.com\/dono\/repo\/c0ffee\/.*-card-01\.jpg$/);
+  assert.equal(posts[0].is_carousel_item, "true");
+  assert.deepEqual([posts[3].media_type, posts[3].children, posts[3].caption], ["CAROUSEL", "cont1,cont2,cont3", "Gancho.\n\n#PO"]);
+  assert.deepEqual(posts[4], { creation_id: "cont4", access_token: "T" });
+  const blobs = f.chamadas.filter((c) => /git\/blobs$/.test(c.url));
+  assert.equal(blobs.length, 3);
+  assert.equal(Buffer.from(JSON.parse(blobs[0].corpo).content, "base64")[0], 0xff);   // JPEG, não PNG
+  const refs = f.chamadas.filter((c) => c.metodo === "PATCH");
+  assert.equal(refs.length, 2);                                           // subir + limpar
+  assert.ok(f.chamadas.indexOf(refs[1]) > f.chamadas.findIndex((c) => /midia77\?/.test(c.url)));
+});
+
+test("publicar card único não cria carrossel", async () => {
+  const pasta = await pastaDePost(1);
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const r = await publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  assert.equal(r.cards, 1);
+  const posts = f.chamadas.filter((c) => c.metodo === "POST" && /graph\.instagram/.test(c.url)).map((c) => Object.fromEntries(new URLSearchParams(c.corpo)));
+  assert.equal(posts.length, 2);
+  assert.equal(posts[0].caption, "Gancho.\n\n#PO");
+  assert.equal(posts[0].is_carousel_item, undefined);
+});
+
+test("falha da Meta interrompe, reporta o passo e ainda esvazia o branch", async () => {
+  const pasta = await pastaDePost(1);
+  const f = fetchFalso([...rotasInstagram({ status: ["IN_PROGRESS", "ERROR"] }), ...rotasGithub()]);
+  await assert.rejects(publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} }), /rejeitou a mídia \(ERROR\)/);
+  assert.ok(!existsSync(join(pasta, "publicacao.json")));
+  assert.equal(f.chamadas.filter((c) => c.metodo === "PATCH").length, 2);
+});
+
+test("pré-checagens: cards faltando, já publicado, sem token do GitHub, repositório privado, cota cheia", async () => {
+  const opc = (extra) => ({ tokens: tokensOk, canal, fetchImpl: fetchFalso([...rotasInstagram(), ...rotasGithub()]), agora: AGORA, dormir: semDormir, log: () => {}, ...extra });
+  const pasta = await pastaDePost(2);
+  writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo: "artigo", cards: [{ tipo: "capa" }, { tipo: "ideia" }, { tipo: "fim" }] }));
+  await assert.rejects(publicarPost(pasta, opc()), /falta card-03\.png/);
+  const pronta = await pastaDePost(1);
+  writeFileSync(join(pronta, "publicacao.json"), "{}");
+  await assert.rejects(publicarPost(pronta, opc()), /já foi publicado/);
+  await assert.rejects(publicarPost(await pastaDePost(1), opc({ tokens: { instagram: tokensOk.instagram } })), /token do GitHub/);
+  const privado = fetchFalso([...rotasInstagram().slice(0, 5), { metodo: "GET", url: /repos\/dono\/repo$/, json: { private: true } }, ...rotasGithub()]);
+  await assert.rejects(publicarPost(await pastaDePost(1), opc({ fetchImpl: privado })), /público/);
+  const cheia = fetchFalso([{ metodo: "GET", url: /content_publishing_limit/, json: { data: [{ quota_usage: 100 }] } }]);
+  await assert.rejects(publicarPost(await pastaDePost(1), opc({ fetchImpl: cheia })), /100/);
+});
+
+test("esperarContainer desiste depois das tentativas", async () => {
+  const f = fetchFalso([{ metodo: "GET", url: /\/c1\?/, json: { status_code: "IN_PROGRESS" } }]);
+  const ig = (await import("../scripts/instagram.mjs")).criarApiInstagram("T", f);
+  await assert.rejects(esperarContainer(ig, "c1", semDormir, 3), /não terminou/);
+  assert.equal(f.chamadas.length, 3);
 });

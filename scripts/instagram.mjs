@@ -145,6 +145,76 @@ export async function paraJpeg(png) {
   return sharp(png).jpeg({ quality: 92 }).toBuffer();
 }
 
+// ---------- publicação ----------
+export async function esperarContainer(ig, id, dormir, tentativas = 20) {
+  for (let i = 0; i < tentativas; i++) {
+    const { status_code, status } = await ig.get(id, "status_code,status");
+    if (status_code === "FINISHED") return;
+    if (status_code === "ERROR" || status_code === "EXPIRED") throw new ErroInstagram(`a Meta rejeitou a mídia (${status_code})${status ? `: ${status}` : ""}`);
+    await dormir(3000);
+  }
+  throw new ErroInstagram("a Meta não terminou de processar a mídia em 60 s — tente de novo em alguns minutos");
+}
+
+const nn = (i) => String(i + 1).padStart(2, "0");
+
+export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
+  // 1. pré-checagem local
+  const cards = JSON.parse(readFileSync(join(pasta, "cards.json"), "utf8"));
+  const legenda = readFileSync(join(pasta, "legenda.txt"), "utf8").trim();
+  const pngs = cards.cards.map((_, i) => join(pasta, `card-${nn(i)}.png`));
+  for (const p of pngs) if (!existsSync(p)) throw new ErroInstagram(`falta ${basename(p)} — rode: node design-system/scripts/gerar-cards.mjs ${pasta}`);
+  if (existsSync(join(pasta, "publicacao.json"))) throw new ErroInstagram("este post já foi publicado (publicacao.json existe) — apague o arquivo se quiser publicar de novo");
+  if (!tokens.instagram) throw new ErroInstagram(`sem token do Instagram — rode: node scripts/instagram.mjs --token "<token>"`);
+  if (!tokens.github_token) throw new ErroInstagram(`sem token do GitHub — rode: node scripts/instagram.mjs --token-github "<token>"`);
+
+  // 2. cota e repositório
+  const ig = criarApiInstagram(tokens.instagram.access_token, fetchImpl);
+  const igId = tokens.instagram.ig_id;
+  const cota = await ig.get(`${igId}/content_publishing_limit`, "quota_usage");
+  const uso = cota.data?.[0]?.quota_usage ?? 0;
+  if (uso >= COTA) throw new ErroInstagram(`a conta já fez ${COTA} publicações pela API nas últimas 24 h — espere`);
+  const gh = criarApiGithub(tokens.github_token, canal.github, fetchImpl);
+  const repo = await gh.pedir("GET", "");
+  if (repo.private) throw new ErroInstagram(`o repositório ${canal.github} precisa ser público para a Meta baixar as imagens`);
+
+  // 3. mídia pública
+  const carimbo = new Date(agora).toISOString().replace(/\D/g, "").slice(0, 14);
+  const arquivos = [];
+  for (const [i, p] of pngs.entries()) arquivos.push({ nome: `${basename(pasta)}-${carimbo}-card-${nn(i)}.jpg`, conteudo: await paraJpeg(p) });
+  log(`subindo ${arquivos.length} imagem(ns) para o branch midia de ${canal.github}…`);
+  const midia = await subirMidia(gh, arquivos, { repo: canal.github });
+
+  try {
+    // 4. contêineres e publicação
+    let criacaoId;
+    if (arquivos.length === 1) {
+      log("criando o post…");
+      criacaoId = (await ig.post(`${igId}/media`, { image_url: midia.urls[0], caption: legenda })).id;
+    } else {
+      const filhos = [];
+      for (const [i, url] of midia.urls.entries()) {
+        log(`enviando card ${nn(i)}…`);
+        filhos.push((await ig.post(`${igId}/media`, { image_url: url, is_carousel_item: "true" })).id);
+      }
+      for (const id of filhos) await esperarContainer(ig, id, dormir);
+      log("montando o carrossel…");
+      criacaoId = (await ig.post(`${igId}/media`, { media_type: "CAROUSEL", children: filhos.join(","), caption: legenda })).id;
+    }
+    await esperarContainer(ig, criacaoId, dormir);
+    log("publicando…");
+    const publicado = await ig.post(`${igId}/media_publish`, { creation_id: criacaoId });
+    const { permalink } = await ig.get(publicado.id, "permalink");
+    const registro = { media_id: publicado.id, url: permalink, publicado_em: new Date(agora).toISOString(), tipo: cards.tipo, cards: arquivos.length };
+    writeFileSync(join(pasta, "publicacao.json"), JSON.stringify(registro, null, 2) + "\n");
+    return registro;
+  } finally {
+    // 5. esvazia o branch mesmo quando a Meta falhou
+    log("esvaziando o branch midia…");
+    await limparMidia(gh, { repo: canal.github });
+  }
+}
+
 // ---------- CLI ----------
 const USO = `uso:
   node scripts/instagram.mjs --token "<token do Instagram>"
@@ -167,8 +237,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       const s = await statusDaConta(await renovarSeNecessario(lerTokens()));
       console.log(`conta: @${s.usuario}\ntoken do Instagram: vale por mais ${s.diasRestantes} dias\ncota: ${s.cotaUsada} de ${s.cotaTotal} publicações nas últimas 24 h\ntoken do GitHub: ${s.github ? "guardado" : "falta — rode --token-github"}`);
     } else if (opcao === "--publicar" && valor) {
-      console.error("erro: --publicar ainda não implementado");   // Task 8 substitui
-      process.exit(1);
+      const tokens = await renovarSeNecessario(lerTokens());
+      const r = await publicarPost(resolve(valor), { tokens });
+      console.log(`publicado: ${r.url}`);
     } else {
       console.error(USO);
       process.exit(1);

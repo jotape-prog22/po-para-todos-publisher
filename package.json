@@ -13,7 +13,8 @@
     "descricao": "node scripts/descricao.mjs",
     "roteiro": "node scripts/roteiro.mjs",
     "cards": "node design-system/scripts/gerar-cards.mjs",
-    "legenda": "node scripts/legenda.mjs"
+    "legenda": "node scripts/legenda.mjs",
+    "instagram": "node scripts/instagram.mjs"
   },
   "license": "MIT",
   "dependencies": {
