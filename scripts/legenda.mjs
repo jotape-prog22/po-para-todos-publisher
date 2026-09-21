@@ -17,6 +17,10 @@ export const HASHTAGS_MAX = 30;
 
 export class ErroLegenda extends Error {}
 
+export function contarHashtags(texto) {
+  return (texto.match(/#[\p{L}\p{N}_]+/gu) ?? []).length;
+}
+
 export function validarLegenda(legenda, tipo) {
   const erros = [];
   const { gancho, corpo, autores, hashtags_tema } = legenda ?? {};
@@ -29,7 +33,7 @@ export function validarLegenda(legenda, tipo) {
   if (tipo === "artigo" && !autores?.trim()) erros.push('artigo precisa de "autores" (por extenso, com @ de quem tiver)');
   if (!Array.isArray(hashtags_tema) || hashtags_tema.length < 3 || hashtags_tema.length > 4) erros.push("hashtags_tema: de 3 a 4");
   else for (const h of hashtags_tema) if (!/^#[A-Za-z0-9]+$/.test(h)) erros.push(`hashtag "${h}" precisa ser #CamelCase sem acento`);
-  if (/\b(like|curte|curta|curtir)\b/i.test(`${gancho ?? ""} ${corpo ?? ""}`)) erros.push("a legenda não pede like");
+  if (/\b(likes?|curt(e|a|am|ir|ida|idas))\b/i.test(`${gancho ?? ""} ${corpo ?? ""}`)) erros.push("a legenda não pede like");
   return erros;
 }
 
@@ -57,7 +61,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const erros = validarLegenda(legenda, cards.tipo);
     if (erros.length) throw new ErroLegenda(`legenda.json inválido:\n- ${erros.join("\n- ")}`);
     const texto = montarLegenda({ legenda, tipo: cards.tipo, canal });
-    const hashtags = (texto.match(/#\w+/g) ?? []).length;
+    const hashtags = contarHashtags(texto);
     if (texto.length > LEGENDA_MAX) throw new ErroLegenda(`legenda com ${texto.length} caracteres — máximo ${LEGENDA_MAX}`);
     if (hashtags > HASHTAGS_MAX) throw new ErroLegenda(`${hashtags} hashtags — máximo ${HASHTAGS_MAX}`);
     writeFileSync(join(pasta, "legenda.txt"), texto + "\n");

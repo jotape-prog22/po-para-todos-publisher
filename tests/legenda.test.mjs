@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { validarLegenda, montarLegenda, GANCHO_MAX } from "../scripts/legenda.mjs";
+import { validarLegenda, montarLegenda, contarHashtags, GANCHO_MAX } from "../scripts/legenda.mjs";
 
 const pasta = new URL("../instagram/2026-09-20-kruskal-1956/", import.meta.url);
 const legenda = JSON.parse(readFileSync(new URL("legenda.json", pasta), "utf8"));
@@ -25,6 +25,22 @@ test("regras: hashtags do tema, autores no artigo, sem pedir like", () => {
   assert.ok(validarLegenda({ ...legenda, autores: null }, "artigo").some((e) => e.includes("autores")));
   assert.deepEqual(validarLegenda({ ...legenda, autores: null }, "aviso"), []);
   assert.ok(validarLegenda({ ...legenda, corpo: "Deixe o like!" }, "artigo").some((e) => e.includes("like")));
+});
+
+test("filtro amplo de like/curtir: singular, plural, imperativos", () => {
+  assert.ok(validarLegenda({ ...legenda, corpo: "Deixem seus likes no post!" }, "artigo").some((e) => e.includes("like")));
+  assert.ok(validarLegenda({ ...legenda, corpo: "Curtam o post!" }, "artigo").some((e) => e.includes("like")));
+  assert.ok(validarLegenda({ ...legenda, corpo: "Curtida no post!" }, "artigo").some((e) => e.includes("like")));
+  assert.ok(validarLegenda({ ...legenda, corpo: "Curtidas!" }, "artigo").some((e) => e.includes("like")));
+  assert.ok(validarLegenda({ ...legenda, corpo: "Por favor, curte!" }, "artigo").some((e) => e.includes("like")));
+  assert.deepEqual(validarLegenda({ ...legenda, corpo: "Conheça este algoritmo de 1956 com detalhes." }, "artigo"), []);
+});
+
+test("contarHashtags conta corretamente incluindo acentuação", () => {
+  assert.equal(contarHashtags("#Otimização"), 1);
+  assert.equal(contarHashtags("#PesquisaOperacional #PO #Otimização #UNIRIO"), 4);
+  assert.equal(contarHashtags("#ArvoreGeradora #Kruskal #Grafos #CaixeiroViajante #Otimização"), 5);
+  assert.equal(contarHashtags("Sem hashtags aqui."), 0);
 });
 
 test("aviso usa o CTA de link na bio e não leva autores", () => {
