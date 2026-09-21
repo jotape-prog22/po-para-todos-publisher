@@ -5,7 +5,7 @@
  */
 :root {
   --ig-margem: 72px;
-  --ig-lockup: 120px;               /* logo quadrado do canal */
+  --ig-lockup: 160px;               /* logo quadrado do canal */
   --ig-rodape-altura: 96px;         /* faixa verde com o @ */
   --ig-kicker-size: 32px;  --ig-kicker-line: 40px;
   --ig-titulo-size: 76px;  --ig-titulo-line: 82px;       /* Archivo Black, caixa alta */

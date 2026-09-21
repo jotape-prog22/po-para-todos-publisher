@@ -70,7 +70,7 @@ function quebrar(texto, estilo, max) {
 }
 
 // ---------- resolução ----------
-class ErroSpec extends Error {}
+export class ErroSpec extends Error {}
 
 export function resolver(spec) {
   const avisos = [];

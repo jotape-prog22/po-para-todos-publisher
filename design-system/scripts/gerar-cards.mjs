@@ -84,14 +84,16 @@ export function gerarCards(pasta, { soHtml = false } = {}) {
     const html = join(pasta, `card-${nn}.html`), png = join(pasta, `card-${nn}.png`);
     writeFileSync(html, preencher(modelo, variaveisDoCard(card, i, dados.cards.length, { ds, usuario: canal.instagramUsuario }), { brutos: ["ds", "texto_html"] }));
     if (soHtml) { saidas.push(html); return; }
-    exportarPng(html, png, { largura, altura });
-    unlinkSync(html);
+    try { exportarPng(html, png, { largura, altura }); } finally { unlinkSync(html); }
     saidas.push(png);
   });
-  // cards que sobraram de uma versão anterior com mais itens
-  for (let n = dados.cards.length + 1; n <= formatos.tipos[dados.tipo].max; n++) {
-    const velho = join(pasta, `card-${String(n).padStart(2, "0")}.png`);
-    if (existsSync(velho)) unlinkSync(velho);
+  // cards que sobraram de uma versão anterior com mais itens (ou de um --so-html anterior)
+  const maxGlobal = Math.max(...Object.values(formatos.tipos).map((t) => t.max));
+  for (let n = dados.cards.length + 1; n <= maxGlobal; n++) {
+    const nn = String(n).padStart(2, "0");
+    for (const velho of [join(pasta, `card-${nn}.png`), join(pasta, `card-${nn}.html`)]) {
+      if (existsSync(velho)) unlinkSync(velho);
+    }
   }
   return saidas;
 }

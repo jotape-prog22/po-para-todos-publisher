@@ -11,7 +11,7 @@
 import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { resolver } from "./gerar-miniatura.mjs";
+import { resolver, ErroSpec } from "./gerar-miniatura.mjs";
 import { preencher, exportarPng } from "./modelo-html.mjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -52,7 +52,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   try {
     console.log(relative(RAIZ, gerarStory(resolve(pasta), extras, { soHtml: args.includes("--so-html") })));
   } catch (e) {
-    if (e instanceof ErroStory || e.constructor.name === "ErroSpec") { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e instanceof ErroStory || e instanceof ErroSpec) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

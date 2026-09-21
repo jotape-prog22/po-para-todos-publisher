@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, existsSync, writeFileSync, unlinkSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, existsSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram, criarApiGithub, subirMidia, limparMidia, paraJpeg, README_MIDIA, publicarPost, esperarContainer } from "../scripts/instagram.mjs";
@@ -32,6 +32,12 @@ test("lerTokens devolve {} quando o arquivo não existe; gravarTokens cria a pas
   assert.deepEqual(lerTokens(arq), {});
   gravarTokens({ github_token: "ghp" }, arq);
   assert.deepEqual(lerTokens(arq), { github_token: "ghp" });
+});
+
+test("lerTokens recusa arquivo corrompido com uma mensagem amigável", () => {
+  const arq = arquivoTemp();
+  writeFileSync(arq, "{");
+  assert.throws(() => lerTokens(arq), (e) => e instanceof ErroInstagram && /corrompido/.test(e.message));
 });
 
 test("--token valida na API, confere o usuário e grava com 60 dias de validade", async () => {
@@ -140,9 +146,10 @@ test("paraJpeg converte PNG em JPEG", async () => {
   assert.deepEqual((({ width, height, format }) => ({ width, height, format }))(await sharp(jpg).metadata()), { width: 4, height: 5, format: "jpeg" });
 });
 
-async function pastaDePost(nCards) {
+async function pastaDePost(nCards, nomePasta) {
   const sharp = (await import("sharp")).default;
-  const pasta = mkdtempSync(join(tmpdir(), "post-"));
+  let pasta = mkdtempSync(join(tmpdir(), "post-"));
+  if (nomePasta) { pasta = join(pasta, nomePasta); mkdirSync(pasta); }
   const tipo = nCards === 1 ? "aviso" : "artigo";
   const cards = nCards === 1 ? [{ tipo: "aviso", titulo: "X" }] : [{ tipo: "capa", titulo: "T", autores: "A" }, ...Array(nCards - 2).fill({ tipo: "ideia", titulo: "I", texto: "t" }), { tipo: "fim", texto: "ref" }];
   writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo, cards }));
@@ -193,6 +200,14 @@ test("publicar card único não cria carrossel", async () => {
   assert.equal(posts.length, 2);
   assert.equal(posts[0].caption, "Gancho.\n\n#PO");
   assert.equal(posts[0].is_carousel_item, undefined);
+});
+
+test("nome da pasta com espaço/acento vira nome de arquivo seguro na URL da mídia", async () => {
+  const pasta = await pastaDePost(1, "post ção");
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  await publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  const posts = f.chamadas.filter((c) => c.metodo === "POST" && /graph\.instagram/.test(c.url)).map((c) => Object.fromEntries(new URLSearchParams(c.corpo)));
+  assert.match(posts[0].image_url, /post-cao-\d{14}-card-01\.jpg$/);
 });
 
 test("falha da Meta interrompe, reporta o passo e ainda esvazia o branch", async () => {

@@ -73,3 +73,14 @@ test("gerarCards recusa cards.json inválido", () => {
   writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo: "aviso", cards: [] }));
   assert.throws(() => gerarCards(pasta, { soHtml: true }), ErroCards);
 });
+
+test("gerarCards apaga card-NN.png e .html que sobraram de uma versão anterior com mais cards", () => {
+  const pasta = mkdtempSync(join(tmpdir(), "cards-"));
+  writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo: "aviso", cards: [{ tipo: "aviso", titulo: "X" }] }));
+  writeFileSync(join(pasta, "card-02.png"), "lixo");
+  writeFileSync(join(pasta, "card-03.html"), "lixo");
+  gerarCards(pasta, { soHtml: true });
+  assert.ok(!existsSync(join(pasta, "card-02.png")));
+  assert.ok(!existsSync(join(pasta, "card-03.html")));
+  assert.ok(existsSync(join(pasta, "card-01.html")));
+});

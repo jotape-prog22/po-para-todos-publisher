@@ -30,7 +30,12 @@ export class ErroInstagram extends Error {}
 
 // ---------- tokens ----------
 export function lerTokens(arquivo = ARQUIVO_TOKENS) {
-  return existsSync(arquivo) ? JSON.parse(readFileSync(arquivo, "utf8")) : {};
+  if (!existsSync(arquivo)) return {};
+  try {
+    return JSON.parse(readFileSync(arquivo, "utf8"));
+  } catch {
+    throw new ErroInstagram(`o arquivo ${arquivo} está corrompido — apague-o e rode --token e --token-github de novo`);
+  }
 }
 export function gravarTokens(dados, arquivo = ARQUIVO_TOKENS) {
   mkdirSync(dirname(arquivo), { recursive: true });
@@ -158,6 +163,9 @@ export async function esperarContainer(ig, id, dormir, tentativas = 20) {
 
 const nn = (i) => String(i + 1).padStart(2, "0");
 
+// nome do arquivo de mídia não pode ter espaço/acento (vira URL pública) — tira acentos e troca o resto por hífen
+const sanitizarNome = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9._-]+/g, "-");
+
 export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
   // 1. pré-checagem local
   const arquivoCards = join(pasta, "cards.json");
@@ -185,7 +193,8 @@ export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImp
   // 3. mídia pública
   const carimbo = new Date(agora).toISOString().replace(/\D/g, "").slice(0, 14);
   const arquivos = [];
-  for (const [i, p] of pngs.entries()) arquivos.push({ nome: `${basename(pasta)}-${carimbo}-card-${nn(i)}.jpg`, conteudo: await paraJpeg(p) });
+  const nomePasta = sanitizarNome(basename(pasta));
+  for (const [i, p] of pngs.entries()) arquivos.push({ nome: `${nomePasta}-${carimbo}-card-${nn(i)}.jpg`, conteudo: await paraJpeg(p) });
   log(`subindo ${arquivos.length} imagem(ns) para o branch midia de ${canal.github}…`);
   const midia = await subirMidia(gh, arquivos, { repo: canal.github });
 
