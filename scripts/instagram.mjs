@@ -104,6 +104,47 @@ export async function statusDaConta(tokens, { fetchImpl = fetch, agora = Date.no
 
 function lerCanal() { return JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8")); }
 
+// ---------- mídia pública (branch `midia` no GitHub) ----------
+export const README_MIDIA = "Branch temporário: guarda as imagens de um post do Instagram só enquanto a Meta as baixa. Fica vazio entre publicações.\n";
+
+export function criarApiGithub(token, repo, fetchImpl = fetch) {
+  const cabecalhos = { authorization: `Bearer ${token}`, accept: "application/vnd.github+json", "x-github-api-version": "2022-11-28", "content-type": "application/json" };
+  const base = `${GITHUB}/repos/${repo}`;
+  return {
+    async pedir(metodo, caminho, corpo) {
+      const { ok, status, json } = await chamar(`${base}${caminho}`, { metodo, corpo: corpo && JSON.stringify(corpo), cabecalhos }, fetchImpl);
+      if (!ok) throw new ErroInstagram(`GitHub: ${json.message ?? JSON.stringify(json)} (${metodo} ${caminho}, HTTP ${status})`);
+      return json;
+    },
+    async status(caminho) {
+      return (await chamar(`${base}${caminho}`, { cabecalhos }, fetchImpl)).status;
+    },
+  };
+}
+
+// Sobe os arquivos num commit órfão (sem pai) e aponta o branch para ele, com força:
+// o branch nunca acumula histórico de imagens. Devolve o SHA e as URLs raw (imutáveis, pelo SHA).
+export async function subirMidia(gh, arquivos, { repo, branch = "midia" }) {
+  const tree = [{ path: "README.md", mode: "100644", type: "blob", content: README_MIDIA }];
+  for (const { nome, conteudo } of arquivos) {
+    const blob = await gh.pedir("POST", "/git/blobs", { content: conteudo.toString("base64"), encoding: "base64" });
+    tree.push({ path: nome, mode: "100644", type: "blob", sha: blob.sha });
+  }
+  const arvore = await gh.pedir("POST", "/git/trees", { tree });
+  const mensagem = arquivos.length ? `mídia temporária: ${arquivos.map((a) => a.nome).join(", ")}` : "branch de mídia vazio";
+  const commit = await gh.pedir("POST", "/git/commits", { message: mensagem, tree: arvore.sha, parents: [] });
+  if ((await gh.status(`/git/ref/heads/${branch}`)) === 404) await gh.pedir("POST", "/git/refs", { ref: `refs/heads/${branch}`, sha: commit.sha });
+  else await gh.pedir("PATCH", `/git/refs/heads/${branch}`, { sha: commit.sha, force: true });
+  return { sha: commit.sha, urls: arquivos.map((a) => `https://raw.githubusercontent.com/${repo}/${commit.sha}/${a.nome}`) };
+}
+
+export const limparMidia = (gh, opcoes) => subirMidia(gh, [], opcoes);
+
+// A API da Meta só aceita JPEG; o PNG continua sendo o arquivo da pasta.
+export async function paraJpeg(png) {
+  return sharp(png).jpeg({ quality: 92 }).toBuffer();
+}
+
 // ---------- CLI ----------
 const USO = `uso:
   node scripts/instagram.mjs --token "<token do Instagram>"

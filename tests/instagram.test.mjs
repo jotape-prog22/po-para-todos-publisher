@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram } from "../scripts/instagram.mjs";
+import { lerTokens, gravarTokens, diasRestantes, guardarTokenInstagram, renovarSeNecessario, statusDaConta, ErroInstagram, criarApiGithub, subirMidia, limparMidia, paraJpeg, README_MIDIA } from "../scripts/instagram.mjs";
 
 // fetch falso: rotas por método + regex da URL; registra as chamadas
 export function fetchFalso(rotas) {
@@ -83,4 +83,59 @@ test("status: conta, dias restantes, cota e token do GitHub", async () => {
   const s = await statusDaConta(tokens, { fetchImpl: f, agora: AGORA });
   assert.deepEqual(s, { usuario: "po", diasRestantes: 40, cotaUsada: 3, cotaTotal: 100, github: false });
   assert.ok(f.chamadas[0].url.startsWith("https://graph.instagram.com/v23.0/9/content_publishing_limit?fields=quota_usage"));
+});
+
+// rotas da Git Data API do GitHub; `existeBranch` decide entre PATCH (branch existe) e POST refs
+function rotasGithub({ existeBranch = true } = {}) {
+  let blobs = 0;
+  return [
+    { metodo: "POST", url: /\/git\/blobs$/, json: () => ({ sha: `blob${++blobs}` }) },
+    { metodo: "POST", url: /\/git\/trees$/, json: { sha: "tree1" } },
+    { metodo: "POST", url: /\/git\/commits$/, json: { sha: "c0ffee" } },
+    { metodo: "GET", url: /\/git\/ref\/heads\/midia$/, status: existeBranch ? 200 : 404, json: existeBranch ? { ref: "refs/heads/midia" } : { message: "Not Found" } },
+    { metodo: "PATCH", url: /\/git\/refs\/heads\/midia$/, json: { ref: "refs/heads/midia" } },
+    { metodo: "POST", url: /\/git\/refs$/, json: { ref: "refs/heads/midia" } },
+  ];
+}
+
+test("subirMidia: blob por arquivo, tree com README, commit órfão, ref forçada, URLs pelo SHA", async () => {
+  const f = fetchFalso(rotasGithub());
+  const gh = criarApiGithub("ghp_x", "dono/repo", f);
+  const r = await subirMidia(gh, [{ nome: "a.jpg", conteudo: Buffer.from("A") }, { nome: "b.jpg", conteudo: Buffer.from("B") }], { repo: "dono/repo" });
+  assert.equal(r.sha, "c0ffee");
+  assert.deepEqual(r.urls, ["https://raw.githubusercontent.com/dono/repo/c0ffee/a.jpg", "https://raw.githubusercontent.com/dono/repo/c0ffee/b.jpg"]);
+  const seq = f.chamadas.map((c) => `${c.metodo} ${c.url.replace("https://api.github.com/repos/dono/repo", "")}`);
+  assert.deepEqual(seq, ["POST /git/blobs", "POST /git/blobs", "POST /git/trees", "POST /git/commits", "GET /git/ref/heads/midia", "PATCH /git/refs/heads/midia"]);
+  assert.equal(f.chamadas[0].headers.authorization, "Bearer ghp_x");
+  assert.deepEqual(JSON.parse(f.chamadas[0].corpo), { content: Buffer.from("A").toString("base64"), encoding: "base64" });
+  const tree = JSON.parse(f.chamadas[2].corpo).tree;
+  assert.deepEqual(tree.map((t) => t.path), ["README.md", "a.jpg", "b.jpg"]);
+  assert.equal(tree[0].content, README_MIDIA);
+  assert.deepEqual(tree[1], { path: "a.jpg", mode: "100644", type: "blob", sha: "blob1" });
+  assert.deepEqual(JSON.parse(f.chamadas[3].corpo).parents, []);
+  assert.deepEqual(JSON.parse(f.chamadas[5].corpo), { sha: "c0ffee", force: true });
+});
+
+test("subirMidia cria o branch quando ele não existe; limparMidia deixa só o README", async () => {
+  const f = fetchFalso(rotasGithub({ existeBranch: false }));
+  const gh = criarApiGithub("ghp_x", "dono/repo", f);
+  await limparMidia(gh, { repo: "dono/repo" });
+  const seq = f.chamadas.map((c) => `${c.metodo} ${c.url.replace("https://api.github.com/repos/dono/repo", "")}`);
+  assert.deepEqual(seq, ["POST /git/trees", "POST /git/commits", "GET /git/ref/heads/midia", "POST /git/refs"]);
+  assert.deepEqual(JSON.parse(f.chamadas[0].corpo).tree.map((t) => t.path), ["README.md"]);
+  assert.deepEqual(JSON.parse(f.chamadas[3].corpo), { ref: "refs/heads/midia", sha: "c0ffee" });
+});
+
+test("erro do GitHub vira ErroInstagram com a mensagem e o passo", async () => {
+  const f = fetchFalso([{ metodo: "POST", url: /\/git\/blobs$/, status: 401, json: { message: "Bad credentials" } }]);
+  const gh = criarApiGithub("ruim", "dono/repo", f);
+  await assert.rejects(subirMidia(gh, [{ nome: "a.jpg", conteudo: Buffer.from("A") }], { repo: "dono/repo" }), (e) => e instanceof ErroInstagram && /Bad credentials/.test(e.message) && /POST \/git\/blobs/.test(e.message));
+});
+
+test("paraJpeg converte PNG em JPEG", async () => {
+  const sharp = (await import("sharp")).default;
+  const png = await sharp({ create: { width: 4, height: 5, channels: 3, background: "#2C2C2C" } }).png().toBuffer();
+  const jpg = await paraJpeg(png);
+  assert.equal(jpg[0], 0xff); assert.equal(jpg[1], 0xd8);
+  assert.deepEqual((({ width, height, format }) => ({ width, height, format }))(await sharp(jpg).metadata()), { width: 4, height: 5, format: "jpeg" });
 });
