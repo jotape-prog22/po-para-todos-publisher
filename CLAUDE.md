@@ -1,6 +1,6 @@
 # PO para Todos — publisher
 
-Pipeline de produção dos vídeos do canal Pesquisa Operacional para Todos (UNIRIO): do tema ao link no YouTube. Quem usa este repositório pode não saber programar — escreva para essa pessoa: passos numerados, comando exato, o que esperar na tela.
+Pipeline de produção do canal Pesquisa Operacional para Todos (UNIRIO): vídeos, do tema ao link no YouTube, e posts do Instagram, do `post.md` ao link. Quem usa este repositório pode não saber programar — escreva para essa pessoa: passos numerados, comando exato, o que esperar na tela.
 
 ## Fluxo de um vídeo
 `/video` encadeia as skills em `.claude/skills/`: `roteiro` → `titulo-descricao` → `slides` → `miniatura` → `publicar`, com paradas para aprovar o roteiro e gravar. Cada skill também funciona sozinha. Vocabulário em `CONTEXT.md`; exemplo completo em `videos/folgas-complementares/`.
@@ -10,9 +10,13 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node design-system/scripts/gerar-slides.mjs videos/<slug>` — `slides.json` → `slides.pptx`.
 - `node scripts/descricao.mjs videos/<slug>` — monta a descrição em `metadados.json`.
 - `node design-system/scripts/gerar-miniatura.mjs …` — ver `design-system/miniaturas/GUIA-AGENTE.md`.
-- `npm test` — testes; a pasta `videos/folgas-complementares/` é fixture: não a altere sem atualizar os testes.
+- `node design-system/scripts/gerar-story.mjs videos/<slug>` — `story.png` de vídeo novo (a skill `publicar` chama).
+- `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` são fixtures: não as altere sem atualizar os testes.
 
-Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists e rodapé.
+Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists, rodapés e o repositório.
+
+## Fluxo de um post do Instagram
+`/post instagram/<data>-<slug>` (skill `post`): `post.md` → `cards.json` + `legenda.json` → `gerar-cards.mjs` e `scripts/legenda.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar`. Guia em `design-system/instagram/GUIA-AGENTE.md`; tokens em `~/.po-para-todos/instagram.json` (`docs/adr/0006`); imagens passam pelo branch `midia` (`docs/adr/0005`). Story de vídeo novo é sempre manual (a API não põe sticker de link).
 
 ## Design system (`design-system/`)
 - `tokens.json` é a fonte da verdade; `tokens.css` é gerado por `design-system/scripts/gerar-tokens-css.mjs` — nunca edite o .css à mão.

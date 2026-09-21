@@ -79,9 +79,9 @@ export async function guardarTokenInstagram(token, { fetchImpl = fetch, agora = 
 
 export async function renovarSeNecessario(tokens, { fetchImpl = fetch, agora = Date.now(), arquivo = ARQUIVO_TOKENS, avisar = console.error } = {}) {
   const ig = tokens.instagram;
-  if (!ig) throw new ErroInstagram(`sem token do Instagram — rode: node scripts/instagram.mjs --token "<token>" (README, seção Instagram)`);
+  if (!ig) throw new ErroInstagram(`sem token do Instagram — rode: node scripts/instagram.mjs --token "<token>" (README, seção "Publicar no Instagram")`);
   const dias = diasRestantes(ig, agora);
-  if (dias < 0) throw new ErroInstagram("o token do Instagram venceu — gere outro no Meta for Developers e rode --token de novo (README, seção Instagram)");
+  if (dias < 0) throw new ErroInstagram(`o token do Instagram venceu — gere outro no Meta for Developers e rode --token de novo (README, seção "Publicar no Instagram")`);
   if (dias >= RENOVAR_ABAIXO_DE) return tokens;
   const q = new URLSearchParams({ grant_type: "ig_refresh_token", access_token: ig.access_token });
   const { ok, json } = await chamar(`https://graph.instagram.com/refresh_access_token?${q}`, {}, fetchImpl);
