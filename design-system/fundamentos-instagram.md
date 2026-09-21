@@ -10,7 +10,7 @@ Padrão dos cards de feed e dos stories do perfil `@pesquisaoperacionalparatodos
 
 ## Grade (1080 de largura)
 
-- Margem lateral 72 px (área útil 936 px). Lockup do canal (logo quadrado, 120 px) no canto superior esquerdo — assina, não compete.
+- Margem lateral 72 px (área útil 936 px). Lockup do canal (logo quadrado, 160 px) no canto superior esquerdo — assina, não compete.
 - Rodapé de largura total em `brand-green`, 96 px, com `@pesquisaoperacionalparatodos` à esquerda e o contador do carrossel (`2/5`) à direita, em `brand-navy` sobre o verde (5,08:1).
 - Conteúdo centrado na vertical entre lockup e rodapé. Um só bloco de leitura por card; nunca dois assuntos.
 - Story: conteúdo na metade superior, faixa "ASSISTA NO YOUTUBE" e rodapé logo acima da zona segura de baixo; entre eles, espaço para o sticker de link, que a pessoa adiciona no app.

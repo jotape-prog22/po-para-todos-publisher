@@ -8,7 +8,7 @@ Para quem recebe um `instagram/<data>-<slug>/post.md` e precisa entregar `cards.
 2. **Escreva `cards.json`** (formato abaixo). `artigo`: `capa` + 1 a 8 `ideia` + `fim`, no máximo 10 cards; uma ideia por card, tirada do resumo, na ordem em que o artigo apresenta. `aviso`: um card `aviso`.
 3. **Escreva `legenda.json`**: `gancho` (uma frase, ≤ 125 caracteres, o que aparece antes do "mais" — pergunta ou fato surpreendente), `corpo` (2 a 4 parágrafos curtos, sem repetir os cards palavra por palavra), `autores` (artigo: por extenso, `@` de quem tiver — ex.: `"Maria Silva (@mariasilva), João Souza"`; aviso: `null`), `hashtags_tema` (3 a 4, `#CamelCase` sem acento, pelo mesmo critério das tags do YouTube: nome do tema, área, apelidos de `../miniaturas/catalogo.json`).
 4. **Gere e valide**: `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`. Os dois recusam o que não cabe (`erro: …`); corrija o JSON, nunca o CSS.
-5. **Olhe cada PNG** (`open instagram/<pasta>/card-0*.png`): texto inteiro, nada encostando no rodapé, contador certo. Reduza mentalmente a 400 px: o título lê? Só então mostre à pessoa.
+5. **Olhe cada PNG** (`open instagram/<pasta>/card-*.png`): texto inteiro, nada encostando no rodapé, contador certo. Reduza mentalmente a 400 px: o título lê? Só então mostre à pessoa.
 
 ## `cards.json`
 

@@ -35,7 +35,7 @@ Espere a pessoa informar o arquivo gravado. Não invente caminho. **Não avance 
 
 ## Etapa 4 — Publicar
 
-Invoque a skill `publicar`. Ela confirma os capítulos reais, sobe como privado e devolve o link e gera o `story.png` para o Instagram.
+Invoque a skill `publicar`. Ela confirma os capítulos reais, sobe como privado, devolve o link e, por fim, gera o `story.png` para o Instagram.
 
 ## Se algo der errado
 
