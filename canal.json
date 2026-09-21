@@ -2,6 +2,15 @@
   "nome": "Pesquisa Operacional para Todos",
   "site": "https://pesquisaoperacional.uniriotec.br/index.html",
   "instagram": "https://www.instagram.com/pesquisaoperacionalparatodos/",
+  "instagramUsuario": "pesquisaoperacionalparatodos",
+  "instagramLegenda": {
+    "rodape": "📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.",
+    "cta": {
+      "artigo": "💾 Salve este post para ler depois · mais conteúdo no link da bio.",
+      "aviso": "🔗 Inscrições e detalhes: link na bio."
+    }
+  },
+  "github": "jotape-prog22/po-para-todos-publisher",
   "categoriaYoutube": "27",
   "rodape": {
     "projeto": "📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.",

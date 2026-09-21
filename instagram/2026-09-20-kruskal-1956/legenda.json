@@ -1,0 +1,6 @@
+{
+  "gancho": "Como ligar todos os pontos de uma rede gastando o mínimo? Um artigo de 1956, com menos de três páginas, respondeu.",
+  "corpo": "Joseph Kruskal propôs um algoritmo de uma simplicidade desconcertante: ordene as arestas da mais barata para a mais cara e vá acrescentando uma a uma, pulando as que fecham ciclo. Quando todos os vértices estiverem conectados, você tem a árvore geradora mínima — e ele prova que nenhuma outra é mais barata.\n\nDe quebra, o artigo mostra o elo com o caixeiro viajante: toda rota do caixeiro contém uma árvore geradora, então o custo da árvore mínima é um limite inferior para a rota ótima.\n\nNo carrossel, as três ideias do artigo em três cards.",
+  "autores": "Joseph B. Kruskal",
+  "hashtags_tema": ["#ArvoreGeradora", "#Kruskal", "#Grafos", "#CaixeiroViajante"]
+}

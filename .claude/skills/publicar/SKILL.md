@@ -30,4 +30,10 @@ Escreva `videos/<slug>/publicacao.json`:
 { "video_id": "…", "url": "https://youtu.be/…", "publicado_em": "<ISO agora>", "privacidade": "private", "playlist_id": "…" }
 ```
 
-Entregue: "Vídeo no ar como privado: https://youtu.be/… . Para publicar: YouTube Studio → Conteúdo → o vídeo → Visibilidade → Público. Confira a miniatura e a descrição lá antes."
+## 4. Story para o Instagram
+
+Run: `node design-system/scripts/gerar-story.mjs videos/<slug>`
+
+Abra `videos/<slug>/story.png` e confira que headline, subhead e ícone são os mesmos da miniatura. Se a busca pelo título escolheu outro tópico, rode de novo com `--topico <id>` (o mesmo usado na miniatura). O story **não** vai pela API: o link é o motivo do story e a API não coloca sticker.
+
+Entregue: "Vídeo no ar como privado: https://youtu.be/… . Para publicar: YouTube Studio → Conteúdo → o vídeo → Visibilidade → Público. Confira a miniatura e a descrição lá antes. Quando tornar o vídeo público, poste `videos/<slug>/story.png` no Instagram como story, com o sticker de link apontando para https://youtu.be/… — coloque o sticker no espaço vazio acima da faixa verde."

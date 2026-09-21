@@ -55,3 +55,23 @@ _Avoid_: postar, lançar
 **Canal**:
 `canal.json`: o que se repete em toda publicação — links, rodapé, hashtags fixas, playlists, categoria.
 _Avoid_: configuração, settings
+
+**Post**:
+Uma publicação no Instagram, representada pela pasta `instagram/<AAAA-MM-DD>-<slug>/` (a data é a de publicação prevista: a pasta é um calendário). Tipos do primeiro corte: `artigo` (carrossel) e `aviso` (card único).
+_Avoid_: publicação (é o registro do upload), postagem
+
+**Card**:
+Uma imagem 1080×1350 de um post (`card-NN.png`), gerada de `cards.json` por `gerar-cards.mjs`. Tipos: `capa`, `ideia`, `fim`, `aviso`.
+_Avoid_: slide, arte, imagem
+
+**Legenda**:
+`legenda.json` (gancho ≤ 125 caracteres, corpo, autores, hashtags do tema) e `legenda.txt` (montado por `scripts/legenda.mjs` com CTA e rodapé de `canal.json`).
+_Avoid_: descrição (é a do YouTube), caption
+
+**Story**:
+`videos/<slug>/story.png`, 1080×1920, gerado pela skill `publicar` ao final do vídeo; a pessoa posta à mão com o sticker de link quando o vídeo fica público. Um vídeo novo gera só um story, nunca post de feed.
+_Avoid_: stories, destaque
+
+**Mídia temporária**:
+Branch `midia` do repositório no GitHub: recebe os cards em JPEG num commit órfão só enquanto a Meta os baixa e volta a ficar vazio ao final de cada publicação.
+_Avoid_: CDN, hospedagem

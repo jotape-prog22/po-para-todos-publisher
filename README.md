@@ -16,7 +16,7 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
    - Mac/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
    - Windows (no PowerShell): cole exatamente como está abaixo, sem alterar nada — `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
    Confira digitando `uv --version` → deve aparecer um número de versão, sem erro.
-5. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item.
+5. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item. Ele também desenha os cards do Instagram.
 6. **PowerPoint** — para abrir e apresentar os slides que o Claude gera (arquivo `.pptx`).
 
 ## Baixar o projeto
@@ -106,13 +106,78 @@ Cada vídeo tem sua própria pasta em `videos/<slug>/` (o slug é o nome da past
 | `miniatura.png` | A imagem de capa do vídeo no YouTube (2560×1440). |
 | `publicacao.json` | O registro do upload: link do vídeo, data e playlist usada. Na pasta de exemplo ele diz `"privacidade": "public"` porque registra o vídeo já publicado de verdade; a skill sempre grava `"private"`, já que todo upload novo sobe como privado. |
 
+## Publicar no Instagram
+
+O mesmo projeto publica no Instagram `@pesquisaoperacionalparatodos`: você escreve os fatos num arquivo, o Claude monta os cards (as imagens do carrossel) e a legenda, você aprova, e o post entra pela API oficial da Meta. Não custa nada: só a conta do Instagram, uma conta no site de desenvolvedores da Meta e uma no GitHub.
+
+### Conectar ao Instagram (uma vez a cada 60 dias)
+
+A Meta dá um "token" (uma senha longa e temporária) que permite ao script publicar na conta do projeto. Ele vale 60 dias; o script renova sozinho enquanto estiver sendo usado e avisa se a renovação falhar. Se ficar dois meses sem publicar, repita os passos 4 e 5.
+
+1. Entre em https://developers.facebook.com com a conta de quem coordena o projeto (o mesmo login do Facebook/Instagram). Se aparecer um pedido para "se registrar como desenvolvedor", aceite — é só confirmar o e-mail.
+2. Clique em **Meus apps → Criar app**. Escolha o caso de uso **"Outro"**, depois o tipo **"Empresa"** (Business); nome do app: `PO para Todos`. Não precisa de Página do Facebook nem de portfólio comercial.
+3. No painel do app, no menu da esquerda, procure **Instagram** (ou "Adicionar produto → Instagram") e escolha **"API do Instagram com login do Instagram"** (API setup with Instagram login). Em **"Gerar tokens de acesso"**, clique em **Adicionar conta** e faça login na conta `@pesquisaoperacionalparatodos`. A conta já é profissional (categoria Educação) — se a tela pedir para converter, é porque você entrou com outra conta. Se o aplicativo do Instagram no celular mostrar um convite de testador (**Configurações → Site permissions → Apps e sites → Convites de testador**), aceite antes de gerar o token.
+4. Na mesma tela, ao lado da conta adicionada, clique em **Gerar token**. Marque as permissões `instagram_business_basic` e `instagram_business_content_publish`, confirme, e copie o token (um texto longo começando com `IG`). Guarde-o como uma senha — não cole em conversas nem em arquivos do projeto.
+5. Rode o comando logo depois de gerar o token: o script conta os 60 dias de validade a partir desse momento. Abra uma janela do Terminal separada da conversa com o Claude — **nunca cole o token na conversa**, porque ele fica salvo na transcrição — e, na pasta do projeto, cole (com o token entre as aspas):
+   ```bash
+   node scripts/instagram.mjs --token "COLE-O-TOKEN-AQUI"
+   ```
+   O que esperar: `token guardado em /Users/você/.po-para-todos/instagram.json: conta @pesquisaoperacionalparatodos, vale até 2026-11-19`. Se sair `erro: o token é da conta @outra`, gere o token de novo logado na conta do projeto.
+
+O passo a passo oficial, com telas, está em https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/ (em inglês; a interface do painel está em português).
+
+### Conectar ao GitHub (uma vez)
+
+A Meta só consegue baixar as imagens de um endereço público na internet. O script usa o próprio repositório para isso (um "branch" separado chamado `midia`, que fica vazio entre um post e outro), e para escrever nele precisa de um token do GitHub.
+
+Esse token é gerado **pela conta dona do repositório** (`jotape-prog22`), uma vez por projeto — como o app da Meta. Um token *fine-grained* só pode escolher repositórios da própria conta (ou de uma organização à qual ela pertença): quem apenas colabora no projeto não vê `po-para-todos-publisher` em "Only select repositories". Quem for publicar recebe esse token de quem coordena o projeto.
+
+1. Entre em https://github.com/settings/personal-access-tokens e clique em **Generate new token** (tipo *fine-grained*).
+2. Nome: `PO para Todos - Instagram`; validade: 1 ano; em **Repository access** escolha **Only select repositories** e marque `po-para-todos-publisher`; em **Permissions → Repository permissions** dê **Contents: Read and write**. Nada mais. Gere e copie o token (começa com `github_pat_`).
+3. Abra uma janela do Terminal separada da conversa com o Claude — **nunca cole o token na conversa**, porque ele fica salvo na transcrição — e, na pasta do projeto:
+   ```bash
+   node scripts/instagram.mjs --token-github "COLE-O-TOKEN-AQUI"
+   ```
+   O que esperar: `token do GitHub guardado em …/instagram.json`.
+
+Se outra pessoa precisar publicar com a própria conta do GitHub: quem é dono do repositório a adiciona como colaboradora com permissão de escrita (**Settings → Collaborators**), e ela cria um token **clássico** em https://github.com/settings/tokens → **Generate new token (classic)**, só com o escopo `public_repo`, e roda o mesmo comando `--token-github`. Quem guarda esse token consegue escrever no repositório público — mantenha-o tão privado quanto o token do Instagram.
+
+Confira tudo com `node scripts/instagram.mjs --status` — mostra a conta, quantos dias o token ainda vale e quantos posts já foram feitos nas últimas 24 h (o limite da Meta é 100).
+
+### Fazer um post
+
+1. Copie `instagram/_modelo/post.md` para uma pasta nova `instagram/<data>-<assunto>/` (a data em que você pretende publicar, ex.: `instagram/2026-10-03-kruskal-1956/`) e preencha: para um **artigo**, título, autores, onde saiu, link e o resumo; para um **aviso** (edital, evento, prazo, vaga), nome, data-limite e link.
+2. Abra o `claude` na pasta do projeto e peça: `/post instagram/2026-10-03-kruskal-1956`.
+3. O Claude monta os cards e a legenda e abre as imagens para você conferir. Diga "sim" para publicar, ou peça ajustes.
+4. O post entra na hora (a pipeline não agenda; quem quiser data marcada usa o Meta Business Suite depois). O link fica em `instagram/<pasta>/publicacao.json`.
+
+**Vídeo novo no YouTube** não vira post de feed: ao final da publicação de um vídeo, o Claude gera `videos/<slug>/story.png`. Quando você tornar o vídeo público, poste essa imagem como *story* pelo app, com o sticker de link apontando para o vídeo (a API não coloca sticker, e o link é o motivo do story).
+
+**Se a API não funcionar** (token vencido, sem ninguém para ajudar): os mesmos arquivos servem para publicar à mão — no app do Instagram ou no Meta Business Suite, escolha `card-01.png`, `card-02.png`… na ordem e cole o texto de `legenda.txt`.
+
+Um exemplo completo está em `instagram/2026-09-20-kruskal-1956/`.
+
+| Arquivo | O que é |
+|---|---|
+| `post.md` | O que você escreve: tipo e os fatos (título, autores, link, resumo; ou nome, data, link). |
+| `cards.json` | O texto de cada card, escrito pelo Claude a partir do `post.md`. |
+| `card-01.png`… | Os cards prontos (1080×1350), gerados de `cards.json`. |
+| `legenda.json` / `legenda.txt` | A legenda: o que o Claude escreveu e o texto final montado com o rodapé do projeto e as hashtags. |
+| `publicacao.json` | O registro da publicação: link e data. |
+
 ## Quando algo dá errado
 
 - **"erro: roteiro inválido"** — normalmente o próprio Claude corrige sozinho e tenta de novo. Se ele insistir no erro, peça: "valide o roteiro e me mostre os erros".
-- **"nenhum Chrome/Chromium/Edge encontrado"** — falta instalar o Google Chrome ou o Microsoft Edge (item 5 da lista de instalação); instale um dos dois e tente de novo. Se você já tem um dos dois instalado mas em um local não padrão, defina a variável `CHROME` com o caminho do executável antes de rodar o comando — no Mac: `CHROME="/caminho/para/Google Chrome" node design-system/scripts/gerar-miniatura.mjs …`; no Windows (PowerShell): `$env:CHROME="C:\caminho\para\chrome.exe"`.
+- **"nenhum Chrome/Chromium/Edge encontrado"** — falta instalar o Google Chrome ou o Microsoft Edge (item 5 da lista de instalação); instale um dos dois e tente de novo. Se você já tem um dos dois instalado mas em um local não padrão, defina a variável `CHROME` com o caminho do executável antes de rodar o comando — no Mac: `CHROME="/caminho/para/Google Chrome" node design-system/scripts/gerar-miniatura.mjs …`; no Windows (PowerShell): `$env:CHROME="C:\caminho\para\chrome.exe"`. Para os cards do Instagram, o mesmo vale para `node design-system/scripts/gerar-cards.mjs …`.
 - **"não autenticado" no YouTube** — o login salvo expirou ou nunca foi feito; peça ao Claude: "faça login no YouTube".
 - **Cota do YouTube esgotada** — a conta atingiu o limite diário de uso da API; espere até o dia seguinte, a cota é renovada à meia-noite no horário do Pacífico (EUA), o que costuma cair de madrugada no horário de Brasília.
 - **Slides com uma fonte diferente da esperada** — é normal: o PowerPoint, ao abrir o arquivo, substitui as fontes da marca (Aharoni, Hagrid) por uma fonte parecida disponível no seu computador; isso não afeta o conteúdo.
+- **"erro: sem token do Instagram"** ou **"o token do Instagram venceu"** — refaça os passos 4 e 5 de "Conectar ao Instagram".
+- **"aviso: não consegui renovar o token"** — o post saiu, mas o token vai vencer na data que o `--status` mostra; gere outro antes disso.
+- **"GitHub: Bad credentials"** — o token do GitHub venceu ou foi colado errado; gere outro em "Conectar ao GitHub".
+- **"a Meta rejeitou a mídia"** — em geral é a imagem grande demais ou a URL inacessível; rode `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` de novo e tente outra vez. Se persistir, publique à mão (acima).
+- **"a conta já fez 100 publicações"** — limite diário da API; espere 24 h ou publique à mão.
+- **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
 
 ## Quero mudar a pipeline
 

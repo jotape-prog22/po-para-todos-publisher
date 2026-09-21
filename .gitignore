@@ -12,3 +12,9 @@ videos/**/slides.pptx
 videos/**/miniatura.png
 videos/**/miniatura.html
 !videos/folgas-complementares/miniatura.png
+instagram/**/card-*.png
+instagram/**/card-*.html
+instagram/**/*.jpg
+!instagram/2026-09-20-kruskal-1956/card-*.png
+videos/**/story.png
+videos/**/story.html

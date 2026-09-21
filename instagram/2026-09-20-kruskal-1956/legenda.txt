@@ -1,0 +1,15 @@
+Como ligar todos os pontos de uma rede gastando o mínimo? Um artigo de 1956, com menos de três páginas, respondeu.
+
+Joseph Kruskal propôs um algoritmo de uma simplicidade desconcertante: ordene as arestas da mais barata para a mais cara e vá acrescentando uma a uma, pulando as que fecham ciclo. Quando todos os vértices estiverem conectados, você tem a árvore geradora mínima — e ele prova que nenhuma outra é mais barata.
+
+De quebra, o artigo mostra o elo com o caixeiro viajante: toda rota do caixeiro contém uma árvore geradora, então o custo da árvore mínima é um limite inferior para a rota ótima.
+
+No carrossel, as três ideias do artigo em três cards.
+
+✍️ Autores: Joseph B. Kruskal
+
+💾 Salve este post para ler depois · mais conteúdo no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ArvoreGeradora #Kruskal #Grafos #CaixeiroViajante #Otimização #UNIRIO

@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-# Exporta um modelo vivo (HTML 1280×720) para PNG usando um Chromium headless.
-# Uso: design-system/scripts/exportar.sh components/Thumbnail-Tutorial.html thumbnails/out/solver.png [escala]
-#   escala: fator de resolução (padrão 1 → 1280×720; 2 → 2560×1440, boa para o YouTube).
+# Exporta um modelo vivo (HTML) para PNG usando um Chromium headless.
+# Uso: design-system/scripts/exportar.sh entrada.html saida.png [escala] [largura] [altura]
+#   escala: fator de resolução (padrão 1; 2 → dobra, boa para o YouTube).
+#   largura/altura: tamanho da página em px (padrão 1280×720 = miniatura; 1080×1350 = feed do Instagram; 1080×1920 = story).
 # Procura Chrome, Chromium ou Edge; ou defina CHROME=/caminho/do/binário.
 set -euo pipefail
 
 html="${1:?informe o HTML de entrada}"
 png="${2:?informe o PNG de saída}"
 escala="${3:-1}"
+largura="${4:-1280}"
+altura="${5:-720}"
 
 candidatos=(
   "${CHROME:-}"
@@ -34,7 +37,7 @@ abs_html="$(cd "$(dirname "$html")" && pwd)/$(basename "$html")"
 abs_png="$(cd "$(dirname "$png")" && pwd)/$(basename "$png")"
 
 "$bin" --headless=new --disable-gpu --hide-scrollbars \
-  --window-size=1280,720 --force-device-scale-factor="$escala" \
+  --window-size="$largura,$altura" --force-device-scale-factor="$escala" \
   --screenshot="$abs_png" "file://$abs_html" 2>/dev/null
 
 echo "$png"

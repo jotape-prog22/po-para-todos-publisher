@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>{{titulo_pagina}}</title>
+<link rel="stylesheet" href="{{ds}}/tokens.css">
+<link rel="stylesheet" href="{{ds}}/assets/fontes/fontes.css">
+<link rel="stylesheet" href="{{ds}}/instagram/instagram.css">
+</head>
+<body>
+<!-- Último card do artigo: referência e link. -->
+<main class="ig ig--feed">
+  <img class="ig__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
+  <div class="ig__conteudo">
+    <p class="ig__kicker">{{kicker}}</p>
+    <p class="ig__corpo">{{texto_html}}</p>
+    {{#link}}<p class="ig__apoio">{{link}}</p>{{/link}}
+    <p class="ig__apoio">Salve este post para ler depois.</p>
+  </div>
+  <p class="ig__rodape"><span>@{{usuario}}</span><span>{{contador}}</span></p>
+</main>
+</body>
+</html>
