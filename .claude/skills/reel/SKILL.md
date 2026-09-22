@@ -35,4 +35,4 @@ Mostre o caminho do `reel.mp4`, o `reel.png`, a legenda inteira e — nas cenas 
 
 ## 5. Publicar
 
-`node scripts/instagram.mjs --status` (token/cota; token fora do chat, README "Publicar no Instagram"). Depois `node scripts/instagram.mjs --publicar-reel instagram/<pasta>`. Reporte cada linha; `erro: …` → mostre exatamente e pare. Entregue: "Reel no ar: <url de publicacao-reel.json>."
+`node scripts/instagram.mjs --status` (token/cota; token fora do chat, README "Publicar no Instagram"). Depois `node scripts/instagram.mjs --publicar-reel instagram/<pasta>`. Um reel de cenas só publica com `checagem.json` na pasta (o mesmo rigor de uma `curiosidade`); um corte não precisa. Reporte cada linha; `erro: …` → mostre exatamente e pare. Entregue: "Reel no ar: <url de publicacao-reel.json>."

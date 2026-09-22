@@ -354,11 +354,13 @@ test("publicarStories recusa sequência manual (sem publicacao: api) e sequênci
   assert.equal(f.chamadas.length, 0);
 });
 
-async function pastaDeReel({ legenda = true } = {}) {
+async function pastaDeReel({ legenda = true, tipoReel, checagem = false } = {}) {
   const pasta = join(mkdtempSync(join(tmpdir(), "reel-")), "2026-10-02-corte");
   mkdirSync(pasta);
   writeFileSync(join(pasta, "reel.mp4"), Buffer.from("mp4"));
   if (legenda) writeFileSync(join(pasta, "reel-legenda.txt"), "Gancho do reel.\n\n#PO\n");
+  if (tipoReel) writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: tipoReel }));
+  if (checagem) writeFileSync(join(pasta, "checagem.json"), JSON.stringify({ afirmacoes: [{ onde: "cena 1", texto: "t", tipo: "fonte", fonte: "https://doi.org/10.1/x", resultado: "confirmada", como: "conferido no resumo do artigo" }] }));
   return pasta;
 }
 
@@ -386,4 +388,21 @@ test("publicarReel recusa pasta sem reel.mp4 ou sem reel-legenda.txt, sem chamar
   const vazia = mkdtempSync(join(tmpdir(), "reel-"));
   await assert.rejects(publicarReel(vazia, opc), /reel\.mp4/);
   assert.equal(f.chamadas.length, 0);
+});
+
+test("publicarReel de cenas exige checagem.json (mesmo rigor de uma curiosidade); corte não precisa", async () => {
+  const semRede = { tokens: tokensOk, canal, fetchImpl: fetchFalso([]), agora: AGORA, dormir: semDormir, log: () => {} };
+  const cenasSemChecagem = await pastaDeReel({ tipoReel: "cenas" });
+  await assert.rejects(publicarReel(cenasSemChecagem, semRede), /falta checagem\.json/);
+  assert.equal(semRede.fetchImpl.chamadas.length, 0);
+
+  const f1 = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const cenasComChecagem = await pastaDeReel({ tipoReel: "cenas", checagem: true });
+  const r1 = await publicarReel(cenasComChecagem, { tokens: tokensOk, canal, fetchImpl: f1, agora: AGORA, dormir: semDormir, log: () => {} });
+  assert.equal(r1.media_id, "midia77");
+
+  const f2 = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const corteSemChecagem = await pastaDeReel({ tipoReel: "corte" });
+  const r2 = await publicarReel(corteSemChecagem, { tokens: tokensOk, canal, fetchImpl: f2, agora: AGORA, dormir: semDormir, log: () => {} });
+  assert.equal(r2.media_id, "midia77");
 });

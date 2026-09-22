@@ -17,7 +17,7 @@ Regras (spec `docs/superpowers/specs/2026-09-21-instagram-formatos-e-rigor.md`, 
 Pergunte, numa rodada só, o que faltar:
 - A origem: um vídeo (`videos/<slug>`, já **público** — o reel de corte exige) ou um artigo/tema (aí não há corte; o reel é do zero, ou a pessoa dispensa o reel).
 - Uma pasta só: `instagram/<AAAA-MM-DD>-<slug>/` para o post, o story de aviso e o reel.
-- O tipo do post: de um vídeo, normalmente `curiosidade` ou `citacao` (o vídeo já tem a Checagem da origem); de um artigo, `artigo`.
+- O tipo do post: de um vídeo, normalmente `curiosidade` (precisa de `checagem.json` própria — a Checagem da origem não substitui) ou `citacao` (essa, sim, dispensa Checagem: a origem já passou por ela); de um artigo, `artigo`.
 
 ## 2. Post + story de aviso
 

@@ -21,3 +21,13 @@ videos/**/story.html
 instagram/**/story-*.mp4
 instagram/**/story-*.png
 instagram/**/story-*.html
+# reels: mídia e artefatos intermediários gerados por gerar-reel.mjs
+instagram/**/reel.mp4
+instagram/**/reel.png
+instagram/**/reel-cena-*.mp4
+instagram/**/reel-cena-*.png
+instagram/**/reel-cena-*.html
+instagram/**/reel-moldura.html
+instagram/**/reel-moldura.png
+instagram/**/corte-bruto.mp4
+instagram/**/lista-cenas.txt

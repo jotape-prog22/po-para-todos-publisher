@@ -85,7 +85,8 @@ export function argsYtDlp({ url, inicio, fim, saida, ffmpegDir }) {
 // Moldura (PNG 9:16) por baixo, vídeo 16:9 redimensionado à largura e centrado; áudio original se houver.
 export function argsMoldura({ moldura, bruto, saida }) {
   return [
-    "-y", "-loglevel", "error", "-loop", "1", "-i", moldura, "-i", bruto,
+    // -framerate 30: sem isso o loop da moldura (PNG) entra a 25 fps (padrão do image2) e reamostra o vídeo de 30 fps.
+    "-y", "-loglevel", "error", "-framerate", "30", "-loop", "1", "-i", moldura, "-i", bruto,
     "-filter_complex", "[1:v]scale=1080:-2:flags=lanczos[v];[0:v][v]overlay=0:(H-h)/2:shortest=1,format=yuv420p[out]",
     "-map", "[out]", "-map", "1:a?",
     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
@@ -162,6 +163,7 @@ export async function gerarReel(pasta, { soHtml = false, executar = rodar, rende
   const erros = validarReel(dados);
   if (erros.length) throw new ErroReel(`reel.json inválido:\n- ${erros.join("\n- ")}`);
   if (dados.tipo === "cenas") return gerarDeCenas(dados, pasta, { soHtml, executar, renderizar });
+  if (soHtml) throw new ErroReel('--so-html só vale para tipo "cenas" — o corte não gera HTML de cena nenhuma');
   return gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exportar });
 }
 

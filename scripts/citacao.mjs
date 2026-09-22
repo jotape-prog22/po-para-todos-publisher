@@ -17,7 +17,7 @@ export const MAXIMO = 5;
 const DEPENDE_DO_VIDEO = /nesta aula|vamos |como vimos|no slide|a seguir|agora o|antes do teorema/i;
 
 export function frases(texto) {
-  const limpo = String(texto ?? "").replace(/\*\*/g, "").replace(/\\\*/g, "*").replace(/[\p{Extended_Pictographic}️]/gu, "").replace(/\s+/g, " ").trim();
+  const limpo = String(texto ?? "").replace(/\*\*/g, "").replace(/\\\*/g, "*").replace(/[\p{Extended_Pictographic}\uFE0F]/gu, "").replace(/\s+/g, " ").trim();
   return (limpo.match(/[^.!?]+[.!?]+/g) ?? []).map((f) => f.trim()).filter(Boolean);
 }
 

@@ -57,7 +57,8 @@ _Avoid_: postar, lançar
 _Avoid_: configuração, settings
 
 **Post**:
-Uma publicação no Instagram, representada pela pasta `instagram/<AAAA-MM-DD>-<slug>/` (a data é a de publicação prevista: a pasta é um calendário). Tipos do primeiro corte: `artigo` (carrossel) e `aviso` (card único).
+Uma publicação no Instagram, representada pela pasta `instagram/<AAAA-MM-DD>-<slug>/` (a data é a de publicação prevista: a pasta é um calendário). Tipos do primeiro corte: `artigo` (carrossel), `aviso` (card único), `curiosidade` (card "você sabia?") e `citacao` (trecho de vídeo/post).
+
 _Avoid_: publicação (é o registro do upload), postagem
 
 **Card**:

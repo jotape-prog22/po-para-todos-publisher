@@ -70,6 +70,7 @@ test("argsMoldura sobrepõe o vídeo 16:9 centrado na moldura 9:16, mantém o á
   const fc = a[a.indexOf("-filter_complex") + 1];
   assert.ok(fc.includes("scale=1080:-2") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
   assert.ok(a.includes("-loop") && a.includes("1:a?") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
+  assert.ok(a.indexOf("-framerate") >= 0 && a.indexOf("-framerate") < a.indexOf("-loop") && a[a.indexOf("-framerate") + 1] === "30", "moldura em 30 fps, antes do -loop");
 });
 
 test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensagem útil", () => {
@@ -97,4 +98,6 @@ test("gerarReel (corte): baixa o trecho, exporta a moldura, sobrepõe e limpa o 
   assert.ok(existsSync(join(pasta, "reel.png")));
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "private" }));
   await assert.rejects(gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
+  writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
+  await assert.rejects(gerarReel(pasta, { soHtml: true, executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--so-html/);
 });

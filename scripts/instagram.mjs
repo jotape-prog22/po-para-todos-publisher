@@ -114,7 +114,7 @@ export async function statusDaConta(tokens, { fetchImpl = fetch, agora = Date.no
 function lerCanal() { return JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8")); }
 
 // ---------- mídia pública (branch `midia` no GitHub) ----------
-export const README_MIDIA = "Branch temporário: guarda as imagens de um post do Instagram só enquanto a Meta as baixa. Fica vazio entre publicações.\n";
+export const README_MIDIA = "Branch temporário: guarda a mídia de uma publicação — imagens de post, vídeos de story e reel — só enquanto a Meta as baixa. Fica vazio entre publicações.\n";
 
 export function criarApiGithub(token, repo, fetchImpl = fetch) {
   const cabecalhos = { authorization: `Bearer ${token}`, accept: "application/vnd.github+json", "x-github-api-version": "2022-11-28", "content-type": "application/json" };
@@ -260,11 +260,16 @@ export async function publicarStories(pasta, opcoes = {}) {
 }
 
 // Publica instagram/<pasta>/reel.mp4 com reel-legenda.txt como reel (também vai para o feed).
+// reel.json com tipo "cenas" exige checagem.json na pasta (mesmo rigor de um post curiosidade); tipo "corte" não precisa.
 export async function publicarReel(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
   const mp4 = join(pasta, "reel.mp4"), arquivoLegenda = join(pasta, "reel-legenda.txt");
   if (!existsSync(mp4)) throw new ErroInstagram(`falta reel.mp4 em ${pasta} — rode: node design-system/scripts/gerar-reel.mjs ${pasta}`);
   if (!existsSync(arquivoLegenda)) throw new ErroInstagram(`falta reel-legenda.txt — rode: node scripts/legenda.mjs ${pasta} --reel`);
   if (existsSync(join(pasta, "publicacao-reel.json"))) throw new ErroInstagram("este reel já foi publicado (publicacao-reel.json existe) — apague o arquivo se quiser publicar de novo");
+  const arquivoReelJson = join(pasta, "reel.json");
+  if (existsSync(arquivoReelJson) && JSON.parse(readFileSync(arquivoReelJson, "utf8")).tipo === "cenas") {
+    try { carregarChecagem(pasta); } catch (e) { if (e instanceof ErroChecagem) throw new ErroInstagram(e.message); throw e; }
+  }
   const legenda = readFileSync(arquivoLegenda, "utf8").trim();
   const { ig, igId, gh } = await prepararPublicacao({ tokens, canal, fetchImpl });
   const nome = `${sanitizarNome(basename(pasta))}-${carimboDe(agora)}-reel.mp4`;
