@@ -4,7 +4,7 @@
 //   node design-system/scripts/gerar-cards.mjs instagram/2026-09-20-kruskal-1956
 //   node design-system/scripts/gerar-cards.mjs instagram/<pasta> --so-html    (só o HTML, sem Chrome)
 //
-// cards.json: { "tipo": "artigo" | "aviso" | "curiosidade", "cards": [ { "tipo": "capa" | "ideia" | "fim" | "aviso" | "curiosidade", ...campos } ] }
+// cards.json: { "tipo": "artigo" | "aviso" | "curiosidade" | "citacao", "cards": [ { "tipo": "capa" | "ideia" | "fim" | "aviso" | "curiosidade" | "citacao", ...campos } ] }
 // Campos, limites e sequência por tipo estão em instagram/formatos.json; tudo é validado antes de renderizar.
 
 import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
@@ -19,7 +19,7 @@ const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
 
 export class ErroCards extends Error {}
 
-const KICKER_PADRAO = { capa: "RESUMO DE ARTIGO", fim: "REFERÊNCIA", aviso: "AVISO", curiosidade: "VOCÊ SABIA?" };
+const KICKER_PADRAO = { capa: "RESUMO DE ARTIGO", fim: "REFERÊNCIA", aviso: "AVISO", curiosidade: "VOCÊ SABIA?", citacao: "DA AULA" };
 const TITULO_LONGO = 60;   // acima disso o título cai para o tamanho médio
 
 export function validarCards(dados) {
@@ -48,6 +48,7 @@ export function validarCards(dados) {
   }
   if (dados.tipo === "aviso" && cards.length && cards[0].tipo !== "aviso") erros.push("aviso: o card único é do tipo aviso");
   if (dados.tipo === "curiosidade" && cards.length && cards[0].tipo !== "curiosidade") erros.push("curiosidade: o card único é do tipo curiosidade");
+  if (dados.tipo === "citacao" && cards.length && cards[0].tipo !== "citacao") erros.push("citacao: o card único é do tipo citacao");
   return erros;
 }
 
@@ -66,6 +67,8 @@ export function variaveisDoCard(card, i, total, { ds, usuario }) {
     data: card.data ?? "",
     link: card.link ?? "",
     fonte: card.fonte ?? "",
+    origem: card.origem ?? "",
+    texto: card.texto ?? "",
     texto_html: esc(card.texto ?? "").replace(/\n/g, "<br>"),
     titulo_pagina: `${titulo || card.tipo} — PO para Todos`,
   };

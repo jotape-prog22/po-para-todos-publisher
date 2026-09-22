@@ -1,6 +1,6 @@
 ---
 name: post
-description: Faz um post do Instagram do PO para Todos — artigo (carrossel), aviso (card único) ou curiosidade (card "você sabia?") — do post.md aos cards, legenda e publicação pela API oficial, parando para a pessoa aprovar. Use quando a pessoa disser "quero um post sobre X", "post do artigo Y", "aviso do evento Z" ou "curiosidade sobre X".
+description: Faz um post do Instagram do PO para Todos — artigo (carrossel), aviso (card único), curiosidade (card "você sabia?") ou citacao (trecho de vídeo/post) — do post.md aos cards, legenda e publicação pela API oficial, parando para a pessoa aprovar. Use quando a pessoa disser "quero um post sobre X", "post do artigo Y", "aviso do evento Z", "curiosidade sobre X" ou "cita o vídeo Y".
 ---
 
 # Post no Instagram
@@ -10,11 +10,13 @@ Diga antes: "Vou montar os cards e a legenda para você olhar; só publico depoi
 ## 1. Pasta
 
 - Defina a pasta `instagram/<AAAA-MM-DD>-<slug>/` (data prevista do post; slug do tema em minúsculas com hífens). Se já existir, veja o que tem: `publicacao.json` → já publicado, pare e diga o link; `cards.json` e `legenda.json` → gere os PNGs e a legenda (comandos do passo 2) e siga para o passo 3.
-- Se não há `post.md`, crie a partir de `instagram/_modelo/post.md` com o que a pessoa disse e pergunte, em uma rodada só, o que faltar (artigo: título, autores, onde, link, resumo; aviso: nome, data-limite, link; curiosidade: tema e fonte).
+- Se não há `post.md`, crie a partir de `instagram/_modelo/post.md` com o que a pessoa disse e pergunte, em uma rodada só, o que faltar (artigo: título, autores, onde, link, resumo; aviso: nome, data-limite, link; curiosidade: tema e fonte; citacao: origem).
 
 ## 2. Cards e legenda
 
 Siga `design-system/instagram/GUIA-AGENTE.md` do início ao fim: escreva `cards.json`, faça a **Checagem** (`checagem.json`, passo 3 do guia — busque a fonte pelo link, refaça as contas) e escreva `legenda.json`; gere com `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`, olhe cada PNG. Depois gere o story de aviso: `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` → `story-aviso.mp4` e `story-aviso.png` (último quadro). Abra o PNG: o título do post precisa estar legível, mesmo encurtado.
+
+Para `citacao`, antes de escrever: `node scripts/citacao.mjs --candidatos <origem>`, mostre os candidatos numerados e pergunte qual vai (ou se a pessoa quer outro trecho). Sem `checagem.json` neste tipo.
 
 ## 3. **PARADA**: aprovação
 

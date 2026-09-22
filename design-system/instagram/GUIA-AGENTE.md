@@ -4,8 +4,8 @@ Para quem recebe um `instagram/<data>-<slug>/post.md` e precisa entregar `cards.
 
 ## Os seis passos
 
-1. **Leia `post.md`** (frontmatter `tipo`, seções `## …`). Se faltar título, autores ou link no `artigo`, nome no `aviso`, ou tema e fonte na `curiosidade`, pergunte antes de escrever.
-2. **Escreva `cards.json`** (formato abaixo). `artigo`: `capa` + 1 a 8 `ideia` + `fim`, no máximo 10 cards; uma ideia por card, tirada do resumo, na ordem em que o artigo apresenta. `aviso`: um card `aviso`. `curiosidade`: um card `curiosidade` — `titulo` é o fato em até 80 caracteres (afirmativo, sem "você sabia" no texto: o kicker já diz), `texto` a explicação em até 320, `fonte` a referência em uma linha (autor, ano ou nome do site). A Checagem (passo 3) confere o fato na fonte do `post.md`; sem fonte acessível, o card não sai.
+1. **Leia `post.md`** (frontmatter `tipo`, seções `## …`). Se faltar título, autores ou link no `artigo`, nome no `aviso`, tema e fonte na `curiosidade`, ou origem na `citacao`, pergunte antes de escrever.
+2. **Escreva `cards.json`** (formato abaixo). `artigo`: `capa` + 1 a 8 `ideia` + `fim`, no máximo 10 cards; uma ideia por card, tirada do resumo, na ordem em que o artigo apresenta. `aviso`: um card `aviso`. `curiosidade`: um card `curiosidade` — `titulo` é o fato em até 80 caracteres (afirmativo, sem "você sabia" no texto: o kicker já diz), `texto` a explicação em até 320, `fonte` a referência em uma linha (autor, ano ou nome do site). A Checagem (passo 3) confere o fato na fonte do `post.md`; sem fonte acessível, o card não sai. `citacao`: rode `node scripts/citacao.mjs --candidatos <origem>`, mostre 2 a 3 à pessoa com a origem de cada um, e só depois escreva o card (`texto` ≤ 240, exatamente como está na origem — sem "melhorar" a frase; `origem` = título do vídeo ou do post). Kicker `DA AULA` para vídeo, `DO POST` para post. Sem Checagem: a origem já passou por ela.
 3. **Faça a Checagem** (ADR-0009) e escreva `checagem.json`. Para cada afirmação factual ou numérica dos cards (o que o artigo diz, um número, uma data, "prova que", "é o primeiro a"), uma entrada `{ "onde": "card N", "texto": "…", "tipo": "fonte" | "conta", "fonte": "<URL>", "resultado": "confirmada" | "nao-confirmada" | "sem-acesso", "como": "…" }`:
    - `fonte`: busque a fonte pelo link do `post.md` (WebFetch do DOI/URL; se cair em página paga, tente o resumo/abstract ou a versão do autor). Compare o que o card afirma com o que o texto diz. `como` traz o trecho ou a seção que sustenta — ou, se não sustenta, o que o texto diz de diferente. Sem acesso: `"sem-acesso"` e diga em `como` onde tentou.
    - `conta`: refaça a conta por um caminho **diferente** do texto (enumere as combinações num `node -e "…"`, resolva de outro jeito) e cole a conta em `como`. Divergiu? Corrija o card ou o `resultado`.
@@ -37,6 +37,7 @@ Curiosidade: `{ "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titu
 - Fim: referência no padrão ABNT curto; link sem `https://`.
 - Aviso: data sempre com "ATÉ"; sem data para reconhecimento (`data` omitido).
 - Curiosidade: título em caixa alta como a capa; explicação que ensina, não só anuncia; fonte curta, sem link (o link vai na legenda se couber, senão "link na bio").
+- Citação: a frase é copiada, não reescrita; a origem tem o título como foi publicado.
 - Nunca: emoji nos cards, ponto de exclamação, "arraste", "link na bio" dentro do card, frase de marketing.
 
 ## Comandos

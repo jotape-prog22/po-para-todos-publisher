@@ -8,13 +8,13 @@ const formatos = JSON.parse(readFileSync(new URL("instagram/formatos.json", DS),
 test("formatos do Instagram: feed 4:5, story 9:16, um layout por card", () => {
   assert.deepEqual(formatos.formatos.feed, { largura: 1080, altura: 1350, proporcao: "4:5" });
   assert.deepEqual(formatos.formatos.story, { largura: 1080, altura: 1920, proporcao: "9:16" });
-  assert.deepEqual(Object.keys(formatos.cards), ["capa", "ideia", "fim", "aviso", "curiosidade"]);
+  assert.deepEqual(Object.keys(formatos.cards), ["capa", "ideia", "fim", "aviso", "curiosidade", "citacao"]);
   for (const [id, c] of Object.entries(formatos.cards)) {
     assert.ok(existsSync(new URL(`instagram/layouts/${c.layout}.html`, DS)), `layout ${c.layout} do card ${id}`);
     for (const campo of c.obrigatorios) assert.ok(campo in c.campos, `${id}.${campo} obrigatório sem limite`);
   }
   assert.ok(existsSync(new URL("instagram/layouts/story-video.html", DS)));
-  assert.deepEqual(formatos.tipos, { artigo: { min: 3, max: 10 }, aviso: { min: 1, max: 1 }, curiosidade: { min: 1, max: 1 } });
+  assert.deepEqual(formatos.tipos, { artigo: { min: 3, max: 10 }, aviso: { min: 1, max: 1 }, curiosidade: { min: 1, max: 1 }, citacao: { min: 1, max: 1 } });
 });
 
 import { mkdtempSync, copyFileSync, writeFileSync } from "node:fs";
@@ -87,6 +87,16 @@ test("curiosidade: um card do tipo curiosidade, kicker padrão VOCÊ SABIA?, fon
   const [html] = gerarCards(pasta, { soHtml: true });
   const h = readFileSync(html, "utf8");
   assert.ok(h.includes("VOCÊ SABIA?") && h.includes("Dantzig, 1947") && h.includes("ig--feed"));
+});
+
+test("citacao: um card com texto e origem; kicker padrão DA AULA", () => {
+  const c = { tipo: "citacao", texto: "Se sobrou, comprar mais dele não adianta nada.", origem: "Teorema das Folgas Complementares" };
+  assert.deepEqual(validarCards({ tipo: "citacao", cards: [c] }), []);
+  assert.ok(validarCards({ tipo: "citacao", cards: [{ tipo: "citacao", texto: "x" }] }).some((e) => e.includes('falta "origem"')));
+  assert.ok(validarCards({ tipo: "citacao", cards: [{ tipo: "ideia", titulo: "I", texto: "t" }] }).some((e) => e.includes("card único é do tipo citacao")));
+  const v = variaveisDoCard(c, 0, 1, { ds: ".", usuario: "po" });
+  assert.equal(v.kicker, "DA AULA");
+  assert.equal(v.origem, "Teorema das Folgas Complementares");
 });
 
 test("gerarCards apaga card-NN.png e .html que sobraram de uma versão anterior com mais cards", () => {

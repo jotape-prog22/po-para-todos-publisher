@@ -40,6 +40,13 @@ test("cena da curiosidade: kicker VOCÊ SABIA? e primeira frase do texto", () =>
   assert.deepEqual(cena.linhas, ["Dantzig publicou o método em 1947."]);
 });
 
+test("cena da citação: kicker CITAÇÃO, origem como título, o trecho na linha", () => {
+  const cena = cenaDoAviso({ tipo: "citacao", cards: [{ tipo: "citacao", texto: "Se sobrou, comprar mais não adianta.", origem: "Folgas Complementares" }] });
+  assert.equal(cena.kicker, "POST NOVO: CITAÇÃO");
+  assert.equal(cena.titulo, "Folgas Complementares");
+  assert.deepEqual(cena.linhas, ["Se sobrou, comprar mais não adianta."]);
+});
+
 test("gerarStoryAviso --so-html escreve story-aviso.html sem sticker com o título do post", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "aviso-"));
   copyFileSync(join(exemplo, "cards.json"), join(pasta, "cards.json"));

@@ -3,7 +3,7 @@ tipo: artigo
 ---
 
 <!-- Copie esta pasta para instagram/AAAA-MM-DD-slug/ (data prevista do post, ex.: instagram/2026-10-03-kruskal-1956/).
-     Preencha só a parte do seu tipo (artigo, aviso ou curiosidade) e apague as outras. O que ficar em branco, o Claude pergunta. -->
+     Preencha só a parte do seu tipo (artigo, aviso, curiosidade ou citacao) e apague as outras. O que ficar em branco, o Claude pergunta. -->
 
 <!-- ===== tipo: artigo (carrossel: capa, uma ideia por card, referência) ===== -->
 
@@ -47,3 +47,11 @@ tipo: artigo
 
 ## Detalhes
 [opcional: o que você quer que apareça na explicação]
+
+<!-- ===== tipo: citacao (card único com um trecho de vídeo ou post) ===== -->
+
+## Origem
+[videos/<slug> ou instagram/<pasta> — de onde o trecho sai; o Claude sugere candidatos]
+
+## Trecho
+[opcional: se você já sabe a frase, cole aqui]
