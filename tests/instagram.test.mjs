@@ -275,3 +275,75 @@ test("falta legenda.txt: erro amigável e nenhuma chamada de rede", async () => 
   await assert.rejects(publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} }), /legenda\.txt/);
   assert.equal(f.chamadas.length, 0);
 });
+
+import { publicarStory, publicarStories, lerPublicacoesDeStories, LEDGER_STORIES, TENTATIVAS_VIDEO } from "../scripts/instagram.mjs";
+
+async function pastaDeStories(n, { publicacao = "api", pngs = false } = {}) {
+  const sharp = (await import("sharp")).default;
+  const pasta = join(mkdtempSync(join(tmpdir(), "stories-")), "2026-10-01-quiz");
+  mkdirSync(pasta);
+  const stories = Array.from({ length: n }, (_, i) => ({ duracao: 8, kicker: `S${i + 1}`, titulo: "T" }));
+  writeFileSync(join(pasta, "stories.json"), JSON.stringify(publicacao ? { tipo: "stories", publicacao, stories } : { tipo: "stories", stories }));
+  for (let i = 1; i <= n; i++) writeFileSync(join(pasta, `story-0${i}.mp4`), Buffer.from("mp4"));
+  if (pngs) writeFileSync(join(pasta, "story-aviso.png"), await sharp({ create: { width: 9, height: 16, channels: 3, background: "#000" } }).png().toBuffer());
+  return pasta;
+}
+const corpos = (f) => f.chamadas.filter((c) => c.metodo === "POST" && /graph\.instagram/.test(c.url)).map((c) => Object.fromEntries(new URLSearchParams(c.corpo)));
+
+test("publicarStory: MP4 vira contêiner STORIES com video_url, espera mais, publica e registra no livro-razão", async () => {
+  const pasta = await pastaDeStories(1);
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const r = await publicarStory(pasta, "story-01.mp4", { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  assert.deepEqual(r, { arquivo: "story-01.mp4", media_id: "midia77", publicado_em: new Date(AGORA).toISOString() });
+  assert.deepEqual(lerPublicacoesDeStories(pasta), { stories: [r] });
+  const [container, publish] = corpos(f);
+  assert.equal(container.media_type, "STORIES");
+  assert.match(container.video_url, /raw\.githubusercontent\.com\/dono\/repo\/c0ffee\/2026-10-01-quiz-\d{14}-story-01\.mp4$/);
+  assert.equal(publish.creation_id, "cont1");
+  assert.equal(TENTATIVAS_VIDEO, 60);
+  await assert.rejects(publicarStory(pasta, "story-01.mp4", { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} }), /já foi publicado/);
+});
+
+test("publicarStory: PNG vai como image_url em JPEG; arquivo inexistente ou de outro tipo é recusado", async () => {
+  const pasta = await pastaDeStories(1, { pngs: true });
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  await publicarStory(pasta, "story-aviso.png", { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  const [container] = corpos(f);
+  assert.equal(container.media_type, "STORIES");
+  assert.match(container.image_url, /story-aviso\.jpg$/);
+  assert.equal(container.video_url, undefined);
+  const opc = { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} };
+  await assert.rejects(publicarStory(pasta, "nao-existe.mp4", opc), /não achei nao-existe\.mp4/);
+  writeFileSync(join(pasta, "x.txt"), "x");
+  await assert.rejects(publicarStory(pasta, "x.txt", opc), /\.mp4 ou \.png/);
+});
+
+test("publicarStories: em ordem, para no primeiro erro dizendo o que saiu, e retoma de onde parou", async () => {
+  const pasta = await pastaDeStories(3);
+  const opc = (f) => ({ tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} });
+  const quebraNo2 = fetchFalso([
+    ...rotasInstagram().filter((r) => !(r.metodo === "GET" && r.url.test("https://graph.instagram.com/v23.0/cont1?fields=status_code"))),
+    { metodo: "GET", url: /\/cont\d+\?/, json: ({ url }) => ({ status_code: /cont2\?/.test(url) ? "ERROR" : "FINISHED", status: "" }) },
+    ...rotasGithub(),
+  ]);
+  await assert.rejects(publicarStories(pasta, opc(quebraNo2)), (e) => e instanceof ErroInstagram
+    && /falhou em story-02\.mp4/.test(e.message) && /publicados agora: story-01\.mp4/.test(e.message) && /pendentes: story-02\.mp4, story-03\.mp4/.test(e.message));
+  assert.deepEqual(lerPublicacoesDeStories(pasta).stories.map((s) => s.arquivo), ["story-01.mp4"]);
+
+  const ok = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const r = await publicarStories(pasta, opc(ok));
+  assert.deepEqual(r.publicados.map((s) => s.arquivo), ["story-02.mp4", "story-03.mp4"]);
+  assert.equal(corpos(ok).filter((c) => c.media_type === "STORIES").length, 2);
+  assert.deepEqual(lerPublicacoesDeStories(pasta).stories.map((s) => s.arquivo), ["story-01.mp4", "story-02.mp4", "story-03.mp4"]);
+  await assert.rejects(publicarStories(pasta, opc(ok)), /todos os 3 stories já foram publicados/);
+});
+
+test("publicarStories recusa sequência manual (sem publicacao: api) e sequência com MP4 faltando", async () => {
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const opc = { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} };
+  await assert.rejects(publicarStories(await pastaDeStories(2, { publicacao: null }), opc), /manual/);
+  const semMp4 = await pastaDeStories(2);
+  unlinkSync(join(semMp4, "story-02.mp4"));
+  await assert.rejects(publicarStories(semMp4, opc), /falta story-02\.mp4/);
+  assert.equal(f.chamadas.length, 0);
+});
