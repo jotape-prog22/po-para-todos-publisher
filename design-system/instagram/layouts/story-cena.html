@@ -12,8 +12,9 @@
 <body>
 <!-- Uma cena do story em vídeo: kicker, título, linhas ou itens numerados, pergunta,
      ícone; cada bloco entra no instante --t. A zona acima do rodapé fica livre para o
-     sticker que a pessoa adiciona no app (quiz, enquete, link). -->
-<main class="ig ig--story ig--story-video">
+     sticker que a pessoa adiciona no app (quiz, enquete, link). Sem sticker (publicação
+     pela API), a classe ig--sem-sticker encolhe essa zona. -->
+<main class="ig ig--story ig--story-video{{classe_extra}}">
   <img class="ig__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
   <div class="ig__conteudo">
 {{conteudo}}

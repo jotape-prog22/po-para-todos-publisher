@@ -20,6 +20,9 @@
 }
 .ig--story-video .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
 
+/* sem sticker (publicação pela API): a zona reservada encolhe e o conteúdo ocupa o espaço */
+.ig--story-video.ig--sem-sticker { --sv-zona-sticker: 120px; }
+
 .sv__pergunta { margin: 0; font: 400 var(--sv-pergunta-size)/var(--sv-pergunta-line) var(--font-display); color: var(--ink); }
 .ig--story-video .ig__icone { width: var(--sv-icone); height: var(--sv-icone); }
 
