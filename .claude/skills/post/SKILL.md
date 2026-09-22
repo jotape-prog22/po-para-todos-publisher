@@ -1,6 +1,6 @@
 ---
 name: post
-description: Faz um post do Instagram do PO para Todos — artigo (carrossel) ou aviso (card único) — do post.md aos cards, legenda e publicação pela API oficial, parando para a pessoa aprovar. Use quando a pessoa disser "quero um post sobre X", "post do artigo Y" ou "aviso do evento Z".
+description: Faz um post do Instagram do PO para Todos — artigo (carrossel), aviso (card único) ou curiosidade (card "você sabia?") — do post.md aos cards, legenda e publicação pela API oficial, parando para a pessoa aprovar. Use quando a pessoa disser "quero um post sobre X", "post do artigo Y", "aviso do evento Z" ou "curiosidade sobre X".
 ---
 
 # Post no Instagram
@@ -10,7 +10,7 @@ Diga antes: "Vou montar os cards e a legenda para você olhar; só publico depoi
 ## 1. Pasta
 
 - Defina a pasta `instagram/<AAAA-MM-DD>-<slug>/` (data prevista do post; slug do tema em minúsculas com hífens). Se já existir, veja o que tem: `publicacao.json` → já publicado, pare e diga o link; `cards.json` e `legenda.json` → gere os PNGs e a legenda (comandos do passo 2) e siga para o passo 3.
-- Se não há `post.md`, crie a partir de `instagram/_modelo/post.md` com o que a pessoa disse e pergunte, em uma rodada só, o que faltar (artigo: título, autores, onde, link, resumo; aviso: nome, data-limite, link).
+- Se não há `post.md`, crie a partir de `instagram/_modelo/post.md` com o que a pessoa disse e pergunte, em uma rodada só, o que faltar (artigo: título, autores, onde, link, resumo; aviso: nome, data-limite, link; curiosidade: tema e fonte).
 
 ## 2. Cards e legenda
 

@@ -34,6 +34,7 @@ export function cenaDoAviso(cards) {
   switch (cards.tipo) {
     case "artigo": return { ...base, kicker: "POST NOVO: RESUMO DE ARTIGO", titulo: encurtar(c.titulo, T.titulo), linhas: [c.autores, c.onde].filter(Boolean).map(linha) };
     case "aviso": return { ...base, kicker: `POST NOVO: ${c.kicker ?? "AVISO"}`, titulo: encurtar(c.titulo, T.titulo), linhas: [c.data, primeiraFrase(c.texto)].filter(Boolean).map(linha) };
+    case "curiosidade": return { ...base, kicker: "POST NOVO: VOCÊ SABIA?", titulo: encurtar(c.titulo, T.titulo), linhas: [primeiraFrase(c.texto)].filter(Boolean).map(linha) };
     default: throw new ErroStoryAviso(`não sei fazer story de aviso para o tipo "${cards.tipo}"`);
   }
 }

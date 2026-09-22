@@ -7,7 +7,8 @@
     "rodape": "📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.",
     "cta": {
       "artigo": "💾 Salve este post para ler depois · mais conteúdo no link da bio.",
-      "aviso": "🔗 Inscrições e detalhes: link na bio."
+      "aviso": "🔗 Inscrições e detalhes: link na bio.",
+      "curiosidade": "💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio."
     }
   },
   "github": "jotape-prog22/po-para-todos-publisher",

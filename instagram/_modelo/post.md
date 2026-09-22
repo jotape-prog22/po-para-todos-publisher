@@ -3,7 +3,7 @@ tipo: artigo
 ---
 
 <!-- Copie esta pasta para instagram/AAAA-MM-DD-slug/ (data prevista do post, ex.: instagram/2026-10-03-kruskal-1956/).
-     Preencha só a parte do seu tipo (artigo OU aviso) e apague a outra. O que ficar em branco, o Claude pergunta. -->
+     Preencha só a parte do seu tipo (artigo, aviso ou curiosidade) e apague as outras. O que ficar em branco, o Claude pergunta. -->
 
 <!-- ===== tipo: artigo (carrossel: capa, uma ideia por card, referência) ===== -->
 
@@ -36,3 +36,14 @@ tipo: artigo
 
 ## Detalhes
 [uma ou duas frases: para quem é, o que precisa enviar]
+
+<!-- ===== tipo: curiosidade (card único "você sabia?") ===== -->
+
+## Tema
+[o fato ou a ideia de PO, em uma frase — ex.: o Simplex foi criado em 1947 para planejamento da Força Aérea]
+
+## Fonte
+[link ou referência de onde você tirou isso — o Claude vai conferir antes de escrever]
+
+## Detalhes
+[opcional: o que você quer que apareça na explicação]

@@ -50,3 +50,9 @@ test("aviso usa o CTA de link na bio e não leva autores", () => {
   assert.ok(!t.includes("✍️"));
   assert.ok(t.endsWith("#PesquisaOperacional #PO #SBPO #Evento #Prazo #Otimização #UNIRIO"));
 });
+
+test("curiosidade usa o CTA de salvar e não leva autores", () => {
+  const texto = montarLegenda({ legenda: { gancho: "G", corpo: "C", autores: null, hashtags_tema: ["#A", "#B", "#C"] }, tipo: "curiosidade", canal });
+  assert.ok(texto.includes(canal.instagramLegenda.cta.curiosidade) && !texto.includes("Autores"));
+  assert.match(canal.instagramLegenda.cta.curiosidade, /Salve/);
+});

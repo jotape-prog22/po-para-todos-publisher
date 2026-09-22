@@ -34,6 +34,12 @@ test("cena do aviso: kicker do card, data e primeira frase do texto", () => {
   assert.throws(() => cenaDoAviso({ tipo: "reel", cards: [{}] }), ErroStoryAviso);
 });
 
+test("cena da curiosidade: kicker VOCÊ SABIA? e primeira frase do texto", () => {
+  const cena = cenaDoAviso({ tipo: "curiosidade", cards: [{ tipo: "curiosidade", titulo: "O Simplex tem mais de 75 anos", texto: "Dantzig publicou o método em 1947. Ainda é o mais usado." }] });
+  assert.equal(cena.kicker, "POST NOVO: VOCÊ SABIA?");
+  assert.deepEqual(cena.linhas, ["Dantzig publicou o método em 1947."]);
+});
+
 test("gerarStoryAviso --so-html escreve story-aviso.html sem sticker com o título do post", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "aviso-"));
   copyFileSync(join(exemplo, "cards.json"), join(pasta, "cards.json"));

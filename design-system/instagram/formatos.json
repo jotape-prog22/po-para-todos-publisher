@@ -17,10 +17,13 @@
     "fim":   { "layout": "fim",   "campos": { "kicker": 24, "texto": 280, "link": 60 }, "obrigatorios": ["texto"],
                "quando": "Último card do artigo: referência bibliográfica e link curto." },
     "aviso": { "layout": "aviso", "campos": { "kicker": 24, "titulo": 60, "data": 30, "texto": 200, "link": 60 }, "obrigatorios": ["titulo"],
-               "quando": "Card único: edital, evento, prazo, vaga ou reconhecimento (sem data)." }
+               "quando": "Card único: edital, evento, prazo, vaga ou reconhecimento (sem data)." },
+    "curiosidade": { "layout": "curiosidade", "campos": { "kicker": 24, "titulo": 80, "texto": 320, "fonte": 80 }, "obrigatorios": ["titulo", "texto"],
+               "quando": "Card único \"você sabia?\": um fato de PO que se sustenta sozinho, com a fonte em uma linha." }
   },
   "tipos": {
     "artigo": { "min": 3, "max": 10 },
-    "aviso":  { "min": 1, "max": 1 }
+    "aviso":  { "min": 1, "max": 1 },
+    "curiosidade": { "min": 1, "max": 1 }
   }
 }
