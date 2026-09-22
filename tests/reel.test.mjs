@@ -52,7 +52,8 @@ test("validarReel (corte): campos, ordem dos tempos, duração e limites de text
   assert.ok(validarReel({ ...corte, fim: "06:40" }).some((e) => e.includes("de 15 a 90 s")));
   assert.ok(validarReel({ ...corte, fim: "06:00" }).some((e) => e.includes("depois do início")));
   assert.ok(validarReel({ ...corte, inicio: "6:30" }).some((e) => e.includes("mm:ss")));
-  assert.ok(validarReel({ ...corte, titulo: "x".repeat(61) }).some((e) => e.includes('"titulo"')));
+  assert.deepEqual(validarReel({ ...corte, titulo: "x".repeat(40) }), []);
+  assert.ok(validarReel({ ...corte, titulo: "x".repeat(41) }).some((e) => e.includes('"titulo"') && e.includes("máximo 40")));
   assert.ok(validarReel({ ...corte, video: undefined }).some((e) => e.includes('"video"')));
 });
 
@@ -74,6 +75,10 @@ test("argsMoldura sobrepõe o vídeo 16:9 centrado na moldura 9:16, mantém o á
 test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensagem útil", () => {
   const h = htmlDaMoldura({ titulo: "EXEMPLO: O PRIMAL", faixa: "AULA COMPLETA NO CANAL", ds: "../../design-system" });
   assert.ok(h.includes("EXEMPLO: O PRIMAL") && h.includes("AULA COMPLETA NO CANAL") && h.includes("reel.css") && h.includes("logo-po-fundo-escuro"));
+  assert.ok(!h.includes("ig__titulo--medio"), "título curto (17) fica no tamanho cheio");
+  assert.ok(htmlDaMoldura({ titulo: "EXEMPLO: RESOLVENDO O DUAL", faixa: "", ds: "." }).includes("ig__titulo--medio"), "título com 21+ caracteres usa o tamanho médio");
+  const classe = (n) => (htmlDaMoldura({ titulo: "x".repeat(n), faixa: "", ds: "." }).match(/class="ig__titulo ?([\w-]*)"/) ?? [])[1] ?? "";
+  assert.deepEqual([classe(20), classe(21), classe(30), classe(31), classe(40)], ["", "ig__titulo--medio", "ig__titulo--medio", "ig__titulo--pequeno", "ig__titulo--pequeno"], "até 20 cheio, 21–30 médio, 31–40 pequeno");
   assert.throws(() => acharYtDlp(() => { throw new Error("not found"); }), /yt-dlp não encontrado/);
   assert.equal(acharYtDlp(() => "/usr/local/bin/yt-dlp\n"), "/usr/local/bin/yt-dlp");
 });

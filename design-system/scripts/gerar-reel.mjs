@@ -3,6 +3,8 @@
 //   tipo "cenas": cenas no formato de stories.json, gravadas uma a uma e emendadas num vídeo só.
 //   tipo "corte": trecho de um vídeo já publicado no YouTube, baixado com yt-dlp e posto numa moldura de marca.
 // Corte exige yt-dlp instalado (README) e vídeo público (ADR-0008); reel.json: { "tipo": "corte", "video": "<slug>", "inicio": "mm:ss", "fim": "mm:ss", "titulo": "…", "faixa": "…", "legenda": { … } }
+// (titulo ≤ 40 caracteres e faixa ≤ 40: é o que cabe na moldura acima e abaixo do vídeo; o título encolhe em
+// três tamanhos conforme o comprimento — a conta está em instagram/reel.css)
 //
 //   node design-system/scripts/gerar-reel.mjs instagram/<pasta>            # reel.mp4 + reel.png (capa)
 //   node design-system/scripts/gerar-reel.mjs instagram/<pasta> --so-html  # só os HTML das cenas (tipo cenas)
@@ -51,7 +53,7 @@ export function validarReel(dados) {
       if (fim <= ini) erros.push('corte: "fim" precisa vir depois do início');
       else if (fim - ini < DURACAO_CORTE.min || fim - ini > DURACAO_CORTE.max) erros.push(`corte: ${fim - ini} s; um reel tem de ${DURACAO_CORTE.min} a ${DURACAO_CORTE.max} s`);
     }
-    if (dados.titulo && dados.titulo.length > 60) erros.push(`corte: "titulo" tem ${dados.titulo.length} caracteres — máximo 60`);
+    if (dados.titulo && dados.titulo.length > 40) erros.push(`corte: "titulo" tem ${dados.titulo.length} caracteres — máximo 40`);
     if (dados.faixa && dados.faixa.length > 40) erros.push(`corte: "faixa" tem ${dados.faixa.length} caracteres — máximo 40`);
   }
   return erros;
@@ -91,9 +93,10 @@ export function argsMoldura({ moldura, bruto, saida }) {
   ];
 }
 
+// Tamanho do título pelo comprimento (até 20 cheio, 21–30 médio, 31–40 pequeno): ver a conta em instagram/reel.css.
 export function htmlDaMoldura({ titulo, faixa, ds }) {
   const modelo = readFileSync(join(DS, "instagram/layouts/reel-moldura.html"), "utf8");
-  return preencher(modelo, { ds, usuario: canal.instagramUsuario, titulo, titulo_classe: titulo.length > 24 ? "ig__titulo--medio" : "", faixa: faixa ?? "", titulo_pagina: `${titulo} — reel` });
+  return preencher(modelo, { ds, usuario: canal.instagramUsuario, titulo, titulo_classe: titulo.length > 30 ? "ig__titulo--pequeno" : titulo.length > 20 ? "ig__titulo--medio" : "", faixa: faixa ?? "", titulo_pagina: `${titulo} — reel` });
 }
 
 // Roda um programa externo e falha com a saída de erro dele (injetável nos testes).

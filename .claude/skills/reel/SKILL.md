@@ -21,7 +21,7 @@ Diga antes: "Vou montar o reel e a legenda para você olhar; só publico depois 
 
 1. O vídeo precisa estar **público**: `videos/<slug>/publicacao.json` com `"privacidade": "public"` (se a pessoa já tornou público e o arquivo diz `private`, peça para confirmar e atualize o arquivo).
 2. `node scripts/corte.mjs --candidatos videos/<slug>` → lista de trechos (gancho e exemplos autocontidos, com início, fim e duração pelos capítulos reais). Mostre 2 a 3 com o motivo de cada um e pergunte qual vai — ou se a pessoa quer outro intervalo (`mm:ss` a `mm:ss`, 15 a 90 s).
-3. Escreva `reel.json` com `tipo: "corte"`, `video` (slug), `inicio`, `fim`, `titulo` (≤ 60, caixa alta, o que o trecho ensina), `faixa` (`"AULA COMPLETA NO CANAL"`) e `legenda`. Sem `checagem.json`: o vídeo já disse isso.
+3. Escreva `reel.json` com `tipo: "corte"`, `video` (slug), `inicio`, `fim`, `titulo` (≤ 40, caixa alta, o que o trecho ensina), `faixa` (`"AULA COMPLETA NO CANAL"`) e `legenda`. Sem `checagem.json`: o vídeo já disse isso.
 
 ## 3. Gerar
 

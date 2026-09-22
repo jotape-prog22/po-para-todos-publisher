@@ -1,10 +1,26 @@
 /* PO para Todos — moldura do reel de Corte (1080×1920). O vídeo 16:9 (1080×608) é sobreposto
- * pelo ffmpeg no centro vertical; aqui só se desenha o que fica em volta: lockup, título em cima,
- * faixa embaixo. Mesma marca e grade de instagram.css. */
-:root { --rm-video-altura: 608px; }
-.ig--reel .ig__conteudo {
-  top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl));
-  bottom: calc(50% + var(--rm-video-altura) / 2 + var(--space-lg));
-  justify-content: flex-end; gap: var(--space-sm);
+ * pelo ffmpeg no centro vertical, ocupando a faixa de 656 a 1264 px; aqui só se desenha o que fica
+ * em volta: lockup, título em cima, faixa embaixo. Mesma marca e grade de instagram.css.
+ *
+ * Conta do espaço em cima: o conteúdo vai de 434 px (zona segura 250 + lockup 160 + space-md 24)
+ * até 648 px (meio 960 − metade do vídeo 304 − space-2xs 8), ou seja, 214 px. Tirando o kicker
+ * (40 px) e o vão até o título (8 px), sobram 166 px para o título — e como .ig__conteudo tem
+ * overflow hidden, o que passar disso some pelo topo, levando o kicker junto. Por isso o título
+ * tem três tamanhos, escolhidos por htmlDaMoldura pelo número de caracteres (medido em Archivo
+ * Black, ~54 px por letra no tamanho cheio, ~41 no médio, ~33 no pequeno; a mais larga, o M, dá
+ * 13, 17 e 20 letras por linha):
+ *   até 20 letras  → cheio  (76/82 px): no máximo 2 linhas = 164 px
+ *   21 a 30 letras → médio  (58/64 px): no máximo 2 linhas = 128 px
+ *   31 a 40 letras → pequeno (48/55 px): no máximo 3 linhas = 165 px
+ * Mais de 40 caracteres não passa em validarReel. */
+:root {
+  --rm-video-altura: 608px;
+  --rm-titulo-pequeno-size: 48px; --rm-titulo-pequeno-line: 55px;
 }
+.ig--reel .ig__conteudo {
+  top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-md));
+  bottom: calc(50% + var(--rm-video-altura) / 2 + var(--space-2xs));
+  justify-content: flex-end; gap: var(--space-2xs);
+}
+.ig--reel .ig__titulo--pequeno { font-size: var(--rm-titulo-pequeno-size); line-height: var(--rm-titulo-pequeno-line); }
 .ig--reel .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
