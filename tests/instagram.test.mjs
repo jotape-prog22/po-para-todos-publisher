@@ -154,6 +154,7 @@ async function pastaDePost(nCards, nomePasta) {
   const cards = nCards === 1 ? [{ tipo: "aviso", titulo: "X" }] : [{ tipo: "capa", titulo: "T", autores: "A" }, ...Array(nCards - 2).fill({ tipo: "ideia", titulo: "I", texto: "t" }), { tipo: "fim", texto: "ref" }];
   writeFileSync(join(pasta, "cards.json"), JSON.stringify({ tipo, cards }));
   writeFileSync(join(pasta, "legenda.txt"), "Gancho.\n\n#PO\n");
+  if (tipo === "artigo") writeFileSync(join(pasta, "checagem.json"), JSON.stringify({ afirmacoes: [{ onde: "card 2", texto: "t", tipo: "fonte", fonte: "https://doi.org/10.1/x", resultado: "confirmada", como: "conferido no resumo do artigo" }] }));
   for (let i = 1; i <= nCards; i++) writeFileSync(join(pasta, `card-0${i}.png`), await sharp({ create: { width: 4, height: 5, channels: 3, background: "#000" } }).png().toBuffer());
   return pasta;
 }
@@ -231,6 +232,11 @@ test("pré-checagens: cards faltando, já publicado, sem token do GitHub, reposi
   await assert.rejects(publicarPost(await pastaDePost(1), opc({ fetchImpl: privado })), /público/);
   const cheia = fetchFalso([{ metodo: "GET", url: /content_publishing_limit/, json: { data: [{ quota_usage: 100 }] } }]);
   await assert.rejects(publicarPost(await pastaDePost(1), opc({ fetchImpl: cheia })), /100/);
+  const semChecagem = await pastaDePost(3);
+  unlinkSync(join(semChecagem, "checagem.json"));
+  await assert.rejects(publicarPost(semChecagem, opc()), /falta checagem\.json/);
+  const avisoSemChecagem = await pastaDePost(1);
+  assert.ok(!existsSync(join(avisoSemChecagem, "checagem.json")));   // aviso não precisa
 });
 
 test("esperarContainer desiste depois das tentativas", async () => {

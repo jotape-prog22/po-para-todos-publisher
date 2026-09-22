@@ -19,6 +19,7 @@ import { join, resolve, dirname, basename, extname } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import sharp from "sharp";
+import { precisaChecagem, carregarChecagem, ErroChecagem } from "./checagem.mjs";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const GRAPH = "https://graph.instagram.com/v23.0";
@@ -292,6 +293,9 @@ export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImp
   const arquivoLegenda = join(pasta, "legenda.txt");
   if (!existsSync(arquivoLegenda)) throw new ErroInstagram(`falta legenda.txt — rode: node scripts/legenda.mjs ${pasta}`);
   const cards = JSON.parse(readFileSync(arquivoCards, "utf8"));
+  if (precisaChecagem(cards.tipo)) {
+    try { carregarChecagem(pasta); } catch (e) { if (e instanceof ErroChecagem) throw new ErroInstagram(e.message); throw e; }
+  }
   const legenda = readFileSync(arquivoLegenda, "utf8").trim();
   const pngs = cards.cards.map((_, i) => join(pasta, `card-${nn(i)}.png`));
   for (const p of pngs) if (!existsSync(p)) throw new ErroInstagram(`falta ${basename(p)} — rode: node design-system/scripts/gerar-cards.mjs ${pasta}`);

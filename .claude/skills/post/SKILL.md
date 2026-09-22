@@ -14,11 +14,11 @@ Diga antes: "Vou montar os cards e a legenda para você olhar; só publico depoi
 
 ## 2. Cards e legenda
 
-Siga `design-system/instagram/GUIA-AGENTE.md` do início ao fim: escreva `cards.json` e `legenda.json`, gere com `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`, olhe cada PNG. Depois gere o story de aviso: `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` → `story-aviso.mp4` e `story-aviso.png` (último quadro). Abra o PNG: o título do post precisa estar legível, mesmo encurtado.
+Siga `design-system/instagram/GUIA-AGENTE.md` do início ao fim: escreva `cards.json`, faça a **Checagem** (`checagem.json`, passo 3 do guia — busque a fonte pelo link, refaça as contas) e escreva `legenda.json`; gere com `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`, olhe cada PNG. Depois gere o story de aviso: `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` → `story-aviso.mp4` e `story-aviso.png` (último quadro). Abra o PNG: o título do post precisa estar legível, mesmo encurtado.
 
 ## 3. **PARADA**: aprovação
 
-Abra os PNGs (`open instagram/<pasta>/card-*.png instagram/<pasta>/story-aviso.png` no Mac, `start …` no Windows) e mostre a legenda inteira. Pergunte: "Aprova os cards, a legenda e o story de aviso? Quer trocar alguma palavra?" **Não avance sem um sim explícito.** Ajustes: edite os JSON, gere de novo, mostre de novo.
+Abra os PNGs (`open instagram/<pasta>/card-*.png instagram/<pasta>/story-aviso.png` no Mac, `start …` no Windows) e mostre a legenda inteira. Cole o resumo de `node scripts/checagem.mjs instagram/<pasta>` inteiro, e destaque o que ficou em "Não confirmei" e "Sem acesso": "Estas afirmações eu não consegui confirmar na fonte — quer manter, reescrever ou tirar?" Pergunte: "Aprova os cards, a legenda, o story de aviso e o resultado da Checagem? Quer trocar alguma palavra?" **Não avance sem um sim explícito.** Ajustes: edite os JSON, gere de novo, mostre de novo.
 
 ## 4. Publicar
 

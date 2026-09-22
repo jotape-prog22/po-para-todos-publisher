@@ -1,0 +1,19 @@
+{
+  "afirmacoes": [
+    { "onde": "card 2", "texto": "Conectar todos os vértices de um grafo gastando o mínimo: é a árvore geradora mínima.",
+      "tipo": "fonte", "fonte": "https://doi.org/10.1090/S0002-9939-1956-0078686-7", "resultado": "confirmada",
+      "como": "Li o PDF da AMS (cópia do Wayback Machine de 12/06/2025; a página do DOI bloqueia acesso automático). É o Problem 1 do artigo: 'Give a practical method for constructing a spanning subtree of minimum length', e a nota 1 define que um subgrafo 'spans' o grafo quando contém todos os vértices." },
+    { "onde": "card 2", "texto": "Em 1956, com redes elétricas e de telefone crescendo, era um problema muito prático.",
+      "tipo": "fonte", "fonte": "https://doi.org/10.1090/S0002-9939-1956-0078686-7", "resultado": "nao-confirmada",
+      "como": "O artigo não fala de redes elétricas nem de telefone. A única referência é Borůvka, 'On a minimal problem' (1926): Kruskal diz que uma tradução datilografada dele 'de origem obscura' despertou interesse e que o artigo se dedica ao teorema de Borůvka. A frase é contexto histórico externo, não do artigo — a pessoa decide se mantém." },
+    { "onde": "card 3", "texto": "Ordene as arestas da mais barata para a mais cara. Acrescente uma por vez, pulando toda aresta que fecharia um ciclo. Quando todos os vértices estiverem ligados, pare.",
+      "tipo": "fonte", "fonte": "https://doi.org/10.1090/S0002-9939-1956-0078686-7", "resultado": "confirmada",
+      "como": "É a 'Construction A' (p. 49): 'Perform the following step as many times as possible: Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen.' O artigo não manda ordenar antes nem diz 'pare quando ligar todos' — escolher sempre a mais curta restante equivale a percorrer a ordem crescente, e 'as many times as possible' termina quando o conjunto escolhido é uma árvore geradora, que ele afirma ser a mais curta." },
+    { "onde": "card 4", "texto": "Kruskal prova que escolher sempre a aresta mais barata que não fecha ciclo nunca leva a uma árvore pior.",
+      "tipo": "fonte", "fonte": "https://doi.org/10.1090/S0002-9939-1956-0078686-7", "resultado": "confirmada",
+      "como": "Na p. 50 ele prova que T = A(n-1), isto é, que a árvore montada pela Construction A é a árvore geradora mais curta (por contradição: uma aresta e fora da construção fechando o ciclo seria mais longa que a escolhida a_i). Ressalva: a prova formal supõe comprimentos todos distintos, hipótese do teorema de Borůvka; para o caso geral ele só afirma ('in fact it forms a shortest spanning tree')." },
+    { "onde": "card 4", "texto": "E mostra o elo com o caixeiro viajante: toda rota contém uma árvore geradora.",
+      "tipo": "fonte", "fonte": "https://doi.org/10.1090/S0002-9939-1956-0078686-7", "resultado": "nao-confirmada",
+      "como": "O artigo só diz que o Problem 1 'on the surface is closely related' a uma versão do caixeiro viajante, o Problem 2: 'constructing an unbranched spanning subtree of minimum length' (um caminho que passa por todos os vértices). Não escreve que toda rota contém uma árvore geradora nem fala em limite inferior — isso é verdade matematicamente e é leitura posterior, mas não está no texto de 1956. Sugestão: 'e aponta a relação com o caixeiro viajante: a rota é uma árvore geradora sem ramificações'. A pessoa decide." }
+  ]
+}

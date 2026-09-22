@@ -16,7 +16,8 @@
     "legenda": "node scripts/legenda.mjs",
     "instagram": "node scripts/instagram.mjs",
     "story-video": "node design-system/scripts/gerar-story-video.mjs",
-    "story-aviso": "node design-system/scripts/gerar-story-aviso.mjs"
+    "story-aviso": "node design-system/scripts/gerar-story-aviso.mjs",
+    "checagem": "node scripts/checagem.mjs"
   },
   "license": "MIT",
   "dependencies": {
