@@ -15,7 +15,8 @@
     "cards": "node design-system/scripts/gerar-cards.mjs",
     "legenda": "node scripts/legenda.mjs",
     "instagram": "node scripts/instagram.mjs",
-    "story-video": "node design-system/scripts/gerar-story-video.mjs"
+    "story-video": "node design-system/scripts/gerar-story-video.mjs",
+    "story-aviso": "node design-system/scripts/gerar-story-aviso.mjs"
   },
   "license": "MIT",
   "dependencies": {

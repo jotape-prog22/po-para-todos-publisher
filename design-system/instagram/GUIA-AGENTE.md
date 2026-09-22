@@ -40,6 +40,9 @@ node scripts/instagram.mjs --status                                     # conta,
 node scripts/instagram.mjs --publicar instagram/<pasta>                 # publica (skill post decide quando)
 node design-system/scripts/gerar-story.mjs videos/<slug>                # story.png de vídeo novo
 node design-system/scripts/gerar-story-video.mjs instagram/<pasta>      # story-NN.mp4 de stories.json (sequência didática; stickers à mão, ver stories.md)
+node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>          # story-aviso.mp4 (aviso de post novo, sem sticker)
+node scripts/instagram.mjs --publicar-story instagram/<pasta> story-aviso.mp4  # publica um story sem sticker
+node scripts/instagram.mjs --publicar-stories instagram/<pasta>               # publica a sequência (stories.json com "publicacao": "api")
 ```
 
 ## Nunca

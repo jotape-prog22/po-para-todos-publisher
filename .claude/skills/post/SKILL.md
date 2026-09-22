@@ -14,17 +14,18 @@ Diga antes: "Vou montar os cards e a legenda para você olhar; só publico depoi
 
 ## 2. Cards e legenda
 
-Siga `design-system/instagram/GUIA-AGENTE.md` do início ao fim: escreva `cards.json` e `legenda.json`, gere com `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`, olhe cada PNG.
+Siga `design-system/instagram/GUIA-AGENTE.md` do início ao fim: escreva `cards.json` e `legenda.json`, gere com `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` e `node scripts/legenda.mjs instagram/<pasta>`, olhe cada PNG. Depois gere o story de aviso: `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` → `story-aviso.mp4` e `story-aviso.png` (último quadro). Abra o PNG: o título do post precisa estar legível, mesmo encurtado.
 
 ## 3. **PARADA**: aprovação
 
-Abra os PNGs (`open instagram/<pasta>/card-*.png` no Mac, `start …` no Windows) e mostre a legenda inteira. Pergunte: "Aprova os cards e a legenda? Quer trocar alguma palavra?" **Não avance sem um sim explícito.** Ajustes: edite os JSON, gere de novo, mostre de novo.
+Abra os PNGs (`open instagram/<pasta>/card-*.png instagram/<pasta>/story-aviso.png` no Mac, `start …` no Windows) e mostre a legenda inteira. Pergunte: "Aprova os cards, a legenda e o story de aviso? Quer trocar alguma palavra?" **Não avance sem um sim explícito.** Ajustes: edite os JSON, gere de novo, mostre de novo.
 
 ## 4. Publicar
 
 1. `node scripts/instagram.mjs --status`. Se sair `erro: sem token…`, diga à pessoa para rodar os comandos `--token`/`--token-github` (README, seção "Publicar no Instagram") numa outra janela do Terminal, fora desta conversa, e **nunca** colar o token aqui no chat. Espere ela dizer "pronto" e rode `--status` de novo. Se a cota estiver em 100, pare e diga quando libera.
 2. `node scripts/instagram.mjs --publicar instagram/<pasta>`. Reporte cada linha que o script imprime. Se sair `erro: …`, mostre exatamente e não tente de novo por conta própria — o script já esvaziou o branch `midia`.
-3. Entregue: "Post no ar: <url de publicacao.json>. Confira no app se o carrossel abriu na ordem certa."
+3. Story de aviso: `node scripts/instagram.mjs --publicar-story instagram/<pasta> story-aviso.mp4`. Se sair `erro: …`, o post já está no ar — mostre o erro, diga que o post ficou publicado e o story não, e pare (não tente de novo por conta própria).
+4. Entregue: "Post no ar: <url de publicacao.json>; story de aviso publicado. Confira no app se o carrossel abriu na ordem certa."
 
 ## Fallback manual
 
