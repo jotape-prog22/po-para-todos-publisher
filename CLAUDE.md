@@ -17,7 +17,9 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists, rodapés e o repositório.
 
 ## Fluxo de um post do Instagram
-`/post instagram/<data>-<slug>` (skill `post`): `post.md` → `cards.json` + `legenda.json` → `gerar-cards.mjs` e `scripts/legenda.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar`. Guia em `design-system/instagram/GUIA-AGENTE.md`; tokens em `~/.po-para-todos/instagram.json` (`docs/adr/0006`); imagens passam pelo branch `midia` (`docs/adr/0005`). Story de vídeo novo é sempre manual (a API não põe sticker de link).
+`/post instagram/<data>-<slug>` (skill `post`): `post.md` → `cards.json` + `legenda.json` → `gerar-cards.mjs` e `scripts/legenda.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar`. Guia em `design-system/instagram/GUIA-AGENTE.md`; tokens em `~/.po-para-todos/instagram.json` (`docs/adr/0006`); imagens passam pelo branch `midia` (`docs/adr/0005`). Story de vídeo novo é sempre manual (a API não põe sticker de link); story de aviso de post e sequências sem sticker saem pela API.
+
+`/stories instagram/<data>-<slug>` (skill `stories`): quiz "respondido" ou sequência didática → `stories.json` + `checagem.json` → `gerar-story-video.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar-stories` (sem sticker; com sticker é manual, `docs/adr/0007`).
 
 ## Design system (`design-system/`)
 - `tokens.json` é a fonte da verdade; `tokens.css` é gerado por `design-system/scripts/gerar-tokens-css.mjs` — nunca edite o .css à mão.

@@ -60,4 +60,4 @@ node scripts/instagram.mjs --publicar-stories instagram/<pasta>               # 
 - Mexer em `instagram.css` ou nos layouts para um post caber — corte o texto.
 - Publicar sem a pessoa ter olhado os PNGs e a legenda.
 - Publicar `artigo` ou `curiosidade` sem `checagem.json` — e nunca marcar "confirmada" o que você não leu na fonte.
-- Gerar story pela API (não põe o sticker de link): o story é sempre manual.
+- Publicar pela API um story que precisa de sticker (link, quiz nativo, enquete): a API não põe sticker. O story de vídeo novo é sempre manual; sequências sem sticker (`"publicacao": "api"`) e o story de aviso saem pela API (ADR-0007).

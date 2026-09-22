@@ -66,3 +66,17 @@ test("renderizarCenas --so-html: numera por padrão, ou usa o prefixo puro com n
   const [so2] = await renderizarCenas(cenas, { pasta, soHtml: true, so: 2 });
   assert.ok(so2.endsWith("story-02.html") && readFileSync(so2, "utf8").includes("DOIS"));
 });
+
+test("modelo de quiz: dois stories, publicacao api, pergunta com gancho e resposta com 'Entendeu?'", () => {
+  const modelo = JSON.parse(readFileSync(new URL("../instagram/_modelo/stories.json", import.meta.url), "utf8"));
+  assert.equal(modelo.publicacao, "api");
+  const [pergunta, resposta] = validar(modelo);
+  assert.ok(pergunta.pergunta && /resposta\?$/i.test(pergunta.dica));
+  assert.ok(/^A RESPOSTA/.test(resposta.kicker) && /Entendeu\?$/.test(resposta.dica));
+});
+
+test("o exemplo como-funciona-po continua manual (sem publicacao) e válido", () => {
+  const spec = JSON.parse(readFileSync(new URL("../instagram/2026-09-22-como-funciona-po/stories.json", import.meta.url), "utf8"));
+  assert.equal(spec.publicacao, undefined);
+  assert.equal(validar(spec).length, 5);
+});

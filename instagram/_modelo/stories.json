@@ -1,0 +1,12 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    { "duracao": 12, "kicker": "UM DESAFIO", "titulo": "[A SITUAÇÃO EM ATÉ 60 CARACTERES]",
+      "linhas": ["[dado 1, até 90 caracteres]", "[dado 2]", "[dado 3]"],
+      "pergunta": "[a pergunta, até 60 caracteres]", "dica": "Sabe a resposta?" },
+    { "duracao": 12, "kicker": "A RESPOSTA", "titulo": "[A RESPOSTA CURTA]",
+      "linhas": ["[a conta em uma linha]", "[por que não é óbvio]", "[o que isso tem a ver com PO]"],
+      "dica": "Entendeu?" }
+  ]
+}
