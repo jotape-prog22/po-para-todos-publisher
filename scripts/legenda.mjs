@@ -2,11 +2,12 @@
 // Monta a legenda de um post do Instagram a partir de legenda.json + cards.json + canal.json.
 //
 //   node scripts/legenda.mjs instagram/2026-09-20-kruskal-1956     → grava legenda.txt e imprime
+//   node scripts/legenda.mjs instagram/<pasta> --reel               → grava reel-legenda.txt de reel.json
 //
 // Ordem: gancho (≤ 125 caracteres, o que aparece antes do "mais") · corpo · ✍️ autores (artigo) ·
 // CTA do tipo · rodapé do projeto · hashtags (abertura + tema + fechamento), como na descrição do YouTube.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -49,23 +50,39 @@ export function montarLegenda({ legenda, tipo, canal }) {
   return partes.filter((p) => p && p.trim()).join("\n\n");
 }
 
+// Monta e grava a legenda: legenda.txt (post, de legenda.json + cards.json) ou reel-legenda.txt (de reel.json.legenda).
+export function gerarLegenda(pasta, { reel = false } = {}) {
+  const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
+  let legenda, tipo, saida;
+  if (reel) {
+    const arquivo = join(pasta, "reel.json");
+    if (!existsSync(arquivo)) throw new ErroLegenda(`não achei reel.json em ${pasta}`);
+    legenda = JSON.parse(readFileSync(arquivo, "utf8")).legenda;
+    tipo = "reel"; saida = "reel-legenda.txt";
+  } else {
+    const arquivo = join(pasta, "cards.json");
+    if (!existsSync(arquivo)) throw new ErroLegenda(`não achei cards.json em ${pasta}`);
+    tipo = JSON.parse(readFileSync(arquivo, "utf8")).tipo;
+    legenda = JSON.parse(readFileSync(join(pasta, "legenda.json"), "utf8"));
+    saida = "legenda.txt";
+  }
+  if (!canal.instagramLegenda.cta[tipo]) throw new ErroLegenda(`canal.json não tem CTA para o tipo "${tipo}"`);
+  const erros = validarLegenda(legenda, tipo);
+  if (erros.length) throw new ErroLegenda(`${reel ? "reel.json → legenda" : "legenda.json"} inválido:\n- ${erros.join("\n- ")}`);
+  const texto = montarLegenda({ legenda, tipo, canal });
+  const hashtags = contarHashtags(texto);
+  if (texto.length > LEGENDA_MAX) throw new ErroLegenda(`legenda com ${texto.length} caracteres — máximo ${LEGENDA_MAX}`);
+  if (hashtags > HASHTAGS_MAX) throw new ErroLegenda(`${hashtags} hashtags — máximo ${HASHTAGS_MAX}`);
+  writeFileSync(join(pasta, saida), texto + "\n");
+  return texto;
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const arg = process.argv[2];
+  const args = process.argv.slice(2);
+  const arg = args.find((a) => !a.startsWith("--"));
   try {
-    if (!arg) throw new ErroLegenda("uso: node scripts/legenda.mjs instagram/<pasta>");
-    const pasta = resolve(arg);
-    const cards = JSON.parse(readFileSync(join(pasta, "cards.json"), "utf8"));
-    const legenda = JSON.parse(readFileSync(join(pasta, "legenda.json"), "utf8"));
-    const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
-    if (!canal.instagramLegenda.cta[cards.tipo]) throw new ErroLegenda(`canal.json não tem CTA para o tipo "${cards.tipo}"`);
-    const erros = validarLegenda(legenda, cards.tipo);
-    if (erros.length) throw new ErroLegenda(`legenda.json inválido:\n- ${erros.join("\n- ")}`);
-    const texto = montarLegenda({ legenda, tipo: cards.tipo, canal });
-    const hashtags = contarHashtags(texto);
-    if (texto.length > LEGENDA_MAX) throw new ErroLegenda(`legenda com ${texto.length} caracteres — máximo ${LEGENDA_MAX}`);
-    if (hashtags > HASHTAGS_MAX) throw new ErroLegenda(`${hashtags} hashtags — máximo ${HASHTAGS_MAX}`);
-    writeFileSync(join(pasta, "legenda.txt"), texto + "\n");
-    console.log(texto);
+    if (!arg) throw new ErroLegenda("uso: node scripts/legenda.mjs instagram/<pasta> [--reel]");
+    console.log(gerarLegenda(resolve(arg), { reel: args.includes("--reel") }));
   } catch (e) {
     if (e instanceof ErroLegenda || e.code === "ENOENT") { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;

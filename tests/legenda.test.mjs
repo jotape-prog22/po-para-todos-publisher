@@ -1,7 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { validarLegenda, montarLegenda, contarHashtags, GANCHO_MAX } from "../scripts/legenda.mjs";
+import { readFileSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { validarLegenda, montarLegenda, contarHashtags, GANCHO_MAX, gerarLegenda } from "../scripts/legenda.mjs";
 
 const pasta = new URL("../instagram/2026-09-20-kruskal-1956/", import.meta.url);
 const legenda = JSON.parse(readFileSync(new URL("legenda.json", pasta), "utf8"));
@@ -55,4 +57,13 @@ test("curiosidade usa o CTA de salvar e não leva autores", () => {
   const texto = montarLegenda({ legenda: { gancho: "G", corpo: "C", autores: null, hashtags_tema: ["#A", "#B", "#C"] }, tipo: "curiosidade", canal });
   assert.ok(texto.includes(canal.instagramLegenda.cta.curiosidade) && !texto.includes("Autores"));
   assert.match(canal.instagramLegenda.cta.curiosidade, /Salve/);
+});
+
+test("gerarLegenda --reel lê reel.json.legenda, usa o CTA do reel e grava reel-legenda.txt", () => {
+  const pasta = mkdtempSync(join(tmpdir(), "leg-"));
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", cenas: [], legenda: { gancho: "G", corpo: "C", hashtags_tema: ["#A", "#B", "#C"] } }));
+  const texto = gerarLegenda(pasta, { reel: true });
+  assert.ok(texto.startsWith("G\n\nC\n\n") && texto.includes(canal.instagramLegenda.cta.reel));
+  assert.equal(readFileSync(join(pasta, "reel-legenda.txt"), "utf8"), texto + "\n");
+  assert.throws(() => gerarLegenda(pasta), /cards\.json/);
 });

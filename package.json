@@ -18,7 +18,8 @@
     "story-video": "node design-system/scripts/gerar-story-video.mjs",
     "story-aviso": "node design-system/scripts/gerar-story-aviso.mjs",
     "checagem": "node scripts/checagem.mjs",
-    "citacao": "node scripts/citacao.mjs"
+    "citacao": "node scripts/citacao.mjs",
+    "reel": "node design-system/scripts/gerar-reel.mjs"
   },
   "license": "MIT",
   "dependencies": {

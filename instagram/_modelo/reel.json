@@ -1,0 +1,9 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 8, "kicker": "[KICKER]", "titulo": "[PERGUNTA OU AFIRMAÇÃO EM ATÉ 60]", "linhas": ["[um dado concreto]"] },
+    { "duracao": 12, "kicker": "[A IDEIA]", "titulo": "[TÍTULO]", "linhas": ["[linha 1]", "[linha 2]", "[linha 3]"] },
+    { "duracao": 8, "kicker": "[FECHO]", "titulo": "[O QUE FICA]", "linhas": ["[uma frase]"], "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": { "gancho": "[uma frase, até 125 caracteres]", "corpo": "[2 a 3 parágrafos curtos]", "hashtags_tema": ["#Tema", "#Area", "#Apelido"] }
+}
