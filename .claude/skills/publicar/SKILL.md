@@ -34,6 +34,6 @@ Escreva `videos/<slug>/publicacao.json`:
 
 Run: `node design-system/scripts/gerar-story.mjs videos/<slug>`
 
-Abra `videos/<slug>/story.png` e confira que headline, subhead e ícone são os mesmos da miniatura. Se a busca pelo título escolheu outro tópico, rode de novo com `--topico <id>` (o mesmo usado na miniatura). O story **não** vai pela API: o link é o motivo do story e a API não coloca sticker.
+Abra `videos/<slug>/story.png` e confira que headline, subhead e ícone são os mesmos da miniatura. Se a busca pelo título escolheu outro tópico, rode de novo com `--topico <id>` (o mesmo usado na miniatura). Este story **não** vai pela API: o link é o motivo dele e a API não coloca sticker (`docs/adr/0007`). Post, quiz e reel do vídeo só saem se a pessoa pedir — sugira, no fim, "quando o vídeo estiver público, posso fazer o pacote do Instagram (post + story + reel) se você quiser".
 
 Entregue: "Vídeo no ar como privado: https://youtu.be/… . Para publicar: YouTube Studio → Conteúdo → o vídeo → Visibilidade → Público. Confira a miniatura e a descrição lá antes. Quando tornar o vídeo público, poste `videos/<slug>/story.png` no Instagram como story, com o sticker de link apontando para https://youtu.be/… — coloque o sticker no espaço vazio acima da faixa verde."

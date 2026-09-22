@@ -192,6 +192,7 @@ Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confi
 - **"a Meta rejeitou a mídia"** — em geral é a imagem grande demais ou a URL inacessível; rode `node design-system/scripts/gerar-cards.mjs instagram/<pasta>` de novo e tente outra vez. Se persistir, publique à mão (acima).
 - **"a conta já fez 100 publicações"** — limite diário da API; espere 24 h ou publique à mão.
 - **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
+- **"erro: yt-dlp não encontrado"** — falta instalar o `yt-dlp` (item 7 de "O que você vai instalar"); instale e rode o comando de novo.
 
 ## Quero mudar a pipeline
 

@@ -12,17 +12,23 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node design-system/scripts/gerar-miniatura.mjs …` — ver `design-system/miniaturas/GUIA-AGENTE.md`.
 - `node design-system/scripts/gerar-story.mjs videos/<slug>` — `story.png` de vídeo novo (a skill `publicar` chama).
 - `node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` — `stories.json` → `story-NN.mp4` (sequência de stories em vídeo; stickers e ordem em `stories.md` da pasta).
+- `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` — `story-aviso.mp4` de post novo.
+- `node scripts/checagem.mjs instagram/<pasta>` — valida `checagem.json` e imprime o resumo da Checagem.
+- `node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>` — trechos para um post `citacao`.
+- `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
 - `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4`.
-- `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` são fixtures: não as altere sem atualizar os testes.
+- `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` (incluindo `checagem.json`) são fixtures: não as altere sem atualizar os testes.
 
 Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists, rodapés e o repositório.
 
 ## Fluxo de um post do Instagram
-`/post instagram/<data>-<slug>` (skill `post`): `post.md` → `cards.json` + `legenda.json` → `gerar-cards.mjs` e `scripts/legenda.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar`. Guia em `design-system/instagram/GUIA-AGENTE.md`; tokens em `~/.po-para-todos/instagram.json` (`docs/adr/0006`); imagens passam pelo branch `midia` (`docs/adr/0005`). Story de vídeo novo é sempre manual (a API não põe sticker de link); story de aviso de post e sequências sem sticker saem pela API.
+`/post instagram/<data>-<slug>` (skill `post`): `post.md` → `cards.json` + `checagem.json` + `legenda.json` → `gerar-cards.mjs`, `scripts/checagem.mjs` e `scripts/legenda.mjs` → parada para aprovar (cards, legenda, story de aviso e o resumo da Checagem) → `node scripts/instagram.mjs --publicar` e `--publicar-story … story-aviso.mp4`. Tipos: `artigo`, `aviso`, `curiosidade`, `citacao`. Guia em `design-system/instagram/GUIA-AGENTE.md`; tokens em `~/.po-para-todos/instagram.json` (`docs/adr/0006`); mídia passa pelo branch `midia` (`docs/adr/0005`). `artigo` e `curiosidade` não publicam sem `checagem.json` (`docs/adr/0009`).
 
-`/stories instagram/<data>-<slug>` (skill `stories`): quiz "respondido" ou sequência didática → `stories.json` + `checagem.json` → `gerar-story-video.mjs` → parada para aprovar → `node scripts/instagram.mjs --publicar-stories` (sem sticker; com sticker é manual, `docs/adr/0007`).
+`/stories instagram/<data>-<slug>` (skill `stories`): quiz "respondido" ou sequência didática → `stories.json` + `checagem.json` → `gerar-story-video.mjs` → parada → `--publicar-stories` (sem sticker; com sticker é manual, `docs/adr/0007`).
 
 `/reel instagram/<data>-<slug>` (skill `reel`): corte de vídeo publicado (`scripts/corte.mjs --candidatos`, `yt-dlp`, `docs/adr/0008`) ou cenas do zero → `reel.json` → `gerar-reel.mjs` + `legenda.mjs --reel` → parada → `--publicar-reel`.
+
+`/pacote` (skill `pacote`): post + story de aviso + reel, nessa ordem, cada um com sua parada; só por pedido — `/video` nunca dispara nada do Instagram. Story de vídeo novo é sempre manual (sticker de link); story de aviso e sequências sem sticker saem pela API.
 
 ## Design system (`design-system/`)
 - `tokens.json` é a fonte da verdade; `tokens.css` é gerado por `design-system/scripts/gerar-tokens-css.mjs` — nunca edite o .css à mão.

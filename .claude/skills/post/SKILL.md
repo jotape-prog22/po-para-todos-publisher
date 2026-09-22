@@ -9,7 +9,7 @@ Diga antes: "Vou montar os cards e a legenda para você olhar; só publico depoi
 
 ## 1. Pasta
 
-- Defina a pasta `instagram/<AAAA-MM-DD>-<slug>/` (data prevista do post; slug do tema em minúsculas com hífens). Se já existir, veja o que tem: `publicacao.json` → já publicado, pare e diga o link; `cards.json` e `legenda.json` → gere os PNGs e a legenda (comandos do passo 2) e siga para o passo 3.
+- Defina a pasta `instagram/<AAAA-MM-DD>-<slug>/` (data prevista do post; slug do tema em minúsculas com hífens). Se já existir, veja o que tem: `publicacao.json` → já publicado, pare e diga o link; `cards.json` e `legenda.json` → gere os PNGs e a legenda (comandos do passo 2) e siga para o passo 3; se for `artigo` ou `curiosidade` e faltar `checagem.json`, faça a Checagem antes (passo 3 do guia).
 - Se não há `post.md`, crie a partir de `instagram/_modelo/post.md` com o que a pessoa disse e pergunte, em uma rodada só, o que faltar (artigo: título, autores, onde, link, resumo; aviso: nome, data-limite, link; curiosidade: tema e fonte; citacao: origem).
 
 ## 2. Cards e legenda
