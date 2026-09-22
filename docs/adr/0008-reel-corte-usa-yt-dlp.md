@@ -1,0 +1,3 @@
+# O Corte de um Reel baixa o vídeo com `yt-dlp`, não pela API do YouTube
+
+Um Reel de Corte precisa do arquivo de vídeo de verdade, mas a API de Dados do YouTube não serve o arquivo — só metadados, legendas e miniatura — e a pipeline não guarda o arquivo local usado no upload (a skill `publicar` só pergunta o caminho na hora e não o registra). A alternativa seria depender de a pessoa ainda ter o arquivo salvo semanas depois, o que nem sempre é verdade. Decisão: baixar o vídeo pelo `yt-dlp`, sempre depois de o vídeo já estar público — só nesse ponto o download não exige autenticação nem cookies, o que mantém custo zero e evita gerenciar credenciais só para isso. É a única exceção do repositório ao padrão de usar só APIs oficiais (Meta, Google).

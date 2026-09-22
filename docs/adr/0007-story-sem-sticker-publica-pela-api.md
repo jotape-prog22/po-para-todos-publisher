@@ -1,0 +1,3 @@
+# Story sem sticker interativo publica pela API; com sticker continua manual
+
+A API de publicação da Meta não desenha stickers (link, quiz, enquete) num story — por isso a regra até aqui era "o story é sempre manual". Mas essa limitação só importa quando o story leva um sticker: um aviso de post novo ou um quiz "respondido" (pergunta num story, resposta no seguinte, escritas no próprio vídeo, sem sticker nenhum) não esbarram nela. A regra passa a ser "story com sticker interativo é manual; sem sticker publica pela API" — o `story de vídeo novo`, que existe justamente por causa do sticker de link, continua sempre manual.
