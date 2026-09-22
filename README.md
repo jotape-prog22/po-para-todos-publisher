@@ -18,6 +18,10 @@ Não precisa saber programar. Precisa seguir os passos abaixo uma vez; depois é
    Confira digitando `uv --version` → deve aparecer um número de versão, sem erro.
 5. **Google Chrome ou Microsoft Edge** — o gerador de miniaturas usa um desses navegadores por trás dos panos para desenhar a imagem. Se você já tem um dos dois instalado, pode pular este item. Ele também desenha os cards do Instagram.
 6. **PowerPoint** — para abrir e apresentar os slides que o Claude gera (arquivo `.pptx`).
+7. **yt-dlp** (opcional — só para reels feitos de um trecho de vídeo já publicado). É o programa que baixa o trecho do YouTube.
+   - Mac: no Terminal, `brew install yt-dlp` (se não tiver o Homebrew, instale antes em https://brew.sh).
+   - Windows (no PowerShell): `winget install yt-dlp.yt-dlp`, depois feche e abra o PowerShell de novo.
+   Confira digitando `yt-dlp --version` → deve aparecer uma data (a versão). Se você não for fazer reels de corte, pule este item; o Claude avisa quando precisar.
 
 ## Baixar o projeto
 
@@ -164,6 +168,16 @@ Um exemplo completo está em `instagram/2026-09-20-kruskal-1956/`.
 | `card-01.png`… | Os cards prontos (1080×1350), gerados de `cards.json`. |
 | `legenda.json` / `legenda.txt` | A legenda: o que o Claude escreveu e o texto final montado com o rodapé do projeto e as hashtags. |
 | `publicacao.json` | O registro da publicação: link e data. |
+
+### Stories, reels e o "pacote"
+
+Além do post, o Claude faz:
+- **Story de aviso** do post novo — sai sozinho, pela API, logo depois do post (você aprova junto com os cards).
+- **Sequência de stories** (quiz "respondido", explicação em passos): diga `quero um quiz sobre X`. Sem sticker ela sai pela API; com sticker (enquete, link) o Claude entrega os vídeos e um roteiro para você postar pelo app.
+- **Reel**: `vê um trecho legal do vídeo Y para postar` (o Claude sugere trechos, você escolhe; precisa do `yt-dlp` do item 7 e do vídeo já público) ou `faz um reel sobre X` (cenas do zero).
+- **Pacote**: `faz o pacote do vídeo Y` — post + story de aviso + reel, nessa ordem, com uma parada de aprovação em cada um.
+
+Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confirmou e o que não conseguiu confirmar — é você quem decide o que fica.
 
 ## Quando algo dá errado
 

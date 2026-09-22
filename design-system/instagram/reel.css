@@ -1,0 +1,10 @@
+/* PO para Todos — moldura do reel de Corte (1080×1920). O vídeo 16:9 (1080×608) é sobreposto
+ * pelo ffmpeg no centro vertical; aqui só se desenha o que fica em volta: lockup, título em cima,
+ * faixa embaixo. Mesma marca e grade de instagram.css. */
+:root { --rm-video-altura: 608px; }
+.ig--reel .ig__conteudo {
+  top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl));
+  bottom: calc(50% + var(--rm-video-altura) / 2 + var(--space-lg));
+  justify-content: flex-end; gap: var(--space-sm);
+}
+.ig--reel .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }

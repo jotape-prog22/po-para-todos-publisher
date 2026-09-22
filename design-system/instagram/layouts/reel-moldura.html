@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>{{titulo_pagina}}</title>
+<link rel="stylesheet" href="{{ds}}/tokens.css">
+<link rel="stylesheet" href="{{ds}}/assets/fontes/fontes.css">
+<link rel="stylesheet" href="{{ds}}/instagram/instagram.css">
+<link rel="stylesheet" href="{{ds}}/instagram/reel.css">
+</head>
+<body>
+<!-- Moldura do reel de Corte: o vídeo entra por cima, no meio; kicker e título em cima, faixa embaixo. -->
+<main class="ig ig--story ig--reel">
+  <img class="ig__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
+  <div class="ig__conteudo">
+    <p class="ig__kicker">CORTE DA AULA</p>
+    <h1 class="ig__titulo {{titulo_classe}}">{{titulo}}</h1>
+  </div>
+{{#faixa}}  <p class="ig__faixa">{{faixa}}</p>
+{{/faixa}}  <p class="ig__rodape"><span>@{{usuario}}</span></p>
+</main>
+</body>
+</html>
