@@ -7,6 +7,7 @@
 //   node scripts/instagram.mjs --publicar instagram/<pasta>         publica na hora (carrossel ou card único)
 //   node scripts/instagram.mjs --publicar-story instagram/<pasta> <arquivo.mp4|.png>   publica um story avulso, sem sticker
 //   node scripts/instagram.mjs --publicar-stories instagram/<pasta>                    publica a sequência de stories.json, retomável
+//   node scripts/instagram.mjs --publicar-reel instagram/<pasta>                       publica reel.mp4 (também vai para o feed)
 //
 // Tokens ficam em ~/.po-para-todos/instagram.json (fora do repositório). O token do Instagram vale 60 dias;
 // o script renova sozinho quando faltam menos de 30 e avisa quando a renovação falha.
@@ -257,6 +258,33 @@ export async function publicarStories(pasta, opcoes = {}) {
   return { publicados };
 }
 
+// Publica instagram/<pasta>/reel.mp4 com reel-legenda.txt como reel (também vai para o feed).
+export async function publicarReel(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
+  const mp4 = join(pasta, "reel.mp4"), arquivoLegenda = join(pasta, "reel-legenda.txt");
+  if (!existsSync(mp4)) throw new ErroInstagram(`falta reel.mp4 em ${pasta} — rode: node design-system/scripts/gerar-reel.mjs ${pasta}`);
+  if (!existsSync(arquivoLegenda)) throw new ErroInstagram(`falta reel-legenda.txt — rode: node scripts/legenda.mjs ${pasta} --reel`);
+  if (existsSync(join(pasta, "publicacao-reel.json"))) throw new ErroInstagram("este reel já foi publicado (publicacao-reel.json existe) — apague o arquivo se quiser publicar de novo");
+  const legenda = readFileSync(arquivoLegenda, "utf8").trim();
+  const { ig, igId, gh } = await prepararPublicacao({ tokens, canal, fetchImpl });
+  const nome = `${sanitizarNome(basename(pasta))}-${carimboDe(agora)}-reel.mp4`;
+  log(`subindo reel.mp4 para o branch midia de ${canal.github}…`);
+  const midia = await subirMidia(gh, [{ nome, conteudo: readFileSync(mp4) }], { repo: canal.github });
+  try {
+    log("criando o reel…");
+    // thumb_offset: capa aos 3 s — no primeiro quadro das cenas animadas ainda não há texto
+    const { id } = await ig.post(`${igId}/media`, { media_type: "REELS", video_url: midia.urls[0], caption: legenda, share_to_feed: "true", thumb_offset: "3000" });
+    await esperarContainer(ig, id, dormir, TENTATIVAS_VIDEO);
+    log("publicando…");
+    const publicado = await ig.post(`${igId}/media_publish`, { creation_id: id });
+    const { permalink } = await ig.get(publicado.id, "permalink");
+    const registro = { media_id: publicado.id, url: permalink, publicado_em: new Date(agora).toISOString() };
+    writeFileSync(join(pasta, "publicacao-reel.json"), JSON.stringify(registro, null, 2) + "\n");
+    return registro;
+  } finally {
+    await esvaziarMidia(gh, canal, log);
+  }
+}
+
 export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
   // 1. pré-checagem local
   const arquivoCards = join(pasta, "cards.json");
@@ -318,7 +346,8 @@ const USO = `uso:
   node scripts/instagram.mjs --status
   node scripts/instagram.mjs --publicar instagram/<pasta>
   node scripts/instagram.mjs --publicar-story instagram/<pasta> <arquivo.mp4|.png>
-  node scripts/instagram.mjs --publicar-stories instagram/<pasta>`;
+  node scripts/instagram.mjs --publicar-stories instagram/<pasta>
+  node scripts/instagram.mjs --publicar-reel instagram/<pasta>`;
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [opcao, valor] = process.argv.slice(2);
@@ -346,6 +375,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       const tokens = await renovarSeNecessario(lerTokens());
       const r = await publicarStories(resolve(valor), { tokens });
       console.log(`sequência publicada: ${r.publicados.map((p) => p.arquivo).join(", ")}`);
+    } else if (opcao === "--publicar-reel" && valor) {
+      const tokens = await renovarSeNecessario(lerTokens());
+      const r = await publicarReel(resolve(valor), { tokens });
+      console.log(`reel publicado: ${r.url}`);
     } else {
       console.error(USO);
       process.exit(1);

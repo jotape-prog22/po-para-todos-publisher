@@ -276,7 +276,7 @@ test("falta legenda.txt: erro amigável e nenhuma chamada de rede", async () => 
   assert.equal(f.chamadas.length, 0);
 });
 
-import { publicarStory, publicarStories, lerPublicacoesDeStories, LEDGER_STORIES, TENTATIVAS_VIDEO } from "../scripts/instagram.mjs";
+import { publicarStory, publicarStories, publicarReel, lerPublicacoesDeStories, LEDGER_STORIES, TENTATIVAS_VIDEO } from "../scripts/instagram.mjs";
 
 async function pastaDeStories(n, { publicacao = "api", pngs = false } = {}) {
   const sharp = (await import("sharp")).default;
@@ -345,5 +345,39 @@ test("publicarStories recusa sequência manual (sem publicacao: api) e sequênci
   const semMp4 = await pastaDeStories(2);
   unlinkSync(join(semMp4, "story-02.mp4"));
   await assert.rejects(publicarStories(semMp4, opc), /falta story-02\.mp4/);
+  assert.equal(f.chamadas.length, 0);
+});
+
+async function pastaDeReel({ legenda = true } = {}) {
+  const pasta = join(mkdtempSync(join(tmpdir(), "reel-")), "2026-10-02-corte");
+  mkdirSync(pasta);
+  writeFileSync(join(pasta, "reel.mp4"), Buffer.from("mp4"));
+  if (legenda) writeFileSync(join(pasta, "reel-legenda.txt"), "Gancho do reel.\n\n#PO\n");
+  return pasta;
+}
+
+test("publicarReel: contêiner REELS com video_url, legenda, share_to_feed e thumb_offset; grava publicacao-reel.json", async () => {
+  const pasta = await pastaDeReel();
+  const f = fetchFalso([...rotasInstagram(), ...rotasGithub()]);
+  const opc = { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} };
+  const r = await publicarReel(pasta, opc);
+  assert.deepEqual(r, { media_id: "midia77", url: "https://www.instagram.com/p/abc/", publicado_em: new Date(AGORA).toISOString() });
+  assert.deepEqual(JSON.parse(readFileSync(join(pasta, "publicacao-reel.json"), "utf8")), r);
+  const [container, publish] = corpos(f);
+  assert.equal(container.media_type, "REELS");
+  assert.match(container.video_url, /2026-10-02-corte-\d{14}-reel\.mp4$/);
+  assert.equal(container.caption, "Gancho do reel.\n\n#PO");
+  assert.equal(container.share_to_feed, "true");
+  assert.equal(container.thumb_offset, "3000");
+  assert.equal(publish.creation_id, "cont1");
+  await assert.rejects(publicarReel(pasta, opc), /já foi publicado/);
+});
+
+test("publicarReel recusa pasta sem reel.mp4 ou sem reel-legenda.txt, sem chamar a rede", async () => {
+  const f = fetchFalso([]);
+  const opc = { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: () => {} };
+  await assert.rejects(publicarReel(await pastaDeReel({ legenda: false }), opc), /reel-legenda\.txt/);
+  const vazia = mkdtempSync(join(tmpdir(), "reel-"));
+  await assert.rejects(publicarReel(vazia, opc), /reel\.mp4/);
   assert.equal(f.chamadas.length, 0);
 });
