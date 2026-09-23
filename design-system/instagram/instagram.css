@@ -14,7 +14,7 @@
   --ig-apoio-size: 34px;   --ig-apoio-line: 44px;
   --ig-data-size: 96px;    --ig-data-line: 100px;
   --ig-numero-size: 160px;
-  --ig-story-seguro: 250px;         /* zona da interface do app, em cima e embaixo */
+  --ig-story-seguro: 170px;         /* zona da interface do app, em cima e embaixo */
   --ig-icone: 320px;
 }
 
@@ -62,6 +62,6 @@ body { background: var(--surface); }
 /* story: conteúdo começa abaixo da zona segura; rodapé sobe para cima dela;
    o espaço livre acima do rodapé é onde a pessoa cola o sticker de link */
 .ig--story .ig__lockup { top: var(--ig-story-seguro); }
-.ig--story .ig__conteudo { top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl)); bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + 360px); justify-content: center; }
+.ig--story .ig__conteudo { top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl)); bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + 360px); justify-content: flex-start; }
 .ig--story .ig__rodape { bottom: var(--ig-story-seguro); justify-content: center; }
 .ig--story .ig__faixa { position: absolute; left: 0; right: 0; bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); height: var(--ig-rodape-altura); margin: 0; display: flex; align-items: center; justify-content: center; font: 800 var(--ig-kicker-size)/1 var(--font-label); color: var(--brand-green-soft); letter-spacing: .04em; }

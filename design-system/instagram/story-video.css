@@ -13,15 +13,17 @@
   --sv-icone: 220px;
 }
 
-/* conteúdo entre o lockup e a zona do sticker; faixa (quando há) fica dentro da zona do sticker, colada ao rodapé */
+/* com sticker: conteúdo encostado no topo, zona do sticker livre embaixo */
 .ig--story-video .ig__conteudo {
   bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + var(--sv-zona-sticker));
-  justify-content: center; gap: var(--space-md);
+  justify-content: flex-start; gap: var(--space-md);
 }
 .ig--story-video .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
 
-/* sem sticker (publicação pela API): a zona reservada encolhe e o conteúdo ocupa o espaço */
-.ig--story-video.ig--sem-sticker { --sv-zona-sticker: 120px; }
+/* sem sticker (publicação pela API, a maioria): nada reservado — o conteúdo ocupa
+   quase tudo entre a logo e o rodapé (deixando a faixa) e fica centrado nesse espaço */
+.ig--story-video.ig--sem-sticker { --sv-zona-sticker: var(--ig-rodape-altura); }
+.ig--story-video.ig--sem-sticker .ig__conteudo { justify-content: center; }
 
 .sv__pergunta { margin: 0; font: 400 var(--sv-pergunta-size)/var(--sv-pergunta-line) var(--font-display); color: var(--ink); }
 .ig--story-video .ig__icone { width: var(--sv-icone); height: var(--sv-icone); }
@@ -33,11 +35,9 @@
 .sv__item-titulo { margin: 0; font: 400 var(--sv-item-titulo-size)/var(--sv-item-titulo-line) var(--font-display); text-transform: uppercase; color: var(--brand-green); }
 .sv__item-texto  { margin: 0; grid-column: 2; font: 600 var(--sv-item-texto-size)/var(--sv-item-texto-line) var(--font-label); color: var(--ink); }
 
-/* dica no topo da zona do sticker ("Responda no quiz" + seta), pulsando */
+/* dica no fim do conteúdo ("Responda no quiz", "A resposta vem a seguir" + seta), pulsando */
 .sv__dica {
-  position: absolute; left: var(--ig-margem); right: var(--ig-margem);
-  bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + var(--sv-zona-sticker) - var(--space-2xl) - var(--ig-apoio-line));
-  margin: 0; text-align: center;
+  margin: var(--space-2xl) 0 0; text-align: center;
   font: 600 var(--ig-apoio-size)/var(--ig-apoio-line) var(--font-label); color: var(--ink-muted);
 }
 .sv__dica::after { content: "↓"; display: block; color: var(--brand-green-soft); }

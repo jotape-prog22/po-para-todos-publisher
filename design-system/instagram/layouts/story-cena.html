@@ -11,16 +11,16 @@
 </head>
 <body>
 <!-- Uma cena do story em vídeo: kicker, título, linhas ou itens numerados, pergunta,
-     ícone; cada bloco entra no instante --t. A zona acima do rodapé fica livre para o
-     sticker que a pessoa adiciona no app (quiz, enquete, link). Sem sticker (publicação
-     pela API), a classe ig--sem-sticker encolhe essa zona. -->
+     ícone e dica; cada bloco entra no instante --t. Com sticker, o conteúdo sobe e a zona
+     acima do rodapé fica livre para ele (quiz, enquete, link). Sem sticker (publicação
+     pela API, classe ig--sem-sticker), o conteúdo se centra entre a logo e o rodapé. -->
 <main class="ig ig--story ig--story-video{{classe_extra}}">
   <img class="ig__lockup" src="{{ds}}/assets/Marca/logo-po-fundo-escuro.png" alt="Pesquisa Operacional para todos.">
   <div class="ig__conteudo">
 {{conteudo}}
-  </div>
-{{#dica}}  <p class="sv__dica sv__anim" style="--t: {{dica_t}}s">{{dica}}</p>
-{{/dica}}{{#faixa}}  <p class="ig__faixa">{{faixa}}</p>
+{{#dica}}    <p class="sv__dica sv__anim" style="--t: {{dica_t}}s">{{dica}}</p>
+{{/dica}}  </div>
+{{#faixa}}  <p class="ig__faixa">{{faixa}}</p>
 {{/faixa}}  <p class="ig__rodape"><span>@{{usuario}}</span></p>
 </main>
 </body>
