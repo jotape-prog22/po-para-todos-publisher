@@ -1,0 +1,6 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    { "tipo": "curiosidade", "titulo": "O SIMPLEX TEM MAIS DE 75 ANOS", "texto": "George Dantzig criou o método em 1947 para resolver problemas de planejamento da força aérea americana. Até hoje é um dos algoritmos mais usados em otimização linear no mundo.", "fonte": "Dantzig, 1947" }
+  ]
+}

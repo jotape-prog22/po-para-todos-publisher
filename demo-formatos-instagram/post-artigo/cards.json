@@ -1,0 +1,10 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    { "tipo": "capa", "titulo": "A Mathematical Theory of Communication", "autores": "Claude E. Shannon", "onde": "Bell System Technical Journal, 1948" },
+    { "tipo": "ideia", "titulo": "O problema", "texto": "Como transmitir uma mensagem por um canal ruidoso e garantir que ela chegue intacta do outro lado? Shannon transforma essa pergunta de engenharia numa teoria matemática." },
+    { "tipo": "ideia", "titulo": "A ideia central", "texto": "Toda informação pode ser medida em bits, não importa se é texto, som ou imagem. A entropia mede a incerteza média de uma fonte — e o quanto dá para comprimi-la." },
+    { "tipo": "ideia", "titulo": "O limite do canal", "texto": "Shannon prova que todo canal tem uma capacidade máxima de transmissão sem erro. Abaixo dela, existe sempre um código que corrige os erros do ruído." },
+    { "tipo": "fim", "texto": "SHANNON, C. E. A mathematical theory of communication. The Bell System Technical Journal, v. 27, n. 3, p. 379–423, 1948.", "link": "doi.org/10.1002/j.1538-7305.1948.tb01338.x" }
+  ]
+}

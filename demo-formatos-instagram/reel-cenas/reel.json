@@ -1,0 +1,32 @@
+{
+  "tipo": "cenas",
+  "titulo": "O problema do caixeiro viajante em 20 segundos",
+  "cenas": [
+    {
+      "duracao": 10,
+      "kicker": "O PROBLEMA",
+      "titulo": "A MENOR ROTA POSSÍVEL",
+      "linhas": [
+        "Um entregador precisa visitar 8 endereços",
+        "e voltar ao ponto de partida.",
+        "Qual é a ordem que gasta menos tempo?"
+      ]
+    },
+    {
+      "duracao": 10,
+      "kicker": "POR QUE É DIFÍCIL",
+      "titulo": "AS ROTAS EXPLODEM",
+      "linhas": [
+        "Com 8 pontos já são mais de 2 mil rotas possíveis.",
+        "Com 20 pontos, mais do que átomos no universo.",
+        "É por isso que ninguém tenta todas."
+      ],
+      "faixa": "PESQUISA OPERACIONAL PARA TODOS"
+    }
+  ],
+  "legenda": {
+    "gancho": "Por que ninguém tenta todas as rotas possíveis?",
+    "corpo": "O problema do caixeiro viajante é um dos mais famosos da otimização combinatória: o número de rotas cresce tão rápido que testar todas é impossível, mesmo para um computador.\n\nÉ por isso que existem algoritmos que buscam boas soluções sem precisar enumerar tudo.",
+    "hashtags_tema": ["#PesquisaOperacional", "#Otimizacao", "#Algoritmos", "#CaixeiroViajante"]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    {
+      "duracao": 13,
+      "kicker": "QUIZ",
+      "titulo": "QUAL RENDE MAIS?",
+      "linhas": [
+        "Capacidade do caminhão: 12 kg",
+        "Caixa A: 3 kg, lucro de R$ 30",
+        "Caixa B: 4 kg, lucro de R$ 50",
+        "A) 4 caixas A",
+        "B) 3 caixas B",
+        "C) 2 caixas A + 1 caixa B"
+      ],
+      "dica": "A resposta vem a seguir"
+    },
+    {
+      "duracao": 11,
+      "kicker": "A RESPOSTA É",
+      "titulo": "ALTERNATIVA B",
+      "linhas": [
+        "3 caixas B: 12 kg, R$ 150 de lucro",
+        "4 caixas A: 12 kg, mas só R$ 120",
+        "B rende R$ 12,50 por kg; A rende R$ 10 — por isso B ganha, mesmo levando menos caixas."
+      ]
+    }
+  ]
+}
