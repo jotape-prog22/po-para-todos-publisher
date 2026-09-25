@@ -7,15 +7,23 @@
   --ig-margem: 72px;
   --ig-lockup: 160px;               /* logo quadrado do canal */
   --ig-rodape-altura: 96px;         /* faixa verde com o @ */
-  --ig-kicker-size: 32px;  --ig-kicker-line: 40px;
+  --ig-kicker-size: 32px;  --ig-kicker-line: 50px;
   --ig-titulo-size: 76px;  --ig-titulo-line: 82px;       /* Archivo Black, caixa alta */
   --ig-titulo-medio-size: 58px; --ig-titulo-medio-line: 64px;
-  --ig-corpo-size: 42px;   --ig-corpo-line: 58px;        /* Poppins 600 */
+  --ig-corpo-size: 42px;   --ig-corpo-line: 80px;        /* Poppins 600 */
   --ig-apoio-size: 34px;   --ig-apoio-line: 44px;
   --ig-data-size: 96px;    --ig-data-line: 100px;
   --ig-numero-size: 160px;
-  --ig-story-seguro: 170px;         /* zona da interface do app, em cima e embaixo */
   --ig-icone: 320px;
+  --ig-respiro-logo: 48px;          /* do pé da logo ao começo da zona de conteúdo */
+  --ig-conteudo-gap: 24px;          /* entre kicker, título, linhas */
+  --ig-feed-alinhamento: center;    /* conteúdo do post: flex-start (topo) ou center */
+  --ig-story-seguro-topo: 170px;    /* story: zona da interface do app em cima (barra de progresso, perfil) */
+  --ig-story-seguro-base: 170px;    /* story: zona da interface do app embaixo (responder, curtir) */
+  --ig-story-sticker: 360px;        /* story com sticker (vídeo novo): espaço livre acima do rodapé */
+  --ig-story-alinhamento: flex-start; /* story com sticker: conteúdo no topo */
+  --ig-reel-seguro-topo: 170px;     /* reel: zona da interface em cima */
+  --ig-reel-seguro-base: 170px;     /* reel: zona da interface embaixo (legenda, áudio) */
 }
 
 html, body { margin: 0; padding: 0; }
@@ -35,9 +43,9 @@ body { background: var(--surface); }
 /* zona de conteúdo: entre o lockup e o rodapé, centrada na vertical */
 .ig__conteudo {
   position: absolute; left: var(--ig-margem); right: var(--ig-margem);
-  top: calc(var(--ig-margem) + var(--ig-lockup) + var(--space-xl));
+  top: calc(var(--ig-margem) + var(--ig-lockup) + var(--ig-respiro-logo));
   bottom: calc(var(--ig-rodape-altura) + var(--space-xl));
-  display: flex; flex-direction: column; justify-content: center; gap: var(--space-md);
+  display: flex; flex-direction: column; justify-content: var(--ig-feed-alinhamento); gap: var(--ig-conteudo-gap);
   overflow: hidden;
 }
 .ig__kicker { margin: 0; font: 800 var(--ig-kicker-size)/var(--ig-kicker-line) var(--font-label); letter-spacing: .04em; text-transform: uppercase; color: var(--brand-green-soft); }
@@ -59,9 +67,12 @@ body { background: var(--surface); }
   font: 800 var(--ig-kicker-size)/1 var(--font-label);
 }
 
-/* story: conteúdo começa abaixo da zona segura; rodapé sobe para cima dela;
+/* story: lockup abaixo da zona segura de cima; rodapé acima da de baixo;
    o espaço livre acima do rodapé é onde a pessoa cola o sticker de link */
-.ig--story .ig__lockup { top: var(--ig-story-seguro); }
-.ig--story .ig__conteudo { top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-xl)); bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + 360px); justify-content: flex-start; }
-.ig--story .ig__rodape { bottom: var(--ig-story-seguro); justify-content: center; }
-.ig--story .ig__faixa { position: absolute; left: 0; right: 0; bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); height: var(--ig-rodape-altura); margin: 0; display: flex; align-items: center; justify-content: center; font: 800 var(--ig-kicker-size)/1 var(--font-label); color: var(--brand-green-soft); letter-spacing: .04em; }
+.ig--story .ig__lockup { top: var(--ig-story-seguro-topo); }
+.ig--story .ig__conteudo { top: calc(var(--ig-story-seguro-topo) + var(--ig-lockup) + var(--ig-respiro-logo)); bottom: calc(var(--ig-story-seguro-base) + var(--ig-rodape-altura) + var(--ig-story-sticker)); justify-content: var(--ig-story-alinhamento); }
+.ig--story .ig__rodape { bottom: var(--ig-story-seguro-base); justify-content: center; }
+
+/* reel (moldura de corte e cenas): mesma grade, zona segura própria — a interface do reel cobre mais */
+.ig--reel, .ig--reel-cena { --ig-story-seguro-topo: var(--ig-reel-seguro-topo); --ig-story-seguro-base: var(--ig-reel-seguro-base); }
+.ig--story .ig__faixa { position: absolute; left: 0; right: 0; bottom: calc(var(--ig-story-seguro-base) + var(--ig-rodape-altura)); height: var(--ig-rodape-altura); margin: 0; display: flex; align-items: center; justify-content: center; font: 800 var(--ig-kicker-size)/1 var(--font-label); color: var(--brand-green-soft); letter-spacing: .04em; }

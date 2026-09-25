@@ -20,7 +20,8 @@
     "checagem": "node scripts/checagem.mjs",
     "citacao": "node scripts/citacao.mjs",
     "reel": "node design-system/scripts/gerar-reel.mjs",
-    "corte": "node scripts/corte.mjs"
+    "corte": "node scripts/corte.mjs",
+    "calibrar": "node design-system/scripts/calibrar-instagram.mjs"
   },
   "license": "MIT",
   "dependencies": {

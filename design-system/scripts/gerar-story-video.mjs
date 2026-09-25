@@ -108,12 +108,12 @@ function conteudoHtml(s) {
   return partes.join("\n");
 }
 
-export function htmlDaCena(s, ds, { semSticker = false } = {}) {
+export function htmlDaCena(s, ds, { semSticker = false, reel = false } = {}) {
   const modelo = readFileSync(join(DS, "instagram/layouts/story-cena.html"), "utf8");
   const conteudo = conteudoHtml(s).replace(/\{\{ds\}\}/g, ds);
   return preencher(modelo, {
     ds, conteudo, usuario: canal.instagramUsuario,
-    classe_extra: semSticker ? " ig--sem-sticker" : "",
+    classe_extra: `${semSticker ? " ig--sem-sticker" : ""}${reel ? " ig--reel-cena" : ""}`,
     titulo_pagina: `${s.kicker ?? ""} ${s.titulo ?? ""} — story`.trim(),
     dica: s.dica, dica_t: s.tempos.dica, faixa: s.faixa,
   }, { brutos: ["ds", "conteudo"] });
@@ -183,7 +183,7 @@ export async function gravarCena(html, mp4, pngFinal, { duracao, largura, altura
 }
 
 // Grava cenas já validadas em <pasta>/<prefixo>-NN.mp4 (+ .png do último quadro); com numerar: false, <prefixo>.mp4.
-export async function renderizarCenas(cenas, { pasta, prefixo = "story", numerar = true, soHtml = false, so = null, semSticker = false }) {
+export async function renderizarCenas(cenas, { pasta, prefixo = "story", numerar = true, soHtml = false, so = null, semSticker = false, reel = false }) {
   const ds = relative(pasta, DS).split("\\").join("/") || ".";
   const { largura, altura } = formatos.formatos.story;
   const saidas = [];
@@ -191,7 +191,7 @@ export async function renderizarCenas(cenas, { pasta, prefixo = "story", numerar
     if (so && so !== i + 1) continue;
     const base = numerar ? `${prefixo}-${String(i + 1).padStart(2, "0")}` : prefixo;
     const html = join(pasta, `${base}.html`);
-    writeFileSync(html, htmlDaCena(s, ds, { semSticker }));
+    writeFileSync(html, htmlDaCena(s, ds, { semSticker, reel }));
     if (soHtml) { saidas.push(html); continue; }
     const mp4 = join(pasta, `${base}.mp4`), png = join(pasta, `${base}.png`);
     await gravarCena(html, mp4, png, { duracao: s.duracao, largura, altura });

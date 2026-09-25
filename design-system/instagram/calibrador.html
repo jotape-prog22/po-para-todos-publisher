@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calibração do Instagram — PO para Todos</title>
+<link rel="stylesheet" href="/design-system/tokens.css">
+<link rel="stylesheet" href="/design-system/assets/fontes/fontes.css">
+<style>
+  :root { --lado: 360px; --linha: #3a3a3a; --pendente: #f5b700; --zona: rgba(255, 60, 90, .28); --zona-borda: rgba(255, 90, 110, .9); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: #1f1f1f; color: var(--ink); font: 500 14px/1.4 var(--font-label), system-ui, sans-serif; display: grid; grid-template-columns: var(--lado) 1fr; }
+  aside { height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--linha); display: flex; flex-direction: column; }
+  .topo { position: sticky; top: 0; z-index: 2; background: var(--surface); padding: 16px 16px 12px; border-bottom: 1px solid var(--linha); }
+  h1 { margin: 0 0 4px; font: 400 20px/1.1 var(--font-display); color: var(--brand-green); text-transform: uppercase; }
+  .sub { margin: 0 0 12px; color: var(--ink-muted); font-size: 12px; }
+  .acoes { display: flex; gap: 8px; }
+  button { font: 700 13px var(--font-label); border-radius: 6px; border: 1px solid var(--linha); background: #333; color: var(--ink); padding: 8px 12px; cursor: pointer; }
+  button:disabled { opacity: .4; cursor: default; }
+  button.gravar { background: var(--brand-green); color: var(--brand-navy); border-color: var(--brand-green); flex: 1; }
+  .estado { margin-top: 8px; min-height: 18px; font-size: 12px; color: var(--ink-muted); }
+  .estado.pendente { color: var(--pendente); }
+  .estado.erro { color: #ff6b6b; }
+  details { border-bottom: 1px solid var(--linha); }
+  summary { padding: 12px 16px; font: 800 12px var(--font-label); letter-spacing: .06em; text-transform: uppercase; color: var(--brand-green-soft); cursor: pointer; }
+  .controle { padding: 6px 16px 10px; }
+  .controle label { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .controle label .nome { color: var(--ink); }
+  .controle label .var { color: var(--ink-muted); font: 500 11px ui-monospace, monospace; }
+  .controle.mudou label .nome::before { content: "● "; color: var(--pendente); }
+  .linha { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+  input[type=range] { flex: 1; accent-color: var(--brand-green); }
+  input[type=number] { width: 68px; background: #1f1f1f; color: var(--ink); border: 1px solid var(--linha); border-radius: 4px; padding: 4px; font: 600 13px var(--font-label); }
+  .seg { display: flex; flex: 1; border: 1px solid var(--linha); border-radius: 6px; overflow: hidden; }
+  .seg button { flex: 1; border: 0; border-radius: 0; background: transparent; padding: 6px; font-weight: 600; }
+  .seg button.on { background: var(--brand-green); color: var(--brand-navy); }
+  .desfaz { background: none; border: 0; color: var(--ink-muted); padding: 2px 4px; font-size: 15px; visibility: hidden; }
+  .mudou .desfaz { visibility: visible; }
+  main { height: 100vh; overflow: auto; }
+  .barra { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding: 12px 24px; background: rgba(31, 31, 31, .95); border-bottom: 1px solid var(--linha); }
+  .barra label { display: flex; align-items: center; gap: 6px; color: var(--ink-muted); }
+  .abas { display: flex; gap: 4px; }
+  .abas button.on { background: var(--brand-green); color: var(--brand-navy); border-color: var(--brand-green); }
+  section { padding: 16px 24px 8px; }
+  section h2 { margin: 0 0 12px; font: 800 13px var(--font-label); letter-spacing: .06em; text-transform: uppercase; color: var(--brand-green-soft); }
+  section h2 small { color: var(--ink-muted); font-weight: 600; letter-spacing: 0; text-transform: none; }
+  .grade { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { margin-top: 6px; font-size: 12px; color: var(--ink-muted); }
+  .quadro { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 0 0 1px var(--linha); background: #000; }
+  .quadro iframe, .quadro .sobre, .quadro .fixo { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; pointer-events: none; }
+  .sobre { display: none; }
+  body.com-app .sobre { display: block; }
+  .zona { position: absolute; background: var(--zona); border: 2px solid var(--zona-borda); color: #fff; font: 700 30px/1.2 var(--font-label); display: flex; align-items: center; justify-content: center; text-align: center; padding: 8px; text-shadow: 0 2px 4px #000; }
+  .guia { position: absolute; border: 0 dashed #ffd23f; color: #ffd23f; font: 700 26px var(--font-label); text-shadow: 0 2px 4px #000; }
+  .guia.h { left: 0; right: 0; border-top-width: 4px; }
+  .guia.v { top: 0; bottom: 0; border-left-width: 4px; }
+  .guia span { position: absolute; left: 12px; top: 6px; white-space: nowrap; }
+  .guia.v span { left: 8px; top: 8px; writing-mode: vertical-rl; background: rgba(0,0,0,.6); padding: 6px 2px; }
+  .video { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(45deg, #444 0 24px, #3a3a3a 24px 48px); color: #bbb; display: flex; align-items: center; justify-content: center; font: 700 34px var(--font-label); }
+  .legenda-app { display: none; font-size: 12px; color: var(--ink-muted); }
+  body.com-app .legenda-app { display: inline; }
+</style>
+</head>
+<body class="com-app">
+<aside>
+  <div class="topo">
+    <h1>Calibração do Instagram</h1>
+    <p class="sub">Arraste os controles; todas as amostras mudam juntas. Grave quando estiver bom — depois é só gerar os posts, stories e reels normalmente.</p>
+    <div class="acoes">
+      <button class="gravar" id="gravar" disabled>Gravar no CSS</button>
+      <button id="descartar" disabled>Descartar</button>
+    </div>
+    <div class="estado" id="estado">Carregando…</div>
+  </div>
+  <div id="controles"></div>
+</aside>
+<main>
+  <div class="barra">
+    <div class="abas" id="abas">
+      <button data-f="tudo" class="on">Tudo</button>
+      <button data-f="feed">Posts</button>
+      <button data-f="story">Stories</button>
+      <button data-f="reel">Reels</button>
+    </div>
+    <label>Tamanho <input type="range" id="zoom" min="0.15" max="0.6" step="0.01" value="0.3"></label>
+    <label><input type="checkbox" id="app" checked> Interface do app por cima</label>
+    <label><input type="checkbox" id="caixas"> Mostrar caixas do layout</label>
+    <span class="legenda-app">vermelho: o app cobre · amarelo: margem recomendada (aproximado)</span>
+  </div>
+  <div id="amostras"></div>
+</main>
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const ORDEM_GRUPOS = ["Stories", "Stories com sticker", "Reels", "Posts do feed", "Todos os formatos", "Texto", "Outros"];
+const SECOES = { feed: "Posts do feed <small>1080 × 1350</small>", story: "Stories <small>1080 × 1920</small>", reel: "Reels <small>1080 × 1920</small>" };
+const ALINHA = [["flex-start", "Topo"], ["center", "Centro"], ["flex-end", "Base"]];
+
+// Interface do app em coordenadas do quadro (1080 de largura). Medidas aproximadas, iPhone e Android.
+const APP = {
+  story: {
+    zonas: [[0, 0, 1080, 150, "progresso e perfil"], [0, 1770, 1080, 150, "responder · curtir (alguns celulares)"]],
+    guias: [["h", 269, "14% — margem da Meta"], ["h", 1651, "14% — margem da Meta"]],
+  },
+  reel: {
+    zonas: [[0, 0, 1080, 150, "Reels · câmera"], [930, 1060, 150, 620, "curtir comentar enviar"], [0, 1560, 930, 360, "@perfil · legenda · áudio"]],
+    guias: [["h", 269, "14% — margem da Meta"], ["h", 1248, "35% — margem da Meta para reels"]],
+  },
+  feed: { zonas: [], guias: [["v", 34, "corte 3:4 na grade"], ["v", 1046, ""]] },
+};
+const CAIXAS = `.ig__conteudo { outline: 4px dashed #ff00c8; outline-offset: -4px; } .ig__lockup, .ig__rodape, .ig__faixa, .sv__dica { outline: 4px dashed #00e5ff; outline-offset: -4px; } .ig__conteudo > * { outline: 2px solid rgba(255,255,255,.35); }`;
+
+let vars = [], originais = {}, atuais = {}, amostras = [], versao = null, filtro = "tudo";
+
+function estado(texto, classe = "") { const e = $("#estado"); e.textContent = texto; e.className = `estado ${classe}`; }
+const pendentes = () => Object.fromEntries(Object.entries(atuais).filter(([n, v]) => v !== originais[n]));
+
+function atualizarBarra() {
+  const p = Object.keys(pendentes());
+  $("#gravar").disabled = $("#descartar").disabled = !p.length;
+  estado(p.length ? `${p.length} ${p.length === 1 ? "mudança" : "mudanças"} ainda não gravada${p.length === 1 ? "" : "s"}` : "Tudo gravado. O CSS está igual ao que você vê.", p.length ? "pendente" : "");
+  document.querySelectorAll(".controle").forEach((c) => c.classList.toggle("mudou", atuais[c.dataset.var] !== originais[c.dataset.var]));
+}
+
+function aplicar(iframe) {
+  const doc = iframe.contentDocument;
+  if (!doc?.documentElement) return;
+  for (const [n, v] of Object.entries(atuais)) {
+    if (v === originais[n]) doc.documentElement.style.removeProperty(n);
+    else doc.documentElement.style.setProperty(n, v);
+  }
+  let guia = doc.getElementById("guia-calibrar");
+  if (!guia) { guia = doc.createElement("style"); guia.id = "guia-calibrar"; doc.head.append(guia); }
+  guia.textContent = $("#caixas").checked ? CAIXAS : "";
+}
+const aplicarTodos = () => document.querySelectorAll("iframe").forEach(aplicar);
+
+function mudar(nome, valor) { atuais[nome] = valor; sincronizar(nome); aplicarTodos(); atualizarBarra(); }
+
+function sincronizar(nome) {
+  const c = document.querySelector(`.controle[data-var="${nome}"]`);
+  if (!c) return;
+  const v = atuais[nome];
+  if (c.dataset.tipo === "px") { const n = parseFloat(v); c.querySelector("input[type=range]").value = n; c.querySelector("input[type=number]").value = n; }
+  else c.querySelectorAll(".seg button").forEach((b) => b.classList.toggle("on", b.dataset.v === v));
+}
+
+function montarControles() {
+  const caixa = $("#controles");
+  caixa.innerHTML = "";
+  const grupos = {};
+  for (const v of vars) (grupos[v.grupo] ??= []).push(v);
+  for (const g of ORDEM_GRUPOS.filter((g) => grupos[g])) {
+    const d = document.createElement("details");
+    d.open = g !== "Outros" && g !== "Texto";
+    d.innerHTML = `<summary>${g}</summary>`;
+    for (const v of grupos[g]) {
+      const c = document.createElement("div");
+      c.className = "controle"; c.dataset.var = v.nome; c.dataset.tipo = v.tipo;
+      c.title = [v.comentario, `${v.arquivo}`].filter(Boolean).join(" — ");
+      const cab = `<label><span class="nome">${v.rotulo}</span><span class="var">${v.nome.replace(/^--/, "")}</span></label>`;
+      if (v.tipo === "px") {
+        const n = parseFloat(v.valor), max = v.max ?? Math.max(100, Math.ceil(n * 2.5));
+        c.innerHTML = `${cab}<div class="linha"><input type="range" min="0" max="${max}" step="1" value="${n}"><input type="number" min="0" step="1" value="${n}"><button class="desfaz" title="Voltar ao gravado">↺</button></div>`;
+        const [r, num] = c.querySelectorAll("input");
+        r.oninput = () => mudar(v.nome, `${r.value}px`);
+        num.oninput = () => { if (num.value !== "" && +num.value >= 0) { if (+num.value > +r.max) r.max = num.value; mudar(v.nome, `${+num.value}px`); } };
+      } else {
+        c.innerHTML = `${cab}<div class="linha"><div class="seg">${ALINHA.map(([val, rot]) => `<button data-v="${val}" class="${val === v.valor ? "on" : ""}">${rot}</button>`).join("")}</div><button class="desfaz" title="Voltar ao gravado">↺</button></div>`;
+        c.querySelectorAll(".seg button").forEach((b) => (b.onclick = () => mudar(v.nome, b.dataset.v)));
+      }
+      c.querySelector(".desfaz").onclick = () => mudar(v.nome, originais[v.nome]);
+      d.append(c);
+    }
+    caixa.append(d);
+  }
+}
+
+function camadaApp(a) {
+  const app = APP[a.formato];
+  const zonas = app.zonas.map(([x, y, w, h, t]) => `<div class="zona" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px">${t}</div>`).join("");
+  const guias = app.guias.map(([o, p, t]) => o === "h" ? `<div class="guia h" style="top:${p}px"><span>${t}</span></div>` : `<div class="guia v" style="left:${p}px"><span>${t}</span></div>`).join("");
+  return zonas + guias;
+}
+
+function montarAmostras() {
+  const z = +$("#zoom").value;
+  const raiz = $("#amostras");
+  raiz.innerHTML = "";
+  for (const f of ["feed", "story", "reel"]) {
+    if (filtro !== "tudo" && filtro !== f) continue;
+    const s = document.createElement("section");
+    s.innerHTML = `<h2>${SECOES[f]}</h2><div class="grade"></div>`;
+    for (const a of amostras.filter((x) => x.formato === f)) {
+      const fig = document.createElement("figure");
+      const escala = `width:${a.largura}px;height:${a.altura}px;transform:scale(${z})`;
+      const video = a.id === "reel-corte" ? `<div class="fixo" style="${escala}"><div class="video" style="top:${a.altura / 2 - 304}px;height:608px">vídeo do corte (16:9)</div></div>` : "";
+      fig.innerHTML = `<div class="quadro" style="width:${a.largura * z}px;height:${a.altura * z}px">
+          <iframe src="/amostra/${a.id}?v=${versao}" style="${escala}" loading="eager" tabindex="-1"></iframe>${video}
+          <div class="sobre" style="${escala}">${camadaApp(a)}</div>
+        </div><figcaption>${a.titulo}</figcaption>`;
+      fig.querySelector("iframe").onload = (e) => aplicar(e.target);
+      s.querySelector(".grade").append(fig);
+    }
+    raiz.append(s);
+  }
+}
+
+async function carregarVariaveis() {
+  vars = await (await fetch("/api/variaveis")).json();
+  const pend = pendentes();
+  originais = Object.fromEntries(vars.map((v) => [v.nome, v.valor]));
+  atuais = { ...originais, ...pend };
+  montarControles();
+  Object.keys(atuais).forEach(sincronizar);
+  atualizarBarra();
+}
+
+async function vigiar() {
+  try {
+    const { versao: v } = await (await fetch("/api/versao")).json();
+    if (versao !== null && v !== versao) {
+      versao = v;
+      await carregarVariaveis();
+      document.querySelectorAll("iframe").forEach((i) => { i.src = i.src.replace(/\?v=.*$/, `?v=${v}`); });
+    } else versao = v;
+  } catch { estado("A calibração foi fechada no terminal. Rode npm run calibrar de novo.", "erro"); }
+  setTimeout(vigiar, 1000);
+}
+
+$("#gravar").onclick = async () => {
+  const mudancas = pendentes();
+  const r = await fetch("/api/gravar", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ mudancas }) });
+  const corpo = await r.json();
+  if (!r.ok) return estado(`Não gravou: ${corpo.erro}`, "erro");
+  Object.assign(originais, mudancas);
+  atualizarBarra();
+  estado(`Gravado em ${corpo.arquivos.join(", ")}.`);
+};
+$("#descartar").onclick = () => { atuais = { ...originais }; Object.keys(atuais).forEach(sincronizar); aplicarTodos(); atualizarBarra(); };
+$("#zoom").oninput = () => {
+  const z = +$("#zoom").value;
+  document.querySelectorAll(".quadro").forEach((q) => {
+    const el = q.querySelector("iframe"); const w = parseFloat(el.style.width), h = parseFloat(el.style.height);
+    q.style.width = `${w * z}px`; q.style.height = `${h * z}px`;
+    q.querySelectorAll("iframe, .sobre, .fixo").forEach((x) => (x.style.transform = `scale(${z})`));
+  });
+};
+$("#app").onchange = (e) => document.body.classList.toggle("com-app", e.target.checked);
+$("#caixas").onchange = aplicarTodos;
+$("#abas").onclick = (e) => {
+  if (!e.target.dataset.f) return;
+  filtro = e.target.dataset.f;
+  document.querySelectorAll("#abas button").forEach((b) => b.classList.toggle("on", b === e.target));
+  montarAmostras();
+};
+window.onbeforeunload = () => (Object.keys(pendentes()).length ? true : undefined);
+
+(async () => {
+  versao = (await (await fetch("/api/versao")).json()).versao;
+  amostras = await (await fetch("/api/amostras")).json();
+  await carregarVariaveis();
+  montarAmostras();
+  vigiar();
+})();
+</script>
+</body>
+</html>

@@ -17,6 +17,7 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>` — trechos para um post `citacao`.
 - `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
 - `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4`.
+- `npm run calibrar` — abre no navegador a calibração dos formatos do Instagram (posts, stories, reels lado a lado, com a interface do app por cima); "Gravar no CSS" escreve no `:root` de `design-system/instagram/*.css`. Amostras em `design-system/instagram/amostras-calibracao.json`.
 - `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` (incluindo `checagem.json`) são fixtures: não as altere sem atualizar os testes.
 
 Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists, rodapés e o repositório.

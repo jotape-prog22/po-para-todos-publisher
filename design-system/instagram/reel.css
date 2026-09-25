@@ -2,8 +2,8 @@
  * pelo ffmpeg no centro vertical, ocupando a faixa de 656 a 1264 px; aqui só se desenha o que fica
  * em volta: lockup, título em cima, faixa embaixo. Mesma marca e grade de instagram.css.
  *
- * Conta do espaço em cima: o conteúdo vai de 434 px (zona segura 250 + lockup 160 + space-md 24)
- * até 648 px (meio 960 − metade do vídeo 304 − space-2xs 8), ou seja, 214 px. Tirando o kicker
+ * Conta do espaço em cima (com a zona segura de cima do reel em 250 px; menor, sobra mais): o conteúdo
+ * vai de 434 px (zona segura 250 + lockup 160 + space-md 24) até 648 px (meio 960 − metade do vídeo 304 − space-2xs 8), ou seja, 214 px. Tirando o kicker
  * (40 px) e o vão até o título (8 px), sobram 166 px para o título — e como .ig__conteudo tem
  * overflow hidden, o que passar disso some pelo topo, levando o kicker junto. Por isso o título
  * tem três tamanhos, escolhidos por htmlDaMoldura pelo número de caracteres (medido em Archivo
@@ -18,9 +18,9 @@
   --rm-titulo-pequeno-size: 48px; --rm-titulo-pequeno-line: 55px;
 }
 .ig--reel .ig__conteudo {
-  top: calc(var(--ig-story-seguro) + var(--ig-lockup) + var(--space-md));
+  top: calc(var(--ig-story-seguro-topo) + var(--ig-lockup) + var(--space-md));
   bottom: calc(50% + var(--rm-video-altura) / 2 + var(--space-2xs));
   justify-content: flex-end; gap: var(--space-2xs);
 }
 .ig--reel .ig__titulo--pequeno { font-size: var(--rm-titulo-pequeno-size); line-height: var(--rm-titulo-pequeno-line); }
-.ig--reel .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
+.ig--reel .ig__faixa { bottom: calc(var(--ig-story-seguro-base) + var(--ig-rodape-altura)); }

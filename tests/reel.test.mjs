@@ -30,7 +30,7 @@ test("gerarReel (cenas): renderiza cada cena com prefixo reel-cena sem sticker, 
   writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", cenas: [cena(), cena({ kicker: "DOIS" })], legenda }));
   const htmls = await gerarReel(pasta, { soHtml: true });
   assert.deepEqual(htmls.map((h) => h.slice(pasta.length + 1)), ["reel-cena-01.html", "reel-cena-02.html"]);
-  assert.ok(readFileSync(htmls[0], "utf8").includes("ig--sem-sticker"));
+  assert.ok(readFileSync(htmls[0], "utf8").includes("ig--sem-sticker ig--reel-cena"));
   const chamadas = [];
   const executar = async (bin, args) => { chamadas.push({ bin, args }); writeFileSync(args.at(-1), "mp4"); };
   writeFileSync(join(pasta, "reel-cena-01.mp4"), "a"); writeFileSync(join(pasta, "reel-cena-02.mp4"), "b");

@@ -45,6 +45,11 @@ test("htmlDaCena sem sticker marca a cena com ig--sem-sticker; com sticker, não
   assert.ok(htmlDaCena(s, ".").includes('class="ig ig--story ig--story-video"'));
 });
 
+test("htmlDaCena de reel marca a cena com ig--reel-cena (zona segura do reel)", () => {
+  const [s] = validar(spec(story()));
+  assert.ok(htmlDaCena(s, ".", { semSticker: true, reel: true }).includes('class="ig ig--story ig--story-video ig--sem-sticker ig--reel-cena"'));
+});
+
 test("argsFfmpeg acrescenta uma faixa de áudio muda em AAC e mantém H.264 yuv420p", () => {
   const args = argsFfmpeg("/tmp/x.mp4", 30);
   const i = args.indexOf("anullsrc=channel_layout=stereo:sample_rate=44100");

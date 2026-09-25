@@ -115,7 +115,7 @@ async function ffmpeg() { return (await import("ffmpeg-static")).default; }
 
 async function gerarDeCenas(dados, pasta, { soHtml, executar, renderizar }) {
   const cenas = validar({ tipo: "stories", publicacao: "api", stories: dados.cenas });
-  const saidas = await renderizar(cenas, { pasta, prefixo: "reel-cena", soHtml, semSticker: true });
+  const saidas = await renderizar(cenas, { pasta, prefixo: "reel-cena", soHtml, semSticker: true, reel: true });
   if (soHtml) return saidas;
   const lista = join(pasta, "lista-cenas.txt");
   writeFileSync(lista, saidas.map((s) => `file '${s.replace(/'/g, "'\\''")}'`).join("\n") + "\n");

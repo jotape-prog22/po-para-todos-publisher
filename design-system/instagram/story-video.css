@@ -5,9 +5,14 @@
  * a partir dessas animações, por isso nada aqui depende de tempo real.
  */
 :root {
-  --sv-zona-sticker: 460px;         /* espaço livre acima do rodapé para o sticker (quiz, enquete, link) */
+  --sv-zona-sticker: 460px;         /* com sticker: espaço livre acima do rodapé (quiz, enquete, link) */
+  --sv-zona-sem-sticker: 96px;      /* sem sticker: só o espaço da faixa acima do rodapé */
+  --sv-alinhamento-sticker: flex-start;  /* com sticker: conteúdo no topo */
+  --sv-alinhamento: center;         /* sem sticker (a maioria): conteúdo centrado entre a logo e o rodapé */
+  --sv-dica-respiro: 64px;          /* do fim do conteúdo à dica ("A resposta vem a seguir") */
+  --sv-itens-gap: 32px;             /* entre itens numerados */
   --sv-item-numero-size: 64px;
-  --sv-item-titulo-size: 46px;  --sv-item-titulo-line: 52px;
+  --sv-item-titulo-size: 46px;  --sv-item-titulo-line: 80px;
   --sv-item-texto-size: 36px;   --sv-item-texto-line: 48px;
   --sv-pergunta-size: 52px;     --sv-pergunta-line: 60px;
   --sv-icone: 220px;
@@ -15,21 +20,21 @@
 
 /* com sticker: conteúdo encostado no topo, zona do sticker livre embaixo */
 .ig--story-video .ig__conteudo {
-  bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura) + var(--sv-zona-sticker));
-  justify-content: flex-start; gap: var(--space-md);
+  bottom: calc(var(--ig-story-seguro-base) + var(--ig-rodape-altura) + var(--sv-zona-sticker));
+  justify-content: var(--sv-alinhamento-sticker);
 }
-.ig--story-video .ig__faixa { bottom: calc(var(--ig-story-seguro) + var(--ig-rodape-altura)); }
+.ig--story-video .ig__faixa { bottom: calc(var(--ig-story-seguro-base) + var(--ig-rodape-altura)); }
 
 /* sem sticker (publicação pela API, a maioria): nada reservado — o conteúdo ocupa
    quase tudo entre a logo e o rodapé (deixando a faixa) e fica centrado nesse espaço */
-.ig--story-video.ig--sem-sticker { --sv-zona-sticker: var(--ig-rodape-altura); }
-.ig--story-video.ig--sem-sticker .ig__conteudo { justify-content: center; }
+.ig--story-video.ig--sem-sticker { --sv-zona-sticker: var(--sv-zona-sem-sticker); }
+.ig--story-video.ig--sem-sticker .ig__conteudo { justify-content: var(--sv-alinhamento); }
 
 .sv__pergunta { margin: 0; font: 400 var(--sv-pergunta-size)/var(--sv-pergunta-line) var(--font-display); color: var(--ink); }
 .ig--story-video .ig__icone { width: var(--sv-icone); height: var(--sv-icone); }
 
 /* itens numerados (passos) */
-.sv__itens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-lg); }
+.sv__itens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sv-itens-gap); }
 .sv__item { display: grid; grid-template-columns: 96px 1fr; column-gap: var(--space-sm); align-items: baseline; }
 .sv__item-numero { font: 400 var(--sv-item-numero-size)/1 var(--font-display); color: var(--brand-green-soft); }
 .sv__item-titulo { margin: 0; font: 400 var(--sv-item-titulo-size)/var(--sv-item-titulo-line) var(--font-display); text-transform: uppercase; color: var(--brand-green); }
@@ -37,7 +42,7 @@
 
 /* dica no fim do conteúdo ("Responda no quiz", "A resposta vem a seguir" + seta), pulsando */
 .sv__dica {
-  margin: var(--space-2xl) 0 0; text-align: center;
+  margin: var(--sv-dica-respiro) 0 0; text-align: center;
   font: 600 var(--ig-apoio-size)/var(--ig-apoio-line) var(--font-label); color: var(--ink-muted);
 }
 .sv__dica::after { content: "↓"; display: block; color: var(--brand-green-soft); }

@@ -1,0 +1,48 @@
+{
+  "_sobre": "Conteúdo de exemplo da página de calibração (npm run calibrar). Textos com o comprimento típico de um post real; não é publicado.",
+  "feed": {
+    "artigo": {
+      "tipo": "artigo",
+      "cards": [
+        { "tipo": "capa", "titulo": "A MATHEMATICAL THEORY OF COMMUNICATION", "autores": "Claude E. Shannon", "onde": "Bell System Technical Journal, 1948" },
+        { "tipo": "ideia", "titulo": "O problema", "texto": "Como transmitir uma mensagem por um canal ruidoso e garantir que ela chegue intacta do outro lado? Shannon transforma essa pergunta de engenharia numa teoria matemática." },
+        { "tipo": "fim", "texto": "SHANNON, C. E. A mathematical theory of communication. The Bell System Technical Journal, v. 27, n. 3, p. 379–423, 1948.", "link": "doi.org/10.1002/j.1538-7305.1948.tb01338.x" }
+      ]
+    },
+    "aviso": { "tipo": "aviso", "cards": [ { "tipo": "aviso", "kicker": "PRAZO", "titulo": "Chamada de trabalhos SBPO 2027", "data": "ATÉ 15/03", "texto": "Resumos de até 4 páginas sobre otimização, logística e análise de decisão. Submissão pelo site do evento.", "link": "sbpo.org.br" } ] },
+    "curiosidade": { "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titulo": "O SIMPLEX TEM MAIS DE 75 ANOS", "texto": "George Dantzig criou o método em 1947 para resolver problemas de planejamento da força aérea americana. Até hoje é um dos algoritmos mais usados em otimização linear no mundo.", "fonte": "Dantzig, 1947" } ] },
+    "citacao": { "tipo": "citacao", "cards": [ { "tipo": "citacao", "kicker": "DA AULA", "texto": "A melhor combinação não é óbvia. Ela aparece quando a decisão vira conta.", "origem": "Como funciona a Pesquisa Operacional" } ] }
+  },
+  "stories": {
+    "quiz-pergunta": {
+      "duracao": 13, "kicker": "QUIZ", "titulo": "QUAL RENDE MAIS?",
+      "linhas": ["Capacidade do caminhão: 12 kg", "Caixa A: 3 kg, lucro de R$ 30", "Caixa B: 4 kg, lucro de R$ 50", "A) 4 caixas A", "B) 3 caixas B", "C) 2 caixas A + 1 caixa B"],
+      "dica": "A resposta vem a seguir"
+    },
+    "quiz-resposta": {
+      "duracao": 11, "kicker": "A RESPOSTA É", "titulo": "ALTERNATIVA B",
+      "linhas": ["3 caixas B: 12 kg, R$ 150 de lucro", "4 caixas A: 12 kg, mas só R$ 120", "B rende R$ 12,50 por kg; A rende R$ 10 — por isso B ganha, mesmo levando menos caixas."]
+    },
+    "passos": {
+      "duracao": 12, "kicker": "COMO A PO FUNCIONA",
+      "itens": [
+        { "titulo": "Modelar", "texto": "Traduzir a decisão: o que escolher, o que maximizar, o que limita." },
+        { "titulo": "Resolver", "texto": "Um algoritmo (o Simplex, por exemplo) encontra a melhor combinação." },
+        { "titulo": "Decidir", "texto": "A resposta volta ao mundo real e vira ação." }
+      ]
+    },
+    "com-sticker": {
+      "duracao": 12, "kicker": "ENQUETE", "titulo": "VOCÊ JÁ USOU O SIMPLEX?",
+      "linhas": ["Na faculdade, no trabalho ou numa planilha com o Solver."],
+      "dica": "Responda na enquete"
+    }
+  },
+  "reel": {
+    "cena": {
+      "duracao": 10, "kicker": "POR QUE É DIFÍCIL", "titulo": "AS ROTAS EXPLODEM",
+      "linhas": ["Com 8 pontos já são mais de 2 mil rotas possíveis.", "Com 20 pontos, mais do que átomos no universo.", "É por isso que ninguém tenta todas."],
+      "faixa": "PESQUISA OPERACIONAL PARA TODOS"
+    },
+    "corte": { "titulo": "O dual em 40 segundos", "faixa": "AULA COMPLETA NO CANAL" }
+  }
+}
