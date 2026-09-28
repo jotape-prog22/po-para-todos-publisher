@@ -237,6 +237,8 @@ function ghFila() {
   };
 }
 
+const ANTES = Date.parse("2026-10-01T12:00:00-03:00"); // relógio fixo, antes das datas dos testes de enfileirar
+
 test("enfileirar: sobe a pasta dos aprovados com data e muda o estado para agendado; ignora quem falta aprovar", async () => {
   const raiz = raizTemporaria();
   criarPastaPost(raiz, "a");
@@ -246,7 +248,7 @@ test("enfileirar: sobe a pasta dos aprovados com data e muda o estado para agend
     item({ id: "b:post", pasta: "instagram/b", aprovado: false, quando: "2026-10-08T12:00:00-03:00" }),
   ] };
   const gh = ghFila();
-  const feitos = await enfileirar(agenda, gh, { raiz });
+  const feitos = await enfileirar(agenda, gh, { raiz, agora: ANTES });
   assert.deepEqual(feitos.map((i) => i.id), ["a:post"]);
   assert.equal(agenda.itens[0].estado, "agendado");
   assert.equal(agenda.itens[1].estado, "rascunho");
@@ -260,8 +262,23 @@ test("enfileirar: aprovado sem data pede --distribuir; pasta quebrada depois da 
   const semData = { itens: [item({ id: "a:post", pasta: "instagram/a", aprovado: true })] };
   await assert.rejects(enfileirar(semData, ghFila(), { raiz }), erro(/--distribuir/));
   const quebrada = { itens: [item({ id: "z:post", pasta: "instagram/z", aprovado: true, quando: "2026-10-06T12:00:00-03:00" })] };
-  await assert.rejects(enfileirar(quebrada, ghFila(), { raiz }), (e) => e instanceof Error);
+  await assert.rejects(enfileirar(quebrada, ghFila(), { raiz, agora: ANTES }), (e) => e instanceof Error);
   assert.equal(quebrada.itens[0].estado, "rascunho");
+});
+
+test("enfileirar: data que já passou é recusada antes de subir qualquer coisa", async () => {
+  const raiz = raizTemporaria();
+  criarPastaPost(raiz, "a");
+  criarPastaPost(raiz, "b");
+  const agenda = { itens: [
+    item({ id: "a:post", pasta: "instagram/a", aprovado: true, quando: "2026-10-06T12:00:00-03:00" }),
+    item({ id: "b:post", pasta: "instagram/b", aprovado: true, quando: "2026-10-09T12:00:00-03:00" }),
+  ] };
+  const gh = ghFila();
+  const agora = Date.parse("2026-10-07T12:00:00-03:00");
+  await assert.rejects(enfileirar(agenda, gh, { raiz, agora }), erro(/a:post: a data já passou — escolha outra com: node scripts\/agenda\.mjs --mover <id> AAAA-MM-DDTHH:MM/));
+  assert.equal(gh.chamadas.length, 0, "nada sobe para a fila");
+  assert.equal(agenda.itens[0].estado, "rascunho");
 });
 
 const ARQ = "instagram/agenda.json instagram/agenda-modelo.json";

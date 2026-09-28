@@ -250,11 +250,13 @@ function git(executar, args, { rede = false } = {}) {
 }
 
 // Sobe para o branch fila a pasta de cada item aprovado com data e o marca como agendado.
-export async function enfileirar(agenda, gh, { raiz = RAIZ } = {}) {
+export async function enfileirar(agenda, gh, { raiz = RAIZ, agora = Date.now() } = {}) {
   const prontos = agenda.itens.filter((i) => i.estado === "rascunho" && i.aprovado);
   const semData = prontos.filter((i) => !i.quando);
   if (semData.length) throw new ErroAgenda(`aprovados sem data: ${semData.map((i) => i.id).join(", ")} — rode: node scripts/agenda.mjs --distribuir AAAA-MM-DD`);
   if (!prontos.length) return [];
+  const vencidos = prontos.filter((i) => Date.parse(i.quando) <= agora);
+  if (vencidos.length) throw new ErroAgenda(`${vencidos.map((i) => i.id).join(", ")}: a data já passou — escolha outra com: node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM`);
   for (const i of prontos) verificarPasta(resolve(raiz, i.pasta), i.formato); // a pasta pode ter mudado depois da aprovação
   const pastas = [...new Set(prontos.map((i) => i.pasta))];
   await atualizarFila(gh, {}, { subir: pastas.map((p) => ({ pasta: p, arquivos: lerPastaParaFila(resolve(raiz, p)) })) });
