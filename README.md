@@ -150,10 +150,10 @@ Confira tudo com `node scripts/instagram.mjs --status` — mostra a conta, quant
 
 ### Fazer um post
 
-1. Copie `instagram/_modelo/post.md` para uma pasta nova `instagram/<data>-<assunto>/` (a data em que você pretende publicar, ex.: `instagram/2026-10-03-kruskal-1956/`) e preencha: para um **artigo**, título, autores, onde saiu, link e o resumo; para um **aviso** (edital, evento, prazo, vaga), nome, data-limite e link.
+1. Copie `instagram/_modelo/post.md` para uma pasta nova `instagram/<data>-<assunto>/` (a data de hoje, ex.: `instagram/2026-10-03-kruskal-1956/`) e preencha: para um **artigo**, título, autores, onde saiu, link e o resumo; para um **aviso** (edital, evento, prazo, vaga), nome, data-limite e link.
 2. Abra o `claude` na pasta do projeto e peça: `/post instagram/2026-10-03-kruskal-1956`.
 3. O Claude monta os cards e a legenda e abre as imagens para você conferir. Diga "sim" para publicar, ou peça ajustes.
-4. O post entra na hora (a pipeline não agenda; quem quiser data marcada usa o Meta Business Suite depois). O link fica em `instagram/<pasta>/publicacao.json`.
+4. O post entra na hora (para deixar vários posts programados, veja "Publicar na nuvem (agenda)" abaixo). O link fica em `instagram/<pasta>/publicacao.json`.
 
 **Vídeo novo no YouTube** não vira post de feed: ao final da publicação de um vídeo, o Claude gera `videos/<slug>/story.png`. Quando você tornar o vídeo público, poste essa imagem como *story* pelo app, com o sticker de link apontando para o vídeo (a API não coloca sticker, e o link é o motivo do story).
 
@@ -179,6 +179,28 @@ Além do post, o Claude faz:
 
 Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confirmou e o que não conseguiu confirmar — é você quem decide o que fica.
 
+## Publicar na nuvem (agenda)
+
+Com a agenda você deixa dezenas de conteúdos aprovados de uma vez e eles saem sozinhos, um por dia, mesmo com o computador desligado: o GitHub confere a agenda a cada 30 minutos e publica o que venceu. O cronômetro do GitHub pode atrasar alguns minutos; se um item atrasar mais de 6 horas, ele não é publicado (para não sair o "post de segunda" na quarta) e você recebe um e-mail.
+
+**Atenção:** o conteúdo aprovado espera num branch público do repositório (`fila`) até a hora de sair; quem souber procurar consegue vê-lo antes.
+
+### Configurar (uma vez)
+
+Pré-requisitos: já ter feito "Conectar ao Instagram" (o token do Instagram e o do GitHub guardados no computador) e ter o programa `gh` instalado e logado (`gh auth status` deve dizer "Logged in").
+
+1. Envie tudo para o GitHub: `git push`.
+2. Crie o token que renova o token do Instagram sozinho: abra https://github.com/settings/personal-access-tokens/new, nome `PO para Todos - Segredos`, validade 1 ano, em **Repository access** escolha **Only select repositories** → `po-para-todos-publisher`; em **Permissions → Repository permissions** dê **Secrets: Read and write** e **Variables: Read and write** (mais nada). Gere, copie o token (começa com `github_pat_`) e rode `gh secret set SEGREDOS_PAT --repo jotape-prog22/po-para-todos-publisher`; quando o terminal pedir, cole o token e aperte Enter.
+3. Copie os tokens do Instagram para o GitHub: `node scripts/agenda.mjs --configurar-nuvem`. Esperado: `tokens gravados nos Secrets/Variables do GitHub`.
+4. Ligue os avisos por e-mail: https://github.com/settings/notifications → **Actions** → marque **Send notifications for failed workflows only**.
+5. Teste sem publicar nada: na página do repositório, aba **Actions** → **Publicar agenda do Instagram** → **Run workflow** (deixe **simular** marcado). Esperado: a execução termina verde e o log diz `nada vencido — nada a publicar`.
+
+### Usar
+
+Peça ao Claude: `/agendar`. Ele junta as pastas, dá as datas, abre a página de revisão (você aprova, pede ajuste ou tira cada item) e envia a agenda. Ver a agenda a qualquer momento: `node scripts/agenda.mjs --status`.
+
+O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a renovação falhar você recebe um e-mail; nesse caso gere um token novo (passos 4 e 5 de "Conectar ao Instagram") e rode de novo o passo 3.
+
 ## Quando algo dá errado
 
 - **"erro: roteiro inválido"** — normalmente o próprio Claude corrige sozinho e tenta de novo. Se ele insistir no erro, peça: "valide o roteiro e me mostre os erros".
@@ -193,6 +215,8 @@ Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confi
 - **"a conta já fez 100 publicações"** — limite diário da API; espere 24 h ou publique à mão.
 - **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
 - **"erro: yt-dlp não encontrado"** — falta instalar o `yt-dlp` (item 7 de "O que você vai instalar"); instale e rode o comando de novo.
+- **Recebi e-mail "Publicar agenda do Instagram falhou"** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Corrija e reagende com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM`, depois `node scripts/agenda.mjs --enviar`.
+- **Quero cancelar um post agendado** — `node scripts/agenda.mjs --remover <id>` e `node scripts/agenda.mjs --enviar`.
 
 ## Quero mudar a pipeline
 

@@ -17,6 +17,8 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>` — trechos para um post `citacao`.
 - `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
 - `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4`.
+- `node scripts/agenda.mjs …` — a agenda de publicações (`--adicionar`, `--distribuir`, `--status`, `--mover`, `--reabrir`, `--remover`, `--enfileirar`, `--enviar`, `--atualizar`, `--configurar-nuvem`); `npm run revisar` abre a revisão em bloco.
+- `node scripts/publicar-agenda.mjs [--simular]` — o que o workflow `publicar-agenda.yml` roda a cada 30 min; `--simular` não toca na Meta.
 - `npm run calibrar` — abre no navegador a calibração dos formatos do Instagram (posts, stories, reels lado a lado, com a interface do app por cima); "Gravar no CSS" escreve no `:root` de `design-system/instagram/*.css`. Amostras em `design-system/instagram/amostras-calibracao.json`.
 - `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` (incluindo `checagem.json`) são fixtures: não as altere sem atualizar os testes.
 
@@ -30,6 +32,8 @@ Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists
 `/reel instagram/<data>-<slug>` (skill `reel`): corte de vídeo publicado (`scripts/corte.mjs --candidatos`, `yt-dlp`, `docs/adr/0008`) ou cenas do zero → `reel.json` → `gerar-reel.mjs` + `legenda.mjs --reel` → parada → `--publicar-reel`.
 
 `/pacote` (skill `pacote`): post + story de aviso + reel, nessa ordem, cada um com sua parada; só por pedido — `/video` nunca dispara nada do Instagram. Story de vídeo novo é sempre manual (sticker de link); story de aviso e sequências sem sticker saem pela API.
+
+`/agendar` (skill `agendar`): junta vários conteúdos de `instagram/` numa fila, dá datas pela semana-modelo (`instagram/agenda-modelo.json`), abre a revisão em bloco, sobe a mídia aprovada para o branch `fila` e envia a agenda ao GitHub; o workflow `publicar-agenda.yml` publica sozinho (`docs/adr/0010`). Tokens na nuvem vêm de Secrets/Variables, não de `~/.po-para-todos`. Story de vídeo novo e sequência com sticker continuam manuais e nunca entram na agenda.
 
 ## Design system (`design-system/`)
 - `tokens.json` é a fonte da verdade; `tokens.css` é gerado por `design-system/scripts/gerar-tokens-css.mjs` — nunca edite o .css à mão.
