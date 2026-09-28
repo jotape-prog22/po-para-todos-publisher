@@ -1,0 +1,12 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    { "duracao": 10, "kicker": "NOVIDADE", "titulo": "NOSSA CARA MUDOU",
+      "linhas": ["Novo template para posts e stories", "O grafo do logo agora está em tudo", "A Pesquisa Operacional é a mesma"],
+      "icone": "grafo-caminho", "faixa": "SAIBA MAIS NO LINK DA BIO" },
+    { "duracao": 10, "kicker": "NOSSO CANAL", "titulo": "AULAS NO YOUTUBE",
+      "linhas": ["Pesquisa Operacional passo a passo", "Slides, exemplos e contas até o fim", "Quer começar? Está tudo lá"],
+      "icone": "arvore-geradora", "faixa": "INSCREVA-SE NO CANAL" }
+  ]
+}

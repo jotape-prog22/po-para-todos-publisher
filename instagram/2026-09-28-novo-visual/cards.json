@@ -1,0 +1,7 @@
+{ "tipo": "aviso",
+  "cards": [
+    { "tipo": "aviso", "kicker": "NOVIDADE", "titulo": "ESTAMOS DE CARA NOVA" },
+    { "tipo": "aviso", "kicker": "NOVO VISUAL", "titulo": "A PÁGINA GANHOU UMA CARA NOVA",
+      "texto": "Posts e stories agora seguem um novo padrão visual, com o grafo do nosso logo. A Pesquisa Operacional é a mesma, e as aulas continuam no canal do YouTube.",
+      "link": "youtube.com/@PesquisaOperacionalparatodos" }
+  ] }

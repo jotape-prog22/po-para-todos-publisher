@@ -1,0 +1,8 @@
+{ "afirmacoes": [
+  { "onde": "card 2 e story 2", "texto": "As aulas continuam no canal do YouTube (youtube.com/@PesquisaOperacionalparatodos).", "tipo": "fonte",
+    "fonte": "https://www.youtube.com/@PesquisaOperacionalparatodos", "resultado": "confirmada",
+    "como": "Consultei o canal pela API do YouTube em 28/09/2026: \"Pesquisa Operacional para Todos\", handle @pesquisaoperacionalparatodos, 39 vídeos, o mais recente de 20/09/2026 (Teorema das Folgas Complementares)." },
+  { "onde": "story 2", "texto": "Pesquisa Operacional passo a passo; slides, exemplos e contas até o fim.", "tipo": "fonte",
+    "fonte": "https://www.youtube.com/watch?v=6n6oPR70LSA", "resultado": "confirmada",
+    "como": "A aula das Folgas Complementares (17 min) é gravada sobre slides (videos/folgas-complementares/slides.json) e resolve o Dual de um exemplo numérico até a solução ótima; as do Solver (Partes 1 e 2) mostram o passo a passo no Excel com o problema da marcenaria." }
+] }
