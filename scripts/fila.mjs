@@ -13,7 +13,8 @@ const PADROES = [/^card-\d+\.png$/, /^story-\d+\.mp4$/, /^story-aviso\.mp4$/, /^
 
 export function arquivosDaFila(pasta) {
   return readdirSync(pasta)
-    .filter((nome) => PADROES.some((p) => p.test(nome)))
+    // publicacao*.json são os livros-razão do que já saiu: quem manda neles é a master, não a fila.
+    .filter((nome) => !/^publicacao.*\.json$/.test(nome) && PADROES.some((p) => p.test(nome)))
     .sort()
     .map((nome) => ({ nome, caminho: join(pasta, nome) }));
 }

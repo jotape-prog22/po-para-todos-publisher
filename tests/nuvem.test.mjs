@@ -41,6 +41,12 @@ test("renovarParaNuvem: com 10 dias renova e devolve o novo token com 60 dias", 
   assert.match(f.chamadas[0], /refresh_access_token/);
 });
 
+test("renovarParaNuvem: se a Meta renovar e devolver a mesma string de token, não é recusa", async () => {
+  const f = fetchRefresh({ access_token: "TOK", expires_in: 5_184_000 });
+  const r = await renovarParaNuvem(envBase(10), { fetchImpl: f, agora: AGORA, avisar: () => {} });
+  assert.deepEqual(r, { access_token: "TOK", expira_em: new Date(AGORA + 60 * DIA).toISOString() });
+});
+
 test("renovarParaNuvem: se a Meta recusar, falha em voz alta (o workflow vira vermelho)", async () => {
   const f = fetchRefresh({ error: { message: "token inválido" } }, 400);
   await assert.rejects(renovarParaNuvem(envBase(10), { fetchImpl: f, agora: AGORA, avisar: () => {} }), (e) => e instanceof ErroInstagram && /não consegui renovar/.test(e.message));

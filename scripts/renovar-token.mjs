@@ -17,7 +17,9 @@ export async function renovarParaNuvem(env, { fetchImpl = fetch, agora = Date.no
   // renovarSeNecessario grava o resultado num arquivo; aqui é um arquivo descartável, o valor sai pelo retorno.
   const arquivo = join(mkdtempSync(join(tmpdir(), "renovar-")), "instagram.json");
   const novos = await renovarSeNecessario(tokens, { fetchImpl, agora, arquivo, avisar });
-  if (novos.instagram.access_token === tokens.instagram.access_token) {
+  // renovarSeNecessario devolve o MESMO objeto quando a Meta recusa e um objeto novo quando renova
+  // (mesmo que a Meta devolva a mesma string de token, o que não é recusa).
+  if (novos === tokens) {
     throw new ErroInstagram("não consegui renovar o token do Instagram (a Meta recusou) — gere outro e rode: node scripts/instagram.mjs --token \"<token>\" e depois node scripts/agenda.mjs --configurar-nuvem");
   }
   return { access_token: novos.instagram.access_token, expira_em: novos.instagram.expira_em };

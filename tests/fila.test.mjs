@@ -32,6 +32,12 @@ test("arquivosDaFila leva cards, MP4, legendas e JSONs — e deixa de fora os in
   assert.deepEqual(arquivosDaFila(p).map((a) => a.nome), ["card-01.png", "cards.json", "checagem.json", "legenda.txt", "post.md", "reel.mp4", "story-01.mp4", "story-aviso.mp4"]);
 });
 
+test("arquivosDaFila não leva os livros-razão publicacao*.json (voltariam por cima dos da master)", () => {
+  const p = mkdtempSync(join(tmpdir(), "fila-"));
+  for (const n of ["cards.json", "publicacao.json", "publicacao-reel.json", "publicacao-stories.json"]) writeFileSync(join(p, n), "x");
+  assert.deepEqual(arquivosDaFila(p).map((a) => a.nome), ["cards.json"]);
+});
+
 test("lerPastaParaFila devolve o conteúdo em Buffer", () => {
   const p = mkdtempSync(join(tmpdir(), "fila-"));
   writeFileSync(join(p, "legenda.txt"), "oi");
