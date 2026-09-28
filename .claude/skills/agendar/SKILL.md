@@ -53,11 +53,13 @@ Quando a pessoa voltar, rode `--status`. Para cada item com `ajuste:` — leia a
 node scripts/agenda.mjs --enfileirar
 node scripts/agenda.mjs --enviar
 ```
-`--enfileirar` sobe a mídia dos aprovados para o branch `fila` e os marca `agendado`. `--enviar` faz commit e push do `agenda.json`; o workflow só enxerga o que está no GitHub. Confirme com `--status` e diga a primeira e a última data.
+`--enfileirar` sobe a mídia dos aprovados para o branch `fila` e os marca `agendado`. `--enviar` faz commit e push do `agenda.json`; o workflow só enxerga o que está no GitHub. Rode o `--enviar` logo em seguida ao `--enfileirar`, sem intervalo: enquanto a agenda nova não está no GitHub, o robô não sabe dos itens novos. Confirme com `--status` e diga a primeira e a última data.
 
 ## Depois: mexer no que já está agendado
 
 - Mudar a data: `--mover <id> AAAA-MM-DDTHH:MM`, depois `--enviar`.
 - Mudar o conteúdo: `--reabrir <id>`, ajuste a pasta, `npm run revisar`, `--enfileirar`, `--enviar`. (O que sai é o que foi aprovado e enfileirado; mudar a pasta sem reabrir não muda nada na nuvem.)
 - Tirar: `--remover <id>`, depois `--enviar`.
-- Item `FALHOU` ou `PERDIDO`: leia o `erro:` do `--status`, corrija a causa e reagende com `--mover <id> <nova data>` (uma data no futuro; isso volta o item a `agendado`), depois `--enviar`.
+- Item `FALHOU` ou `PERDIDO`: leia o `erro:` do `--status`.
+  - Causa de horário ou de rede (passou da janela de 6 h, a Meta ficou fora do ar): basta `--mover <id> <nova data no futuro>` (isso volta o item a `agendado`), depois `--enviar`.
+  - Causa de CONTEÚDO (arquivo quebrado, Checagem faltando ou inválida): `--reabrir <id>`, corrija a pasta, `npm run revisar` (aprovar de novo), `--mover <id> <data no futuro>`, `--enfileirar`, `--enviar`. Só `--mover` não adianta aqui, porque o que sai é o que está na fila, e a fila ainda tem a versão antiga.

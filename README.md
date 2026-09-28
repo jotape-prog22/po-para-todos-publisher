@@ -219,7 +219,7 @@ O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a reno
 - **"a conta já fez 100 publicações"** — limite diário da API; espere 24 h ou publique à mão.
 - **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
 - **"erro: yt-dlp não encontrado"** — falta instalar o `yt-dlp` (item 7 de "O que você vai instalar"); instale e rode o comando de novo.
-- **Recebi e-mail do GitHub dizendo que "Publicar agenda do Instagram" falhou** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Corrija e reagende com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM` (uma data no futuro), depois `node scripts/agenda.mjs --enviar`.
+- **Recebi e-mail do GitHub dizendo que "Publicar agenda do Instagram" falhou** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Se a causa for de horário ou de rede (passou da janela de 6 horas, a Meta ficou fora do ar), basta reagendar com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM` (uma data no futuro) e depois `node scripts/agenda.mjs --enviar`. Se a causa for de conteúdo (arquivo quebrado, Checagem faltando), o `--mover` sozinho não resolve, porque o que sai é o que está na fila: rode `--reabrir <id>`, corrija a pasta, `npm run revisar`, `--mover <id> <data no futuro>`, `--enfileirar` e `--enviar`.
 - **Quero cancelar um post agendado** — `node scripts/agenda.mjs --remover <id>` e `node scripts/agenda.mjs --enviar`.
 
 ## Quero mudar a pipeline
