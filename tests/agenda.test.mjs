@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { RAIZ, ErroAgenda, lerAgenda, gravarAgenda, formatosDaPasta, verificarPasta, pastaRelativa, adicionar } from "../scripts/agenda.mjs";
-import { raizTemporaria, criarPastaPost, criarPastaReel, criarPastaStories } from "./ajudas-agenda.mjs";
+import { RAIZ, ErroAgenda, lerAgenda, gravarAgenda, formatosDaPasta, verificarPasta, pastaRelativa, adicionar, lerModelo, validarModelo, distribuir, mover, devidos, passouDaJanela, pastasLiberadas, reabrir, remover, statusTexto, ARQUIVO_MODELO } from "../scripts/agenda.mjs";
+import { raizTemporaria, criarPastaPost, criarPastaReel, criarPastaStories, item } from "./ajudas-agenda.mjs";
 
 const erro = (re) => (e) => e instanceof ErroAgenda && re.test(e.message);
 
@@ -100,4 +100,123 @@ test("adicionar: o formato válido entra e o inválido vem em erros", () => {
 test("adicionar: pasta vazia ou inexistente dá erro", () => {
   const raiz = raizTemporaria();
   assert.throws(() => adicionar({ itens: [] }, "instagram/nao-existe", { raiz }), erro(/não achei/));
+});
+
+const MODELO = { fuso: "-03:00", semana: { seg: { reel: "12:00" }, ter: { post: "12:00" }, qua: { reel: "12:00" }, qui: { post: "12:00" }, sex: { reel: "12:00" }, sab: { stories: "18:00" }, dom: { post: "12:00" } } };
+const rascunhos = (formato, n) => Array.from({ length: n }, (_, k) => item({ id: `${formato}${k}:${formato}`, formato }));
+
+test("o modelo de semana que vai no repositório é válido", () => {
+  validarModelo(lerModelo(ARQUIVO_MODELO));
+});
+
+test("validarModelo recusa fuso torto, dia inventado e formato inventado", () => {
+  assert.throws(() => validarModelo({ fuso: "BRT", semana: {} }), erro(/fuso/));
+  assert.throws(() => validarModelo({ fuso: "-03:00", semana: { xxx: { post: "12:00" } } }), erro(/dia/));
+  assert.throws(() => validarModelo({ fuso: "-03:00", semana: { seg: { podcast: "12:00" } } }), erro(/formato/));
+  assert.throws(() => validarModelo({ fuso: "-03:00", semana: { seg: { post: "meio-dia" } } }), erro(/hora/));
+});
+
+test("distribuir: reels seg/qua/sex, posts ter/qui/dom, stories sábado — a partir de segunda 2026-10-05", () => {
+  const agenda = { itens: [...rascunhos("reel", 4), ...rascunhos("post", 2), ...rascunhos("stories", 1)] };
+  distribuir(agenda, MODELO, "2026-10-05");
+  const de = (f) => agenda.itens.filter((i) => i.formato === f).map((i) => i.quando);
+  assert.deepEqual(de("reel"), ["2026-10-05T12:00:00-03:00", "2026-10-07T12:00:00-03:00", "2026-10-09T12:00:00-03:00", "2026-10-12T12:00:00-03:00"]);
+  assert.deepEqual(de("post"), ["2026-10-06T12:00:00-03:00", "2026-10-08T12:00:00-03:00"]);
+  assert.deepEqual(de("stories"), ["2026-10-10T18:00:00-03:00"]);
+});
+
+test("distribuir: não usa horário já ocupado e não mexe em quem já tem data", () => {
+  const ocupado = item({ id: "o:reel", formato: "reel", quando: "2026-10-05T12:00:00-03:00" });
+  const [novo] = rascunhos("reel", 1);
+  const agenda = { itens: [ocupado, novo] };
+  const dados = distribuir(agenda, MODELO, "2026-10-05");
+  assert.equal(dados.length, 1);
+  assert.equal(novo.quando, "2026-10-07T12:00:00-03:00");
+  assert.equal(ocupado.quando, "2026-10-05T12:00:00-03:00");
+});
+
+test("distribuir: modelo sem dia para o formato é erro claro; data de início ruim também", () => {
+  const semReel = { fuso: "-03:00", semana: { ter: { post: "12:00" } } };
+  assert.throws(() => distribuir({ itens: rascunhos("reel", 1) }, semReel, "2026-10-05"), erro(/reel/));
+  assert.throws(() => distribuir({ itens: [] }, MODELO, "05/10/2026"), erro(/AAAA-MM-DD/));
+});
+
+test("mover: rascunho ganha a data com o fuso; formato ruim e item publicado são recusados", () => {
+  const a = item({ id: "a:post" });
+  const agenda = { itens: [a, item({ id: "p:post", estado: "publicado" })] };
+  mover(agenda, "a:post", "2026-10-06T09:30", { fuso: "-03:00" });
+  assert.equal(a.quando, "2026-10-06T09:30:00-03:00");
+  assert.throws(() => mover(agenda, "a:post", "amanhã", { fuso: "-03:00" }), erro(/AAAA-MM-DDTHH:MM/));
+  assert.throws(() => mover(agenda, "p:post", "2026-10-06T09:30", { fuso: "-03:00" }), erro(/já foi publicado/));
+  assert.throws(() => mover(agenda, "z:post", "2026-10-06T09:30", { fuso: "-03:00" }), erro(/não achei/));
+});
+
+test("mover: item que falhou ou perdeu a janela volta a agendado com a tentativa zerada — só para o futuro", () => {
+  const agora = Date.parse("2026-10-05T20:00:00Z");
+  const f = item({ id: "f:post", estado: "falhou", aprovado: true, tentativas: 3, erro: "x", quando: "2026-10-05T12:00:00-03:00" });
+  const agenda = { itens: [f] };
+  assert.throws(() => mover(agenda, "f:post", "2026-10-05T10:00", { fuso: "-03:00", agora }), erro(/no futuro/));
+  mover(agenda, "f:post", "2026-10-06T12:00", { fuso: "-03:00", agora });
+  assert.equal(f.estado, "agendado");
+  assert.equal(f.tentativas, 0);
+  assert.equal(f.erro, null);
+});
+
+test("devidos: só agendado + aprovado + já venceu, em ordem; passouDaJanela usa 6 h", () => {
+  const agora = Date.parse("2026-10-05T18:00:00Z"); // 15:00 em Brasília
+  const base = { estado: "agendado", aprovado: true };
+  const a = item({ id: "a:post", ...base, quando: "2026-10-05T12:00:00-03:00" });
+  const b = item({ id: "b:post", ...base, quando: "2026-10-05T09:00:00-03:00" });
+  const semAprovacao = item({ id: "c:post", estado: "agendado", aprovado: false, quando: "2026-10-05T09:00:00-03:00" });
+  const futuro = item({ id: "d:post", ...base, quando: "2026-10-05T16:00:00-03:00" });
+  const falhou = item({ id: "e:post", estado: "falhou", aprovado: true, quando: "2026-10-05T09:00:00-03:00" });
+  const agenda = { itens: [a, b, semAprovacao, futuro, falhou] };
+  assert.deepEqual(devidos(agenda, agora).map((i) => i.id), ["b:post", "a:post"]);
+  assert.equal(passouDaJanela(a, agora), false);
+  assert.equal(passouDaJanela(b, agora), false); // 6 h exatas ainda cabem
+  assert.equal(passouDaJanela(b, agora + 1), true);
+});
+
+test("pastasLiberadas: a pasta só sai da fila quando nenhum item dela está agendado, falhou ou perdido", () => {
+  const agenda = { itens: [
+    item({ id: "a:post", pasta: "instagram/a", estado: "publicado" }),
+    item({ id: "a:reel", pasta: "instagram/a", formato: "reel", estado: "agendado" }),
+    item({ id: "b:post", pasta: "instagram/b", estado: "publicado" }),
+    item({ id: "c:post", pasta: "instagram/c", estado: "publicado" }),
+    item({ id: "c:reel", pasta: "instagram/c", formato: "reel", estado: "falhou" }),
+  ] };
+  assert.deepEqual(pastasLiberadas(agenda, ["instagram/a", "instagram/b", "instagram/c"]), ["instagram/b"]);
+});
+
+test("reabrir: agendado volta a rascunho sem aprovação; publicado não reabre", () => {
+  const a = item({ id: "a:post", estado: "agendado", aprovado: true, quando: "2026-10-06T12:00:00-03:00" });
+  const agenda = { itens: [a, item({ id: "p:post", estado: "publicado" })] };
+  reabrir(agenda, "a:post");
+  assert.equal(a.estado, "rascunho");
+  assert.equal(a.aprovado, false);
+  assert.equal(a.quando, "2026-10-06T12:00:00-03:00");
+  assert.throws(() => reabrir(agenda, "p:post"), erro(/já foi publicado/));
+});
+
+test("remover tira o item e devolve o removido", () => {
+  const agenda = { itens: [item({ id: "a:post" }), item({ id: "b:post" })] };
+  assert.equal(remover(agenda, "a:post").id, "a:post");
+  assert.deepEqual(agenda.itens.map((i) => i.id), ["b:post"]);
+  assert.throws(() => remover(agenda, "a:post"), erro(/não achei/));
+});
+
+test("statusTexto: ordena por data e destaca falta de aprovação, falha e ajuste pedido", () => {
+  const agenda = { itens: [
+    item({ id: "b:reel", formato: "reel", pasta: "instagram/b", quando: "2026-10-07T12:00:00-03:00", estado: "falhou", aprovado: true, erro: "Meta recusou" }),
+    item({ id: "a:post", pasta: "instagram/a", quando: "2026-10-06T12:00:00-03:00", ajuste: "trocar o título do card 2" }),
+    item({ id: "c:post", pasta: "instagram/c" }),
+  ] };
+  const t = statusTexto(agenda);
+  assert.ok(t.indexOf("instagram/a") < t.indexOf("instagram/b"), "ordem por data");
+  assert.match(t, /falta aprovar/);
+  assert.match(t, /FALHOU/);
+  assert.match(t, /Meta recusou/);
+  assert.match(t, /ajuste: trocar o título do card 2/);
+  assert.match(t, /sem data/);
+  assert.match(statusTexto({ itens: [] }), /vazia/);
 });
