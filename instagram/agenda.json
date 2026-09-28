@@ -1,3 +1,30 @@
 {
-  "itens": []
+  "itens": [
+    {
+      "id": "2026-09-28-novo-visual:post",
+      "pasta": "instagram/2026-09-28-novo-visual",
+      "formato": "post",
+      "quando": "2026-09-28T19:15:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-09-28-novo-visual:stories",
+      "pasta": "instagram/2026-09-28-novo-visual",
+      "formato": "stories",
+      "quando": "2026-09-28T19:15:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    }
+  ]
 }
