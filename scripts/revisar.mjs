@@ -36,7 +36,11 @@ export function midiaDoItem(item, raiz = RAIZ) {
   const pasta = join(raiz, item.pasta);
   if (!existsSync(pasta)) return [];
   const nomes = readdirSync(pasta).sort();
-  if (item.formato === "post") return nomes.filter((n) => /^card-\d+\.png$/.test(n)).map((nome) => ({ nome, tipo: "imagem" }));
+  if (item.formato === "post") {
+    // O story de aviso sai junto com o post, então a pessoa também o vê e aprova aqui.
+    const cards = nomes.filter((n) => /^card-\d+\.png$/.test(n)).map((nome) => ({ nome, tipo: "imagem" }));
+    return nomes.includes("story-aviso.mp4") ? [...cards, { nome: "story-aviso.mp4", tipo: "video" }] : cards;
+  }
   if (item.formato === "stories") return nomes.filter((n) => /^story-\d+\.mp4$/.test(n)).map((nome) => ({ nome, tipo: "video" }));
   return nomes.filter((n) => n === "reel.mp4").map((nome) => ({ nome, tipo: "video" }));
 }

@@ -45,6 +45,16 @@ test("midiaDoItem: cards do post, vídeos da sequência e o reel", () => {
   assert.deepEqual(midiaDoItem(item({ pasta: "instagram/r", formato: "reel" }), raiz), [{ nome: "reel.mp4", tipo: "video" }]);
 });
 
+test("midiaDoItem: post com story de aviso mostra o vídeo depois dos cards", () => {
+  const raiz = raizTemporaria();
+  criarPastaPost(raiz, "p", { cards: 2, aviso: true });
+  assert.deepEqual(midiaDoItem(item({ pasta: "instagram/p", formato: "post" }), raiz), [
+    { nome: "card-01.png", tipo: "imagem" },
+    { nome: "card-02.png", tipo: "imagem" },
+    { nome: "story-aviso.mp4", tipo: "video" },
+  ]);
+});
+
 test("htmlDaRevisao mostra data, legenda escapada, Checagem e botões; página vazia diz que não há o que revisar", () => {
   const raiz = raizTemporaria();
   const p = criarPastaPost(raiz, "p");
