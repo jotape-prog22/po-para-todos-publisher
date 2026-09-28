@@ -406,3 +406,31 @@ test("publicarReel de cenas exige checagem.json (mesmo rigor de uma curiosidade)
   const r2 = await publicarReel(corteSemChecagem, { tokens: tokensOk, canal, fetchImpl: f2, agora: AGORA, dormir: semDormir, log: () => {} });
   assert.equal(r2.media_id, "midia77");
 });
+
+// Se a busca do link falhar DEPOIS do media_publish, o post já está no ar: não pode lançar (a agenda tentaria de novo e publicaria em dobro).
+const semPermalink = () => rotasInstagram().map((r) => (/midia77/.test(String(r.url)) ? { ...r, status: 500, json: { error: { message: "link fora do ar" } } } : r));
+const publicacoes = (f) => f.chamadas.filter((c) => c.metodo === "POST" && /media_publish$/.test(c.url)).length;
+
+test("publicarPost: se o link falhar depois de publicar, não lança, grava url null e publica uma vez só", async () => {
+  const pasta = await pastaDePost(1);
+  const f = fetchFalso([...semPermalink(), ...rotasGithub()]);
+  const avisos = [];
+  const r = await publicarPost(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: (m) => avisos.push(m) });
+  assert.equal(r.media_id, "midia77");
+  assert.equal(r.url, null);
+  assert.deepEqual(JSON.parse(readFileSync(join(pasta, "publicacao.json"), "utf8")), r);
+  assert.equal(publicacoes(f), 1);
+  assert.ok(avisos.some((m) => /publicado, mas não consegui buscar o link/.test(m)));
+});
+
+test("publicarReel: se o link falhar depois de publicar, não lança, grava url null e publica uma vez só", async () => {
+  const pasta = await pastaDeReel();
+  const f = fetchFalso([...semPermalink(), ...rotasGithub()]);
+  const avisos = [];
+  const r = await publicarReel(pasta, { tokens: tokensOk, canal, fetchImpl: f, agora: AGORA, dormir: semDormir, log: (m) => avisos.push(m) });
+  assert.equal(r.media_id, "midia77");
+  assert.equal(r.url, null);
+  assert.deepEqual(JSON.parse(readFileSync(join(pasta, "publicacao-reel.json"), "utf8")), r);
+  assert.equal(publicacoes(f), 1);
+  assert.ok(avisos.some((m) => /publicado, mas não consegui buscar o link/.test(m)));
+});

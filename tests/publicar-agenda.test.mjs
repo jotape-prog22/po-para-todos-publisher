@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { executarAgenda, etapasDe, TENTATIVAS } from "../scripts/publicar-agenda.mjs";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { executarAgenda, etapasDe, publicadoresDaNuvem, TENTATIVAS } from "../scripts/publicar-agenda.mjs";
 import { item } from "./ajudas-agenda.mjs";
 
 const AGORA = Date.parse("2026-10-05T15:00:00Z"); // 12:00 em Brasília
@@ -128,4 +131,20 @@ test("rascunho, sem aprovação, futuro ou já publicado: ninguém é publicado"
   const { r } = await rodar({ itens }, publicadores);
   assert.deepEqual(chamadas, []);
   assert.deepEqual(r, { publicados: [], falhas: [], perdidos: [] });
+});
+
+test("publicadoresDaNuvem: stories só saem com checagem.json válido na pasta", async () => {
+  const chamadas = [];
+  const fns = {
+    publicarPost: async () => ({}), publicarStory: async () => ({}), publicarReel: async () => ({}),
+    publicarStories: async (pasta, opcoes) => { chamadas.push([pasta, opcoes]); return { publicados: [] }; },
+  };
+  const tokens = { instagram: {} };
+  const { stories } = publicadoresDaNuvem(tokens, fns);
+  const pasta = mkdtempSync(join(tmpdir(), "stories-"));
+  await assert.rejects(stories(pasta), /checagem\.json/);
+  assert.equal(chamadas.length, 0, "sem Checagem, nada é publicado");
+  writeFileSync(join(pasta, "checagem.json"), JSON.stringify({ afirmacoes: [{ onde: "story 1", texto: "t", tipo: "fonte", fonte: "https://doi.org/10.1/x", resultado: "confirmada", como: "conferido no resumo do artigo" }] }));
+  await stories(pasta);
+  assert.deepEqual(chamadas, [[pasta, { tokens }]]);
 });

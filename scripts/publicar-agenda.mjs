@@ -12,6 +12,7 @@ import { pathToFileURL } from "node:url";
 import { RAIZ, JANELA_HORAS, lerAgenda, gravarAgenda, devidos, passouDaJanela, pastasLiberadas } from "./agenda.mjs";
 import { tokensDoAmbiente, diasRestantes, criarApiGithub, publicarPost, publicarStory, publicarStories, publicarReel, ErroInstagram } from "./instagram.mjs";
 import { atualizarFila } from "./fila.mjs";
+import { carregarChecagem, ErroChecagem } from "./checagem.mjs";
 
 export const TENTATIVAS = 3;
 export const ESPERA_MS = 60_000;
@@ -63,6 +64,19 @@ export async function executarAgenda(agenda, { agora, publicadores, temAviso, do
   return resultado;
 }
 
+// Os publicadores reais (os mesmos da publicação manual). Sequência de stories exige checagem.json, como post e reel de cenas.
+export function publicadoresDaNuvem(tokens, fns = { publicarPost, publicarStory, publicarStories, publicarReel }) {
+  return {
+    post: (p) => fns.publicarPost(p, { tokens }),
+    "story-aviso": (p) => fns.publicarStory(p, "story-aviso.mp4", { tokens }),
+    stories: async (p) => {
+      try { carregarChecagem(p); } catch (e) { if (e instanceof ErroChecagem) throw new ErroInstagram(e.message); throw e; }
+      return fns.publicarStories(p, { tokens });
+    },
+    reel: (p) => fns.publicarReel(p, { tokens }),
+  };
+}
+
 // ---------- CLI ----------
 const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -78,12 +92,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     } else {
       tokens = tokensDoAmbiente();
       if (diasRestantes(tokens.instagram, agora) < 0) throw new ErroInstagram("o token do Instagram venceu — gere outro e rode: node scripts/instagram.mjs --token \"<token>\" e depois node scripts/agenda.mjs --configurar-nuvem");
-      publicadores = {
-        post: (p) => publicarPost(p, { tokens }),
-        "story-aviso": (p) => publicarStory(p, "story-aviso.mp4", { tokens }),
-        stories: (p) => publicarStories(p, { tokens }),
-        reel: (p) => publicarReel(p, { tokens }),
-      };
+      publicadores = publicadoresDaNuvem(tokens);
     }
     const vencidos = devidos(agenda, agora);
     console.log(vencidos.length ? `${vencidos.length} item(ns) vencido(s)${simular ? " (simulação)" : ""}` : "nada vencido — nada a publicar");

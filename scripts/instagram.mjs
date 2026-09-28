@@ -269,6 +269,16 @@ export async function publicarStories(pasta, opcoes = {}) {
   return { publicados };
 }
 
+// Depois do media_publish o post já está no ar: se só a busca do link falhar, não lança (a agenda tentaria de novo e publicaria em dobro).
+async function buscarLink(ig, mediaId, log) {
+  try {
+    return (await ig.get(mediaId, "permalink")).permalink ?? null;
+  } catch (e) {
+    log(`aviso: publicado, mas não consegui buscar o link (${e.message}) — confira no app`);
+    return null;
+  }
+}
+
 // Publica instagram/<pasta>/reel.mp4 com reel-legenda.txt como reel (também vai para o feed).
 // reel.json com tipo "cenas" exige checagem.json na pasta (mesmo rigor de um post curiosidade); tipo "corte" não precisa.
 export async function publicarReel(pasta, { tokens, canal = lerCanal(), fetchImpl = fetch, agora = Date.now(), dormir = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.log } = {}) {
@@ -292,7 +302,7 @@ export async function publicarReel(pasta, { tokens, canal = lerCanal(), fetchImp
     await esperarContainer(ig, id, dormir, TENTATIVAS_VIDEO);
     log("publicando…");
     const publicado = await ig.post(`${igId}/media_publish`, { creation_id: id });
-    const { permalink } = await ig.get(publicado.id, "permalink");
+    const permalink = await buscarLink(ig, publicado.id, log);
     const registro = { media_id: publicado.id, url: permalink, publicado_em: new Date(agora).toISOString() };
     writeFileSync(join(pasta, "publicacao-reel.json"), JSON.stringify(registro, null, 2) + "\n");
     return registro;
@@ -349,7 +359,7 @@ export async function publicarPost(pasta, { tokens, canal = lerCanal(), fetchImp
     await esperarContainer(ig, criacaoId, dormir);
     log("publicando…");
     const publicado = await ig.post(`${igId}/media_publish`, { creation_id: criacaoId });
-    const { permalink } = await ig.get(publicado.id, "permalink");
+    const permalink = await buscarLink(ig, publicado.id, log);
     const registro = { media_id: publicado.id, url: permalink, publicado_em: new Date(agora).toISOString(), tipo: cards.tipo, cards: arquivos.length };
     writeFileSync(join(pasta, "publicacao.json"), JSON.stringify(registro, null, 2) + "\n");
     return registro;
@@ -385,7 +395,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     } else if (opcao === "--publicar" && valor) {
       const tokens = await renovarSeNecessario(lerTokens());
       const r = await publicarPost(resolve(valor), { tokens });
-      console.log(`publicado: ${r.url}`);
+      console.log(`publicado: ${r.url ?? "(link indisponível — confira no app)"}`);
     } else if (opcao === "--publicar-story" && valor && process.argv[4]) {
       const tokens = await renovarSeNecessario(lerTokens());
       const r = await publicarStory(resolve(valor), process.argv[4], { tokens });
@@ -397,7 +407,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     } else if (opcao === "--publicar-reel" && valor) {
       const tokens = await renovarSeNecessario(lerTokens());
       const r = await publicarReel(resolve(valor), { tokens });
-      console.log(`reel publicado: ${r.url}`);
+      console.log(`reel publicado: ${r.url ?? "(link indisponível — confira no app)"}`);
     } else {
       console.error(USO);
       process.exit(1);
