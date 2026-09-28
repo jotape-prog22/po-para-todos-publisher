@@ -24,7 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      # A master tem a regra "Proteger master" (só admin empurra sem PR) e o GITHUB_TOKEN não contorna regras em
+      # repositório pessoal: o estado da agenda sobe com o SEGREDOS_PAT (token do dono). Sem ele, o GITHUB_TOKEN
+      # serve para ler e simular, mas o push do estado seria recusado.
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SEGREDOS_PAT || github.token }}
 
       - uses: actions/setup-node@v4
         with:

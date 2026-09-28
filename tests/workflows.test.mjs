@@ -24,6 +24,11 @@ test("publicar-agenda: cron de 30 min, manual com simulação, uma execução po
   assert.match(estado.run, /publicacao\*\.json/);
 });
 
+test("publicar-agenda: o checkout usa o SEGREDOS_PAT (a master protegida só aceita push de admin), com o GITHUB_TOKEN de reserva", () => {
+  const checkout = ler("publicar-agenda.yml").jobs.publicar.steps.find((s) => /actions\/checkout/.test(s.uses ?? ""));
+  assert.match(checkout.with?.token ?? "", /secrets\.SEGREDOS_PAT\s*\|\|\s*github\.token/);
+});
+
 test("publicar-agenda: baixa a mídia do branch fila sem apagar arquivos da agenda", () => {
   const passos = ler("publicar-agenda.yml").jobs.publicar.steps;
   const baixar = passos.find((s) => /fila/.test(s.run ?? "") && /archive/.test(s.run ?? ""));
