@@ -372,7 +372,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       console.log(enviarAgenda() ? "agenda enviada ao GitHub" : "nada mudou desde o último envio");
     } else if (opcao === "--configurar-nuvem") {
       configurarNuvem(lerTokens(), { repo: canal().github });
-      console.log("tokens gravados nos Secrets/Variables do GitHub. Falta só o SEGREDOS_PAT (README, \"Publicar na nuvem\", passo 2).");
+      console.log("tokens gravados nos Secrets/Variables do GitHub. Falta só o SEGREDOS_PAT (README, \"Publicar na nuvem\", passo 3).");
     } else {
       console.error(USO);
       process.exit(1);

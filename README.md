@@ -187,19 +187,23 @@ Com a agenda você deixa dezenas de conteúdos aprovados de uma vez e eles saem 
 
 ### Configurar (uma vez)
 
-Pré-requisitos: já ter feito "Conectar ao Instagram" (o token do Instagram e o do GitHub guardados no computador) e ter o programa `gh` instalado e logado (`gh auth status` deve dizer "Logged in").
+Pré-requisitos: já ter feito "Conectar ao Instagram" (o token do Instagram e o do GitHub guardados no computador).
 
-1. Envie tudo para o GitHub: `git push`.
-2. Crie o token que renova o token do Instagram sozinho: abra https://github.com/settings/personal-access-tokens/new, nome `PO para Todos - Segredos`, validade 1 ano, em **Repository access** escolha **Only select repositories** → `po-para-todos-publisher`; em **Permissions → Repository permissions** dê **Secrets: Read and write** e **Variables: Read and write** (mais nada). Gere, copie o token (começa com `github_pat_`) e rode `gh secret set SEGREDOS_PAT --repo jotape-prog22/po-para-todos-publisher`; quando o terminal pedir, cole o token e aperte Enter.
-3. Copie os tokens do Instagram para o GitHub: `node scripts/agenda.mjs --configurar-nuvem`. Esperado: `tokens gravados nos Secrets/Variables do GitHub`.
-4. Ligue os avisos por e-mail: https://github.com/settings/notifications → **Actions** → marque **Send notifications for failed workflows only**.
-5. Teste sem publicar nada: na página do repositório, aba **Actions** → **Publicar agenda do Instagram** → **Run workflow** (deixe **simular** marcado). Esperado: a execução termina verde e o log diz `nada vencido — nada a publicar`.
+1. Instale o programa `gh` (o assistente do GitHub, usado para guardar os segredos na nuvem) e entre com a sua conta. Se já rodou `gh auth status` e ele diz "Logged in to github.com", pule este passo.
+   - Mac: no Terminal, `brew install gh` (se não tiver o Homebrew, instale antes em https://brew.sh).
+   - Windows (no PowerShell): `winget install GitHub.cli`, depois feche e abra o PowerShell de novo.
+   Depois, no Terminal, rode `gh auth login` e responda: **GitHub.com** → **HTTPS** → (se perguntar se quer autenticar o Git, responda `Y`) → **Login with a web browser**. Copie o código de 8 caracteres que aparecer, aperte Enter, cole o código na página que abrir no navegador e autorize. Confira digitando `gh auth status` → deve aparecer `Logged in to github.com`.
+2. Envie tudo para o GitHub: `git push`.
+3. Crie o token que renova o token do Instagram sozinho: abra https://github.com/settings/personal-access-tokens/new, nome `PO para Todos - Segredos`, validade 1 ano, em **Repository access** escolha **Only select repositories** → `po-para-todos-publisher`; em **Permissions → Repository permissions** dê **Secrets: Read and write** e **Variables: Read and write** (mais nada). Gere, copie o token (começa com `github_pat_`) e rode `gh secret set SEGREDOS_PAT --repo jotape-prog22/po-para-todos-publisher`; quando o terminal pedir, cole o token e aperte Enter.
+4. Copie os tokens do Instagram para o GitHub: `node scripts/agenda.mjs --configurar-nuvem`. Esperado: `tokens gravados nos Secrets/Variables do GitHub`.
+5. Ligue os avisos por e-mail: https://github.com/settings/notifications → **Actions** → marque **Send notifications for failed workflows only**.
+6. Teste sem publicar nada: na página do repositório, aba **Actions** → **Publicar agenda do Instagram** → **Run workflow** (deixe **simular** marcado). Esperado: a execução termina verde e o log diz `nada vencido — nada a publicar`.
 
 ### Usar
 
 Peça ao Claude: `/agendar`. Ele junta as pastas, dá as datas, abre a página de revisão (você aprova, pede ajuste ou tira cada item) e envia a agenda. Ver a agenda a qualquer momento: `node scripts/agenda.mjs --status`.
 
-O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a renovação falhar você recebe um e-mail; nesse caso gere um token novo (passos 4 e 5 de "Conectar ao Instagram") e rode de novo o passo 3.
+O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a renovação falhar você recebe um e-mail; nesse caso gere um token novo (passos 4 e 5 de "Conectar ao Instagram") e rode de novo o passo 4.
 
 ## Quando algo dá errado
 
@@ -215,7 +219,7 @@ O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a reno
 - **"a conta já fez 100 publicações"** — limite diário da API; espere 24 h ou publique à mão.
 - **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
 - **"erro: yt-dlp não encontrado"** — falta instalar o `yt-dlp` (item 7 de "O que você vai instalar"); instale e rode o comando de novo.
-- **Recebi e-mail "Publicar agenda do Instagram falhou"** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Corrija e reagende com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM`, depois `node scripts/agenda.mjs --enviar`.
+- **Recebi e-mail do GitHub dizendo que "Publicar agenda do Instagram" falhou** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Corrija e reagende com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM` (uma data no futuro), depois `node scripts/agenda.mjs --enviar`.
 - **Quero cancelar um post agendado** — `node scripts/agenda.mjs --remover <id>` e `node scripts/agenda.mjs --enviar`.
 
 ## Quero mudar a pipeline

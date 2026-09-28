@@ -60,4 +60,4 @@ node scripts/agenda.mjs --enviar
 - Mudar a data: `--mover <id> AAAA-MM-DDTHH:MM`, depois `--enviar`.
 - Mudar o conteúdo: `--reabrir <id>`, ajuste a pasta, `npm run revisar`, `--enfileirar`, `--enviar`. (O que sai é o que foi aprovado e enfileirado; mudar a pasta sem reabrir não muda nada na nuvem.)
 - Tirar: `--remover <id>`, depois `--enviar`.
-- Item `FALHOU` ou `PERDIDO`: leia o `erro:` do `--status`, corrija a causa e reagende com `--mover <id> <nova data>` (isso volta o item a `agendado`), depois `--enviar`.
+- Item `FALHOU` ou `PERDIDO`: leia o `erro:` do `--status`, corrija a causa e reagende com `--mover <id> <nova data>` (uma data no futuro; isso volta o item a `agendado`), depois `--enviar`.
