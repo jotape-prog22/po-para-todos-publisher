@@ -40,6 +40,7 @@ jobs:
           git archive origin/fila instagram | tar -x || echo "fila vazia"
 
       - name: Publicar o que venceu
+        timeout-minutes: 22
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_ID: ${{ vars.IG_ID }}
@@ -59,10 +60,26 @@ jobs:
             echo "sem mudanças de estado"
           else
             git commit -m "agenda: estado das publicações [skip ci]"
-            # -X theirs: numa rebase, "theirs" é o commit de estado do robô. Se a pessoa mexeu na agenda ao mesmo
-            # tempo, o robô vence o trecho em conflito: publicar em dobro não tem volta; já perder uma edição
-            # simultânea da pessoa aparece no --status e dá para refazer.
-            git pull --rebase --autostash -X theirs origin master
-            node -e 'const a=JSON.parse(require("fs").readFileSync("instagram/agenda.json","utf8")); if(!Array.isArray(a.itens)) process.exit(1)'
-            git push
+            # Até 5 tentativas: uma falha passageira (alguém enviou a agenda no mesmo segundo, erro 5xx do
+            # GitHub) não pode perder o estado — sem ele a próxima rodada publicaria em dobro.
+            # Dentro do "if", um comando que falha não derruba o passo: a falha final é explícita, depois do laço.
+            gravado=0
+            for tentativa in $(seq 1 5); do
+              # -X theirs: numa rebase, "theirs" é o commit de estado do robô. Se a pessoa mexeu na agenda ao mesmo
+              # tempo, o robô vence o trecho em conflito: publicar em dobro não tem volta; já perder uma edição
+              # simultânea da pessoa aparece no --status e dá para refazer.
+              if git pull --rebase --autostash -X theirs origin master \
+                && node -e 'const a=JSON.parse(require("fs").readFileSync("instagram/agenda.json","utf8")); if(!Array.isArray(a.itens)) process.exit(1)' \
+                && git push; then
+                gravado=1
+                break
+              fi
+              echo "tentativa $tentativa de 5 falhou — tentando de novo em 10 s"
+              git rebase --abort 2>/dev/null || true
+              sleep 10
+            done
+            if [ "$gravado" != 1 ]; then
+              echo "não consegui gravar o estado da agenda depois de 5 tentativas — risco de publicar em dobro: confira o --status"
+              exit 1
+            fi
           fi

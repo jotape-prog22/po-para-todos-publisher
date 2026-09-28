@@ -48,6 +48,28 @@ test("publicar-agenda: o estado do robô vence conflito e é validado antes do p
   assert.match(estado.run, /itens/);
 });
 
+test("publicar-agenda: guardar o estado tenta até 5 vezes e falha de forma explícita", () => {
+  const passos = ler("publicar-agenda.yml").jobs.publicar.steps;
+  const estado = passos.find((s) => /git push/.test(s.run ?? ""));
+  assert.match(estado.run, /for \w+ in \$\(seq 1 5\)|for \w+ in 1 2 3 4 5/, "laço de 5 tentativas");
+  assert.match(estado.run, /sleep 10/);
+  assert.match(estado.run, /git rebase --abort 2>\/dev\/null \|\| true/, "rebase pela metade não trava a próxima tentativa");
+  const laco = estado.run.indexOf("seq 1 5") > -1 ? estado.run.indexOf("seq 1 5") : estado.run.indexOf("1 2 3 4 5");
+  const pull = estado.run.indexOf("git pull");
+  const push = estado.run.indexOf("git push");
+  assert.ok(laco > -1 && laco < pull && pull < push, "pull e push ficam dentro do laço");
+  const saida = estado.run.lastIndexOf("exit 1");
+  assert.ok(saida > push, "exit 1 depois do laço");
+  assert.match(estado.run, /5 tentativas/);
+  assert.match(estado.run, /publicar em dobro/);
+});
+
+test("publicar-agenda: o passo de publicar tem timeout menor que o do job (o estado sempre roda)", () => {
+  const job = ler("publicar-agenda.yml").jobs.publicar;
+  const publicar = job.steps.find((s) => /publicar-agenda\.mjs/.test(s.run ?? ""));
+  assert.ok(publicar["timeout-minutes"] < job["timeout-minutes"], "timeout do passo menor que o do job");
+});
+
 test("renovar-token: semanal, usa SEGREDOS_PAT para gravar Secret e Variable", () => {
   const w = ler("renovar-token.yml");
   assert.equal(w.on.schedule.length, 1);
