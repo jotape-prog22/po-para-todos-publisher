@@ -16,7 +16,10 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, resolve, dirname, basename, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { execFileSync } from "node:child_process";
 import { precisaChecagem, carregarChecagem, ErroChecagem } from "./checagem.mjs";
+import { atualizarFila, lerPastaParaFila } from "./fila.mjs";
+import { lerTokens, criarApiGithub, ErroInstagram } from "./instagram.mjs";
 
 export const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const ARQUIVO_AGENDA = join(RAIZ, "instagram", "agenda.json");
@@ -227,4 +230,124 @@ export function statusTexto(agenda) {
   const conta = (e) => agenda.itens.filter((i) => i.estado === e).length;
   linhas.push("", `${agenda.itens.length} itens: ${conta("rascunho")} rascunho, ${conta("agendado")} agendado, ${conta("publicado")} publicado, ${conta("falhou")} falhou, ${conta("perdido")} perdido`);
   return linhas.join("\n");
+}
+
+// ---------- fila e GitHub ----------
+const COAUTOR = "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>";
+const git = (executar, ...args) => executar("git", args, { cwd: RAIZ, encoding: "utf8" });
+
+// Sobe para o branch fila a pasta de cada item aprovado com data e o marca como agendado.
+export async function enfileirar(agenda, gh, { raiz = RAIZ } = {}) {
+  const prontos = agenda.itens.filter((i) => i.estado === "rascunho" && i.aprovado);
+  const semData = prontos.filter((i) => !i.quando);
+  if (semData.length) throw new ErroAgenda(`aprovados sem data: ${semData.map((i) => i.id).join(", ")} — rode: node scripts/agenda.mjs --distribuir AAAA-MM-DD`);
+  if (!prontos.length) return [];
+  for (const i of prontos) verificarPasta(resolve(raiz, i.pasta), i.formato); // a pasta pode ter mudado depois da aprovação
+  const pastas = [...new Set(prontos.map((i) => i.pasta))];
+  await atualizarFila(gh, {}, { subir: pastas.map((p) => ({ pasta: p, arquivos: lerPastaParaFila(resolve(raiz, p)) })) });
+  for (const i of prontos) i.estado = "agendado";
+  return prontos;
+}
+
+export function atualizarAgenda({ executar = execFileSync } = {}) {
+  git(executar, "pull", "--rebase", "--autostash");
+}
+
+// Manda a agenda para o GitHub, onde o workflow a lê. Não mexe em nada além dos dois arquivos da agenda.
+export function enviarAgenda({ executar = execFileSync } = {}) {
+  atualizarAgenda({ executar });
+  git(executar, "add", "instagram/agenda.json", "instagram/agenda-modelo.json");
+  let mudou = false;
+  try { git(executar, "diff", "--cached", "--quiet"); } catch { mudou = true; }
+  if (!mudou) return false;
+  git(executar, "commit", "-m", "agenda: atualiza a fila de publicações", "-m", COAUTOR);
+  git(executar, "push");
+  return true;
+}
+
+// Copia os tokens do Mac para os Secrets/Variables do repositório, pelo CLI `gh`. O token vai pela entrada padrão.
+export function configurarNuvem(tokens, { repo, executar = execFileSync } = {}) {
+  const ig = tokens.instagram;
+  if (!ig) throw new ErroAgenda(`sem token do Instagram guardado — rode antes: node scripts/instagram.mjs --token "<token>"`);
+  executar("gh", ["secret", "set", "IG_ACCESS_TOKEN", "--repo", repo], { input: ig.access_token, encoding: "utf8" });
+  for (const [nome, valor] of [["IG_ID", ig.ig_id], ["IG_USUARIO", ig.usuario], ["IG_EXPIRA_EM", ig.expira_em]]) {
+    executar("gh", ["variable", "set", nome, "--body", String(valor), "--repo", repo], { encoding: "utf8" });
+  }
+}
+
+// ---------- CLI ----------
+const USO = `uso:
+  node scripts/agenda.mjs --atualizar
+  node scripts/agenda.mjs --adicionar instagram/<pasta>
+  node scripts/agenda.mjs --distribuir AAAA-MM-DD
+  node scripts/agenda.mjs --status
+  node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM
+  node scripts/agenda.mjs --reabrir <id>
+  node scripts/agenda.mjs --remover <id>
+  node scripts/agenda.mjs --enfileirar
+  node scripts/agenda.mjs --enviar
+  node scripts/agenda.mjs --configurar-nuvem`;
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const [opcao, a, b] = process.argv.slice(2);
+  const canal = () => JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
+  const ghLocal = () => {
+    const tokens = lerTokens();
+    if (!tokens.github_token) throw new ErroAgenda(`sem token do GitHub — rode: node scripts/instagram.mjs --token-github "<token>"`);
+    return criarApiGithub(tokens.github_token, canal().github);
+  };
+  try {
+    if (opcao === "--atualizar") {
+      atualizarAgenda();
+      console.log("agenda atualizada a partir do GitHub");
+    } else if (opcao === "--adicionar" && a) {
+      const agenda = lerAgenda();
+      const r = adicionar(agenda, resolve(a));
+      gravarAgenda(agenda);
+      for (const i of r.novos) console.log(`adicionado: ${i.id}`);
+      for (const av of r.avisos) console.log(`aviso: ${av}`);
+      if (!r.novos.length && !r.erros.length) console.log("nada novo: tudo o que há nessa pasta já está na agenda");
+      if (r.erros.length) { for (const e of r.erros) console.error(`não adicionei — ${e}`); process.exit(1); }
+    } else if (opcao === "--distribuir" && a) {
+      const agenda = lerAgenda();
+      const dados = distribuir(agenda, lerModelo(), a);
+      gravarAgenda(agenda);
+      console.log(`${dados.length} item(ns) ganharam data. Veja: node scripts/agenda.mjs --status`);
+    } else if (opcao === "--status") {
+      console.log(statusTexto(lerAgenda()));
+    } else if (opcao === "--mover" && a && b) {
+      const agenda = lerAgenda();
+      const i = mover(agenda, a, b, { fuso: lerModelo().fuso });
+      gravarAgenda(agenda);
+      console.log(`${i.id}: ${i.quando} (${i.estado})`);
+    } else if (opcao === "--reabrir" && a) {
+      const agenda = lerAgenda();
+      const i = reabrir(agenda, a);
+      gravarAgenda(agenda);
+      console.log(`${i.id} voltou a rascunho — ajuste a pasta, rode a revisão e --enfileirar de novo`);
+    } else if (opcao === "--remover" && a) {
+      const agenda = lerAgenda();
+      const i = remover(agenda, a);
+      gravarAgenda(agenda);
+      const liberadas = i.estado === "agendado" || i.estado === "falhou" || i.estado === "perdido" ? pastasLiberadas(agenda, [i.pasta]) : [];
+      if (liberadas.length) await atualizarFila(ghLocal(), {}, { tirar: liberadas });
+      console.log(`${i.id} saiu da agenda`);
+    } else if (opcao === "--enfileirar") {
+      const agenda = lerAgenda();
+      const feitos = await enfileirar(agenda, ghLocal());
+      gravarAgenda(agenda);
+      console.log(feitos.length ? `${feitos.length} item(ns) agendado(s) e com a mídia no branch fila. Agora envie: node scripts/agenda.mjs --enviar` : "nada para enfileirar: precisa estar aprovado (revisão) e ter data (--distribuir)");
+    } else if (opcao === "--enviar") {
+      console.log(enviarAgenda() ? "agenda enviada ao GitHub" : "nada mudou desde o último envio");
+    } else if (opcao === "--configurar-nuvem") {
+      configurarNuvem(lerTokens(), { repo: canal().github });
+      console.log("tokens gravados nos Secrets/Variables do GitHub. Falta só o SEGREDOS_PAT (README, \"Publicar na nuvem\", passo 2).");
+    } else {
+      console.error(USO);
+      process.exit(1);
+    }
+  } catch (e) {
+    if (e instanceof ErroAgenda || e instanceof ErroInstagram) { console.error(`erro: ${e.message}`); process.exit(1); }
+    throw e;
+  }
 }

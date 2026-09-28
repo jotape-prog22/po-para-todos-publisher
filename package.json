@@ -21,6 +21,8 @@
     "citacao": "node scripts/citacao.mjs",
     "reel": "node design-system/scripts/gerar-reel.mjs",
     "corte": "node scripts/corte.mjs",
+    "agenda": "node scripts/agenda.mjs",
+    "revisar": "node scripts/revisar.mjs",
     "calibrar": "node design-system/scripts/calibrar-instagram.mjs"
   },
   "license": "MIT",

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { RAIZ, ErroAgenda, lerAgenda, gravarAgenda, formatosDaPasta, verificarPasta, pastaRelativa, adicionar, lerModelo, validarModelo, distribuir, mover, devidos, passouDaJanela, pastasLiberadas, reabrir, remover, statusTexto, ARQUIVO_MODELO } from "../scripts/agenda.mjs";
+import { RAIZ, ErroAgenda, lerAgenda, gravarAgenda, formatosDaPasta, verificarPasta, pastaRelativa, adicionar, lerModelo, validarModelo, distribuir, mover, devidos, passouDaJanela, pastasLiberadas, reabrir, remover, statusTexto, ARQUIVO_MODELO, enfileirar, enviarAgenda, atualizarAgenda, configurarNuvem } from "../scripts/agenda.mjs";
 import { raizTemporaria, criarPastaPost, criarPastaReel, criarPastaStories, item } from "./ajudas-agenda.mjs";
 
 const erro = (re) => (e) => e instanceof ErroAgenda && re.test(e.message);
@@ -219,4 +219,87 @@ test("statusTexto: ordena por data e destaca falta de aprovação, falha e ajust
   assert.match(t, /ajuste: trocar o título do card 2/);
   assert.match(t, /sem data/);
   assert.match(statusTexto({ itens: [] }), /vazia/);
+});
+
+function ghFila() {
+  const chamadas = [];
+  let n = 0;
+  return {
+    chamadas,
+    async status() { return 404; },
+    async pedir(metodo, caminho, corpo) {
+      chamadas.push({ metodo, caminho, corpo });
+      if (caminho === "/git/blobs") return { sha: `b${++n}` };
+      if (caminho === "/git/trees") return { sha: "t" };
+      if (caminho === "/git/commits") return { sha: "c" };
+      return {};
+    },
+  };
+}
+
+test("enfileirar: sobe a pasta dos aprovados com data e muda o estado para agendado; ignora quem falta aprovar", async () => {
+  const raiz = raizTemporaria();
+  criarPastaPost(raiz, "a");
+  criarPastaPost(raiz, "b");
+  const agenda = { itens: [
+    item({ id: "a:post", pasta: "instagram/a", aprovado: true, quando: "2026-10-06T12:00:00-03:00" }),
+    item({ id: "b:post", pasta: "instagram/b", aprovado: false, quando: "2026-10-08T12:00:00-03:00" }),
+  ] };
+  const gh = ghFila();
+  const feitos = await enfileirar(agenda, gh, { raiz });
+  assert.deepEqual(feitos.map((i) => i.id), ["a:post"]);
+  assert.equal(agenda.itens[0].estado, "agendado");
+  assert.equal(agenda.itens[1].estado, "rascunho");
+  const arvore = gh.chamadas.find((c) => c.caminho === "/git/trees").corpo.tree.map((e) => e.path);
+  assert.ok(arvore.includes("instagram/a/card-01.png") && !arvore.some((p) => p.startsWith("instagram/b/")));
+});
+
+test("enfileirar: aprovado sem data pede --distribuir; pasta quebrada depois da aprovação é recusada", async () => {
+  const raiz = raizTemporaria();
+  criarPastaPost(raiz, "a");
+  const semData = { itens: [item({ id: "a:post", pasta: "instagram/a", aprovado: true })] };
+  await assert.rejects(enfileirar(semData, ghFila(), { raiz }), erro(/--distribuir/));
+  const quebrada = { itens: [item({ id: "z:post", pasta: "instagram/z", aprovado: true, quando: "2026-10-06T12:00:00-03:00" })] };
+  await assert.rejects(enfileirar(quebrada, ghFila(), { raiz }), (e) => e instanceof Error);
+  assert.equal(quebrada.itens[0].estado, "rascunho");
+});
+
+test("enviarAgenda: puxa, adiciona só os arquivos da agenda, commita e empurra", () => {
+  const cmds = [];
+  const executar = (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return cmd === "git" && args[0] === "diff" ? (() => { throw new Error("mudou"); })() : ""; };
+  enviarAgenda({ executar });
+  assert.deepEqual(cmds, [
+    "git pull --rebase --autostash",
+    "git add instagram/agenda.json instagram/agenda-modelo.json",
+    "git diff --cached --quiet",
+    "git commit -m agenda: atualiza a fila de publicações -m Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>",
+    "git push",
+  ]);
+});
+
+test("enviarAgenda: sem mudanças não cria commit", () => {
+  const cmds = [];
+  enviarAgenda({ executar: (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return ""; } });
+  assert.ok(!cmds.some((c) => c.startsWith("git commit")));
+  assert.ok(!cmds.some((c) => c === "git push"));
+});
+
+test("atualizarAgenda faz git pull --rebase --autostash", () => {
+  const cmds = [];
+  atualizarAgenda({ executar: (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return ""; } });
+  assert.deepEqual(cmds, ["git pull --rebase --autostash"]);
+});
+
+test("configurarNuvem: o token vai pela entrada padrão (não aparece na linha de comando); o resto vira Variable", () => {
+  const chamadas = [];
+  const executar = (cmd, args, opcoes = {}) => { chamadas.push({ cmd, args, input: opcoes.input }); return ""; };
+  const tokens = { instagram: { access_token: "SEGREDO", usuario: "po", ig_id: "178", expira_em: "2026-11-01T00:00:00.000Z" } };
+  configurarNuvem(tokens, { repo: "dono/repo", executar });
+  const segredo = chamadas.find((c) => c.args.includes("IG_ACCESS_TOKEN"));
+  assert.deepEqual(segredo.args, ["secret", "set", "IG_ACCESS_TOKEN", "--repo", "dono/repo"]);
+  assert.equal(segredo.input, "SEGREDO");
+  assert.ok(!chamadas.some((c) => c.args.join(" ").includes("SEGREDO")));
+  const vars = chamadas.filter((c) => c.args[0] === "variable").map((c) => c.args[2]);
+  assert.deepEqual(vars, ["IG_ID", "IG_USUARIO", "IG_EXPIRA_EM"]);
+  assert.throws(() => configurarNuvem({}, { repo: "dono/repo", executar }), erro(/--token/));
 });
