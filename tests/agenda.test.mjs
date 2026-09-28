@@ -264,30 +264,77 @@ test("enfileirar: aprovado sem data pede --distribuir; pasta quebrada depois da 
   assert.equal(quebrada.itens[0].estado, "rascunho");
 });
 
-test("enviarAgenda: puxa, adiciona só os arquivos da agenda, commita e empurra", () => {
+const ARQ = "instagram/agenda.json instagram/agenda-modelo.json";
+const CONFLITOS = "git diff --name-only --diff-filter=U";
+// Executor falso: registra os comandos; `falhas` decide quais lançam (por prefixo do comando) e `saidas` o que devolvem.
+function executorFalso({ falhas = {}, saidas = {} } = {}) {
   const cmds = [];
-  const executar = (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return cmd === "git" && args[0] === "diff" ? (() => { throw new Error("mudou"); })() : ""; };
-  enviarAgenda({ executar });
+  const executar = (cmd, args) => {
+    const linha = [cmd, ...args].join(" ");
+    cmds.push(linha);
+    const chave = Object.keys(falhas).find((k) => linha.startsWith(k));
+    if (chave) throw Object.assign(new Error(falhas[chave].message ?? "falhou"), falhas[chave]);
+    const saida = Object.keys(saidas).find((k) => linha.startsWith(k));
+    return saida ? saidas[saida] : "";
+  };
+  return { cmds, executar };
+}
+const agendaValida = () => {
+  const arquivo = join(mkdtempSync(join(tmpdir(), "ag-")), "agenda.json");
+  gravarAgenda({ itens: [] }, arquivo);
+  return arquivo;
+};
+
+test("enviarAgenda: puxa, adiciona só os arquivos da agenda, commita e empurra (só esses arquivos)", () => {
+  const { cmds, executar } = executorFalso({ falhas: { "git diff --cached": { status: 1 } } });
+  assert.equal(enviarAgenda({ executar, arquivo: agendaValida() }), true);
   assert.deepEqual(cmds, [
     "git pull --rebase --autostash",
-    "git add instagram/agenda.json instagram/agenda-modelo.json",
-    "git diff --cached --quiet",
-    "git commit -m agenda: atualiza a fila de publicações -m Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>",
+    CONFLITOS,
+    `git add ${ARQ}`,
+    `git diff --cached --quiet -- ${ARQ}`,
+    `git commit -m agenda: atualiza a fila de publicações -m Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com> -- ${ARQ}`,
     "git push",
   ]);
 });
 
 test("enviarAgenda: sem mudanças não cria commit", () => {
-  const cmds = [];
-  enviarAgenda({ executar: (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return ""; } });
+  const { cmds, executar } = executorFalso();
+  assert.equal(enviarAgenda({ executar, arquivo: agendaValida() }), false);
   assert.ok(!cmds.some((c) => c.startsWith("git commit")));
   assert.ok(!cmds.some((c) => c === "git push"));
 });
 
-test("atualizarAgenda faz git pull --rebase --autostash", () => {
-  const cmds = [];
-  atualizarAgenda({ executar: (cmd, args) => { cmds.push([cmd, ...args].join(" ")); return ""; } });
-  assert.deepEqual(cmds, ["git pull --rebase --autostash"]);
+test("enviarAgenda: erro do git que não é 'há mudanças' (status ≠ 1) vira ErroAgenda, sem commit", async () => {
+  const { cmds, executar } = executorFalso({ falhas: { "git diff --cached": { status: 128, message: "fatal: quebrou" } } });
+  assert.throws(() => enviarAgenda({ executar, arquivo: agendaValida() }), erro(/quebrou/));
+  assert.ok(!cmds.some((c) => c.startsWith("git commit")));
+});
+
+test("enviarAgenda: push recusado vira ErroAgenda em português que manda rodar --atualizar", () => {
+  const { executar } = executorFalso({ falhas: { "git diff --cached": { status: 1 }, "git push": { message: "rejected\nmais linhas" } } });
+  assert.throws(() => enviarAgenda({ executar, arquivo: agendaValida() }), (e) => e instanceof ErroAgenda && /--atualizar/.test(e.message) && /rejected/.test(e.message) && !/mais linhas/.test(e.message));
+});
+
+test("atualizarAgenda: pull com arquivo em conflito é recusado e nada é commitado nem empurrado", () => {
+  const { cmds, executar } = executorFalso({ saidas: { [CONFLITOS]: "instagram/agenda.json\n" } });
+  assert.throws(() => enviarAgenda({ executar, arquivo: agendaValida() }), erro(/chocaram|conflito/));
+  assert.ok(!cmds.some((c) => c.startsWith("git add") || c.startsWith("git commit") || c === "git push"));
+});
+
+test("atualizarAgenda: agenda corrompida depois do pull é recusada", () => {
+  const arquivo = join(mkdtempSync(join(tmpdir(), "ag-")), "agenda.json");
+  writeFileSync(arquivo, "<<<<<<< Updated upstream\n{}");
+  const { cmds, executar } = executorFalso();
+  assert.throws(() => enviarAgenda({ executar, arquivo }), erro(/corrompid/));
+  assert.ok(!cmds.some((c) => c.startsWith("git add")));
+});
+
+test("atualizarAgenda: pull que falha vira ErroAgenda; sem conflito faz pull e confere conflitos", () => {
+  assert.throws(() => atualizarAgenda({ executar: executorFalso({ falhas: { "git pull": { message: "sem rede" } } }).executar, arquivo: agendaValida() }), erro(/sem rede.*--atualizar/));
+  const { cmds, executar } = executorFalso();
+  atualizarAgenda({ executar, arquivo: agendaValida() });
+  assert.deepEqual(cmds, ["git pull --rebase --autostash", CONFLITOS]);
 });
 
 test("configurarNuvem: o token vai pela entrada padrão (não aparece na linha de comando); o resto vira Variable", () => {
@@ -302,4 +349,10 @@ test("configurarNuvem: o token vai pela entrada padrão (não aparece na linha d
   const vars = chamadas.filter((c) => c.args[0] === "variable").map((c) => c.args[2]);
   assert.deepEqual(vars, ["IG_ID", "IG_USUARIO", "IG_EXPIRA_EM"]);
   assert.throws(() => configurarNuvem({}, { repo: "dono/repo", executar }), erro(/--token/));
+});
+
+test("configurarNuvem: gh ausente (ENOENT) vira ErroAgenda com o próximo passo", () => {
+  const executar = () => { throw Object.assign(new Error("spawn gh ENOENT"), { code: "ENOENT" }); };
+  const tokens = { instagram: { access_token: "x", usuario: "po", ig_id: "1", expira_em: "2026-11-01" } };
+  assert.throws(() => configurarNuvem(tokens, { repo: "dono/repo", executar }), erro(/gh auth login/));
 });

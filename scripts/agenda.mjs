@@ -234,7 +234,20 @@ export function statusTexto(agenda) {
 
 // ---------- fila e GitHub ----------
 const COAUTOR = "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>";
-const git = (executar, ...args) => executar("git", args, { cwd: RAIZ, encoding: "utf8" });
+const primeiraLinha = (e) => String(e?.stderr || e?.message || e).trim().split("\n")[0];
+
+// Roda um comando git. Falha vira ErroAgenda em português (nunca o rastro cru do Node).
+// `rede`: o comando fala com o GitHub (pull/push), então o próximo passo é atualizar e tentar de novo.
+function git(executar, args, { rede = false } = {}) {
+  try {
+    return executar("git", args, { cwd: RAIZ, encoding: "utf8" });
+  } catch (e) {
+    if (e instanceof ErroAgenda) throw e;
+    throw new ErroAgenda(rede
+      ? `não consegui falar com o GitHub (${primeiraLinha(e)}) — rode node scripts/agenda.mjs --atualizar e tente de novo`
+      : `o git falhou em "git ${args[0]}" (${primeiraLinha(e)}) — nada foi enviado; tente de novo`);
+  }
+}
 
 // Sobe para o branch fila a pasta de cada item aprovado com data e o marca como agendado.
 export async function enfileirar(agenda, gh, { raiz = RAIZ } = {}) {
@@ -249,19 +262,29 @@ export async function enfileirar(agenda, gh, { raiz = RAIZ } = {}) {
   return prontos;
 }
 
-export function atualizarAgenda({ executar = execFileSync } = {}) {
-  git(executar, "pull", "--rebase", "--autostash");
+// Traz do GitHub o estado mais novo da agenda. Recusa se as duas versões se chocaram ou se o arquivo ficou quebrado.
+export function atualizarAgenda({ executar = execFileSync, arquivo = ARQUIVO_AGENDA } = {}) {
+  git(executar, ["pull", "--rebase", "--autostash"], { rede: true });
+  const conflitos = String(git(executar, ["diff", "--name-only", "--diff-filter=U"]) ?? "").trim();
+  if (conflitos) throw new ErroAgenda(`a agenda mudou no GitHub e no seu computador ao mesmo tempo e as duas versões se chocaram em ${conflitos.split("\n").join(", ")} — não envie assim: peça ao Claude "resolve o conflito da agenda"`);
+  lerAgenda(arquivo); // lança ErroAgenda amigável se o arquivo não for mais um JSON válido
 }
 
 // Manda a agenda para o GitHub, onde o workflow a lê. Não mexe em nada além dos dois arquivos da agenda.
-export function enviarAgenda({ executar = execFileSync } = {}) {
-  atualizarAgenda({ executar });
-  git(executar, "add", "instagram/agenda.json", "instagram/agenda-modelo.json");
+const ARQUIVOS_AGENDA = ["instagram/agenda.json", "instagram/agenda-modelo.json"];
+export function enviarAgenda({ executar = execFileSync, arquivo = ARQUIVO_AGENDA } = {}) {
+  atualizarAgenda({ executar, arquivo });
+  git(executar, ["add", ...ARQUIVOS_AGENDA]);
   let mudou = false;
-  try { git(executar, "diff", "--cached", "--quiet"); } catch { mudou = true; }
+  try {
+    executar("git", ["diff", "--cached", "--quiet", "--", ...ARQUIVOS_AGENDA], { cwd: RAIZ, encoding: "utf8" });
+  } catch (e) {
+    if (e?.status !== 1) throw new ErroAgenda(`o git falhou ao conferir o que mudou (${primeiraLinha(e)}) — nada foi enviado; tente de novo`);
+    mudou = true;
+  }
   if (!mudou) return false;
-  git(executar, "commit", "-m", "agenda: atualiza a fila de publicações", "-m", COAUTOR);
-  git(executar, "push");
+  git(executar, ["commit", "-m", "agenda: atualiza a fila de publicações", "-m", COAUTOR, "--", ...ARQUIVOS_AGENDA]);
+  git(executar, ["push"], { rede: true });
   return true;
 }
 
@@ -269,9 +292,17 @@ export function enviarAgenda({ executar = execFileSync } = {}) {
 export function configurarNuvem(tokens, { repo, executar = execFileSync } = {}) {
   const ig = tokens.instagram;
   if (!ig) throw new ErroAgenda(`sem token do Instagram guardado — rode antes: node scripts/instagram.mjs --token "<token>"`);
-  executar("gh", ["secret", "set", "IG_ACCESS_TOKEN", "--repo", repo], { input: ig.access_token, encoding: "utf8" });
+  const gh = (args, opcoes) => {
+    try {
+      executar("gh", args, { encoding: "utf8", ...opcoes });
+    } catch (e) {
+      if (e?.code === "ENOENT") throw new ErroAgenda("falta o programa gh — instale (README, \"Publicar na nuvem\") e rode: gh auth login");
+      throw new ErroAgenda(`o gh não conseguiu gravar no GitHub (${primeiraLinha(e)}) — confira com: gh auth login e rode de novo`);
+    }
+  };
+  gh(["secret", "set", "IG_ACCESS_TOKEN", "--repo", repo], { input: ig.access_token });
   for (const [nome, valor] of [["IG_ID", ig.ig_id], ["IG_USUARIO", ig.usuario], ["IG_EXPIRA_EM", ig.expira_em]]) {
-    executar("gh", ["variable", "set", nome, "--body", String(valor), "--repo", repo], { encoding: "utf8" });
+    gh(["variable", "set", nome, "--body", String(valor), "--repo", repo]);
   }
 }
 
