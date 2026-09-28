@@ -1,3 +1,5 @@
 # Tokens do Instagram e do GitHub ficam em `~/.po-para-todos/instagram.json`
 
 A spec previa variável de ambiente `INSTAGRAM_ACCESS_TOKEN`. Ficou arquivo, gravado por `node scripts/instagram.mjs --token …` e `--token-github …`: (1) o esquema real do YouTube também é um arquivo em pasta oculta (`~/.youtube-mcp/`), não variável; (2) a renovação automática do token de 60 dias precisa reescrever o token em algum lugar, e um arquivo do próprio script é o único lugar que ele controla; (3) variável de ambiente é difícil para quem não programa, sobretudo no Windows. O script renova quando faltam menos de 30 dias e avisa quando a renovação falha. O arquivo fica fora do repositório e com permissão só do dono.
+
+Ver também: ADR 0010 — na publicação agendada a mídia aprovada espera no branch `fila` e os tokens vêm de Secrets do GitHub.

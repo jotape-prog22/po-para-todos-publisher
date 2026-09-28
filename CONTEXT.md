@@ -57,7 +57,7 @@ _Avoid_: postar, lançar
 _Avoid_: configuração, settings
 
 **Post**:
-Uma publicação no Instagram, representada pela pasta `instagram/<AAAA-MM-DD>-<slug>/` (a data é a de publicação prevista: a pasta é um calendário). Tipos do primeiro corte: `artigo` (carrossel), `aviso` (card único), `curiosidade` (card "você sabia?") e `citacao` (trecho de vídeo/post).
+Uma publicação no Instagram, representada pela pasta `instagram/<AAAA-MM-DD>-<slug>/` (a data no nome é a de criação; quando sai é decidido pela Agenda). Tipos do primeiro corte: `artigo` (carrossel), `aviso` (card único), `curiosidade` (card "você sabia?") e `citacao` (trecho de vídeo/post).
 
 _Avoid_: publicação (é o registro do upload), postagem
 
@@ -108,3 +108,19 @@ _Avoid_: combo, lote
 **Mídia temporária**:
 Branch `midia` do repositório no GitHub: recebe os cards em JPEG num commit órfão só enquanto a Meta os baixa e volta a ficar vazio ao final de cada publicação.
 _Avoid_: CDN, hospedagem
+
+**Agenda**:
+`instagram/agenda.json`: a lista de conteúdos do Instagram que esperam a hora de sair. Um item por pasta e formato (`post`, `stories` ou `reel`), com data e hora (`quando`), aprovação e estado (`rascunho`, `agendado`, `publicado`, `falhou`, `perdido`). A data da agenda manda; o nome da pasta não é mais o calendário.
+_Avoid_: calendário, cronograma
+
+**Fila**:
+Branch `fila` do repositório: guarda os arquivos aprovados dos itens `agendado` (cards, MP4, legendas, Checagem) até o workflow publicar. Cada pasta sai dela quando nenhum item da pasta está mais `agendado`, `falhou` ou `perdido`.
+_Avoid_: staging, buffer
+
+**Semana-modelo**:
+`instagram/agenda-modelo.json`: que formato sai em cada dia da semana e a que horas (padrão: reels seg/qua/sex, posts ter/qui/dom, quiz de stories no sábado). `--distribuir` preenche a agenda a partir dela.
+_Avoid_: grade, template
+
+**Revisão**:
+Página local (`npm run revisar`) que mostra todos os itens em rascunho, com mídia, legenda e resumo da Checagem, para a pessoa aprovar, pedir ajuste ou tirar da agenda de uma vez.
+_Avoid_: lote (já é o pacote)

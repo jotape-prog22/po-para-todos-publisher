@@ -1,0 +1,9 @@
+# Publicações agendadas rodam no GitHub Actions, com a fila num branch `fila` e os tokens em Secrets
+
+A API do Instagram não agenda: publica na hora. Para deixar dezenas de conteúdos prontos e saírem um por dia sem o Mac ligado, um workflow do GitHub Actions (cron de 30 min) lê `instagram/agenda.json`, baixa a mídia aprovada do branch `fila` e chama as mesmas funções de `scripts/instagram.mjs` que a publicação manual usa. Alternativas descartadas: agendador local (launchd/cron) — depende do Mac ligado; ferramenta de terceiros (Meta Business Suite, Buffer) — tira a Checagem e o controle do pipeline; regerar a mídia na nuvem — fontes e render mudam entre Mac e Linux (o que a pessoa aprovou não seria o que sai) e o `yt-dlp` costuma ser bloqueado em servidores.
+
+Consequências que surpreendem quem só lê o código:
+- O repositório é público, então o conteúdo aprovado fica visível no branch `fila` antes da hora. Aceito: é conteúdo educativo que vai ser público de qualquer jeito. O branch é um commit órfão reescrito com força (sem histórico) e perde a pasta de cada item quando ele sai.
+- Os tokens do ADR 0006 continuam em `~/.po-para-todos/instagram.json` no Mac, mas na nuvem vêm de Secrets/Variables do repositório (`IG_ACCESS_TOKEN`, `IG_ID`, `IG_USUARIO`, `IG_EXPIRA_EM`; o token do GitHub é o `GITHUB_TOKEN` do próprio workflow). Um workflow semanal renova o token de 60 dias e regrava o Secret, usando um token pessoal do GitHub (`SEGREDOS_PAT`) com permissão de escrever Secrets e Variables.
+- O cron do GitHub pode atrasar minutos; a janela de tolerância é de 6 h, depois disso o item vira `perdido` e o workflow falha (e-mail do GitHub) em vez de publicar fora de hora.
+- A aprovação é em bloco (`scripts/revisar.mjs`), item a item registrada em `agenda.json`; o agendador recusa item sem `aprovado: true`. A regra do ADR 0009 vale na hora de adicionar à agenda e na hora de publicar.
