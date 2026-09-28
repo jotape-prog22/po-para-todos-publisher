@@ -12,7 +12,7 @@ import { spawn } from "node:child_process";
 import { join, extname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { ErroAgenda, lerAgenda, gravarAgenda, ARQUIVO_AGENDA, RAIZ } from "./agenda.mjs";
-import { carregarChecagem, resumoChecagem } from "./checagem.mjs";
+import { carregarChecagem, resumoChecagem, precisaChecagem, ErroChecagem } from "./checagem.mjs";
 
 export const escapar = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
@@ -43,6 +43,33 @@ export function midiaDoItem(item, raiz = RAIZ) {
 
 const lerTexto = (arquivo) => (existsSync(arquivo) ? readFileSync(arquivo, "utf8").trim() : "");
 
+// Lê um JSON da pasta; sem o arquivo, devolve {}. JSON quebrado é erro de verdade e sobe.
+const lerJson = (arquivo) => (existsSync(arquivo) ? JSON.parse(readFileSync(arquivo, "utf8")) : {});
+
+// Este conteúdo exige checagem.json? Mesmas regras da agenda (ADR 0009): post artigo/curiosidade,
+// stories sempre, reel de cenas.
+function exigeChecagem(item, pasta) {
+  if (item.formato === "stories") return true;
+  if (item.formato === "post") return precisaChecagem(lerJson(join(pasta, "cards.json")).tipo);
+  return lerJson(join(pasta, "reel.json")).tipo === "cenas";
+}
+
+// Três casos: Checagem válida (resumo), checagem.json existente mas inválido, ou ausente (exigida ou não).
+function textoDaChecagem(item, pasta) {
+  if (existsSync(join(pasta, "checagem.json"))) {
+    try {
+      return resumoChecagem(carregarChecagem(pasta));
+    } catch (e) {
+      if (e instanceof ErroChecagem) return `⚠ ${e.message}`;
+      if (e instanceof SyntaxError) return `⚠ checagem.json inválido: não é um JSON válido (${e.message})`;
+      throw e;
+    }
+  }
+  return exigeChecagem(item, pasta)
+    ? "⚠ Falta checagem.json — este conteúdo exige Checagem (ADR 0009)"
+    : "Este tipo não exige Checagem.";
+}
+
 export function fichasDaAgenda(agenda, raiz = RAIZ) {
   const ordem = (i) => (i.quando ? Date.parse(i.quando) : Infinity);
   return agenda.itens
@@ -50,8 +77,7 @@ export function fichasDaAgenda(agenda, raiz = RAIZ) {
     .sort((a, b) => ordem(a) - ordem(b))
     .map((i) => {
       const pasta = join(raiz, i.pasta);
-      let checagem;
-      try { checagem = resumoChecagem(carregarChecagem(pasta)); } catch { checagem = "Sem checagem.json — este tipo não exige Checagem, ou ela ainda não foi feita."; }
+      const checagem = textoDaChecagem(i, pasta);
       const legenda = i.formato === "reel" ? lerTexto(join(pasta, "reel-legenda.txt")) : i.formato === "post" ? lerTexto(join(pasta, "legenda.txt")) : lerTexto(join(pasta, "stories.md"));
       return { id: i.id, pasta: i.pasta, formato: i.formato, quando: i.quando, aprovado: i.aprovado, ajuste: i.ajuste, midia: midiaDoItem(i, raiz), legenda, checagem };
     });
@@ -127,6 +153,43 @@ ${cartoes || `<p class="vazio">Nada para revisar. Adicione conteúdos com: node 
 // ---------- servidor ----------
 const TIPOS = { ".png": "image/png", ".jpg": "image/jpeg", ".mp4": "video/mp4" };
 
+// Um único intervalo "bytes=início-fim", "bytes=início-" ou "bytes=-N". Devolve {inicio, fim}, ou null se inválido.
+export function lerIntervalo(cabecalho, total) {
+  const m = /^bytes=(\d*)-(\d*)$/.exec(String(cabecalho).trim());
+  if (!m || (m[1] === "" && m[2] === "")) return null;
+  let inicio, fim;
+  if (m[1] === "") { // últimos N bytes
+    const n = Number(m[2]);
+    if (n === 0) return null;
+    inicio = Math.max(0, total - n); fim = total - 1;
+  } else {
+    inicio = Number(m[1]);
+    fim = m[2] === "" ? total - 1 : Math.min(Number(m[2]), total - 1);
+  }
+  if (inicio >= total || inicio > fim) return null;
+  return { inicio, fim };
+}
+
+// Serve o arquivo inteiro (200) ou um intervalo (206). O Safari só toca <video> se houver suporte a Range.
+function enviarArquivo(req, res, caminho, tipo) {
+  const dados = readFileSync(caminho);
+  const total = dados.length;
+  const base = { "content-type": tipo, "accept-ranges": "bytes" };
+  const pedido = req.headers.range;
+  if (!pedido) {
+    res.writeHead(200, { ...base, "content-length": total });
+    return res.end(dados);
+  }
+  const faixa = lerIntervalo(pedido, total);
+  if (!faixa) {
+    res.writeHead(416, { ...base, "content-range": `bytes */${total}` });
+    return res.end();
+  }
+  const parte = dados.subarray(faixa.inicio, faixa.fim + 1);
+  res.writeHead(206, { ...base, "content-range": `bytes ${faixa.inicio}-${faixa.fim}/${total}`, "content-length": parte.length });
+  return res.end(parte);
+}
+
 export function criarServidorRevisao({ arquivoAgenda = ARQUIVO_AGENDA, raiz = RAIZ } = {}) {
   return createServer(async (req, res) => {
     try {
@@ -141,8 +204,7 @@ export function criarServidorRevisao({ arquivoAgenda = ARQUIVO_AGENDA, raiz = RA
         const item = lerAgenda(arquivoAgenda).itens.find((i) => i.id === id);
         const permitido = item && /^[\w][\w.-]*$/.test(nome) && midiaDoItem(item, raiz).some((x) => x.nome === nome);
         if (!permitido) { res.writeHead(404); return res.end(); }
-        res.writeHead(200, { "content-type": TIPOS[extname(nome)] ?? "application/octet-stream" });
-        return res.end(readFileSync(join(raiz, item.pasta, nome)));
+        return enviarArquivo(req, res, join(raiz, item.pasta, nome), TIPOS[extname(nome)] ?? "application/octet-stream");
       }
       if (req.method === "POST" && url.pathname === "/api/decidir") {
         let corpo = "";
