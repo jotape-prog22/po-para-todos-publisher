@@ -1,0 +1,12 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    { "tipo": "capa", "titulo": "IMPROVING ACCESS TO VOTING WITH OPTIMIZED MATCHINGS", "autores": "Guillermo Durán, Mauro Giormenti, Mario Guajardo, Pablo M. Pinto, Pablo A. Rey, Nicolás E. Stier-Moses", "onde": "Electoral Studies, 2018" },
+    { "tipo": "ideia", "titulo": "O custo de votar", "texto": "Votar custa tempo: ir a pé até o local, esperar na fila e voltar. Os autores somam as duas partes num tempo total. Para a fila, mediram chegadas e votos nas eleições de 2013 e simularam: com 400 eleitores por mesa, a espera média vai a uns 16 min; com 500, a cerca de uma hora." },
+    { "tipo": "ideia", "titulo": "A regra alfabética", "texto": "Na Argentina, os eleitores de cada circuito eleitoral são ordenados pelo sobrenome e distribuídos nas mesas nessa ordem, até 350 por mesa. A regra é simples e intuitiva, mas ignora onde cada pessoa mora: na prática, é uma designação ao acaso." },
+    { "tipo": "ideia", "titulo": "O modelo", "texto": "Cada grupo de eleitores vai para uma escola. O objetivo é minimizar a soma de caminhada e fila. Restrições: todos são designados, cada escola tem capacidade e ninguém fica mais longe do que já está. É um problema de designação, escrito como programa linear com variáveis inteiras." },
+    { "tipo": "ideia", "titulo": "O resultado", "texto": "Com dados reais da Comuna 11 de Buenos Aires, o tempo médio para votar era de 38 min 19 s. A designação otimizada economiza 10 min 40 s por eleitor, em média: mais de 27%. Por divisão eleitoral, o ganho vai de 5 a mais de 15 minutos." },
+    { "tipo": "ideia", "titulo": "Por que importa", "texto": "Distância e fila afastam eleitores das urnas, e esse custo não é igual para todos. Segundo os autores, a mudança na Argentina não exigiria lei nova: bastaria uma decisão administrativa de abandonar a ordem alfabética." },
+    { "tipo": "fim", "texto": "DURÁN, G. et al. Improving access to voting with optimized matchings. Electoral Studies, v. 51, p. 38–48, 2018.", "link": "doi.org/10.1016/j.electstud.2017.11.004" }
+  ]
+}

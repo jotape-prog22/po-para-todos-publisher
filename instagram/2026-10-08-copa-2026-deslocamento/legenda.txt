@@ -1,0 +1,17 @@
+Dava para a Copa de 2026 ter metade das viagens? Um artigo de 2026 refez a tabela da fase de grupos com programação inteira.
+
+Três pesquisadores da Texas Tech University (EUA) mantiveram o molde da tabela da FIFA (datas, jogos por dia, descanso) e deixaram o modelo escolher estádio e dia de cada jogo. A melhor tabela que acharam soma 30.860,7 milhas de viagem contra 61.324,3 da oficial, e as trocas de fuso entre rodadas caem de 24 para 4.
+
+O detalhe que importa: depois de 4 horas de solver, o gap ainda era de 30%. A tabela é viável, mas não há prova de que seja a melhor possível. E é uma proposta dos autores, não o que a FIFA fez.
+
+O código está aberto e há um app para montar a própria tabela: igorlucindo.github.io/fifa-world-cup-2026-scheduler-APP
+
+No canal, as aulas de programação inteira (variáveis binárias) e de branch and bound (gap e poda) explicam as duas ideias do carrossel.
+
+✍️ Autores: Rogelio Gutierrez, Igor Cardoso, Hamidreza Validi
+
+💾 Salve este post para ler depois · mais conteúdo no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProgramacaoInteira #BranchAndBound #CopaDoMundo2026 #SportsAnalytics #Otimização #UNIRIO

@@ -1,0 +1,13 @@
+O método húngaro, que resolve o problema da designação, foi publicado em 1955 por um americano. Por que "húngaro"?
+
+Harold Kuhn, nascido na Califórnia, leu no livro de grafos de Dénes Kőnig uma nota de rodapé sobre um artigo de Jenő Egerváry, de 1931, escrito em húngaro. Pegou emprestados uma gramática e um dicionário, passou duas semanas aprendendo a língua e traduziu o artigo. Ali estava a ideia que faltava para o algoritmo, e o nome foi a homenagem aos dois.
+
+A história ainda teve uma volta: em 2005, o matemático francês François Ollivier percebeu que Carl Jacobi, morto em 1851, tinha deixado em latim um algoritmo essencialmente igual. Kuhn contou tudo isso em 2012, no artigo "A tale of three eras".
+
+No canal, a aula do Método Húngaro resolve o problema da designação passo a passo: redução de linhas e colunas, cobertura dos zeros e designação final.
+
+💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #MetodoHungaro #ProblemaDaDesignacao #HistoriaDaMatematica #OtimizacaoEmRedes #Otimização #UNIRIO

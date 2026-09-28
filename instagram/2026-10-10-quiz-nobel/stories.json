@@ -1,0 +1,43 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    {
+      "duracao": 12,
+      "kicker": "UM DESAFIO",
+      "titulo": "UM NOBEL PARA A OTIMIZAÇÃO",
+      "linhas": [
+        "Três anos em que o Nobel de Economia premiou temas que a PO estuda:",
+        "1975",
+        "1994",
+        "2012"
+      ],
+      "pergunta": "Qual deles premiou a alocação ótima de recursos?",
+      "dica": "Sabe a resposta?"
+    },
+    {
+      "duracao": 15,
+      "kicker": "A RESPOSTA",
+      "titulo": "1975: KANTOROVICH E KOOPMANS",
+      "linhas": [
+        "Pela teoria da alocação ótima de recursos. Dantzig, do simplex, ficou de fora.",
+        "1994: Harsanyi, Nash e Selten, por equilíbrios em jogos não cooperativos.",
+        "2012: Roth e Shapley, por alocações estáveis e desenho de mercados.",
+        "A pegadinha: 2012 também fala em alocação, mas o critério é a estabilidade."
+      ],
+      "dica": "Acertou?"
+    },
+    {
+      "duracao": 11,
+      "kicker": "SEGUNDA, 12/10",
+      "titulo": "SAI O NOBEL DE ECONOMIA DE 2026",
+      "linhas": [
+        "Anúncio em Estocolmo, a partir de 6h45 no horário de Brasília.",
+        "Transmissão ao vivo nos canais oficiais do Nobel.",
+        "Até lá: simplex e equilíbrio de Nash têm aula no canal."
+      ],
+      "icone": "payoff",
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ]
+}

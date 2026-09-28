@@ -1,0 +1,13 @@
+Em 1955, um relatório secreto dos EUA calculou quanto a ferrovia soviética aguentava. O interesse era onde cortá-la.
+
+T. E. Harris e o general F. S. Ross, na RAND, transformaram as ferrovias do oeste da URSS e do Leste Europeu numa rede de 44 vértices e 105 ligações. O fluxo máximo deu 163.000 toneladas. Mas, como mostrou o matemático Alexander Schrijver, que pediu a liberação do documento em 1999, o que interessava aos militares era o corte mínimo: o gargalo onde interditar a malha.
+
+O corte do relatório também somava 163.000 toneladas. Não é coincidência: Ford e Fulkerson, que receberam o problema de Harris, provaram que em toda rede o fluxo máximo é igual à capacidade do corte mínimo.
+
+No canal, a aula de Fluxo Máximo mostra a rede residual, o algoritmo do caminho aumentado e o corte mínimo num exemplo resolvido.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #FluxoMaximo #CorteMinimo #Grafos #HistoriaDaPO #Otimização #UNIRIO

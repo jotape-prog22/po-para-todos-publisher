@@ -1,0 +1,13 @@
+Três eleitores, três candidatos e uma maioria que não consegue escolher. É o paradoxo de Condorcet.
+
+Imagine três eleitores. O primeiro prefere A a B e B a C. O segundo prefere B a C e C a A. O terceiro prefere C a A e A a B. Agora compare os candidatos dois a dois: A ganha de B (eleitores 1 e 3), B ganha de C (eleitores 1 e 2) e C ganha de A (eleitores 2 e 3). Cada eleitor é coerente, mas a maioria anda em círculo, e nenhum candidato vence todos os confrontos.
+
+O Marquês de Condorcet descreveu esse paradoxo em 1785. Em 1951, Kenneth Arrow foi além e provou, ainda aluno de pós-graduação, que o problema é geral: com mais de duas opções, nenhuma regra para ordenar as preferências de um grupo cumpre ao mesmo tempo cinco condições que, separadas, parecem razoáveis. Arrow dividiu o Nobel de Economia de 1972 com John Hicks, por contribuições pioneiras à teoria do equilíbrio econômico geral e à teoria do bem-estar.
+
+Para a Pesquisa Operacional, a lição vale para qualquer decisão com vários critérios ou vários decisores: o jeito de agregar as preferências pode mudar a resposta. Exemplo hipotético; a fonte é o verbete Arrow's Theorem da Stanford Encyclopedia of Philosophy.
+
+💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ParadoxoDeCondorcet #TeoremaDeArrow #EscolhaSocial #TomadaDeDecisao #Otimização #UNIRIO

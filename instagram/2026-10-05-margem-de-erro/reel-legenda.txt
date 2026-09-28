@@ -1,0 +1,13 @@
+"Margem de erro de 2 pontos": o que isso quer dizer, e por que ela não basta para comparar dois números?
+
+Num exemplo hipotético com 2.000 entrevistas e 95% de confiança, a conta 1,96 × √(0,25 ÷ 2.000) dá cerca de 2,2 pontos para cada lado. Em 95% das amostras desse tamanho, o erro fica dentro disso. A fórmula vale para amostra aleatória simples; pesquisas reais usam planos amostrais mais complexos.
+
+A pegadinha: para comparar duas opções, a margem da diferença é quase o dobro da margem de cada uma, como explica o Pew Research Center. E precisão custa caro: para chegar a 1 ponto seriam 9.604 entrevistas, porque a margem cai com a raiz do tamanho da amostra.
+
+Pela Lei 9.504/1997, toda pesquisa eleitoral divulgada precisa ser registrada na Justiça Eleitoral, com a margem de erro e o plano amostral.
+
+▶️ Siga para mais PO · aulas completas no canal, link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #MargemDeErro #Estatistica #Amostragem #Eleicoes2026 #Otimização #UNIRIO

@@ -1,0 +1,21 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 7, "kicker": "UM ENIGMA DE KÖNIGSBERG", "titulo": "DÁ PARA ATRAVESSAR AS 7 PONTES UMA ÚNICA VEZ CADA?",
+      "linhas": ["Uma ilha, um rio dividido em dois braços e sete pontes", "Passar por todas, sem repetir nenhuma"] },
+    { "duracao": 12, "kicker": "O QUE EULER ESCREVEU", "titulo": "UMA QUESTÃO “BANAL”",
+      "linhas": ["Em cartas de 1736, Euler chamou o problema de banal", "E disse que a solução tinha pouca relação com a matemática", "Mesmo assim, escreveu um artigo inteiro sobre ele"] },
+    { "duracao": 14, "kicker": "A IDEIA", "titulo": "SÓ IMPORTA QUANTAS PONTES TOCAM CADA REGIÃO",
+      "linhas": ["Hoje diríamos: cada região é um ponto; cada ponte, uma ligação", "Cada passagem por uma região usa duas pontes: entrar e sair", "Se mais de duas regiões têm número ímpar de pontes, não dá"] },
+    { "duracao": 12, "kicker": "A RESPOSTA", "titulo": "NÃO DÁ",
+      "linhas": ["A ilha tem 5 pontes; as outras três regiões, 3 cada", "São quatro regiões com número ímpar de pontes", "Euler mostrou que o passeio é impossível e deu a regra geral"] },
+    { "duracao": 10, "kicker": "O QUE NASCEU DALI", "titulo": "A TEORIA DOS GRAFOS",
+      "linhas": ["O artigo é citado como o primeiro da teoria dos grafos", "Menor caminho, árvore geradora, fluxo máximo: tudo é grafo"],
+      "icone": "grafo-caminho", "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": {
+    "gancho": "Dá para atravessar as 7 pontes de Königsberg passando uma única vez por cada uma? Euler mostrou que não.",
+    "corpo": "Em 1736, em cartas a Giovanni Marinoni e a Carl Ehler, Leonhard Euler chamou o problema de banal e escreveu que a solução tinha pouca relação com a matemática, porque dependia só do raciocínio. Mesmo assim, escreveu um artigo sobre ele e deu uma regra que vale para qualquer arranjo de ilhas e pontes: se mais de duas regiões recebem um número ímpar de pontes, o passeio é impossível. Em Königsberg, as quatro regiões recebiam um número ímpar (5, 3, 3 e 3).\n\nHoje esse artigo é citado como o primeiro da teoria dos grafos: regiões viram vértices, pontes viram arestas, e o que decide é quantas arestas chegam a cada vértice. Euler provou que a condição é necessária; que ela também basta só foi provado em 1873, por Carl Hierholzer.\n\nÉ com grafos que a Pesquisa Operacional resolve menor caminho, árvores geradoras e fluxos em redes. No canal, a aula de Caminho Mínimo começa daí: como um problema real vira um grafo e o que é o caminho mais curto entre dois pontos. Link na bio.",
+    "hashtags_tema": ["#TeoriaDosGrafos", "#PontesDeKonigsberg", "#Euler", "#CaminhoMinimo"]
+  }
+}

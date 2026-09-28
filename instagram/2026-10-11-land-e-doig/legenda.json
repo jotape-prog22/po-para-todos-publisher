@@ -1,0 +1,11 @@
+{
+  "gancho": "O primeiro branch and bound com programação linear para problemas inteiros foi rodado à mão, em 1960, por duas pesquisadoras.",
+  "corpo": "Ailsa Land e Alison Doig trabalhavam na London School of Economics num problema da British Petroleum: planejar refinarias e embarques de petróleo, com algumas variáveis inteiras. A LSE não tinha acesso a computador, então elas criaram um método geral e fizeram as contas em calculadoras de mesa: multiplicavam com a mão esquerda numa máquina e somavam com a direita em outra, contam elas. Cada resultado ficava no papel, numa pasta.\n\nO artigo saiu na Econometrica em 1960, assinado A. H. Land e A. G. Doig. Segundo escritos da própria Ailsa Land, citados por Laporte (GERAD, 2023), as iniciais eram para não serem identificadas como mulheres. O nome \"branch and bound\" só apareceu em 1963, com Little e colegas, no caixeiro-viajante.\n\nNo canal, a aula de branch and bound mostra a relaxação linear e a árvore de busca, o coração do método (link na bio).",
+  "autores": null,
+  "hashtags_tema": [
+    "#BranchAndBound",
+    "#ProgramacaoInteira",
+    "#MulheresNaCiencia",
+    "#HistoriaDaPO"
+  ]
+}

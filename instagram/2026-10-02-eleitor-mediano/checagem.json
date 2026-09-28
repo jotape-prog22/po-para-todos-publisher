@@ -1,0 +1,23 @@
+{ "afirmacoes": [
+  { "onde": "cenas 1 a 3 e legenda", "texto": "Hotelling (1929), \"Stability in Competition\": vendedores numa rua (Main Street) com fregueses distribuídos ao longo dela; cada um compra de quem lhe sai mais barato considerando a distância.", "tipo": "fonte",
+    "fonte": "https://www.math.toronto.edu/mccann/assignments/477/Hotelling29.pdf", "resultado": "confirmada",
+    "como": "Li o PDF (cópia JSTOR de The Economic Journal 39(153):41–57, 1929; texto extraído com pdftotext): \"length l, which may be Main Street in a town or a transcontinental railroad. At distances a and b respectively from the two ends of this line are the places of business of A and B\" e \"Each buyer transports his purchases home at a cost c per unit distance.\" A cena 2 diz \"versão simples: mesmo preço\" porque o artigo original também deixa os preços variarem." },
+  { "onde": "cena 3 e legenda", "texto": "Os dois acabam lado a lado; o que está fora do meio perde fregueses; para os fregueses o melhor seria um em cada quarto da rua.", "tipo": "fonte",
+    "fonte": "https://www.math.toronto.edu/mccann/assignments/477/Hotelling29.pdf", "resultado": "confirmada",
+    "como": "Mesmo PDF, p. 51–53: \"if A is not exactly in the centre of the line, B will choose the side of A towards the more extensive section of the market\"; \"This requires A and B to occupy symmetrical positions at the quartiles of the market. But instead of doing so they crowd together as closely as possible.\"" },
+  { "onde": "cena 3 e legenda", "texto": "Com preço igual, o único equilíbrio é os dois no meio (nenhum ganha mudando sozinho: equilíbrio de Nash); nos quartos da rua a caminhada média cai pela metade.", "tipo": "conta",
+    "resultado": "confirmada",
+    "como": "Enumerei todas as posições numa rua de 101 pontos, fregueses uniformes, cada um no mais próximo (empate: metade), e testei desvios unilaterais: node -e \"…for(a)for(b){…testa todo a2 e b2…}\" → equilibrios de Nash (posicoes 0..100): [[50,50]]. Ótimo social (menor distância total) por enumeração: [24, 75] com distância média 12,62 contra 25,25 com os dois no meio." },
+  { "onde": "cena 4 e legenda", "texto": "Hotelling aplicou o modelo à disputa por votos nos EUA: \"In politics it is strikingly exemplified\"; cada partido tenta deixar a plataforma parecida com a do outro; uma mudança radical perderia muitos votos.", "tipo": "fonte",
+    "fonte": "https://www.math.toronto.edu/mccann/assignments/477/Hotelling29.pdf", "resultado": "confirmada",
+    "como": "Mesmo PDF, p. 54: \"In politics it is strikingly exemplified. The competition for votes between the Republican and Democratic parties does not lead to a clear drawing of issues […] Instead, each party strives to make its platform as much like the other's as possible. Any radical departure would lose many votes\". A cena traduz a frase entre aspas e não nomeia os partidos." },
+  { "onde": "cena 5 e legenda", "texto": "Black (1948): com preferências de pico único numa linha, a posição do eleitor mediano vence qualquer outra num voto a voto por maioria.", "tipo": "fonte",
+    "fonte": "https://plato.stanford.edu/entries/social-choice/", "resultado": "confirmada",
+    "como": "Stanford Encyclopedia of Philosophy, \"Social Choice Theory\" (C. List): \"Black (1948) proved that if the domain […] is restricted to the set of all profiles of individual preference orderings satisfying single-peakedness, majority cycles cannot occur, and the most preferred alternative of the median individual relative to the relevant left-right alignment is a Condorcet winner (assuming n is odd).\" Conferi também num exemplo: node, 9 eleitores com picos [3,15,22,40,41,58,77,80,95], mediana 41 vence por maioria todas as posições 0..100 → true. Não li o artigo de Black nem o de Downs; Downs não aparece na peça." },
+  { "onde": "cena 6", "texto": "O próprio Hotelling diz que a vida real pede ajustes.", "tipo": "fonte",
+    "fonte": "https://www.math.toronto.edu/mccann/assignments/477/Hotelling29.pdf", "resultado": "confirmada",
+    "como": "Mesmo PDF, p. 55: \"The reasoning, of course, requires modification when applied to the varied conditions of actual life.\"" },
+  { "onde": "cena 6 (faixa) e legenda", "texto": "Aula completa de equilíbrio de Nash no canal.", "tipo": "fonte",
+    "fonte": "https://youtu.be/Y7aezjpwCjU", "resultado": "confirmada",
+    "como": "videos/teoria-dos-jogos-3/metadados.json: \"TEORIA DOS JOGOS - Equilíbrio de Nash Passo a Passo - Parte 3\"; publicacao.json com \"privacidade\": \"public\"." }
+] }

@@ -1,0 +1,75 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    {
+      "duracao": 8,
+      "kicker": "ELEIÇÕES E TEORIA DOS JOGOS",
+      "titulo": "POR QUE OS CANDIDATOS PARECEM IR PARA O CENTRO?",
+      "linhas": [
+        "Um modelo de 1929 tem uma resposta"
+      ],
+      "icone": "payoff"
+    },
+    {
+      "duracao": 11,
+      "kicker": "UMA RUA",
+      "titulo": "DOIS VENDEDORES, UMA RUA",
+      "linhas": [
+        "Fregueses espalhados por igual ao longo da rua",
+        "Versão simples: mesmo produto, mesmo preço",
+        "Cada freguês compra de quem está mais perto"
+      ]
+    },
+    {
+      "duracao": 13,
+      "kicker": "O EQUILÍBRIO",
+      "titulo": "OS DOIS ACABAM LADO A LADO, NO MEIO",
+      "linhas": [
+        "Quem está fora do meio perde fregueses para o outro",
+        "No meio, nenhum ganha mudando sozinho",
+        "Isso é um equilíbrio de Nash",
+        "Para os fregueses, o melhor seria um em cada quarto da rua"
+      ]
+    },
+    {
+      "duracao": 12,
+      "kicker": "HOTELLING, 1929",
+      "titulo": "“NA POLÍTICA, ISSO APARECE DE FORMA MARCANTE”",
+      "linhas": [
+        "Ele aplicou o modelo à disputa por votos nos EUA",
+        "Cada partido tenta deixar sua plataforma parecida com a do outro",
+        "Uma mudança radical perderia muitos votos, escreveu"
+      ]
+    },
+    {
+      "duracao": 12,
+      "kicker": "BLACK, 1948",
+      "titulo": "O ELEITOR MEDIANO",
+      "linhas": [
+        "Eleitores numa linha, cada um com um ponto preferido",
+        "Quanto mais longe desse ponto, menos o eleitor gosta",
+        "A posição do eleitor do meio vence qualquer outra no voto a voto"
+      ]
+    },
+    {
+      "duracao": 11,
+      "kicker": "O QUE FICA",
+      "titulo": "É UM MODELO, NÃO UMA PREVISÃO",
+      "linhas": [
+        "O próprio Hotelling diz que a vida real pede ajustes",
+        "Mas a lógica do equilíbrio ajuda a ler uma disputa"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Por que os candidatos parecem ir para o centro? Um modelo de 1929 sobre dois vendedores numa rua ajuda a entender.",
+    "corpo": "Em “Stability in Competition” (1929), Harold Hotelling estudou dois vendedores numa rua com fregueses espalhados por igual. Na versão mais simples, com o mesmo preço, cada um tenta pegar a maior fatia e os dois acabam colados no meio: ninguém ganha mudando sozinho. É o que hoje se chama de equilíbrio de Nash. Para os fregueses, o melhor seria um vendedor em cada quarto da rua.\n\nO próprio Hotelling aplicou a ideia à disputa por votos. Em 1948, Duncan Black mostrou que, se cada eleitor tem um ponto preferido numa linha, a posição do eleitor mediano vence qualquer outra num voto a voto por maioria. É um modelo, com hipóteses fortes, e não uma previsão sobre nenhuma eleição.\n\nNo canal tem a aula completa de equilíbrio de Nash, passo a passo (link na bio).",
+    "hashtags_tema": [
+      "#TeoriaDosJogos",
+      "#EquilibrioDeNash",
+      "#Hotelling",
+      "#EleitorMediano"
+    ]
+  }
+}

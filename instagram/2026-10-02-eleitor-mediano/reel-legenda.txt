@@ -1,0 +1,13 @@
+Por que os candidatos parecem ir para o centro? Um modelo de 1929 sobre dois vendedores numa rua ajuda a entender.
+
+Em “Stability in Competition” (1929), Harold Hotelling estudou dois vendedores numa rua com fregueses espalhados por igual. Na versão mais simples, com o mesmo preço, cada um tenta pegar a maior fatia e os dois acabam colados no meio: ninguém ganha mudando sozinho. É o que hoje se chama de equilíbrio de Nash. Para os fregueses, o melhor seria um vendedor em cada quarto da rua.
+
+O próprio Hotelling aplicou a ideia à disputa por votos. Em 1948, Duncan Black mostrou que, se cada eleitor tem um ponto preferido numa linha, a posição do eleitor mediano vence qualquer outra num voto a voto por maioria. É um modelo, com hipóteses fortes, e não uma previsão sobre nenhuma eleição.
+
+No canal tem a aula completa de equilíbrio de Nash, passo a passo (link na bio).
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #TeoriaDosJogos #EquilibrioDeNash #Hotelling #EleitorMediano #Otimização #UNIRIO

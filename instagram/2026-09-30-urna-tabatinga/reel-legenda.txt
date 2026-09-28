@@ -1,0 +1,13 @@
+467 urnas saíram de Manaus no porão de um barco. A viagem mais longa: mais de 1,5 mil km até Tabatinga.
+
+No Amazonas, cerca de 4 mil seções eleitorais dependem só do transporte por rio, segundo o TRE-AM. A operação combina barcos grandes, barcos menores, trechos por terra e, em 49 comunidades de difícil acesso, avião ou helicóptero. As Forças Armadas apoiam o transporte de urnas desde 1994.
+
+Por trás de cada urna há rotas definidas com meses de antecedência, tempos de viagem calculados e rotas alternativas para quando o rio seca. Modelado como uma rede, com cidades nos nós e trechos nos arcos, isso é um problema de caminho mínimo.
+
+No canal tem a aula completa de caminho mínimo e do algoritmo de Dijkstra, passo a passo (link na bio).
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #CaminhoMinimo #Dijkstra #Logistica #Eleicoes2026 #Otimização #UNIRIO

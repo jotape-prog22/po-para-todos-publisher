@@ -1,0 +1,11 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    {
+      "tipo": "curiosidade",
+      "titulo": "A MAIORIA PODE ANDAR EM CÍRCULO",
+      "texto": "Três eleitores ordenam três candidatos: A > B > C, B > C > A e C > A > B. Em cada par, dá 2 a 1: A bate B, B bate C e C bate A. Ninguém vence todos. Arrow (1951) provou que, com mais de duas opções, nenhuma regra de ordenar cumpre cinco condições razoáveis ao mesmo tempo.",
+      "fonte": "Condorcet, 1785; Arrow, 1951; Stanford Encyclopedia of Philosophy"
+    }
+  ]
+}

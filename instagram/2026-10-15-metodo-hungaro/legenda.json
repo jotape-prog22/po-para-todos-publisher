@@ -1,0 +1,6 @@
+{
+  "gancho": "O método húngaro, que resolve o problema da designação, foi publicado em 1955 por um americano. Por que \"húngaro\"?",
+  "corpo": "Harold Kuhn, nascido na Califórnia, leu no livro de grafos de Dénes Kőnig uma nota de rodapé sobre um artigo de Jenő Egerváry, de 1931, escrito em húngaro. Pegou emprestados uma gramática e um dicionário, passou duas semanas aprendendo a língua e traduziu o artigo. Ali estava a ideia que faltava para o algoritmo, e o nome foi a homenagem aos dois.\n\nA história ainda teve uma volta: em 2005, o matemático francês François Ollivier percebeu que Carl Jacobi, morto em 1851, tinha deixado em latim um algoritmo essencialmente igual. Kuhn contou tudo isso em 2012, no artigo \"A tale of three eras\".\n\nNo canal, a aula do Método Húngaro resolve o problema da designação passo a passo: redução de linhas e colunas, cobertura dos zeros e designação final.",
+  "autores": null,
+  "hashtags_tema": ["#MetodoHungaro", "#ProblemaDaDesignacao", "#HistoriaDaMatematica", "#OtimizacaoEmRedes"]
+}

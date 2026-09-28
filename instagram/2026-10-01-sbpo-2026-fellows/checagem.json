@@ -1,0 +1,44 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1",
+      "texto": "Seis novos Fellows da SOBRAPO · Homenagem no 58º SBPO, em Belo Horizonte.",
+      "tipo": "fonte",
+      "fonte": "https://eventos.galoa.com.br/sbpo-2026/page/8595-premio-fellow",
+      "resultado": "confirmada",
+      "como": "Li a página do Prêmio Fellow (curl, 28/09/2026): 'Prêmio Fellow da SOBRAPO, edição 2026 […] Neste ano, os membros agraciados com a honraria são' seis nomes, e 'A cerimônia de entrega das homenagens aos novos Fellows da SOBRAPO ocorrerá no dia 30 de setembro de 2026, às 18h30, durante o SBPO 2026'. A página inicial do evento diz 'O 58º SBPO, que ocorrerá de 28 de setembro a 1 de outubro de 2026'. Endereço: \"O evento ocorrerá na Escola de Engenharia da UFMG, no campus Pampulha\" (Belo Horizonte)."
+    },
+    {
+      "onde": "card 1",
+      "texto": "Geraldo Mateus (UFMG), Henrique Luna (UFMG), Luiz Ochi (UFF), Marcos Arenales (UNICAMP/USP), Paulo R. de Oliveira (UFRJ) e Roberto G. da Costa (PETROBRAS).",
+      "tipo": "fonte",
+      "fonte": "https://eventos.galoa.com.br/sbpo-2026/page/8595-premio-fellow",
+      "resultado": "confirmada",
+      "como": "Mesma página: 'os professores Geraldo Robson Mateus (UFMG), Henrique Pacca Loureiro Luna (UFMG), Luiz Satoru Ochi (UFF), Marcos Nereu Arenales (UNICAMP/USP), Paulo Roberto de Oliveira (UFRJ) e o engenheiro Roberto Gomes da Costa (PETROBRAS)'. No card, os nomes foram encurtados (nome e sobrenome, ou iniciais do meio); na legenda estão por extenso."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O 58º SBPO vai de 28/09 a 1º/10/2026, em Belo Horizonte, organizado pela UFMG e pelo CEFET-MG, na Escola de Engenharia da UFMG.",
+      "tipo": "fonte",
+      "fonte": "https://eventos.galoa.com.br/sbpo-2026/page/7035-inicio",
+      "resultado": "confirmada",
+      "como": "Página inicial do evento (curl, 28/09/2026): 'O 58º SBPO, que ocorrerá de 28 de setembro a 1 de outubro de 2026' e 'O LVIII SBPO será organizado pela Universidade Federal de Minas Gerais (UFMG) e pelo Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG). O evento ocorrerá na Escola de Engenharia da UFMG, no campus Pampulha.' A home da SOBRAPO (https://www.sobrapo.org.br/, curl) lista o SBPO no menu 'Eventos' e diz 'PRÓXIMO SBPO O SBPO 2026 - LVIII SBPO será realizado em Belo Horizonte, MG de 28 de setembro a 01 de outubro de 2026' — base para 'o encontro da SOBRAPO' na legenda."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Criado em 2022, o Prêmio Fellow reconhece sócios com serviços relevantes à comunidade de PO: na própria SOBRAPO, na pesquisa e na prática.",
+      "tipo": "fonte",
+      "fonte": "https://eventos.galoa.com.br/sbpo-2026/page/8595-premio-fellow",
+      "resultado": "confirmada",
+      "como": "'Criado em 2022, o Prêmio Fellow da […] SOBRAPO é concedido aos seus membros com relevantes serviços prestados à comunidade brasileira de pesquisa operacional (PO), particularmente 1) na formação e manutenção da SOBRAPO […]; 2) na pesquisa científica […]; 3) na prática da PO'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Roberto Gomes da Costa foi diretor-tesoureiro na criação da SOBRAPO (1969-1970) e o segundo presidente da Sociedade (1971-1972).",
+      "tipo": "fonte",
+      "fonte": "https://eventos.galoa.com.br/sbpo-2026/page/8595-premio-fellow",
+      "resultado": "confirmada",
+      "como": "'o engenheiro Roberto Gomes da Costa (PETROBRAS), diretor-tesoureiro da SOBRAPO na gestão 1969-1970, de criação da Sociedade e o segundo presidente da Sociedade, na gestão 1971-1972.'"
+    }
+  ]
+}

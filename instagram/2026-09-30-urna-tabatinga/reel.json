@@ -1,0 +1,75 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    {
+      "duracao": 8,
+      "kicker": "ELEIÇÕES 2026",
+      "titulo": "COMO UMA URNA CHEGA A TABATINGA?",
+      "linhas": [
+        "Saída: Manaus",
+        "Destino: o extremo oeste do Amazonas"
+      ],
+      "icone": "grafo-caminho"
+    },
+    {
+      "duracao": 11,
+      "kicker": "O PORÃO",
+      "titulo": "467 URNAS NUM BARCO",
+      "linhas": [
+        "Protegidas da água, no porão de uma embarcação",
+        "Junto vão cabines, baterias, cabos e cadernos de votação",
+        "Destino: municípios e comunidades do interior"
+      ]
+    },
+    {
+      "duracao": 11,
+      "kicker": "A DISTÂNCIA",
+      "titulo": "MAIS DE 1,5 MIL KM E CERCA DE 7 DIAS",
+      "linhas": [
+        "É o percurso mais longo dessa remessa, até Tabatinga",
+        "Lá, parte das urnas segue para localidades próximas",
+        "Tabatinga funciona como ponto de distribuição"
+      ]
+    },
+    {
+      "duracao": 12,
+      "kicker": "SÓ POR RIO",
+      "titulo": "4 MIL SEÇÕES DO AM DEPENDEM DE BARCO",
+      "linhas": [
+        "Segundo o TRE-AM, só a navegação chega até elas",
+        "Na seca, barcos menores, como as rabetas, entram no lugar",
+        "49 comunidades de difícil acesso: avião ou helicóptero"
+      ]
+    },
+    {
+      "duracao": 10,
+      "kicker": "APOIO",
+      "titulo": "FORÇAS ARMADAS NO TRANSPORTE DESDE 1994",
+      "linhas": [
+        "Levam urnas, equipamentos e servidores da Justiça Eleitoral",
+        "Até comunidades em locais de difícil acesso"
+      ]
+    },
+    {
+      "duracao": 13,
+      "kicker": "ONDE ENTRA A PO",
+      "titulo": "ISSO É UM PROBLEMA DE CAMINHO MÍNIMO",
+      "linhas": [
+        "Rios, estradas e rotas aéreas viram arcos de uma rede",
+        "Cada arco tem um custo: dias, quilômetros, combustível",
+        "Achar a rota de menor custo é o que o Dijkstra resolve"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "467 urnas saíram de Manaus no porão de um barco. A viagem mais longa: mais de 1,5 mil km até Tabatinga.",
+    "corpo": "No Amazonas, cerca de 4 mil seções eleitorais dependem só do transporte por rio, segundo o TRE-AM. A operação combina barcos grandes, barcos menores, trechos por terra e, em 49 comunidades de difícil acesso, avião ou helicóptero. As Forças Armadas apoiam o transporte de urnas desde 1994.\n\nPor trás de cada urna há rotas definidas com meses de antecedência, tempos de viagem calculados e rotas alternativas para quando o rio seca. Modelado como uma rede, com cidades nos nós e trechos nos arcos, isso é um problema de caminho mínimo.\n\nNo canal tem a aula completa de caminho mínimo e do algoritmo de Dijkstra, passo a passo (link na bio).",
+    "hashtags_tema": [
+      "#CaminhoMinimo",
+      "#Dijkstra",
+      "#Logistica",
+      "#Eleicoes2026"
+    ]
+  }
+}

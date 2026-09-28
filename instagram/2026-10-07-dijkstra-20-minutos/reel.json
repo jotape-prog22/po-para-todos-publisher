@@ -1,0 +1,64 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    {
+      "duracao": 7,
+      "kicker": "EM 20 MINUTOS",
+      "titulo": "UM ALGORITMO DE ROTA PENSADO SEM LÁPIS NEM PAPEL",
+      "linhas": [
+        "Amsterdã, 1956. Uma mesa de café e nenhuma folha."
+      ],
+      "icone": "grafo-caminho"
+    },
+    {
+      "duracao": 11,
+      "kicker": "A CENA",
+      "titulo": "UM CAFÉ EM AMSTERDÃ",
+      "linhas": [
+        "Edsger Dijkstra fazia compras com a noiva e os dois pararam para um café.",
+        "Ali ele pensou no algoritmo do menor caminho.",
+        "Levou cerca de 20 minutos, de cabeça."
+      ]
+    },
+    {
+      "duracao": 11,
+      "kicker": "PARA QUÊ",
+      "titulo": "UMA DEMONSTRAÇÃO PARA O COMPUTADOR ARMAC",
+      "linhas": [
+        "Precisava de um problema que qualquer pessoa entendesse.",
+        "Um mapa reduzido dos Países Baixos, com 64 cidades.",
+        "A pergunta: qual a rota mais curta de Roterdã a Groningen?"
+      ]
+    },
+    {
+      "duracao": 11,
+      "kicker": "O ARTIGO",
+      "titulo": "PUBLICADO EM 1959, EM 3 PÁGINAS",
+      "linhas": [
+        "Numerische Mathematik, volume 1, páginas 269 a 271.",
+        "O menor caminho é o Problema 2. O 1 é a árvore geradora mínima.",
+        "Sem papel, disse ele, você evita toda complexidade evitável."
+      ]
+    },
+    {
+      "duracao": 11,
+      "kicker": "A IDEIA",
+      "titulo": "UM PONTO POR VEZ, DO MAIS PERTO AO MAIS LONGE",
+      "linhas": [
+        "Os caminhos mínimos saem em ordem crescente de distância.",
+        "Quando o destino entra na lista, a rota mais curta está pronta."
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "O algoritmo de Dijkstra, do menor caminho, foi pensado em 20 minutos, num café, sem lápis nem papel.",
+    "corpo": "Em 1956, Edsger Dijkstra precisava de uma demonstração para a inauguração do computador ARMAC. Escolheu uma pergunta que qualquer pessoa entende: qual o menor caminho entre duas cidades? Numa manhã de compras em Amsterdã com a noiva, sentado num café, desenhou o algoritmo de cabeça. Ele mesmo contou a história numa entrevista de 2001.\n\nO artigo saiu em 1959, com 3 páginas. Para Dijkstra, pensar sem papel obriga a evitar toda complexidade evitável. Na mesma entrevista, ele disse que o algoritmo tinha ido parar nos planejadores de rota.\n\nNo canal, a aula do algoritmo de Dijkstra acha o menor caminho passo a passo, com uma tabela auxiliar (link na bio).",
+    "hashtags_tema": [
+      "#Dijkstra",
+      "#CaminhoMinimo",
+      "#Grafos",
+      "#Algoritmos"
+    ]
+  }
+}

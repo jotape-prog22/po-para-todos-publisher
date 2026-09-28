@@ -1,0 +1,58 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1",
+      "texto": "A MAIORIA PODE ANDAR EM CÍRCULO",
+      "tipo": "fonte",
+      "fonte": "https://plato.stanford.edu/entries/arrows-theorem/",
+      "resultado": "confirmada",
+      "como": "Li a seção 1 da SEP (curl, 28/09/2026): 'The individual rankings happen to be: ABC BCA CAB […] A is socially preferred to B, since two voters (1 and 3) prefer A to B […] Similarly, B is socially preferred to C. […] there are two voters who prefer C to A. We do not have a social ordering of the alternatives at all. We have a cycle.'"
+    },
+    {
+      "onde": "card 1",
+      "texto": "Três eleitores ordenam três candidatos: A > B > C, B > C > A e C > A > B. Em cada par, dá 2 a 1: A bate B, B bate C e C bate A.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Enumerei os confrontos pelas posições em cada ordenação: node -e 'const v=[[\"A\",\"B\",\"C\"],[\"B\",\"C\",\"A\"],[\"C\",\"A\",\"B\"]]; for (const [x,y] of [[\"A\",\"B\"],[\"B\",\"C\"],[\"C\",\"A\"]]) console.log(x,y,v.filter(r=>r.indexOf(x)<r.indexOf(y)).length)' → A vs B: 2 a 1; B vs C: 2 a 1; C vs A: 2 a 1."
+    },
+    {
+      "onde": "card 1",
+      "texto": "Ninguém vence todos.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Procurei um vencedor de Condorcet (quem ganha de todos os outros por maioria) testando cada candidato contra os outros dois no mesmo node: A vence todos? false; B? false; C? false. A SEP: 'Pairwise majority decision doesn’t result in a social maximum […] A isn’t one because a majority prefers something else, C. Likewise, B and C are not social maxima.'"
+    },
+    {
+      "onde": "card 1",
+      "texto": "Condorcet, 1785 (fonte do card; 'paradoxo de Condorcet', séc. XVIII)",
+      "tipo": "fonte",
+      "fonte": "https://plato.stanford.edu/entries/arrows-theorem/",
+      "resultado": "confirmada",
+      "como": "SEP: 'This is the “paradox of voting”. Discovered by the Marquis de Condorcet (1785)'; bibliografia: 'Condorcet, Marquis de, 1785, Essai sur l’application de l’analyse à la probabilité des décisions rendues à la pluralité des voix, Paris'."
+    },
+    {
+      "onde": "card 1",
+      "texto": "Arrow (1951) provou que, com mais de duas opções, nenhuma regra de ordenar cumpre cinco condições razoáveis ao mesmo tempo.",
+      "tipo": "fonte",
+      "fonte": "https://plato.stanford.edu/entries/arrows-theorem/",
+      "resultado": "confirmada",
+      "como": "SEP, seção 3.2: 'Arrow’s Theorem: Suppose there are more than two alternatives. Then no social welfare function f satisfies U, SO, WP, D, and I. Arrow (1951) has the original proof of this “impossibility” theorem.' As cinco condições: domínio irrestrito, ordenação social, Pareto fraco, não ditadura e independência de alternativas irrelevantes. 'Razoáveis' resume a seção 4: 'Taken separately, the conditions of Arrow’s theorem do not seem severe'. 'Regra de ordenar' = função de bem-estar social, que gera uma ordenação do grupo."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Arrow dividiu o Nobel de Economia de 1972 com John Hicks, por contribuições pioneiras à teoria do equilíbrio econômico geral e à teoria do bem-estar.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1972/summary/",
+      "resultado": "confirmada",
+      "como": "Página oficial (curl, 28/09/2026): 'awarded jointly to John R. Hicks and Kenneth J. Arrow \"for their pioneering contributions to general economic equilibrium theory and welfare theory\"', cada um com 'Prize share: 1/2'. A citação não menciona o teorema da impossibilidade, e a legenda não diz que foi por ele."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Arrow provou o teorema quando ainda era aluno de pós-graduação.",
+      "tipo": "fonte",
+      "fonte": "https://plato.stanford.edu/entries/arrows-theorem/",
+      "resultado": "confirmada",
+      "como": "SEP, abertura: 'The impossibility theorem itself set the agenda for contemporary social choice theory. Arrow accomplished this while still a graduate student.'"
+    }
+  ]
+}

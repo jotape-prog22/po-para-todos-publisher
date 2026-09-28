@@ -1,0 +1,55 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    {
+      "duracao": 14,
+      "kicker": "UM DESAFIO",
+      "titulo": "3 PESSOAS, 3 TAREFAS: QUEM FAZ O QUÊ?",
+      "linhas": [
+        "Ana: 2 min em T1, 3 em T2, 9 em T3",
+        "Beto: 3 min em T1, 7 em T2, 8 em T3",
+        "Carla: 4 min em T1, 6 em T2, 12 em T3",
+        "Cada pessoa faz uma tarefa, e cada tarefa fica com uma pessoa"
+      ],
+      "pergunta": "Qual divisão dá o menor tempo total?",
+      "dica": "Sabe a resposta?"
+    },
+    {
+      "duracao": 14,
+      "kicker": "A RESPOSTA",
+      "titulo": "ANA→T2, BETO→T3, CARLA→T1: 15 MIN",
+      "linhas": [
+        "3 + 8 + 4 = 15 min, o menor total entre as 6 divisões possíveis",
+        "Dar T1 à Ana, o menor número da tabela, leva a 16 ou 21 min",
+        "O ótimo nem usa o 2: escolher primeiro o melhor par engana",
+        "É o problema da designação, um clássico da Pesquisa Operacional"
+      ],
+      "dica": "Acertou?"
+    },
+    {
+      "duracao": 16,
+      "kicker": "COMO A PO RESOLVE",
+      "titulo": "O MÉTODO HÚNGARO",
+      "itens": [
+        {
+          "titulo": "Linhas",
+          "texto": "Tire o menor tempo de cada pessoa: Ana 2, Beto 3, Carla 4"
+        },
+        {
+          "titulo": "Colunas",
+          "texto": "Tire o menor que sobrou em cada tarefa: 1 em T2, 5 em T3"
+        },
+        {
+          "titulo": "Zeros",
+          "texto": "Ana-T2, Beto-T3 e Carla-T1 caem em zeros: é a divisão ótima"
+        },
+        {
+          "titulo": "Por que funciona",
+          "texto": "Tiramos 2+3+4+1+5 = 15: nenhuma divisão custa menos que isso"
+        }
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ]
+}

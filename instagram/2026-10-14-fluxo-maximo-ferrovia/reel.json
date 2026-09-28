@@ -1,0 +1,22 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 8, "kicker": "RELATÓRIO SECRETO, 1955", "titulo": "ONDE CORTAR A FERROVIA SOVIÉTICA?",
+      "linhas": ["Da RAND, para a Força Aérea dos EUA", "Autores: T. E. Harris e o general F. S. Ross", "Só deixou de ser secreto em 1999"],
+      "icone": "fluxo" },
+    { "duracao": 10, "kicker": "O MODELO", "titulo": "A MALHA VIROU UMA REDE",
+      "linhas": ["44 vértices: regiões ferroviárias do oeste da URSS e do Leste Europeu", "105 ligações, cada uma com sua capacidade de carga", "Quanto consegue chegar, no máximo, ao Leste Europeu?"] },
+    { "duracao": 9, "kicker": "O FLUXO MÁXIMO", "titulo": "163.000 TONELADAS",
+      "linhas": ["Da URSS para Polônia, Tchecoslováquia, Áustria e Alemanha Oriental", "Mas não era isso que os militares queriam saber"] },
+    { "duracao": 11, "kicker": "O CORTE MÍNIMO", "titulo": "O GARGALO DA REDE",
+      "linhas": ["Corte: ligações que, removidas, separam a origem do destino", "O objetivo era interditar a ferrovia com ataques aéreos", "O menor corte somava as mesmas 163.000 toneladas", "No mapa do relatório: \"the bottleneck\", o gargalo"] },
+    { "duracao": 10, "kicker": "O TEOREMA", "titulo": "FLUXO MÁXIMO = CORTE MÍNIMO",
+      "linhas": ["Ford e Fulkerson provaram: em qualquer rede, os dois valores coincidem", "Relatório da RAND de 1954, publicado em revista em 1956", "Achar o máximo que passa é achar o gargalo"],
+      "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": {
+    "gancho": "Em 1955, um relatório secreto dos EUA calculou quanto a ferrovia soviética aguentava. O interesse era onde cortá-la.",
+    "corpo": "T. E. Harris e o general F. S. Ross, na RAND, transformaram as ferrovias do oeste da URSS e do Leste Europeu numa rede de 44 vértices e 105 ligações. O fluxo máximo deu 163.000 toneladas. Mas, como mostrou o matemático Alexander Schrijver, que pediu a liberação do documento em 1999, o que interessava aos militares era o corte mínimo: o gargalo onde interditar a malha.\n\nO corte do relatório também somava 163.000 toneladas. Não é coincidência: Ford e Fulkerson, que receberam o problema de Harris, provaram que em toda rede o fluxo máximo é igual à capacidade do corte mínimo.\n\nNo canal, a aula de Fluxo Máximo mostra a rede residual, o algoritmo do caminho aumentado e o corte mínimo num exemplo resolvido.",
+    "hashtags_tema": ["#FluxoMaximo", "#CorteMinimo", "#Grafos", "#HistoriaDaPO"]
+  }
+}

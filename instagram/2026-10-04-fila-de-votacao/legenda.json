@@ -1,0 +1,6 @@
+{
+  "gancho": "O tempo que você passa na fila para votar é um problema de otimização. E dá para encurtar.",
+  "corpo": "Hoje, 4 de outubro, é o 1º turno das Eleições 2026. Um estudo publicado na Electoral Studies olhou para a parte menos lembrada do dia da votação: o caminho até a escola e a espera na fila. Os autores mediram as filas nas eleições de 2013 na Argentina, onde os eleitores de cada circuito são distribuídos nas mesas em ordem alfabética, e trocaram essa regra por um modelo de otimização.\n\nO resultado: em Buenos Aires, o tempo médio para votar caiu mais de 27%, sem que nenhum eleitor ficasse mais longe do que já estava. A mudança não mexe em quem vota nem em como se vota; só em para onde cada eleitor vai.\n\nDesignar eleitores a escolas é da mesma família do problema da designação, que explicamos passo a passo na aula de Método Húngaro, no canal. O artigo tem versão de acesso aberto no repositório da Universidad de Chile: repositorio.uchile.cl/handle/2250/169336",
+  "autores": "Guillermo Durán, Mauro Giormenti, Mario Guajardo, Pablo M. Pinto, Pablo A. Rey, Nicolás E. Stier-Moses",
+  "hashtags_tema": ["#ProblemaDaDesignacao", "#MetodoHungaro", "#ProgramacaoInteira", "#Eleicoes2026"]
+}
