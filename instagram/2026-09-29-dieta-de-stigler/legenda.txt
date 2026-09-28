@@ -1,0 +1,13 @@
+Qual é a dieta mais barata que cumpre todas as recomendações nutricionais? Em 1945, George Stigler não tinha como calcular.
+
+Stigler partiu de 77 alimentos e, comparando nutrientes por dólar, cortou a lista para 15. Dali em diante foi tentativa: ele mesmo escreveu que não parecia haver método direto para achar o mínimo de uma função linear sob condições lineares, e que só examinou um punhado das 510 combinações possíveis. A melhor que achou custava US$ 39,93 por ano, a preços de agosto de 1939: farinha de trigo, leite evaporado, repolho, espinafre e feijão seco.
+
+Em 1947, com o simplex recém-criado, o problema virou um programa linear de 9 equações e 77 incógnitas. Nove pessoas com calculadoras de mesa manuais levaram 120 dias-homem para resolver. O ótimo: US$ 39,69 por ano. O palpite de Stigler errou por 24 centavos. Dantzig contou depois que foi o primeiro problema prático resolvido pelo simplex.
+
+O problema da dieta é um dos exemplos clássicos de modelagem: variáveis são quantidades de cada alimento, a função objetivo é o custo e as restrições são os nutrientes. No canal, a aula de Modelagem de PPL monta exemplos clássicos como esse.
+
+💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProblemaDaDieta #ProgramacaoLinear #MetodoSimplex #HistoriaDaPO #Otimização #UNIRIO

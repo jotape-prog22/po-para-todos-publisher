@@ -1,0 +1,11 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    {
+      "tipo": "curiosidade",
+      "titulo": "O PRIMEIRO PROBLEMA PRÁTICO DO SIMPLEX FOI UMA DIETA",
+      "texto": "Em 1945, Stigler procurou a dieta anual mais barata e chegou a US$ 39,93 por tentativa. Em 1947, o simplex achou o ótimo: US$ 39,69.",
+      "fonte": "Stigler, 1945; Dantzig, 1986; NEOS Guide"
+    }
+  ]
+}

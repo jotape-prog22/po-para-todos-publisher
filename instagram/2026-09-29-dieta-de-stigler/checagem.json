@@ -1,0 +1,75 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "O primeiro problema prático do simplex foi uma dieta.",
+      "tipo": "fonte",
+      "fonte": "https://www.cs.umd.edu/~gasarch/BLOGPAPERS/Albers-InterviewGeorgeB-1986.pdf",
+      "resultado": "confirmada",
+      "como": "Dantzig, na entrevista a Albers e Reid (CMJ 17(4), 1986): 'We looked around for some small examples to solve. One of them was a nutrition problem of George Stigler's. This problem became famous because it was the first practical problem to be solved by the simplex method.' PDF baixado da URL e comparado byte a byte com a cópia lida (cmp)."
+    },
+    {
+      "onde": "card 1 e legenda",
+      "texto": "Em 1945, Stigler procurou a dieta anual mais barata (que cumprisse as recomendações nutricionais).",
+      "tipo": "fonte",
+      "fonte": "https://math.berkeley.edu/~mgu/MA170/Diet.pdf",
+      "resultado": "confirmada",
+      "como": "Stigler, 'The Cost of Subsistence', Journal of Farm Economics 27(2), 1945. O artigo usa as 'Recommended Dietary Allowances' do National Research Council (Tabela 1) e fala em 'the minimum cost of meeting the National Research Council's allowances'. PDF da URL idêntico ao lido (cmp)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Escreveu que não parecia haver método direto.",
+      "tipo": "fonte",
+      "fonte": "https://math.berkeley.edu/~mgu/MA170/Diet.pdf",
+      "resultado": "confirmada",
+      "como": "Stigler (1945): 'Thereafter the procedure is experimental because there does not appear to be any direct method of finding the minimum of a linear function subject to linear conditions.'"
+    },
+    {
+      "onde": "card 1 e legenda",
+      "texto": "Chegou a US$ 39,93 por ano por tentativa (preços de agosto de 1939).",
+      "tipo": "fonte",
+      "fonte": "https://math.berkeley.edu/~mgu/MA170/Diet.pdf",
+      "resultado": "confirmada",
+      "como": "Tabela 2, 'Minimum cost annual diets, August 1939 and 1944': Total Cost, August 1939 = $39.93 (1944 = $59.88). NEOS Guide repete: 'His guess for the cost of an optimal diet was $39.93 per year (1939 prices).'"
+    },
+    {
+      "onde": "card 1 e legenda",
+      "texto": "Em 1947, o simplex achou o ótimo: US$ 39,69.",
+      "tipo": "fonte",
+      "fonte": "https://neos-guide.org/case-studies/om/the-diet-problem/",
+      "resultado": "confirmada",
+      "como": "NEOS Guide (lido por curl): 'In the fall of 1947, Jack Laderman of the Mathematical Tables Project of the National Bureau of Standards used the newly developed simplex method to solve Stigler's model. [...] to solve for the optimal solution of $39.69.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "Partiu de 77 alimentos e cortou para 15 comparando nutrientes por dólar; examinou só um punhado das 510 combinações possíveis.",
+      "tipo": "fonte",
+      "fonte": "https://math.berkeley.edu/~mgu/MA170/Diet.pdf",
+      "resultado": "confirmada",
+      "como": "Stigler: 'one may exclude any commodity all of whose nutritive values (per dollar of expenditure) are less than those of some other commodity' e 'This preliminary weeding reduces the list of eligible foods from 77 to 15'; 'only a handful of the 510 possible combinations of commodities were examined.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "A dieta de 1939: farinha de trigo, leite evaporado, repolho, espinafre e feijão seco.",
+      "tipo": "fonte",
+      "fonte": "https://math.berkeley.edu/~mgu/MA170/Diet.pdf",
+      "resultado": "confirmada",
+      "como": "Tabela 2, coluna August 1939: Wheat Flour 370 lb, Evaporated Milk 57 cans, Cabbage 111 lb, Spinach 23 lb, Dried Navy Beans 285 lb (Pancake Flour e Pork Liver só entram em 1944)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Programa linear de 9 equações e 77 incógnitas; nove pessoas com calculadoras de mesa manuais levaram 120 dias-homem.",
+      "tipo": "fonte",
+      "fonte": "https://neos-guide.org/case-studies/om/the-diet-problem/",
+      "resultado": "confirmada",
+      "como": "NEOS Guide: 'the linear program consisted of nine equations in 77 unknowns. It took nine clerks using hand-operated desk calculators 120 man days to solve'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O palpite de Stigler errou por 24 centavos.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"console.log((39.93-39.69).toFixed(2))\" → 0.24. Bate com o NEOS: 'Stigler's guess was off by only $0.24 per year!'"
+    }
+  ]
+}
