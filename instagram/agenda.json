@@ -297,6 +297,19 @@
       "ajuste": null,
       "resultado": null,
       "erro": null
+    },
+    {
+      "id": "2026-09-29-dieta-de-stigler:post",
+      "pasta": "instagram/2026-09-29-dieta-de-stigler",
+      "formato": "post",
+      "quando": "2026-09-29T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
     }
   ]
 }
