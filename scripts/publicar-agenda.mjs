@@ -86,16 +86,20 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
   try {
     const agenda = lerAgenda();
+    // Sem nada vencido não há o que publicar — e ainda não precisa de token (antes da configuração da nuvem,
+    // as rodadas de 30 min têm que passar em silêncio, sem e-mail de falha).
+    const vencidos = devidos(agenda, agora);
+    if (!vencidos.length) { console.log("nada vencido — nada a publicar"); process.exit(0); }
+    console.log(`${vencidos.length} item(ns) vencido(s)${simular ? " (simulação)" : ""}`);
     let publicadores, tokens;
     if (simular) {
       publicadores = Object.fromEntries(["post", "story-aviso", "stories", "reel"].map((e) => [e, async (pasta) => { console.log(`  [simulado] ${e} de ${pasta}`); return { url: "(simulado)" }; }]));
     } else {
+      // Só com algo vencido: os tokens e a validade do token são conferidos antes de publicar qualquer coisa.
       tokens = tokensDoAmbiente();
       if (diasRestantes(tokens.instagram, agora) < 0) throw new ErroInstagram("o token do Instagram venceu — gere outro e rode: node scripts/instagram.mjs --token \"<token>\" e depois node scripts/agenda.mjs --configurar-nuvem");
       publicadores = publicadoresDaNuvem(tokens);
     }
-    const vencidos = devidos(agenda, agora);
-    console.log(vencidos.length ? `${vencidos.length} item(ns) vencido(s)${simular ? " (simulação)" : ""}` : "nada vencido — nada a publicar");
     const r = await executarAgenda(agenda, {
       agora, publicadores, dormir, log: console.log,
       temAviso: (i) => existsSync(join(RAIZ, i.pasta, "story-aviso.mp4")),
