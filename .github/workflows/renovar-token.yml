@@ -38,10 +38,10 @@ jobs:
           GH_TOKEN: ${{ secrets.SEGREDOS_PAT }}
         run: |
           if [ -f "$RUNNER_TEMP/novo-token.json" ]; then
-            TOKEN=$(jq -r .access_token "$RUNNER_TEMP/novo-token.json")
+            TOKEN=$(jq -er .access_token "$RUNNER_TEMP/novo-token.json")
             echo "::add-mask::$TOKEN"
             gh secret set IG_ACCESS_TOKEN --body "$TOKEN" --repo "$GITHUB_REPOSITORY"
-            gh variable set IG_EXPIRA_EM --body "$(jq -r .expira_em "$RUNNER_TEMP/novo-token.json")" --repo "$GITHUB_REPOSITORY"
+            gh variable set IG_EXPIRA_EM --body "$(jq -er .expira_em "$RUNNER_TEMP/novo-token.json")" --repo "$GITHUB_REPOSITORY"
             echo "Secret e Variable atualizados"
           else
             echo "nada a atualizar"

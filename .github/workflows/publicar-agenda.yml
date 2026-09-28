@@ -59,6 +59,10 @@ jobs:
             echo "sem mudanças de estado"
           else
             git commit -m "agenda: estado das publicações [skip ci]"
-            git pull --rebase --autostash
+            # -X theirs: numa rebase, "theirs" é o commit de estado do robô. Se a pessoa mexeu na agenda ao mesmo
+            # tempo, o robô vence o trecho em conflito: publicar em dobro não tem volta; já perder uma edição
+            # simultânea da pessoa aparece no --status e dá para refazer.
+            git pull --rebase --autostash -X theirs origin master
+            node -e 'const a=JSON.parse(require("fs").readFileSync("instagram/agenda.json","utf8")); if(!Array.isArray(a.itens)) process.exit(1)'
             git push
           fi

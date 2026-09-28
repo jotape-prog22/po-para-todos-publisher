@@ -38,6 +38,16 @@ test("publicar-agenda: guardar o estado sobe mesmo com arquivo modificado e sem 
   assert.match(estado.run, /publicacao\*\.json'.*\|\| true/, "se o glob não casar nada, o git add não pode derrubar o passo");
 });
 
+test("publicar-agenda: o estado do robô vence conflito e é validado antes do push", () => {
+  const passos = ler("publicar-agenda.yml").jobs.publicar.steps;
+  const estado = passos.find((s) => /git push/.test(s.run ?? ""));
+  assert.match(estado.run, /git pull --rebase --autostash -X theirs origin master/);
+  const validar = estado.run.indexOf("JSON.parse");
+  assert.ok(validar > estado.run.indexOf("git pull"), "valida depois do pull");
+  assert.ok(validar > -1 && validar < estado.run.indexOf("git push"), "valida antes do push");
+  assert.match(estado.run, /itens/);
+});
+
 test("renovar-token: semanal, usa SEGREDOS_PAT para gravar Secret e Variable", () => {
   const w = ler("renovar-token.yml");
   assert.equal(w.on.schedule.length, 1);
@@ -45,4 +55,6 @@ test("renovar-token: semanal, usa SEGREDOS_PAT para gravar Secret e Variable", (
   assert.match(gravar.env.GH_TOKEN, /SEGREDOS_PAT/);
   assert.match(gravar.run, /gh variable set IG_EXPIRA_EM/);
   assert.match(gravar.run, /add-mask/);
+  assert.doesNotMatch(gravar.run, /jq -r /, "jq estrito: nunca gravar o texto null no Secret");
+  assert.equal((gravar.run.match(/jq -er /g) ?? []).length, 2);
 });
