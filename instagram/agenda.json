@@ -6,11 +6,16 @@
       "formato": "post",
       "quando": "2026-09-28T19:07:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "post"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/p/Dd2OO_lHyN_/",
+        "media_id": "18349428112267091"
+      },
       "erro": null
     },
     {
@@ -19,11 +24,18 @@
       "formato": "stories",
       "quando": "2026-09-28T19:07:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "stories"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "media_ids": [
+          "17913180531531901",
+          "17899483959656552"
+        ]
+      },
       "erro": null
     }
   ]
