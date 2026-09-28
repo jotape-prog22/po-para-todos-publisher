@@ -26,7 +26,7 @@ export const GRAPH = "https://graph.instagram.com/v23.0";
 export const GITHUB = "https://api.github.com";
 export const ARQUIVO_TOKENS = join(homedir(), ".po-para-todos", "instagram.json");
 const VALIDADE_DIAS = 60;         // token de longa duração
-const RENOVAR_ABAIXO_DE = 30;     // dias
+export const RENOVAR_ABAIXO_DE = 30;     // dias
 const COTA = 100;                 // publicações por 24 h
 const DIA_MS = 86_400_000;
 
@@ -44,6 +44,16 @@ export function lerTokens(arquivo = ARQUIVO_TOKENS) {
 export function gravarTokens(dados, arquivo = ARQUIVO_TOKENS) {
   mkdirSync(dirname(arquivo), { recursive: true });
   writeFileSync(arquivo, JSON.stringify(dados, null, 2) + "\n", { mode: 0o600 });
+}
+
+// Na nuvem (GitHub Actions) não há ~/.po-para-todos: os tokens vêm de Secrets/Variables (ADR 0010).
+export function tokensDoAmbiente(env = process.env, { exigirGithub = true } = {}) {
+  const obrigatorias = ["IG_ACCESS_TOKEN", "IG_ID", "IG_USUARIO", "IG_EXPIRA_EM", ...(exigirGithub ? ["GITHUB_TOKEN"] : [])];
+  const falta = obrigatorias.filter((n) => !env[n]);
+  if (falta.length) throw new ErroInstagram(`faltam variáveis do GitHub: ${falta.join(", ")} — rode: node scripts/agenda.mjs --configurar-nuvem (README, "Publicar na nuvem")`);
+  const tokens = { instagram: { access_token: env.IG_ACCESS_TOKEN, usuario: env.IG_USUARIO, ig_id: String(env.IG_ID), expira_em: env.IG_EXPIRA_EM } };
+  if (env.GITHUB_TOKEN) tokens.github_token = env.GITHUB_TOKEN;
+  return tokens;
 }
 export function diasRestantes(instagram, agora = Date.now()) {
   return Math.floor((Date.parse(instagram.expira_em) - agora) / DIA_MS);
