@@ -1,10 +1,13 @@
 name: Publicar agenda do Instagram
 
-# Roda a cada 30 min (o GitHub pode atrasar alguns minutos) e publica o que venceu em instagram/agenda.json.
+# Roda a cada 30 min e publica o que venceu em instagram/agenda.json.
+# O cron do GitHub não é garantido: em repositório com pouco movimento ele atrasa horas ou pula rodadas (em 29/09/2026
+# rodou 3 vezes em 16 h). Por isso há dois gatilhos: este cron (nos minutos 7 e 37, fora da hora cheia, que é a mais
+# congestionada) e um despertador externo que chama o workflow_dispatch com simular=false (docs/despertador-agenda.md).
 # Manualmente (aba Actions → Run workflow) começa em modo simulação: mostra o que seria publicado, sem publicar.
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "7,37 * * * *"
   workflow_dispatch:
     inputs:
       simular:
@@ -27,8 +30,11 @@ jobs:
       # A master tem a regra "Proteger master" (só admin empurra sem PR) e o GITHUB_TOKEN não contorna regras em
       # repositório pessoal: o estado da agenda sobe com o SEGREDOS_PAT (token do dono). Sem ele, o GITHUB_TOKEN
       # serve para ler e simular, mas o push do estado seria recusado.
+      # ref: master — sem ele o checkout pega o commit do momento do disparo; uma rodada que esperou a anterior
+      # terminar leria a agenda de antes e publicaria de novo o que a anterior acabou de publicar.
       - uses: actions/checkout@v4
         with:
+          ref: master
           token: ${{ secrets.SEGREDOS_PAT || github.token }}
 
       - uses: actions/setup-node@v4

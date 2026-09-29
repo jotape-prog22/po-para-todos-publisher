@@ -7,9 +7,10 @@ import { RAIZ } from "../scripts/agenda.mjs";
 
 const ler = (nome) => YAML.parse(readFileSync(join(RAIZ, ".github", "workflows", nome), "utf8"));
 
-test("publicar-agenda: cron de 30 min, manual com simulação, uma execução por vez, pode gravar no repositório", () => {
+test("publicar-agenda: cron de 30 min fora da hora cheia, manual com simulação, uma execução por vez, pode gravar no repositório", () => {
   const w = ler("publicar-agenda.yml");
-  assert.deepEqual(w.on.schedule, [{ cron: "*/30 * * * *" }]);
+  // :00 e :30 são os minutos mais congestionados do GitHub — é quando ele mais atrasa ou pula rodadas.
+  assert.deepEqual(w.on.schedule, [{ cron: "7,37 * * * *" }]);
   assert.ok(w.on.workflow_dispatch.inputs.simular);
   assert.equal(w.concurrency.group, "publicar-agenda");
   assert.equal(w.concurrency["cancel-in-progress"], false);
@@ -27,6 +28,11 @@ test("publicar-agenda: cron de 30 min, manual com simulação, uma execução po
 test("publicar-agenda: o checkout usa o SEGREDOS_PAT (a master protegida só aceita push de admin), com o GITHUB_TOKEN de reserva", () => {
   const checkout = ler("publicar-agenda.yml").jobs.publicar.steps.find((s) => /actions\/checkout/.test(s.uses ?? ""));
   assert.match(checkout.with?.token ?? "", /secrets\.SEGREDOS_PAT\s*\|\|\s*github\.token/);
+});
+
+test("publicar-agenda: o checkout lê a master de agora, não a do momento do disparo (rodada que esperou na fila não publica em dobro)", () => {
+  const checkout = ler("publicar-agenda.yml").jobs.publicar.steps.find((s) => /actions\/checkout/.test(s.uses ?? ""));
+  assert.equal(checkout.with?.ref, "master");
 });
 
 test("publicar-agenda: baixa a mídia do branch fila sem apagar arquivos da agenda", () => {
