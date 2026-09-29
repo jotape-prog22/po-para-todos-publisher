@@ -1,0 +1,11 @@
+{ "tipo": "artigo",
+  "cards": [
+    {"tipo": "capa", "kicker": "SITE NOVO", "titulo": "O PO PARA TODOS TEM UM SITE NOVO", "autores": "Andréa Bonifácio, Lucas Motta, Arthur Cardoso, João Meirelles", "onde": "Projeto de Extensão · UNIRIO", "imagem": "tela-home.png"},
+    {"tipo": "ideia", "titulo": "Tudo num lugar só", "texto": "Videoaulas e materiais de Pesquisa Operacional organizados em trilhas: PO I, PO II e, em breve, Problemas Clássicos. Aberto e gratuito.", "imagem": "tela-trilhas.png"},
+    {"tipo": "ideia", "titulo": "A trilha de PO I", "texto": "10 aulas, da introdução ao problema do transporte: modelagem, Solver, Simplex, Big-M, dualidade e análise de sensibilidade.", "imagem": "tela-po1.png"},
+    {"tipo": "ideia", "titulo": "A trilha de PO II", "texto": "10 aulas: grafos, árvore geradora mínima, menor caminho, fluxos, PERT e CPM, teoria dos jogos, programação inteira e não linear.", "imagem": "tela-po2.png"},
+    {"tipo": "ideia", "titulo": "Por dentro de uma aula", "texto": "Vídeos em abas, uma parte por vez, com os assuntos marcados e, na maioria das aulas, os slides para baixar.", "imagem": "tela-aula.png"},
+    {"tipo": "ideia", "titulo": "Pensado para o celular", "texto": "O menu recolhe, a lista de aulas fica a um toque e o vídeo ocupa a largura da tela. Dá para estudar no ônibus.", "imagem": "tela-celular.png"},
+    {"tipo": "ideia", "titulo": "Vem aí: Problemas Clássicos", "texto": "Uma trilha com problemas clássicos da Pesquisa Operacional explicados com exemplos práticos e códigos em diferentes linguagens de programação. Está em construção."},
+    {"tipo": "fim", "kicker": "ACESSE", "texto": "Pesquisa Operacional para Todos. Projeto de extensão da UNIRIO, Pró-Reitoria de Extensão e Cultura. Coordenação: Profa. Andréa Bonifácio.", "link": "pesquisaoperacional.uniriotec.br"}
+  ] }

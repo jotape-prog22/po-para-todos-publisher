@@ -1,0 +1,68 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1",
+      "texto": "Equipe: Andréa Bonifácio, Lucas Motta, Arthur Cardoso, João Meirelles; Projeto de Extensão · UNIRIO.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/",
+      "resultado": "nao-confirmada",
+      "como": "O site (28/09/2026) lista Andréa Bonifácio (coordenadora), Lucas Motta e Nathalia Ferreira (desenvolvimento do site) e João Meirelles (videoaulas). A equipe informou nesta data que Nathalia saiu e Arthur Cardoso entrou no desenvolvimento do site; ele ainda não aparece na seção \"Nossa equipe\". Mantido por decisão da equipe."
+    },
+    {
+      "onde": "card 2",
+      "texto": "Trilhas PO I, PO II e, em breve, Problemas Clássicos; aberto e gratuito.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/",
+      "resultado": "confirmada",
+      "como": "Home, \"Explore as trilhas\": PO I (10 aulas), PO II (10 aulas), Problemas Clássicos (Em breve). Hero: \"abertos, gratuitos e para além da sala de aula\"."
+    },
+    {
+      "onde": "card 3",
+      "texto": "PO I: 10 aulas, da introdução ao transporte e designação; PPL, Solver, Simplex, Big-M, dualidade, sensibilidade.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/po1",
+      "resultado": "confirmada",
+      "como": "Página /po1 lista 10 aulas: 1 Introdução à PO … 10 Problema do Transporte e Designação; inclui Software para resolver PPLs (Solver), Modelagem de PPL, Algoritmo Simplex, Big-M, Dualidade, Análise de Sensibilidade. Observação: a aula 2 (Resolução Gráfica) está marcada \"Em breve\"; o site conta 10 aulas mesmo assim."
+    },
+    {
+      "onde": "card 4",
+      "texto": "PO II: 10 aulas — árvore geradora mínima, menor caminho, fluxo máximo, custo mínimo, PERT/CPM, jogos, PI e PNL.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/po2",
+      "resultado": "confirmada",
+      "como": "Página /po2 lista 10 aulas: Introdução, Teoria dos Grafos, Árvore Geradora, Menor Caminho, Fluxo Máximo, Fluxo de Custo Mínimo, PERT e CPM (\"Em breve\"), Teoria dos Jogos, Programação Inteira, Programação Não Linear."
+    },
+    {
+      "onde": "card 5",
+      "texto": "Vídeos em abas com assuntos marcados; slides para baixar na maioria das aulas; botão para a próxima aula.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/po1/aula-7",
+      "resultado": "confirmada",
+      "como": "Aula 7 (Dualidade): abas \"Dualidade pt.1\", \"pt.2\", \"Algoritmo Simplex Dual\", \"Exemplos\"; tags de assunto; \"Materiais de Apoio\" com 2 .pptx; link \"Próxima: Interpretação Econômica…\". Contei links de materiais nas 20 aulas: 14 de 20 têm pelo menos um arquivo."
+    },
+    {
+      "onde": "card 6",
+      "texto": "No celular o menu recolhe, a lista de aulas fica a um toque e o vídeo ocupa a largura.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/po1/aula-7",
+      "resultado": "confirmada",
+      "como": "Renderizei a aula 7 em 390 px de largura: menu vira botão hambúrguer, botão \"Aulas (7/10)\" no topo, vídeo na largura da tela."
+    },
+    {
+      "onde": "card 7",
+      "texto": "Problemas Clássicos com exemplos práticos e códigos em diferentes linguagens; em construção.",
+      "tipo": "fonte",
+      "fonte": "https://poparatodos.github.io/Pesquisa-Operacional-Para-Todos/problemas",
+      "resultado": "confirmada",
+      "como": "Home, \"Sobre o projeto\": \"Problemas clássicos da Pesquisa Operacional explicados com exemplos práticos e códigos em diferentes linguagens de programação.\" Página /problemas: \"O conteúdo desta disciplina será disponibilizado em breve.\""
+    },
+    {
+      "onde": "card 8",
+      "texto": "pesquisaoperacional.uniriotec.br é o endereço do site novo.",
+      "tipo": "fonte",
+      "fonte": "https://pesquisaoperacional.uniriotec.br",
+      "resultado": "nao-confirmada",
+      "como": "Em 28/09/2026 o endereço responde 200, mas ainda serve o site ANTIGO (HTML estático com carrossel \"Sobre o Projeto\" e links pages/po1.html), não o site novo do github.io. Precisa apontar o domínio antes (ou logo depois) de publicar."
+    }
+  ]
+}
