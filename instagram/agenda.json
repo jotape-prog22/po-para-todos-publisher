@@ -304,11 +304,17 @@
       "formato": "post",
       "quando": "2026-09-29T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "post",
+        "story-aviso"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/p/Dd4M0rlmm7S/",
+        "media_id": "18126028780846135"
+      },
       "erro": null
     }
   ]
