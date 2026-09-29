@@ -5,6 +5,7 @@
 //   node design-system/scripts/gerar-cards.mjs instagram/<pasta> --so-html    (só o HTML, sem Chrome)
 //
 // cards.json: { "tipo": "artigo" | "aviso" | "curiosidade" | "citacao", "cards": [ { "tipo": "capa" | "ideia" | "fim" | "aviso" | "curiosidade" | "citacao", ...campos } ] }
+// capa e ideia aceitam "imagem": um recorte de tela (.png/.jpg) na pasta do post, desenhado com moldura abaixo do texto.
 // Campos, limites e sequência por tipo estão em instagram/formatos.json; tudo é validado antes de renderizar.
 
 import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
@@ -21,6 +22,7 @@ export class ErroCards extends Error {}
 
 const KICKER_PADRAO = { capa: "RESUMO DE ARTIGO", fim: "REFERÊNCIA", aviso: "AVISO", curiosidade: "VOCÊ SABIA?", citacao: "DA AULA" };
 const TITULO_LONGO = 60;   // acima disso o título cai para o tamanho médio
+const IMAGEM = /^[\w.-]+\.(png|jpe?g)$/i;   // recorte de tela na própria pasta do post
 
 export function validarCards(dados) {
   const erros = [];
@@ -40,6 +42,13 @@ export function validarCards(dados) {
       else if (v.length > max) erros.push(`card ${n}: "${campo}" tem ${v.length} caracteres — máximo ${max}`);
     }
     for (const campo of Object.keys(c)) if (campo !== "tipo" && !(campo in def.campos)) erros.push(`card ${n}: campo "${campo}" não existe no card ${c.tipo}`);
+    if (typeof c.imagem === "string" && "imagem" in def.campos) {
+      if (!IMAGEM.test(c.imagem)) erros.push(`card ${n}: "imagem" é o nome de um .png ou .jpg na pasta do post (ex.: tela-po1.png), sem pastas`);
+      for (const [campo, max] of Object.entries(def.com_imagem ?? {})) {
+        const v = c[campo];
+        if (typeof v === "string" && v.length > max) erros.push(`card ${n}: "${campo}" com imagem tem ${v.length} caracteres — máximo ${max}`);
+      }
+    }
   });
   if (dados.tipo === "artigo" && cards.length) {
     if (cards[0].tipo !== "capa") erros.push("artigo: o primeiro card é a capa");
@@ -70,6 +79,8 @@ export function variaveisDoCard(card, i, total, { ds, usuario }) {
     origem: card.origem ?? "",
     texto: card.texto ?? "",
     texto_html: esc(card.texto ?? "").replace(/\n/g, "<br>"),
+    imagem: card.imagem ?? "",
+    com_tela: card.imagem ? "ig--com-tela" : "",
     titulo_pagina: `${titulo || card.tipo} — PO para Todos`,
   };
 }
@@ -80,6 +91,8 @@ export function gerarCards(pasta, { soHtml = false } = {}) {
   const dados = JSON.parse(readFileSync(arquivo, "utf8"));
   const erros = validarCards(dados);
   if (erros.length) throw new ErroCards(`cards.json inválido:\n- ${erros.join("\n- ")}`);
+  const faltando = dados.cards.filter((c) => c.imagem && !existsSync(join(pasta, c.imagem))).map((c) => c.imagem);
+  if (faltando.length) throw new ErroCards(`imagem não encontrada na pasta do post: ${faltando.join(", ")} (gere com design-system/scripts/recortar-tela.mjs)`);
   const ds = relative(pasta, DS).split("\\").join("/") || ".";
   const { largura, altura } = formatos.formatos.feed;
   const saidas = [];

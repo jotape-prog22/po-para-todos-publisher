@@ -26,6 +26,8 @@ Para quem recebe um `instagram/<data>-<slug>/post.md` e precisa entregar `cards.
     { "tipo": "fim",   "texto": "SOBRENOME, N. Título. Evento/Revista, ano.", "link": "doi.org/…" }
   ] }
 ```
+Recorte de tela (capa e ideia): `"imagem": "tela-po1.png"`, um .png/.jpg na pasta do post, desenhado numa janela de navegador abaixo do texto — para posts que mostram um site, uma ferramenta ou uma página. Com imagem, o texto encolhe (`com_imagem` em `formatos.json`: ideia até 150 caracteres; capa com título até 60 e autores até 80). Gere o recorte com `design-system/scripts/recortar-tela.mjs`: janela mais estreita (`--largura 1100`) deixa a letra do site legível no card; `--rolar-ate main` pula o cabeçalho; `--celular` com duas URLs põe dois celulares lado a lado. Olhe o card: o recorte mostra o topo e corta embaixo.
+
 Aviso: `{ "tipo": "aviso", "cards": [ { "tipo": "aviso", "kicker": "PRAZO", "titulo": "Chamada de trabalhos SBPO", "data": "ATÉ 15/03", "texto": "…", "link": "sbpo.org.br" } ] }`. `kicker` opcional (padrões: RESUMO DE ARTIGO, REFERÊNCIA, AVISO); use PRAZO, EVENTO, VAGA, EDITAL, RECONHECIMENTO conforme o caso. Limites por campo em `formatos.json`.
 
 Curiosidade: `{ "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titulo": "O SIMPLEX TEM MAIS DE 75 ANOS", "texto": "…", "fonte": "Dantzig, 1947" } ] }`.
@@ -45,6 +47,7 @@ Curiosidade: `{ "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titu
 ```bash
 node design-system/scripts/gerar-cards.mjs instagram/<pasta>            # card-NN.png
 node design-system/scripts/gerar-cards.mjs instagram/<pasta> --so-html  # só HTML, para inspecionar
+node design-system/scripts/recortar-tela.mjs <url> --saida instagram/<pasta>/tela-x.png [--largura 1100 --altura 600] [--rolar-ate main | --seletor "#secao"] [--celular]  # recorte para "imagem"
 node scripts/legenda.mjs instagram/<pasta>                              # legenda.txt
 node scripts/checagem.mjs instagram/<pasta>                             # valida checagem.json e imprime o resumo da Checagem
 node scripts/instagram.mjs --status                                     # conta, token, cota

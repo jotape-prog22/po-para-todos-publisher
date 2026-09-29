@@ -17,7 +17,7 @@ test("encurtar corta na última palavra inteira e termina com reticências", () 
   assert.ok(encurtar("a".repeat(100), 60).length <= 60);
 });
 
-test("cena do artigo: kicker fixo, título encurtado ao limite, autores e onde nas linhas, faixa VEJA NO FEED", () => {
+test("cena do artigo: kicker padrão sem kicker na capa, título encurtado ao limite, autores e onde nas linhas, faixa VEJA NO FEED", () => {
   const cena = cenaDoAviso(kruskal);
   assert.equal(cena.kicker, "POST NOVO: RESUMO DE ARTIGO");
   assert.ok(cena.titulo.length <= LIMITES.campos.titulo && cena.titulo.endsWith("…"));
@@ -25,6 +25,11 @@ test("cena do artigo: kicker fixo, título encurtado ao limite, autores e onde n
   assert.equal(cena.faixa, "VEJA NO FEED");
   assert.equal(cena.duracao, DURACAO_AVISO);
   assert.equal(validar({ tipo: "stories", publicacao: "api", stories: [cena] }).length, 1);
+});
+
+test("cena do artigo: kicker da capa, quando a capa tem um, substitui RESUMO DE ARTIGO", () => {
+  const capa = { ...kruskal.cards[0], kicker: "SITE NOVO" };
+  assert.equal(cenaDoAviso({ ...kruskal, cards: [capa, ...kruskal.cards.slice(1)] }).kicker, "POST NOVO: SITE NOVO");
 });
 
 test("cena do aviso: kicker do card, data e primeira frase do texto", () => {

@@ -32,7 +32,7 @@ export function cenaDoAviso(cards) {
   const T = LIMITES.campos, linha = (s) => encurtar(s, T.linha);
   const base = { duracao: DURACAO_AVISO, faixa: "VEJA NO FEED" };
   switch (cards.tipo) {
-    case "artigo": return { ...base, kicker: "POST NOVO: RESUMO DE ARTIGO", titulo: encurtar(c.titulo, T.titulo), linhas: [c.autores, c.onde].filter(Boolean).map(linha) };
+    case "artigo": return { ...base, kicker: `POST NOVO: ${c.kicker ?? "RESUMO DE ARTIGO"}`, titulo: encurtar(c.titulo, T.titulo), linhas: [c.autores, c.onde].filter(Boolean).map(linha) };
     case "aviso": return { ...base, kicker: `POST NOVO: ${c.kicker ?? "AVISO"}`, titulo: encurtar(c.titulo, T.titulo), linhas: [c.data, primeiraFrase(c.texto)].filter(Boolean).map(linha) };
     case "curiosidade": return { ...base, kicker: "POST NOVO: VOCÊ SABIA?", titulo: encurtar(c.titulo, T.titulo), linhas: [primeiraFrase(c.texto)].filter(Boolean).map(linha) };
     case "citacao": return { ...base, kicker: "POST NOVO: CITAÇÃO", titulo: encurtar(c.origem, T.titulo), linhas: [c.texto].map(linha) };

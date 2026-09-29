@@ -59,6 +59,25 @@ body { background: var(--surface); }
 .ig__icone { width: var(--ig-icone); height: var(--ig-icone); }
 .ig__icone img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
+/* recorte de tela (campo "imagem" da capa e da ideia): abaixo do texto, até o que sobra de altura,
+   numa janela de navegador; o texto encolhe (limites em formatos.json → com_imagem) */
+.ig--com-tela .ig__numero { font-size: var(--ig-titulo-size); line-height: var(--ig-titulo-line); }
+.ig--com-tela .ig__corpo { line-height: var(--ig-titulo-medio-line); }
+.ig__tela {
+  flex: 0 1 auto; min-height: 0; margin: var(--space-sm) 0 0; position: relative;
+  display: flex; flex-direction: column;
+  border-radius: 24px; overflow: hidden; background: #fff;
+  box-shadow: 0 24px 64px rgb(0 0 0 / .45);
+  padding-top: 44px;
+}
+.ig__tela::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 44px; background: #e4e8ef;
+  background-image: radial-gradient(circle at 30px 22px, #ff5f57 8px, transparent 9px),
+                    radial-gradient(circle at 58px 22px, #febc2e 8px, transparent 9px),
+                    radial-gradient(circle at 86px 22px, #28c840 8px, transparent 9px);
+}
+.ig__tela img { display: block; flex: 0 1 auto; min-height: 0; width: 100%; object-fit: cover; object-position: top center; }   /* na proporção do recorte; sem altura, corta embaixo */
+
 /* rodapé: @ do perfil à esquerda, contador do carrossel à direita (brand-navy sobre verde, 5,08:1) */
 .ig__rodape {
   position: absolute; left: 0; right: 0; bottom: 0; height: var(--ig-rodape-altura); margin: 0;

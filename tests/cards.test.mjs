@@ -109,3 +109,29 @@ test("gerarCards apaga card-NN.png e .html que sobraram de uma versão anterior 
   assert.ok(!existsSync(join(pasta, "card-03.html")));
   assert.ok(existsSync(join(pasta, "card-01.html")));
 });
+
+test("imagem: capa e ideia aceitam um recorte de tela (png/jpg da pasta do post) e o texto encolhe", () => {
+  const capa = { tipo: "capa", titulo: "T", autores: "A" };
+  const fim = { tipo: "fim", texto: "ref" };
+  const ideia = { tipo: "ideia", titulo: "I", texto: "x".repeat(150), imagem: "tela-po1.png" };
+  assert.deepEqual(validarCards({ tipo: "artigo", cards: [{ ...capa, imagem: "tela-home.jpg" }, ideia, fim] }), []);
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { ...ideia, texto: "x".repeat(151) }, fim] }).some((e) => e.includes("com imagem") && e.includes("máximo 150")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { ...ideia, imagem: "../fora.png" }, fim] }).some((e) => e.includes("imagem")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { ...ideia, imagem: "tela.gif" }, fim] }).some((e) => e.includes("imagem")));
+  assert.ok(validarCards({ tipo: "artigo", cards: [capa, { tipo: "ideia", titulo: "I", texto: "x" }, { ...fim, imagem: "t.png" }] }).some((e) => e.includes('campo "imagem"')));
+});
+
+test("imagem: gerarCards põe o recorte no card e recusa arquivo que não está na pasta", () => {
+  const pasta = mkdtempSync(join(tmpdir(), "cards-"));
+  const cards = { tipo: "artigo", cards: [
+    { tipo: "capa", titulo: "T", autores: "A" },
+    { tipo: "ideia", titulo: "I", texto: "curto", imagem: "tela-po1.png" },
+    { tipo: "fim", texto: "ref" } ] };
+  writeFileSync(join(pasta, "cards.json"), JSON.stringify(cards));
+  assert.throws(() => gerarCards(pasta, { soHtml: true }), (e) => e instanceof ErroCards && e.message.includes("tela-po1.png"));
+  writeFileSync(join(pasta, "tela-po1.png"), "png");
+  const saidas = gerarCards(pasta, { soHtml: true });
+  const ideia = readFileSync(saidas[1], "utf8");
+  assert.ok(ideia.includes('class="ig__tela"') && ideia.includes('src="tela-po1.png"') && ideia.includes("ig--com-tela"));
+  assert.ok(!readFileSync(saidas[0], "utf8").includes('class="ig__tela"'));
+});

@@ -10,6 +10,7 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node design-system/scripts/gerar-slides.mjs videos/<slug>` — `slides.json` → `slides.pptx`.
 - `node scripts/descricao.mjs videos/<slug>` — monta a descrição em `metadados.json`.
 - `node design-system/scripts/gerar-miniatura.mjs …` — ver `design-system/miniaturas/GUIA-AGENTE.md`.
+- `node design-system/scripts/recortar-tela.mjs <url> --saida instagram/<pasta>/tela-x.png` — recorte de tela de um site para o campo `imagem` dos cards (capa e ideia).
 - `node design-system/scripts/gerar-story.mjs videos/<slug>` — `story.png` de vídeo novo (a skill `publicar` chama).
 - `node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` — `stories.json` → `story-NN.mp4` (sequência de stories em vídeo; stickers e ordem em `stories.md` da pasta).
 - `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` — `story-aviso.mp4` de post novo.
