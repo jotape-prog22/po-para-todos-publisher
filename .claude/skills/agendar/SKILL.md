@@ -60,6 +60,7 @@ node scripts/agenda.mjs --enviar
 - Mudar a data: `--mover <id> AAAA-MM-DDTHH:MM`, depois `--enviar`.
 - Mudar o conteúdo: `--reabrir <id>`, ajuste a pasta, `npm run revisar`, `--enfileirar`, `--enviar`. (O que sai é o que foi aprovado e enfileirado; mudar a pasta sem reabrir não muda nada na nuvem.)
 - Tirar: `--remover <id>`, depois `--enviar`.
+- Item que passou da hora e continua `agendado`: o robô não foi acordado. Confira `gh run list --workflow publicar-agenda.yml --limit 5` — sem rodadas `workflow_dispatch` a cada :00/:30, o despertador do cron-job.org parou (quase sempre o token dele venceu; README, "Tokens que vencem"). Para publicar já, com o ok da pessoa: `gh workflow run publicar-agenda.yml -f simular=false`.
 - Item `FALHOU` ou `PERDIDO`: leia o `erro:` do `--status`.
   - Causa de horário ou de rede (passou da janela de 6 h, a Meta ficou fora do ar): basta `--mover <id> <nova data no futuro>` (isso volta o item a `agendado`), depois `--enviar`.
   - Causa de CONTEÚDO (arquivo quebrado, Checagem faltando ou inválida): `--reabrir <id>`, corrija a pasta, `npm run revisar` (aprovar de novo), `--mover <id> <data no futuro>`, `--enfileirar`, `--enviar`. Só `--mover` não adianta aqui, porque o que sai é o que está na fila, e a fila ainda tem a versão antiga.

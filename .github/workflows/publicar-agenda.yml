@@ -3,7 +3,7 @@ name: Publicar agenda do Instagram
 # Roda a cada 30 min e publica o que venceu em instagram/agenda.json.
 # O cron do GitHub não é garantido: em repositório com pouco movimento ele atrasa horas ou pula rodadas (em 29/09/2026
 # rodou 3 vezes em 16 h). Por isso há dois gatilhos: este cron (nos minutos 7 e 37, fora da hora cheia, que é a mais
-# congestionada) e um despertador externo que chama o workflow_dispatch com simular=false (docs/despertador-agenda.md).
+# congestionada) e um despertador externo que chama o workflow_dispatch com simular=false (README, "Publicar na nuvem (agenda)", passo 7).
 # Manualmente (aba Actions → Run workflow) começa em modo simulação: mostra o que seria publicado, sem publicar.
 on:
   schedule:

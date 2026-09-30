@@ -19,7 +19,7 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
 - `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4`.
 - `node scripts/agenda.mjs …` — a agenda de publicações (`--adicionar`, `--distribuir`, `--status`, `--mover`, `--reabrir`, `--remover`, `--enfileirar`, `--enviar`, `--atualizar`, `--configurar-nuvem`); `npm run revisar` abre a revisão em bloco.
-- `node scripts/publicar-agenda.mjs [--simular]` — o que o workflow `publicar-agenda.yml` roda a cada 30 min; `--simular` não toca na Meta.
+- `node scripts/publicar-agenda.mjs [--simular]` — o que o workflow `publicar-agenda.yml` roda a cada 30 min; `--simular` não toca na Meta. Quem acorda o workflow é um despertador no cron-job.org (`workflow_dispatch` às :00/:30); o cron do GitHub (:07/:37) é só reserva, porque atrasa horas (README, "Publicar na nuvem (agenda)").
 - `npm run calibrar` — abre no navegador a calibração dos formatos do Instagram (posts, stories, reels lado a lado, com a interface do app por cima); "Gravar no CSS" escreve no `:root` de `design-system/instagram/*.css`. Amostras em `design-system/instagram/amostras-calibracao.json`.
 - `npm test` — testes; as pastas `videos/folgas-complementares/` e `instagram/2026-09-20-kruskal-1956/` (incluindo `checagem.json`) são fixtures: não as altere sem atualizar os testes.
 

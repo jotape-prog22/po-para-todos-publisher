@@ -150,7 +150,7 @@ Confira tudo com `node scripts/instagram.mjs --status` — mostra a conta, quant
 
 ### Fazer um post
 
-1. Copie `instagram/_modelo/post.md` para uma pasta nova `instagram/<data>-<assunto>/` (a data de hoje, ex.: `instagram/2026-10-03-kruskal-1956/`) e preencha: para um **artigo**, título, autores, onde saiu, link e o resumo; para um **aviso** (edital, evento, prazo, vaga), nome, data-limite e link.
+1. Copie `instagram/_modelo/post.md` para uma pasta nova `instagram/<data>-<assunto>/` (a data de hoje, ex.: `instagram/2026-10-03-kruskal-1956/`) e preencha: para um **artigo**, título, autores, onde saiu, link e o resumo; para um **aviso** (edital, evento, prazo, vaga), nome, data-limite e link. Há também a **curiosidade** (o card "você sabia?") e a **citacao** (um trecho de vídeo ou post do canal); o modelo tem uma parte para cada tipo — preencha só a sua e apague as outras.
 2. Abra o `claude` na pasta do projeto e peça: `/post instagram/2026-10-03-kruskal-1956`.
 3. O Claude monta os cards e a legenda e abre as imagens para você conferir. Diga "sim" para publicar, ou peça ajustes.
 4. O post entra na hora (para deixar vários posts programados, veja "Publicar na nuvem (agenda)" abaixo). O link fica em `instagram/<pasta>/publicacao.json`.
@@ -181,7 +181,14 @@ Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confi
 
 ## Publicar na nuvem (agenda)
 
-Com a agenda você deixa dezenas de conteúdos aprovados de uma vez e eles saem sozinhos, um por dia, mesmo com o computador desligado: o GitHub confere a agenda a cada 30 minutos e publica o que venceu. O cronômetro do GitHub pode atrasar alguns minutos; se um item atrasar mais de 6 horas, ele não é publicado (para não sair o "post de segunda" na quarta) e você recebe um e-mail.
+Com a agenda você deixa dezenas de conteúdos aprovados de uma vez e eles saem sozinhos, um por dia, mesmo com o computador desligado.
+
+**Como funciona.** Um robô do GitHub (o workflow **Publicar agenda do Instagram**, na aba **Actions** do repositório) liga, lê a agenda (`instagram/agenda.json`), publica o que já passou da hora, anota na agenda o que publicou e desliga. Ele não sabe o horário de cada post: só publica o que encontra vencido quando acorda. Quem acorda o robô são dois despertadores:
+
+- **O despertador do cron-job.org** (o principal): um site gratuito que chama o robô às :00 e às :30 de toda hora. O GitHub atende esse chamado na hora, então um post das 12:00 sai por volta de 12:01. Configuração no passo 7 abaixo.
+- **O relógio do próprio GitHub** (a reserva): pedido a cada 30 minutos (nos minutos :07 e :37), mas o GitHub não garante — em repositório com pouco movimento ele atrasa horas ou pula rodadas. Em 29 e 30/09/2026 ele acordou o robô só a cada ~6 horas e os posts das 12h não saíram sozinhos; foi isso que levou ao despertador.
+
+Se os dois acordarem o robô ao mesmo tempo, o segundo espera o primeiro terminar e lê a agenda já atualizada: nada sai em dobro. Se um item atrasar mais de 6 horas, ele não é publicado (para não sair o "post de segunda" na quarta) e você recebe um e-mail.
 
 **Atenção:** o conteúdo aprovado espera num branch público do repositório (`fila`) até a hora de sair; quem souber procurar consegue vê-lo antes.
 
@@ -198,12 +205,59 @@ Pré-requisitos: já ter feito "Conectar ao Instagram" (o token do Instagram e o
 4. Copie os tokens do Instagram para o GitHub: `node scripts/agenda.mjs --configurar-nuvem`. Esperado: `tokens gravados nos Secrets/Variables do GitHub`.
 5. Ligue os avisos por e-mail: https://github.com/settings/notifications → **Actions** → marque **Send notifications for failed workflows only**.
 6. Teste sem publicar nada: na página do repositório, aba **Actions** → **Publicar agenda do Instagram** → **Run workflow** (deixe **simular** marcado). Esperado: a execução termina verde e o log diz `nada vencido — nada a publicar`.
+7. Crie o despertador (uns 10 minutos). São duas partes: um token do GitHub que só serve para acordar o robô, e o despertador no cron-job.org que usa esse token.
+
+   **7a. O token (no GitHub)** — feito por **quem é dono do repositório**:
+   1. Abra https://github.com/settings/personal-access-tokens/new
+   2. **Token name:** `despertador-agenda`.
+   3. **Expiration:** 1 ano (anote a data — veja "Tokens que vencem" abaixo).
+   4. **Repository access:** **Only select repositories** → `po-para-todos-publisher`.
+   5. **Permissions → Repository permissions → Actions:** **Read and write**. Mais nada (o "Metadata: Read-only" que o GitHub liga sozinho é normal).
+   6. **Generate token** e copie o token (começa com `github_pat_`). Ele só aparece uma vez; não cole na conversa com o Claude.
+
+   **7b. O despertador (no cron-job.org):**
+   1. Crie uma conta em https://console.cron-job.org/signup, confirme o e-mail e entre.
+   2. Clique em **CREATE CRONJOB**.
+   3. Aba **COMMON**:
+      - **Title:** `PO para Todos — agenda do Instagram`
+      - **URL:** `https://api.github.com/repos/jotape-prog22/po-para-todos-publisher/actions/workflows/publicar-agenda.yml/dispatches`
+      - **Execution schedule:** **Custom**. Em **Minutes**, marque só `0` e `30`; em horas, dias, meses e dias da semana, deixe tudo marcado.
+      - **Notifications:** marque o aviso por e-mail quando a execução falhar.
+   4. Aba **ADVANCED**:
+      - **Request method:** `POST`
+      - **Headers** (clique em **ADD** quatro vezes; Key à esquerda, Value à direita):
+
+        | Key | Value |
+        |---|---|
+        | `Accept` | `application/vnd.github+json` |
+        | `Authorization` | `Bearer ` + o token do 7a (com o espaço depois de `Bearer`) |
+        | `X-GitHub-Api-Version` | `2022-11-28` |
+        | `Content-Type` | `application/json` |
+
+      - **Request body:** `{"ref":"master","inputs":{"simular":"false"}}`
+   5. **TEST RUN** → **Start test run**. Esperado: **204 No Content**. Se der **401/403**, o token foi colado errado, faltou o espaço depois de `Bearer` ou a permissão Actions não ficou em "Read and write"; **404**, a URL está diferente ou o repositório não foi escolhido no 7a; **422**, o texto do Request body está diferente. Esse teste é de verdade, não simulação: se houver item vencido na agenda, ele é publicado.
+   6. **CREATE** (ou **SAVE**).
+
+   **7c. Conferir:** abra https://github.com/jotape-prog22/po-para-todos-publisher/actions/workflows/publicar-agenda.yml — deve aparecer uma rodada nova, verde, com `workflow_dispatch` (a do teste). Depois da próxima :00 ou :30, deve aparecer outra.
 
 ### Usar
 
 Peça ao Claude: `/agendar`. Ele junta as pastas, dá as datas, abre a página de revisão (você aprova, pede ajuste ou tira cada item) e envia a agenda. Ver a agenda a qualquer momento: `node scripts/agenda.mjs --status`.
 
-O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a renovação falhar você recebe um e-mail; nesse caso gere um token novo (passos 4 e 5 de "Conectar ao Instagram") e rode de novo o passo 4.
+**Publicar agora um item atrasado** (sem esperar o despertador): aba **Actions** → **Publicar agenda do Instagram** → **Run workflow** → **desmarque simular** → **Run workflow**. Em cerca de 1 minuto ele publica o que estiver vencido — e só o que foi aprovado na revisão e está na fila. Pelo Terminal, o mesmo é `gh workflow run publicar-agenda.yml -f simular=false`.
+
+### Tokens que vencem
+
+A publicação depende de quatro "senhas" (tokens), cada uma com validade. Quando criar ou renovar uma delas, anote a data de vencimento no seu calendário.
+
+| Token | Para que serve | Validade | Quem renova | Como você fica sabendo que venceu | Como renovar |
+|---|---|---|---|---|---|
+| Instagram | publicar na conta do Instagram | 60 dias | **sozinho**: toda segunda de manhã o workflow **Renovar token do Instagram** troca o token quando faltam menos de 30 dias | e-mail do GitHub dizendo que "Renovar token do Instagram" falhou | passos 4 e 5 de "Conectar ao Instagram", depois `node scripts/agenda.mjs --configurar-nuvem` |
+| `SEGREDOS_PAT` | o robô gravar a agenda na `master` e o token novo do Instagram nos Secrets | 1 ano | quem é dono do repositório | e-mails de falha do "Publicar agenda do Instagram" logo no primeiro passo (checkout), e nada é publicado | passo 3 de "Configurar (uma vez)" (o `gh secret set` substitui o antigo) |
+| Despertador | o cron-job.org acordar o robô | 1 ano | quem é dono do repositório | e-mail do cron-job.org avisando falha (erro 401) | passo 7a; no cron-job.org, abra o cronjob → **ADVANCED** → troque o Value de `Authorization` por `Bearer ` + o token novo → **SAVE** |
+| GitHub do computador (`--token-github`) | publicar **pelo seu computador** (`/post`, `/reel`…), não pela agenda | 1 ano | quem publica | `GitHub: Bad credentials` ao publicar | "Conectar ao GitHub" |
+
+Enquanto o token do despertador estiver vencido, a agenda não para: ela volta a depender só do relógio do GitHub, com os atrasos de horas descritos acima.
 
 ## Quando algo dá errado
 
@@ -220,6 +274,11 @@ O token do Instagram (60 dias) é renovado sozinho toda segunda-feira. Se a reno
 - **Interrompi o `--publicar` no meio (Ctrl+C)** — as imagens podem ficar no branch `midia` do GitHub até o próximo post, que substitui tudo. Não faz mal: são os mesmos cards que iriam para o Instagram.
 - **"erro: yt-dlp não encontrado"** — falta instalar o `yt-dlp` (item 7 de "O que você vai instalar"); instale e rode o comando de novo.
 - **Recebi e-mail do GitHub dizendo que "Publicar agenda do Instagram" falhou** — rode `node scripts/agenda.mjs --atualizar` e depois `--status`: o item com `FALHOU` ou `PERDIDO` mostra o motivo. Se a causa for de horário ou de rede (passou da janela de 6 horas, a Meta ficou fora do ar), basta reagendar com `node scripts/agenda.mjs --mover <id> AAAA-MM-DDTHH:MM` (uma data no futuro) e depois `node scripts/agenda.mjs --enviar`. Se a causa for de conteúdo (arquivo quebrado, Checagem faltando), o `--mover` sozinho não resolve, porque o que sai é o que está na fila: rode `--reabrir <id>`, corrija a pasta, `npm run revisar`, `--mover <id> <data no futuro>`, `--enfileirar` e `--enviar`.
+- **Um post agendado passou da hora e não saiu (e nenhum e-mail chegou)** — o robô não foi acordado.
+  1. Confirme: `node scripts/agenda.mjs --atualizar` e depois `node scripts/agenda.mjs --status`. Se o item ainda aparece como `agendado`, o robô não passou por ele.
+  2. Abra https://console.cron-job.org e veja o despertador: está ativo? A última execução deu **204**? Se deu 401 ou 403, o token do despertador venceu ("Tokens que vencem").
+  3. Para publicar já: veja "Publicar agora um item atrasado" em "Publicar na nuvem (agenda)". Se passaram mais de 6 horas, o item virou `PERDIDO` e não sai sozinho: reagende com `--mover` (item seguinte).
+- **E-mail do cron-job.org dizendo que o cronjob falhou** — erro 401 ou 403: o token do despertador venceu ou foi apagado; renove ("Tokens que vencem"). Erro 5xx: instabilidade do GitHub; se foi uma vez só, ignore — a próxima rodada, 30 minutos depois, resolve.
 - **Quero cancelar um post agendado** — `node scripts/agenda.mjs --remover <id>` e `node scripts/agenda.mjs --enviar`.
 
 ## Quero mudar a pipeline
