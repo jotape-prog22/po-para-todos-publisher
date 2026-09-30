@@ -20,7 +20,7 @@ Faça uma vez, leva uns 10 min.
 3. Aba **Common**:
    - **Title:** `PO para Todos — agenda do Instagram`
    - **URL:** `https://api.github.com/repos/jotape-prog22/po-para-todos-publisher/actions/workflows/publicar-agenda.yml/dispatches`
-   - **Execution schedule:** "Custom". Em **Minutes**, marque só `22` e `52`; em horas, dias, meses e dias da semana, deixe "Every". (22 e 52 ficam no meio dos minutos 7 e 37 do cron do GitHub: juntos, dá uma rodada a cada ~15 min.)
+   - **Execution schedule:** "Custom". Em **Minutes**, marque só `0` e `30`; em horas, dias, meses e dias da semana, deixe "Every". (O chamado do despertador é atendido na hora, sem a fila congestionada do cron do GitHub: um post das 12:00 sai por volta de 12:01.)
    - **Notify me when:** marque "execution of the cronjob fails".
 4. Aba **Advanced**:
    - **Request method:** `POST`
@@ -39,7 +39,7 @@ No terminal, na pasta do projeto:
 ```
 gh run list --workflow publicar-agenda.yml --limit 5
 ```
-Deve aparecer uma rodada `workflow_dispatch` recente (a do Test run) com `success`. Ela é real, não simulação: se houver item vencido na agenda, ele é publicado. Nas horas seguintes, as rodadas devem aparecer a cada ~15 min.
+Deve aparecer uma rodada `workflow_dispatch` recente (a do Test run) com `success`. Ela é real, não simulação: se houver item vencido na agenda, ele é publicado. Nas horas seguintes, as rodadas `workflow_dispatch` devem aparecer em todo :00 e :30.
 
 ## Quando o token vencer
 
