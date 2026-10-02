@@ -1,0 +1,46 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    {
+      "tipo": "capa",
+      "titulo": "SPORT SCHEDULING TO MINIMIZE TRAVELS AT THE FIFA WORLD CUP 2026",
+      "autores": "Rogelio Gutierrez, Igor Cardoso, Hamidreza Validi",
+      "onde": "Optimization Letters, 2026"
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O ponto de partida",
+      "texto": "Um relatório da FIFPRO, a federação internacional dos jogadores, aponta o desgaste de viagens longas e de trocas de fuso horário. A Copa de 2026 tem 48 seleções e 16 estádios espalhados por três países."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O modelo",
+      "texto": "Programação inteira mista: para cada um dos 72 jogos da fase de grupos, o modelo escolhe o estádio e o dia. O objetivo é minimizar a soma das distâncias que as seleções percorrem entre um jogo e o seguinte."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "As regras da tabela oficial",
+      "texto": "O molde da FIFA fica: as datas de cada rodada, quantos jogos há em cada dia, de 3 a 5 jogos por estádio, descanso mínimo para estádios e seleções e jogos simultâneos na última rodada de cada grupo."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Como resolver",
+      "texto": "O objetivo é reescrito em forma quadrática, e a ordem dos dias da 1ª rodada é fixada para cortar tabelas simétricas. O solver (branch and bound) guarda a melhor tabela e um limite inferior; com a fixação, a diferença entre os dois, o gap, cai de 41,6% para 30%."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O resultado",
+      "texto": "A melhor tabela encontrada soma 30.860,7 milhas de viagem na fase de grupos. A oficial soma 61.324,3. É 49,7% a menos. As trocas de fuso horário entre rodadas caem de 24 para 4."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Viável, não provadamente ótima",
+      "texto": "O Gurobi parou no limite de 4 horas com gap de 30%: o ótimo está entre 21,6 mil e 30,9 mil milhas, e não há prova de onde. E é uma proposta dos autores, não a tabela que a FIFA usou."
+    },
+    {
+      "tipo": "fim",
+      "texto": "GUTIERREZ, R.; CARDOSO, I.; VALIDI, H. Sport scheduling to minimize travels at the FIFA World Cup 2026. Optimization Letters, v. 20, p. 1137–1157, 2026.",
+      "link": "doi.org/10.1007/s11590-026-02320-x"
+    }
+  ]
+}

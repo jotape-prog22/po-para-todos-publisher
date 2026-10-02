@@ -1,0 +1,13 @@
+O algoritmo de Dijkstra, do menor caminho, foi pensado em 20 minutos, num café, sem lápis nem papel.
+
+Em 1956, Edsger Dijkstra precisava de uma demonstração para a inauguração do computador ARMAC. Escolheu uma pergunta que qualquer pessoa entende: qual o menor caminho entre duas cidades? Numa manhã de compras em Amsterdã com a noiva, sentado num café, desenhou o algoritmo de cabeça. Ele mesmo contou a história numa entrevista de 2001.
+
+O artigo saiu em 1959, com 3 páginas. Para Dijkstra, pensar sem papel obriga a evitar toda complexidade evitável. Na mesma entrevista, ele disse que o algoritmo tinha ido parar nos planejadores de rota.
+
+No canal, a aula do algoritmo de Dijkstra acha o menor caminho passo a passo, com uma tabela auxiliar (link na bio).
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #Dijkstra #CaminhoMinimo #Grafos #Algoritmos #Otimização #UNIRIO

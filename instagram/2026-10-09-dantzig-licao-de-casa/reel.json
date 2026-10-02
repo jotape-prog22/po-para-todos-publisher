@@ -1,0 +1,41 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 7, "kicker": "LIÇÃO DE CASA",
+      "titulo": "COPIOU DO QUADRO DOIS EXERCÍCIOS. ERAM PROBLEMAS EM ABERTO",
+      "linhas": ["George Dantzig, primeiro ano de doutorado em Berkeley."],
+      "icone": "tabela-simplex" },
+    { "duracao": 11, "kicker": "A AULA",
+      "titulo": "ATRASADO NA AULA DE NEYMAN",
+      "linhas": [
+        "No quadro, dois problemas. Ele achou que eram dever de casa e copiou.",
+        "Entregou dias depois, pedindo desculpas pela demora.",
+        "Eram dois problemas famosos da estatística, ainda sem solução."
+      ] },
+    { "duracao": 10, "kicker": "SEIS SEMANAS DEPOIS",
+      "titulo": "O PROFESSOR BATEU NA PORTA NUM DOMINGO",
+      "linhas": [
+        "Oito da manhã: Neyman queria mandar um dos trabalhos para publicação.",
+        "Um ano depois, aceitou os dois como tese de doutorado."
+      ] },
+    { "duracao": 11, "kicker": "ANOS DEPOIS",
+      "titulo": "1947: O SIMPLEX",
+      "linhas": [
+        "Planejando para a Força Aérea dos EUA, Dantzig propôs o simplex.",
+        "\"Programa\" era jargão militar: planos de treino, suprimento e tropas.",
+        "O termo veio antes do programa de computador, que na época se chamava \"código\"."
+      ] },
+    { "duracao": 10, "kicker": "O QUE FICA",
+      "titulo": "PROGRAMAÇÃO LINEAR QUER DIZER PLANEJAMENTO",
+      "linhas": [
+        "Não é escrever código: é planejar com restrições lineares.",
+        "Em 1948, Koopmans sugeriu o nome \"Linear Programming\"."
+      ],
+      "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": {
+    "gancho": "Ele chegou atrasado, copiou do quadro dois exercícios e resolveu. Eram problemas de estatística que ninguém tinha resolvido.",
+    "corpo": "George Dantzig contou a história numa entrevista ao College Mathematics Journal, em 1986. No primeiro ano de doutorado em Berkeley, achou que os dois problemas no quadro da aula de Jerzy Neyman eram dever de casa. Seis semanas depois de entregar, Neyman bateu na porta dele num domingo, às oito da manhã, para mandar um dos trabalhos para publicação. Os dois viraram a tese.\n\nAnos depois, planejando para a Força Aérea dos EUA, Dantzig propôs o simplex (1947). E o \"programação\" de programação linear vem do jargão militar para planos e cronogramas, não de computador: na época, as instruções de máquina se chamavam \"codes\".\n\nNo canal, a aula do simplex mostra como o algoritmo anda de vértice em vértice e como montar a tabela inicial (link na bio).",
+    "hashtags_tema": ["#Simplex", "#ProgramacaoLinear", "#Dantzig", "#HistoriaDaMatematica"]
+  }
+}

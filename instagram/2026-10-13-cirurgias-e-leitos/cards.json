@@ -1,0 +1,51 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    {
+      "tipo": "capa",
+      "titulo": "INTEGRATED SURGERY PLANNING AND BED ALLOCATION WITH MULTIPLE ROUTES OF POST-SURGICAL CARE…",
+      "autores": "Gustavo Carneiro, Virgilio J. M. Ferreira Filho, Laura Bahiense, Edilson F. Arruda",
+      "onde": "Pesquisa Operacional, 2025"
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O problema",
+      "texto": "Sala livre e cirurgião disponível não bastam. Se falta leito de UTI ou de semi-intensiva para o paciente depois da operação, a cirurgia é cancelada e as seguintes podem atrasar. Por isso o artigo planeja junto a agenda do centro cirúrgico e os leitos."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O hospital",
+      "texto": "Centro de ortopedia de um hospital militar no Rio de Janeiro: 7 especialidades (pé, mão, ombro, joelho, coluna, quadril e pediatria) e uma fila de cerca de 750 pacientes. O modelo foi desenhado junto com a equipe do hospital."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Três caminhos depois da sala",
+      "texto": "O paciente vai direto para a enfermaria ou passa antes pela UTI ou pela semi-intensiva. Cada caminho tem uma probabilidade que depende da especialidade. Segundo os autores, é o primeiro planejamento cirúrgico a incluir a semi-intensiva."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O que o modelo decide",
+      "texto": "Variáveis binárias dizem qual especialidade usa qual sala em cada dia. Variáveis inteiras contam as cirurgias e os leitos de UTI, semi-intensiva e enfermaria dados a cada especialidade, em vez de receber essa divisão pronta."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O objetivo",
+      "texto": "Usar ao máximo as horas de sala, com uma penalidade para cada leito reservado, para sobrar folga. E uma regra para a fila encolher: cada especialidade opera, na semana, pelo menos uma cirurgia a mais que a sua demanda."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O resultado",
+      "texto": "No cenário com a demanda e os recursos atuais (dados de 2022): 2 salas, 12 horas por dia, 5 dias, 120 horas por semana. O plano otimizado marca 49 cirurgias e ocupa 115,8 horas, ou 96,5% do tempo. Quase não sobra folga."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Se a demanda crescer",
+      "texto": "Os autores testaram demanda 20%, 40%, 60% e 100% maior. Para a ocupação ficar abaixo de 100%, a capacidade das salas precisa crescer na mesma proporção: com o dobro de demanda, cerca do dobro de horas de sala."
+    },
+    {
+      "tipo": "fim",
+      "texto": "CARNEIRO, G.; FERREIRA FILHO, V. J. M.; BAHIENSE, L.; ARRUDA, E. F. Integrated surgery planning and bed allocation with multiple routes of post-surgical care, with application to a military hospital’s orthopaedic department. Pesquisa Operacional, v. 45, e284818, 2025.",
+      "link": "doi.org/10.1590/0101-7438.2025.045.00284818"
+    }
+  ]
+}

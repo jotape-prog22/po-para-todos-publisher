@@ -1,0 +1,22 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 8, "kicker": "PESQUISA ELEITORAL", "titulo": "MARGEM DE ERRO DE 2 PONTOS. O QUE É ISSO?",
+      "linhas": ["Exemplo hipotético: 2.000 entrevistas", "Nível de confiança de 95%"],
+      "icone": "dados" },
+    { "duracao": 13, "kicker": "A CONTA", "titulo": "CERCA DE 2 PONTOS PARA CADA LADO",
+      "linhas": ["Margem = 1,96 × √(p × (1 − p) ÷ n)", "Pior caso, p = 50%: 1,96 × √(0,25 ÷ 2.000) ≈ 0,022", "Cerca de 2,2 pontos percentuais", "Em 95% das amostras, o erro fica dentro disso"] },
+    { "duracao": 13, "kicker": "A PEGADINHA", "titulo": "E A DIFERENÇA ENTRE DOIS?",
+      "linhas": ["A tem 40%, B tem 37%: 3 pontos de vantagem", "A margem da diferença é quase o dobro: cerca de 3,8", "3 é menor que 3,8: não dá para cravar quem está à frente"] },
+    { "duracao": 12, "kicker": "O PREÇO DA PRECISÃO", "titulo": "MARGEM DE 1 PONTO? 9.604 ENTREVISTAS",
+      "linhas": ["A margem cai com a raiz de n, não com n", "Para cortar a margem pela metade, 4 vezes mais entrevistas", "Tamanho de amostra é uma troca entre custo e precisão"] },
+    { "duracao": 12, "kicker": "REGRA DO JOGO", "titulo": "PESQUISA DIVULGADA TEM REGISTRO",
+      "linhas": ["Lei 9.504/1997, art. 33: registro na Justiça Eleitoral", "Até 5 dias antes de divulgar", "Com plano amostral, intervalo de confiança e margem de erro"],
+      "faixa": "SIGA PARA MAIS PO" }
+  ],
+  "legenda": {
+    "gancho": "\"Margem de erro de 2 pontos\": o que isso quer dizer, e por que ela não basta para comparar dois números?",
+    "corpo": "Num exemplo hipotético com 2.000 entrevistas e 95% de confiança, a conta 1,96 × √(0,25 ÷ 2.000) dá cerca de 2,2 pontos para cada lado. Em 95% das amostras desse tamanho, o erro fica dentro disso. A fórmula vale para amostra aleatória simples; pesquisas reais usam planos amostrais mais complexos.\n\nA pegadinha: para comparar duas opções, a margem da diferença é quase o dobro da margem de cada uma, como explica o Pew Research Center. E precisão custa caro: para chegar a 1 ponto seriam 9.604 entrevistas, porque a margem cai com a raiz do tamanho da amostra.\n\nPela Lei 9.504/1997, toda pesquisa eleitoral divulgada precisa ser registrada na Justiça Eleitoral, com a margem de erro e o plano amostral.",
+    "hashtags_tema": ["#MargemDeErro", "#Estatistica", "#Amostragem", "#Eleicoes2026"]
+  }
+}

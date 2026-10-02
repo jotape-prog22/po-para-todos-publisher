@@ -1,0 +1,15 @@
+Por que uma cirurgia é cancelada mesmo com sala e cirurgião livres? Muitas vezes, falta o leito de depois.
+
+Um artigo da revista Pesquisa Operacional, feito com a equipe de um hospital militar no Rio de Janeiro, planeja juntas duas coisas que costumam ser decididas separadas: a agenda semanal das salas de cirurgia e a divisão dos leitos de UTI, semi-intensiva e enfermaria entre as especialidades.
+
+O modelo sabe que cada especialidade tem a sua chance de o paciente precisar de UTI ou de semi-intensiva, e garante que cada uma opere pelo menos uma cirurgia a mais do que a demanda da semana, para a fila diminuir. No cenário atual do centro de ortopedia, o plano otimizado ocupa 96,5% do tempo de sala.
+
+No canal, a aula de programação inteira mostra o tipo de variável que decide qual especialidade fica com qual sala em cada dia.
+
+✍️ Autores: Gustavo Carneiro, Virgilio J. M. Ferreira Filho, Laura Bahiense, Edilson F. Arruda
+
+💾 Salve este post para ler depois · mais conteúdo no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProgramacaoInteira #PlanejamentoCirurgico #GestaoHospitalar #PesquisaOperacionalNaSaude #Otimização #UNIRIO

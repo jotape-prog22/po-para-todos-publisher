@@ -1,0 +1,13 @@
+Ele chegou atrasado, copiou do quadro dois exercícios e resolveu. Eram problemas de estatística que ninguém tinha resolvido.
+
+George Dantzig contou a história numa entrevista ao College Mathematics Journal, em 1986. No primeiro ano de doutorado em Berkeley, achou que os dois problemas no quadro da aula de Jerzy Neyman eram dever de casa. Seis semanas depois de entregar, Neyman bateu na porta dele num domingo, às oito da manhã, para mandar um dos trabalhos para publicação. Os dois viraram a tese.
+
+Anos depois, planejando para a Força Aérea dos EUA, Dantzig propôs o simplex (1947). E o "programação" de programação linear vem do jargão militar para planos e cronogramas, não de computador: na época, as instruções de máquina se chamavam "codes".
+
+No canal, a aula do simplex mostra como o algoritmo anda de vértice em vértice e como montar a tabela inicial (link na bio).
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #Simplex #ProgramacaoLinear #Dantzig #HistoriaDaMatematica #Otimização #UNIRIO

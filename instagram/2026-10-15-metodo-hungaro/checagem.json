@@ -1,0 +1,44 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "Um americano (Harold Kuhn) publicou o método húngaro, em 1955.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/mccann/1855/KuhnEJOR12.pdf",
+      "resultado": "confirmada",
+      "como": "Kuhn (EJOR 219, 2012), resumo: 'over a hundred years prior to the publication of the Hungarian Method in 1955'. Na introdução ele se descreve como quem 'started his career in the post-war United States'. Nacionalidade conferida no perfil do INFORMS (https://www.informs.org/Explore/History-of-O.R.-Excellence/Biographical-Profiles/Kuhn-Harold-W., lido pela cópia do Wayback Machine; o site dá 403 a robôs): 'Harold Kuhn was born in Santa Monica, California', serviu no U.S. Army, e publicou 'The Hungarian method for the assignment problem', Naval Research Logistics Quarterly 2(1-2): 83-97, 1955. A página de Kuhn no Departamento de Matemática de Princeton (Wayback) diz o mesmo: 'born in Santa Monica, California in 1925'."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Harold Kuhn homenageou Kőnig e Egerváry (no nome do método), cujas ideias usou.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/mccann/1855/KuhnEJOR12.pdf",
+      "resultado": "confirmada",
+      "como": "Resumo do artigo: 'a translation of a paper of Jenő Egerváry from Hungarian into English combined with a result of Dénes Kőnig provided the basis of a good algorithm for the Linear Assignment Problem. To honor the Hungarian mathematicians whose ideas had been used, it was called the Hungarian Method.'"
+    },
+    {
+      "onde": "card 1 (texto) e legenda",
+      "texto": "Para ler o artigo de Egerváry (de 1931), aprendeu húngaro sozinho em duas semanas (legenda: achou a referência numa nota de rodapé do livro de Kőnig; gramática e dicionário emprestados).",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/mccann/1855/KuhnEJOR12.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 5: 'as I read further in Kőnig's book, I found a tantalizing footnote. E. Egerváry gave a generalization of these theorems, [...] Matematikai és Fizikai Lapok, 38, 1931' e 'when I returned to Bryn Mawr in the fall, I went down the road to Haverford College and checked out a Hungarian grammar and a large Hungarian dictionary. I spent two weeks teaching myself Hungarian and then translated Egerváry's paper.'"
+    },
+    {
+      "onde": "card 1 (texto) e legenda",
+      "texto": "Em 2005, soube-se que Jacobi, morto em 1851, já tinha um algoritmo essencialmente igual (legenda: François Ollivier, matemático francês; papéis em latim).",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/mccann/1855/KuhnEJOR12.pdf",
+      "resultado": "confirmada",
+      "como": "Resumo: 'In 2005, Francois Ollivier discovered that the posthumous papers of Jacobi contain an algorithm that, when examined carefully, is essentially identical to the Hungarian Method. Since Jacobi died in 1851 [...]'. Seção 9: 'In early 2006, I received an astonishing email from Francois Ollivier, a French mathematician [...] Two years ago I began to study two old papers in Latin by Jacobi.' Seção 10: Jacobi 'died within a week on the 18th of February, 1851'. De propósito, o card não dá ano para a publicação póstuma: o '1890' que circula não está no texto de Kuhn."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Kuhn contou a história em 2012, no artigo 'A tale of three eras'.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/mccann/1855/KuhnEJOR12.pdf",
+      "resultado": "confirmada",
+      "como": "Cabeçalho do PDF: 'European Journal of Operational Research 219 (2012) 641–651. A tale of three eras: The discovery and rediscovery of the Hungarian Method. Harold W. Kuhn'."
+    }
+  ]
+}

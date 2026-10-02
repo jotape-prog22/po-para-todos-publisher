@@ -1,0 +1,13 @@
+361,7 milhões de toneladas de grãos na safra 2025/26. Como decidir de onde sai e para onde vai cada carga?
+
+Esse é o problema do transporte: origens com oferta, destinos com demanda e um custo por tonelada em cada rota. A pergunta é quanto mandar por cada rota para atender todo mundo gastando o mínimo, e ela vira um modelo de programação linear.
+
+A ideia é antiga. Em 1930, na União Soviética, A. N. Tolstói publicou métodos para planejar o transporte de sal, cimento e outras cargas pela ferrovia, com um caso de 10 origens e 68 destinos. Em 2002, Alexander Schrijver resolveu o mesmo caso com um solver moderno: o plano de Tolstói era ótimo, embora ele não tivesse como provar.
+
+No canal, a aula do problema do transporte monta o modelo e resolve um exemplo à mão, do método do custo mínimo ao teste de otimalidade MODI.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProblemaDoTransporte #ProgramacaoLinear #Logistica #Agronegocio #Otimização #UNIRIO
