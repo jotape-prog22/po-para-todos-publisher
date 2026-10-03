@@ -99,11 +99,19 @@
       "formato": "stories",
       "quando": "2026-10-03T18:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "stories"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "media_ids": [
+          "18149490481548760",
+          "17913205221525365",
+          "18188687242409397"
+        ]
+      },
       "erro": null
     },
     {
