@@ -139,11 +139,16 @@
       "formato": "reel",
       "quando": "2026-10-05T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "reel"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/reel/DeHhUkTEnbo/",
+        "media_id": "18395489212165735"
+      },
       "erro": null
     },
     {
