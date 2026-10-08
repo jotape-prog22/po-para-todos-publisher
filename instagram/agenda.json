@@ -194,11 +194,17 @@
       "formato": "post",
       "quando": "2026-10-08T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "post",
+        "story-aviso"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/p/DePPw4klPhp/",
+        "media_id": "17959509069246971"
+      },
       "erro": null
     },
     {
