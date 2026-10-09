@@ -1,0 +1,22 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    { "duracao": 7, "kicker": "CAIXEIRO-VIAJANTE", "titulo": "QUAL O MENOR CAMINHO PARA VISITAR 49.687 PUBS?",
+      "linhas": ["Quase todos os pubs do Reino Unido, a pé, voltando ao ponto de partida"],
+      "icone": "caixeiro" },
+    { "duracao": 12, "kicker": "POR QUE É DIFÍCIL", "titulo": "AS ROTAS CRESCEM COMO FATORIAL",
+      "linhas": ["Com n pontos, há (n - 1)!/2 rotas diferentes", "10 pontos: 181.440 rotas", "20 pontos: cerca de 60 quatrilhões de rotas", "49.687 pubs: um número de rotas com 211.762 dígitos"] },
+    { "duracao": 12, "kicker": "A RESPOSTA, 2018", "titulo": "63.739.687 METROS, COM PROVA",
+      "linhas": ["Equipe de William Cook (Univ. de Waterloo): a rota mais curta possível", "A rota apareceu cedo; o trabalho foi provar que não há outra mais curta", "250 anos de computação, se feitos num único núcleo de processador"] },
+    { "duracao": 10, "kicker": "RECORDE, 2025", "titulo": "81.998 BARES NA COREIA DO SUL",
+      "linhas": ["Rota ótima a pé, também com prova de otimalidade", "178 dias, 1 hora, 56 minutos e 17 segundos de caminhada", "A maior instância de mapa rodoviário já resolvida com prova"] },
+    { "duracao": 11, "kicker": "COMO A PO FAZ", "titulo": "SEM TESTAR ROTA POR ROTA",
+      "linhas": ["Planos de corte dão um limite: nenhuma rota fica abaixo dele", "Branch and bound divide as rotas em grupos e descarta grupos inteiros", "Por trás, um modelo de programação inteira: usar ou não cada trecho"],
+      "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": {
+    "gancho": "Qual o menor caminho para visitar 49.687 pubs do Reino Unido e voltar ao início? A resposta existe, e tem prova.",
+    "corpo": "Com 20 pontos já são cerca de 60 quatrilhões de rotas; com 49.687, o número de rotas tem 211.762 dígitos. Mesmo assim, em 2018 a equipe de William Cook, da Universidade de Waterloo, fechou a menor rota possível: 63.739.687 metros. A rota em si apareceu cedo. Quase todo o esforço, 250 anos de computação num único núcleo, foi provar que não existe rota menor.\n\nEm 2025 veio um recorde maior: 81.998 bares da Coreia do Sul, 178 dias de caminhada, a maior instância de mapa rodoviário já resolvida com prova de otimalidade. O segredo é não testar rota por rota: planos de corte e branch and bound descartam grupos inteiros de rotas de uma vez.\n\nNo canal, a aula de Programação Inteira (Parte 2) formula o caixeiro-viajante: variáveis binárias, restrição de grau e eliminação de sub-rotas.",
+    "hashtags_tema": ["#CaixeiroViajante", "#ProgramacaoInteira", "#BranchAndBound", "#Otimizacao"]
+  }
+}

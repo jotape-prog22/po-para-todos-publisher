@@ -1,0 +1,13 @@
+Dá para atravessar as 7 pontes de Königsberg passando uma única vez por cada uma? Euler mostrou que não.
+
+Em 1736, em cartas a Giovanni Marinoni e a Carl Ehler, Leonhard Euler chamou o problema de banal e escreveu que a solução tinha pouca relação com a matemática, porque dependia só do raciocínio. Mesmo assim, escreveu um artigo sobre ele e deu uma regra que vale para qualquer arranjo de ilhas e pontes: se mais de duas regiões recebem um número ímpar de pontes, o passeio é impossível. Em Königsberg, as quatro regiões recebiam um número ímpar (5, 3, 3 e 3).
+
+Hoje esse artigo é citado como o primeiro da teoria dos grafos: regiões viram vértices, pontes viram arestas, e o que decide é quantas arestas chegam a cada vértice. Euler provou que a condição é necessária; que ela também basta só foi provado em 1873, por Carl Hierholzer.
+
+É com grafos que a Pesquisa Operacional resolve menor caminho, árvores geradoras e fluxos em redes. No canal, a aula de Caminho Mínimo começa daí: como um problema real vira um grafo e o que é o caminho mais curto entre dois pontos. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #TeoriaDosGrafos #PontesDeKonigsberg #Euler #CaminhoMinimo #Otimização #UNIRIO

@@ -1,0 +1,60 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "O primeiro branch and bound com PL (para programação inteira) foi feito à mão.",
+      "tipo": "fonte",
+      "fonte": "https://www.gerad.ca/fr/papers/G-2023-60.pdf",
+      "resultado": "confirmada",
+      "como": "Li o PDF (G. Laporte, Les Cahiers du GERAD G-2023-60, dez. 2023, revisado em jun. 2024). Resumo: 'In 1960, Ailsa Land and Alison Doig published the first linear programming-based branch-and-bound algorithm for the solution of mixed integer linear programs.' p. 4: 'Ironically, all their computations were performed by hand and the intermediate results were stored in paper form'. p. 5: 'the Land and Doig algorithm had not as of February 1964 been tested computationally, save by hand' (Balinski, 1965). O título diz 'com PL' de propósito: Laporte ressalva que Eastman (1958) já tinha um branch and bound para o caixeiro-viajante, e que o de Land e Doig é 'the first LP-based branch-and-bound algorithm for MILPs'."
+    },
+    {
+      "onde": "card 1",
+      "texto": "Ailsa Land e Alison Doig publicaram o método em 1960, na Econometrica; assinaram A. H. Land e A. G. Doig.",
+      "tipo": "fonte",
+      "fonte": "https://www.econometricsociety.org/publications/econometrica/1960/07/01/automatic-method-solving-discrete-programming-problems",
+      "resultado": "confirmada",
+      "como": "Página oficial do artigo (curl, 28/09/2026): 'Econometrica: Jul, 1960, Volume 28, Issue 3 — An Automatic Method of Solving Discrete Programming Problems — p. 497-520 — A. G. Doig, A. H. Land'. Os nomes completos (Ailsa Land, Alison Doig) estão em Laporte."
+    },
+    {
+      "onde": "card 1 e legenda",
+      "texto": "Sem computador, as contas eram em calculadoras de mesa (card); multiplicavam com a mão esquerda numa máquina e somavam com a direita em outra (legenda).",
+      "tipo": "fonte",
+      "fonte": "https://www.gerad.ca/fr/papers/G-2023-60.pdf",
+      "resultado": "confirmada",
+      "como": "Laporte, p. 4, citando o depoimento das autoras (Land e Doig, 2010, no livro '50 Years of Integer Programming'): 'LSE at that time did not have any access to such a facility. However, we had no doubt that using the same approach to computing could be achieved, if rather painfully, on desk computers [...] We became quite skillful at doing vector operations by multiplying with the left hand, and adding and subtracting with the right hand on another machine!' Não li o texto de 2010 diretamente; é citação literal em Laporte."
+    },
+    {
+      "onde": "card 1",
+      "texto": "Assinaram só com as iniciais para não serem identificadas como mulheres, segundo Ailsa Land.",
+      "tipo": "fonte",
+      "fonte": "https://www.gerad.ca/fr/papers/G-2023-60.pdf",
+      "resultado": "confirmada",
+      "como": "Laporte, p. 1: 'Interestingly, they submitted their paper under their initials and surnames in order not to be identified as women, a precaution that would not be justified today (Land, 2021a).' A referência Land (2021a) é 'Ailsa's writings. Unpublished document provided by her widower Frank Land.' Ou seja: é o relato da própria Ailsa Land, em documento inédito, que só conhecemos por Laporte. Por isso o card atribui ('segundo Ailsa Land') em vez de afirmar como fato."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Problema da British Petroleum (refinarias e embarques), na LSE; bases e resultados guardados em papel, numa pasta.",
+      "tipo": "fonte",
+      "fonte": "https://www.gerad.ca/fr/papers/G-2023-60.pdf",
+      "resultado": "confirmada",
+      "como": "Laporte, p. 1: 'an industrial problem at British Petroleum, which meant solving a linear programming problem related to refinery planning and involving the determination of shipments between crude sources and refineries, and storage over time [...] This problem contained some integer variables'; 'Not having access to a computer, they agreed with the company that they should forget trying to solve the problem and work instead on an algorithm capable of solving generic mixed integer linear programs'. p. 4 (Land e Doig, 2010): 'it was all simply recorded on paper and kept in a folder'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O nome 'branch and bound' só apareceu em 1963, com Little e colegas, no caixeiro-viajante.",
+      "tipo": "fonte",
+      "fonte": "https://www.gerad.ca/fr/papers/G-2023-60.pdf",
+      "resultado": "confirmada",
+      "como": "Laporte, p. 5: 'The term branch-and-bound was coined three years later by Little et al. (1963) in relation to the asymmetric TSP'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "A aula de branch and bound do canal mostra a relaxação linear e a árvore de busca.",
+      "tipo": "fonte",
+      "fonte": "https://youtu.be/fXvZ2FejRBY",
+      "resultado": "confirmada",
+      "como": "videos/branch-and-bound-1/metadados.json: 'BRANCH AND BOUND - Relaxação Linear e a Árvore de Busca - Parte 1'; publicacao.json diz privacidade public."
+    }
+  ]
+}

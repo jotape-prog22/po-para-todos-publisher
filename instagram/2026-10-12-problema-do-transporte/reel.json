@@ -1,0 +1,80 @@
+{
+  "tipo": "cenas",
+  "cenas": [
+    {
+      "duracao": 11,
+      "kicker": "SAFRA 2025/26",
+      "titulo": "361,7 MILHÕES DE TONELADAS DE GRÃOS",
+      "linhas": [
+        "Estimativa da Conab de 15/09/2026",
+        "Soja: 180,4 milhões de t, a maior da série",
+        "Exportação de soja prevista: 116,2 milhões de t"
+      ],
+      "pergunta": "De onde sai e para onde vai cada carga?"
+    },
+    {
+      "duracao": 14,
+      "kicker": "O PROBLEMA DO TRANSPORTE",
+      "titulo": "UM MODELO DE PROGRAMAÇÃO LINEAR",
+      "itens": [
+        {
+          "titulo": "OFERTA",
+          "texto": "Quanto cada origem tem para mandar"
+        },
+        {
+          "titulo": "DEMANDA",
+          "texto": "Quanto cada destino precisa receber"
+        },
+        {
+          "titulo": "CUSTO",
+          "texto": "Quanto custa levar 1 tonelada por cada rota"
+        },
+        {
+          "titulo": "DECISÃO",
+          "texto": "Quanto vai por cada rota, com o menor custo total"
+        }
+      ]
+    },
+    {
+      "duracao": 12,
+      "kicker": "URSS, 1930",
+      "titulo": "SAL E CIMENTO PELA FERROVIA",
+      "linhas": [
+        "A. N. Tolstói publica métodos para o menor total de quilômetros",
+        "Um caso real com 10 origens e 68 destinos",
+        "Uma década antes das origens que os livros costumam citar"
+      ]
+    },
+    {
+      "duracao": 12,
+      "kicker": "2002",
+      "titulo": "O PLANO DE 1930 ERA ÓTIMO",
+      "linhas": [
+        "Schrijver resolveu o mesmo caso com um solver de PL (CPLEX)",
+        "Deu o custo de Tolstói: 395.052 quiloton-quilômetros",
+        "Mas Tolstói não tinha como provar isso na época"
+      ]
+    },
+    {
+      "duracao": 10,
+      "kicker": "NA AULA",
+      "titulo": "DO CUSTO MÍNIMO AO MODI",
+      "linhas": [
+        "Montar o modelo com oferta, demanda e custo",
+        "Achar uma solução inicial pelo custo mínimo",
+        "Melhorar até o teste de otimalidade passar"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "361,7 milhões de toneladas de grãos na safra 2025/26. Como decidir de onde sai e para onde vai cada carga?",
+    "corpo": "Esse é o problema do transporte: origens com oferta, destinos com demanda e um custo por tonelada em cada rota. A pergunta é quanto mandar por cada rota para atender todo mundo gastando o mínimo, e ela vira um modelo de programação linear.\n\nA ideia é antiga. Em 1930, na União Soviética, A. N. Tolstói publicou métodos para planejar o transporte de sal, cimento e outras cargas pela ferrovia, com um caso de 10 origens e 68 destinos. Em 2002, Alexander Schrijver resolveu o mesmo caso com um solver moderno: o plano de Tolstói era ótimo, embora ele não tivesse como provar.\n\nNo canal, a aula do problema do transporte monta o modelo e resolve um exemplo à mão, do método do custo mínimo ao teste de otimalidade MODI.",
+    "hashtags_tema": [
+      "#ProblemaDoTransporte",
+      "#ProgramacaoLinear",
+      "#Logistica",
+      "#Agronegocio"
+    ]
+  }
+}

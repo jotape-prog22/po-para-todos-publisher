@@ -1,0 +1,13 @@
+Qual o menor caminho para visitar 49.687 pubs do Reino Unido e voltar ao início? A resposta existe, e tem prova.
+
+Com 20 pontos já são cerca de 60 quatrilhões de rotas; com 49.687, o número de rotas tem 211.762 dígitos. Mesmo assim, em 2018 a equipe de William Cook, da Universidade de Waterloo, fechou a menor rota possível: 63.739.687 metros. A rota em si apareceu cedo. Quase todo o esforço, 250 anos de computação num único núcleo, foi provar que não existe rota menor.
+
+Em 2025 veio um recorde maior: 81.998 bares da Coreia do Sul, 178 dias de caminhada, a maior instância de mapa rodoviário já resolvida com prova de otimalidade. O segredo é não testar rota por rota: planos de corte e branch and bound descartam grupos inteiros de rotas de uma vez.
+
+No canal, a aula de Programação Inteira (Parte 2) formula o caixeiro-viajante: variáveis binárias, restrição de grau e eliminação de sub-rotas.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #CaixeiroViajante #ProgramacaoInteira #BranchAndBound #Otimizacao #Otimização #UNIRIO

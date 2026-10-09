@@ -1,0 +1,67 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "story 1 e story 2",
+      "texto": "1975 é a única das três opções cuja citação oficial fala em alocação ótima de recursos: Kantorovich e Koopmans, 'for their contributions to the theory of optimum allocation of resources', meio a meio.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/summary/",
+      "resultado": "confirmada",
+      "como": "Baixei a página oficial (curl, 28/09/2026): 'awarded jointly to Leonid Vitaliyevich Kantorovich and Tjalling C. Koopmans \"for their contributions to the theory of optimum allocation of resources\"'; 'Prize share: 1/2' para cada um. As citações de 1994 e 2012 (abaixo) não falam em ótimo: a resposta é única."
+    },
+    {
+      "onde": "story 2",
+      "texto": "1994: Harsanyi, Nash e Selten, por equilíbrios em jogos não cooperativos.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1994/summary/",
+      "resultado": "confirmada",
+      "como": "Página oficial (curl, 28/09/2026): John C. Harsanyi, John F. Nash Jr. e Reinhard Selten, 1/3 cada, 'for their pioneering analysis of equilibria in the theory of non-cooperative games'."
+    },
+    {
+      "onde": "story 2",
+      "texto": "2012: Roth e Shapley, por alocações estáveis e desenho de mercados; o critério é a estabilidade.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/2012/press-release/",
+      "resultado": "confirmada",
+      "como": "Resumo oficial: Alvin E. Roth e Lloyd S. Shapley 'for the theory of stable allocations and the practice of market design'. O comunicado explica a estabilidade: 'a matching is stable in the sense that two agents cannot be found who would prefer each other over their current counterparts' (algoritmo de Gale-Shapley)."
+    },
+    {
+      "onde": "story 1",
+      "texto": "Os três anos premiaram temas que a PO estuda.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/kantorovich/biographical/",
+      "resultado": "confirmada",
+      "como": "1975: a autobiografia oficial de Kantorovich conta que em 1938 o problema era 'maximizing a linear function on a convex polytope' e que seu livreto de 1939 'contained the main ideas of the theories and algorithms of linear programming'. 1994: equilíbrio de Nash, tema da aula 'TEORIA DOS JOGOS - Equilíbrio de Nash Passo a Passo - Parte 3' do canal. 2012: o comunicado fala em 'how to match different agents as well as possible' e no algoritmo de Gale-Shapley (emparelhamento, parente do problema de designação). É um enquadramento nosso, sustentado pelos textos oficiais."
+    },
+    {
+      "onde": "story 2",
+      "texto": "Dantzig, do simplex, ficou de fora do prêmio de 1975.",
+      "tipo": "fonte",
+      "fonte": "https://www.cs.umd.edu/~gasarch/BLOGPAPERS/Albers-InterviewGeorgeB-1986.pdf",
+      "resultado": "confirmada",
+      "como": "Legenda de foto em Albers e Reid, College Mathematics Journal 17(4), 1986, p. 307: 'Koopmans and Kantorovich shared the Nobel Prize for economics in 1975. Dantzig's development of linear programming was fundamental to their work. Koopmans expressed regret that Dantzig was not named to share the honor.' A página oficial de 1975 lista só os dois. Simplex: Dantzig, 'Linear Programming', Operations Research 50(1), 2002: 'I proposed the simplex method in the summer 1947'. Não usei a história de que Koopmans doou parte do prêmio (não confirmada)."
+    },
+    {
+      "onde": "story 3",
+      "texto": "O Nobel de Economia de 2026 é anunciado na segunda, 12/10, em Estocolmo, a partir de 6h45 no horário de Brasília, ao vivo nos canais oficiais.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/press-release/the-2026-nobel-prize-announcements/",
+      "resultado": "confirmada",
+      "como": "Comunicado da Nobel Foundation de 2/02/2026 (curl, 28/09/2026): 'SVERIGES RIKSBANK PRIZE IN ECONOMIC SCIENCES IN MEMORY OF ALFRED NOBEL Monday, 12 October, 11:45 CEST at the earliest The Royal Swedish Academy of Sciences, Session Hall, Lilla Frescativägen 4A, Stockholm' e 'All prize announcements will be broadcast live on the official digital channels of the Nobel Prize.'"
+    },
+    {
+      "onde": "story 3",
+      "texto": "11:45 CEST de 12/10/2026 = 6h45 em Brasília, numa segunda-feira.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"const d=new Date('2026-10-12T11:45:00+02:00');console.log(d.toISOString(), d.toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}), d.toLocaleString('pt-BR',{timeZone:'Europe/Stockholm'}), d.toLocaleDateString('pt-BR',{weekday:'long',timeZone:'America/Sao_Paulo'}))\" → 2026-10-12T09:45:00.000Z | 12/10/2026, 06:45:00 | 12/10/2026, 11:45:00 | segunda-feira. O fuso de Estocolmo (tz database) confirma que em 12/10 ainda vale o horário de verão (UTC+2), e Brasília está em UTC-3."
+    },
+    {
+      "onde": "story 3",
+      "texto": "Simplex e equilíbrio de Nash têm aula no canal.",
+      "tipo": "fonte",
+      "fonte": "https://youtu.be/Y7aezjpwCjU",
+      "resultado": "confirmada",
+      "como": "videos/teoria-dos-jogos-3 ('TEORIA DOS JOGOS - Equilíbrio de Nash Passo a Passo - Parte 3', youtu.be/Y7aezjpwCjU) e videos/simplex ('ALGORITMO SIMPLEX - Como Funciona e a Tabela Inicial', youtu.be/JTcUGbG8pg0), os dois com privacidade public em publicacao.json."
+    }
+  ]
+}
