@@ -2,6 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validarCena, CENAS, TIPOS_DE_CENA } from "../design-system/motion/cenas/index.mjs";
 import * as texto from "../design-system/motion/cenas/texto.mjs";
+import * as impacto from "../design-system/motion/cenas/impacto.mjs";
+import * as odometro from "../design-system/motion/cenas/odometro.mjs";
+import { inicioDoConteudo } from "../design-system/motion/cenas/cabecalho.mjs";
 import { quebrarLinhas, caixa, escreverLinhas, duracaoEscrita } from "../design-system/motion/escrita.mjs";
 import { LIMITES_CENA } from "../design-system/motion/cenas/comum.mjs";
 import { ritmoDe, ErroMotion } from "../design-system/motion/movimento.mjs";
@@ -136,4 +139,77 @@ for (const formato of ["reel", "story"]) {
 
 test("ritmoDe falha com ErroMotion quando movimento.json não tem o ritmo do tipo", () => {
   assert.throws(() => ritmoDe("nao-existe"), (e) => e instanceof ErroMotion && /ritmo\.nao-existe/.test(e.message));
+});
+
+test("impacto: uma batida por palavra, recusa título e palavra longa", () => {
+  const { cena, erros } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["7 pontes", "1 passeio"] }, "cena 1", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  assert.deepEqual(cena.linha.eventos, [{ t: 0.15, efeito: "impacto" }, { t: 0.7, efeito: "impacto" }]);
+  assert.equal(cena.minimo, 1.9);
+  const erro = (c) => validarCena({ tipo: "impacto", duracao: 3, ...c }, "cena 1", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ palavras: ["a", "b", "c", "d", "e"] }), /de 1 a 4/);
+  assert.match(erro({ palavras: ["x".repeat(15)] }), /palavras\[1\]" tem 15/);
+  assert.match(erro({ palavras: ["A"], titulo: "T" }), /não tem "titulo"/);
+});
+
+test("impacto desenha as palavras em caixa alta quando chegam a vez", () => {
+  const { cena } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["7 pontes", "1 passeio"], apoio: "e nenhuma repetida" }, "cena", { formato: "reel" });
+  const fim = textos(desenharEm(impacto, cena, [2.9])).map((x) => x.s);
+  assert.ok(fim.includes("7 PONTES") && fim.includes("1 PASSEIO") && fim.includes("e nenhuma repetida"));
+  assert.ok(!textos(desenharEm(impacto, cena, [0.4])).some((x) => x.s === "1 PASSEIO"));
+});
+
+test("impacto: o ritmo vem de movimento.json (ritmo.impacto) e o apoio escrito entra em fimEscrita", () => {
+  const r = movimento.ritmo.impacto;
+  const c = { palavras: ["A", "B", "C"], apoio: "sem repetir nenhuma" };
+  assert.deepEqual(impacto.linhaDoTempo(c).eventos.slice(0, 3).map((e) => e.t), [0.15, 0.7, 1.25].map((x, i) => Math.round((r.primeira + i * r.passo) * 1000) / 1000));
+  assert.deepEqual([r.primeira, r.passo], [0.15, 0.55]);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, impacto: { ...r, primeira: 0.5, passo: 1 } } };
+  assert.deepEqual(impacto.linhaDoTempo(c, outro).eventos.slice(0, 3).map((e) => e.t), [0.5, 1.5, 2.5]);
+  const lt = impacto.linhaDoTempo(c);
+  assert.equal(lt.fimEscrita, Math.round((lt.fim + duracaoEscrita(c.apoio, movimento)) * 1000) / 1000);
+  assert.equal(impacto.linhaDoTempo({ palavras: ["A"] }).fimEscrita, 0.15, "sem apoio não há escrita a caneta");
+});
+
+test("odometro: formata em pt-BR, para no valor e mostra o rótulo", () => {
+  assert.equal(odometro.formatar(1736), "1736", "ano não leva ponto de milhar");
+  assert.equal(odometro.formatar(12000), "12.000");
+  assert.equal(odometro.formatar(3.5, 1), "3,5");
+  const erro = (c) => validarCena({ tipo: "odometro", duracao: 6, ...c }, "cena 1", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ valor: "1736" }), /"valor" precisa ser um número/);
+  assert.match(erro({ valor: 1234567.89, casas_decimais: 2 }), /dígitos demais/);
+  assert.match(erro({ valor: 1, casas_decimais: 3 }), /de 0 a 2/);
+  const { cena } = validarCena({ tipo: "odometro", duracao: 6, titulo: "O ANO", valor: 1736, rotulo: "Euler escreve sobre as pontes" }, "cena", { formato: "reel" });
+  assert.ok(cena.linha.eventos.some((e) => e.efeito === "pop" && e.t === 2.7));
+  const caracteres = textos(desenharEm(odometro, cena, [5.9])).map((x) => x.s).filter((s) => s.length === 1);
+  assert.deepEqual(caracteres, ["1", "7", "3", "6"], "no fim, só os dígitos finais");
+  assert.ok(textos(desenharEm(odometro, cena, [5.9])).some((x) => x.s.includes("Euler")));
+});
+
+test("odometro: o rótulo escrito a caneta entra em fimEscrita e na duração mínima", () => {
+  const c = { valor: 5, titulo: "T", rotulo: "Euler escreve sobre as pontes" };
+  const lt = odometro.linhaDoTempo(c);
+  assert.equal(lt.fim, 3);
+  assert.equal(lt.fimEscrita, Math.round((3 + duracaoEscrita(c.rotulo, movimento)) * 1000) / 1000);
+  assert.equal(odometro.linhaDoTempo({ valor: 5, titulo: "T" }).fimEscrita, 2.7, "sem rótulo, a escrita termina no pop");
+});
+
+test("odometro: ritmo (giro, escalonar) e início do cabeçalho vêm de movimento.json", () => {
+  const { giro } = movimento.ritmo.odometro, cab = movimento.ritmo.cabecalho;
+  assert.equal(inicioDoConteudo({ titulo: "T" }), cab.titulo_comeca);
+  assert.equal(inicioDoConteudo({ kicker: "K" }), cab.kicker_comeca);
+  assert.equal(inicioDoConteudo({}), cab.vazio_comeca);
+  assert.deepEqual([0.9, 0.6, 0.2], [cab.titulo_comeca, cab.kicker_comeca, cab.vazio_comeca]);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, odometro: { ...movimento.ritmo.odometro, giro: 3 }, cabecalho: { ...cab, titulo_comeca: 2 } } };
+  const lt = odometro.linhaDoTempo({ valor: 5, titulo: "T" }, outro);
+  assert.equal(lt.eventos.find((e) => e.efeito === "pop" && e.t > 1).t, 5);
+  assert.equal(giro, 1.8);
+});
+
+test("odometro: os tambores giram até o fim do giro e o último gira mais que o primeiro", () => {
+  const { cena } = validarCena({ tipo: "odometro", duracao: 6, valor: 1736 }, "cena", { formato: "reel" });
+  const meio = textos(desenharEm(odometro, cena, [1.4])).map((x) => x.s).filter((s) => s.length === 1).join("");
+  const fim = textos(desenharEm(odometro, cena, [5.9])).map((x) => x.s).filter((s) => s.length === 1).join("");
+  assert.equal(fim, "1736");
+  assert.notEqual(meio, fim, "no meio do giro os dígitos ainda não pararam");
 });

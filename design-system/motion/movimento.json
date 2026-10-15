@@ -9,7 +9,10 @@
   "caneta": { "raio": 9 },
   "desenho": { "deslize": 48, "balanco_dica": 6 },
   "ritmo": {
-    "texto": { "kicker": 0, "titulo": 0.3, "primeiro": 1.2, "linha": 1.1, "item": 1.6, "pergunta": 1.2, "dica": 0.8 }
+    "texto": { "kicker": 0, "titulo": 0.3, "primeiro": 1.2, "linha": 1.1, "item": 1.6, "pergunta": 1.2, "dica": 0.8 },
+    "impacto": { "primeira": 0.15, "passo": 0.55, "apoio": 0.6 },
+    "odometro": { "giro": 1.8, "escalonar": 0.08, "rotulo": 0.3 },
+    "cabecalho": { "kicker": 0, "titulo": 0.3, "kicker_comeca": 0.6, "titulo_comeca": 0.9, "vazio_comeca": 0.2 }
   },
   "efeitos": { "ganho_reel": 0.8, "ganho_story": 0.4, "intervalo_minimo": 0.08 },
   "trilha": { "ganho": 0.55, "fade_entrada": 0.4, "fade_saida": 1.2, "compasso": 4 },

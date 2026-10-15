@@ -4,8 +4,10 @@
 import { LIMITES_CENA, checarTamanho } from "./comum.mjs";
 import MOVIMENTO from "../movimento.mjs";
 import * as texto from "./texto.mjs";
+import * as impacto from "./impacto.mjs";
+import * as odometro from "./odometro.mjs";
 
-export const CENAS = { texto };
+export const CENAS = { texto, impacto, odometro };
 export const INTERNAS = {};
 export const TIPOS_DE_CENA = Object.keys(CENAS);
 export const moduloDe = (tipo) => CENAS[tipo] ?? INTERNAS[tipo];
