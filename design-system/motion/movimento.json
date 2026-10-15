@@ -1,0 +1,13 @@
+{
+  "uso": "Tokens de movimento e de som dos vídeos do Instagram (design-system/motion). Segundos, salvo indicação. Cores e fontes não ficam aqui: vêm do CSS do design system.",
+  "duracoes": { "entrada": 0.6, "saida": 0.35, "escrita_por_caractere": 0.035, "loop": 0.6, "faixa": 0.6 },
+  "curvas": { "entrada": "outExpo", "saida": "inCubic", "camera": "inOutCubic" },
+  "mola": { "freq": 3.2, "amortecimento": 0.42 },
+  "impacto": { "tremor": 3, "clarao": 0.03 },
+  "grade": { "passo": 54, "forte_a_cada": 4, "opacidade": 0.06, "revelar": 0.5 },
+  "grao": { "opacidade": 0.05 },
+  "caneta": { "raio": 9 },
+  "efeitos": { "ganho_reel": 0.8, "ganho_story": 0.4, "intervalo_minimo": 0.08 },
+  "trilha": { "ganho": 0.55, "fade_entrada": 0.4, "fade_saida": 1.2, "compasso": 4 },
+  "loudness": { "I": -14, "TP": -1.5 }
+}

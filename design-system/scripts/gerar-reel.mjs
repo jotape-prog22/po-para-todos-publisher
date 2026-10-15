@@ -11,7 +11,8 @@
 // Legenda: node scripts/legenda.mjs instagram/<pasta> --reel  → reel-legenda.txt. Publicar: node scripts/instagram.mjs --publicar-reel instagram/<pasta>.
 
 import { readFileSync, writeFileSync, unlinkSync, existsSync, renameSync } from "node:fs";
-import { spawn, execSync } from "node:child_process";
+import { execSync } from "node:child_process";
+import { rodar as rodarProcesso } from "./motion/mixagem.mjs";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validar, renderizarCenas, ErroStoryVideo } from "./gerar-story-video.mjs";
@@ -101,15 +102,7 @@ export function htmlDaMoldura({ titulo, faixa, ds }) {
 }
 
 // Roda um programa externo e falha com a saída de erro dele (injetável nos testes).
-export function rodar(binario, args) {
-  return new Promise((ok, falha) => {
-    const p = spawn(binario, args, { stdio: ["ignore", "inherit", "pipe"] });
-    let erro = "";
-    p.stderr.on("data", (d) => { erro += d; });
-    p.on("error", falha);
-    p.on("close", (c) => (c === 0 ? ok() : falha(new ErroReel(`${binario.split("/").pop()} terminou com código ${c}${erro ? `: ${erro.trim()}` : ""}`))));
-  });
-}
+export const rodar = (binario, args) => rodarProcesso(binario, args, ErroReel);
 
 async function ffmpeg() { return (await import("ffmpeg-static")).default; }
 
