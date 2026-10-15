@@ -2,7 +2,7 @@
 // Gera instagram/<pasta>/reel.mp4 (1080×1920) a partir de reel.json.
 //   tipo "cenas": Cenas do motor de motion (design-system/motion/GUIA.md) num vídeo contínuo, com Trilha ("trilha": "<id>" de
 //   design-system/audio/biblioteca.json, opcional) e Efeitos sonoros; as trocas de Cena caem no compasso da Trilha.
-//   tipo "corte": trecho de um vídeo já publicado no YouTube, baixado com yt-dlp e posto numa moldura de marca.
+//   tipo "corte": trecho de um vídeo já publicado no YouTube, baixado com yt-dlp e posto numa moldura de marca animada (título, barra de progresso), com o áudio original.
 // Corte exige yt-dlp instalado (README) e vídeo público (ADR-0008); reel.json: { "tipo": "corte", "video": "<slug>", "inicio": "mm:ss", "fim": "mm:ss", "titulo": "…", "faixa": "…", "legenda": { … } }
 // (titulo ≤ 40 caracteres e faixa ≤ 40: é o que cabe na moldura acima e abaixo do vídeo; o título encolhe em
 // três tamanhos conforme o comprimento — a conta está em instagram/reel.css)
@@ -11,24 +11,24 @@
 //   node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver      # prévia no navegador, com som (tipo cenas)
 // Legenda: node scripts/legenda.mjs instagram/<pasta> --reel  → reel-legenda.txt. Publicar: node scripts/instagram.mjs --publicar-reel instagram/<pasta>.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync, renameSync } from "node:fs";
+import { readFileSync, unlinkSync, existsSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ehErroDoPipeline, validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
 import { montarComposicao } from "../motion/composicao.mjs";
+import { INTERNAS } from "../motion/cenas/index.mjs";
 import { renderizar as renderizarMotion } from "./motion/renderizar.mjs";
 import { mixar as mixarAudio, rodar as rodarProcesso, MOVIMENTO } from "./motion/mixagem.mjs";
 import { verComposicoes } from "./motion/ver.mjs";
 import { carregarBiblioteca } from "../../scripts/audio.mjs";
 import { validarLegenda } from "../../scripts/legenda.mjs";
-import { preencher, exportarPng } from "./modelo-html.mjs";
+import { preencher } from "./modelo-html.mjs";
 import { segundos, DURACAO_CORTE } from "../../scripts/corte.mjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAIZ = resolve(DS, "..");
 const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
-const formatos = JSON.parse(readFileSync(join(DS, "instagram/formatos.json"), "utf8"));
 
 export class ErroReel extends Error {}
 export const TIPOS_DE_REEL = ["cenas", "corte"];
@@ -56,6 +56,7 @@ export function validarReel(dados, { biblioteca = null } = {}) {
     }
   }
   if (dados.tipo === "corte") {
+    if (dados.trilha != null) erros.push('corte: o Corte mantém a voz original; tire "trilha"');
     for (const c of ["video", "inicio", "fim", "titulo"]) if (!dados[c] || !String(dados[c]).trim()) erros.push(`corte: falta "${c}"`);
     let ini, fim;
     try { ini = segundos(dados.inicio); fim = segundos(dados.fim); } catch (e) { erros.push(`corte: ${e.message}`); }
@@ -88,12 +89,11 @@ export function argsYtDlp({ url, inicio, fim, saida, ffmpegDir }) {
   ];
 }
 
-// Moldura (PNG 9:16) por baixo, vídeo 16:9 redimensionado à largura e centrado; áudio original se houver.
+// Moldura animada (MP4 do motor) por baixo, vídeo 16:9 redimensionado à largura, em 30 fps, centrado; áudio original se houver.
 export function argsMoldura({ moldura, bruto, saida }) {
   return [
-    // -framerate 30: sem isso o loop da moldura (PNG) entra a 25 fps (padrão do image2) e reamostra o vídeo de 30 fps.
-    "-y", "-loglevel", "error", "-framerate", "30", "-loop", "1", "-i", moldura, "-i", bruto,
-    "-filter_complex", "[1:v]scale=1080:-2:flags=lanczos[v];[0:v][v]overlay=0:(H-h)/2:shortest=1,format=yuv420p[out]",
+    "-y", "-loglevel", "error", "-i", moldura, "-i", bruto,
+    "-filter_complex", "[1:v]scale=1080:-2:flags=lanczos,fps=30[v];[0:v][v]overlay=0:(H-h)/2:shortest=1,format=yuv420p[out]",
     "-map", "[out]", "-map", "1:a?",
     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
     saida,
@@ -126,38 +126,40 @@ async function gerarDeCenas(dados, pasta, { ver, renderizar, mixar, biblioteca }
   return gravarComposicao(comp, { pasta, base: "reel", trilhaId: dados.trilha ?? null, capaEm, renderizar, mixar, biblioteca });
 }
 
-async function gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exportar }) {
+export function composicaoDaMoldura(dados, duracao) {
+  const cena = { tipo: "moldura", duracao, titulo: dados.titulo, faixa: dados.faixa, minimo: duracao, linha: INTERNAS.moldura.linhaDoTempo() };
+  return montarComposicao([cena], { formato: "moldura", usuario: USUARIO });
+}
+
+async function gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, renderizar }) {
   const pub = join(raizVideos, dados.video, "publicacao.json");
   if (!existsSync(pub)) throw new ErroReel(`não achei ${pub} — o vídeo "${dados.video}" precisa estar publicado`);
   const publicacao = JSON.parse(readFileSync(pub, "utf8"));
   if (publicacao.privacidade !== "public") throw new ErroReel(`o vídeo "${dados.video}" precisa estar público (publicacao.json diz "${publicacao.privacidade}") — se já tornou público, troque para "public" no arquivo`);
   const ff = await ffmpeg();
-  const bruto = join(pasta, "corte-bruto.mp4"), html = join(pasta, "reel-moldura.html"), moldura = join(pasta, "reel-moldura.png"), reel = join(pasta, "reel.mp4");
-  const ds = relative(pasta, DS).split("\\").join("/") || ".";
+  const bruto = join(pasta, "corte-bruto.mp4"), moldura = join(pasta, "reel-moldura.mp4"), reel = join(pasta, "reel.mp4");
   try {
     await executar(ytDlp ?? acharYtDlp(), argsYtDlp({ url: publicacao.url, inicio: dados.inicio, fim: dados.fim, saida: bruto, ffmpegDir: dirname(ff) }));
     if (!existsSync(bruto)) throw new ErroReel("yt-dlp terminou sem gerar corte-bruto.mp4 — o vídeo está público? a URL em publicacao.json está certa?");
-    writeFileSync(html, htmlDaMoldura({ titulo: dados.titulo, faixa: dados.faixa, ds }));
-    const { largura, altura } = formatos.formatos.story;
-    exportar(html, moldura, { largura, altura });
+    const duracao = segundos(dados.fim) - segundos(dados.inicio);
+    await renderizar(composicaoDaMoldura(dados, duracao), { mp4: moldura, png: join(pasta, "reel.png"), audio: null, capaEm: Math.min(2.5, duracao) });
     await executar(ff, argsMoldura({ moldura, bruto, saida: reel }));
-    renameSync(moldura, join(pasta, "reel.png"));   // capa: a moldura com o título
   } finally {
-    for (const a of [bruto, html]) if (existsSync(a)) unlinkSync(a);
-    if (existsSync(moldura)) unlinkSync(moldura);
+    for (const a of [bruto, moldura]) if (existsSync(a)) unlinkSync(a);
   }
   return reel;
 }
 
-export async function gerarReel(pasta, { ver = false, renderizar = renderizarMotion, mixar = mixarAudio, biblioteca = carregarBiblioteca(), executar = rodar, raizVideos = join(RAIZ, "videos"), ytDlp = null, exportar = exportarPng } = {}) {
+export async function gerarReel(pasta, { ver = false, renderizar = renderizarMotion, mixar = mixarAudio, biblioteca = null, executar = rodar, raizVideos = join(RAIZ, "videos"), ytDlp = null } = {}) {
   const arquivo = join(pasta, "reel.json");
   if (!existsSync(arquivo)) throw new ErroReel(`não achei ${arquivo} — rode a skill reel`);
   const dados = JSON.parse(readFileSync(arquivo, "utf8"));
-  const erros = validarReel(dados, { biblioteca });
+  const bib = dados.tipo === "cenas" ? (biblioteca ?? carregarBiblioteca()) : null;   // o Corte nem usa a biblioteca
+  const erros = validarReel(dados, { biblioteca: bib });
   if (erros.length) throw new ErroReel(`reel.json inválido:\n- ${erros.join("\n- ")}`);
-  if (dados.tipo === "cenas") return gerarDeCenas(dados, pasta, { ver, renderizar, mixar, biblioteca });
+  if (dados.tipo === "cenas") return gerarDeCenas(dados, pasta, { ver, renderizar, mixar, biblioteca: bib });
   if (ver) throw new ErroReel('--ver só vale para tipo "cenas" — o corte é conferido no reel.mp4');
-  return gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exportar });
+  return gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, renderizar });
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

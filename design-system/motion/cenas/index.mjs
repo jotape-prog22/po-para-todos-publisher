@@ -10,9 +10,10 @@ import * as grafo from "./grafo.mjs";
 import * as conta from "./conta.mjs";
 import * as grafico from "./grafico.mjs";
 import * as tabela from "./tabela.mjs";
+import * as moldura from "./moldura.mjs";
 
 export const CENAS = { texto, impacto, odometro, grafo, conta, grafico, tabela };
-export const INTERNAS = {};
+export const INTERNAS = { moldura };
 export const TIPOS_DE_CENA = Object.keys(CENAS);
 export const moduloDe = (tipo) => CENAS[tipo] ?? INTERNAS[tipo];
 

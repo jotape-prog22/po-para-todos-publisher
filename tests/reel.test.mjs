@@ -66,12 +66,17 @@ test("argsYtDlp baixa só o trecho, em MP4 até 1080p, com o ffmpeg do projeto",
   assert.equal(a.at(-1), "https://youtu.be/x");
 });
 
-test("argsMoldura sobrepõe o vídeo 16:9 centrado na moldura 9:16, mantém o áudio e termina com o vídeo", () => {
-  const a = argsMoldura({ moldura: "/p/m.png", bruto: "/p/b.mp4", saida: "/p/reel.mp4" });
+test("argsMoldura põe o vídeo 16:9 centrado sobre a moldura animada (MP4), em 30 fps, com o áudio original", () => {
+  const a = argsMoldura({ moldura: "/p/reel-moldura.mp4", bruto: "/p/b.mp4", saida: "/p/reel.mp4" });
   const fc = a[a.indexOf("-filter_complex") + 1];
-  assert.ok(fc.includes("scale=1080:-2") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
-  assert.ok(a.includes("-loop") && a.includes("1:a?") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
-  assert.ok(a.indexOf("-framerate") >= 0 && a.indexOf("-framerate") < a.indexOf("-loop") && a[a.indexOf("-framerate") + 1] === "30", "moldura em 30 fps, antes do -loop");
+  assert.ok(fc.includes("scale=1080:-2") && fc.includes("fps=30") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
+  assert.ok(!a.includes("-loop"), "a moldura agora é vídeo");
+  assert.ok(a.includes("/p/reel-moldura.mp4") && a.includes("1:a?") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
+});
+
+test("validarReel (corte): recusa trilha — o Corte mantém a voz original", () => {
+  const e = validarReel({ ...corte, trilha: "qualquer" });
+  assert.ok(e.some((m) => m.includes("voz original") && m.includes('"trilha"')));
 });
 
 test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensagem útil", () => {
@@ -85,20 +90,25 @@ test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensage
   assert.equal(acharYtDlp(() => "/usr/local/bin/yt-dlp\n"), "/usr/local/bin/yt-dlp");
 });
 
-test("gerarReel (corte): baixa o trecho, exporta a moldura, sobrepõe e limpa o bruto", async () => {
+test("gerarReel (corte): baixa o trecho, grava a moldura animada do tamanho do corte, sobrepõe e limpa", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "reel-"));
   const videos = join(pasta, "videos"); mkdirSync(join(videos, "folgas-complementares"), { recursive: true });
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
   writeFileSync(join(pasta, "reel.json"), JSON.stringify(corte));
-  const chamadas = [];
+  const chamadas = [], molduras = [];
   const executar = async (bin, args) => { chamadas.push({ bin, args }); const o = args.indexOf("-o"); writeFileSync(o >= 0 ? args[o + 1] : args.at(-1), "x"); };
-  const saida = await gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp", exportar: (html, png) => writeFileSync(png, "png") });
+  const renderizar = async (comp, o) => { molduras.push({ comp, o }); writeFileSync(o.mp4, "m"); writeFileSync(o.png, "p"); return o.mp4; };
+  const saida = await gerarReel(pasta, { executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" });
   assert.equal(saida, join(pasta, "reel.mp4"));
   assert.deepEqual(chamadas.map((c) => c.bin), ["/bin/yt-dlp", (await import("ffmpeg-static")).default]);
-  assert.ok(!existsSync(join(pasta, "corte-bruto.mp4")) && !existsSync(join(pasta, "reel-moldura.html")));
+  const [{ comp, o }] = molduras;
+  assert.equal(comp.formato, "moldura"); assert.equal(comp.duracao, 50); assert.equal(comp.cenas[0].titulo, "EXEMPLO: O PRIMAL");
+  assert.equal(o.audio, null, "a moldura não tem som; o áudio é o do vídeo");
+  assert.ok(chamadas[1].args.includes(join(pasta, "reel-moldura.mp4")));
+  assert.ok(!existsSync(join(pasta, "corte-bruto.mp4")) && !existsSync(join(pasta, "reel-moldura.mp4")));
   assert.ok(existsSync(join(pasta, "reel.png")));
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "private" }));
-  await assert.rejects(gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
+  await assert.rejects(gerarReel(pasta, { executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
-  await assert.rejects(gerarReel(pasta, { ver: true, executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--ver/);
+  await assert.rejects(gerarReel(pasta, { ver: true, executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--ver/);
 });

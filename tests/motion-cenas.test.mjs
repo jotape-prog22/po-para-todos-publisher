@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { validarCena, CENAS, TIPOS_DE_CENA } from "../design-system/motion/cenas/index.mjs";
+import { validarCena, CENAS, INTERNAS, TIPOS_DE_CENA } from "../design-system/motion/cenas/index.mjs";
 import * as texto from "../design-system/motion/cenas/texto.mjs";
 import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as odometro from "../design-system/motion/cenas/odometro.mjs";
@@ -668,4 +668,19 @@ test("tabela: 6×4 com título de 2 linhas e nota de 60 numa área baixa não in
     assert.ok(v.y0 >= tituloFim - 1e-6, `${v.s} sobe por cima do título (${v.y0.toFixed(0)} < ${tituloFim.toFixed(0)})`);
     assert.ok(v.y1 <= area.y + area.h + 1e-6, `${v.s} passa do fim da área (${v.y1.toFixed(0)} > ${area.y + area.h})`);
   }
+});
+
+test("moldura (interna): kicker, título e barra de progresso que acompanha o tempo; reel.json não aceita", () => {
+  assert.ok(!TIPOS_DE_CENA.includes("moldura"));
+  assert.match(validarCena({ tipo: "moldura", duracao: 30 }, "cena 1", { formato: "reel" }).erros[0], /tipo de cena "moldura" não existe/);
+  const cena = { tipo: "moldura", duracao: 50, titulo: "EXEMPLO: O PRIMAL", linha: INTERNAS.moldura.linhaDoTempo() };
+  const ctx = ctxFalso();
+  INTERNAS.moldura.desenhar(ctx, cena, 25, kitFalso());
+  const ts = textos(ctx).map((x) => x.s);
+  assert.ok(ts.includes("CORTE DA AULA") && ts.includes("EXEMPLO: O PRIMAL"));
+  const barras = ctx.chamadas.filter((c) => c[0] === "fillRect").map((c) => c[3]);
+  const cheia = 1080 - 2 * 72;
+  assert.ok(barras.includes(cheia) && barras.some((w) => Math.abs(w - cheia / 2) < 1), "trilho inteiro e metade preenchida aos 25 de 50 s");
+  const y = ctx.chamadas.filter((c) => c[0] === "fillRect").map((c) => c[2]);
+  assert.ok(y.every((v) => v === 656 + 608 + movimento.desenho.moldura.respiro), "barra logo abaixo do vídeo, pelo token");
 });
