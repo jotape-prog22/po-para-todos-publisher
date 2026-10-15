@@ -45,3 +45,16 @@ test("desenharQuadro: tipo de Cena desconhecido lança ErroMotion", async () => 
   comp.cenas[0].tipo = "nao-existe";
   assert.throws(() => desenharQuadro(ctxFalso(), comp, 1, kitFalso()), (e) => e instanceof ErroMotion && /nao-existe/.test(e.message));
 });
+
+test("o clarão do impacto é desenhado depois da marca, cobrindo a tela inteira", () => {
+  const c = validarCena({ tipo: "impacto", duracao: 3, palavras: ["AGORA"] }, "cena", { formato: "reel" }).cena;
+  const comp = montarComposicao([c, c], { formato: "reel" });
+  const ctx = ctxFalso();
+  desenharQuadro(ctx, comp, 0.2, kitFalso());
+  const marca = ctx.chamadas.findIndex((x) => x[0] === "fillText" && x[1].startsWith("@"));
+  const cobre = ctx.chamadas.map((x, i) => [x, i]).filter(([x]) => x[0] === "fillRect" && x[3] === 1080 && x[4] === 1920).map(([, i]) => i);
+  assert.ok(cobre.length >= 2 && cobre.at(-1) > marca, "o último fillRect de tela cheia vem depois do @ do rodapé");
+  const sem = ctxFalso();
+  desenharQuadro(sem, comp, 2.9, kitFalso());
+  assert.equal(sem.chamadas.filter((x) => x[0] === "fillRect" && x[3] === 1080 && x[4] === 1920).length, 1, "sem batida não há clarão");
+});

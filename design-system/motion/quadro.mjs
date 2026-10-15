@@ -93,5 +93,8 @@ export function desenharQuadro(ctx, comp, t, kit) {
     ctx.restore();
   }
   desenharMarca(ctx, cena, lt, kit);
+  // Clarão opcional da Cena: por cima de tudo (a marca é opaca), tela inteira, fora da saída/loop.
+  const clarao = mod.clarao?.(cena, lt, kit) ?? 0;
+  if (clarao > 0) { ctx.save(); ctx.globalAlpha = clarao; ctx.fillStyle = kit.cores.tinta; ctx.fillRect(0, 0, W, H); ctx.restore(); }
   desenharGrao(ctx, kit, t);
 }

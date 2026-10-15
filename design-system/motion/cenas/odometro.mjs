@@ -48,28 +48,38 @@ export function desenhar(ctx, c, t, kit) {
   const caixaLivre = desenharCabecalho(ctx, c, t, kit);
   const ini = inicioDoConteudo(c, kit.movimento);
   const texto = formatar(c.valor, c.casas_decimais ?? 0);
+  // O grupo (prefixo + número + sufixo) é medido junto, na fonte-base, e escala na mesma proporção.
   usarFonte(ctx, F.numero);
-  const larguraBase = ctx.measureText(texto).width || 1;
-  const px = Math.min(F.numero.px * CRESCER, (F.numero.px * caixaLivre.w * OCUPAR) / larguraBase);
+  const numBase = ctx.measureText(texto).width || 1;
+  const menorBase = escalar(F.numero, F.numero.px * MENOR);
+  usarFonte(ctx, menorBase);
+  const lado = (s) => (s ? ctx.measureText(s).width + F.numero.px * AFASTAR : 0);
+  const grupoBase = numBase + lado(c.prefixo) + lado(c.sufixo);
+  const px = Math.min(F.numero.px * CRESCER, (F.numero.px * caixaLivre.w * OCUPAR) / grupoBase);
   const f = { ...escalar(F.numero, px), line: px * ENTRELINHA };
   const rotulo = c.rotulo ? linhasDe(ctx, F.corpo, c.rotulo, caixaLivre.w) : [];
   const total = f.line + rotulo.length * F.corpo.line;
   const topo = caixaLivre.y + (caixaLivre.h - total) / 2;
   const cy = topo + f.line / 2;
+  const menor = escalar(f, px * MENOR), afastar = px * AFASTAR;
+  usarFonte(ctx, menor);
+  const largPrefixo = c.prefixo ? ctx.measureText(c.prefixo).width + afastar : 0;
+  const largSufixo = c.sufixo ? ctx.measureText(c.sufixo).width + afastar : 0;
   usarFonte(ctx, f);
   const largs = [...texto].map((ch) => ctx.measureText(ch).width);
   const larguraTotal = largs.reduce((a, b) => a + b, 0);
-  let x = caixaLivre.x + (caixaLivre.w - larguraTotal) / 2;
+  const grupo = largPrefixo + larguraTotal + largSufixo;
+  const x0 = caixaLivre.x + (caixaLivre.w - grupo) / 2;
+  let x = x0 + largPrefixo;
   const digitos = [...texto].filter((ch) => /\d/.test(ch)).length;
-  const aparecer = clamp((t - ini) / 0.2);
+  const aparecer = clamp((t - ini) / R.aparecer);
   if (aparecer <= 0) return;
 
   if (c.prefixo || c.sufixo) {
-    const menor = escalar(f, px * MENOR), afastar = px * AFASTAR;
     usarFonte(ctx, menor); ctx.fillStyle = kit.cores.verdeSuave; ctx.textBaseline = "middle";
-    ctx.save(); ctx.globalAlpha *= aparecer;
-    if (c.prefixo) { ctx.textAlign = "right"; ctx.fillText(c.prefixo, x - afastar, cy); }
-    if (c.sufixo) { ctx.textAlign = "left"; ctx.fillText(c.sufixo, x + larguraTotal + afastar, cy); }
+    ctx.save(); ctx.globalAlpha *= aparecer; ctx.textAlign = "left";
+    if (c.prefixo) ctx.fillText(c.prefixo, x0, cy);
+    if (c.sufixo) ctx.fillText(c.sufixo, x + larguraTotal + afastar, cy);
     ctx.restore();
   }
 

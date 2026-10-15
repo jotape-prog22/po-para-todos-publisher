@@ -213,3 +213,49 @@ test("odometro: os tambores giram até o fim do giro e o último gira mais que o
   assert.equal(fim, "1736");
   assert.notEqual(meio, fim, "no meio do giro os dígitos ainda não pararam");
 });
+
+test("impacto: o kicker digitado gera o evento digitar e entra em fimEscrita só pela caneta", () => {
+  const lt = impacto.linhaDoTempo({ palavras: ["A"], kicker: "K" });
+  assert.deepEqual(lt.eventos[0], { t: movimento.ritmo.impacto.kicker, efeito: "digitar" });
+});
+
+test("impacto: tremor, mola, rampa, meia-vida e ruído vêm de movimento.json (impacto.*)", () => {
+  const i = movimento.impacto;
+  for (const k of ["tremor", "clarao", "passar", "rampa", "meia_vida", "ruido"]) assert.equal(typeof i[k], "number", k);
+  assert.ok(i.clarao <= 0.05, "clarão quase imperceptível");
+  assert.equal(typeof movimento.ritmo.odometro.aparecer, "number");
+});
+
+test("impacto: a mola nunca passa a palavra da largura útil, nem no pico (14 caracteres)", () => {
+  const { cena } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["MMMMMMMMMMMMMM"] }, "cena", { formato: "reel" });
+  const kit = kitFalso();
+  let maior = 0;
+  for (let t = 0.15; t < 0.6; t += 0.01) {
+    const ctx = ctxFalso();
+    let esc = 1;
+    ctx.scale = (a) => { esc = a; };
+    ctx.fillText = (s) => { maior = Math.max(maior, esc * ctx.measureText(s).width); };
+    impacto.desenhar(ctx, cena, t, kit);
+  }
+  assert.ok(maior <= kit.layout.area.w + 1e-6, `largura de pico ${maior} passa de ${kit.layout.area.w}`);
+  // palavra curta mantém o soco
+  const { cena: curta } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["7"] }, "cena", { formato: "reel" });
+  let pico = 1;
+  for (let t = 0.15; t < 0.6; t += 0.01) { const ctx = ctxFalso(); ctx.scale = (a) => { pico = Math.max(pico, a); }; impacto.desenhar(ctx, curta, t, kit); }
+  assert.ok(pico > 1.2);
+});
+
+test("odometro: prefixo, número e sufixo cabem na área, mesmo com 9 caracteres e sufixo de 10", () => {
+  const { cena, erros } = validarCena({ tipo: "odometro", duracao: 6, valor: 12345.67, casas_decimais: 2, prefixo: "R$ ab", sufixo: "x".repeat(10) }, "cena", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  const kit = kitFalso(), { x, w } = kit.layout.area;
+  const ctx = ctxFalso();
+  const vistos = [];
+  ctx.fillText = (s, px) => vistos.push({ s, x: px, w: ctx.measureText(s).width, a: ctx.textAlign });
+  odometro.desenhar(ctx, cena, 5.9, kit);
+  assert.ok(vistos.some((v) => v.s === "R$ ab") && vistos.some((v) => v.s === "x".repeat(10)));
+  for (const v of vistos) {
+    const esq = v.a === "right" ? v.x - v.w : v.a === "center" ? v.x - v.w / 2 : v.x;
+    assert.ok(esq >= x - 1e-6 && esq + v.w <= x + w + 1e-6, `"${v.s}" sai da área: ${esq}..${esq + v.w}`);
+  }
+});
