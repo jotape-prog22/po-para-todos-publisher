@@ -24,7 +24,9 @@ export function curvaturas(c) {
   return c.arestas.map((a) => { const k = (visto[par(a)] = (visto[par(a)] ?? -1) + 1); return k - (total[par(a)] - 1) / 2; });
 }
 
-const ligados = (c, u, v) => c.arestas.some((a) => (a.de === u && a.para === v) || (!c.dirigido && a.de === v && a.para === u));
+// A aresta a vai de u a v? (sem direção, vale nos dois sentidos)
+const liga = (c, a, u, v) => (a?.de === u && a?.para === v) || (!c.dirigido && a?.de === v && a?.para === u);
+const ligados = (c, u, v) => c.arestas.some((a) => liga(c, a, u, v));
 
 export function validar(c, onde) {
   const erros = [];
@@ -41,8 +43,9 @@ export function validar(c, onde) {
     add(checarTamanho(`rotulo de "${n.id}"`, n.rotulo ?? n.id, LIM.rotulo, onde));
   });
   arestas.forEach((a, i) => {
-    for (const lado of ["de", "para"]) if (!ids.has(a?.[lado])) erros.push(`${onde}: arestas[${i + 1}]: nó "${a?.[lado]}" não existe`);
-    if (a?.de === a?.para) erros.push(`${onde}: arestas[${i + 1}] liga "${a.de}" a ele mesmo`);
+    if (a?.de == null || a?.para == null) { erros.push(`${onde}: arestas[${i + 1}] precisa de "de" e "para" (ids de nós)`); return; }
+    for (const lado of ["de", "para"]) if (!ids.has(a[lado])) erros.push(`${onde}: arestas[${i + 1}]: nó "${a[lado]}" não existe`);
+    if (a.de === a.para) erros.push(`${onde}: arestas[${i + 1}] liga "${a.de}" a ele mesmo`);
     if (a?.peso != null) add(checarTamanho(`arestas[${i + 1}].peso`, String(a.peso), LIM.peso, onde));
   });
   if (c.caminho != null) {
@@ -181,9 +184,14 @@ export function desenhar(ctx, c, t, kit) {
   // caminho em verde, passo a passo
   const visitado = new Set();
   if (c.caminho && t >= tp.iniC) visitado.add(c.caminho[0]);
+  // cada passo usa a primeira aresta compatível ainda não usada: ida e volta pelas pontes paralelas
+  // acende as duas; se todas já foram usadas, repete a primeira
+  const usadas = new Set();
   (c.caminho ?? []).slice(1).forEach((v, j) => {
     const u = c.caminho[j];
-    const i = c.arestas.findIndex((a) => (a.de === u && a.para === v) || (!c.dirigido && a.de === v && a.para === u));
+    const compativeis = c.arestas.map((a, k) => k).filter((k) => liga(c, c.arestas[k], u, v));
+    const i = compativeis.find((k) => !usadas.has(k)) ?? compativeis[0];
+    usadas.add(i);
     const pts = c.arestas[i].de === u ? tracos[i] : [...tracos[i]].reverse();
     const p = prog(t, tp.caminho[j], tp.caminho[j] + R.segmento, ease.inOutCubic);
     revelarTraco(ctx, pts, p, kit, t, { cor: cores.verde, largura: D.caminho });

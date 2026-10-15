@@ -345,12 +345,44 @@ for (const [caso, L] of [["nomes por extenso", { x: 9, rotulo: "leste" }], ["les
   }
 });
 
-test("grafo: raio mínimo do nó e espessuras vêm de movimento.json (desenho.grafo)", () => {
-  const { cena } = validarCena(konigsberg(), "cena", { formato: "reel" });
+test("grafo: raio mínimo do nó, espessuras e zoom do caminho vêm de movimento.json (desenho.grafo)", () => {
+  const { cena } = validarCena(konigsberg({ caminho: ["N", "I", "L"] }), "cena", { formato: "reel" });
+  const kitCom = (g) => kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, grafo: { ...movimento.desenho.grafo, ...g } } } });
   const raios = (kit) => desenharEm(grafo, cena, [7.9], kit).chamadas.filter((c) => c[0] === "arc").map((c) => c[3]);
-  const grande = kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, grafo: { ...movimento.desenho.grafo, raio_minimo: 77 } } } });
-  assert.ok(raios(grande).every((r) => r === 77));
+  assert.ok(raios(kitCom({ raio_minimo: 77 })).every((r) => r === 77));
   assert.ok(raios(kitFalso()).every((r) => r < 77));
+  // espessura de cada traço (stroke): arestas, caminho e contorno dos nós
+  const larguras = (kit) => { const ctx = ctxFalso(), ls = new Set(); ctx.stroke = () => ls.add(ctx.lineWidth); grafo.desenhar(ctx, cena, 7.9, kit); return ls; };
+  const ls = larguras(kitCom({ aresta: 7, caminho: 13, contorno: 3 }));
+  for (const w of [7, 13, 3]) assert.ok(ls.has(w), `largura ${w}`);
+  const d = movimento.desenho.grafo;
+  for (const w of [d.aresta, d.caminho, d.contorno]) assert.ok(larguras(kitFalso()).has(w), `largura ${w} de movimento.json`);
+  // zoom da câmera no meio do caminho
+  const iniC = cena.linha.eventos.find((e) => e.efeito === "tick").t;
+  const zoom = (kit) => desenharEm(grafo, cena, [iniC + movimento.ritmo.grafo.camera], kit).chamadas.find((c) => c[0] === "transform")[1];
+  assert.ok(Math.abs(zoom(kitCom({ zoom_caminho: 1.5 })) - 1.5) < 1e-9);
+  assert.ok(Math.abs(zoom(kitFalso()) - d.zoom_caminho) < 1e-9);
+});
+
+test("grafo: caminho que volta pelas pontes paralelas acende uma ponte diferente a cada passo", () => {
+  const { cena, erros } = validarCena(konigsberg({ caminho: ["N", "I", "N"] }), "cena", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  const kit = kitFalso(), ctx = ctxFalso(), tracos = [];
+  let atual = null;
+  ctx.moveTo = (x, y) => { atual = [{ x, y }]; };
+  ctx.lineTo = (x, y) => atual?.push({ x, y });
+  ctx.stroke = () => { if (ctx.strokeStyle === kit.cores.verde && ctx.lineWidth === movimento.desenho.grafo.caminho) tracos.push(atual); };
+  grafo.desenhar(ctx, cena, 7.9, kit);
+  assert.equal(tracos.length, 2);
+  const mediaX = (pts) => pts.reduce((s, p) => s + p.x, 0) / pts.length;
+  assert.ok(Math.abs(mediaX(tracos[0]) - mediaX(tracos[1])) > 10, "as duas pontes N–I, não a mesma duas vezes");
+});
+
+test("grafo: aresta vazia ou sem as pontas é recusada com mensagem legível", () => {
+  const erros = (arestas) => validarCena(konigsberg({ arestas }), "cena 2", { formato: "reel" }).erros;
+  assert.match(erros([null])[0] ?? "", /arestas\[1\] precisa de "de" e "para"/);
+  assert.match(erros([{}])[0] ?? "", /arestas\[1\] precisa de "de" e "para"/);
+  assert.ok(!erros([{}]).some((e) => /ele mesmo/.test(e)));
 });
 
 const contaDe = (extra = {}) => ({ tipo: "conta", duracao: 8, titulo: "QUANTAS PONTES EM CADA REGIÃO", linhas: ["ilha: 5", "norte: 3  sul: 3  leste: 3", "4 regiões ímpares"], destaque: 3, nota: "mais de 2 ímpares: impossível", ...extra });
