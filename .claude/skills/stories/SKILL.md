@@ -14,7 +14,7 @@ Diga antes: "Vou escrever a sequência, gerar os vídeos e conferir as contas; s
 
 ## 2. Escrever `stories.json`
 
-Comece de `instagram/_modelo/stories.json`. Limites e campos: `design-system/scripts/gerar-story-video.mjs` (`LIMITES`: até 10 stories, 5 a 60 s cada, kicker 40, título 60, linha 90, pergunta 60, dica 30, faixa 40). Exemplo manual com stickers: `instagram/2026-09-22-como-funciona-po/`.
+Comece de `instagram/_modelo/stories.json`. Cada story é uma Cena do motor de motion: os tipos e campos estão em `design-system/motion/GUIA.md` (sem `tipo` é `texto`, o formato de sempre: até 10 stories, 5 a 60 s cada, kicker 40, título 60, linha 90, pergunta 60, dica 30, faixa 40). Num quiz, a resposta pode ser um `odometro` (o número certo girando) ou uma `conta`. Story não leva Trilha — só Efeitos sonoros discretos, automáticos. Números e contas das Cenas entram na `checagem.json` com `onde: "cena N"`. Exemplo manual com stickers: `instagram/2026-09-22-como-funciona-po/`.
 
 **Quiz "respondido"** — o pique é engajar, não entregar:
 - Story 1: kicker de situação (`UM DESAFIO`, `UMA DECISÃO`), título com a cena, `linhas` com os dados, `pergunta` e `dica` terminando em "Sabe a resposta?" (ou "Chuta?", "Qual você escolhe?"). Nunca a resposta aqui.
@@ -30,7 +30,7 @@ Toda conta e todo fato viram uma entrada em `checagem.json` (formato em `design-
 
 ## 4. Gerar
 
-`node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` → `story-NN.mp4` + `story-NN.png` (último quadro). Abra os PNGs: texto inteiro, nada cortado, ordem certa.
+`node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` → `story-NN.mp4` + `story-NN.png` (último quadro). Prévia no navegador, com som: o mesmo comando com `--ver` (Ctrl+C fecha); `--so N` gera só o story N. Abra os PNGs: texto inteiro, nada cortado, ordem certa.
 
 ## 5. **PARADA**: aprovação
 

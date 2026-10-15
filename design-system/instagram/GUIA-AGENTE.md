@@ -44,6 +44,8 @@ Curiosidade: `{ "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titu
 
 ## Comandos
 
+Vídeos (reels, stories, story de aviso) são desenhados pelo motor de motion: tipos de Cena em `design-system/motion/GUIA.md`; som em `design-system/audio/` (ADR-0011, ADR-0012).
+
 ```bash
 node design-system/scripts/gerar-cards.mjs instagram/<pasta>            # card-NN.png
 node design-system/scripts/gerar-cards.mjs instagram/<pasta> --so-html  # só HTML, para inspecionar
@@ -60,6 +62,9 @@ node scripts/instagram.mjs --publicar-stories instagram/<pasta>               # 
 node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>     # trechos para um post citacao
 node scripts/corte.mjs --candidatos videos/<slug>                             # trechos de vídeo público para um reel
 node design-system/scripts/gerar-reel.mjs instagram/<pasta>                   # reel.json → reel.mp4
+node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver         # prévia do reel no navegador, com som
+node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --ver  # prévia dos stories
+node scripts/audio.mjs                                                    # Trilhas e Efeitos disponíveis (clima, BPM, licença)
 node scripts/legenda.mjs instagram/<pasta> --reel                             # reel-legenda.txt
 node scripts/instagram.mjs --publicar-reel instagram/<pasta>                  # publica o reel
 ```

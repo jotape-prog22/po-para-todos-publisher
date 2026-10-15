@@ -12,12 +12,13 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node design-system/scripts/gerar-miniatura.mjs …` — ver `design-system/miniaturas/GUIA-AGENTE.md`.
 - `node design-system/scripts/recortar-tela.mjs <url> --saida instagram/<pasta>/tela-x.png` — recorte de tela de um site para o campo `imagem` dos cards (capa e ideia).
 - `node design-system/scripts/gerar-story.mjs videos/<slug>` — `story.png` de vídeo novo (a skill `publicar` chama).
-- `node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` — `stories.json` → `story-NN.mp4` (sequência de stories em vídeo; stickers e ordem em `stories.md` da pasta).
+- `node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` — `stories.json` → `story-NN.mp4` (sequência de stories em vídeo; stickers e ordem em `stories.md` da pasta; `--ver`: prévia no navegador, com som).
 - `node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>` — `story-aviso.mp4` de post novo.
 - `node scripts/checagem.mjs instagram/<pasta>` — valida `checagem.json` e imprime o resumo da Checagem.
 - `node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>` — trechos para um post `citacao`.
 - `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
-- `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4`.
+- `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4` (`--ver`: prévia no navegador, com som).
+- `node scripts/audio.mjs [--medir <arquivo>]` — biblioteca de Trilhas e Efeitos sonoros (`design-system/audio/biblioteca.json`, só licença gratuita explícita, `docs/adr/0012`); `--medir` dá BPM e primeira batida de uma faixa nova.
 - `node scripts/agenda.mjs …` — a agenda de publicações (`--adicionar`, `--distribuir`, `--status`, `--mover`, `--reabrir`, `--remover`, `--enfileirar`, `--enviar`, `--atualizar`, `--configurar-nuvem`); `npm run revisar` abre a revisão em bloco.
 - `node scripts/publicar-agenda.mjs [--simular]` — o que o workflow `publicar-agenda.yml` roda a cada 30 min; `--simular` não toca na Meta. Quem acorda o workflow é um despertador no cron-job.org (`workflow_dispatch` às :00/:30); o cron do GitHub (:07/:37) é só reserva, porque atrasa horas (README, "Publicar na nuvem (agenda)").
 - `npm run calibrar` — abre no navegador a calibração dos formatos do Instagram (posts, stories, reels lado a lado, com a interface do app por cima); "Gravar no CSS" escreve no `:root` de `design-system/instagram/*.css`. Amostras em `design-system/instagram/amostras-calibracao.json`.
@@ -31,6 +32,8 @@ Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists
 `/stories instagram/<data>-<slug>` (skill `stories`): quiz "respondido" ou sequência didática → `stories.json` + `checagem.json` → `gerar-story-video.mjs` → parada → `--publicar-stories` (sem sticker; com sticker é manual, `docs/adr/0007`).
 
 `/reel instagram/<data>-<slug>` (skill `reel`): corte de vídeo publicado (`scripts/corte.mjs --candidatos`, `yt-dlp`, `docs/adr/0008`) ou cenas do zero → `reel.json` → `gerar-reel.mjs` + `legenda.mjs --reel` → parada → `--publicar-reel`.
+
+Reels, stories e story de aviso saem do motor de motion (`design-system/motion/`, Canvas2D no Chrome, `docs/adr/0011`): cada Cena tem um `tipo` (`texto`, `impacto`, `odometro`, `grafo`, `conta`, `grafico`, `tabela` — `design-system/motion/GUIA.md`) e a geometria vem do mesmo CSS da calibração. Reel de Cenas leva Trilha e Efeitos; story só Efeitos; Corte só o áudio original. Mídia na agenda ou no branch `fila` não se regera.
 
 `/pacote` (skill `pacote`): post + story de aviso + reel, nessa ordem, cada um com sua parada; só por pedido — `/video` nunca dispara nada do Instagram. Story de vídeo novo é sempre manual (sticker de link); story de aviso e sequências sem sticker saem pela API.
 

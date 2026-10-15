@@ -177,6 +177,26 @@ Além do post, o Claude faz:
 - **Reel**: `vê um trecho legal do vídeo Y para postar` (o Claude sugere trechos, você escolhe; precisa do `yt-dlp` do item 7 e do vídeo já público) ou `faz um reel sobre X` (cenas do zero).
 - **Pacote**: `faz o pacote do vídeo Y` — post + story de aviso + reel, nessa ordem, com uma parada de aprovação em cada um.
 
+### Ver um vídeo do Instagram antes de gravar
+
+1. No terminal, na pasta do projeto, rode (troque a pasta pela sua):
+   `node design-system/scripts/gerar-reel.mjs instagram/2026-10-20-meu-reel --ver`
+2. O navegador abre com o vídeo, um botão **▶ Tocar** e uma barra de tempo. Aperte espaço para tocar/pausar; as setas andam um quadro.
+3. Para fechar, volte ao terminal e aperte **Ctrl+C**.
+
+Para stories, o comando é o mesmo com `gerar-story-video.mjs`. Só vale para reel de cenas; o corte se confere no `reel.mp4`.
+
+### Pôr uma música nova na biblioteca
+
+Só entra música de graça e com licença clara (Pixabay, Biblioteca de áudio do YouTube "sem atribuição", ou CC0). No Pixabay, escolha só faixas sem "Content ID Registered" na página: com Content ID o Instagram pode reivindicar ou silenciar o som.
+
+1. Baixe o MP3 e salve em `design-system/audio/trilhas/` com um nome curto, sem espaços (ex.: `passos-curiosos.mp3`).
+2. Rode `node scripts/audio.mjs --medir design-system/audio/trilhas/passos-curiosos.mp3`. Aparece o BPM, a primeira batida e a duração. Se o BPM for o dobro ou a metade do que você ouve, rode de novo acrescentando `--bpm 70` (o que você ouve).
+3. Peça ao Claude: "registra essa trilha na biblioteca, clima leve, link <página da música>". Ou edite `design-system/audio/biblioteca.json` copiando uma entrada que já existe.
+4. Rode `node scripts/audio.mjs`. Se aparecer `erro: …`, a mensagem diz o que falta.
+
+Reel ou story que já está na agenda não é regerado quando a biblioteca muda.
+
 Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confirmou e o que não conseguiu confirmar — é você quem decide o que fica.
 
 ## Publicar na nuvem (agenda)
