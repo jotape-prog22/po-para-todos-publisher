@@ -4,6 +4,7 @@
 //
 //   node scripts/audio.mjs                    # valida a biblioteca e mostra o resumo
 //   node scripts/audio.mjs --medir <arquivo>  # mede BPM, primeira batida e duração de uma faixa nova
+//   node scripts/audio.mjs --medir <arquivo> --bpm 70   # remede perto de um BPM batido de ouvido
 //
 // A medição ouve o arquivo pelo ffmpeg do projeto; o resultado vai para a entrada da Trilha.
 
@@ -78,7 +79,9 @@ export function escolherEfeito(b, uso, n) {
 //    introdução sem batida, ela cai ali, e a grade continua certa.
 // Limite: dobro e metade são o mesmo pulso a outra velocidade, e a preferência por 120 decide. Faixa
 // lenta (≲ 80) com colcheias marcadas pode sair no dobro; muito rápida (≳ 170), na metade. Os cortes
-// continuam na batida — confira de ouvido ao cadastrar a Trilha.
+// continuam na batida — confira de ouvido ao cadastrar a Trilha e, se saiu no dobro ou na metade,
+// remeça com a dica (`bpm`): a busca fica a ±1/3 de oitava dela e a fase sai da grade certa (corrigir
+// só o número à mão deixaria a primeira batida no contratempo em metade dos casos).
 const JANELA = 1024, SALTO = 256;
 
 function fft(re, im) {
@@ -146,7 +149,13 @@ function novidade(x, taxa) {
   return saida;
 }
 
-export function batidas(x, taxa, { min = 60, max = 200, centro = 120 } = {}) {
+export const DICA_BPM = { min: 40, max: 240 };
+
+export function batidas(x, taxa, { bpm: dica, min = 60, max = 200, centro = 120 } = {}) {
+  if (dica !== undefined) {
+    if (!(dica >= DICA_BPM.min && dica <= DICA_BPM.max)) throw new ErroAudio(`dica de BPM ${dica} fora de ${DICA_BPM.min} a ${DICA_BPM.max}`);
+    [centro, min, max] = [dica, dica * 2 ** (-1 / 3), dica * 2 ** (1 / 3)];
+  }
   const fps = taxa / SALTO;
   const P0 = (fps * 60) / max, P1 = (fps * 60) / min;
   // a autocorrelação olha até 4 períodos do andamento mais lento: pede pelo menos o dobro disso
@@ -190,7 +199,8 @@ export function batidas(x, taxa, { min = 60, max = 200, centro = 120 } = {}) {
   return { bpm, primeira_batida };
 }
 
-export async function medir(arquivo) {
+// opcoes vai direto para batidas — na prática, { bpm } com a dica de ouvido.
+export async function medir(arquivo, opcoes = {}) {
   if (!existsSync(arquivo)) throw new ErroAudio(`não achei ${arquivo}`);
   const { default: ffmpeg } = await import("ffmpeg-static");
   const taxa = 22050;
@@ -203,15 +213,22 @@ export async function medir(arquivo) {
   });
   const buf = Buffer.concat(pedacos);
   const amostras = new Float32Array(buf.buffer, buf.byteOffset, Math.floor(buf.length / 4));
-  return { ...batidas(amostras, taxa), duracao: Math.round((amostras.length / taxa) * 10) / 10 };
+  return { ...batidas(amostras, taxa, opcoes), duracao: Math.round((amostras.length / taxa) * 10) / 10 };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   try {
     if (args[0] === "--medir") {
-      if (!args[1]) throw new ErroAudio("uso: node scripts/audio.mjs --medir <arquivo>");
-      console.log(JSON.stringify(await medir(resolve(args[1]))));
+      if (!args[1] || args[1].startsWith("--")) throw new ErroAudio("uso: node scripts/audio.mjs --medir <arquivo> [--bpm <dica de ouvido>]");
+      const opcoes = {};
+      const i = args.indexOf("--bpm");
+      if (i >= 0) {
+        const dica = Number(args[i + 1]);
+        if (!args[i + 1] || !(dica >= DICA_BPM.min && dica <= DICA_BPM.max)) throw new ErroAudio(`--bpm precisa de um número de ${DICA_BPM.min} a ${DICA_BPM.max} (o andamento que você contou de ouvido)`);
+        opcoes.bpm = dica;
+      }
+      console.log(JSON.stringify(await medir(resolve(args[1]), opcoes)));
     } else {
       const b = carregarBiblioteca();
       const erros = validarBiblioteca(b);

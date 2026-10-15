@@ -86,3 +86,26 @@ test("batidas não cai no dobro nem na metade num sinal com bumbo, caixa e chimb
     assert.ok(Math.abs(r.primeira_batida - inicio) < 0.03, `primeira ${r.primeira_batida} ≉ ${inicio}`);
   }
 });
+
+test("com a dica de ouvido (bpm), batidas sai do dobro e devolve a fase da grade certa", () => {
+  const x = musica(72, 0.33);
+  assert.ok(Math.abs(batidas(x, 22050).bpm - 144) < 1, "sem dica, este sinal sai no dobro (o caso que a dica corrige)");
+  const r = batidas(x, 22050, { bpm: 70 });
+  assert.ok(Math.abs(r.bpm - 72) < 1, `bpm ${r.bpm} ≉ 72`);
+  assert.ok(Math.abs(r.primeira_batida - 0.33) < 0.03, `primeira ${r.primeira_batida} ≉ 0.33`);
+  assert.throws(() => batidas(x, 22050, { bpm: 0 }), ErroAudio);
+});
+
+test("CLI --medir aceita --bpm <dica> e recusa dica inválida com erro em português", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const cli = (...a) => spawnSync(process.execPath, [new URL("../scripts/audio.mjs", import.meta.url).pathname, ...a], { encoding: "utf8" });
+  const uso = cli("--medir");
+  assert.equal(uso.status, 1);
+  assert.match(uso.stderr, /^erro: uso: node scripts\/audio\.mjs --medir <arquivo> \[--bpm <dica de ouvido>\]/);
+  for (const dica of ["abc", "0", "300"]) {
+    const r = cli("--medir", "faixa.mp3", "--bpm", dica);
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /^erro: --bpm .* de 40 a 240/);
+  }
+  assert.match(cli("--medir", "faixa.mp3", "--bpm").stderr, /^erro: --bpm/);
+});
