@@ -2,10 +2,10 @@
   "tipo": "cenas",
   "trilha": "tutorial-animado",
   "cenas": [
-    { "tipo": "impacto", "duracao": 3, "palavras": ["UMA PERGUNTA", "PARECE FÁCIL"] },
-    { "duracao": 6, "kicker": "O PROBLEMA", "titulo": "O ENUNCIADO EM UMA FRASE", "linhas": ["O dado que importa", "O que se quer decidir"] },
-    { "tipo": "conta", "duracao": 6, "titulo": "A CONTA", "linhas": ["2 + 3 = 5"], "destaque": 1 },
-    { "duracao": 6, "kicker": "A RESPOSTA", "titulo": "O QUE ISSO ENSINA", "linhas": ["Uma linha com a ideia"], "faixa": "AULA COMPLETA NO CANAL" }
+    { "tipo": "impacto", "duracao": 4, "palavras": ["UMA PERGUNTA", "PARECE FÁCIL"] },
+    { "duracao": 8, "kicker": "O PROBLEMA", "titulo": "O ENUNCIADO EM UMA FRASE", "linhas": ["O dado que importa", "O que se quer decidir"] },
+    { "tipo": "conta", "duracao": 8, "titulo": "A CONTA", "linhas": ["2 + 3 = 5"], "destaque": 1 },
+    { "duracao": 8, "kicker": "A RESPOSTA", "titulo": "O QUE ISSO ENSINA", "linhas": ["Uma linha com a ideia"], "faixa": "AULA COMPLETA NO CANAL" }
   ],
   "legenda": { "gancho": "Gancho de até 125 caracteres.", "corpo": "Corpo da legenda.", "hashtags_tema": ["#PesquisaOperacional", "#Otimizacao", "#Tema"] }
 }

@@ -26,6 +26,7 @@ Rode a skill `post` até o fim (inclui a Checagem quando o tipo exige, a parada 
 ## 3. Reel
 
 O reel de Cenas sai com Trilha e Efeitos (skill `reel`, passo da Trilha); o Corte mantém o áudio da aula.
+
 Só depois do post no ar: rode a skill `reel` na mesma pasta (corte se a origem é um vídeo público; cenas se não). Se falhar ao publicar, reporte: "Post e story no ar; o reel não saiu: <erro>." e pare.
 
 ## 4. Entrega

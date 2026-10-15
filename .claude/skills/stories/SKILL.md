@@ -30,7 +30,7 @@ Toda conta e todo fato viram uma entrada em `checagem.json` (formato em `design-
 
 ## 4. Gerar
 
-`node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` → `story-NN.mp4` + `story-NN.png` (último quadro). Prévia no navegador, com som: o mesmo comando com `--ver` (Ctrl+C fecha); `--so N` gera só o story N. Abra os PNGs: texto inteiro, nada cortado, ordem certa.
+`node design-system/scripts/gerar-story-video.mjs instagram/<pasta>` → `story-NN.mp4` + `story-NN.png` (último quadro). Prévia no navegador, com som: o mesmo comando com `--ver` (Ctrl+C fecha; para ver um ajuste no `stories.json`, feche e rode de novo — recarregar a página não relê o arquivo); `--so N` gera só o story N. Abra os PNGs: texto inteiro, nada cortado, ordem certa.
 
 ## 5. **PARADA**: aprovação
 

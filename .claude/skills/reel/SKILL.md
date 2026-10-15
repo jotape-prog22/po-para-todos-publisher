@@ -26,7 +26,7 @@ Diga antes: "Vou montar o reel e a legenda para você olhar; só publico depois 
 
 ## 3. Gerar
 
-Para olhar antes de gravar (só Cenas): `node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver` abre a prévia no navegador, com som; arraste a linha do tempo. Ajuste o `reel.json` e recarregue a página com o comando de novo. Feche com Ctrl+C.
+Para olhar antes de gravar (só Cenas): `node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver` abre a prévia no navegador, com som; arraste a linha do tempo. Ajuste o `reel.json`, feche a prévia com Ctrl+C no terminal e rode o comando de novo (abre uma prévia nova; recarregar a página não relê o `reel.json`).
 
 `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` → `reel.mp4` + `reel.png` (capa). Corte: exige `yt-dlp` instalado (README, "O que você vai instalar", item opcional); se sair `erro: yt-dlp não encontrado`, mostre o passo do README e espere.
 `node scripts/legenda.mjs instagram/<pasta> --reel` → `reel-legenda.txt`.
