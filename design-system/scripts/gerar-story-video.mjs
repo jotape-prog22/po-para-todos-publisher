@@ -36,6 +36,8 @@ const RAIZ = resolve(DS, "..");
 const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
 
 export class ErroStoryVideo extends Error {}
+// Erro próprio do pipeline (ErroStoryVideo, ErroReel, ErroMotion, ErroAudio, ErroNavegador…): a CLI imprime `erro: …`; o resto (Error, ENOENT, bug) sobe com stack.
+export const ehErroDoPipeline = (e) => /^Erro[A-Z]/.test(e?.constructor?.name ?? "");
 export const USUARIO = canal.instagramUsuario;
 
 export const LIMITES = {
@@ -144,7 +146,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       for (const s of await gerarStoryVideo(resolve(pasta), { so })) console.log(relative(RAIZ, s));
     }
   } catch (e) {
-    if (e?.constructor?.name?.startsWith("Erro")) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (ehErroDoPipeline(e)) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, unlinkSync, existsSync, renameSync } from 
 import { execSync } from "node:child_process";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
+import { ehErroDoPipeline, validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
 import { montarComposicao } from "../motion/composicao.mjs";
 import { renderizar as renderizarMotion } from "./motion/renderizar.mjs";
 import { mixar as mixarAudio, rodar as rodarProcesso, MOVIMENTO } from "./motion/mixagem.mjs";
@@ -172,7 +172,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       for (const s of [].concat(await gerarReel(resolve(pasta)))) console.log(relative(RAIZ, s));
     }
   } catch (e) {
-    if (e?.constructor?.name?.startsWith("Erro")) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (ehErroDoPipeline(e)) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

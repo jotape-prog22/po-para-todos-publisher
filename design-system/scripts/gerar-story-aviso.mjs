@@ -8,7 +8,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve, relative, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { validarCenas, gravarComposicao, LIMITES, USUARIO } from "./gerar-story-video.mjs";
+import { ehErroDoPipeline, validarCenas, gravarComposicao, LIMITES, USUARIO } from "./gerar-story-video.mjs";
 import { montarComposicao } from "../motion/composicao.mjs";
 import { verComposicoes } from "./motion/ver.mjs";
 
@@ -67,7 +67,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       console.log(relative(RAIZ, await gerarStoryAviso(resolve(pasta))));
     }
   } catch (e) {
-    if (e?.constructor?.name?.startsWith("Erro")) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (ehErroDoPipeline(e)) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

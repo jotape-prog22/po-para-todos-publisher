@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, existsSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { validar, htmlDaCena, ErroStoryVideo, LIMITES, PUBLICACOES, composicoesDeStories, gerarStoryVideo } from "../design-system/scripts/gerar-story-video.mjs";
+import { validar, htmlDaCena, ErroStoryVideo, LIMITES, PUBLICACOES, composicoesDeStories, gerarStoryVideo, ehErroDoPipeline } from "../design-system/scripts/gerar-story-video.mjs";
+import { ErroMotion } from "../design-system/motion/movimento.mjs";
+import { ErroNavegador } from "../design-system/scripts/navegador.mjs";
 
 const story = (extra = {}) => ({ duracao: 12, kicker: "UM DESAFIO", titulo: "VOCÊ TEM UMA PADARIA", linhas: ["Pão: 1 h", "Bolo: 2 h"], pergunta: "O que rende mais?", dica: "Responda no quiz", ...extra });
 const spec = (...stories) => ({ tipo: "stories", stories });
@@ -88,4 +90,12 @@ test("gerarStoryVideo grava story-NN.mp4/.png com o som mixado, sem Trilha, e re
   assert.equal(gravados[1].comp.cenas[0].kicker, "DOIS");
   const so2 = await gerarStoryVideo(pasta, { so: 2, renderizar, mixar, biblioteca: bibVazia });
   assert.deepEqual(so2.map((s) => s.slice(pasta.length + 1)), ["story-02.mp4"]);
+});
+
+test("ehErroDoPipeline: só as classes Erro<Algo> do pipeline; Error comum e afins não", () => {
+  assert.equal(ehErroDoPipeline(new Error("x")), false);
+  assert.equal(ehErroDoPipeline(new TypeError("x")), false);
+  assert.equal(ehErroDoPipeline(Object.assign(new Error("x"), { code: "ENOENT" })), false);
+  assert.equal(ehErroDoPipeline(undefined), false);
+  assert.ok([new ErroMotion("x"), new ErroNavegador("x"), new ErroStoryVideo("x")].every(ehErroDoPipeline));
 });
