@@ -17,11 +17,13 @@
 // exportar.sh), pausa as animações CSS, avança o relógio quadro a quadro e tira uma
 // captura por quadro; o ffmpeg (ffmpeg-static) junta tudo em MP4.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync, accessSync, constants } from "node:fs";
-import { spawn, execSync } from "node:child_process";
+import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { spawn } from "node:child_process";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { preencher, esc } from "./modelo-html.mjs";
+import { acharNavegador, ErroNavegador } from "./navegador.mjs";
+export { acharNavegador } from "./navegador.mjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAIZ = resolve(DS, "..");
@@ -119,29 +121,6 @@ export function htmlDaCena(s, ds, { semSticker = false, reel = false } = {}) {
   }, { brutos: ["ds", "conteudo"] });
 }
 
-// Mesma lista de candidatos do exportar.sh.
-export function acharNavegador() {
-  const home = process.env.HOME ?? "";
-  const candidatos = [
-    process.env.CHROME,
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/Applications/Chromium.app/Contents/MacOS/Chromium",
-    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
-    "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-    "C:/Program Files/Microsoft/Edge/Application/msedge.exe",
-    process.env.LOCALAPPDATA && `${process.env.LOCALAPPDATA}/Google/Chrome/Application/chrome.exe`,
-    `${home}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`,
-    ...["google-chrome", "chromium", "microsoft-edge"].map((n) => { try { return execSync(`command -v ${n}`, { stdio: "pipe" }).toString().trim(); } catch { return ""; } }),
-  ];
-  for (const c of candidatos) {
-    if (!c) continue;
-    try { accessSync(c, constants.X_OK); return c; } catch { /* próximo */ }
-  }
-  throw new ErroStoryVideo("nenhum Chrome/Chromium/Edge encontrado; defina CHROME=/caminho/do/navegador");
-}
-
 // A Meta rejeita MP4 sem faixa de áudio: entra uma faixa AAC muda (anullsrc), cortada no fim do vídeo (-shortest).
 export function argsFfmpeg(mp4, fps = LIMITES.fps) {
   return [
@@ -216,7 +195,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   try {
     for (const s of await gerarStoryVideo(resolve(pasta), { soHtml: args.includes("--so-html"), so })) console.log(relative(RAIZ, s));
   } catch (e) {
-    if (e instanceof ErroStoryVideo) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e instanceof ErroStoryVideo || e instanceof ErroNavegador) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

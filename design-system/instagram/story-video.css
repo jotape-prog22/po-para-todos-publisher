@@ -16,6 +16,7 @@
   --sv-item-texto-size: 36px;   --sv-item-texto-line: 48px;
   --sv-pergunta-size: 52px;     --sv-pergunta-line: 60px;
   --sv-icone: 220px;
+  --sv-conta-size: 64px;   --sv-conta-line: 92px;   /* Cena "conta" do motion (Baloo 2, fallback de title) */
 }
 
 /* com sticker: conteúdo encostado no topo, zona do sticker livre embaixo */
@@ -52,3 +53,6 @@
 .sv__dica.sv__anim { animation: sv-entrar .6s cubic-bezier(.2, .7, .2, 1) both, sv-pulsar 1.6s ease-in-out infinite; animation-delay: var(--t, 0s), calc(var(--t, 0s) + .6s); }
 @keyframes sv-entrar { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @keyframes sv-pulsar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
+
+/* Cena "conta" (vídeo em motion, design-system/motion): só o motor desenha; aqui fica o tamanho, para a calibração */
+.sv__conta { margin: 0; font: 700 var(--sv-conta-size)/var(--sv-conta-line) var(--font-title); color: var(--ink); }
