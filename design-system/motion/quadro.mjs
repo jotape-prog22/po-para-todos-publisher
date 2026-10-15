@@ -2,7 +2,7 @@
 // com a saída/loop por fora, a marca (lockup, faixa, rodapé com o @) e o grão. Função pura de t.
 
 import { moduloDe } from "./cenas/index.mjs";
-import { ease, prog, hash, TAU } from "./util.mjs";
+import { ease, prog, hash, TAU, FPS } from "./util.mjs";
 import { usarFonte, caixa, entrada } from "./escrita.mjs";
 import { ErroMotion } from "./movimento.mjs";
 
@@ -76,15 +76,18 @@ export function desenharQuadro(ctx, comp, t, kit) {
   if (!mod) throw new ErroMotion(`tipo de cena "${cena.tipo}" não existe no motor`);
   const dur = cena.fim - cena.inicio;
   const ultima = indice === comp.cenas.length - 1;
-  if (mod.usaGrade) desenharGrade(ctx, kit, Math.min(prog(lt, 0, m.grade.revelar, ease.outCubic), ultima ? 1 : 1 - prog(lt, dur - m.duracoes.saida, dur)));
-  let alfa = 1, dy = 0, escala = 1;
+  // Saída e loop terminam no último quadro gravado (não em fim, que nunca é gravado): ali o conteúdo
+  // e a grade já sumiram, e a emenda do loop é o fundo limpo, igual ao primeiro quadro (spec 12).
+  let alfa = 1, dy = 0, escala = 1, grade = 1;
   if (!ultima) {
-    const s = prog(lt, dur - m.duracoes.saida, dur, ease[m.curvas.saida]);
-    alfa = 1 - s; dy = -60 * s;
+    const s = prog(lt, dur - m.duracoes.saida, dur - 1 / FPS, ease[m.curvas.saida]);
+    alfa = 1 - s; dy = -60 * s; grade = 1 - prog(lt, dur - m.duracoes.saida, dur - 1 / FPS);
   } else if (comp.loop) {
-    const s = prog(t, comp.duracao - m.duracoes.loop, comp.duracao, ease.inCubic);
-    alfa = 1 - s; escala = 1 - 0.08 * s;
+    const ultimoQuadro = (Math.round(comp.duracao * FPS) - 1) / FPS;
+    const s = prog(t, ultimoQuadro - m.duracoes.loop, ultimoQuadro, ease.inCubic);
+    alfa = 1 - s; escala = 1 - 0.08 * s; grade = 1 - s;
   }
+  if (mod.usaGrade) desenharGrade(ctx, kit, prog(lt, 0, m.grade.revelar, ease.outCubic) * grade);
   if (alfa > 0) {
     ctx.save();
     ctx.globalAlpha = alfa;

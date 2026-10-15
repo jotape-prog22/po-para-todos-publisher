@@ -15,6 +15,9 @@ export const smoothstep = (a, b, x) => {
 };
 export const TAU = Math.PI * 2;
 
+// Quadros por segundo do vídeo (restrição global: 30 fps).
+export const FPS = 30;
+
 // Arredonda a 3 casas (o "+ 0" troca -0 por 0).
 export const r3 = (x) => Math.round(x * 1000) / 1000 + 0;
 

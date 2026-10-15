@@ -9,9 +9,10 @@ import { fileURLToPath } from "node:url";
 import { servir } from "./servidor.mjs";
 import { acharNavegador, ErroNavegador } from "../navegador.mjs";
 import { ErroMotion } from "../../motion/movimento.mjs";
+import { FPS } from "../../motion/util.mjs";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
-export const FPS = 30;
+export { FPS };
 export { ErroMotion };
 
 export function argsVideo(mp4, { fps = FPS, audio = null } = {}) {
