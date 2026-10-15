@@ -12,7 +12,7 @@
 // Legenda: node scripts/legenda.mjs instagram/<pasta> --reel  → reel-legenda.txt. Publicar: node scripts/instagram.mjs --publicar-reel instagram/<pasta>.
 
 import { readFileSync, unlinkSync, existsSync } from "node:fs";
-import { execSync } from "node:child_process";
+import { execSync, spawnSync } from "node:child_process";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ehErroDoPipeline, validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
@@ -89,12 +89,19 @@ export function argsYtDlp({ url, inicio, fim, saida, ffmpegDir }) {
   ];
 }
 
+// O vídeo bruto tem faixa de áudio? (o ffmpeg lista os streams na saída de erro de `-i` sem saída)
+export function temAudio(arquivo, ff = null) {
+  const r = spawnSync(ff ?? ffmpegEstatico, ["-hide_banner", "-i", arquivo], { encoding: "utf8" });
+  return /Stream #\S+.*: Audio:/.test(r.stderr ?? "");
+}
+
 // Moldura animada (MP4 do motor) por baixo, vídeo 16:9 redimensionado à largura, em 30 fps, centrado; áudio original se houver.
-export function argsMoldura({ moldura, bruto, saida }) {
+// semAudio: o vídeo bruto não tem som — usa a faixa muda da moldura (todo MP4 sai com áudio; a Meta recusa sem).
+export function argsMoldura({ moldura, bruto, saida, semAudio = false }) {
   return [
     "-y", "-loglevel", "error", "-i", moldura, "-i", bruto,
     "-filter_complex", "[1:v]scale=1080:-2:flags=lanczos,fps=30[v];[0:v][v]overlay=0:(H-h)/2:shortest=1,format=yuv420p[out]",
-    "-map", "[out]", "-map", "1:a?",
+    "-map", "[out]", "-map", semAudio ? "0:a" : "1:a",
     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
     saida,
   ];
@@ -109,7 +116,8 @@ export function htmlDaMoldura({ titulo, faixa, ds }) {
 // Roda um programa externo e falha com a saída de erro dele (injetável nos testes).
 export const rodar = (binario, args) => rodarProcesso(binario, args, ErroReel);
 
-async function ffmpeg() { return (await import("ffmpeg-static")).default; }
+const ffmpegEstatico = (await import("ffmpeg-static")).default;
+async function ffmpeg() { return ffmpegEstatico; }
 
 export function composicaoDoReel(dados, { biblioteca }) {
   const cenas = validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" });
@@ -143,7 +151,7 @@ async function gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, renderi
     if (!existsSync(bruto)) throw new ErroReel("yt-dlp terminou sem gerar corte-bruto.mp4 — o vídeo está público? a URL em publicacao.json está certa?");
     const duracao = segundos(dados.fim) - segundos(dados.inicio);
     await renderizar(composicaoDaMoldura(dados, duracao), { mp4: moldura, png: join(pasta, "reel.png"), audio: null, capaEm: Math.min(2.5, duracao) });
-    await executar(ff, argsMoldura({ moldura, bruto, saida: reel }));
+    await executar(ff, argsMoldura({ moldura, bruto, saida: reel, semAudio: !temAudio(bruto, ff) }));
   } finally {
     for (const a of [bruto, moldura]) if (existsSync(a)) unlinkSync(a);
   }

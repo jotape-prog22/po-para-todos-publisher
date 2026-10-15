@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
+import { spawnSync } from "node:child_process";
+import ffmpegPath from "ffmpeg-static";
+import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, temAudio, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
 
 const cena = (extra = {}) => ({ duracao: 10, kicker: "UM DESAFIO", titulo: "PADARIA", linhas: ["Pão: 1 h"], ...extra });
 const legenda = { gancho: "G", corpo: "C", hashtags_tema: ["#A", "#B", "#C"] };
@@ -71,7 +73,7 @@ test("argsMoldura põe o vídeo 16:9 centrado sobre a moldura animada (MP4), em 
   const fc = a[a.indexOf("-filter_complex") + 1];
   assert.ok(fc.includes("scale=1080:-2") && fc.includes("fps=30") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
   assert.ok(!a.includes("-loop"), "a moldura agora é vídeo");
-  assert.ok(a.includes("/p/reel-moldura.mp4") && a.includes("1:a?") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
+  assert.ok(a.includes("/p/reel-moldura.mp4") && a.includes("1:a") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
 });
 
 test("validarReel (corte): recusa trilha — o Corte mantém a voz original", () => {
@@ -111,4 +113,21 @@ test("gerarReel (corte): baixa o trecho, grava a moldura animada do tamanho do c
   await assert.rejects(gerarReel(pasta, { executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
   await assert.rejects(gerarReel(pasta, { ver: true, executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--ver/);
+});
+
+test("argsMoldura (integração, ffmpeg real): sempre sai com faixa de áudio — a do vídeo se houver, senão a muda da moldura", () => {
+  const dir = mkdtempSync(join(tmpdir(), "moldura-"));
+  const ff = (...a) => spawnSync(ffmpegPath, ["-y", "-loglevel", "error", ...a], { encoding: "utf8" });
+  const moldura = join(dir, "m.mp4"), mudo = join(dir, "mudo.mp4"), comSom = join(dir, "som.mp4");
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=black:s=1080x1920:r=30:d=1", "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100", "-shortest", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", moldura).status, 0);
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=red:s=640x360:r=25:d=1", "-c:v", "libx264", "-pix_fmt", "yuv420p", mudo).status, 0);
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=red:s=640x360:r=25:d=1", "-f", "lavfi", "-i", "sine=frequency=440:duration=1", "-shortest", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", comSom).status, 0);
+  assert.equal(temAudio(mudo), false);
+  assert.equal(temAudio(comSom), true);
+  const nivel = (arq) => { const r = spawnSync(ffmpegPath, ["-i", arq, "-map", "0:a", "-af", "volumedetect", "-f", "null", "-"], { encoding: "utf8" }); return r.status === 0 ? Number(/mean_volume: (-?[\d.]+)/.exec(r.stderr)?.[1]) : null; };
+  const a = join(dir, "a.mp4"), b = join(dir, "b.mp4");
+  assert.equal(ff(...argsMoldura({ moldura, bruto: mudo, saida: a, semAudio: true }).slice(2)).status, 0);
+  assert.ok(nivel(a) < -60, "sem som no vídeo: faixa muda");
+  assert.equal(ff(...argsMoldura({ moldura, bruto: comSom, saida: b }).slice(2)).status, 0);
+  assert.ok(nivel(b) > -30, "com som: o áudio do vídeo (seno) passa");
 });

@@ -679,8 +679,8 @@ test("moldura (interna): kicker, título e barra de progresso que acompanha o te
   const ts = textos(ctx).map((x) => x.s);
   assert.ok(ts.includes("CORTE DA AULA") && ts.includes("EXEMPLO: O PRIMAL"));
   const barras = ctx.chamadas.filter((c) => c[0] === "fillRect").map((c) => c[3]);
-  const cheia = 1080 - 2 * 72;
+  const L = kitFalso().layout, cheia = L.largura - 2 * L.lockup.x;
   assert.ok(barras.includes(cheia) && barras.some((w) => Math.abs(w - cheia / 2) < 1), "trilho inteiro e metade preenchida aos 25 de 50 s");
   const y = ctx.chamadas.filter((c) => c[0] === "fillRect").map((c) => c[2]);
-  assert.ok(y.every((v) => v === 656 + 608 + movimento.desenho.moldura.respiro), "barra logo abaixo do vídeo, pelo token");
+  assert.ok(y.every((v) => v === L.video.y + L.video.h + movimento.desenho.moldura.respiro), "barra logo abaixo do vídeo, pelo token");
 });
