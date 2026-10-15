@@ -33,3 +33,5 @@ instagram/**/reel-moldura.mp4
 instagram/_piloto-*
 instagram/**/corte-bruto.mp4
 instagram/**/lista-cenas.txt
+# temporário do render (renderizar.mjs grava em .<nome>.parcial-<pid>.mp4 e só renomeia no sucesso)
+**/.*.parcial-*.mp4
