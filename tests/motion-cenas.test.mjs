@@ -1,9 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { validarCena, CENAS, TIPOS_DE_CENA } from "../design-system/motion/cenas/index.mjs";
 import * as texto from "../design-system/motion/cenas/texto.mjs";
 import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as odometro from "../design-system/motion/cenas/odometro.mjs";
+import * as grafo from "../design-system/motion/cenas/grafo.mjs";
+import * as conta from "../design-system/motion/cenas/conta.mjs";
 import { inicioDoConteudo } from "../design-system/motion/cenas/cabecalho.mjs";
 import { quebrarLinhas, caixa, escreverLinhas, duracaoEscrita } from "../design-system/motion/escrita.mjs";
 import { LIMITES_CENA } from "../design-system/motion/cenas/comum.mjs";
@@ -258,4 +261,164 @@ test("odometro: prefixo, número e sufixo cabem na área, mesmo com 9 caracteres
     const esq = v.a === "right" ? v.x - v.w : v.a === "center" ? v.x - v.w / 2 : v.x;
     assert.ok(esq >= x - 1e-6 && esq + v.w <= x + w + 1e-6, `"${v.s}" sai da área: ${esq}..${esq + v.w}`);
   }
+});
+
+// Königsberg: margem norte (N), ilha (I), margem sul (S), leste (L); 7 pontes, com paralelas N–I e S–I.
+const konigsberg = (extra = {}) => ({
+  tipo: "grafo", duracao: 8, titulo: "REGIÕES VIRAM PONTOS",
+  nos: [{ id: "N", x: 4, y: 1 }, { id: "I", x: 4, y: 5, rotulo: "ilha" }, { id: "S", x: 4, y: 9 }, { id: "L", x: 9, y: 5 }],
+  arestas: [{ de: "N", para: "I" }, { de: "N", para: "I" }, { de: "S", para: "I" }, { de: "I", para: "S" }, { de: "N", para: "L" }, { de: "I", para: "L", peso: "3" }, { de: "S", para: "L" }],
+  ...extra,
+});
+
+test("grafo: valida grade, ids, arestas e caminho; aceita arestas paralelas", () => {
+  const ok = validarCena(konigsberg({ caminho: ["N", "I", "L"] }), "cena 2", { formato: "reel" });
+  assert.deepEqual(ok.erros, []);
+  assert.deepEqual(grafo.curvaturas(ok.cena), [-0.5, 0.5, -0.5, 0.5, 0, 0, 0], "N–I duas vezes, S–I e I–S também são o mesmo par");
+  const erro = (extra) => validarCena(konigsberg(extra), "cena 2", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ nos: [{ id: "N", x: 11, y: 1 }, { id: "I", x: 1, y: 1 }] }), /"x" e "y" de 0 a 10/);
+  assert.match(erro({ nos: [{ id: "N", x: 1, y: 1 }, { id: "N", x: 2, y: 2 }] }), /id "N" repetido/);
+  assert.match(erro({ arestas: [{ de: "N", para: "Z" }] }), /nó "Z" não existe/);
+  assert.match(erro({ caminho: ["N", "S"] }), /caminho: não há aresta entre "N" e "S"/);
+  assert.match(erro({ dirigido: true, arestas: [{ de: "I", para: "N" }], caminho: ["N", "I"] }), /caminho: não há aresta de "N" para "I"/);
+});
+
+test("grafo: eventos (pop dos nós, caneta nas arestas, tick por passo do caminho) e desenho final com rótulos e pesos", () => {
+  const { cena } = validarCena(konigsberg({ caminho: ["N", "I", "L"], legenda: "cada ponte é uma ligação" }), "cena", { formato: "reel" });
+  const ef = cena.linha.eventos.map((e) => e.efeito);
+  assert.ok(ef.includes("pop") && ef.includes("caneta"));
+  assert.equal(ef.filter((e) => e === "tick").length, 3, "2 passos do caminho + legenda");
+  const ts = textos(desenharEm(grafo, cena, [7.9])).map((x) => x.s);
+  for (const r of ["N", "ILHA", "S", "L", "3", "cada ponte é uma ligação"]) assert.ok(ts.includes(r), r);
+  assert.ok(grafo.usaGrade);
+});
+
+test("grafo: o ritmo vem de movimento.json (ritmo.grafo) e a legenda escrita entra em fimEscrita", () => {
+  const c = konigsberg({ caminho: ["N", "I", "L"], legenda: "cada ponte é uma ligação" });
+  const r = movimento.ritmo.grafo;
+  const lt = grafo.linhaDoTempo(c);
+  const ticks = (l) => l.eventos.filter((e) => e.efeito === "tick").map((e) => e.t);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, grafo: { ...r, segmento: r.segmento + 1 } } };
+  const [p1, p2] = ticks(grafo.linhaDoTempo(c, outro));
+  assert.ok(Math.abs(p2 - p1 - (r.segmento + 1)) < 1e-9, "o passo do caminho segue ritmo.grafo.segmento");
+  const maisLento = { ...movimento, ritmo: { ...movimento.ritmo, grafo: { ...r, passo_aresta: r.passo_aresta + 0.5 } } };
+  assert.ok(ticks(grafo.linhaDoTempo(c, maisLento))[0] > ticks(lt)[0], "arestas mais espaçadas empurram o caminho");
+  assert.equal(lt.fimEscrita, Math.round((lt.fim + duracaoEscrita(c.legenda, movimento)) * 1000) / 1000);
+  const semLegenda = grafo.linhaDoTempo(konigsberg({ caminho: ["N", "I", "L"] }));
+  assert.ok(semLegenda.fimEscrita > semLegenda.fim, "a caneta ainda está no último passo do caminho quando ele começa");
+});
+
+test("grafo: rótulo longo vai para fora do desenho (oposto ao centro), não para cima das arestas", () => {
+  const { cena } = validarCena(konigsberg(), "cena", { formato: "reel" });
+  const ilha = textos(desenharEm(grafo, cena, [7.9])).find((x) => x.s === "ILHA");
+  // I fica à esquerda do centro do grafo (L está à direita): o rótulo sai pela esquerda, na altura do nó.
+  assert.ok(ilha.x < 0 && Math.abs(ilha.y) < 1e-6, `ILHA em (${ilha.x}, ${ilha.y}) relativo ao nó`);
+  const curto = textos(desenharEm(grafo, cena, [7.9])).find((x) => x.s === "N");
+  assert.deepEqual([curto.x, curto.y], [0, 0], "rótulo curto fica dentro do nó");
+});
+
+for (const [caso, L] of [["nomes por extenso", { x: 9, rotulo: "leste" }], ["leste na borda, sem lugar à direita", { x: 10, rotulo: "leste" }]]) test(`grafo: rótulos longos não cobrem aresta nem nó e ficam na área (Königsberg, ${caso})`, () => {
+  const nomes = { N: "norte", I: "ilha", S: "sul", L: L.rotulo };
+  const c = konigsberg({ titulo: "RÓTULOS LONGOS", nos: konigsberg().nos.map((n) => ({ ...n, rotulo: nomes[n.id], ...(n.id === "L" ? { x: L.x } : {}) })) });
+  const { cena } = validarCena(c, "cena", { formato: "reel" });
+  const kit = kitFalso(), ctx = ctxFalso();
+  const tracos = [], rotulos = [], nos = [];
+  let no = null, raio = 0;
+  Object.assign(ctx, {
+    translate: (x, y) => { no = { x, y }; },
+    moveTo: (x, y) => tracos.push([{ x, y }]),
+    lineTo: (x, y) => tracos.at(-1).push({ x, y }),
+    arc: (x, y, r) => { raio = r; nos.push(no); },
+    fillText: (s, x, y) => { const w = ctx.measureText(s).width, h = Number(ctx.font.match(/([\d.]+)px/)[1]); if ((x || y) && Object.values(nomes).map((v) => v.toUpperCase()).includes(s)) rotulos.push({ s, x0: no.x + x - w / 2, x1: no.x + x + w / 2, y0: no.y + y - h / 2, y1: no.y + y + h / 2 }); },
+  });
+  grafo.desenhar(ctx, cena, 7.9, kit);
+  assert.deepEqual(rotulos.map((r) => r.s), ["NORTE", "ILHA", L.rotulo.toUpperCase()], "SUL (3 letras) cabe no nó com a fonte do teste");
+  const dentro = (p, r) => p.x >= r.x0 && p.x <= r.x1 && p.y >= r.y0 && p.y <= r.y1;
+  const { x, w } = kit.layout.area;
+  for (const r of rotulos) {
+    assert.ok(r.x0 >= x && r.x1 <= x + w, `${r.s} sai da área`);
+    for (const q of nos) assert.ok(Math.hypot(Math.max(r.x0 - q.x, 0, q.x - r.x1), Math.max(r.y0 - q.y, 0, q.y - r.y1)) >= raio, `${r.s} cobre um nó`);
+    for (const pts of tracos) for (let i = 1; i < pts.length; i++) for (let k = 0; k <= 10; k++) {
+      const a = pts[i - 1], b = pts[i], p = { x: a.x + ((b.x - a.x) * k) / 10, y: a.y + ((b.y - a.y) * k) / 10 };
+      assert.ok(!dentro(p, r), `${r.s} cobre uma aresta em (${p.x.toFixed(0)}, ${p.y.toFixed(0)})`);
+    }
+  }
+});
+
+test("grafo: raio mínimo do nó e espessuras vêm de movimento.json (desenho.grafo)", () => {
+  const { cena } = validarCena(konigsberg(), "cena", { formato: "reel" });
+  const raios = (kit) => desenharEm(grafo, cena, [7.9], kit).chamadas.filter((c) => c[0] === "arc").map((c) => c[3]);
+  const grande = kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, grafo: { ...movimento.desenho.grafo, raio_minimo: 77 } } } });
+  assert.ok(raios(grande).every((r) => r === 77));
+  assert.ok(raios(kitFalso()).every((r) => r < 77));
+});
+
+const contaDe = (extra = {}) => ({ tipo: "conta", duracao: 8, titulo: "QUANTAS PONTES EM CADA REGIÃO", linhas: ["ilha: 5", "norte: 3  sul: 3  leste: 3", "4 regiões ímpares"], destaque: 3, nota: "mais de 2 ímpares: impossível", ...extra });
+
+test("conta: linhas escritas uma a uma, destaque válido, nota no fim", () => {
+  const c = contaDe();
+  const { cena, erros } = validarCena(c, "cena 3", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  assert.equal(cena.linha.eventos.filter((e) => e.efeito === "caneta").length, 3);
+  const ts = textos(desenharEm(conta, cena, [7.9])).map((x) => x.s);
+  assert.ok(c.linhas.every((l) => ts.includes(l)) && ts.includes(c.nota));
+  assert.ok(!textos(desenharEm(conta, cena, [0.2])).some((x) => x.s === "ilha: 5"));
+  const erro = (extra) => validarCena({ ...c, ...extra }, "cena 3", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ destaque: 4 }), /"destaque" é o número de uma linha \(1 a 3\)/);
+  assert.match(erro({ linhas: ["x".repeat(33)] }), /linhas\[1\]" tem 33/);
+  assert.match(erro({ linhas: [] }), /de 1 a 5 linhas/);
+});
+
+test("conta: o sublinhado do destaque dá um pop no instante do destaque (sem título, é o único pop)", () => {
+  const { cena } = validarCena(contaDe(), "cena 3", { formato: "reel" });
+  const d = cena.linha.tempos.destaque;
+  assert.ok(d > cena.linha.tempos.linhas[2].t, "depois da linha destacada começar");
+  assert.ok(cena.linha.eventos.some((e) => e.efeito === "pop" && e.t === d), "pop do destaque");
+  const pops = (extra) => conta.linhaDoTempo(contaDe({ titulo: undefined, ...extra })).eventos.filter((e) => e.efeito === "pop").length;
+  assert.equal(pops({}), 1);
+  assert.equal(pops({ destaque: undefined }), 0);
+});
+
+test("conta: o ritmo vem de movimento.json (ritmo.conta) e a escrita usa duracaoEscrita", () => {
+  const r = movimento.ritmo.conta, c = contaDe();
+  const lt = conta.linhaDoTempo(c);
+  const [l1, l2] = lt.tempos.linhas;
+  assert.equal(l2.t, Math.round((l1.t + duracaoEscrita(c.linhas[0], movimento) + r.entre) * 1000) / 1000);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, conta: { ...r, entre: r.entre + 1 } } };
+  assert.ok(Math.abs(conta.linhaDoTempo(c, outro).tempos.linhas[1].t - l2.t - 1) < 1e-9);
+  const pc = { ...movimento, duracoes: { ...movimento.duracoes, escrita_por_caractere: 0.1 } };
+  assert.ok(conta.linhaDoTempo(c, pc).tempos.linhas[1].t > l2.t, "escrita mais lenta empurra a próxima linha");
+  assert.equal(lt.fimEscrita, Math.round((lt.tempos.nota + duracaoEscrita(c.nota, movimento)) * 1000) / 1000);
+});
+
+test("conta: o sublinhado fica desenho.conta.sublinhado_abaixo px abaixo da linha de base", () => {
+  const { cena } = validarCena(contaDe({ nota: undefined }), "cena 3", { formato: "reel" });
+  const ys = (kit) => {
+    const ctx = desenharEm(conta, cena, [7.9], kit);
+    const base = textos(ctx).find((x) => x.s === "4 regiões ímpares").y;
+    const mv = ctx.chamadas.filter((c) => c[0] === "moveTo").map((c) => c[2]);
+    return mv.map((y) => Math.round((y - base) * 1000) / 1000);
+  };
+  const dc = movimento.desenho.conta;
+  assert.ok(ys(kitFalso()).includes(dc.sublinhado_abaixo));
+  const outro = kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, conta: { ...dc, sublinhado_abaixo: 40 } } } });
+  assert.ok(ys(outro).includes(40));
+});
+
+test("conta: linha longa encolhe a fonte para caber na largura, sem quebrar a conta", () => {
+  const { cena } = validarCena(contaDe({ linhas: ["x".repeat(32)], destaque: 1 }), "cena 3", { formato: "reel" });
+  const kit = kitFalso(), { x, w } = kit.layout.area;
+  const ctx = ctxFalso();
+  const vistos = [];
+  ctx.fillText = (s, px) => vistos.push({ s, x: px, w: ctx.measureText(s).width });
+  conta.desenhar(ctx, cena, 7.9, kit);
+  const l = vistos.find((v) => v.s === "x".repeat(32));
+  assert.ok(l && l.x >= x - 1e-6 && l.x + l.w <= x + w + 1e-6, `${l?.x}..${l?.x + l?.w}`);
+});
+
+test("exemplos do GUIA de grafo e conta validam", () => {
+  const guia = readFileSync(new URL("../design-system/motion/GUIA.md", import.meta.url), "utf8");
+  const exemplos = [...guia.matchAll(/^    (\{ "tipo": "(?:grafo|conta)"[\s\S]*?\})\n\n/gm)].map((m) => JSON.parse(m[1].replace(/\n    /g, " ")));
+  assert.equal(exemplos.length, 2);
+  for (const c of exemplos) assert.deepEqual(validarCena(c, "guia", { formato: "reel" }).erros, [], c.tipo);
 });
