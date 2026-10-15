@@ -126,8 +126,8 @@ test("argsMoldura (integração, ffmpeg real): sempre sai com faixa de áudio �
   assert.equal(temAudio(comSom), true);
   const nivel = (arq) => { const r = spawnSync(ffmpegPath, ["-i", arq, "-map", "0:a", "-af", "volumedetect", "-f", "null", "-"], { encoding: "utf8" }); return r.status === 0 ? Number(/mean_volume: (-?[\d.]+)/.exec(r.stderr)?.[1]) : null; };
   const a = join(dir, "a.mp4"), b = join(dir, "b.mp4");
-  assert.equal(ff(...argsMoldura({ moldura, bruto: mudo, saida: a, semAudio: true }).slice(2)).status, 0);
+  assert.equal(ff(...argsMoldura({ moldura, bruto: mudo, saida: a, semAudio: true }).slice(3)).status, 0);
   assert.ok(nivel(a) < -60, "sem som no vídeo: faixa muda");
-  assert.equal(ff(...argsMoldura({ moldura, bruto: comSom, saida: b }).slice(2)).status, 0);
+  assert.equal(ff(...argsMoldura({ moldura, bruto: comSom, saida: b }).slice(3)).status, 0);
   assert.ok(nivel(b) > -30, "com som: o áudio do vídeo (seno) passa");
 });
