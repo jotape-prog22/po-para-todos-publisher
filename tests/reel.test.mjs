@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { validarReel, argsConcat, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
+import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
 
 const cena = (extra = {}) => ({ duracao: 10, kicker: "UM DESAFIO", titulo: "PADARIA", linhas: ["Pão: 1 h"], ...extra });
 const legenda = { gancho: "G", corpo: "C", hashtags_tema: ["#A", "#B", "#C"] };
@@ -17,32 +17,33 @@ test("validarReel: cenas somam de 15 a 90 s; legenda obrigatória; tipo conhecid
   assert.ok(validarReel({ tipo: "cenas", cenas: [cena(), cena()] }).some((e) => e.includes('"legenda"')));
   assert.ok(validarReel({ tipo: "cenas", cenas: [cena({ duracao: 2 }), cena()], legenda }).some((e) => e.includes("cena 1")));
   assert.ok(validarReel({ tipo: "shorts" })[0].includes('tipo "shorts"'));
+  assert.ok(validarReel({ tipo: "cenas", trilha: "x", cenas: [cena(), cena()], legenda }, { biblioteca: { trilhas: [] } }).some((e) => e.includes('trilha "x"')));
 });
 
-test("argsConcat usa o demuxer concat sem recodificar", () => {
-  const a = argsConcat("/p/lista.txt", "/p/reel.mp4");
-  assert.deepEqual(a.slice(0, 8), ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i"]);
-  assert.ok(a.includes("/p/lista.txt") && a.includes("copy") && a.at(-1) === "/p/reel.mp4");
-});
+const bibLeve = { licencas_aceitas: [], trilhas: [{ id: "leve", arquivo: "trilhas/leve.mp3", bpm: 120, primeira_batida: 0.5 }], efeitos: [] };
 
-test("gerarReel (cenas): renderiza cada cena com prefixo reel-cena sem sticker, concatena e limpa", async () => {
+test("gerarReel (cenas): uma composição contínua, Trilha encaixada no compasso, capa no fim da 1ª Cena", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "reel-"));
-  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", cenas: [cena(), cena({ kicker: "DOIS" })], legenda }));
-  const htmls = await gerarReel(pasta, { soHtml: true });
-  assert.deepEqual(htmls.map((h) => h.slice(pasta.length + 1)), ["reel-cena-01.html", "reel-cena-02.html"]);
-  assert.ok(readFileSync(htmls[0], "utf8").includes("ig--sem-sticker ig--reel-cena"));
-  const chamadas = [];
-  const executar = async (bin, args) => { chamadas.push({ bin, args }); writeFileSync(args.at(-1), "mp4"); };
-  writeFileSync(join(pasta, "reel-cena-01.mp4"), "a"); writeFileSync(join(pasta, "reel-cena-02.mp4"), "b");
-  writeFileSync(join(pasta, "reel-cena-01.png"), "p");
-  const saida = await gerarReel(pasta, { executar, renderizar: async () => [join(pasta, "reel-cena-01.mp4"), join(pasta, "reel-cena-02.mp4")] });
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: [cena(), cena({ kicker: "DOIS" })], legenda }));
+  const visto = {};
+  const mixar = async (comp, o) => { visto.mix = o; return o.saida; };
+  const renderizar = async (comp, o) => { visto.comp = comp; visto.o = o; writeFileSync(o.mp4, "v"); return o.mp4; };
+  const saida = await gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve });
   assert.equal(saida, join(pasta, "reel.mp4"));
-  assert.equal(chamadas.length, 1);
-  assert.ok(chamadas[0].bin.includes("ffmpeg") && chamadas[0].args.includes("-f") && chamadas[0].args.at(-1) === saida);
-  assert.ok(!existsSync(join(pasta, "reel-cena-01.mp4")) && !existsSync(join(pasta, "lista-cenas.txt")));
-  assert.ok(existsSync(join(pasta, "reel.png")) && !existsSync(join(pasta, "reel-cena-01.png")));
+  assert.equal(visto.mix.trilhaId, "leve");
+  assert.deepEqual(visto.comp.cenas.map((c) => c.fim), [10.5, 20.5], "compasso de 2 s a partir de 0,5 s");
+  assert.ok(visto.comp.classes.includes("ig--reel-cena") && visto.comp.formato === "reel");
+  assert.ok(Math.abs(visto.o.capaEm - (10.5 - 0.35 - 0.1)) < 1e-9);
+  assert.ok(visto.o.png.endsWith("reel.png") && visto.o.audio.endsWith("mix.wav"));
+
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "nao-tem", cenas: [cena(), cena()], legenda }));
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), /trilha "nao-tem"/);
+
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: Array(9).fill(cena()), legenda }));
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), /90 s/, "90 s viram 90,5 no compasso: recusa");
+
   writeFileSync(join(pasta, "reel.json"), "{}");
-  await assert.rejects(gerarReel(pasta, { soHtml: true }), ErroReel);
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), ErroReel);
 });
 
 const corte = { tipo: "corte", video: "folgas-complementares", inicio: "06:30", fim: "07:20", titulo: "EXEMPLO: O PRIMAL", faixa: "AULA COMPLETA NO CANAL", legenda };
@@ -99,5 +100,5 @@ test("gerarReel (corte): baixa o trecho, exporta a moldura, sobrepõe e limpa o 
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "private" }));
   await assert.rejects(gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
-  await assert.rejects(gerarReel(pasta, { soHtml: true, executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--so-html/);
+  await assert.rejects(gerarReel(pasta, { ver: true, executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--ver/);
 });

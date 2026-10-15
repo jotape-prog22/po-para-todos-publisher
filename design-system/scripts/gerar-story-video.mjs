@@ -1,97 +1,107 @@
 #!/usr/bin/env node
-// Gera os vídeos de uma sequência de stories (1080×1920, MP4 H.264 com faixa de áudio
-// muda) a partir de instagram/<pasta>/stories.json: uma cena por story, com kicker,
-// título, linhas ou itens numerados, pergunta e ícone entrando um a um. O sticker
-// (quiz, enquete, link) não sai daqui: a pessoa adiciona no app, no espaço livre acima
-// do rodapé — o roteiro de qual sticker vai em cada story fica em stories.md, na mesma
-// pasta.
+// Gera os vídeos de uma sequência de stories (1080×1920, MP4 H.264 com som) a partir de
+// instagram/<pasta>/stories.json: um vídeo por story, cada um uma Cena do motor de motion
+// (design-system/motion: texto, impacto, odometro, grafo, conta, grafico, tabela — ver motion/GUIA.md).
+// Story leva só Efeitos sonoros discretos, nunca Trilha (ADR-0012). O sticker (quiz, enquete, link) não
+// sai daqui: a pessoa adiciona no app, no espaço livre acima do rodapé — o roteiro de qual sticker vai em
+// cada story fica em stories.md, na mesma pasta.
 //
 // stories.json pode ter "publicacao": "api" (sem sticker: sai pela API,
 // node scripts/instagram.mjs --publicar-stories) ou "manual" (padrão: com sticker, pelo app).
 //
-//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta>            # story-NN.mp4 + story-NN.png (último quadro)
-//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --so-html  # só story-NN.html, para inspecionar no navegador
-//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --so 2     # só o story 2
+//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta>          # story-NN.mp4 + story-NN.png (último quadro)
+//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --ver    # prévia no navegador, com som (Ctrl+C fecha)
+//   node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --so 2   # só o story 2
 //
-// Como grava: abre cada HTML num Chromium headless (puppeteer-core, mesmo navegador do
-// exportar.sh), pausa as animações CSS, avança o relógio quadro a quadro e tira uma
-// captura por quadro; o ffmpeg (ffmpeg-static) junta tudo em MP4.
+// htmlDaCena continua aqui: é o molde em HTML que a calibração (npm run calibrar) mostra. O motor mede
+// o mesmo CSS, então calibrar o molde calibra o vídeo.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
-import { spawn } from "node:child_process";
+import { readFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { preencher, esc } from "./modelo-html.mjs";
-import { acharNavegador, ErroNavegador } from "./navegador.mjs";
+import { validarCena } from "../motion/cenas/index.mjs";
+import { LIMITES_CENA, tamanho } from "../motion/cenas/comum.mjs";
+import { LIMITES_TEXTO } from "../motion/cenas/texto.mjs";
+import { montarComposicao } from "../motion/composicao.mjs";
+import { renderizar as renderizarMotion, FPS } from "./motion/renderizar.mjs";
+import { mixar as mixarAudio } from "./motion/mixagem.mjs";
+import { verComposicoes } from "./motion/ver.mjs";
+import { carregarBiblioteca } from "../../scripts/audio.mjs";
 export { acharNavegador } from "./navegador.mjs";
 
 const DS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAIZ = resolve(DS, "..");
 const canal = JSON.parse(readFileSync(join(RAIZ, "canal.json"), "utf8"));
-const formatos = JSON.parse(readFileSync(join(DS, "instagram/formatos.json"), "utf8"));
 
 export class ErroStoryVideo extends Error {}
+export const USUARIO = canal.instagramUsuario;
 
 export const LIMITES = {
   stories: { min: 1, max: 10 },
-  duracao: { min: 5, max: 60 },            // segundos; o Instagram corta em 60
-  fps: 30,
-  campos: { kicker: 40, titulo: 60, linha: 90, item_titulo: 20, item_texto: 90, pergunta: 60, dica: 30, faixa: 40 },
-  linhas: 6,
-  itens: 4,
-  folga: 2,                                // segundos de tela cheia depois do último bloco entrar
+  duracao: LIMITES_CENA.duracao.story,
+  fps: FPS,
+  campos: { ...LIMITES_CENA.campos, ...LIMITES_TEXTO.campos },
+  linhas: LIMITES_TEXTO.linhas,
+  itens: LIMITES_TEXTO.itens,
+  folga: LIMITES_CENA.folga.story,
 };
 
 export const PUBLICACOES = ["api", "manual"];   // api: sem sticker, sai pela API; manual: com sticker, pelo app (ADR-0007)
 
-// Instantes de entrada (segundos) de cada bloco da cena.
-const RITMO = { kicker: 0, titulo: 0.3, primeiro: 1.2, linha: 1.1, item: 1.6, pergunta: 1.2, dica: 0.8 };
+const existeIcone = (nome) => existsSync(join(DS, "miniaturas/icones", `${nome}.svg`));
 
-const tamanho = (s) => String(s ?? "").replace(/\n/g, "").length;
-
-function checar(campo, valor, limite, onde) {
-  if (tamanho(valor) > limite) throw new ErroStoryVideo(`${onde}: "${campo}" tem ${tamanho(valor)} caracteres; o máximo é ${limite}`);
+// Valida uma lista de Cenas (stories ou Cenas de reel) e lança o primeiro erro.
+export function validarCenas(lista, { formato = "story", rotulo = "story" } = {}) {
+  return lista.map((s, i) => {
+    const { erros, cena } = validarCena(s, `${rotulo} ${i + 1}`, { formato, existeIcone });
+    if (erros.length) throw new ErroStoryVideo(erros[0]);
+    return cena.tipo === "texto" ? { ...cena, linhas: cena.linhas ?? [], itens: cena.itens ?? [], tempos: cena.linha.tempos } : cena;
+  });
 }
 
-// Valida stories.json e devolve os stories com os instantes de entrada calculados.
 export function validar(spec) {
   if (spec?.tipo !== "stories" || !Array.isArray(spec.stories)) throw new ErroStoryVideo('stories.json precisa de "tipo": "stories" e uma lista "stories"');
   if (spec.publicacao != null && !PUBLICACOES.includes(spec.publicacao)) throw new ErroStoryVideo(`"publicacao" deve ser "api" (sem sticker, sai pela API) ou "manual" (com sticker, pelo app)`);
   const { min, max } = LIMITES.stories;
   if (spec.stories.length < min || spec.stories.length > max) throw new ErroStoryVideo(`a sequência tem ${spec.stories.length} stories; o permitido é de ${min} a ${max}`);
-  return spec.stories.map((s, i) => {
-    const onde = `story ${i + 1}`;
-    const duracao = Number(s.duracao);
-    if (!(duracao >= LIMITES.duracao.min && duracao <= LIMITES.duracao.max)) throw new ErroStoryVideo(`${onde}: "duracao" deve ser um número de ${LIMITES.duracao.min} a ${LIMITES.duracao.max} segundos`);
-    if (!s.kicker && !s.titulo) throw new ErroStoryVideo(`${onde}: precisa de "kicker" ou "titulo"`);
-    if (s.linhas && s.itens) throw new ErroStoryVideo(`${onde}: use "linhas" ou "itens", não os dois`);
-    for (const c of ["kicker", "titulo", "pergunta", "dica", "faixa"]) if (s[c] != null) checar(c, s[c], LIMITES.campos[c], onde);
-    const linhas = s.linhas ?? [], itens = s.itens ?? [];
-    if (linhas.length > LIMITES.linhas) throw new ErroStoryVideo(`${onde}: ${linhas.length} linhas; o máximo é ${LIMITES.linhas}`);
-    if (itens.length > LIMITES.itens) throw new ErroStoryVideo(`${onde}: ${itens.length} itens; o máximo é ${LIMITES.itens}`);
-    linhas.forEach((l, j) => checar(`linhas[${j + 1}]`, l, LIMITES.campos.linha, onde));
-    itens.forEach((it, j) => {
-      if (!it?.titulo || !it?.texto) throw new ErroStoryVideo(`${onde}: itens[${j + 1}] precisa de "titulo" e "texto"`);
-      checar(`itens[${j + 1}].titulo`, it.titulo, LIMITES.campos.item_titulo, onde);
-      checar(`itens[${j + 1}].texto`, it.texto, LIMITES.campos.item_texto, onde);
-    });
-    if (s.icone && !existsSync(join(DS, "miniaturas/icones", `${s.icone}.svg`))) throw new ErroStoryVideo(`${onde}: ícone "${s.icone}" não existe em design-system/miniaturas/icones/`);
-
-    // linha do tempo
-    const t = { kicker: RITMO.kicker, titulo: RITMO.titulo, blocos: [], pergunta: null, dica: null };
-    let cursor = RITMO.primeiro;
-    const passo = itens.length ? RITMO.item : RITMO.linha;
-    for (let j = 0; j < (linhas.length || itens.length); j++) { t.blocos.push(cursor); cursor += passo; }
-    let fim = t.blocos.length ? t.blocos.at(-1) : t.titulo;
-    if (s.pergunta) { t.pergunta = fim + RITMO.pergunta; fim = t.pergunta; }
-    if (s.dica) { t.dica = fim + RITMO.dica; fim = t.dica; }
-    const minimo = Math.ceil((fim + LIMITES.folga) * 10) / 10;
-    if (duracao < minimo) throw new ErroStoryVideo(`${onde}: o último bloco entra aos ${fim.toFixed(1)} s; "duracao" precisa ser de pelo menos ${minimo} s`);
-    return { ...s, duracao, linhas, itens, tempos: t };
-  });
+  return validarCenas(spec.stories);
 }
 
-const anim = (t) => `class="sv__anim" style="--t: ${t}s"`;
+export function composicoesDeStories(spec) {
+  const semSticker = spec.publicacao === "api";
+  return validar(spec).map((c) => montarComposicao([c], { formato: "story", semSticker, usuario: USUARIO }));
+}
+
+// Grava uma composição em <pasta>/<base>.mp4 (+ .png) com o som mixado; a mixagem temporária some no fim.
+export async function gravarComposicao(comp, { pasta, base, trilhaId = null, capaEm = null, renderizar = renderizarMotion, mixar = mixarAudio, biblioteca = carregarBiblioteca() }) {
+  const tmp = mkdtempSync(join(tmpdir(), "mix-"));
+  try {
+    const audio = await mixar(comp, { biblioteca, trilhaId, saida: join(tmp, "mix.wav") });
+    const mp4 = join(pasta, `${base}.mp4`);
+    await renderizar(comp, { mp4, png: join(pasta, `${base}.png`), audio, capaEm });
+    return mp4;
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+export async function gerarStoryVideo(pasta, { so = null, ver = false, ...injecoes } = {}) {
+  const arquivo = join(pasta, "stories.json");
+  if (!existsSync(arquivo)) throw new ErroStoryVideo(`não achei ${arquivo}`);
+  const comps = composicoesDeStories(JSON.parse(readFileSync(arquivo, "utf8")));
+  if (ver) return verComposicoes(comps.map((comp, i) => ({ nome: `story ${i + 1}`, comp })), injecoes);
+  const saidas = [];
+  for (const [i, comp] of comps.entries()) {
+    if (so && so !== i + 1) continue;
+    saidas.push(await gravarComposicao(comp, { pasta, base: `story-${String(i + 1).padStart(2, "0")}`, ...injecoes }));
+  }
+  return saidas;
+}
+
+// ---------- molde em HTML (calibração) ----------
+
 const quebras = (s) => esc(s).replace(/\n/g, "<br>");
 
 function conteudoHtml(s) {
@@ -121,81 +131,20 @@ export function htmlDaCena(s, ds, { semSticker = false, reel = false } = {}) {
   }, { brutos: ["ds", "conteudo"] });
 }
 
-// A Meta rejeita MP4 sem faixa de áudio: entra uma faixa AAC muda (anullsrc), cortada no fim do vídeo (-shortest).
-export function argsFfmpeg(mp4, fps = LIMITES.fps) {
-  return [
-    "-y", "-loglevel", "error",
-    "-f", "image2pipe", "-framerate", String(fps), "-i", "-",
-    "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
-    "-map", "0:v", "-map", "1:a", "-shortest",
-    "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
-    "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart",
-    mp4,
-  ];
-}
-
-export async function gravarCena(html, mp4, pngFinal, { duracao, largura, altura }) {
-  const [{ default: puppeteer }, { default: ffmpeg }] = await Promise.all([import("puppeteer-core"), import("ffmpeg-static")]);
-  const fps = LIMITES.fps, quadros = Math.round(duracao * fps);
-  const browser = await puppeteer.launch({ executablePath: acharNavegador(), headless: true, args: ["--hide-scrollbars", "--disable-gpu"] });
-  try {
-    const page = await browser.newPage();
-    await page.setViewport({ width: largura, height: altura, deviceScaleFactor: 1 });
-    await page.goto(pathToFileURL(html).href, { waitUntil: "load" });
-    await page.evaluate(() => document.fonts.ready.then(() => { for (const a of document.getAnimations()) a.pause(); }));
-
-    const ff = spawn(ffmpeg, argsFfmpeg(mp4, fps), { stdio: ["pipe", "inherit", "inherit"] });
-    const terminou = new Promise((ok, falha) => { ff.on("error", falha); ff.on("close", (c) => (c === 0 ? ok() : falha(new ErroStoryVideo(`ffmpeg terminou com código ${c}`)))); });
-
-    let ultimo;
-    for (let i = 0; i < quadros; i++) {
-      await page.evaluate((ms) => { for (const a of document.getAnimations()) a.currentTime = ms; }, (i * 1000) / fps);
-      ultimo = await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: largura, height: altura } });
-      if (!ff.stdin.write(ultimo)) await new Promise((r) => ff.stdin.once("drain", r));
-    }
-    ff.stdin.end();
-    await terminou;
-    writeFileSync(pngFinal, ultimo);
-  } finally {
-    await browser.close();
-  }
-}
-
-// Grava cenas já validadas em <pasta>/<prefixo>-NN.mp4 (+ .png do último quadro); com numerar: false, <prefixo>.mp4.
-export async function renderizarCenas(cenas, { pasta, prefixo = "story", numerar = true, soHtml = false, so = null, semSticker = false, reel = false }) {
-  const ds = relative(pasta, DS).split("\\").join("/") || ".";
-  const { largura, altura } = formatos.formatos.story;
-  const saidas = [];
-  for (const [i, s] of cenas.entries()) {
-    if (so && so !== i + 1) continue;
-    const base = numerar ? `${prefixo}-${String(i + 1).padStart(2, "0")}` : prefixo;
-    const html = join(pasta, `${base}.html`);
-    writeFileSync(html, htmlDaCena(s, ds, { semSticker, reel }));
-    if (soHtml) { saidas.push(html); continue; }
-    const mp4 = join(pasta, `${base}.mp4`), png = join(pasta, `${base}.png`);
-    await gravarCena(html, mp4, png, { duracao: s.duracao, largura, altura });
-    unlinkSync(html);
-    saidas.push(mp4);
-  }
-  return saidas;
-}
-
-export async function gerarStoryVideo(pasta, { soHtml = false, so = null } = {}) {
-  const arquivo = join(pasta, "stories.json");
-  if (!existsSync(arquivo)) throw new ErroStoryVideo(`não achei ${arquivo}`);
-  const spec = JSON.parse(readFileSync(arquivo, "utf8"));
-  return renderizarCenas(validar(spec), { pasta, soHtml, so, semSticker: spec.publicacao === "api" });
-}
-
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   const pasta = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a));
   const so = args.includes("--so") ? Number(args[args.indexOf("--so") + 1]) : null;
-  if (!pasta) { console.error("uso: node design-system/scripts/gerar-story-video.mjs instagram/<pasta> [--so-html] [--so N]"); process.exit(1); }
+  if (!pasta) { console.error("uso: node design-system/scripts/gerar-story-video.mjs instagram/<pasta> [--ver] [--so N]"); process.exit(1); }
   try {
-    for (const s of await gerarStoryVideo(resolve(pasta), { soHtml: args.includes("--so-html"), so })) console.log(relative(RAIZ, s));
+    if (args.includes("--ver")) {
+      const { url } = await gerarStoryVideo(resolve(pasta), { ver: true });
+      console.log(`Abri a prévia no navegador: ${url}\nQuando terminar de olhar, feche aqui com Ctrl+C.`);
+    } else {
+      for (const s of await gerarStoryVideo(resolve(pasta), { so })) console.log(relative(RAIZ, s));
+    }
   } catch (e) {
-    if (e instanceof ErroStoryVideo || e instanceof ErroNavegador) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e?.constructor?.name?.startsWith("Erro")) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

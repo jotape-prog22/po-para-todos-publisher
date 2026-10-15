@@ -1,22 +1,26 @@
 #!/usr/bin/env node
 // Gera instagram/<pasta>/reel.mp4 (1080×1920) a partir de reel.json.
-//   tipo "cenas": cenas no formato de stories.json, gravadas uma a uma e emendadas num vídeo só.
+//   tipo "cenas": Cenas do motor de motion (design-system/motion/GUIA.md) num vídeo contínuo, com Trilha ("trilha": "<id>" de
+//   design-system/audio/biblioteca.json, opcional) e Efeitos sonoros; as trocas de Cena caem no compasso da Trilha.
 //   tipo "corte": trecho de um vídeo já publicado no YouTube, baixado com yt-dlp e posto numa moldura de marca.
 // Corte exige yt-dlp instalado (README) e vídeo público (ADR-0008); reel.json: { "tipo": "corte", "video": "<slug>", "inicio": "mm:ss", "fim": "mm:ss", "titulo": "…", "faixa": "…", "legenda": { … } }
 // (titulo ≤ 40 caracteres e faixa ≤ 40: é o que cabe na moldura acima e abaixo do vídeo; o título encolhe em
 // três tamanhos conforme o comprimento — a conta está em instagram/reel.css)
 //
 //   node design-system/scripts/gerar-reel.mjs instagram/<pasta>            # reel.mp4 + reel.png (capa)
-//   node design-system/scripts/gerar-reel.mjs instagram/<pasta> --so-html  # só os HTML das cenas (tipo cenas)
+//   node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver      # prévia no navegador, com som (tipo cenas)
 // Legenda: node scripts/legenda.mjs instagram/<pasta> --reel  → reel-legenda.txt. Publicar: node scripts/instagram.mjs --publicar-reel instagram/<pasta>.
 
 import { readFileSync, writeFileSync, unlinkSync, existsSync, renameSync } from "node:fs";
 import { execSync } from "node:child_process";
-import { rodar as rodarProcesso } from "./motion/mixagem.mjs";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { validar, renderizarCenas, ErroStoryVideo } from "./gerar-story-video.mjs";
-import { ErroNavegador } from "./navegador.mjs";
+import { validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
+import { montarComposicao } from "../motion/composicao.mjs";
+import { renderizar as renderizarMotion } from "./motion/renderizar.mjs";
+import { mixar as mixarAudio, rodar as rodarProcesso, MOVIMENTO } from "./motion/mixagem.mjs";
+import { verComposicoes } from "./motion/ver.mjs";
+import { carregarBiblioteca } from "../../scripts/audio.mjs";
 import { validarLegenda } from "../../scripts/legenda.mjs";
 import { preencher, exportarPng } from "./modelo-html.mjs";
 import { segundos, DURACAO_CORTE } from "../../scripts/corte.mjs";
@@ -30,7 +34,7 @@ export class ErroReel extends Error {}
 export const TIPOS_DE_REEL = ["cenas", "corte"];
 export const DURACAO_REEL = { min: 15, max: 90 };   // segundos
 
-export function validarReel(dados) {
+export function validarReel(dados, { biblioteca = null } = {}) {
   if (!TIPOS_DE_REEL.includes(dados?.tipo)) return [`tipo "${dados?.tipo}" não existe (${TIPOS_DE_REEL.join(", ")})`];
   const erros = [];
   if (!dados.legenda) erros.push('falta "legenda" (gancho, corpo, hashtags_tema)');
@@ -39,12 +43,16 @@ export function validarReel(dados) {
     if (!Array.isArray(dados.cenas) || !dados.cenas.length) erros.push('tipo cenas precisa de uma lista "cenas"');
     else {
       try {
-        validar({ tipo: "stories", publicacao: "api", stories: dados.cenas });
+        validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" });
       } catch (e) {
-        if (e instanceof ErroStoryVideo) erros.push(e.message.replace(/^story (\d+)/, "cena $1")); else throw e;
+        if (e instanceof ErroStoryVideo) erros.push(e.message); else throw e;
       }
       const total = dados.cenas.reduce((s, c) => s + Number(c.duracao || 0), 0);
       if (total < DURACAO_REEL.min || total > DURACAO_REEL.max) erros.push(`as cenas somam ${total} s; um reel tem de ${DURACAO_REEL.min} a ${DURACAO_REEL.max} s`);
+    }
+    if (dados.trilha != null) {
+      const b = biblioteca ?? carregarBiblioteca();
+      if (!b.trilhas.some((t) => t.id === dados.trilha)) erros.push(`trilha "${dados.trilha}" não está em design-system/audio/biblioteca.json`);
     }
   }
   if (dados.tipo === "corte") {
@@ -59,10 +67,6 @@ export function validarReel(dados) {
     if (dados.faixa && dados.faixa.length > 40) erros.push(`corte: "faixa" tem ${dados.faixa.length} caracteres — máximo 40`);
   }
   return erros;
-}
-
-export function argsConcat(lista, saida) {
-  return ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lista, "-c", "copy", "-movflags", "+faststart", saida];
 }
 
 export function acharYtDlp(executarSync = (cmd) => execSync(cmd, { stdio: "pipe" }).toString()) {
@@ -107,24 +111,19 @@ export const rodar = (binario, args) => rodarProcesso(binario, args, ErroReel);
 
 async function ffmpeg() { return (await import("ffmpeg-static")).default; }
 
-async function gerarDeCenas(dados, pasta, { soHtml, executar, renderizar }) {
-  const cenas = validar({ tipo: "stories", publicacao: "api", stories: dados.cenas });
-  const saidas = await renderizar(cenas, { pasta, prefixo: "reel-cena", soHtml, semSticker: true, reel: true });
-  if (soHtml) return saidas;
-  const lista = join(pasta, "lista-cenas.txt");
-  writeFileSync(lista, saidas.map((s) => `file '${s.replace(/'/g, "'\\''")}'`).join("\n") + "\n");
-  const reel = join(pasta, "reel.mp4");
-  try {
-    await executar(await ffmpeg(), argsConcat(lista, reel));
-  } finally {
-    unlinkSync(lista);
-    for (const s of saidas) if (existsSync(s)) unlinkSync(s);
-  }
-  // capa: último quadro da primeira cena
-  const png1 = join(pasta, "reel-cena-01.png");
-  if (existsSync(png1)) renameSync(png1, join(pasta, "reel.png"));
-  for (let i = 2; i <= cenas.length; i++) { const p = join(pasta, `reel-cena-${String(i).padStart(2, "0")}.png`); if (existsSync(p)) unlinkSync(p); }
-  return reel;
+export function composicaoDoReel(dados, { biblioteca }) {
+  const cenas = validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" });
+  const trilha = dados.trilha ? biblioteca.trilhas.find((t) => t.id === dados.trilha) : null;
+  const comp = montarComposicao(cenas, { formato: "reel", trilha, usuario: USUARIO });
+  if (comp.duracao > DURACAO_REEL.max) throw new ErroReel(`encaixadas no compasso da Trilha, as cenas dão ${comp.duracao} s; um reel tem até ${DURACAO_REEL.max} s — encurte uma cena`);
+  return comp;
+}
+
+async function gerarDeCenas(dados, pasta, { ver, renderizar, mixar, biblioteca }) {
+  const comp = composicaoDoReel(dados, { biblioteca });
+  if (ver) return verComposicoes([{ nome: "reel", comp, trilhaId: dados.trilha ?? null }], { biblioteca, mixar });
+  const capaEm = Math.max(0, comp.cenas[0].fim - MOVIMENTO.duracoes.saida - 0.1);   // a 1ª Cena inteira, antes de sair
+  return gravarComposicao(comp, { pasta, base: "reel", trilhaId: dados.trilha ?? null, capaEm, renderizar, mixar, biblioteca });
 }
 
 async function gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exportar }) {
@@ -150,26 +149,30 @@ async function gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exporta
   return reel;
 }
 
-export async function gerarReel(pasta, { soHtml = false, executar = rodar, renderizar = renderizarCenas, raizVideos = join(RAIZ, "videos"), ytDlp = null, exportar = exportarPng } = {}) {
+export async function gerarReel(pasta, { ver = false, renderizar = renderizarMotion, mixar = mixarAudio, biblioteca = carregarBiblioteca(), executar = rodar, raizVideos = join(RAIZ, "videos"), ytDlp = null, exportar = exportarPng } = {}) {
   const arquivo = join(pasta, "reel.json");
   if (!existsSync(arquivo)) throw new ErroReel(`não achei ${arquivo} — rode a skill reel`);
   const dados = JSON.parse(readFileSync(arquivo, "utf8"));
-  const erros = validarReel(dados);
+  const erros = validarReel(dados, { biblioteca });
   if (erros.length) throw new ErroReel(`reel.json inválido:\n- ${erros.join("\n- ")}`);
-  if (dados.tipo === "cenas") return gerarDeCenas(dados, pasta, { soHtml, executar, renderizar });
-  if (soHtml) throw new ErroReel('--so-html só vale para tipo "cenas" — o corte não gera HTML de cena nenhuma');
+  if (dados.tipo === "cenas") return gerarDeCenas(dados, pasta, { ver, renderizar, mixar, biblioteca });
+  if (ver) throw new ErroReel('--ver só vale para tipo "cenas" — o corte é conferido no reel.mp4');
   return gerarDeCorte(dados, pasta, { executar, raizVideos, ytDlp, exportar });
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   const pasta = args.find((a) => !a.startsWith("--"));
-  if (!pasta) { console.error("uso: node design-system/scripts/gerar-reel.mjs instagram/<pasta> [--so-html]"); process.exit(1); }
+  if (!pasta) { console.error("uso: node design-system/scripts/gerar-reel.mjs instagram/<pasta> [--ver]"); process.exit(1); }
   try {
-    const r = await gerarReel(resolve(pasta), { soHtml: args.includes("--so-html") });
-    for (const s of [].concat(r)) console.log(relative(RAIZ, s));
+    if (args.includes("--ver")) {
+      const { url } = await gerarReel(resolve(pasta), { ver: true });
+      console.log(`Abri a prévia no navegador: ${url}\nQuando terminar de olhar, feche aqui com Ctrl+C.`);
+    } else {
+      for (const s of [].concat(await gerarReel(resolve(pasta)))) console.log(relative(RAIZ, s));
+    }
   } catch (e) {
-    if (e instanceof ErroReel || e instanceof ErroStoryVideo || e instanceof ErroNavegador) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e?.constructor?.name?.startsWith("Erro")) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }
