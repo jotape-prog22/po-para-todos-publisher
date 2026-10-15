@@ -9,6 +9,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join, resolve, relative, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validar, renderizarCenas, ErroStoryVideo, LIMITES } from "./gerar-story-video.mjs";
+import { ErroNavegador } from "./navegador.mjs";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -56,7 +57,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   try {
     console.log(relative(RAIZ, await gerarStoryAviso(resolve(pasta), { soHtml: args.includes("--so-html") })));
   } catch (e) {
-    if (e instanceof ErroStoryAviso || e instanceof ErroStoryVideo) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e instanceof ErroStoryAviso || e instanceof ErroStoryVideo || e instanceof ErroNavegador) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

@@ -16,6 +16,7 @@ import { rodar as rodarProcesso } from "./motion/mixagem.mjs";
 import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validar, renderizarCenas, ErroStoryVideo } from "./gerar-story-video.mjs";
+import { ErroNavegador } from "./navegador.mjs";
 import { validarLegenda } from "../../scripts/legenda.mjs";
 import { preencher, exportarPng } from "./modelo-html.mjs";
 import { segundos, DURACAO_CORTE } from "../../scripts/corte.mjs";
@@ -168,7 +169,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const r = await gerarReel(resolve(pasta), { soHtml: args.includes("--so-html") });
     for (const s of [].concat(r)) console.log(relative(RAIZ, s));
   } catch (e) {
-    if (e instanceof ErroReel || e instanceof ErroStoryVideo) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (e instanceof ErroReel || e instanceof ErroStoryVideo || e instanceof ErroNavegador) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

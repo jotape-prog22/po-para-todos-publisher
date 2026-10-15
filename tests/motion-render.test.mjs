@@ -1,9 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, existsSync, statSync } from "node:fs";
+import { mkdtempSync, existsSync, statSync, writeFileSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { acharNavegador } from "../design-system/scripts/navegador.mjs";
+import { acharNavegador, ErroNavegador } from "../design-system/scripts/navegador.mjs";
+import { servir } from "../design-system/scripts/motion/servidor.mjs";
 import { renderizar, fotografar, argsVideo, abrirPlayer, ErroMotion } from "../design-system/scripts/motion/renderizar.mjs";
 import { ErroMotion as ErroDoMotor } from "../design-system/motion/movimento.mjs";
 import { montarComposicao } from "../design-system/motion/composicao.mjs";
@@ -54,4 +55,33 @@ test("medirLayout lê do CSS a geometria do kit, com o recuo do item (112 px na 
     for (const [nome, c] of Object.entries(kit.cores)) assert.ok(c, `cor ${nome}`);
     assert.ok(kit.layout.area.w > 0 && kit.layout.area.h > 0 && kit.layout.rodape.h > 0);
   } finally { await fechar(); }
+});
+
+test("renderizar: a página quebra no meio do vídeo → ErroMotion, MP4 de destino intacto, sem sobra", { skip: !temChrome && "sem Chrome" }, async () => {
+  const pasta = mkdtempSync(join(tmpdir(), "render-"));
+  const mp4 = join(pasta, "bom.mp4");
+  writeFileSync(mp4, "o vídeo bom de antes");
+  // Duas Cenas: a primeira desenha (t = 0 abre bem); a segunda, de tipo inexistente, quebra aos 3 s.
+  const v = (extra) => validarCena({ duracao: 3, kicker: "K", titulo: "T", ...extra }, "cena", { formato: "reel" }).cena;
+  const c = montarComposicao([v({}), v({})], { formato: "reel", usuario: "x" });
+  c.cenas[1].tipo = "nao-existe";
+  const rejeicoes = [];
+  const pegar = (e) => rejeicoes.push(e);
+  process.on("unhandledRejection", pegar);
+  try {
+    await assert.rejects(renderizar(c, { mp4 }), (e) => e instanceof ErroMotion && /instante 3[.,]00/.test(e.message));
+    await new Promise((r) => setTimeout(r, 300));
+    assert.equal(readFileSync(mp4, "utf8"), "o vídeo bom de antes");
+    assert.deepEqual(readdirSync(pasta), ["bom.mp4"], "nenhum temporário largado");
+    assert.deepEqual(rejeicoes, [], "nenhuma rejeição sem tratamento");
+  } finally { process.off("unhandledRejection", pegar); }
+});
+
+test("abrirPlayer fecha o servidor quando o navegador não abre", async () => {
+  const fechados = [];
+  const servirFn = async (o) => { const s = await servir(o); return { ...s, fechar: async () => { fechados.push(s.url); await s.fechar(); } }; };
+  await assert.rejects(abrirPlayer(comp(), { servirFn, navegador: () => { throw new ErroNavegador("sem Chrome"); } }), ErroNavegador);
+  assert.equal(fechados.length, 1, "servidor fechado (achar navegador)");
+  await assert.rejects(abrirPlayer(comp(), { servirFn, navegador: () => "/nao/existe/chrome" }), (e) => e instanceof ErroMotion);
+  assert.equal(fechados.length, 2, "servidor fechado (launch)");
 });
