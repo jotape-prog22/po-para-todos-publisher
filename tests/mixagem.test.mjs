@@ -14,7 +14,7 @@ test("argsMixagem: base muda com a duração, Trilha em loop com fade, efeitos c
   const f = filtro(a);
   assert.ok(f.includes("afade=t=in:st=0:d=0.4") && f.includes("afade=t=out:st=28.800:d=1.2") && f.includes("volume=0.55"));
   assert.ok(f.includes("adelay=1500|1500") && f.includes("volume=0.8"));
-  assert.ok(f.includes("amix=inputs=3:normalize=0:duration=first") && f.includes("loudnorm=I=-14:TP=-1.5"));
+  assert.ok(f.includes("amix=inputs=3:normalize=0:duration=longest") && f.includes("loudnorm=I=-14:TP=-1.5"));
   assert.deepEqual(a.slice(-4), ["[mix]", "-c:a", "pcm_s16le", "/tmp/m.wav"]);
 });
 
@@ -56,4 +56,40 @@ test("rodar: falha com a classe pedida, binário sem caminho e stderr", async ()
   await assert.rejects(rodar("/bin/sh", ["-c", "echo ruim >&2; exit 3"], ErroX), (e) => e instanceof ErroX && /^sh terminou com código 3: ruim$/.test(e.message));
   await assert.rejects(rodar("/bin/sh", ["-c", "exit 2"], ErroX), (e) => e.message === "sh terminou com código 2");
   await rodar("/bin/sh", ["-c", "exit 0"], ErroX);
+});
+
+// Integração: roda o ffmpeg-static de verdade (o filtro precisa ser aceito e o WAV sair com a duração pedida).
+import { execFileSync, spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join as juntar } from "node:path";
+import ffmpegBin from "ffmpeg-static";
+
+const ff = (...a) => spawnSync(ffmpegBin, a, { encoding: "utf8" });
+const duracaoDe = (f) => { const m = ff("-i", f).stderr.match(/Duration: (\d+):(\d+):([\d.]+)/); return +m[1] * 3600 + +m[2] * 60 + +m[3]; };
+const picoDoFim = (f, de) => +ff("-ss", String(de), "-i", f, "-af", "volumedetect", "-f", "null", "-").stderr.match(/max_volume: (-?[\d.]+|-inf) dB/)[1];
+
+test("integração: Trilha curta em loop com normalização sai com a duração pedida e som até o fim", () => {
+  const dir = mkdtempSync(juntar(tmpdir(), "mixagem-"));
+  try {
+    const trilha = juntar(dir, "t.wav"), tick = juntar(dir, "tick.wav"), saida = juntar(dir, "m.wav");
+    execFileSync(ffmpegBin, ["-y", "-loglevel", "error", "-f", "lavfi", "-i", "sine=frequency=440:duration=2", trilha]);
+    execFileSync(ffmpegBin, ["-y", "-loglevel", "error", "-f", "lavfi", "-i", "sine=frequency=1000:duration=0.1", tick]);
+    const args = argsMixagem({ duracao: 6, trilha: { arquivo: trilha, ganho: 0.55 }, efeitos: [{ arquivo: tick, t: 1, ganho: 0.8 }], saida, normalizar: true });
+    execFileSync(ffmpegBin, args, { stdio: ["ignore", "ignore", "pipe"] });
+    assert.ok(Math.abs(duracaoDe(saida) - 6) < 0.05, "duração pedida");
+    assert.ok(picoDoFim(saida, 4.5) > -40, "a Trilha em loop continua tocando no fim (fade-out ainda audível antes do último segundo)");
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("integração: sem Trilha, só efeitos, sai com a duração pedida e o efeito audível", () => {
+  const dir = mkdtempSync(juntar(tmpdir(), "mixagem-"));
+  try {
+    const pop = juntar(dir, "pop.wav"), saida = juntar(dir, "m.wav");
+    execFileSync(ffmpegBin, ["-y", "-loglevel", "error", "-f", "lavfi", "-i", "sine=frequency=800:duration=0.2", pop]);
+    execFileSync(ffmpegBin, argsMixagem({ duracao: 5, trilha: null, efeitos: [{ arquivo: pop, t: 1, ganho: 0.8 }], saida, normalizar: false }), { stdio: ["ignore", "ignore", "pipe"] });
+    assert.ok(Math.abs(duracaoDe(saida) - 5) < 0.05);
+    assert.ok(picoDoFim(saida, 0.9) > -30, "efeito audível");
+    assert.ok(picoDoFim(saida, 3) < -60, "resto em silêncio");
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });

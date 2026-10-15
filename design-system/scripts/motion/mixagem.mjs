@@ -16,7 +16,7 @@ export function argsMixagem({ duracao, trilha = null, efeitos = [], saida, norma
   let n = 1;
   if (trilha) {
     const { fade_entrada: fi, fade_saida: fo } = MOVIMENTO.trilha;
-    entradas.push("-stream_loop", "-1", "-i", trilha.arquivo);
+    entradas.push("-t", D, "-stream_loop", "-1", "-i", trilha.arquivo);
     filtros.push(`[${n}:a]aformat=sample_rates=44100:channel_layouts=stereo,atrim=0:${D},asetpts=PTS-STARTPTS,afade=t=in:st=0:d=${fi},afade=t=out:st=${(duracao - fo).toFixed(3)}:d=${fo},volume=${trilha.ganho}[t]`);
     rotulos.push("[t]");
     n++;
@@ -28,9 +28,10 @@ export function argsMixagem({ duracao, trilha = null, efeitos = [], saida, norma
     rotulos.push(`[e${i}]`);
     n++;
   });
+  // duration=longest + atrim final: com a Trilha em loop infinito, duration=first trava o ffmpeg (não encerra); o atrim corta na duração exata.
   const { I, TP } = MOVIMENTO.loudness;
   const final = normalizar ? `loudnorm=I=${I}:TP=${TP}:LRA=11` : "alimiter=limit=0.89";
-  filtros.push(`${rotulos.join("")}amix=inputs=${rotulos.length}:normalize=0:duration=first,${final},aresample=44100,atrim=0:${D}[mix]`);
+  filtros.push(`${rotulos.join("")}amix=inputs=${rotulos.length}:normalize=0:duration=longest,${final},aresample=44100,aformat=channel_layouts=stereo,atrim=0:${D}[mix]`);
   return ["-y", "-loglevel", "error", ...entradas, "-filter_complex", filtros.join(";"), "-map", "[mix]", "-c:a", "pcm_s16le", saida];
 }
 
