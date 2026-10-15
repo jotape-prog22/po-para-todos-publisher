@@ -4,6 +4,7 @@
 
 import MOVIMENTO from "./movimento.mjs";
 import { r3 } from "./util.mjs";
+import { LIMITES_CENA } from "./cenas/comum.mjs";
 
 export const CLASSES = {
   story: "ig ig--story ig--story-video",
@@ -37,7 +38,9 @@ function espacar(efeitos) {
 export function montarComposicao(cenas, { formato, semSticker = true, trilha = null, usuario = "" }) {
   let acumulado = 0;
   let fronteiras = cenas.map((c) => (acumulado = r3(acumulado + c.duracao)));
-  if (trilha) fronteiras = encaixarNaBatida(fronteiras, cenas.map((c) => c.minimo), trilha, MOVIMENTO.trilha.compasso);
+  // Nenhuma Cena abaixo do seu tempo de leitura nem do piso do formato (Cena de reel: 3 s).
+  const piso = LIMITES_CENA.duracao[formato]?.min ?? 0;
+  if (trilha) fronteiras = encaixarNaBatida(fronteiras, cenas.map((c) => Math.max(c.minimo, piso)), trilha, MOVIMENTO.trilha.compasso);
   let inicio = 0;
   const posicionadas = cenas.map((c, i) => { const p = { ...c, inicio, fim: fronteiras[i] }; inicio = fronteiras[i]; return p; });
   const ganho = formato === "story" ? MOVIMENTO.efeitos.ganho_story : MOVIMENTO.efeitos.ganho_reel;

@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { validarCena, CENAS, TIPOS_DE_CENA } from "../design-system/motion/cenas/index.mjs";
 import * as texto from "../design-system/motion/cenas/texto.mjs";
 import { quebrarLinhas, caixa, escreverLinhas, duracaoEscrita } from "../design-system/motion/escrita.mjs";
+import { LIMITES_CENA } from "../design-system/motion/cenas/comum.mjs";
+import { ritmoDe, ErroMotion } from "../design-system/motion/movimento.mjs";
 import { kitFalso, ctxFalso, textos, desenharEm, movimento } from "./ajudas-motion.mjs";
 
 const story = (extra = {}) => ({ duracao: 12, kicker: "UM DESAFIO", titulo: "VOCÊ TEM UMA PADARIA", linhas: ["Pão: 1 h", "Bolo: 2 h"], pergunta: "O que rende mais?", dica: "Responda no quiz", ...extra });
@@ -100,14 +102,38 @@ test("item: recuo vem do layout (kit.layout.recuoItem) e o deslize de entrada de
   assert.ok(textos(desenharEm(texto, cena, [meio], kit)).find((x) => x.s === "PÃO").x > kit.layout.recuoItem);
 });
 
-test("escreverLinhas escreve uma linha depois da outra, cada uma com a duração da escrita", () => {
+test("escreverLinhas escreve uma linha depois da outra; o bloco todo leva duracaoEscrita do texto inteiro", () => {
   const kit = kitFalso(), f = kit.fontes.corpo, linhas = ["primeira linha", "b"];
-  const d0 = duracaoEscrita(linhas[0], movimento), d1 = duracaoEscrita(linhas[1], movimento);
-  assert.equal(d0, linhas[0].length * movimento.duracoes.escrita_por_caractere);
-  assert.equal(d1, movimento.duracoes.escrita_minima, "linha curta usa a duração mínima");
-  const em = (t) => { const ctx = ctxFalso(); const fim = escreverLinhas(ctx, linhas, f, 0, 0, t, 1, kit); return { fim, ditas: textos(ctx).map((x) => x.s) }; };
+  const pc = movimento.duracoes.escrita_por_caractere;
+  assert.equal(duracaoEscrita("primeira linha", movimento), 14 * pc);
+  assert.equal(duracaoEscrita("b", movimento), movimento.duracoes.escrita_minima, "texto curto usa a duração mínima");
+  const total = duracaoEscrita("primeira linha b", movimento);   // as linhas quebradas somam o texto de antes da quebra
+  const d0 = (total * 14) / 16;   // cada linha leva a sua parte em caracteres (o espaço da quebra conta na primeira)
+  const em = (t) => { const ctx = ctxFalso(); const fim = escreverLinhas(ctx, linhas, f, 0, 0, t, 1, kit); return { fim, ditas: textos(ctx).map((x) => x.s), caneta: ctx.chamadas.some((c) => c[0] === "arc") }; };
   assert.deepEqual(em(0.5).ditas, []);
   assert.deepEqual(em(1 + d0 / 2).ditas, ["primeira linha"]);
-  assert.deepEqual(em(1 + d0 + d1 / 2).ditas, ["primeira linha", "b"]);
-  assert.equal(em(0).fim, 1 + d0 + d1);
+  assert.deepEqual(em(1 + total - 0.01).ditas, ["primeira linha", "b"]);
+  assert.ok(Math.abs(em(0).fim - (1 + total)) < 1e-9);
+  assert.equal(em(1 + total).caneta, false, "no fim do bloco a caneta já saiu");
+});
+
+for (const formato of ["reel", "story"]) {
+  test(`pergunta de 60 caracteres como último bloco: a Cena mínima (${formato}) termina com a escrita completa`, () => {
+    const pergunta = "Qual das duas máquinas deve produzir antes para render mais?";
+    assert.equal(pergunta.length, 60);
+    const base = { duracao: 60, titulo: "T", pergunta };
+    const { cena: longa } = validarCena(base, "cena 1", { formato });
+    assert.equal(longa.linha.fimEscrita, longa.linha.tempos.pergunta + duracaoEscrita(pergunta, movimento));
+    assert.ok(longa.minimo >= longa.linha.fimEscrita + movimento.duracoes.leitura_final);
+    const { cena, erros } = validarCena({ ...base, duracao: Math.max(longa.minimo, LIMITES_CENA.duracao[formato].min) }, "cena 1", { formato });
+    assert.deepEqual(erros, []);
+    const ctx = ctxFalso();
+    texto.desenhar(ctx, cena, cena.minimo - 0.001, kitFalso());
+    assert.ok(!ctx.chamadas.some((c) => c[0] === "arc"), "a caneta já terminou a pergunta");
+    assert.equal(textos(ctx).filter((x) => /[a-z]/.test(x.s)).map((x) => x.s).join(" "), pergunta);
+  });
+}
+
+test("ritmoDe falha com ErroMotion quando movimento.json não tem o ritmo do tipo", () => {
+  assert.throws(() => ritmoDe("nao-existe"), (e) => e instanceof ErroMotion && /ritmo\.nao-existe/.test(e.message));
 });

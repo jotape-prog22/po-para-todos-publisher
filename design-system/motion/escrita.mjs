@@ -92,18 +92,22 @@ export const duracaoEscrita = (s, movimento) =>
   Math.max(movimento.duracoes.escrita_minima, String(s).length * movimento.duracoes.escrita_por_caractere);
 
 // Escreve as linhas de um bloco com a caneta, uma depois da outra, a partir de t0; a linha k fica
-// em y + k × f.line. Devolve o instante em que a última linha termina.
+// em y + k × f.line. O bloco todo leva duracaoEscrita do texto de antes da quebra (linhas unidas por
+// espaço), repartida pelas linhas na proporção dos caracteres: assim a linha do tempo, que não sabe
+// onde o texto quebra, sabe quando a escrita termina (t0 + duracaoEscrita(texto)). Devolve esse instante.
 export function escreverLinhas(ctx, linhas, f, x, y, t, t0, kit, { alinhar = "left", cor, comCaneta = true } = {}) {
   usarFonte(ctx, f);
   if (cor) ctx.fillStyle = cor;
   ctx.textBaseline = "alphabetic";
+  const texto = linhas.join(" ");
+  const total = duracaoEscrita(texto, kit.movimento);
   let inicio = t0;
   linhas.forEach((l, k) => {
-    const dur = duracaoEscrita(l, kit.movimento);
-    escrever(ctx, l, x, y + k * f.line + linhaBase(f), (t - inicio) / dur, kit, t, { alinhar, comCaneta });
+    const dur = (total * (l.length + (k < linhas.length - 1 ? 1 : 0))) / Math.max(1, texto.length);
+    escrever(ctx, l, x, y + k * f.line + linhaBase(f), dur > 0 ? (t - inicio) / dur : 1, kit, t, { alinhar, comCaneta });
     inicio += dur;
   });
-  return inicio;
+  return t0 + total;
 }
 
 // Desenha a polilinha até a fração p do comprimento, com a caneta na ponta.

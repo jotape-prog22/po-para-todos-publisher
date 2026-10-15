@@ -6,9 +6,12 @@ import MOVIMENTO from "./movimento.json" with { type: "json" };
 
 export default MOVIMENTO;
 
+// Erro do motor de motion (tokens ou Cenas mal definidos).
+export class ErroMotion extends Error {}
+
 // O ritmo de entrada dos blocos de um tipo de Cena (movimento.json → ritmo.<tipo>).
 export function ritmoDe(tipo, movimento = MOVIMENTO) {
   const r = movimento.ritmo?.[tipo];
-  if (!r) throw new Error(`movimento.json não tem "ritmo.${tipo}"`);
+  if (!r) throw new ErroMotion(`movimento.json não tem "ritmo.${tipo}"`);
   return r;
 }

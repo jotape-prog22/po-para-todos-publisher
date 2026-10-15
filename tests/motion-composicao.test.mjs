@@ -47,3 +47,10 @@ test("encaixarNaBatida põe as fronteiras no compasso sem encurtar Cena abaixo d
   assert.deepEqual(c.cenas.map((x) => x.fim), [6.5, 18.5]);
   assert.ok(c.cenas.every((x) => x.fim - x.inicio >= x.minimo));
 });
+
+test("encaixe na batida não deixa Cena de reel abaixo de 3 s, mesmo com mínimo de leitura menor", () => {
+  const curta = cena({ duracao: 3, titulo: "T", kicker: undefined, linhas: undefined });
+  assert.ok(curta.minimo < 3);
+  const c = montarComposicao([curta], { formato: "reel", trilha: { bpm: 120, primeira_batida: 0.5 } });   // sem o piso, 3 s viraria 2,5 s
+  assert.equal(c.cenas[0].fim, 4.5);
+});

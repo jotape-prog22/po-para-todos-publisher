@@ -4,7 +4,7 @@
 // geometria (área, recuo do item, ícone) no kit.layout, medida do CSS.
 
 import { checarTamanho, tamanho } from "./comum.mjs";
-import { usarFonte, caixa, linhaBase, entrada, linhasDe, digitar, subir, escreverLinhas } from "../escrita.mjs";
+import { usarFonte, caixa, linhaBase, entrada, linhasDe, digitar, subir, escreverLinhas, duracaoEscrita } from "../escrita.mjs";
 import { springStep, TAU, r3 } from "../util.mjs";
 import MOVIMENTO, { ritmoDe } from "../movimento.mjs";
 
@@ -46,7 +46,9 @@ export function linhaDoTempo(c, movimento = MOVIMENTO) {
   for (const t of tempos.blocos) eventos.push({ t, efeito: "tick" });
   if (c.pergunta) eventos.push({ t: tempos.pergunta, efeito: "caneta" });
   if (c.dica) eventos.push({ t: tempos.dica, efeito: "tick" });
-  return { fim: r3(fim), eventos, tempos };
+  // A pergunta é escrita a caneta: a escrita termina depois que o bloco começa a entrar.
+  const fimEscrita = r3(c.pergunta ? tempos.pergunta + duracaoEscrita(c.pergunta, movimento) : fim);
+  return { fim: r3(fim), fimEscrita, eventos, tempos };
 }
 
 // Cada bloco: altura (em px da grade de 1080) e como desenhar a partir do topo y, na largura w.

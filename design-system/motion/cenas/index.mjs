@@ -2,6 +2,7 @@
 // usaGrade, validar, linhaDoTempo e desenhar (ver o contrato no plano/GUIA.md).
 
 import { LIMITES_CENA, checarTamanho } from "./comum.mjs";
+import MOVIMENTO from "../movimento.mjs";
 import * as texto from "./texto.mjs";
 
 export const CENAS = { texto };
@@ -21,7 +22,9 @@ export function validarCena(cena, onde, { formato = "story", existeIcone = () =>
   erros.push(...mod.validar(cena, onde, { existeIcone }));
   if (erros.length) return { erros };
   const linha = mod.linhaDoTempo(cena);
-  const minimo = Math.ceil(Math.round((linha.fim + LIMITES_CENA.folga[formato]) * 10000) / 1000) / 10;   // arredonda antes do teto: 1,9 não pode virar 2,0 por ponto flutuante
+  // A tela fica parada a folga depois do último bloco entrar, e a última escrita termina com tempo de ler.
+  const piso = Math.max(linha.fim + LIMITES_CENA.folga[formato], (linha.fimEscrita ?? linha.fim) + MOVIMENTO.duracoes.leitura_final);
+  const minimo = Math.ceil(Math.round(piso * 10000) / 1000) / 10;   // arredonda antes do teto: 1,9 não pode virar 2,0 por ponto flutuante
   if (duracao < minimo) return { erros: [`${onde}: o último bloco entra aos ${linha.fim.toFixed(1)} s; "duracao" precisa ser de pelo menos ${minimo} s`] };
   return { erros: [], cena: { ...cena, tipo, duracao, minimo, linha } };
 }
