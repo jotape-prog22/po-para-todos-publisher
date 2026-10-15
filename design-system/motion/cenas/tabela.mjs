@@ -15,6 +15,15 @@ const LIM = { colunas: [2, 4], linhas: [1, 6], celula: 12, nota: 60 };
 // relação à fonte da célula, opacidade da linha do cabeçalho, das outras linhas e do fundo do destaque.
 const OCUPAR = 0.85, ALTURA = 2.1, OPACIDADE_CABECALHO = 0.9, OPACIDADE_GRADE = 0.4, OPACIDADE_FUNDO = 0.15;
 
+// Largura do texto na fonte f, somando o espaçamento entre letras do kit (f.espaco, em "em" ou "px")
+// à parte: a medida não depende de o navegador incluir ou não o letterSpacing no measureText.
+function largura(ctx, f, s) {
+  usarFonte(ctx, f);
+  ctx.letterSpacing = "0px";
+  const esp = parseFloat(f.espaco ?? "0") || 0, porLetra = /em$/.test(f.espaco ?? "") ? esp * f.px : esp;
+  return ctx.measureText(s).width + [...s].length * porLetra;
+}
+
 export function validar(c, onde) {
   const erros = [];
   const add = (e) => e && erros.push(e);
@@ -60,14 +69,20 @@ export function desenhar(ctx, c, t, kit) {
   const F = kit.fontes, cores = kit.cores, D = kit.movimento.desenho.tabela;
   const tp = tempos(c, kit.movimento), R = tp.R;
   const nCols = c.colunas.length, colW = livre.w / nCols;
-  // fonte das células: a do corpo, encolhida se a célula mais larga não couber
-  usarFonte(ctx, F.corpo);
-  const maior = Math.max(...c.linhas.flat().map((s) => ctx.measureText(String(s)).width), 1);
-  const fCel = escalar(F.corpo, Math.min(F.corpo.px, (F.corpo.px * colW * OCUPAR) / maior));
-  const fCab = escalar(F.kicker, Math.min(F.kicker.px, fCel.px));
-  const altLinha = Math.max(fCel.px * ALTURA, D.linha_minima);
+  // fontes: a do corpo nas células e a do kicker no cabeçalho, cada uma encolhida se o texto mais
+  // largo da sua fila não couber em OCUPAR da coluna (o cabeçalho medido em caixa alta, com o espaçamento)
+  const maior = Math.max(...c.linhas.flat().map((s) => largura(ctx, F.corpo, String(s))), 1);
+  const maiorCab = Math.max(...c.colunas.map((s) => largura(ctx, F.kicker, caixa(F.kicker, s))), 1);
+  let pxCel = Math.min(F.corpo.px, (F.corpo.px * colW * OCUPAR) / maior);
+  let pxCab = Math.min(F.kicker.px, pxCel, (F.kicker.px * colW * OCUPAR) / maiorCab);
   const nota = c.nota ? linhasDe(ctx, F.corpo, c.nota, livre.w) : [];
-  const total = (c.linhas.length + 1) * altLinha + (nota.length ? kit.layout.gap + nota.length * F.corpo.line : 0);
+  const notaH = nota.length ? kit.layout.gap + nota.length * F.corpo.line : 0;
+  // a tabela inteira (cabeçalho + linhas + nota) cabe na área livre: a linha encolhe abaixo da altura
+  // mínima se preciso, e as fontes acompanham (nunca invade o título nem passa do fim da área)
+  const altLinha = Math.min(Math.max(pxCel * ALTURA, D.linha_minima), Math.max(0, livre.h - notaH) / (c.linhas.length + 1));
+  if (pxCel * ALTURA > altLinha) { pxCab = Math.min(pxCab, altLinha / ALTURA); pxCel = altLinha / ALTURA; }
+  const fCel = escalar(F.corpo, pxCel), fCab = escalar(F.kicker, pxCab);
+  const total = (c.linhas.length + 1) * altLinha + notaH;
   const y0 = livre.y + (livre.h - total) / 2;
   const xCel = (j) => livre.x + j * colW;
   const meioY = (i) => y0 + i * altLinha + altLinha / 2;

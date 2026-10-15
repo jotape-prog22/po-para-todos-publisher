@@ -624,3 +624,48 @@ test("tabela: altura mínima da linha, espessuras e recuo da moldura vêm de mov
   assert.ok(Math.abs(xMoldura(kitFalso()) - (x + (2 * w) / 3 + d.recuo_moldura)) < 1e-6);
   assert.ok(Math.abs(xMoldura(kitCom({ recuo_moldura: 20 })) - (x + (2 * w) / 3 + 20)) < 1e-6);
 });
+
+test("tabela: cabeçalho longo encolhe a fonte do cabeçalho (com o espaçamento entre letras) para caber na coluna", () => {
+  const colunas = ["LUCRO/HORA12", "CUSTO/HORA12", "TEMPO/FORNO1", "MASSA/QUILO1"];
+  const { cena, erros } = validarCena(lucros({ colunas, linhas: [["1", "2", "3", "4"]], destaque: undefined }), "cena 5", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  const kit = kitFalso(), ctx = ctxFalso(), caixas = [];
+  const { x, w } = kit.layout.area, colW = w / 4;
+  ctx.fillText = (s, cx) => {
+    if (!colunas.includes(s)) return;
+    // a mesma regra de largura do ctxFalso (0,6 em por caractere) + o letter-spacing do kit (em), que o ctxFalso não soma
+    const px = Number(ctx.font.match(/([\d.]+)px/)[1]), em = parseFloat(kit.fontes.kicker.espaco);
+    const largura = s.length * px * (0.6 + em);
+    caixas.push({ s, x0: cx - largura / 2, x1: cx + largura / 2, largura });
+  };
+  tabela.desenhar(ctx, cena, 7.9, kit);
+  assert.equal(caixas.length, 4);
+  for (const c of caixas) assert.ok(c.largura <= colW * 0.85 + 1e-6, `${c.s}: ${c.largura.toFixed(1)} px numa coluna de ${colW} px`);
+  for (let i = 1; i < caixas.length; i++) assert.ok(caixas[i - 1].x1 <= caixas[i].x0, `${caixas[i - 1].s} cobre ${caixas[i].s}`);
+  assert.ok(caixas[0].x0 >= x && caixas.at(-1).x1 <= x + w);
+});
+
+test("tabela: 6×4 com título de 2 linhas e nota de 60 numa área baixa não invade o título nem passa do fim da área", () => {
+  const titulo = "O QUE CADA UM RENDE POR HORA DE FORNO", nota = "x".repeat(20) + " " + "y".repeat(19) + " " + "z".repeat(19);
+  const linhas = Array.from({ length: 6 }, (_, i) => [`linha ${i + 1}`, "R$ 20", "R$ 50", "3 h"]);
+  const { cena, erros } = validarCena(lucros({ titulo, colunas: ["", "Pão", "Bolo", "Tempo"], linhas, destaque: { linha: 6, coluna: 4 }, nota }), "cena 5", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  const base = kitFalso(), area = { ...base.layout.area, h: 600 };
+  const kit = kitFalso({ layout: { ...base.layout, area } });
+  const ctx = ctxFalso(), ys = [];
+  let tituloFim = 0;
+  ctx.fillText = (s, _x, y) => {
+    const px = Number(ctx.font.match(/([\d.]+)px/)[1]);
+    if (s.length > 5 && titulo.includes(s)) { tituloFim = Math.max(tituloFim, y + px * 0.2); return; }
+    const meio = ctx.textBaseline === "middle";
+    ys.push({ s, y0: meio ? y - px / 2 : y - px * 0.8, y1: meio ? y + px / 2 : y + px * 0.2 });
+  };
+  ctx.moveTo = (_x, y) => ys.push({ s: "traço", y0: y, y1: y });
+  ctx.lineTo = (_x, y) => ys.push({ s: "traço", y0: y, y1: y });
+  tabela.desenhar(ctx, cena, 7.9, kit);
+  assert.ok(tituloFim > 0 && ys.some((v) => v.s === "R$ 50") && ys.some((v) => v.s.startsWith("zzz")));
+  for (const v of ys) {
+    assert.ok(v.y0 >= tituloFim - 1e-6, `${v.s} sobe por cima do título (${v.y0.toFixed(0)} < ${tituloFim.toFixed(0)})`);
+    assert.ok(v.y1 <= area.y + area.h + 1e-6, `${v.s} passa do fim da área (${v.y1.toFixed(0)} > ${area.y + area.h})`);
+  }
+});
