@@ -10,7 +10,9 @@
   "desenho": {
     "deslize": 48, "balanco_dica": 6,
     "grafo": { "raio_minimo": 26, "contorno": 5, "aresta": 6, "caminho": 12, "zoom_caminho": 1.1 },
-    "conta": { "sublinhado_abaixo": 18, "sublinhado": 8 }
+    "conta": { "sublinhado_abaixo": 18, "sublinhado": 8 },
+    "grafico": { "eixos": 4, "restricao": 5, "ponto": 14, "anel": 60, "anel_traco": 4, "margem": 24, "respiro_cima": 8, "respiro_baixo": 16 },
+    "tabela": { "linha_minima": 72, "cabecalho": 4, "grade": 2, "moldura": 6, "recuo_moldura": 6, "subida": 14 }
   },
   "ritmo": {
     "texto": { "kicker": 0, "titulo": 0.3, "primeiro": 1.2, "linha": 1.1, "item": 1.6, "pergunta": 1.2, "dica": 0.8 },
@@ -18,7 +20,9 @@
     "odometro": { "aparecer": 0.2, "giro": 1.8, "escalonar": 0.08, "rotulo": 0.3 },
     "cabecalho": { "kicker": 0, "titulo": 0.3, "kicker_comeca": 0.6, "titulo_comeca": 0.9, "vazio_comeca": 0.2 },
     "grafo": { "no": 0.12, "antes_arestas": 0.2, "passo_aresta": 0.18, "aresta": 0.35, "caneta_a_cada": 3, "peso": 0.2, "antes_caminho": 0.4, "segmento": 0.45, "camera": 0.8, "legenda": 0.3 },
-    "conta": { "entre": 0.35, "destaque": 0.1, "sublinhado": 0.5, "nota": 0.3 }
+    "conta": { "entre": 0.35, "destaque": 0.1, "sublinhado": 0.5, "nota": 0.3 },
+    "grafico": { "eixos": 0.6, "antes_restricoes": 0.7, "passo_restricao": 0.7, "restricao": 0.6, "regiao": 0.8, "revelar_regiao": 0.6, "otimo": 0.7, "anel": 0.8, "pulso": 0.3, "rotulo_otimo": 0.3, "nota": 0.6 },
+    "tabela": { "grade": 0.5, "cabecalho": 0.25, "passo_coluna": 0.08, "primeira": 0.5, "linha": 0.45, "celula": 0.4, "destaque": 0.6, "moldura": 0.5, "nota": 0.4 }
   },
   "efeitos": { "ganho_reel": 0.8, "ganho_story": 0.4, "intervalo_minimo": 0.08 },
   "trilha": { "ganho": 0.55, "fade_entrada": 0.4, "fade_saida": 1.2, "compasso": 4 },

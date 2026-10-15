@@ -10,6 +10,8 @@ Quando usar cada tipo:
 - **odometro** — um número que importa (ano, quantidade, resultado) girando até o valor.
 - **grafo** — redes, caminhos, árvores: nós numa grade 0–10, arestas (pares repetidos viram pontes paralelas), pesos e um caminho que acende.
 - **conta** — uma conta curta escrita à mão, linha a linha, com a linha do resultado em destaque.
+- **grafico** — programação linear em 2 variáveis: eixos, restrições, região viável e ponto ótimo.
+- **tabela** — comparar poucos números (até 6 linhas × 4 colunas), com uma célula em destaque.
 
 Números, contas e pesos que aparecem na tela entram na Checagem (`checagem.json`, `onde: "cena N"`).
 
@@ -47,3 +49,19 @@ Campos: `nos` (2 a 12; `x`, `y` de 0 a 10, `y` cresce para baixo; `rotulo` ≤ 1
     { "tipo": "conta", "duracao": 8, "titulo": "QUANTAS PONTES EM CADA REGIÃO", "linhas": ["ilha: 5", "norte: 3  sul: 3  leste: 3", "4 regiões ímpares"], "destaque": 3, "nota": "mais de 2 ímpares: impossível" }
 
 Campos: `linhas` (1 a 5, ≤ 32 cada), `destaque` (número da linha que sai verde e sublinhada), `nota` ≤ 60, `kicker`, `titulo`. Linha longa encolhe a fonte de todas, sem quebrar. Toda conta entra na Checagem refeita por outro caminho.
+
+## grafico
+
+    { "tipo": "grafico", "duracao": 10, "titulo": "ONDE O LUCRO É MAIOR",
+      "eixos": { "x": { "rotulo": "pães", "max": 8 }, "y": { "rotulo": "bolos", "max": 6 } },
+      "restricoes": [{ "a": 1, "b": 2, "c": 8, "rotulo": "forno" }, { "a": 1, "b": 1, "c": 6, "rotulo": "massa" }],
+      "otimo": { "x": 4, "y": 2, "rotulo": "Z* = R$ 220" } }
+
+Campos: `eixos` (`x` e `y`, cada um com `max` > 0 e `rotulo` ≤ 16), `restricoes` (1 a 5, `{ a, b, c, rotulo ≤ 16 }`), `otimo` (`{ x, y, rotulo ≤ 20 }`, dentro da região), `nota` ≤ 60, `kicker`, `titulo`. Cada restrição é `a·x + b·y ≤ c` (para "≥", multiplique tudo por −1). `max` dos eixos um pouco acima do maior intercepto. Rótulos saem como escritos, sem caixa alta (são fórmulas). O rótulo da restrição fica na ponta mais alta da reta; se ali cobriria outro rótulo (o do eixo y, quando a reta toca o topo do eixo), vai para a outra ponta. O gerador recusa região vazia e ótimo fora dela. Restrições, ótimo e valor entram na Checagem (refaça a conta nos vértices).
+
+## tabela
+
+    { "tipo": "tabela", "duracao": 8, "titulo": "O QUE CADA UM RENDE", "colunas": ["", "Pão", "Bolo"],
+      "linhas": [["Forno", "1 h", "2 h"], ["Lucro", "R$ 20", "R$ 50"]], "destaque": { "linha": 2, "coluna": 3 } }
+
+Campos: `colunas` (2 a 4, ≤ 12; a primeira pode ser `""` quando a coluna é de rótulos), `linhas` (1 a 6, mesmo número de células, cada célula ≤ 12), `destaque` `{ linha, coluna }` contando de 1 (sem o cabeçalho), `nota` ≤ 60, `kicker`, `titulo`. O cabeçalho sai em caixa alta; as células, como escritas. Todo número da tabela entra na Checagem.

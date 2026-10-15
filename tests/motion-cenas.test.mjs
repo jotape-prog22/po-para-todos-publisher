@@ -7,6 +7,8 @@ import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as odometro from "../design-system/motion/cenas/odometro.mjs";
 import * as grafo from "../design-system/motion/cenas/grafo.mjs";
 import * as conta from "../design-system/motion/cenas/conta.mjs";
+import * as grafico from "../design-system/motion/cenas/grafico.mjs";
+import * as tabela from "../design-system/motion/cenas/tabela.mjs";
 import { inicioDoConteudo } from "../design-system/motion/cenas/cabecalho.mjs";
 import { quebrarLinhas, caixa, escreverLinhas, duracaoEscrita } from "../design-system/motion/escrita.mjs";
 import { LIMITES_CENA } from "../design-system/motion/cenas/comum.mjs";
@@ -448,9 +450,177 @@ test("conta: linha longa encolhe a fonte para caber na largura, sem quebrar a co
   assert.ok(l && l.x >= x - 1e-6 && l.x + l.w <= x + w + 1e-6, `${l?.x}..${l?.x + l?.w}`);
 });
 
-test("exemplos do GUIA de grafo e conta validam", () => {
+test("exemplos do GUIA de grafo, conta, grafico e tabela validam", () => {
   const guia = readFileSync(new URL("../design-system/motion/GUIA.md", import.meta.url), "utf8");
-  const exemplos = [...guia.matchAll(/^    (\{ "tipo": "(?:grafo|conta)"[\s\S]*?\})\n\n/gm)].map((m) => JSON.parse(m[1].replace(/\n    /g, " ")));
-  assert.equal(exemplos.length, 2);
+  const exemplos = [...guia.matchAll(/^    (\{ "tipo": "(?:grafo|conta|grafico|tabela)"[\s\S]*?\})\n\n/gm)].map((m) => JSON.parse(m[1].replace(/\n    /g, " ")));
+  assert.equal(exemplos.length, 4);
   for (const c of exemplos) assert.deepEqual(validarCena(c, "guia", { formato: "reel" }).erros, [], c.tipo);
+});
+
+const arred = (poli) => poli.map((p) => [Math.round(p.x * 1000) / 1000, Math.round(p.y * 1000) / 1000]);
+
+test("regiaoViavel recorta o retângulo dos eixos por cada restrição", () => {
+  const eixos = { x: { max: 10 }, y: { max: 8 } };
+  assert.deepEqual(arred(grafico.regiaoViavel(eixos, [{ a: 1, b: 2, c: 10 }])), [[0, 0], [10, 0], [0, 5]]);
+  assert.deepEqual(arred(grafico.regiaoViavel(eixos, [{ a: 1, b: 1, c: 6 }, { a: 1, b: 0, c: 4 }])), [[0, 0], [4, 0], [4, 2], [0, 6]]);
+  assert.deepEqual(grafico.regiaoViavel(eixos, [{ a: 1, b: 1, c: -1 }]), []);
+});
+
+const padaria = (extra = {}) => ({
+  tipo: "grafico", duracao: 10, titulo: "ONDE O LUCRO É MAIOR",
+  eixos: { x: { rotulo: "pães", max: 8 }, y: { rotulo: "bolos", max: 6 } },
+  restricoes: [{ a: 1, b: 2, c: 8, rotulo: "forno" }, { a: 1, b: 1, c: 6, rotulo: "massa" }],
+  otimo: { x: 4, y: 2, rotulo: "Z* = R$ 220" }, ...extra,
+});
+
+test("grafico: valida eixos, restrições, região vazia e ótimo fora da região", () => {
+  const { cena, erros } = validarCena(padaria(), "cena 4", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  assert.deepEqual(cena.linha.eventos.filter((e) => e.efeito === "caneta").length, 3, "eixos + 2 restrições");
+  assert.ok(cena.linha.eventos.some((e) => e.efeito === "sino"), "ótimo");
+  const erro = (extra) => validarCena(padaria(extra), "cena 4", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ eixos: { x: { rotulo: "x", max: 0 }, y: { rotulo: "y", max: 6 } } }), /"max" > 0/);
+  assert.match(erro({ restricoes: [{ a: 0, b: 0, c: 1 }] }), /"a" e "b" não podem ser os dois 0/);
+  assert.match(erro({ restricoes: [{ a: 1, b: 1, c: -1 }], otimo: undefined }), /região viável ficou vazia/);
+  assert.match(erro({ otimo: { x: 7, y: 5 } }), /ótimo \(7; 5\) está fora da região viável/);
+  const ts = textos(desenharEm(grafico, cena, [9.9])).map((x) => x.s);
+  for (const r of ["pães", "bolos", "forno", "massa", "Z* = R$ 220"]) assert.ok(ts.includes(r), r);
+});
+
+test("grafico: a região viável dá um pop no instante da região (sem título, é o único pop)", () => {
+  const lt = grafico.linhaDoTempo(padaria({ titulo: undefined }));
+  const pops = lt.eventos.filter((e) => e.efeito === "pop");
+  assert.equal(pops.length, 1);
+  assert.equal(pops[0].t, lt.tempos.regiao);
+  assert.ok(lt.tempos.regiao > lt.tempos.restricoes.at(-1), "depois da última restrição");
+});
+
+test("grafico: o ritmo vem de movimento.json (ritmo.grafico), inclusive o crescimento do anel do ótimo", () => {
+  const r = movimento.ritmo.grafico, c = padaria();
+  const lt = grafico.linhaDoTempo(c);
+  const canetas = (l) => l.eventos.filter((e) => e.efeito === "caneta").map((e) => e.t);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, grafico: { ...r, passo_restricao: r.passo_restricao + 1 } } };
+  const [, a1, a2] = canetas(lt), [, b1, b2] = canetas(grafico.linhaDoTempo(c, outro));
+  assert.ok(Math.abs(b2 - b1 - (a2 - a1) - 1) < 1e-9, "o passo entre restrições segue ritmo.grafico.passo_restricao");
+  assert.equal(lt.fimEscrita, Math.round((lt.tempos.restricoes.at(-1) + r.restricao) * 1000) / 1000, "sem nota, a caneta acaba na última restrição");
+  const comNota = grafico.linhaDoTempo(padaria({ nota: "o lucro máximo fica num vértice" }));
+  assert.equal(comNota.fimEscrita, Math.round((comNota.tempos.nota + duracaoEscrita("o lucro máximo fica num vértice", movimento)) * 1000) / 1000);
+  // anel do ótimo: raio = desenho.grafico.ponto + desenho.grafico.anel × (tempo desde o ótimo / ritmo.grafico.anel)
+  const d = movimento.desenho.grafico, t = lt.tempos.otimo + 0.2;
+  const raios = (kit) => desenharEm(grafico, { ...c, linha: lt }, [t], kit).chamadas.filter((x) => x[0] === "arc").map((x) => Math.round(x[3] * 1000) / 1000);
+  const kitR = (anel) => kitFalso({ movimento: { ...movimento, ritmo: { ...movimento.ritmo, grafico: { ...r, anel } } } });
+  assert.ok(raios(kitR(r.anel)).includes(Math.round((d.ponto + d.anel * (0.2 / r.anel)) * 1000) / 1000));
+  assert.ok(raios(kitR(r.anel * 2)).includes(Math.round((d.ponto + d.anel * (0.2 / (r.anel * 2))) * 1000) / 1000));
+});
+
+test("grafico: ponto, anel, espessuras e margem vêm de movimento.json (desenho.grafico)", () => {
+  const { cena } = validarCena(padaria(), "cena 4", { formato: "reel" });
+  const d = movimento.desenho.grafico;
+  const kitCom = (g) => kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, grafico: { ...d, ...g } } } });
+  const raios = (kit) => desenharEm(grafico, cena, [9.9], kit).chamadas.filter((x) => x[0] === "arc").map((x) => x[3]);
+  assert.ok(raios(kitFalso()).includes(d.ponto));
+  assert.ok(raios(kitCom({ ponto: 21 })).includes(21));
+  assert.ok(raios(kitCom({ ponto: 21, anel: 70 })).includes(91), "anel completo: ponto + anel");
+  const larguras = (kit) => { const ctx = ctxFalso(), ls = new Set(); ctx.stroke = () => ls.add(ctx.lineWidth); grafico.desenhar(ctx, cena, 9.9, kit); return ls; };
+  for (const w of [d.eixos, d.restricao, d.anel_traco]) assert.ok(larguras(kitFalso()).has(w), `largura ${w}`);
+  const ls = larguras(kitCom({ eixos: 7, restricao: 9, anel_traco: 3 }));
+  for (const w of [7, 9, 3]) assert.ok(ls.has(w), `largura ${w}`);
+  // margem lateral: o eixo y começa mais para dentro quando a margem cresce e o desenho fica apertado na largura
+  const xEixo = (kit) => desenharEm(grafico, cena, [9.9], kit).chamadas.find((x) => x[0] === "moveTo")[1];
+  const largo = kitFalso({ layout: { ...kitFalso().layout, area: { x: 72, y: 572, w: 600, h: 1400 } } });
+  const largoMargem = kitFalso({ layout: largo.layout, movimento: { ...movimento, desenho: { ...movimento.desenho, grafico: { ...d, margem: d.margem + 50 } } } });
+  assert.ok(Math.abs(xEixo(largoMargem) - xEixo(largo) - 50) < 1e-6, "margem lateral de desenho.grafico.margem");
+});
+
+test("grafico: durante a saída da Cena (alfa do quadro < 1) nada sai com alfa 1, nem a nota depois do rótulo do ótimo", () => {
+  const nota = "o lucro máximo fica num vértice";
+  const { cena, erros } = validarCena(padaria({ nota }), "cena 4", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  const ctx = ctxFalso(), pilha = [], vistos = [];
+  ctx.save = () => pilha.push(ctx.globalAlpha);
+  ctx.restore = () => { ctx.globalAlpha = pilha.pop(); };
+  for (const k of ["fillText", "fill", "stroke", "fillRect"]) ctx[k] = (s) => vistos.push({ k, s, a: ctx.globalAlpha });
+  ctx.globalAlpha = 0.5;
+  grafico.desenhar(ctx, cena, 9.9, kitFalso());
+  assert.ok(vistos.some((v) => v.s === "Z* = R$ 220") && vistos.some((v) => v.s === nota));
+  assert.deepEqual(vistos.filter((v) => v.a > 0.5 + 1e-9), []);
+  assert.equal(ctx.globalAlpha, 0.5, "a Cena devolve o alfa como recebeu");
+});
+
+test("grafico: no exemplo do GUIA nenhum rótulo cai em cima de outro (bolos × massa) e todos ficam na área", () => {
+  const { cena } = validarCena(padaria(), "cena 4", { formato: "reel" });
+  const kit = kitFalso(), ctx = ctxFalso(), caixas = [];
+  const rotulos = ["pães", "bolos", "forno", "massa", "Z* = R$ 220"];
+  ctx.fillText = (s, x, y) => {
+    if (!rotulos.includes(s)) return;
+    const w = ctx.measureText(s).width, px = Number(ctx.font.match(/([\d.]+)px/)[1]);
+    const x0 = ctx.textAlign === "right" ? x - w : ctx.textAlign === "center" ? x - w / 2 : x;
+    caixas.push({ s, x0, x1: x0 + w, y0: y - px * 0.8, y1: y + px * 0.2 });
+  };
+  grafico.desenhar(ctx, cena, 9.9, kit);
+  assert.deepEqual(caixas.map((c) => c.s).sort(), [...rotulos].sort());
+  for (const [i, a] of caixas.entries()) for (const b of caixas.slice(i + 1))
+    assert.ok(a.x1 <= b.x0 || b.x1 <= a.x0 || a.y1 <= b.y0 || b.y1 <= a.y0, `"${a.s}" cobre "${b.s}"`);
+  const { x, w } = kit.layout.area;
+  for (const c of caixas) assert.ok(c.x0 >= x - 1e-6 && c.x1 <= x + w + 1e-6, `${c.s} sai da área`);
+});
+
+const lucros = (extra = {}) => ({ tipo: "tabela", duracao: 8, titulo: "O QUE CADA UM RENDE", colunas: ["", "Pão", "Bolo"], linhas: [["Forno", "1 h", "2 h"], ["Lucro", "R$ 20", "R$ 50"]], destaque: { linha: 2, coluna: 3 }, ...extra });
+
+test("tabela: valida formato e destaque; desenha cabeçalho e células, linha por linha", () => {
+  const { cena, erros } = validarCena(lucros(), "cena 5", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  assert.equal(cena.linha.eventos.filter((e) => e.efeito === "tick").length, 2);
+  const erro = (extra) => validarCena(lucros(extra), "cena 5", { formato: "reel" }).erros[0] ?? "";
+  assert.match(erro({ linhas: [["Forno", "1 h"]] }), /linhas\[1\] tem 2 células; as colunas são 3/);
+  assert.match(erro({ destaque: { linha: 3, coluna: 1 } }), /"destaque" fora da tabela/);
+  assert.match(erro({ linhas: [["Forno", "x".repeat(13), "2 h"]] }), /"célula \(1, 2\)" tem 13/);
+  assert.match(erro({ colunas: ["A"] }), /de 2 a 4 colunas/);
+  const fim = textos(desenharEm(tabela, cena, [7.9])).map((x) => x.s);
+  for (const s of ["PÃO", "BOLO", "Forno", "1 h", "2 h", "Lucro", "R$ 20", "R$ 50"]) assert.ok(fim.includes(s), s);
+  assert.ok(!textos(desenharEm(tabela, cena, [1])).some((x) => x.s === "R$ 50"), "segunda linha ainda não entrou");
+});
+
+test("tabela: a moldura do destaque dá um pop no instante do destaque (sem título, é o único pop)", () => {
+  const lt = tabela.linhaDoTempo(lucros({ titulo: undefined }));
+  const pops = lt.eventos.filter((e) => e.efeito === "pop");
+  assert.equal(pops.length, 1);
+  assert.equal(pops[0].t, lt.tempos.destaque);
+  assert.ok(lt.tempos.destaque > lt.tempos.linhas.at(-1), "depois da última linha entrar");
+  assert.equal(tabela.linhaDoTempo(lucros({ titulo: undefined, destaque: undefined })).eventos.filter((e) => e.efeito === "pop").length, 0);
+});
+
+test("tabela: o ritmo vem de movimento.json (ritmo.tabela) e a nota escrita entra em fimEscrita", () => {
+  const r = movimento.ritmo.tabela, c = lucros();
+  const lt = tabela.linhaDoTempo(c);
+  const [l1, l2] = lt.tempos.linhas;
+  assert.equal(l2, Math.round((l1 + r.linha) * 1000) / 1000);
+  const outro = { ...movimento, ritmo: { ...movimento.ritmo, tabela: { ...r, linha: r.linha + 1 } } };
+  const [m1, m2] = tabela.linhaDoTempo(c, outro).tempos.linhas;
+  assert.ok(Math.abs(m2 - m1 - (r.linha + 1)) < 1e-9);
+  assert.equal(lt.fimEscrita, Math.round((lt.tempos.destaque + r.moldura) * 1000) / 1000, "sem nota, a caneta acaba na moldura");
+  const nota = "o bolo rende mais por hora";
+  const comNota = tabela.linhaDoTempo(lucros({ nota }));
+  assert.equal(comNota.fimEscrita, Math.round((comNota.tempos.nota + duracaoEscrita(nota, movimento)) * 1000) / 1000);
+  const { erros } = validarCena(lucros({ nota }), "cena 5", { formato: "reel" });
+  assert.deepEqual(erros, []);
+  assert.ok(textos(desenharEm(tabela, validarCena(lucros({ nota }), "cena 5", { formato: "reel" }).cena, [7.9])).some((x) => x.s === nota));
+});
+
+test("tabela: altura mínima da linha, espessuras e recuo da moldura vêm de movimento.json (desenho.tabela)", () => {
+  const { cena } = validarCena(lucros(), "cena 5", { formato: "reel" });
+  const d = movimento.desenho.tabela;
+  const kitCom = (g) => kitFalso({ movimento: { ...movimento, desenho: { ...movimento.desenho, tabela: { ...d, ...g } } } });
+  const passo = (kit) => { const ts = textos(desenharEm(tabela, cena, [7.9], kit)); return ts.find((x) => x.s === "Lucro").y - ts.find((x) => x.s === "Forno").y; };
+  assert.equal(passo(kitCom({ linha_minima: 200 })), 200);
+  assert.ok(passo(kitFalso()) < 200);
+  const larguras = (kit) => { const ctx = ctxFalso(), ls = new Set(); ctx.stroke = () => ls.add(ctx.lineWidth); tabela.desenhar(ctx, cena, 7.9, kit); return ls; };
+  for (const w of [d.cabecalho, d.grade, d.moldura]) assert.ok(larguras(kitFalso()).has(w), `largura ${w}`);
+  const ls = larguras(kitCom({ cabecalho: 5, grade: 3, moldura: 7 }));
+  for (const w of [5, 3, 7]) assert.ok(ls.has(w), `largura ${w}`);
+  // moldura: começa recuo_moldura px para dentro da célula (coluna 3 de 3)
+  const xMoldura = (kit) => { const ctx = ctxFalso(); let x = null; ctx.moveTo = (mx) => { if (ctx.strokeStyle === kit.cores.verde && x == null) x = mx; }; ctx.beginPath = () => {}; tabela.desenhar(ctx, cena, 7.9, kit); return x; };
+  const { x, w } = kitFalso().layout.area;
+  assert.ok(Math.abs(xMoldura(kitFalso()) - (x + (2 * w) / 3 + d.recuo_moldura)) < 1e-6);
+  assert.ok(Math.abs(xMoldura(kitCom({ recuo_moldura: 20 })) - (x + (2 * w) / 3 + 20)) < 1e-6);
 });
