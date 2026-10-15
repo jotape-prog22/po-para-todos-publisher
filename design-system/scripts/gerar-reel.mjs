@@ -124,6 +124,7 @@ export function composicaoDoReel(dados, { biblioteca }) {
   const trilha = dados.trilha ? biblioteca.trilhas.find((t) => t.id === dados.trilha) : null;
   const comp = montarComposicao(cenas, { formato: "reel", trilha, usuario: USUARIO });
   if (comp.duracao > DURACAO_REEL.max) throw new ErroReel(`encaixadas no compasso da Trilha, as cenas dão ${comp.duracao} s; um reel tem até ${DURACAO_REEL.max} s — encurte uma cena`);
+  if (comp.duracao < DURACAO_REEL.min) throw new ErroReel(`encaixadas no compasso da Trilha, as cenas dão ${comp.duracao} s; um reel tem pelo menos ${DURACAO_REEL.min} s — alongue uma cena`);
   return comp;
 }
 

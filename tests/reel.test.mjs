@@ -48,6 +48,17 @@ test("gerarReel (cenas): uma composição contínua, Trilha encaixada no compass
   await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), ErroReel);
 });
 
+test("gerarReel (cenas): recusa reel que fica abaixo de 15 s depois do encaixe no compasso", async () => {
+  const pasta = mkdtempSync(join(tmpdir(), "reel-"));
+  // 7,5 + 7,5 = 15 s escritos; com batida em 0,5 s e compasso de 2 s, o fim cai em 14,5 s
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: [cena({ duracao: 7.5 }), cena({ duracao: 7.5 })], legenda }));
+  let gravou = false;
+  const renderizar = async (comp, o) => { gravou = true; return o.mp4; };
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar: async (c, o) => o.saida, biblioteca: bibLeve }),
+    (e) => e instanceof ErroReel && /as cenas dão 14\.5 s; um reel tem pelo menos 15 s — alongue uma cena/.test(e.message));
+  assert.equal(gravou, false, "não grava nada");
+});
+
 const corte = { tipo: "corte", video: "folgas-complementares", inicio: "06:30", fim: "07:20", titulo: "EXEMPLO: O PRIMAL", faixa: "AULA COMPLETA NO CANAL", legenda };
 
 test("validarReel (corte): campos, ordem dos tempos, duração e limites de texto", () => {
