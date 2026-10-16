@@ -17,24 +17,21 @@ import { composicoesDaGaleria } from "../design-system/scripts/ver-chamadas.mjs"
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
 test("impacto: estilo desconhecido e destaque fora do sublinhar são recusados", () => {
-  assert.match(imp({ estilo: "girar" }).erros[0], /cena 1: "estilo" deve ser um de: batida, deslizar, trocar, crescer, sublinhar/);
+  assert.match(imp({ estilo: "girar" }).erros[0], /cena 1: "estilo" deve ser um de: deslizar, trocar, sublinhar/);
+  for (const estilo of ["batida", "crescer"]) assert.match(imp({ estilo }).erros[0], /"estilo" deve ser um de/, `${estilo} saiu depois da galeria`);
   assert.match(imp({ estilo: "trocar", destaque: 1 }).erros[0], /"destaque" só vale com estilo "sublinhar"/);
   assert.match(imp({ estilo: "sublinhar", destaque: 4 }).erros[0], /"destaque" é o número de uma palavra \(1 a 3\)/);
   assert.deepEqual(imp().erros, []);
   assert.deepEqual(imp({ estilo: "sublinhar", destaque: 2 }).erros, []);
 });
 
-test("impacto: sem estilo continua a batida de hoje (eventos impacto, clarão)", () => {
-  const { cena } = imp();
-  assert.deepEqual(cena.linha.eventos.map((e) => e.efeito), ["impacto", "impacto", "impacto"]);
-  assert.ok(impacto.clarao(cena, 0.16, kitFalso()) > 0);
-});
-
-test("impacto deslizar/trocar/crescer: sem clarão, som próprio", () => {
-  for (const [estilo, efeito] of [["deslizar", "pop"], ["trocar", "pop"], ["crescer", "tick"]]) {
-    const { cena } = imp({ estilo });
-    assert.deepEqual(cena.linha.eventos.map((e) => e.efeito), [efeito, efeito, efeito], estilo);
-    assert.equal(impacto.clarao(cena, 0.16, kitFalso()), 0, estilo);
+test("impacto: sem estilo é o deslizar; nenhum estilo tem clarão nem tremor", () => {
+  const sem = imp().cena, deslizar = imp({ estilo: "deslizar" }).cena;
+  assert.deepEqual(sem.linha, deslizar.linha);
+  assert.deepEqual(desenharEm(impacto, sem, [0.5]).chamadas, desenharEm(impacto, deslizar, [0.5]).chamadas);
+  assert.equal(impacto.clarao, undefined);
+  for (const [estilo, efeito] of [["deslizar", "pop"], ["trocar", "pop"]]) {
+    assert.deepEqual(imp({ estilo }).cena.linha.eventos.map((e) => e.efeito), [efeito, efeito, efeito], estilo);
   }
 });
 
@@ -86,12 +83,6 @@ test("impacto trocar: kicker, palavra e apoio ficam onde ficariam com uma palavr
     return { palavra, textos: textos(ctx).filter((x) => !/^[A-D]{4}$/.test(x.s)).map((x) => [x.s, x.y]) };
   };
   assert.deepEqual(pos({ estilo: "trocar", palavras: ["AAAA", "BBBB", "CCCC", "DDDD"] }), pos({ palavras: ["DDDD"] }));
-});
-
-test("impacto crescer (Review Focus 5): palavra curta não cresce sem fim", () => {
-  const { cena } = validarCena({ tipo: "impacto", duracao: 4, estilo: "crescer", palavras: ["A", "B", "C", "D"] }, "c", { formato: "reel" });
-  const escalas = desenharEm(impacto, cena, [99]).chamadas.filter((c) => c[0] === "scale").map((c) => c[1]);
-  assert.ok(escalas.length && escalas.every((s) => s <= impacto.ZOOM_MAXIMO), escalas.join(", "));
 });
 
 const perg = (extra = {}) => ({ tipo: "pergunta", duracao: 5, pergunta: "Abrir um atalho deixa o trânsito…", opcoes: ["Mais rápido", "Igual", "Mais lento"], ...extra });
@@ -335,11 +326,11 @@ test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   }
 });
 
-test("galeria: todo exemplo valida e cobre as 6 Chamadas novas e os 5 estilos do impacto", () => {
+test("galeria: todo exemplo valida e cobre as 6 Chamadas novas e os 3 estilos do impacto", () => {
   const exemplos = JSON.parse(readFileSync(new URL("../design-system/motion/chamadas-exemplos.json", import.meta.url), "utf8"));
   const itens = composicoesDaGaleria(exemplos, { trilhas: [], efeitos: [] });
   assert.equal(itens.length, exemplos.length);
-  const aberturas = exemplos.map((e) => (e.cenas[0].tipo === "impacto" ? `impacto:${e.cenas[0].estilo ?? "batida"}` : e.cenas[0].tipo));
+  const aberturas = exemplos.map((e) => (e.cenas[0].tipo === "impacto" ? `impacto:${e.cenas[0].estilo ?? "deslizar"}` : e.cenas[0].tipo));
   for (const t of ["pergunta", "riscado", "digitado", "spoiler", "mito-fato", "desafio"]) assert.ok(aberturas.includes(t), t);
   for (const s of impacto.ESTILOS) assert.ok(aberturas.includes(`impacto:${s}`), s);
 });

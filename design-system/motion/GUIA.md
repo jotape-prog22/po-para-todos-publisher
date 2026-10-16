@@ -2,11 +2,11 @@
 
 Cada Cena de `reel.json` (`"cenas"`) ou `stories.json` (`"stories"`) tem `duracao` (s) e um `tipo`. Sem `tipo`, é `texto`. Todo tipo aceita `faixa` (≤ 40, a linha acima do rodapé, ex.: "AULA COMPLETA NO CANAL"). O gerador recusa o que não cabe e diz a duração mínima de cada Cena.
 
-Ritmo do reel: 25 a 45 s no total (limite técnico 15 a 90), Cenas de 3 a 8 s. A primeira Cena é a **Chamada** (`CONTEXT.md`): algo na tela em até 2 s, com um destes tipos — `impacto` (5 estilos), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato`, `desafio` — ou, se o tema pedir, `odometro`, `grafo` ou `texto` com `pergunta`. Varie: veja as regras na skill `reel` e toque `npm run chamadas` para ver todas. Story: cada um com pelo menos 5 s.
+Ritmo do reel: 25 a 45 s no total (limite técnico 15 a 90), Cenas de 3 a 8 s. A primeira Cena é a **Chamada** (`CONTEXT.md`): algo na tela em até 2 s, com um destes tipos — `impacto` (3 estilos), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato`, `desafio` — ou, se o tema pedir, `odometro`, `grafo` ou `texto` com `pergunta`. Varie: veja as regras na skill `reel` e toque `npm run chamadas` para ver todas. Story: cada um com pelo menos 5 s.
 
 Quando usar cada tipo:
 - **texto** — explicar com frases: kicker, título, até 6 linhas ou 4 itens numerados, pergunta, ícone, dica. É o formato antigo.
-- **impacto** — gancho e viradas: 1 a 4 palavras grandes que batem uma por vez.
+- **impacto** — gancho e viradas: 1 a 4 palavras grandes que entram uma por vez.
 - **odometro** — um número que importa (ano, quantidade, resultado) girando até o valor.
 - **grafo** — redes, caminhos, árvores: nós numa grade 0–10, arestas (pares repetidos viram pontes paralelas), pesos e um caminho que acende.
 - **conta** — uma conta curta escrita à mão, linha a linha, com a linha do resultado em destaque.
@@ -35,7 +35,7 @@ Campos: `kicker` ≤ 40, `titulo` ≤ 60, `linhas` (até 6, ≤ 90) **ou** `iten
 
 Campos: `palavras` (1 a 4, ≤ 14 cada), `apoio` ≤ 60, `kicker`. Sem `titulo`. Cada palavra entra 0,55 s depois da anterior.
 
-`estilo`: `batida` (padrão: bate com mola, tremor e clarão), `deslizar` (entra de lado, sem tremor), `trocar` (uma palavra por vez no mesmo lugar), `crescer` (nasce pequena e cresce devagar — tensão), `sublinhar` (todas juntas; a caneta sublinha a de número `destaque`, padrão a última). `destaque` só vale com `sublinhar`.
+`estilo`: `deslizar` (padrão: entram de lado, alternando, e ficam empilhadas), `trocar` (uma palavra por vez no mesmo lugar, com mola), `sublinhar` (todas juntas; a caneta sublinha a de número `destaque`, padrão a última). `destaque` só vale com `sublinhar`. Sem tremor nem clarão em nenhum estilo (o antigo `batida` e o `crescer` saíram depois da galeria).
 
 ## odometro
 

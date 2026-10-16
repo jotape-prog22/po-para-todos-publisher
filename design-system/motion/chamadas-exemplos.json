@@ -1,12 +1,8 @@
 [
-  { "nome": "impacto · batida", "trilha": "detetives-tensos", "cenas": [
-    { "tipo": "impacto", "duracao": 3, "palavras": ["UMA RUA NOVA", "TODOS PIORAM"] } ] },
   { "nome": "impacto · deslizar", "trilha": "pizzicato-misterio", "cenas": [
     { "tipo": "impacto", "estilo": "deslizar", "duracao": 3, "palavras": ["NUNCA GANHA", "MAS VENCE"] } ] },
   { "nome": "impacto · trocar", "trilha": "faiscas-espertas", "cenas": [
     { "tipo": "impacto", "estilo": "trocar", "duracao": 3, "palavras": ["REJEITE", "OS 3", "PRIMEIROS"] } ] },
-  { "nome": "impacto · crescer", "trilha": "piano-reflexivo", "cenas": [
-    { "tipo": "impacto", "estilo": "crescer", "duracao": 4, "palavras": ["RECORDE", "E A FILA", "CRESCEU"] } ] },
   { "nome": "impacto · sublinhar", "trilha": "jazz-foco", "cenas": [
     { "tipo": "impacto", "estilo": "sublinhar", "destaque": 2, "duracao": 3, "palavras": ["3 ROLOS", "OU 2?"] } ] },
   { "nome": "pergunta (+ revelação)", "trilha": "detetives-tensos", "cenas": [

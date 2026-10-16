@@ -3,7 +3,7 @@
   "duracoes": { "entrada": 0.6, "saida": 0.35, "escrita_por_caractere": 0.035, "escrita_minima": 0.4, "leitura_final": 0.5, "loop": 0.6, "faixa": 0.6, "balanco_dica": 1.6 },
   "curvas": { "entrada": "outExpo", "saida": "inCubic", "camera": "inOutCubic" },
   "mola": { "freq": 3.2, "amortecimento": 0.42 },
-  "impacto": { "tremor": 3, "clarao": 0.03, "passar": 0.6, "rampa": 0.06, "meia_vida": 0.08, "ruido": 45 },
+  "impacto": { "clarao": 0.03, "passar": 0.6, "rampa": 0.06, "meia_vida": 0.08 },
   "grade": { "passo": 54, "forte_a_cada": 4, "opacidade": 0.06, "revelar": 0.5 },
   "grao": { "opacidade": 0.05 },
   "caneta": { "raio": 9 },
@@ -17,7 +17,7 @@
   },
   "ritmo": {
     "texto": { "kicker": 0, "titulo": 0.3, "primeiro": 1.2, "linha": 1.1, "item": 1.6, "pergunta": 1.2, "dica": 0.8 },
-    "impacto": { "kicker": 0, "primeira": 0.15, "passo": 0.55, "apoio": 0.6, "sublinhar": 0.8, "traco": 0.5, "crescer": 1.4, "zoom_lento": 0.03 },
+    "impacto": { "kicker": 0, "primeira": 0.15, "passo": 0.55, "apoio": 0.6, "sublinhar": 0.8, "traco": 0.5 },
     "odometro": { "aparecer": 0.2, "giro": 1.8, "escalonar": 0.08, "rotulo": 0.3 },
     "cabecalho": { "kicker": 0, "titulo": 0.3, "kicker_comeca": 0.6, "titulo_comeca": 0.9, "vazio_comeca": 0.2 },
     "grafo": { "no": 0.12, "antes_arestas": 0.2, "passo_aresta": 0.18, "aresta": 0.35, "caneta_a_cada": 3, "peso": 0.2, "antes_caminho": 0.4, "segmento": 0.45, "camera": 0.8, "legenda": 0.3 },

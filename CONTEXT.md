@@ -94,7 +94,7 @@ Trecho animado de um Reel do zero ou um story de uma Sequência de stories, com 
 _Avoid_: plate, slide, tela
 
 **Chamada**:
-A primeira Cena de um Reel do zero, a que prende quem está rolando o feed: `impacto` (em cinco estilos), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato` ou `desafio`. Reels vizinhos na agenda não abrem com a mesma Chamada.
+A primeira Cena de um Reel do zero, a que prende quem está rolando o feed: `impacto` (em três estilos: `deslizar`, `trocar`, `sublinhar`), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato` ou `desafio`. Reels vizinhos na agenda não abrem com a mesma Chamada.
 _Avoid_: gancho (é o da legenda), abertura, hook
 
 **Trilha**:

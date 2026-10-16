@@ -1,26 +1,24 @@
-// Cena "impacto": 1 a 4 palavras que batem na tela, uma por vez, em tamanho grande — o gancho do reel.
-// Cada batida tem mola (passa do tamanho e assenta), um tremor leve e um clarão quase imperceptível
-// (movimento.json → impacto; a pessoa achou fortes demais no protótipo); a palavra da vez é verde.
-// Ritmo em movimento.json (ritmo.impacto); geometria no kit.layout.
-// Estilos (campo "estilo"): batida (padrão: mola, tremor, clarão), deslizar (entra de lado, alternando), trocar (uma palavra por vez no mesmo lugar), crescer (nasce pequena e cresce devagar), sublinhar (todas juntas, a caneta sublinha a "destaque").
+// Cena "impacto": 1 a 4 palavras grandes que entram na tela, uma por vez — Chamada e viradas do reel;
+// a palavra da vez é verde. Ritmo em movimento.json (ritmo.impacto); geometria no kit.layout.
+// Estilos (campo "estilo"): deslizar (padrão: entra de lado, alternando), trocar (uma palavra por vez no
+// mesmo lugar, com mola), sublinhar (todas juntas, a caneta sublinha a "destaque"). O batida (tremor e
+// clarão) e o crescer saíram depois da galeria de 16/10/2026: a pessoa não gostou.
 
 import { checarTamanho } from "./comum.mjs";
 import { usarFonte, caixa, escalar, linhasDe, digitar, escreverLinhas, duracaoEscrita, revelarTraco, entrada } from "../escrita.mjs";
-import { springStep, pulse, noise1, clamp, r3, prog, ease } from "../util.mjs";
+import { springStep, clamp, r3, prog, ease } from "../util.mjs";
 import MOVIMENTO, { ritmoDe } from "../movimento.mjs";
 
 export const usaGrade = false;
 const LIM = { palavras: 4, palavra: 14, apoio: 60 };
 // Proporções do tamanho da fonte do título (não são px): quanto a palavra pode crescer e a entrelinha.
 const CRESCER = 2.4, ENTRELINHA = 1.05;
-export const ESTILOS = ["batida", "deslizar", "trocar", "crescer", "sublinhar"];
-const SOM = { batida: "impacto", deslizar: "pop", trocar: "pop", crescer: "tick" };
-const estiloDe = (c) => c.estilo ?? "batida";
+export const ESTILOS = ["deslizar", "trocar", "sublinhar"];
+const SOM = { deslizar: "pop", trocar: "pop" };
+const estiloDe = (c) => c.estilo ?? "deslizar";
 const destaqueDe = (c) => c.destaque ?? c.palavras.length;
-// Proporções: de onde o deslizar parte (fração da largura útil) e o tamanho inicial do crescer.
-const DESLIZE = 0.35, NASCER = 0.6;
-// Até onde o zoom lento do crescer vai (em Cena longa, como num story, não invade a linha vizinha).
-export const ZOOM_MAXIMO = 1.15;
+// Proporção: de onde o deslizar parte (fração da largura útil).
+const DESLIZE = 0.35;
 
 export function validar(c, onde) {
   const erros = [];
@@ -51,16 +49,6 @@ export function linhaDoTempo(c, movimento = MOVIMENTO) {
   return { fim, fimEscrita, eventos };
 }
 
-// Intensidade (0 a 1, já com o coeficiente de movimento.json) do clarão em t: o quadro o aplica
-// depois da marca, para a caixa opaca do logo clarear junto com o resto.
-export function clarao(c, t, kit) {
-  if (estiloDe(c) !== "batida") return 0;
-  const R = ritmoDe("impacto", kit.movimento), { clarao: k, meia_vida } = kit.movimento.impacto;
-  const ultima = Math.max(-1, ...c.palavras.map((_, i) => R.primeira + i * R.passo).filter((b) => b <= t));
-  const forca = ultima >= 0 ? pulse(t, ultima, meia_vida) : 0;
-  return forca > 0.02 ? k * forca : 0;
-}
-
 export function desenhar(ctx, c, t, kit) {
   const { area, gap } = kit.layout, F = kit.fontes, m = kit.movimento.mola;
   const R = ritmoDe("impacto", kit.movimento);
@@ -74,8 +62,6 @@ export function desenhar(ctx, c, t, kit) {
   const total = linhas * f.line + apoio.length * F.corpo.line;
   const y0 = area.y + (area.h - total) / 2;
   const batidas = palavras.map((_, i) => R.primeira + i * R.passo);
-  const ultima = Math.max(-1, ...batidas.filter((b) => b <= t));
-  const forca = ultima >= 0 ? pulse(t, ultima, kit.movimento.impacto.meia_vida) : 0;
 
   if (c.kicker) digitar(ctx, linhasDe(ctx, F.kicker, c.kicker, area.w), F.kicker, area.x, y0 - F.kicker.line - gap, t, R.kicker, kit.cores.verdeSuave, { alinhar: "center", largura: area.w });
 
@@ -96,8 +82,7 @@ export function desenhar(ctx, c, t, kit) {
   };
   ctx.save();
   usarFonte(ctx, f);
-  const { tremor, passar, rampa, ruido } = kit.movimento.impacto;
-  if (estilo === "batida") ctx.translate(noise1(t * ruido, 3) * tremor * forca, noise1(t * ruido, 4) * tremor * forca);
+  const { passar, rampa } = kit.movimento.impacto;
   if (estilo === "sublinhar") {
     const k = destaqueDe(c) - 1;
     if (t >= R.primeira) palavras.forEach((w, i) => pintar(w, i, { alfa: entrada(t, R.primeira, kit), cor: i === k ? kit.cores.verde : kit.cores.tinta }));
@@ -110,13 +95,10 @@ export function desenhar(ctx, c, t, kit) {
       if (t < ti) return;
       if (estilo === "trocar" && !daVez(i)) return;
       const cor = daVez(i) ? kit.cores.verde : kit.cores.tinta;
-      const mola = 1 + passar * (1 - springStep(t - ti, m.freq, m.amortecimento));   // passa do tamanho, nunca da largura útil
-      if (estilo === "batida" || estilo === "trocar") pintar(w, i, { s: Math.min(mola, caber(w)), alfa: clamp((t - ti) / rampa), cor });
-      else if (estilo === "deslizar") pintar(w, i, { dx: (i % 2 ? 1 : -1) * area.w * DESLIZE * (1 - entrada(t, ti, kit)), alfa: entrada(t, ti, kit), cor });
-      else if (estilo === "crescer") {
-        const s = (NASCER + (1 - NASCER) * prog(t, ti, ti + R.crescer, ease.outCubic)) * Math.min(ZOOM_MAXIMO, 1 + R.zoom_lento * Math.max(0, t - ti));
-        pintar(w, i, { s: Math.min(s, caber(w)), alfa: clamp((t - ti) / rampa), cor });
-      }
+      if (estilo === "trocar") {
+        const mola = 1 + passar * (1 - springStep(t - ti, m.freq, m.amortecimento));   // passa do tamanho, nunca da largura útil
+        pintar(w, i, { s: Math.min(mola, caber(w)), alfa: clamp((t - ti) / rampa), cor });
+      } else pintar(w, i, { dx: (i % 2 ? 1 : -1) * area.w * DESLIZE * (1 - entrada(t, ti, kit)), alfa: entrada(t, ti, kit), cor });
     });
   }
   ctx.restore();
