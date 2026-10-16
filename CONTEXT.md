@@ -90,8 +90,12 @@ Vídeo curto vertical (9:16) do Instagram, publicado pela API. Nasce de um Corte
 _Avoid_: vídeo curto, short
 
 **Cena**:
-Trecho animado de um Reel do zero ou um story de uma Sequência de stories, com um tipo: `texto`, `grafo`, `conta`, `odometro`, `impacto`, `grafico` ou `tabela`.
+Trecho animado de um Reel do zero ou um story de uma Sequência de stories, com um tipo: `texto`, `grafo`, `conta`, `odometro`, `impacto`, `grafico`, `tabela` ou um dos tipos de Chamada.
 _Avoid_: plate, slide, tela
+
+**Chamada**:
+A primeira Cena de um Reel do zero, a que prende quem está rolando o feed: `impacto` (em cinco estilos), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato` ou `desafio`. Reels vizinhos na agenda não abrem com a mesma Chamada.
+_Avoid_: gancho (é o da legenda), abertura, hook
 
 **Trilha**:
 Música de fundo de um Reel de Cenas, escolhida de uma biblioteca do repositório em que cada faixa tem fonte, licença gratuita explícita, clima e andamento; os cortes entre Cenas caem na batida dela. Nunca vai em Corte nem em story.
