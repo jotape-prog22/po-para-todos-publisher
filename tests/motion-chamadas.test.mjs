@@ -1,9 +1,11 @@
 // Chamadas: os tipos de Cena de abertura dos reels (CONTEXT.md, "Chamada") e os estilos do impacto.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { validarCena } from "../design-system/motion/cenas/index.mjs";
+import { validarCena, validarChamadas } from "../design-system/motion/cenas/index.mjs";
 import { kitFalso, ctxFalso, textos, desenharEm, movimento } from "./ajudas-motion.mjs";
+import { escalar } from "../design-system/motion/escrita.mjs";
 import * as impacto from "../design-system/motion/cenas/impacto.mjs";
+import * as pergunta from "../design-system/motion/cenas/pergunta.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -65,4 +67,72 @@ test("impacto (Review Focus 1): palavra de 14 caracteres nunca passa da largura 
 
 test("impacto (Review Focus 5): desenhar em t = 0 e muito depois do fim não lança erro", () => {
   for (const estilo of impacto.ESTILOS) desenharEm(impacto, imp({ estilo }).cena, [0, 99]);
+});
+
+const perg = (extra = {}) => ({ tipo: "pergunta", duracao: 5, pergunta: "Abrir um atalho deixa o trânsito…", opcoes: ["Mais rápido", "Igual", "Mais lento"], ...extra });
+
+test("pergunta: valida opções, resposta e tamanhos", () => {
+  assert.deepEqual(validarCena(perg(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(perg({ opcoes: ["Só uma"] }), "cena 1", { formato: "reel" }).erros[0], /"opcoes" precisa de 2 a 3 itens/);
+  assert.match(validarCena(perg({ resposta: 4 }), "cena 1", { formato: "reel" }).erros[0], /"resposta" é o número de uma opção \(1 a 3\)/);
+  assert.match(validarCena(perg({ pergunta: "x".repeat(61) }), "cena 1", { formato: "reel" }).erros[0], /"pergunta" tem 61 caracteres; o máximo é 60/);
+});
+
+test("pergunta: pop na pergunta, tick por opção; com resposta, sino na revelação", () => {
+  const r = movimento.ritmo.pergunta;
+  const aberta = validarCena(perg(), "c", { formato: "reel" }).cena.linha;
+  assert.deepEqual(aberta.eventos.map((e) => e.efeito), ["pop", "tick", "tick", "tick"]);
+  assert.equal(aberta.eventos[1].t, r.primeira_opcao);
+  const revela = validarCena(perg({ resposta: 3 }), "c", { formato: "reel" }).cena.linha;
+  assert.deepEqual(revela.eventos.at(-1), { t: Math.round((r.primeira_opcao + 2 * r.passo + r.revelar) * 1000) / 1000, efeito: "sino" });
+});
+
+test("pergunta: desenha pergunta e opções com letra; a revelação apaga as erradas", () => {
+  const { cena } = validarCena(perg({ resposta: 3 }), "c", { formato: "reel" });
+  const ctx = desenharEm(pergunta, cena, [4.9]);
+  const ditos = textos(ctx).map((x) => x.s);
+  for (const s of ["A", "MAIS RÁPIDO", "B", "IGUAL", "C", "MAIS LENTO"]) assert.ok(ditos.includes(s), s);
+  desenharEm(pergunta, cena, [0, 99]);   // Review Focus 5
+});
+
+// Contexto falso que guarda onde cada texto termina (x + largura, na fonte em vigor no fillText).
+function ctxQueMede() {
+  const ctx = ctxFalso(), fins = [];
+  ctx.fillText = (s, x) => {
+    const w = ctx.measureText(s).width;
+    fins.push({ s, fim: ctx.textAlign === "center" ? x + w / 2 : ctx.textAlign === "right" ? x : x + w });
+  };
+  return { ctx, fins };
+}
+
+test("pergunta (Review Focus 1): opção de 30 caracteres não passa da caixa", () => {
+  // Fonte da opção maior que a do kit falso, para valer pela largura das fontes reais (mais largas que 0,6 em).
+  const kit = kitFalso(), { area } = kit.layout;
+  kit.fontes.itemTitulo = escalar(kit.fontes.itemTitulo, 56);
+  const { cena } = validarCena(perg({ opcoes: ["M".repeat(30), "Igual"] }), "c", { formato: "reel" });
+  const { ctx, fins } = ctxQueMede();
+  pergunta.desenhar(ctx, cena, 4.9, kit);
+  const longa = fins.find((x) => x.s === "M".repeat(30));
+  assert.ok(longa, "desenhou a opção");
+  assert.ok(longa.fim <= area.x + area.w, `termina em ${longa.fim}, a área vai até ${area.x + area.w}`);
+});
+
+test("validarChamadas: pergunta aberta na Cena 1 exige a revelação na última (Review Focus 3)", () => {
+  const v = (lista) => validarChamadas(lista.map((c, i) => validarCena(c, `cena ${i + 1}`, { formato: "reel" }).cena));
+  const meio = { duracao: 5, titulo: "MEIO", linhas: ["x"] };
+  assert.deepEqual(v([perg(), meio, perg({ resposta: 3 })]), []);
+  assert.match(v([perg(), meio])[0], /cena 1 é uma pergunta: a última cena precisa revelá-la/);
+  assert.match(v([perg(), meio, perg({ resposta: 3, opcoes: ["Mais rápido", "Igual", "Mais lenta"] })])[0], /cena 3: as "opcoes" precisam ser as mesmas da cena 1/);
+  assert.match(v([perg({ resposta: 1 }), meio])[0], /cena 1: a pergunta de abertura não leva "resposta"/);
+});
+
+// Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
+const COM_KICKER = [[pergunta, perg()]];
+test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
+  for (const [mod, c] of COM_KICKER) {
+    const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });
+    assert.deepEqual(erros, [], c.tipo);
+    assert.deepEqual(cena.linha.eventos[0], { t: 0, efeito: "digitar" }, c.tipo);
+    assert.ok(textos(desenharEm(mod, cena, [2])).some((x) => x.s === "PENSE RÁPIDO"), c.tipo);
+  }
 });

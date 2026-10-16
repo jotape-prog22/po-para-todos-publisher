@@ -10,9 +10,10 @@ import * as grafo from "./grafo.mjs";
 import * as conta from "./conta.mjs";
 import * as grafico from "./grafico.mjs";
 import * as tabela from "./tabela.mjs";
+import * as pergunta from "./pergunta.mjs";
 import * as moldura from "./moldura.mjs";
 
-export const CENAS = { texto, impacto, odometro, grafo, conta, grafico, tabela };
+export const CENAS = { texto, impacto, odometro, grafo, conta, grafico, tabela, pergunta };
 export const INTERNAS = { moldura };
 export const TIPOS_DE_CENA = Object.keys(CENAS);
 export const moduloDe = (tipo) => CENAS[tipo] ?? INTERNAS[tipo];
@@ -34,4 +35,17 @@ export function validarCena(cena, onde, { formato = "story", existeIcone = () =>
   const minimo = Math.ceil(Math.round(piso * 10000) / 1000) / 10;   // arredonda antes do teto: 1,9 não pode virar 2,0 por ponto flutuante
   if (duracao < minimo) return { erros: [`${onde}: o último bloco entra aos ${linha.fim.toFixed(1)} s; "duracao" precisa ser de pelo menos ${minimo} s`] };
   return { erros: [], cena: { ...cena, tipo, duracao, minimo, linha } };
+}
+
+// Regras de reel inteiro sobre as Chamadas (Cenas já validadas, com "tipo"). Devolve os erros.
+export function validarChamadas(cenas) {
+  const erros = [];
+  const primeira = cenas[0], ultima = cenas.at(-1), n = cenas.length;
+  if (primeira?.tipo === "pergunta") {
+    if (primeira.resposta != null) erros.push(`cena 1: a pergunta de abertura não leva "resposta" — a última cena é que revela`);
+    else if (n < 2 || ultima.tipo !== "pergunta" || ultima.resposta == null) erros.push(`cena 1 é uma pergunta: a última cena precisa revelá-la (tipo "pergunta" com as mesmas "opcoes" e a "resposta")`);
+    else if (JSON.stringify(ultima.opcoes) !== JSON.stringify(primeira.opcoes)) erros.push(`cena ${n}: as "opcoes" precisam ser as mesmas da cena 1, na mesma ordem`);
+  }
+  if (ultima?.tipo === "desafio") erros.push(`cena ${n}: um desafio não fecha o reel — a resposta vem na cena seguinte`);
+  return erros;
 }

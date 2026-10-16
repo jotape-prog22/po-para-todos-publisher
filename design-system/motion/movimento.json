@@ -24,6 +24,7 @@
     "conta": { "entre": 0.35, "destaque": 0.1, "sublinhado": 0.5, "nota": 0.3 },
     "grafico": { "eixos": 0.6, "antes_restricoes": 0.7, "passo_restricao": 0.7, "restricao": 0.6, "regiao": 0.8, "revelar_regiao": 0.6, "otimo": 0.7, "anel": 0.8, "pulso": 0.3, "rotulo_otimo": 0.3, "nota": 0.6 },
     "moldura": { "kicker": 0, "titulo": 0.3 },
+    "pergunta": { "kicker": 0, "pergunta": 0.15, "primeira_opcao": 1.0, "passo": 0.45, "revelar": 0.6, "apagar": 0.35 },
     "tabela": { "grade": 0.5, "cabecalho": 0.25, "passo_coluna": 0.08, "primeira": 0.5, "linha": 0.45, "celula": 0.4, "destaque": 0.6, "moldura": 0.5, "nota": 0.4 }
   },
   "efeitos": { "ganho_reel": 0.8, "ganho_story": 0.4, "intervalo_minimo": 0.08 },

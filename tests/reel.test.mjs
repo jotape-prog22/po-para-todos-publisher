@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import ffmpegPath from "ffmpeg-static";
-import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, temAudio, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
+import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, temAudio, htmlDaMoldura, acharYtDlp, composicaoDoReel } from "../design-system/scripts/gerar-reel.mjs";
 
 const cena = (extra = {}) => ({ duracao: 10, kicker: "UM DESAFIO", titulo: "PADARIA", linhas: ["Pão: 1 h"], ...extra });
 const legenda = { gancho: "G", corpo: "C", hashtags_tema: ["#A", "#B", "#C"] };
@@ -141,4 +141,20 @@ test("argsMoldura (integração, ffmpeg real): sempre sai com faixa de áudio �
   assert.ok(nivel(a) < -60, "sem som no vídeo: faixa muda");
   assert.equal(ff(...argsMoldura({ moldura, bruto: comSom, saida: b }).slice(3)).status, 0);
   assert.ok(nivel(b) > -30, "com som: o áudio do vídeo (seno) passa");
+});
+
+const perguntaAberta = { tipo: "pergunta", duracao: 6, pergunta: "Qual?", opcoes: ["A1", "B1"] };
+
+test("composicaoDoReel recusa pergunta de abertura sem revelação", () => {
+  const dados = { tipo: "cenas", cenas: [
+    perguntaAberta,
+    { duracao: 8, titulo: "MEIO", linhas: ["x"] },
+    { duracao: 8, titulo: "FIM", linhas: ["y"], faixa: "MAIS PO NO CANAL" },
+  ], legenda };
+  assert.throws(() => composicaoDoReel(dados, { biblioteca: { trilhas: [], efeitos: [] } }), (e) => e instanceof ErroReel && /cena 1 é uma pergunta/.test(e.message));
+});
+
+test("validarReel lista a regra das Chamadas junto dos outros erros", () => {
+  const erros = validarReel({ tipo: "cenas", cenas: [perguntaAberta, cena()], legenda });
+  assert.ok(erros.some((e) => /cena 1 é uma pergunta: a última cena precisa revelá-la/.test(e)), erros.join(" | "));
 });
