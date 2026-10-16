@@ -6,6 +6,7 @@ import { kitFalso, ctxFalso, textos, desenharEm, movimento } from "./ajudas-moti
 import { escalar } from "../design-system/motion/escrita.mjs";
 import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as pergunta from "../design-system/motion/cenas/pergunta.mjs";
+import * as riscado from "../design-system/motion/cenas/riscado.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -126,8 +127,46 @@ test("validarChamadas: pergunta aberta na Cena 1 exige a revelação na última 
   assert.match(v([perg({ resposta: 1 }), meio])[0], /cena 1: a pergunta de abertura não leva "resposta"/);
 });
 
+const risc = (extra = {}) => ({ tipo: "riscado", duracao: 4, parece: "Sobrar energia é bom", e: "Vira problema", ...extra });
+
+test("riscado: campos obrigatórios e limites", () => {
+  assert.deepEqual(validarCena(risc(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(risc({ e: undefined }), "cena 1", { formato: "reel" }).erros[0], /"e" é obrigatório/);
+  assert.match(validarCena(risc({ parece: "x".repeat(41) }), "cena 1", { formato: "reel" }).erros[0], /"parece" tem 41 caracteres; o máximo é 40/);
+});
+
+test("riscado: pop no 'parece', caneta no risco, impacto no 'é'", () => {
+  const r = movimento.ritmo.riscado;
+  const { cena } = validarCena(risc(), "c", { formato: "reel" });
+  assert.deepEqual(cena.linha.eventos, [{ t: r.parece, efeito: "pop" }, { t: r.risco, efeito: "caneta" }, { t: r.e, efeito: "impacto" }]);
+  assert.equal(cena.linha.fim, r.e);
+});
+
+test("riscado: antes do risco não há traço nem 'É'; no fim, os dois textos e o traço", () => {
+  const r = movimento.ritmo.riscado;
+  const { cena } = validarCena(risc(), "c", { formato: "reel" });
+  const antes = desenharEm(riscado, cena, [r.risco - 0.1]);
+  assert.ok(!antes.chamadas.some((c) => c[0] === "stroke"));
+  assert.ok(!textos(antes).some((x) => x.s === "VIRA PROBLEMA"));
+  const fim = desenharEm(riscado, cena, [3.9]);
+  const ditos = textos(fim).map((x) => x.s);
+  for (const s of ["PARECE", "SOBRAR ENERGIA É BOM", "É", "VIRA PROBLEMA"]) assert.ok(ditos.includes(s), s);
+  assert.ok(fim.chamadas.some((c) => c[0] === "stroke"));
+  desenharEm(riscado, cena, [0, 99]);   // Review Focus 5
+});
+
+test("riscado (Review Focus 1): o risco de uma frase no limite não sai da área", () => {
+  // 26 caracteres a 59,6 px ocupam 930 dos 936 px: a linha quase cheia, como acontece com as fontes reais.
+  const kit = kitFalso(), { area } = kit.layout;
+  kit.fontes.tituloMedio = escalar(kit.fontes.tituloMedio, 59.6);
+  const { cena } = validarCena(risc({ parece: `${"M".repeat(26)} ${"M".repeat(13)}` }), "c", { formato: "reel" });
+  const ctx = desenharEm(riscado, cena, [3.9], kit);
+  const xs = ctx.chamadas.filter((c) => c[0] === "moveTo" || c[0] === "lineTo").map((c) => c[1]);
+  assert.ok(xs.length && xs.every((x) => x >= area.x && x <= area.x + area.w), xs.join(", "));
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
-const COM_KICKER = [[pergunta, perg()]];
+const COM_KICKER = [[pergunta, perg()], [riscado, risc()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   for (const [mod, c] of COM_KICKER) {
     const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });
