@@ -8,6 +8,7 @@ import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as pergunta from "../design-system/motion/cenas/pergunta.mjs";
 import * as riscado from "../design-system/motion/cenas/riscado.mjs";
 import * as digitado from "../design-system/motion/cenas/digitado.mjs";
+import * as spoiler from "../design-system/motion/cenas/spoiler.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -213,8 +214,26 @@ test("digitado: palavra da marca repetida fora dela não é marcada", () => {
   assert.equal(retangulosDaMarca(cena, 5.9).length, 2);
 });
 
+const spo = (extra = {}) => ({ tipo: "spoiler", duracao: 3, valor: 33.3, casas_decimais: 1, sufixo: "%", ...extra });
+
+test("spoiler: valida como o odômetro e limita a pergunta", () => {
+  assert.deepEqual(validarCena(spo(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(spo({ valor: "33" }), "cena 1", { formato: "reel" }).erros[0], /"valor" precisa ser um número/);
+  assert.match(validarCena(spo({ pergunta: "x".repeat(21) }), "cena 1", { formato: "reel" }).erros[0], /"pergunta" tem 21 caracteres; o máximo é 20/);
+  assert.match(validarCena(spo({ rotulo: "da população" }), "cena 1", { formato: "reel" }).erros[0], /spoiler não tem "rotulo"/);
+});
+
+test("spoiler: impacto no número, pop na pergunta; padrão 'COMO?'", () => {
+  const r = movimento.ritmo.spoiler;
+  const { cena } = validarCena(spo(), "c", { formato: "reel" });
+  assert.deepEqual(cena.linha.eventos, [{ t: r.numero, efeito: "impacto" }, { t: r.pergunta, efeito: "pop" }]);
+  const ditos = textos(desenharEm(spoiler, cena, [2.9])).map((x) => x.s);
+  assert.ok(ditos.includes("33,3") && ditos.includes("%") && ditos.includes("COMO?"));
+  desenharEm(spoiler, cena, [0, 99]);   // Review Focus 5
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
-const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()]];
+const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   for (const [mod, c] of COM_KICKER) {
     const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });

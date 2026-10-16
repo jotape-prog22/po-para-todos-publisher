@@ -13,9 +13,10 @@ import * as tabela from "./tabela.mjs";
 import * as pergunta from "./pergunta.mjs";
 import * as riscado from "./riscado.mjs";
 import * as digitado from "./digitado.mjs";
+import * as spoiler from "./spoiler.mjs";
 import * as moldura from "./moldura.mjs";
 
-export const CENAS = { texto, impacto, odometro, grafo, conta, grafico, tabela, pergunta, riscado, digitado };
+export const CENAS = { texto, impacto, odometro, grafo, conta, grafico, tabela, pergunta, riscado, digitado, spoiler };
 export const INTERNAS = { moldura };
 export const TIPOS_DE_CENA = Object.keys(CENAS);
 export const moduloDe = (tipo) => CENAS[tipo] ?? INTERNAS[tipo];
