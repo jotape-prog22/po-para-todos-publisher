@@ -19,6 +19,8 @@ const estiloDe = (c) => c.estilo ?? "batida";
 const destaqueDe = (c) => c.destaque ?? c.palavras.length;
 // Proporções: de onde o deslizar parte (fração da largura útil) e o tamanho inicial do crescer.
 const DESLIZE = 0.35, NASCER = 0.6;
+// Até onde o zoom lento do crescer vai (em Cena longa, como num story, não invade a linha vizinha).
+export const ZOOM_MAXIMO = 1.15;
 
 export function validar(c, onde) {
   const erros = [];
@@ -68,7 +70,8 @@ export function desenhar(ctx, c, t, kit) {
   const px = Math.min(F.titulo.px * CRESCER, (F.titulo.px * area.w) / maior);
   const f = { ...escalar(F.titulo, px), line: px * ENTRELINHA };
   const apoio = c.apoio ? linhasDe(ctx, F.corpo, c.apoio, area.w) : [];
-  const total = palavras.length * f.line + apoio.length * F.corpo.line;
+  const linhas = estiloDe(c) === "trocar" ? 1 : palavras.length;   // o trocar mostra uma palavra por vez, no mesmo lugar
+  const total = linhas * f.line + apoio.length * F.corpo.line;
   const y0 = area.y + (area.h - total) / 2;
   const batidas = palavras.map((_, i) => R.primeira + i * R.passo);
   const ultima = Math.max(-1, ...batidas.filter((b) => b <= t));
@@ -78,7 +81,7 @@ export function desenhar(ctx, c, t, kit) {
 
   const estilo = estiloDe(c);
   const caber = (w) => Math.max(1, area.w / (ctx.measureText(w).width || 1));   // escala máxima que ainda cabe
-  const yDe = (i) => (estilo === "trocar" ? area.y + area.h / 2 : y0 + i * f.line + f.line / 2);
+  const yDe = (i) => y0 + (estilo === "trocar" ? 0 : i) * f.line + f.line / 2;
   const daVez = (i) => i === palavras.length - 1 || t < batidas[i + 1];
   const pintar = (w, i, { s = 1, dx = 0, alfa = 1, cor }) => {
     ctx.save();
@@ -111,7 +114,7 @@ export function desenhar(ctx, c, t, kit) {
       if (estilo === "batida" || estilo === "trocar") pintar(w, i, { s: Math.min(mola, caber(w)), alfa: clamp((t - ti) / rampa), cor });
       else if (estilo === "deslizar") pintar(w, i, { dx: (i % 2 ? 1 : -1) * area.w * DESLIZE * (1 - entrada(t, ti, kit)), alfa: entrada(t, ti, kit), cor });
       else if (estilo === "crescer") {
-        const s = (NASCER + (1 - NASCER) * prog(t, ti, ti + R.crescer, ease.outCubic)) * (1 + R.zoom_lento * Math.max(0, t - ti));
+        const s = (NASCER + (1 - NASCER) * prog(t, ti, ti + R.crescer, ease.outCubic)) * Math.min(ZOOM_MAXIMO, 1 + R.zoom_lento * Math.max(0, t - ti));
         pintar(w, i, { s: Math.min(s, caber(w)), alfa: clamp((t - ti) / rampa), cor });
       }
     });
@@ -119,5 +122,5 @@ export function desenhar(ctx, c, t, kit) {
   ctx.restore();
 
 
-  if (apoio.length) escreverLinhas(ctx, apoio, F.corpo, area.x + area.w / 2, y0 + palavras.length * f.line, t, c.linha.fim, kit, { alinhar: "center", cor: kit.cores.tintaSuave });
+  if (apoio.length) escreverLinhas(ctx, apoio, F.corpo, area.x + area.w / 2, y0 + linhas * f.line, t, c.linha.fim, kit, { alinhar: "center", cor: kit.cores.tintaSuave });
 }

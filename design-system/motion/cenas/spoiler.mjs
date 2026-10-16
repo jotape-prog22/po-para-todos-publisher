@@ -17,6 +17,7 @@ export function validar(c, onde) {
   const erros = validarNumero(c, onde);
   if (c.pergunta != null) { const e = checarTamanho("pergunta", c.pergunta, LIM.pergunta, onde); if (e) erros.push(e); }
   if (c.rotulo != null) erros.push(`${onde}: spoiler não tem "rotulo" — o texto embaixo do número é a "pergunta"`);
+  if (c.titulo) erros.push(`${onde}: spoiler não tem "titulo" — o número é o destaque e a "pergunta" vem embaixo`);
   return erros;
 }
 

@@ -76,6 +76,24 @@ test("impacto (Review Focus 5): desenhar em t = 0 e muito depois do fim não lan
   for (const estilo of impacto.ESTILOS) desenharEm(impacto, imp({ estilo }).cena, [0, 99]);
 });
 
+test("impacto trocar: kicker, palavra e apoio ficam onde ficariam com uma palavra só", () => {
+  // O trocar mostra uma palavra por vez: o bloco é montado como se houvesse uma linha só.
+  const base = { tipo: "impacto", duracao: 6, kicker: "PENSE", apoio: "um apoio curto" };
+  const pos = (extra) => {
+    const { cena } = validarCena({ ...base, ...extra }, "c", { formato: "reel" });
+    const ctx = desenharEm(impacto, cena, [5.9]);
+    const palavra = ctx.chamadas.filter((c) => c[0] === "translate" && c[1] > 100).at(-1)[2];
+    return { palavra, textos: textos(ctx).filter((x) => !/^[A-D]{4}$/.test(x.s)).map((x) => [x.s, x.y]) };
+  };
+  assert.deepEqual(pos({ estilo: "trocar", palavras: ["AAAA", "BBBB", "CCCC", "DDDD"] }), pos({ palavras: ["DDDD"] }));
+});
+
+test("impacto crescer (Review Focus 5): palavra curta não cresce sem fim", () => {
+  const { cena } = validarCena({ tipo: "impacto", duracao: 4, estilo: "crescer", palavras: ["A", "B", "C", "D"] }, "c", { formato: "reel" });
+  const escalas = desenharEm(impacto, cena, [99]).chamadas.filter((c) => c[0] === "scale").map((c) => c[1]);
+  assert.ok(escalas.length && escalas.every((s) => s <= impacto.ZOOM_MAXIMO), escalas.join(", "));
+});
+
 const perg = (extra = {}) => ({ tipo: "pergunta", duracao: 5, pergunta: "Abrir um atalho deixa o trânsito…", opcoes: ["Mais rápido", "Igual", "Mais lento"], ...extra });
 
 test("pergunta: valida opções, resposta e tamanhos", () => {
@@ -225,6 +243,7 @@ test("spoiler: valida como o odômetro e limita a pergunta", () => {
   assert.match(validarCena(spo({ valor: "33" }), "cena 1", { formato: "reel" }).erros[0], /"valor" precisa ser um número/);
   assert.match(validarCena(spo({ pergunta: "x".repeat(21) }), "cena 1", { formato: "reel" }).erros[0], /"pergunta" tem 21 caracteres; o máximo é 20/);
   assert.match(validarCena(spo({ rotulo: "da população" }), "cena 1", { formato: "reel" }).erros[0], /spoiler não tem "rotulo"/);
+  assert.match(validarCena(spo({ titulo: "O RESULTADO" }), "cena 1", { formato: "reel" }).erros[0], /spoiler não tem "titulo"/);
 });
 
 test("spoiler: impacto no número, pop na pergunta; padrão 'COMO?'", () => {
