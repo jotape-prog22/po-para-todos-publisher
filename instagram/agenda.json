@@ -370,6 +370,110 @@
         "media_id": "18126028780846135"
       },
       "erro": null
+    },
+    {
+      "id": "2026-10-19-paradoxo-de-braess:reel",
+      "pasta": "instagram/2026-10-19-paradoxo-de-braess",
+      "formato": "reel",
+      "quando": "2026-10-19T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-10-23-torneio-de-axelrod:reel",
+      "pasta": "instagram/2026-10-23-torneio-de-axelrod",
+      "formato": "reel",
+      "quando": "2026-10-23T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-10-28-preco-sombra-kantorovich:reel",
+      "pasta": "instagram/2026-10-28-preco-sombra-kantorovich",
+      "formato": "reel",
+      "quando": "2026-10-28T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-11-02-enem-5-milhoes:reel",
+      "pasta": "instagram/2026-11-02-enem-5-milhoes",
+      "formato": "reel",
+      "quando": "2026-11-02T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-11-04-cortar-rolos:reel",
+      "pasta": "instagram/2026-11-04-cortar-rolos",
+      "formato": "reel",
+      "quando": "2026-11-04T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-11-06-energia-sobrando:reel",
+      "pasta": "instagram/2026-11-06-energia-sobrando",
+      "formato": "reel",
+      "quando": "2026-11-06T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-10-26-fila-unica:reel",
+      "pasta": "instagram/2026-10-26-fila-unica",
+      "formato": "reel",
+      "quando": "2026-10-26T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
+    },
+    {
+      "id": "2026-10-30-overbooking:reel",
+      "pasta": "instagram/2026-10-30-overbooking",
+      "formato": "reel",
+      "quando": "2026-10-30T12:00:00-03:00",
+      "aprovado": true,
+      "estado": "agendado",
+      "feitos": [],
+      "tentativas": 0,
+      "ajuste": null,
+      "resultado": null,
+      "erro": null
     }
   ]
 }
