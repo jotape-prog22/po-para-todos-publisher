@@ -1,0 +1,86 @@
+{
+  "titulos_candidatos": [
+    "FOLGAS COMPLEMENTARES - Exemplo Resolvido do Dual a Partir do Primal",
+    "TEOREMA DAS FOLGAS COMPLEMENTARES - Exercício Resolvido do Dual",
+    "DUALIDADE - Resolvendo o Dual pelas Folgas Complementares",
+    "FOLGAS COMPLEMENTARES - Como Achar o Dual Passo a Passo",
+    "TFC - Solução do Dual a Partir do Primal Passo a Passo"
+  ],
+  "titulo": "FOLGAS COMPLEMENTARES - Exemplo Resolvido do Dual a Partir do Primal",
+  "gancho": "Você já tem a solução ótima do Primal, x1 = 100 e x2 = 200. Dá para achar a do Dual sem rodar o Simplex outra vez? 🤔 Nesta aula resolvemos um estudo de caso aplicando o Teorema das Folgas Complementares, passo a passo, até chegar ao vetor ótimo do Dual.",
+  "objetivos": [
+    "Como escrever as duas condições do Teorema das Folgas Complementares, uma ligando as restrições do Primal às variáveis duais e outra ligando as restrições do Dual às variáveis do Primal.",
+    "Como reorganizar cada restrição do Primal e substituir x1 = 100 e x2 = 200 para ver quais folgas se anulam.",
+    "Por que uma restrição com folga diferente de zero obriga a variável dual correspondente a valer zero, e por que uma folga nula deixa a variável dual livre por enquanto.",
+    "Como usar as restrições do Dual, que valem como igualdade porque x1 e x2 são positivos, para montar duas equações simples e achar as variáveis que sobraram."
+  ],
+  "fechamento": "Fechamos com o Dual resolvido: W1 = 16, W5 = 2 e todas as outras variáveis duais iguais a zero.",
+  "cta_complemento": "está penando com folgas complementares",
+  "hashtags_tema": [
+    "#FolgasComplementares",
+    "#Dualidade",
+    "#ProgramacaoLinear",
+    "#PrecoSombra"
+  ],
+  "tags": [
+    "folgas complementares",
+    "teorema das folgas complementares",
+    "TFC",
+    "dualidade",
+    "primal e dual",
+    "resolver o dual",
+    "solução ótima do dual",
+    "exemplo resolvido",
+    "estudo de caso",
+    "programação linear",
+    "pesquisa operacional",
+    "otimização",
+    "UNIRIO",
+    "PO para Todos"
+  ],
+  "capitulos": [
+    {
+      "tempo": "00:00",
+      "titulo": "Abertura"
+    },
+    {
+      "tempo": "00:21",
+      "titulo": "O que a questão pede"
+    },
+    {
+      "tempo": "01:11",
+      "titulo": "Relembrando o Teorema (TFC)"
+    },
+    {
+      "tempo": "02:45",
+      "titulo": "Restrições do Primal reorganizadas"
+    },
+    {
+      "tempo": "04:18",
+      "titulo": "Substituindo x1 = 100 e x2 = 200"
+    },
+    {
+      "tempo": "05:25",
+      "titulo": "Quais variáveis duais valem zero?"
+    },
+    {
+      "tempo": "06:34",
+      "titulo": "Restrições do Dual reorganizadas"
+    },
+    {
+      "tempo": "09:29",
+      "titulo": "Resolvendo W1 e W5"
+    },
+    {
+      "tempo": "10:36",
+      "titulo": "Solução ótima do Dual"
+    }
+  ],
+  "relacionados": [
+    {
+      "contexto": "Quer entender a teoria por trás? Veja o Teorema das Folgas Complementares",
+      "url": "https://youtu.be/6n6oPR70LSA"
+    }
+  ],
+  "descricao": "Você já tem a solução ótima do Primal, x1 = 100 e x2 = 200. Dá para achar a do Dual sem rodar o Simplex outra vez? 🤔 Nesta aula resolvemos um estudo de caso aplicando o Teorema das Folgas Complementares, passo a passo, até chegar ao vetor ótimo do Dual.\n\nNesta aula, você vai aprender:\n\nComo escrever as duas condições do Teorema das Folgas Complementares, uma ligando as restrições do Primal às variáveis duais e outra ligando as restrições do Dual às variáveis do Primal.\n\nComo reorganizar cada restrição do Primal e substituir x1 = 100 e x2 = 200 para ver quais folgas se anulam.\n\nPor que uma restrição com folga diferente de zero obriga a variável dual correspondente a valer zero, e por que uma folga nula deixa a variável dual livre por enquanto.\n\nComo usar as restrições do Dual, que valem como igualdade porque x1 e x2 são positivos, para montar duas equações simples e achar as variáveis que sobraram.\n\nFechamos com o Dual resolvido: W1 = 16, W5 = 2 e todas as outras variáveis duais iguais a zero.\n\n⏱️ Capítulos:\n00:00 Abertura\n00:21 O que a questão pede\n01:11 Relembrando o Teorema (TFC)\n02:45 Restrições do Primal reorganizadas\n04:18 Substituindo x1 = 100 e x2 = 200\n05:25 Quais variáveis duais valem zero?\n06:34 Restrições do Dual reorganizadas\n09:29 Resolvendo W1 e W5\n10:36 Solução ótima do Dual\n\n⚠️ Quer entender a teoria por trás? Veja o Teorema das Folgas Complementares: https://youtu.be/6n6oPR70LSA\n\n📚 Este conteúdo faz parte do PO Para Todos, um projeto da UNIRIO que busca democratizar o ensino da Pesquisa Operacional de um jeito acessível e direto.\n\n💡 Gostou da aula? Acompanhe nosso projeto e tenha acesso a mais materiais:\n\n📸 Instagram: https://www.instagram.com/pesquisaoperacionalparatodos/\n🌐 Nosso Site: https://pesquisaoperacional.uniriotec.br/index.html\n\n👍 Não esqueça de deixar o like, se inscrever no canal e compartilhar o vídeo com quem está penando com folgas complementares!\n\n#PesquisaOperacional #PO #FolgasComplementares #Dualidade #ProgramacaoLinear #PrecoSombra #Otimização #UNIRIO"
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "SW1J1a2vkRc",
+  "url": "https://youtu.be/SW1J1a2vkRc",
+  "published_at": "2026-10-15T21:19:21Z",
+  "title": "Teorema das Folgas Complementares (TFC) - Caso de Exemplo",
+  "description": "Vídeo sobre teorema das folgas complementares apresentando um estudo de caso.",
+  "tags": [],
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/SW1J1a2vkRc/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/SW1J1a2vkRc/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/SW1J1a2vkRc/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    },
+    "standard": {
+      "url": "https://i.ytimg.com/vi/SW1J1a2vkRc/sddefault.jpg",
+      "width": 640,
+      "height": 480
+    },
+    "maxres": {
+      "url": "https://i.ytimg.com/vi/SW1J1a2vkRc/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+    }
+  }
+}
