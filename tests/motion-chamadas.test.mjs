@@ -7,6 +7,7 @@ import { escalar } from "../design-system/motion/escrita.mjs";
 import * as impacto from "../design-system/motion/cenas/impacto.mjs";
 import * as pergunta from "../design-system/motion/cenas/pergunta.mjs";
 import * as riscado from "../design-system/motion/cenas/riscado.mjs";
+import * as digitado from "../design-system/motion/cenas/digitado.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -165,8 +166,55 @@ test("riscado (Review Focus 1): o risco de uma frase no limite não sai da área
   assert.ok(xs.length && xs.every((x) => x >= area.x && x <= area.x + area.w), xs.join(", "));
 });
 
+const dig = (extra = {}) => ({ tipo: "digitado", duracao: 6, frase: "37.719 pessoas esperam uma córnea no Brasil.", marca: "37.719 pessoas", ...extra });
+
+// Retângulos do marca-texto: os fillRect de um instante depois de "aPartirDe" em que o cursor
+// está apagado (ele pisca a cada ritmo.digitado.piscar e também é um fillRect).
+function retangulosDaMarca(cena, aPartirDe) {
+  const { piscar } = movimento.ritmo.digitado;
+  const t = (2 * Math.ceil(aPartirDe / (2 * piscar)) + 1) * piscar + 0.01;
+  return desenharEm(digitado, cena, [t]).chamadas.filter((c) => c[0] === "fillRect");
+}
+
+test("digitado: a marca precisa estar na frase", () => {
+  assert.deepEqual(validarCena(dig(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(dig({ marca: "fila" }), "cena 1", { formato: "reel" }).erros[0], /"marca" precisa ser um trecho de "frase"/);
+});
+
+test("digitado: digitar no início, caneta na marca, fim depois da última letra", () => {
+  const r = movimento.ritmo.digitado, c = dig();
+  const lt = validarCena(c, "c", { formato: "reel" }).cena.linha;
+  const fimLetras = Math.round((r.inicio + c.frase.length * r.por_letra) * 1000) / 1000;
+  assert.deepEqual(lt.eventos, [{ t: r.inicio, efeito: "digitar" }, { t: Math.round((fimLetras + r.marca) * 1000) / 1000, efeito: "caneta" }]);
+  assert.equal(lt.fimEscrita, Math.round((fimLetras + r.marca + r.traco) * 1000) / 1000);
+});
+
+test("digitado: no meio, só parte da frase; no fim, a frase inteira", () => {
+  const r = movimento.ritmo.digitado;
+  const { cena } = validarCena(dig(), "c", { formato: "reel" });
+  const meio = textos(desenharEm(digitado, cena, [r.inicio + 10 * r.por_letra])).map((x) => x.s).join("");
+  assert.ok(meio.startsWith("37.719 pes") && !meio.includes("Brasil"));
+  const fim = textos(desenharEm(digitado, cena, [5.9])).map((x) => x.s).join(" ");
+  assert.ok(fim.includes("Brasil."));
+  desenharEm(digitado, cena, [0, 99]);   // Review Focus 5
+});
+
+test("digitado (Review Focus 2): marca partida pela quebra de linha não lança erro e ainda marca", () => {
+  // No kit falso cabem 25 caracteres por linha: "quebra" fecha a 3ª linha e "da linha do meio." abre a 4ª.
+  const frase = "Uma frase longa o bastante para a marca cair exatamente na quebra da linha do meio.";
+  const { cena } = validarCena(dig({ frase, marca: "quebra da linha do meio" }), "c", { formato: "reel" });
+  const rets = retangulosDaMarca(cena, 9);
+  assert.equal(rets.length, 5, "uma por palavra da marca");
+  assert.equal(new Set(rets.map((r) => r[2])).size, 2, "em duas linhas");
+});
+
+test("digitado: palavra da marca repetida fora dela não é marcada", () => {
+  const { cena } = validarCena(dig({ frase: "a fila anda e a espera cresce", marca: "a espera" }), "c", { formato: "reel" });
+  assert.equal(retangulosDaMarca(cena, 5.9).length, 2);
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
-const COM_KICKER = [[pergunta, perg()], [riscado, risc()]];
+const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   for (const [mod, c] of COM_KICKER) {
     const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });
