@@ -1,0 +1,55 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Desafio: 3 caixas, uma fila por caixa ou uma fila única — em qual você espera menos? Resposta na cena 2 (fila única).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "A pergunta só abre a dúvida. A resposta (fila única, menor espera média) vem da cena 2, conferida por fórmula (Erlang C) e por simulação; ver entradas da cena 2."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Exemplo: 3 caixas, 2 min por cliente em média, chegam 1,35 cliente/min, ninguém troca de fila. Espera média: fila qualquer 18 min; a mais curta ≈ 6 min; fila única 5,5 min.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Números inventados, rotulados EXEMPLO; chegadas e atendimentos exponenciais (modelo clássico). Caminho 1, fórmulas: fila qualquer = cada caixa um M/M/1 com λ = 0,45 e μ = 0,5, Wq = ρ/(μ − λ) = 0,9/0,05 = 18; fila única = M/M/3, Erlang C = 0,817, Wq = C/(cμ − λ) = 0,817/0,15 = 5,45 ≈ 5,5. Caminho 2, simulação em node com 2 milhões de clientes: sorteio de fila 18,14; fila única 5,52; entrar na mais curta 5,84, 5,95 e 5,96 em três rodadas (por isso '≈ 6'). A mais curta não tem fórmula fechada simples; o número é só de simulação, e a legenda diz isso."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Fórmulas de Erlang C e do tempo de espera em M/M/c (M/M/1 é o caso c = 1).",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/M/M/c_queue",
+      "resultado": "confirmada",
+      "como": "Wikipedia 'M/M/c queue' (lida): Erlang C = probabilidade de todos os servidores ocupados, e W = C(c, λ/μ)/(cμ − λ) + 1/μ; tirando o atendimento 1/μ, Wq = C/(cμ − λ). Com c = 1, C = ρ e Wq = ρ/(μ − λ), a fórmula da cena 3."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Por caixa 1,35 ÷ 3 = 0,45/min; ocupação 0,45 ÷ 0,5 = 90%; folga 0,5 − 0,45 = 0,05; espera 0,9 ÷ 0,05 = 18 min.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: 1.35/3 = 0,45; 0,45/0,5 = 0,9; 0,5 − 0,45 = 0,05; 0,9/0,05 = 18. Por outro caminho: Wq = λ/(μ(μ − λ)) = 0,45/(0,5 × 0,05) = 18, e a simulação de fila sorteada deu 18,14."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Um caixa, 2 min por cliente: ocupação 80% → 8 min, 90% → 18 min, 95% → 38 min de espera média.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "M/M/1 com μ = 0,5 e λ = ρμ: Wq = ρ/(μ(1 − ρ)). node -e: 0,8/(0,5·0,2) = 8,0; 0,9/(0,5·0,1) = 18,0; 0,95/(0,5·0,05) = 38,0. Conferido pela forma λ/(μ(μ − λ)): λ = 0,4 → 0,4/(0,5·0,1) = 8; λ = 0,475 → 0,475/(0,5·0,025) = 38. Nota da tela: 90% → 95% leva 18 → 38, mais que o dobro."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Na fila única ninguém espera com caixa livre; quem chegou antes é atendido antes; escolher a mais curta chega perto, mas não empata.",
+      "tipo": "fonte",
+      "fonte": "https://allendowney.com/blog/?p=835",
+      "resultado": "confirmada",
+      "como": "Allen Downey, 'One Queue or Two' (lido): com duas filas, 'the only time two lines is worse is if one queue is empty and the other contains more than one customer' — é o caso de um caixa parado enquanto há gente esperando, que a fila única evita por construção (o próximo da fila vai ao primeiro caixa livre). 'Quem chegou antes é atendido antes' é a regra da fila única (uma só fila, ordem de chegada). 'Chega perto, mas não empata': simulação da cena 2, ≈ 6 contra 5,5 min."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Exemplo com 90% de ocupação; fila qualquer 18 min, fila única ≈ 5,5 min (Erlang C), a mais curta ≈ 6 min (simulação de 2 milhões de clientes); de 90% para 95%, 18 para 38 min.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Mesmas contas e simulações das cenas 2 a 4. A legenda diz que os números são de exemplo e que o 6 vem de simulação."
+    }
+  ]
+}

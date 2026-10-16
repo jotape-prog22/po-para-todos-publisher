@@ -1,0 +1,80 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Pergunta: 'Abrir um atalho deixa a viagem de todos…' com opções Mais rápida / Igual / Mais lenta.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Braess%27s_paradox",
+      "resultado": "confirmada",
+      "como": "A pergunta só abre a dúvida; a resposta certa (Mais lenta) é revelada na cena 7 e se apoia na Wikipedia (wikitexto lido): 'adding one or more roads to a road network can slow down overall traffic flow through it', e no exemplo das cenas 2 a 6."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Exemplo: 4.000 motoristas; Início→A e B→Fim levam T/100 min (T = carros no trecho); Início→B e A→Fim levam 45 min fixos.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Braess%27s_paradox",
+      "resultado": "confirmada",
+      "como": "Seção 'Mathematical approach / Example' da Wikipedia: 4000 drivers; Start→A = T/100, Start→B = 45 min constantes, A→End = 45, B→End = T/100. É exemplo de livro-texto (a tela marca EXEMPLO), não o exemplo numérico do artigo original de 1968."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "2.000 carros por rota: 2.000/100 = 20; 20 + 45 = 65 min.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: procurei a em 0..4000 com a/100+45 = (4000-a)/100+45 -> a = 2000, tempo 65 nas duas rotas. Wikipedia dá o mesmo: 'a = b = 2000 ... 2000/100 + 45 = 65 minutes'."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Atalho A→B de 0 min; o grafo mostra pesos T/100, 45, 45, T/100 e 0 e o caminho Início, A, B, Fim.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Braess%27s_paradox",
+      "resultado": "confirmada",
+      "como": "Wikipedia: 'a new road was built connecting points A and B, with an extremely short travel time of approximately 0 minutes'; pesos iguais aos da cena 2."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Pelo atalho: 40 + 0 + 40 = 80 min; desviar de A direto ao Fim: 40 + 45 = 85; ninguém ganha mudando.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e com os 3 caminhos (x=Início-A-B-Fim, y=Início-A-Fim, z=Início-B-Fim). Com os 4.000 em x: SAB = 4000/100+0+4000/100 = 80; SAF = 4000/100+45 = 85; SBF = 45+4000/100 = 85. Um motorista que desvie para SAF ou SBF leva 85 > 79,99: ninguém muda. Wikipedia: 'the time ... is 4000/100 + ... = 80'."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "A viagem de todos passa de 65 para 80 minutos.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "80 - 65 = 15 min a mais para cada um dos 4.000, calculado nas contas das cenas 3 e 5."
+    },
+    {
+      "onde": "cena 7",
+      "texto": "Resposta: Mais lenta (opção 3); kicker 'Equilíbrio de Nash'.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Caminho 1 (cenas 3 e 5): 65 min antes, 80 min com o atalho. Caminho 2: busca em node sobre todas as divisões de 4.000 carros (passo 50) entre os 3 caminhos, procurando o equilíbrio em que nenhum caminho usado é mais lento que o melhor disponível: único equilíbrio = todos no atalho, 80 min > 65. Logo 'Mais lenta'. Wikipedia: 'In a Nash equilibrium, drivers have no incentive to change their routes'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Em 1968, Dietrich Braess, matemático alemão, mostrou o paradoxo.",
+      "tipo": "fonte",
+      "fonte": "https://web.archive.org/web/2024/https://www.nytimes.com/1990/12/25/health/what-if-they-closed-42d-street-and-nobody-noticed.html",
+      "resultado": "confirmada",
+      "como": "NYT: 'The traffic paradox was first described in 1968 by Dr. Dietrich Braess of the Institute for Numerical and Applied Mathematics in Munster, Germany.' Wikipedia cita Braess, Unternehmensforschung 12(1), dez/1968, p. 258-268. Não cito a universidade (as fontes divergem: Münster x Ruhr)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Em 1990, o NYT contou que o fechamento da Rua 42 no Dia da Terra não gerou o engarrafamento esperado, e citou um estudo alemão de 1969 sobre Stuttgart.",
+      "tipo": "fonte",
+      "fonte": "https://web.archive.org/web/2024/https://www.nytimes.com/1990/12/25/health/what-if-they-closed-42d-street-and-nobody-noticed.html",
+      "resultado": "confirmada",
+      "como": "NYT 25/12/1990: 'On Earth Day this year, New York City's Transportation Commissioner decided to close 42d Street ... Earth Day generated no historic traffic jam. Traffic flow actually improved'; 'a German paper, published in 1969, reporting that the City of Stuttgart had tried to ease downtown traffic by adding a new street. But congestion only got worse, and so ... the authorities closed the street. Traffic flow improved.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "O paradoxo nem sempre vale: cada rede precisa ser analisada.",
+      "tipo": "fonte",
+      "fonte": "https://web.archive.org/web/2024/https://www.nytimes.com/1990/12/25/health/what-if-they-closed-42d-street-and-nobody-noticed.html",
+      "resultado": "confirmada",
+      "como": "NYT, Dr. Joel Cohen: 'the paradox does not always hold; each traffic network must be analyzed on its own. When a network is not congested, adding a new street will indeed make things better.'"
+    }
+  ]
+}

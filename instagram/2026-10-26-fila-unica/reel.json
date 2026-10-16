@@ -1,0 +1,104 @@
+{
+  "tipo": "cenas",
+  "trilha": "jazz-foco",
+  "cenas": [
+    {
+      "tipo": "desafio",
+      "duracao": 8.5,
+      "kicker": "SUPERMERCADO, 3 CAIXAS",
+      "pergunta": "Uma fila por caixa ou uma fila única: em qual você espera menos?",
+      "segundos": 4
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 7,
+      "kicker": "EXEMPLO · 3 CAIXAS, 2 MIN CADA",
+      "titulo": "ESPERA MÉDIA NA FILA",
+      "colunas": [
+        "Você entra",
+        "Espera"
+      ],
+      "linhas": [
+        [
+          "Qualquer uma",
+          "18 min"
+        ],
+        [
+          "A mais curta",
+          "≈ 6 min"
+        ],
+        [
+          "Fila única",
+          "5,5 min"
+        ]
+      ],
+      "destaque": {
+        "linha": 3,
+        "coluna": 2
+      },
+      "nota": "chegam 1,35 cliente por minuto; ninguém troca de fila"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 8.3,
+      "kicker": "TEORIA DE FILAS",
+      "titulo": "POR QUE 18 MINUTOS",
+      "linhas": [
+        "por caixa: 1,35 ÷ 3 = 0,45/min",
+        "ocupação: 0,45 ÷ 0,5 = 90%",
+        "folga: 0,5 − 0,45 = 0,05",
+        "espera: 0,9 ÷ 0,05 = 18 min"
+      ],
+      "destaque": 4,
+      "nota": "cada caixa com sua fila, sozinho"
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 6,
+      "kicker": "UM CAIXA, 2 MIN POR CLIENTE",
+      "titulo": "PERTO DE 100%, A ESPERA EXPLODE",
+      "colunas": [
+        "Ocupação",
+        "Espera"
+      ],
+      "linhas": [
+        [
+          "80%",
+          "8 min"
+        ],
+        [
+          "90%",
+          "18 min"
+        ],
+        [
+          "95%",
+          "38 min"
+        ]
+      ],
+      "destaque": {
+        "linha": 3,
+        "coluna": 2
+      },
+      "nota": "5 pontos a mais de ocupação: mais que o dobro"
+    },
+    {
+      "duracao": 6,
+      "kicker": "O QUE A FILA ÚNICA EVITA",
+      "titulo": "NINGUÉM ESPERA COM CAIXA LIVRE",
+      "linhas": [
+        "Quem chegou antes é atendido antes",
+        "Escolher a fila mais curta chega perto, mas não empata"
+      ],
+      "faixa": "MAIS PO NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Supermercado com 3 caixas: uma fila por caixa ou uma fila única? A teoria de filas responde.",
+    "corpo": "No exemplo, cada caixa leva em média 2 minutos por cliente e chegam 1,35 cliente por minuto: os caixas ficam 90% do tempo ocupados. Chegadas e atendimentos são aleatórios, o modelo clássico da teoria de filas.\n\nSe cada pessoa entra numa fila qualquer e não troca, cada caixa vira uma fila sozinha, e a espera média é de 18 minutos. Com uma fila única para os 3 caixas, cai para cerca de 5,5 minutos (fórmula de Erlang C). Quem sempre escolhe a fila menor fica perto, com cerca de 6 minutos na nossa simulação de 2 milhões de clientes.\n\nA fila única evita o pior caso: um caixa parado enquanto outra fila espera. E perto de 100% de ocupação a espera explode: num caixa sozinho, passar de 90% para 95% leva a espera de 18 para 38 minutos.\n\nNúmeros de exemplo, inventados para a conta.",
+    "hashtags_tema": [
+      "#TeoriaDasFilas",
+      "#FilaUnica",
+      "#Supermercado"
+    ]
+  }
+}

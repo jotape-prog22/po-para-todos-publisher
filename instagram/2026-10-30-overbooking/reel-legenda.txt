@@ -1,0 +1,13 @@
+Vender mais passagens do que lugares no avião pode ser a decisão ótima. A conta é de Pesquisa Operacional.
+
+Overbooking é vender mais passagens do que assentos. Parece erro, mas é uma conta: parte de quem compra não aparece, e assento vazio é receita perdida.
+
+No nosso exemplo (números inventados): avião de 180 lugares, 1 em cada 10 passageiros falta, cada um que voa rende R$ 500 e cada um que fica em terra custa R$ 2.000. Vendendo só 180, o lucro médio é R$ 81 mil por voo. O melhor é vender 196: o lucro médio vai a R$ 87,2 mil (7,6% a mais), com 16,5% de chance de sobrar alguém. Vendendo 205, o lucro médio cai para R$ 80,1 mil, abaixo até de vender só 180. Conferimos com a distribuição binomial e com uma simulação de 400 mil voos.
+
+No Brasil, a regra é da ANAC (Resolução 400): a companhia procura primeiro voluntários, com compensação negociada. Sem voluntários, paga na hora 250 DES por passageiro em voo doméstico (500 DES em internacional) e oferece reacomodação, reembolso ou outro transporte.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #Overbooking #Probabilidade #AviacaoCivil #Otimização #UNIRIO

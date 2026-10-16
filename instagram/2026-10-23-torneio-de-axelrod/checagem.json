@@ -1,0 +1,90 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Parece: trair rende mais pontos. É: quem coopera primeiro (Tit for Tat) venceu.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation",
+      "resultado": "confirmada",
+      "como": "Parece: em cada rodada isolada trair rende mais, qualquer que seja a jogada do outro (5 > 3 se ele coopera; 1 > 0 se ele trai, pela matriz da cena 3). É: Wikipedia, citando Axelrod 1984, o torneio foi vencido por Tit for Tat, que 'cooperates on the first move' (PDF de Axelrod) e depois copia; venceu os dois torneios (cena 7)."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Um jogo de teoria dos jogos: dois jogadores escolhem ao mesmo tempo, sem combinar, cooperar ou trair, e ganham pontos pela tabela.",
+      "tipo": "fonte",
+      "fonte": "https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf",
+      "resultado": "confirmada",
+      "como": "Axelrod (PDF lido): no dilema do prisioneiro cada jogador escolhe cooperar ou trair sem saber a escolha do outro, e os pontos vêm da matriz 3/0/5/1 (entrada da cena 3). Wikipedia (The Evolution of Cooperation): o livro trata o dilema como problema de teoria dos jogos."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Pontos por rodada: ambos cooperam 3 e 3; ambos traem 1 e 1; quem trai quem coopera leva 5 e o outro 0.",
+      "tipo": "fonte",
+      "fonte": "https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf",
+      "resultado": "confirmada",
+      "como": "Axelrod, 'The Evolution of Cooperation' (cap. adaptado de 1984, PDF lido): 'If both players defect: Both players get $1. If both players cooperate: Both players get $3. If one player defects while the other player cooperates: The defector gets $5 and the cooperator gets zero.' O post 'The Axelrod Tournaments' (lawrules.wordpress.com) cita o livro: payoffs 5, 3, 1 e 0 e jogos de 200 jogadas. As 4 células da tabela: CC = 3 e 3, CD = 0 e 5, DC = 5 e 0, DD = 1 e 1."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Tit for Tat, de Anatol Rapoport: coopera na 1ª jogada e depois copia o que o outro fez.",
+      "tipo": "fonte",
+      "fonte": "https://axelrod.readthedocs.io/en/latest/discussion/overview_of_past_tournaments.html",
+      "resultado": "confirmada",
+      "como": "Axelrod (PDF): 'a strategy of simple reciprocity which cooperates on the first move and then does whatever the other player did on the previous move ... named Tit for Tat'. Tabela da documentação da biblioteca Axelrod-Python (primeiro torneio): 'Tit For Tat — Anatol Rapoport'. Wikipedia: 'won by a very simple strategy submitted by Anatol Rapoport called tit for tat'."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Sempre-trai x Tit for Tat em 5 rodadas: 5 a 0 na 1ª, 1 a 1 nas outras quatro; 9 a 4.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Simulei por node -e a matriz 5/3/1/0 com TFT (começa C, copia) contra Sempre-trai (D): total [9, 4]. À mão: rodada 1 = D x C = 5 e 0; rodadas 2-5 = D x D = 1 e 1; Sempre-trai 5+4 = 9, Tit for Tat 0+4 = 4. Exemplo didático (a tela marca EXEMPLO), não é dado do torneio."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "3 Tit for Tat e 1 Sempre-trai, 5 rodadas por duelo: TFT x TFT = 15 (cada); TFT x Sempre-trai = 4; cada TFT 15+15+4 = 34; Sempre-trai 9+9+9 = 27.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e com round-robin de [TFT, TFT, TFT, Sempre-trai], 5 rodadas por par: totais [34, 34, 34, 27]. À mão: TFT x TFT = 3x5 = 15; TFT x Sempre-trai = 4 (cena 5); Sempre-trai ganha cada um dos 3 duelos por 9 a 4 e soma 27, mas cada TFT soma 34. Exemplo didático, marcado EXEMPLO; não inclui autoconfronto."
+    },
+    {
+      "onde": "cena 7",
+      "texto": "200 rodadas por confronto; Tit for Tat venceu os dois torneios.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation",
+      "resultado": "confirmada",
+      "como": "Wikipedia: 'Each strategy was paired with each other strategy for 200 iterations ... The winner was ... tit for tat ... a second tournament was held ... TFT won again.' Axelrod (PDF): 'The result was another victory for simple reciprocity.' Stanford Encyclopedia (plato.stanford.edu/entries/prisoner-dilemma): TFT 'won Axelrod's second tournament'."
+    },
+    {
+      "onde": "cena 8",
+      "texto": "Cooperar primeiro compensa; ganhar o duelo não é ganhar o jogo.",
+      "tipo": "fonte",
+      "fonte": "https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf",
+      "resultado": "confirmada",
+      "como": "Axelrod: quatro propriedades de uma estratégia bem-sucedida, a primeira 'avoidance of unnecessary conflict by cooperating as long as the other player does' (o Tit for Tat nunca é o primeiro a trair; Wikipedia citando 1984 p. 113: 'the best-performing strategies were nice'). Frase de 1984 p. 130 sobre vencer não por superar o outro, mas por obter cooperação (Wikipedia)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Em torno de 1980, Axelrod convidou especialistas; 14 programas mais um aleatório; cada um contra todos os outros, 200 rodadas por confronto.",
+      "tipo": "fonte",
+      "fonte": "https://axelrod.readthedocs.io/en/latest/discussion/overview_of_past_tournaments.html",
+      "resultado": "confirmada",
+      "como": "Documentação Axelrod-Python: 'Axelrod's first tournament ... his 1980 paper ... Effective choice in the Prisoner's Dilemma ... included 14 strategies (plus a random strategy)'. Wikipedia (Tit for tat): 'held around 1980'. Axelrod (PDF): 'I invited experts in game theory to submit programs'. 200 iterações: Wikipedia e lawrules (citando o livro: 'Each game consisted of exactly 200 moves')."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O segundo torneio teve muito mais inscritos, que conheciam o resultado do primeiro; o Tit for Tat venceu de novo.",
+      "tipo": "fonte",
+      "fonte": "https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf",
+      "resultado": "confirmada",
+      "como": "Axelrod: 'A second round ... in which many more entries were submitted by amateurs and professionals alike, all of whom were aware of the results of the first round. The result was another victory for simple reciprocity.' Não cito o número de inscritos: a Stanford Encyclopedia diz 63; a pesquisa inicial dizia 62 e 6 países, sem fonte primária lida."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Axelrod: o Tit for Tat venceu não por se sair melhor que o outro jogador, mas por obter cooperação.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation",
+      "resultado": "confirmada",
+      "como": "Wikipedia, citando Axelrod 1984 p. 130: TFT 'won, not by doing better than the other player, but by eliciting cooperation'. Parafraseado, sem aspas na legenda."
+    }
+  ]
+}

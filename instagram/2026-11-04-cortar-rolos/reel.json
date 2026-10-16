@@ -1,0 +1,104 @@
+{
+  "tipo": "cenas",
+  "trilha": "jazz-foco",
+  "cenas": [
+    {
+      "tipo": "pergunta",
+      "duracao": 4,
+      "kicker": "FÁBRICA DE PAPEL",
+      "pergunta": "Trocar a prática pela teoria: a perda de papel cai…",
+      "opcoes": [
+        "Quase nada",
+        "Cerca de 1/4",
+        "Pela metade"
+      ]
+    },
+    {
+      "duracao": 6,
+      "kicker": "O PROBLEMA DE CORTE",
+      "titulo": "BOBINAS DE 96 POLEGADAS (2,44 M)",
+      "linhas": [
+        "Clientes pedem fatias de larguras diferentes",
+        "Cada jeito de fatiar a bobina é um padrão de corte"
+      ]
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 7,
+      "kicker": "PADRÕES DO ESTUDO",
+      "titulo": "COMO FATIAR 96 POLEGADAS",
+      "colunas": [
+        "Fatias",
+        "Total",
+        "Sobra"
+      ],
+      "linhas": [
+        [
+          "4×24",
+          "96",
+          "0"
+        ],
+        [
+          "3×22 + 29",
+          "95",
+          "1"
+        ],
+        [
+          "2×31 + 28",
+          "90",
+          "6"
+        ]
+      ],
+      "destaque": {
+        "linha": 1,
+        "coluna": 3
+      },
+      "nota": "em polegadas; a sobra vira perda"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "20 CASOS REAIS · IMECS 2013",
+      "titulo": "PERDA DE PAPEL",
+      "linhas": [
+        "prática (experiência): 6,35%",
+        "teoria (prog. inteira): 4,57%",
+        "queda média por caso: 25,8%"
+      ],
+      "destaque": 3,
+      "nota": "médias dos 20 casos do estudo"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5,
+      "kicker": "COM 2 GRUPOS DE PRODUTOS",
+      "titulo": "QUEDA MÉDIA DA PERDA",
+      "valor": 41.9,
+      "casas_decimais": 1,
+      "sufixo": "%",
+      "rotulo": "10 casos: de 5,68% para 3,14% de perda"
+    },
+    {
+      "tipo": "pergunta",
+      "duracao": 5,
+      "kicker": "PROGRAMAÇÃO INTEIRA",
+      "pergunta": "Trocar a prática pela teoria: a perda de papel cai…",
+      "opcoes": [
+        "Quase nada",
+        "Cerca de 1/4",
+        "Pela metade"
+      ],
+      "resposta": 2,
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Numa fábrica de papel, cortar as bobinas com um modelo de programação inteira reduziu a perda em cerca de 1/4.",
+    "corpo": "Uma fábrica de papel corta bobinas de 96 polegadas (2,44 m) em fatias das larguras que os clientes pedem. Cada jeito de fatiar é um padrão de corte, e o que sobra na largura vira perda. Escolher quais padrões usar, e quantas vezes, é um problema de corte de estoque.\n\nNo estudo de Tharmmaphornphilas, Puemsin e Siripongwutikorn (IMECS 2013), um modelo de programação inteira escolheu os padrões em 20 casos reais da empresa. A perda média ficou em 4,57%, contra 6,35% no método que a empresa usava, baseado na experiência dos operadores: uma queda média de 25,8% por caso. Com dois grupos de produtos, em 10 casos, a perda foi de 5,68% para 3,14%, uma queda média de 41,9%.\n\nA formulação clássica do corte de estoque com programação linear é de Gilmore e Gomory (Operations Research, 1961). No canal, a aula de Programação Inteira mostra esse tipo de decisão. Link na bio.",
+    "hashtags_tema": [
+      "#CorteDeEstoque",
+      "#ProgramacaoInteira",
+      "#IndustriaDoPapel"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+A estratégia que venceu o famoso torneio de Axelrod nunca ganhou um confronto. Como assim?
+
+Por volta de 1980, o cientista político Robert Axelrod convidou especialistas a enviarem programas para um torneio do dilema do prisioneiro repetido. Foram 14 programas, mais um que jogava ao acaso, cada um enfrentando todos os outros, em 200 rodadas por confronto. O vencedor foi o mais simples de todos: o Tit for Tat, de Anatol Rapoport. Ele coopera na primeira jogada e, depois, copia o que o outro fez na anterior.
+
+A matriz da tela é a de Axelrod: 3 pontos para cada um se ambos cooperam, 1 se ambos traem, e 5 e 0 se um trai quem cooperou. Os duelos de 5 rodadas e o torneio de 3 contra 1 são exemplos nossos, só para mostrar a ideia: o Tit for Tat nunca pontua mais que o adversário num duelo, mas soma mais no conjunto porque faz o outro cooperar. Nas palavras de Axelrod, ele venceu não por se sair melhor que o outro jogador, mas por obter cooperação.
+
+Axelrod fez um segundo torneio, com muito mais inscritos, que já conheciam os resultados do primeiro. O Tit for Tat venceu de novo. Na aula de Teoria dos Jogos, no canal, você vê o equilíbrio de Nash e o dilema do prisioneiro passo a passo. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #TeoriaDosJogos #DilemaDoPrisioneiro #TitForTat #Axelrod #Otimização #UNIRIO

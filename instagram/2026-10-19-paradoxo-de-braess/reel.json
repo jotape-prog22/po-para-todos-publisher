@@ -1,0 +1,197 @@
+{
+  "tipo": "cenas",
+  "trilha": "detetives-tensos",
+  "cenas": [
+    {
+      "tipo": "pergunta",
+      "duracao": 4,
+      "pergunta": "Abrir um atalho deixa a viagem de todos…",
+      "opcoes": [
+        "Mais rápida",
+        "Igual",
+        "Mais lenta"
+      ]
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 7,
+      "kicker": "EXEMPLO · 4.000 MOTORISTAS",
+      "titulo": "ANTES: DUAS ROTAS",
+      "nos": [
+        {
+          "id": "S",
+          "x": 1,
+          "y": 5,
+          "rotulo": "Início"
+        },
+        {
+          "id": "A",
+          "x": 5,
+          "y": 1
+        },
+        {
+          "id": "B",
+          "x": 5,
+          "y": 9
+        },
+        {
+          "id": "F",
+          "x": 9,
+          "y": 5,
+          "rotulo": "Fim"
+        }
+      ],
+      "arestas": [
+        {
+          "de": "S",
+          "para": "A",
+          "peso": "T/100"
+        },
+        {
+          "de": "S",
+          "para": "B",
+          "peso": "45"
+        },
+        {
+          "de": "A",
+          "para": "F",
+          "peso": "45"
+        },
+        {
+          "de": "B",
+          "para": "F",
+          "peso": "T/100"
+        }
+      ],
+      "dirigido": true,
+      "caminho": [
+        "S",
+        "A",
+        "F"
+      ],
+      "legenda": "T = carros no trecho; tempos em minutos"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 6,
+      "kicker": "EXEMPLO",
+      "titulo": "METADE EM CADA ROTA",
+      "linhas": [
+        "2.000 carros por rota",
+        "2.000 / 100 = 20 min",
+        "20 + 45 = 65 min"
+      ],
+      "destaque": 3,
+      "nota": "todos levam 65 minutos"
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 7,
+      "kicker": "EXEMPLO",
+      "titulo": "ABRE-SE UM ATALHO",
+      "nos": [
+        {
+          "id": "S",
+          "x": 1,
+          "y": 5,
+          "rotulo": "Início"
+        },
+        {
+          "id": "A",
+          "x": 5,
+          "y": 1
+        },
+        {
+          "id": "B",
+          "x": 5,
+          "y": 9
+        },
+        {
+          "id": "F",
+          "x": 9,
+          "y": 5,
+          "rotulo": "Fim"
+        }
+      ],
+      "arestas": [
+        {
+          "de": "S",
+          "para": "A",
+          "peso": "T/100"
+        },
+        {
+          "de": "S",
+          "para": "B",
+          "peso": "45"
+        },
+        {
+          "de": "A",
+          "para": "F",
+          "peso": "45"
+        },
+        {
+          "de": "B",
+          "para": "F",
+          "peso": "T/100"
+        },
+        {
+          "de": "A",
+          "para": "B",
+          "peso": "0"
+        }
+      ],
+      "dirigido": true,
+      "caminho": [
+        "S",
+        "A",
+        "B",
+        "F"
+      ],
+      "legenda": "A para B: 0 minuto. Todo mundo passa a usar"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 6,
+      "kicker": "EXEMPLO",
+      "titulo": "COM O ATALHO",
+      "linhas": [
+        "atalho: 40 + 0 + 40 = 80",
+        "desvio: 40 + 45 = 85",
+        "ninguém muda de rota"
+      ],
+      "destaque": 1,
+      "nota": "era 65 min, agora 80 min"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5,
+      "kicker": "A VIRADA",
+      "titulo": "A VIAGEM DE TODOS",
+      "valor": 80,
+      "sufixo": " min",
+      "rotulo": "eram 65 minutos antes do atalho"
+    },
+    {
+      "tipo": "pergunta",
+      "kicker": "EQUILÍBRIO DE NASH",
+      "pergunta": "Abrir um atalho deixa a viagem de todos…",
+      "opcoes": [
+        "Mais rápida",
+        "Igual",
+        "Mais lenta"
+      ],
+      "resposta": 3,
+      "duracao": 5,
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Abrir uma rua nova pode deixar o trânsito pior para todo mundo. É o paradoxo de Braess.",
+    "corpo": "Em 1968, o matemático alemão Dietrich Braess mostrou que, se cada motorista escolhe a rota mais rápida para si, acrescentar uma via a uma rede pode aumentar o tempo de todos. Na tela, um exemplo de livro-texto (números de exemplo, não é uma medição): 4.000 motoristas, duas rotas, 65 minutos para cada um. Com um atalho de tempo zero, todos passam a usá-lo e o trajeto vai para 80 minutos, e ninguém melhora desviando, porque a alternativa levaria 85.\n\nÉ o equilíbrio de Nash: cada um faz o melhor dado o que os outros fazem, e o resultado coletivo não é o melhor possível.\n\nHá relatos de efeito parecido no mundo real. Em 1990, o New York Times contou que o fechamento da Rua 42 em Manhattan, no Dia da Terra, não gerou o engarrafamento esperado, e citou um estudo alemão de 1969 sobre Stuttgart. Os autores ressaltam que o paradoxo nem sempre vale: cada rede precisa ser analisada.\n\nNo canal, a aula de Teoria dos Jogos explica o equilíbrio de Nash passo a passo. Link na bio.",
+    "hashtags_tema": [
+      "#ParadoxoDeBraess",
+      "#TeoriaDosJogos",
+      "#EquilibrioDeNash"
+    ]
+  }
+}

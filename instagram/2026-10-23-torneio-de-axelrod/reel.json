@@ -1,0 +1,115 @@
+{
+  "tipo": "cenas",
+  "trilha": "tutorial-animado",
+  "cenas": [
+    {
+      "tipo": "riscado",
+      "duracao": 4,
+      "kicker": "TEORIA DOS JOGOS",
+      "parece": "Trair rende mais pontos",
+      "e": "Quem coopera primeiro venceu"
+    },
+    {
+      "duracao": 4,
+      "kicker": "TEORIA DOS JOGOS",
+      "titulo": "UM JOGO: COOPERAR OU TRAIR",
+      "linhas": [
+        "Dois jogadores escolhem ao mesmo tempo, sem combinar",
+        "Cada um ganha pontos pela tabela abaixo"
+      ]
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 6,
+      "kicker": "O DILEMA DO PRISIONEIRO",
+      "titulo": "PONTOS EM CADA RODADA",
+      "colunas": [
+        "",
+        "Ele coopera",
+        "Ele trai"
+      ],
+      "linhas": [
+        [
+          "Eu coopero",
+          "3 e 3",
+          "0 e 5"
+        ],
+        [
+          "Eu traio",
+          "5 e 0",
+          "1 e 1"
+        ]
+      ],
+      "destaque": {
+        "linha": 2,
+        "coluna": 3
+      },
+      "nota": "pontos: os meus e os dele"
+    },
+    {
+      "duracao": 5,
+      "kicker": "A ESTRATÉGIA VENCEDORA",
+      "titulo": "TIT FOR TAT, DE ANATOL RAPOPORT",
+      "linhas": [
+        "Coopera na 1ª jogada",
+        "Depois, copia o que o outro fez"
+      ]
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "EXEMPLO · 5 RODADAS",
+      "titulo": "SEMPRE-TRAI X TIT FOR TAT",
+      "linhas": [
+        "1ª rodada: 5 a 0",
+        "2ª a 5ª: 1 a 1 em cada",
+        "Sempre-trai: 5 + 4 = 9",
+        "Tit for Tat: 0 + 4 = 4"
+      ],
+      "destaque": 3,
+      "nota": "no duelo, quem trai ganha"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 8,
+      "kicker": "EXEMPLO · 5 RODADAS",
+      "titulo": "3 TIT FOR TAT E 1 SEMPRE-TRAI",
+      "linhas": [
+        "Tit for Tat x Tit for Tat: 15",
+        "Tit for Tat x Sempre-trai: 4",
+        "Cada Tit for Tat: 15+15+4 = 34",
+        "Sempre-trai: 9+9+9 = 27"
+      ],
+      "destaque": 3,
+      "nota": "o traidor ganhou os 3 duelos e perdeu"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 4.8,
+      "kicker": "O TORNEIO REAL",
+      "titulo": "RODADAS POR CONFRONTO",
+      "valor": 200,
+      "rotulo": "Tit for Tat venceu os dois torneios"
+    },
+    {
+      "duracao": 4.5,
+      "kicker": "A MORAL",
+      "titulo": "COOPERAR PRIMEIRO COMPENSA",
+      "linhas": [
+        "Ganhar o duelo não é ganhar o jogo",
+        "Cooperar rende mais no longo prazo"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "A estratégia que venceu o famoso torneio de Axelrod nunca ganhou um confronto. Como assim?",
+    "corpo": "Por volta de 1980, o cientista político Robert Axelrod convidou especialistas a enviarem programas para um torneio do dilema do prisioneiro repetido. Foram 14 programas, mais um que jogava ao acaso, cada um enfrentando todos os outros, em 200 rodadas por confronto. O vencedor foi o mais simples de todos: o Tit for Tat, de Anatol Rapoport. Ele coopera na primeira jogada e, depois, copia o que o outro fez na anterior.\n\nA matriz da tela é a de Axelrod: 3 pontos para cada um se ambos cooperam, 1 se ambos traem, e 5 e 0 se um trai quem cooperou. Os duelos de 5 rodadas e o torneio de 3 contra 1 são exemplos nossos, só para mostrar a ideia: o Tit for Tat nunca pontua mais que o adversário num duelo, mas soma mais no conjunto porque faz o outro cooperar. Nas palavras de Axelrod, ele venceu não por se sair melhor que o outro jogador, mas por obter cooperação.\n\nAxelrod fez um segundo torneio, com muito mais inscritos, que já conheciam os resultados do primeiro. O Tit for Tat venceu de novo. Na aula de Teoria dos Jogos, no canal, você vê o equilíbrio de Nash e o dilema do prisioneiro passo a passo. Link na bio.",
+    "hashtags_tema": [
+      "#TeoriaDosJogos",
+      "#DilemaDoPrisioneiro",
+      "#TitForTat",
+      "#Axelrod"
+    ]
+  }
+}

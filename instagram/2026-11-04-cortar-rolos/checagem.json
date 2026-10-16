@@ -1,0 +1,64 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Pergunta: trocar a prática pela teoria, a perda de papel cai… Quase nada / Cerca de 1/4 / Pela metade.",
+      "tipo": "fonte",
+      "fonte": "https://www.iaeng.org/publication/IMECS2013/IMECS2013_pp1155-1160.pdf",
+      "resultado": "confirmada",
+      "como": "Tharmmaphornphilas, Puemsin e Siripongwutikorn, 'A MILP Model to Select Cutting Machines and Cutting Patterns to Minimize Paper Loss', IMECS 2013 (PDF baixado e lido com pdftotext). A pergunta só abre a dúvida; a resposta (Cerca de 1/4) é revelada na cena 6 e vem da cena 4: queda média de 25,8% por caso."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Bobinas de 96 polegadas (2,44 m); clientes pedem fatias de larguras diferentes; cada jeito de fatiar é um padrão de corte.",
+      "tipo": "fonte",
+      "fonte": "https://www.iaeng.org/publication/IMECS2013/IMECS2013_pp1155-1160.pdf",
+      "resultado": "confirmada",
+      "como": "Tharmmaphornphilas, Puemsin e Siripongwutikorn, 'A MILP Model to Select Cutting Machines and Cutting Patterns to Minimize Paper Loss', IMECS 2013 (PDF baixado e lido com pdftotext): 'The width of master roll is 96 inches'; a Tabela I lista 9 produtos com larguras 31, 28, 22, 29, 27, 37,5, 24, 35 e 24 polegadas; a Tabela II lista os 'feasible cutting patterns'. Conversão: node -e 96*2.54 = 243,84 cm ≈ 2,44 m."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Padrões do estudo: 4×24 = 96 (sobra 0); 3×22 + 29 = 95 (sobra 1); 2×31 + 28 = 90 (sobra 6).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Tabela II do estudo: padrão 16 [0,0,0,0,0,0,1,0,3] total 96; padrão 3 [0,0,3,1,0,0,0,0,0] total 95; padrão 9 [2,1,0,0,0,0,0,0,0] total 90. Refeito com as larguras da Tabela I: produto 7 (24) + 3 × produto 9 (24) = 96 (por isso '4×24': são dois produtos de 24 pol. com comprimentos diferentes); 3 × 22 + 29 = 95; 2 × 31 + 28 = 90. Sobra = 96 − total: 0, 1 e 6."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "20 casos reais: perda média 6,35% na prática (método da empresa, pela experiência dos operadores) e 4,57% com a teoria (modelo de programação inteira); queda média por caso de 25,8%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Tharmmaphornphilas, Puemsin e Siripongwutikorn, 'A MILP Model to Select Cutting Machines and Cutting Patterns to Minimize Paper Loss', IMECS 2013 (PDF baixado e lido com pdftotext), Tabela V e texto: 'the MILP model provides on average 4.6% loss, which corresponds to 25.8% improvement over the company current method based on worker experiences'. Refiz com awk sobre as 20 linhas da Tabela V: média MILP 4,567%, média do método atual 6,353%, média da coluna '% Difference' 25,76%. Observação: 25,8% é a média das quedas de cada caso; a queda calculada sobre as médias seria (6,35 − 4,57)/6,35 = 28,1%. A tela diz 'queda média por caso', que é o 25,8%."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Com 2 grupos de produtos, 10 casos: perda de 5,68% para 3,14%, queda média de 41,9%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Tharmmaphornphilas, Puemsin e Siripongwutikorn, 'A MILP Model to Select Cutting Machines and Cutting Patterns to Minimize Paper Loss', IMECS 2013 (PDF baixado e lido com pdftotext), Tabela VI e texto: 'the MILP model provides on average 3.1% total loss, corresponding to 41.9% improvement'. Refiz com awk sobre as 10 linhas: média MILP 3,142%, método atual 5,682%, média de '% Difference' 41,94%. O estudo avisa que 9 dos 10 casos não chegaram ao ótimo (o solver ficou sem memória); os números são das melhores soluções encontradas."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Resposta: Cerca de 1/4 (opção 2); kicker 'Programação inteira'.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "25,8% ≈ 1/4 (node -e 0.258 → 0,258; 1/4 = 0,25). Programação inteira: o estudo formula um MILP com variáveis inteiras ('x_ijkc ∈ Int') e binárias para escolher os padrões."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Estudo de Tharmmaphornphilas, Puemsin e Siripongwutikorn (IMECS 2013): 20 casos, 4,57% contra 6,35%, queda média de 25,8%; 2 grupos: 5,68% para 3,14%, 41,9%; método da empresa baseado na experiência dos operadores.",
+      "tipo": "fonte",
+      "fonte": "https://www.iaeng.org/publication/IMECS2013/IMECS2013_pp1155-1160.pdf",
+      "resultado": "confirmada",
+      "como": "Mesmas entradas das cenas 2, 4 e 5; nomes dos autores copiados do cabeçalho do PDF."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Formulação clássica com PL: Gilmore e Gomory, Operations Research 9(6), 1961, com geração de colunas e subproblema da mochila.",
+      "tipo": "fonte",
+      "fonte": "https://doi.org/10.1287/opre.9.6.849",
+      "resultado": "confirmada",
+      "como": "Crossref (API): 'A Linear Programming Approach to the Cutting-Stock Problem', Operations Research, v. 9, n. 6, dez/1961, p. 849-859, Gilmore e Gomory. A página do INFORMS bloqueia acesso automático (Cloudflare), então a referência vem do Crossref. Geração de colunas e mochila: Wikipedia 'Cutting stock problem' (lida via curl): 'The column generation approach as applied to the cutting stock problem was pioneered by Gilmore and Gomory in a series of papers published in the 1960s' e 'new patterns are introduced by solving an auxiliary optimization problem called the knapsack problem'. A legenda diz 'a formulação clássica ... é de Gilmore e Gomory', coerente, e não cita Kantorovich."
+    }
+  ]
+}

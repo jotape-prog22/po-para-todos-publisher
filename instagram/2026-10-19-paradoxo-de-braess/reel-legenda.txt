@@ -1,0 +1,15 @@
+Abrir uma rua nova pode deixar o trânsito pior para todo mundo. É o paradoxo de Braess.
+
+Em 1968, o matemático alemão Dietrich Braess mostrou que, se cada motorista escolhe a rota mais rápida para si, acrescentar uma via a uma rede pode aumentar o tempo de todos. Na tela, um exemplo de livro-texto (números de exemplo, não é uma medição): 4.000 motoristas, duas rotas, 65 minutos para cada um. Com um atalho de tempo zero, todos passam a usá-lo e o trajeto vai para 80 minutos, e ninguém melhora desviando, porque a alternativa levaria 85.
+
+É o equilíbrio de Nash: cada um faz o melhor dado o que os outros fazem, e o resultado coletivo não é o melhor possível.
+
+Há relatos de efeito parecido no mundo real. Em 1990, o New York Times contou que o fechamento da Rua 42 em Manhattan, no Dia da Terra, não gerou o engarrafamento esperado, e citou um estudo alemão de 1969 sobre Stuttgart. Os autores ressaltam que o paradoxo nem sempre vale: cada rede precisa ser analisada.
+
+No canal, a aula de Teoria dos Jogos explica o equilíbrio de Nash passo a passo. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ParadoxoDeBraess #TeoriaDosJogos #EquilibrioDeNash #Otimização #UNIRIO

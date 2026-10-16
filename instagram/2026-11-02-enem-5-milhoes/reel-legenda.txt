@@ -1,0 +1,15 @@
+5.055.818 inscrições confirmadas no Enem 2026. Como encaixar cada pessoa numa sala com vaga?
+
+O Inep informou 5.055.818 inscrições confirmadas para o Enem 2026, cerca de 5,08% a mais que as 4.811.338 de 2025, segundo balanço divulgado pelo MEC. As provas são nos domingos 8 e 15 de novembro.
+
+Todos esses candidatos precisam de um lugar de prova com vaga. Esse é o tipo de problema que a Pesquisa Operacional estuda: alocar pessoas a locais com capacidade, minimizando o deslocamento total. Não sabemos qual método o Inep usa; o vídeo mostra só o problema por trás, com um exemplo inventado.
+
+No exemplo: 3 bairros (40, 30 e 30 candidatos) e 2 escolas (60 e 40 vagas). Mandar cada um para a escola mais perto coloca 100 pessoas na escola de 60 vagas. O melhor plano possível leva 180 pessoa·km no total, e foi conferido testando todas as 751 combinações viáveis. O ótimo do conjunto não é o ótimo de cada um.
+
+No canal, a aula de Problema do Transporte explica como resolver isso. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #Enem2026 #ProblemaDoTransporte #Vestibular #Otimização #UNIRIO

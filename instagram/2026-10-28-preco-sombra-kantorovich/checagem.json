@@ -1,0 +1,80 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Mito-fato: 'Preço sombra é o preço de mercado do recurso.' → MITO.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Shadow_price",
+      "resultado": "confirmada",
+      "como": "Wikipedia 'Shadow price' (lida): em otimização é 'the value of the Lagrange multiplier at the optimal solution', não um preço negociado; o artigo diz que o conceito existe para bens que 'the market hasn't priced'. Palestra Nobel de Kantorovich (lida): chamou-os de 'resolving multipliers', 'an auxiliary device for optimal solution finding like Lagrange multipliers'. No próprio exemplo (cena 5), a madeira tem preço de compra mas preço sombra R$ 0 porque sobra — contraprova de que um não é o outro. Kicker 'Kantorovich, 1939' = livreto de 1939 (entrada da legenda)."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Leningrado, 1938: consultor do Trust do Compensado; distribuir trabalho entre máquinas virou maximizar uma função linear.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/kantorovich/biographical/",
+      "resultado": "confirmada",
+      "como": "Autobiografia: 'In 1938, as professor of the university, I acted as a consultant for the Laboratory of the Plywood Trust ... a problem of distributing some initial raw materials in order to maximize equipment productivity under certain restrictions. Mathematically, it was a problem of maximizing a linear function on a convex polytope.' E, na mesma página: 'work distribution for equipment' entre os problemas econômicos de mesma forma. Uso 1938 (a fonte é a autobiografia dele; outras fontes dão 1938-39). Observação: o texto diz 'Laboratório do Trust'; a tela diz 'consultor do Trust do Compensado' e a legenda 'Laboratório do Trust do Compensado'."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Exemplo didático: max 3x + 2y s.a. x ≤ 3, x + y ≤ 4, x + 3y ≤ 9, x, y ≥ 0; ótimo (3, 1), Z* = 11 (marcenaria: mesas e cadeiras; verniz, serra, madeira; lucro em R$ mil). Não é dado histórico.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e enumerando todos os vértices (interseções de pares de restrições, incluindo x=0 e y=0) e filtrando os viáveis: melhor vértice (3, 1) com Z = 3·3 + 2·1 = 11. À mão: x=3 e x+y=4 dão y=1; x+3y = 3+3 = 6 ≤ 9 (folga de 3). Os outros vértices viáveis rendem menos (ex.: (0,3) = 6, (3,0) = 9). A tela marca EXEMPLO DIDÁTICO."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Com x + y ≤ 5: novo ótimo (3, 2), Z = 3·3 + 2·2 = 13, diferença 13 − 11 = 2.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e, mesma enumeração de vértices com x + y ≤ 5: ótimo (3, 2), Z = 13 (viável: 3+3·2 = 9 ≤ 9). Diferença 2, igual ao preço sombra da restrição x + y ≤ 4. Contraprova: +1 no verniz (x ≤ 4) dá Z = 12 (preço 1); +1 na madeira (x+3y ≤ 10) dá Z = 11 (preço 0)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Com 1 unidade a mais: verniz +R$ 1 mil, serra +R$ 2 mil, madeira R$ 0 (sobra). É o preço sombra.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Dois caminhos. (1) Primal perturbado: +1 em cada lado direito dá Z = 12, 13 e 11, isto é, +1, +2 e 0. (2) Dual resolvido por enumeração de vértices: min 3u + 4v + 9w s.a. u+v+w ≥ 3, v+3w ≥ 2, u,v,w ≥ 0 -> (u,v,w) = (1, 2, 0), valor 11 = Z* (dualidade forte). Madeira: x+3y = 6 < 9 no ótimo, folga, preço 0 (folgas complementares)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Preço sombra = quanto o lucro sobe com 1 unidade a mais do recurso; não é preço de mercado (a madeira sobra e vale R$ 0); Kantorovich (1939) e Koopmans (shadow prices).",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/kantorovich/lecture/",
+      "resultado": "confirmada",
+      "como": "Palestra Nobel de Kantorovich (lida): 'Professor T. Koopmans named them shadow prices, my term was resolving multipliers since they were used as an auxiliary device for optimal solution finding like Lagrange multipliers ... they have been named in economic treatment objectively-determined valuations'. A tradução 'multiplicadores resolventes' é minha. Definição: Wikipedia 'Shadow price' (lida), 'the value of the Lagrange multiplier at the optimal solution', isto é, a variação do ótimo por unidade a mais do lado direito; confirmado no exemplo (cena 4: +1 de serra, Z de 11 para 13). Madeira R$ 0: folga 9 − 6 = 3 no ótimo (cena 5)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Em 1975, os dois dividiram o Prêmio de Economia em memória de Alfred Nobel 'por suas contribuições à teoria da alocação ótima de recursos'.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/press-release/",
+      "resultado": "confirmada",
+      "como": "Press release (lido): 'for their contributions to the theory of optimum allocation of resources'; Kantorovich e Koopmans. A frase entre aspas na legenda é tradução livre da citação oficial."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O livreto de 1939 foi publicado pela Universidade de Leningrado com o método dos multiplicadores resolventes.",
+      "tipo": "fonte",
+      "fonte": "https://www.nobelprize.org/prizes/economic-sciences/1975/kantorovich/biographical/",
+      "resultado": "confirmada",
+      "como": "Autobiografia: método 'which I named the method of resolving multipliers'; 'In 1939, the Leningrad University Press printed my booklet'. A autobiografia traduz o título como 'The Mathematical Method of Production Planning and Organization'; a legenda o traduz como 'O Método Matemático de Organização e Planejamento da Produção'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Exemplo da marcenaria com ótimo 3 mesas e 1 cadeira (Z = 11); com a serra de 4 para 5, o ótimo vira 13; a madeira sobra e vale zero.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Ver as entradas das cenas 3, 4 e 5. A legenda declara que o exemplo é didático e inventado por nós."
+    },
+    {
+      "onde": "legenda",
+      "texto": "A aula de Análise de Sensibilidade (Preço-Sombra e Custo Reduzido) mostra como ler isso na tabela Simplex final.",
+      "tipo": "fonte",
+      "fonte": "https://youtu.be/Z-duqQJFa-4",
+      "resultado": "confirmada",
+      "como": "videos/sensibilidade-1/metadados.json: título 'ANÁLISE DE SENSIBILIDADE - Preço-Sombra e Custo Reduzido - Parte 1', com capítulos 'Preço-Sombra: conceito' e 'Preço-Sombra na tabela Simplex'."
+    }
+  ]
+}
