@@ -292,6 +292,19 @@ test("validarChamadas (Review Focus 4): desafio não fecha o reel", () => {
   assert.deepEqual(validarChamadas(comResposta), []);
 });
 
+test("mito-fato: o carimbo, já assentado, não cobre a afirmação (nem inclinado)", () => {
+  const kit = kitFalso();
+  const { cena } = validarCena(mf(), "c", { formato: "reel" });
+  const ctx = desenharEm(mitoFato, cena, [cena.linha.fim + 3], kit);
+  const ch = ctx.chamadas, iRot = ch.findIndex((c) => c[0] === "rotate");
+  const centro = ch.slice(0, iRot).filter((c) => c[0] === "translate").at(-1)[2], inclinar = Math.abs(ch[iRot][1]);
+  const [, , , w, h] = ch.find((c) => c[0] === "strokeRect");
+  const topoDoCarimbo = centro - h / 2 - Math.sin(inclinar) * w / 2;
+  const f = kit.fontes.pergunta, baseDaUltima = Math.max(...textos(ctx).filter((x) => x.s !== "MITO").map((x) => x.y));
+  assert.ok(topoDoCarimbo >= baseDaUltima + f.px * 0.3, `carimbo começa em ${topoDoCarimbo}, a afirmação desce até ${baseDaUltima}`);
+  assert.ok(centro + h / 2 + Math.sin(inclinar) * w / 2 <= kit.layout.area.y + kit.layout.area.h, "carimbo dentro da área");
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
 const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()], [mitoFato, mf()], [desafio, des()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
