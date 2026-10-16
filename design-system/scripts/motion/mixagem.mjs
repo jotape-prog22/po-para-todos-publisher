@@ -5,7 +5,7 @@
 import { readFileSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { join } from "node:path";
-import { escolherEfeito, DIR_AUDIO, ErroAudio } from "../../../scripts/audio.mjs";
+import { escolherEfeito, DIR_AUDIO, ErroAudio, existeNoDisco, avisoAusente } from "../../../scripts/audio.mjs";
 
 export const MOVIMENTO = JSON.parse(readFileSync(new URL("../../motion/movimento.json", import.meta.url), "utf8"));
 
@@ -48,17 +48,20 @@ export function rodar(binario, args, ErroClasse = Error) {
 
 const rodarMixagem = (bin, args) => rodar(bin, args, ErroAudio);
 
-export async function mixar(comp, { biblioteca, trilhaId = null, saida, executar = rodarMixagem, ffmpeg = null }) {
+// Efeito listado mas ausente no disco fica de fora (as variações que existem alternam); Trilha ausente é erro.
+export async function mixar(comp, { biblioteca, trilhaId = null, saida, executar = rodarMixagem, ffmpeg = null, existe = existeNoDisco }) {
+  const disponivel = { ...biblioteca, efeitos: biblioteca.efeitos.filter((e) => existe(e.arquivo)) };
   const contagem = {};
   const efeitos = comp.efeitos.flatMap((e) => {
     const n = (contagem[e.efeito] = (contagem[e.efeito] ?? -1) + 1);
-    const ef = escolherEfeito(biblioteca, e.efeito, n);
+    const ef = escolherEfeito(disponivel, e.efeito, n);
     return ef ? [{ arquivo: join(DIR_AUDIO, ef.arquivo), t: e.t, ganho: e.ganho }] : [];
   });
   let trilha = null;
   if (trilhaId) {
     const t = biblioteca.trilhas.find((x) => x.id === trilhaId);
     if (!t) throw new ErroAudio(`trilha "${trilhaId}" não está em design-system/audio/biblioteca.json`);
+    if (!existe(t.arquivo)) throw new ErroAudio(`trilha "${trilhaId}": ${avisoAusente(t)} (a música não vai para o GitHub — README, "O áudio não está no GitHub")`);
     trilha = { arquivo: join(DIR_AUDIO, t.arquivo), ganho: MOVIMENTO.trilha.ganho };
   }
   if (!trilha && !efeitos.length) return null;

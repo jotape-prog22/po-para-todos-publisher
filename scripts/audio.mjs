@@ -26,20 +26,30 @@ export function carregarBiblioteca(arquivo = join(DIR_AUDIO, "biblioteca.json"))
   return JSON.parse(readFileSync(arquivo, "utf8"));
 }
 
-function comuns(item, onde, erros, existe, ids) {
+function comuns(item, onde, erros, ids) {
   for (const c of ["id", "arquivo", "fonte", "link", "licenca"]) if (!item[c]) erros.push(`${onde}: falta "${c}"`);
   if (item.id) { if (ids.has(item.id)) erros.push(`${onde}: id "${item.id}" repetido`); ids.add(item.id); }
   if (item.link && !/^https:\/\//.test(item.link)) erros.push(`${onde}: "link" precisa começar com https://`);
   if (item.licenca && !LICENCAS_ACEITAS.includes(item.licenca)) erros.push(`${onde}: licença "${item.licenca}" não é aceita (${LICENCAS_ACEITAS.join("; ")})`);
-  if (item.arquivo && !existe(item.arquivo)) erros.push(`${onde}: não achei design-system/audio/${item.arquivo}`);
 }
 
-export function validarBiblioteca(b, { existe = (rel) => existsSync(join(DIR_AUDIO, rel)) } = {}) {
+// Os arquivos do Pixabay não vão para o git (a licença proíbe distribuir o arquivo isolado): ficam no
+// disco de quem produz, com backup em ~/.po-para-todos/audio/. Arquivo ausente é aviso, não erro.
+export const existeNoDisco = (rel) => existsSync(join(DIR_AUDIO, rel));
+export const BACKUP_AUDIO = "~/.po-para-todos/audio/";
+export const avisoAusente = (item) => `falta o arquivo design-system/audio/${item.arquivo} — copie de ${BACKUP_AUDIO}${item.arquivo} ou baixe de ${item.link}`;
+
+export function arquivosAusentes(b, { existe = existeNoDisco } = {}) {
+  return [...b.trilhas, ...b.efeitos].filter((i) => i.arquivo && !existe(i.arquivo)).map(avisoAusente);
+}
+
+// Esquema e licenças; não olha o disco (ver arquivosAusentes). `existe` fica aceito por compatibilidade.
+export function validarBiblioteca(b, _opcoes = {}) {
   const erros = [], ids = new Set();
   if (!Array.isArray(b?.trilhas) || !Array.isArray(b?.efeitos)) return ['biblioteca.json precisa das listas "trilhas" e "efeitos"'];
   b.trilhas.forEach((t, i) => {
     const onde = `trilha ${i + 1}${t.id ? ` (${t.id})` : ""}`;
-    comuns(t, onde, erros, existe, ids);
+    comuns(t, onde, erros, ids);
     if (!t.titulo || !t.autor) erros.push(`${onde}: falta "titulo" ou "autor"`);
     if (!Array.isArray(t.clima) || !t.clima.length) erros.push(`${onde}: "clima" precisa de pelo menos um de ${CLIMAS.join(", ")}`);
     else for (const c of t.clima) if (!CLIMAS.includes(c)) erros.push(`${onde}: clima "${c}" não existe (${CLIMAS.join(", ")})`);
@@ -49,7 +59,7 @@ export function validarBiblioteca(b, { existe = (rel) => existsSync(join(DIR_AUD
   });
   b.efeitos.forEach((e, i) => {
     const onde = `efeito ${i + 1}${e.id ? ` (${e.id})` : ""}`;
-    comuns(e, onde, erros, existe, ids);
+    comuns(e, onde, erros, ids);
     if (!USOS.includes(e.uso)) erros.push(`${onde}: uso "${e.uso}" não existe (${USOS.join(", ")})`);
   });
   return erros;
@@ -237,6 +247,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       for (const t of b.trilhas) console.log(`  trilha ${t.id}: ${t.clima.join("/")}, ${t.bpm} BPM, ${t.duracao} s — ${t.licenca}`);
       const faltam = usosSemEfeito(b);
       if (faltam.length) console.log(`aviso: nenhum efeito para ${faltam.join(", ")} — esses momentos saem sem som`);
+      for (const a of arquivosAusentes(b)) console.log(`aviso: ${a}`);
     }
   } catch (e) {
     if (e instanceof ErroAudio) { console.error(`erro: ${e.message}`); process.exit(1); }

@@ -35,3 +35,10 @@ instagram/**/corte-bruto.mp4
 instagram/**/lista-cenas.txt
 # temporário do render (renderizar.mjs grava em .<nome>.parcial-<pid>.mp4 e só renomeia no sucesso)
 **/.*.parcial-*.mp4
+# áudio do Pixabay: a licença proíbe distribuir o arquivo isolado e o repositório é público.
+# Fica só no disco, com backup em ~/.po-para-todos/audio/ (README, "O áudio não está no GitHub").
+# Os efeitos Kenney (CC0) continuam no git.
+design-system/audio/trilhas/*.mp3
+design-system/audio/efeitos/whoosh-1.wav
+design-system/audio/efeitos/caneta-1.wav
+design-system/audio/efeitos/caneta-2.wav

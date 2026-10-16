@@ -31,3 +31,12 @@ Todo som usado nos vídeos do Instagram vem de fonte gratuita com licença expl�
 - **YouTube Audio Library — sem atribuição**: uso livre em vídeos, sem crédito. https://studio.youtube.com (Biblioteca de áudio)
 
 Só faixas sem 'Content ID Registered' na página do Pixabay — faixa com Content ID pode gerar reivindicação ou som silenciado mesmo com a licença.
+
+## O áudio não está no GitHub
+
+Os arquivos com **Pixabay Content License** (as 8 trilhas e `efeitos/whoosh-1.wav`, `caneta-1.wav`, `caneta-2.wav`) não vão para o git: o repositório é público e a licença proíbe distribuir o arquivo isolado. Ficam só no disco de quem produz, listados no `.gitignore`; esta tabela e `biblioteca.json` continuam no git. Os efeitos Kenney (CC0) continuam no git.
+
+- **Backup:** `~/.po-para-todos/audio/` (mesma estrutura: `trilhas/`, `efeitos/`), guardado em lugar privado.
+- **Restaurar num computador novo:** `cp -R ~/.po-para-todos/audio/* design-system/audio/` na pasta do projeto, ou baixe de novo pelos links da tabela acima, com o nome da coluna "Arquivo".
+- **Som novo do Pixabay:** o arquivo também vai para o backup; efeito novo também ganha uma linha no `.gitignore`.
+- `node scripts/audio.mjs` avisa cada arquivo que falta; reel com Trilha ausente para com erro dizendo onde copiar; efeito ausente só fica de fora do vídeo.

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { validarBiblioteca, usosSemEfeito, escolherEfeito, batidas, carregarBiblioteca, LICENCAS_ACEITAS, CLIMAS, USOS, ErroAudio } from "../scripts/audio.mjs";
+import { validarBiblioteca, arquivosAusentes, usosSemEfeito, escolherEfeito, batidas, carregarBiblioteca, LICENCAS_ACEITAS, CLIMAS, USOS, ErroAudio } from "../scripts/audio.mjs";
 
 const trilha = (extra = {}) => ({ id: "passos-leves", arquivo: "trilhas/passos-leves.mp3", titulo: "Passos Leves", autor: "Fulano", fonte: "Pixabay", link: "https://pixabay.com/music/x", licenca: "Pixabay Content License", clima: ["leve"], bpm: 96, primeira_batida: 0.4, duracao: 120, ...extra });
 const efeito = (extra = {}) => ({ id: "tick-1", arquivo: "efeitos/tick-1.ogg", uso: "tick", fonte: "Kenney", link: "https://kenney.nl/assets/interface-sounds", licenca: "CC0", ...extra });
@@ -13,11 +13,13 @@ test("listas fixas: licenças, climas e usos", () => {
   assert.deepEqual(USOS, ["caneta", "pop", "whoosh", "tick", "impacto", "digitar", "sino"]);
 });
 
-test("a biblioteca do repositório é válida", () => {
+// Esquema e licenças só: os MP3/WAV do Pixabay não vão para o git (num clone novo eles faltam).
+test("a biblioteca do repositório é válida (esquema e licenças, sem depender dos arquivos no disco)", () => {
   assert.deepEqual(validarBiblioteca(carregarBiblioteca()), []);
+  assert.deepEqual(validarBiblioteca(carregarBiblioteca(), { existe: () => false }), []);
 });
 
-test("validarBiblioteca aceita o que está completo e recusa licença, clima, uso, link e arquivo", () => {
+test("validarBiblioteca aceita o que está completo e recusa licença, clima, uso e link", () => {
   assert.deepEqual(validarBiblioteca(bib([trilha()], [efeito()]), { existe }), []);
   const erros = (b) => validarBiblioteca(b, { existe }).join("\n");
   assert.match(erros(bib([trilha({ licenca: "Copyright" })])), /licença "Copyright"/);
@@ -26,7 +28,24 @@ test("validarBiblioteca aceita o que está completo e recusa licença, clima, us
   assert.match(erros(bib([trilha({ link: "pixabay.com" })])), /link/);
   assert.match(erros(bib([trilha(), trilha()])), /id "passos-leves" repetido/);
   assert.match(erros(bib([], [efeito({ uso: "buzina" })])), /uso "buzina"/);
-  assert.match(validarBiblioteca(bib([trilha()]), { existe: () => false }).join("\n"), /não achei .*passos-leves\.mp3/);
+  assert.deepEqual(validarBiblioteca(bib([trilha()]), { existe: () => false }), [], "arquivo ausente não é erro de esquema");
+});
+
+test("arquivosAusentes: aviso com onde copiar e onde baixar, só para o que falta no disco", () => {
+  const b = bib([trilha()], [efeito()]);
+  assert.deepEqual(arquivosAusentes(b, { existe }), []);
+  const avisos = arquivosAusentes(b, { existe: (rel) => rel.startsWith("efeitos/") });
+  assert.equal(avisos.length, 1);
+  assert.equal(avisos[0], "falta o arquivo design-system/audio/trilhas/passos-leves.mp3 — copie de ~/.po-para-todos/audio/trilhas/passos-leves.mp3 ou baixe de https://pixabay.com/music/x");
+  assert.equal(arquivosAusentes(b, { existe: () => false }).length, 2);
+});
+
+test("CLI sem argumentos: arquivo ausente vira aviso, não erro (sai com código 0)", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const r = spawnSync(process.execPath, [new URL("../scripts/audio.mjs", import.meta.url).pathname], { encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr);
+  assert.match(r.stdout, /\d+ trilha\(s\), \d+ efeito\(s\)\./);
+  for (const linha of r.stdout.split("\n").filter((l) => l.startsWith("aviso: falta o arquivo"))) assert.match(linha, /copie de ~\/\.po-para-todos\/audio\/.* ou baixe de https:\/\//);
 });
 
 test("usosSemEfeito lista o que falta; escolherEfeito alterna entre variações e devolve null sem nenhuma", () => {

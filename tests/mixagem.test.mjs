@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { argsMixagem, mixar, rodar, MOVIMENTO } from "../design-system/scripts/motion/mixagem.mjs";
-import { LICENCAS_ACEITAS } from "../scripts/audio.mjs";
+import { LICENCAS_ACEITAS, ErroAudio } from "../scripts/audio.mjs";
 
 const filtro = (a) => a[a.indexOf("-filter_complex") + 1];
 
@@ -36,14 +36,35 @@ test("mixar: usa só os efeitos que existem, alterna variações e põe a Trilha
   const efeitos = [{ id: "t1", arquivo: "efeitos/t1.ogg", uso: "tick" }, { id: "t2", arquivo: "efeitos/t2.ogg", uso: "tick" }];
   const trilhas = [{ id: "leve", arquivo: "trilhas/leve.mp3" }];
   const chamadas = [];
-  const r = await mixar(comp, { biblioteca: bib(trilhas, efeitos), trilhaId: "leve", saida: "/tmp/m.wav", executar: async (bin, args) => chamadas.push({ bin, args }), ffmpeg: "ff" });
+  const r = await mixar(comp, { biblioteca: bib(trilhas, efeitos), trilhaId: "leve", saida: "/tmp/m.wav", executar: async (bin, args) => chamadas.push({ bin, args }), ffmpeg: "ff", existe: () => true });
   assert.equal(r, "/tmp/m.wav");
   const a = chamadas[0].args;
   assert.equal(chamadas[0].bin, "ff");
   assert.ok(a.some((x) => x.endsWith("trilhas/leve.mp3")));
   assert.deepEqual(a.filter((x) => /efeitos\/t\d\.ogg$/.test(x)).map((x) => x.slice(-6)), ["t1.ogg", "t2.ogg"], "pop não existe e fica de fora; os dois ticks alternam");
   assert.ok(filtro(a).includes("loudnorm"), "com Trilha, normaliza");
-  await assert.rejects(mixar(comp, { biblioteca: bib(trilhas, efeitos), trilhaId: "nao-tem", saida: "/tmp/m.wav", executar: async () => {}, ffmpeg: "ff" }), /trilha "nao-tem"/);
+  await assert.rejects(mixar(comp, { biblioteca: bib(trilhas, efeitos), trilhaId: "nao-tem", saida: "/tmp/m.wav", executar: async () => {}, ffmpeg: "ff", existe: () => true }), /trilha "nao-tem"/);
+});
+
+// Os MP3/WAV do Pixabay não vão para o git: num clone novo a biblioteca lista arquivos que não estão no disco.
+test("mixar: Trilha listada mas ausente no disco → ErroAudio dizendo onde copiar e onde baixar (antes do ffmpeg)", async () => {
+  const trilhas = [{ id: "leve", arquivo: "trilhas/leve.mp3", link: "https://pixabay.com/music/leve-1/" }];
+  let chamou = false;
+  await assert.rejects(
+    mixar(comp, { biblioteca: bib(trilhas), trilhaId: "leve", saida: "/tmp/m.wav", executar: async () => { chamou = true; }, ffmpeg: "ff", existe: () => false }),
+    (e) => e instanceof ErroAudio && /falta o arquivo design-system\/audio\/trilhas\/leve\.mp3/.test(e.message) && e.message.includes("~/.po-para-todos/audio/") && e.message.includes("https://pixabay.com/music/leve-1/"));
+  assert.equal(chamou, false);
+});
+
+test("mixar: efeito listado mas ausente no disco fica de fora (as variações que existem alternam); nenhum → null", async () => {
+  const efeitos = [{ id: "t1", arquivo: "efeitos/t1.ogg", uso: "tick" }, { id: "t2", arquivo: "efeitos/t2.ogg", uso: "tick" }, { id: "p1", arquivo: "efeitos/p1.ogg", uso: "pop" }];
+  const chamadas = [];
+  const executar = async (bin, args) => chamadas.push(args);
+  const r = await mixar(comp, { biblioteca: bib([], efeitos), saida: "/tmp/m.wav", executar, ffmpeg: "ff", existe: (rel) => rel !== "efeitos/t1.ogg" });
+  assert.equal(r, "/tmp/m.wav");
+  assert.deepEqual(chamadas[0].filter((x) => /efeitos\/\w\d\.ogg$/.test(x)).map((x) => x.slice(-6)), ["p1.ogg", "t2.ogg", "t2.ogg"]);
+  assert.equal(await mixar(comp, { biblioteca: bib([], efeitos), saida: "/tmp/m.wav", executar, ffmpeg: "ff", existe: () => false }), null);
+  assert.equal(chamadas.length, 1);
 });
 
 test("tokens de som estão no movimento.json", () => {

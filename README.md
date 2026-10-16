@@ -195,8 +195,22 @@ Só entra música de graça e com licença clara (Pixabay, Biblioteca de áudio 
 2. Rode `node scripts/audio.mjs --medir design-system/audio/trilhas/passos-curiosos.mp3`. Aparece uma linha como `{"bpm":120,"primeira_batida":0.025,"duracao":135}` (BPM, primeira batida em segundos, duração em segundos). Se o BPM for o dobro ou a metade do que você ouve, rode de novo acrescentando `--bpm 70` (o que você ouve).
 3. Peça ao Claude: "registra a trilha passos-curiosos na biblioteca, clima leve, link <página da música>". Ele cuida do arquivo `design-system/audio/biblioteca.json`.
 4. Rode `node scripts/audio.mjs`. A trilha nova aparece na lista; se aparecer `erro: …`, a mensagem aponta o que falta (peça ao Claude para corrigir).
+5. Copie a música também para o backup: `cp design-system/audio/trilhas/passos-curiosos.mp3 ~/.po-para-todos/audio/trilhas/` (veja a seção abaixo). O MP3 não vai para o GitHub.
 
 Reel ou story que já está na agenda não é regerado quando a biblioteca muda.
+
+### O áudio não está no GitHub
+
+As músicas (`design-system/audio/trilhas/*.mp3`) e três efeitos (`whoosh-1.wav`, `caneta-1.wav`, `caneta-2.wav`) vêm do Pixabay. A licença do Pixabay deixa usar o som nos vídeos, mas proíbe distribuir o arquivo sozinho — e este repositório é público. Por isso esses arquivos ficam só no seu computador; o `.gitignore` não deixa o git levá-los. A lista (`biblioteca.json`) e os links continuam no GitHub, e os outros efeitos (Kenney, domínio público) também.
+
+- **Backup:** uma cópia fica em `~/.po-para-todos/audio/` (pastas `trilhas/` e `efeitos/`). Guarde essa pasta num lugar privado (pendrive, nuvem pessoal).
+- **Computador novo:** depois de baixar o projeto e trazer o backup para `~/.po-para-todos/audio/`, rode na pasta do projeto:
+  ```
+  cp -R ~/.po-para-todos/audio/* design-system/audio/
+  ```
+  Sem o backup, baixe de novo cada arquivo pelo link da tabela em `design-system/audio/LICENCAS.md` e salve com o nome da coluna "Arquivo".
+- **Como saber se falta algo:** rode `node scripts/audio.mjs`. Cada arquivo que falta aparece como `aviso: falta o arquivo …`, com onde copiar e onde baixar. Sem a música, o reel que a usa para com essa mesma mensagem; sem um efeito, o vídeo sai com os efeitos que existem.
+- **Música ou efeito novo do Pixabay:** além de salvar em `design-system/audio/`, copie para `~/.po-para-todos/audio/` (passo 5 acima). Efeito novo do Pixabay também precisa de uma linha no `.gitignore` (peça ao Claude).
 
 Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confirmou e o que não conseguiu confirmar — é você quem decide o que fica.
 
