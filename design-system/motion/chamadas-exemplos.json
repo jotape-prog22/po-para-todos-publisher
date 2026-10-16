@@ -1,0 +1,26 @@
+[
+  { "nome": "impacto · batida", "trilha": "detetives-tensos", "cenas": [
+    { "tipo": "impacto", "duracao": 3, "palavras": ["UMA RUA NOVA", "TODOS PIORAM"] } ] },
+  { "nome": "impacto · deslizar", "trilha": "pizzicato-misterio", "cenas": [
+    { "tipo": "impacto", "estilo": "deslizar", "duracao": 3, "palavras": ["NUNCA GANHA", "MAS VENCE"] } ] },
+  { "nome": "impacto · trocar", "trilha": "faiscas-espertas", "cenas": [
+    { "tipo": "impacto", "estilo": "trocar", "duracao": 3, "palavras": ["REJEITE", "OS 3", "PRIMEIROS"] } ] },
+  { "nome": "impacto · crescer", "trilha": "piano-reflexivo", "cenas": [
+    { "tipo": "impacto", "estilo": "crescer", "duracao": 4, "palavras": ["RECORDE", "E A FILA", "CRESCEU"] } ] },
+  { "nome": "impacto · sublinhar", "trilha": "jazz-foco", "cenas": [
+    { "tipo": "impacto", "estilo": "sublinhar", "destaque": 2, "duracao": 3, "palavras": ["3 ROLOS", "OU 2?"] } ] },
+  { "nome": "pergunta (+ revelação)", "trilha": "detetives-tensos", "cenas": [
+    { "tipo": "pergunta", "duracao": 4, "pergunta": "Abrir um atalho deixa o trânsito…", "opcoes": ["Mais rápido", "Igual", "Mais lento"] },
+    { "tipo": "pergunta", "duracao": 4, "pergunta": "Abrir um atalho deixa o trânsito…", "opcoes": ["Mais rápido", "Igual", "Mais lento"], "resposta": 3 } ] },
+  { "nome": "riscado", "trilha": "estudo-leve", "cenas": [
+    { "tipo": "riscado", "duracao": 4, "parece": "Sobrar energia é bom", "e": "Vira problema" } ] },
+  { "nome": "digitado", "trilha": "piano-reflexivo", "cenas": [
+    { "tipo": "digitado", "duracao": 5, "frase": "37.719 pessoas esperam uma córnea no Brasil.", "marca": "37.719 pessoas" } ] },
+  { "nome": "spoiler", "trilha": "jazz-foco", "cenas": [
+    { "tipo": "spoiler", "duracao": 3, "valor": 33.3, "casas_decimais": 1, "sufixo": "%", "pergunta": "COMO?" } ] },
+  { "nome": "mito-fato", "trilha": "piano-inspirador", "cenas": [
+    { "tipo": "mito-fato", "duracao": 4, "afirmacao": "Preço sombra é o preço de mercado.", "veredito": "mito" } ] },
+  { "nome": "desafio (+ resposta)", "trilha": "tutorial-animado", "cenas": [
+    { "tipo": "desafio", "duracao": 8, "kicker": "PENSE RÁPIDO", "pergunta": "3 bairros, 2 escolas: todos na escola mais perto cabe?", "segundos": 4 },
+    { "duracao": 4, "kicker": "RESPOSTA", "titulo": "NÃO CABE", "linhas": ["E1 receberia 100 para 60 vagas"] } ] }
+]

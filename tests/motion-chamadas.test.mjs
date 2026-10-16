@@ -1,6 +1,7 @@
 // Chamadas: os tipos de Cena de abertura dos reels (CONTEXT.md, "Chamada") e os estilos do impacto.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { validarCena, validarChamadas } from "../design-system/motion/cenas/index.mjs";
 import { kitFalso, ctxFalso, textos, desenharEm, movimento } from "./ajudas-motion.mjs";
 import { escalar } from "../design-system/motion/escrita.mjs";
@@ -11,6 +12,7 @@ import * as digitado from "../design-system/motion/cenas/digitado.mjs";
 import * as spoiler from "../design-system/motion/cenas/spoiler.mjs";
 import * as mitoFato from "../design-system/motion/cenas/mito-fato.mjs";
 import * as desafio from "../design-system/motion/cenas/desafio.mjs";
+import { composicoesDaGaleria } from "../design-system/scripts/ver-chamadas.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -299,4 +301,18 @@ test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
     assert.deepEqual(cena.linha.eventos[0], { t: 0, efeito: "digitar" }, c.tipo);
     assert.ok(textos(desenharEm(mod, cena, [2])).some((x) => x.s === "PENSE RÁPIDO"), c.tipo);
   }
+});
+
+test("galeria: todo exemplo valida e cobre as 6 Chamadas novas e os 5 estilos do impacto", () => {
+  const exemplos = JSON.parse(readFileSync(new URL("../design-system/motion/chamadas-exemplos.json", import.meta.url), "utf8"));
+  const itens = composicoesDaGaleria(exemplos, { trilhas: [], efeitos: [] });
+  assert.equal(itens.length, exemplos.length);
+  const aberturas = exemplos.map((e) => (e.cenas[0].tipo === "impacto" ? `impacto:${e.cenas[0].estilo ?? "batida"}` : e.cenas[0].tipo));
+  for (const t of ["pergunta", "riscado", "digitado", "spoiler", "mito-fato", "desafio"]) assert.ok(aberturas.includes(t), t);
+  for (const s of impacto.ESTILOS) assert.ok(aberturas.includes(`impacto:${s}`), s);
+});
+
+test("galeria: exemplo que quebra a regra das Chamadas é recusado com o nome dele", () => {
+  const ruim = [{ nome: "pergunta sem revelação", cenas: [perg()] }];
+  assert.throws(() => composicoesDaGaleria(ruim, { trilhas: [], efeitos: [] }), /pergunta sem revelação: cena 1 é uma pergunta/);
 });
