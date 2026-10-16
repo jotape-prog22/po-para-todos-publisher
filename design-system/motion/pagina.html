@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="youtube">
+<head>
+<meta charset="utf-8">
+<title>Motion — PO para Todos</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fontes/fontes.css">
+<link rel="stylesheet" href="../instagram/instagram.css">
+<link rel="stylesheet" href="../instagram/story-video.css">
+<link rel="stylesheet" href="../instagram/reel.css">
+<style>
+  html, body { margin: 0; background: #111; }
+  #molde { position: absolute; left: -20000px; top: 0; }
+  #quadro { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  body.previa { display: flex; flex-direction: column; align-items: center; min-height: 100vh; color: #eee; font: 600 15px Poppins, sans-serif; }
+  body.previa #quadro { position: static; height: calc(100vh - 72px); width: auto; aspect-ratio: 9 / 16; }
+  #controles { display: none; }
+  body.previa #controles { display: flex; gap: 12px; align-items: center; width: min(92vw, 720px); padding: 16px 0; }
+  #controles input[type=range] { flex: 1; }
+  #controles button, #controles select { font: inherit; padding: 4px 12px; }
+</style>
+</head>
+<body>
+<!-- Molde fora da tela: a mesma marcação do story em HTML. Só serve para medir geometria, fontes
+     e cores do CSS (layout.mjs); quem desenha o vídeo é o canvas. -->
+<main id="molde" class="ig ig--story ig--story-video" aria-hidden="true">
+  <img class="ig__lockup" src="../assets/Marca/logo-po-fundo-escuro.png" alt="">
+  <div class="ig__conteudo">
+    <p class="ig__kicker">K</p>
+    <h1 class="ig__titulo">T</h1><h1 class="ig__titulo ig__titulo--medio">T</h1><h1 class="ig__titulo ig__titulo--pequeno">T</h1>
+    <p class="ig__corpo">C</p><p class="ig__apoio">A</p><p class="sv__pergunta">P</p>
+    <p class="ig__numero">0</p><p class="sv__conta">0</p>
+    <ol class="sv__itens"><li class="sv__item"><span class="sv__item-numero">1</span><h2 class="sv__item-titulo">I</h2><p class="sv__item-texto">X</p></li></ol>
+    <div class="ig__icone"></div>
+    <p class="sv__dica">D</p>
+  </div>
+  <p class="ig__faixa">F</p>
+  <p class="ig__rodape"><span>@</span></p>
+</main>
+<canvas id="quadro" width="1080" height="1920"></canvas>
+<div id="controles">
+  <select id="qual" aria-label="Vídeo"></select>
+  <button id="tocar" type="button">▶ Tocar</button>
+  <input id="tempo" type="range" min="0" max="1" step="0.001" value="0" aria-label="Tempo">
+  <span id="relogio">0,0 s</span>
+</div>
+<script type="module" src="./player.mjs"></script>
+</body>
+</html>

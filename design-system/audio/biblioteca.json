@@ -1,0 +1,241 @@
+{
+  "licencas_aceitas": [
+    "CC0",
+    "Pixabay Content License",
+    "YouTube Audio Library — sem atribuição"
+  ],
+  "trilhas": [
+    {
+      "id": "pizzicato-misterio",
+      "arquivo": "trilhas/pizzicato-misterio.mp3",
+      "titulo": "Midnight Tiptoe",
+      "autor": "VitMatNotes",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/cartoons-midnight-tiptoe-532222/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "curioso",
+        "tenso"
+      ],
+      "bpm": 100,
+      "primeira_batida": 0.033,
+      "duracao": 140.4
+    },
+    {
+      "id": "faiscas-espertas",
+      "arquivo": "trilhas/faiscas-espertas.mp3",
+      "titulo": "Smart Sparks",
+      "autor": "kissan4",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/upbeat-smart-sparks-436614/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "curioso",
+        "animado"
+      ],
+      "bpm": 102,
+      "primeira_batida": 0.035,
+      "duracao": 129.1
+    },
+    {
+      "id": "tutorial-animado",
+      "arquivo": "trilhas/tutorial-animado.mp3",
+      "titulo": "Educational Presentation Tutorial Music",
+      "autor": "MiroMaxMusic",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/upbeat-educational-presentation-tutorial-music-440118/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "animado",
+        "leve"
+      ],
+      "bpm": 120,
+      "primeira_batida": 0.282,
+      "duracao": 134.9
+    },
+    {
+      "id": "estudo-leve",
+      "arquivo": "trilhas/estudo-leve.mp3",
+      "titulo": "Study",
+      "autor": "chill_background",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/beats-study-110111/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "leve",
+        "reflexivo"
+      ],
+      "bpm": 81,
+      "primeira_batida": 0.087,
+      "duracao": 157.1
+    },
+    {
+      "id": "jazz-foco",
+      "arquivo": "trilhas/jazz-foco.mp3",
+      "titulo": "Jazz Focus Study Music",
+      "autor": "alex-morgan",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/modern-jazz-jazz-focus-study-music-556237/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "leve"
+      ],
+      "bpm": 85.1,
+      "primeira_batida": 0.313,
+      "duracao": 127.9
+    },
+    {
+      "id": "piano-reflexivo",
+      "arquivo": "trilhas/piano-reflexivo.mp3",
+      "titulo": "Piano - Piano Music",
+      "autor": "PaulYudin",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/solo-piano-piano-piano-music-508963/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "reflexivo"
+      ],
+      "bpm": 124,
+      "primeira_batida": 0.027,
+      "duracao": 130.9
+    },
+    {
+      "id": "detetives-tensos",
+      "arquivo": "trilhas/detetives-tensos.mp3",
+      "titulo": "The Detectives Are Coming",
+      "autor": "futuristic_poetry",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/crime-scene-the-detectives-are-coming-237516/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "tenso",
+        "curioso"
+      ],
+      "bpm": 120,
+      "primeira_batida": 0.025,
+      "duracao": 135
+    },
+    {
+      "id": "piano-inspirador",
+      "arquivo": "trilhas/piano-inspirador.mp3",
+      "titulo": "Inspiring Piano Cinematic Trailer",
+      "autor": "Kulakovka",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/music/epic-classical-inspiring-piano-cinematic-trailer-614895/",
+      "licenca": "Pixabay Content License",
+      "clima": [
+        "reflexivo",
+        "animado"
+      ],
+      "bpm": 90,
+      "primeira_batida": 0.418,
+      "duracao": 118.4
+    }
+  ],
+  "efeitos": [
+    {
+      "id": "tick-1",
+      "arquivo": "efeitos/tick-1.wav",
+      "uso": "tick",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "tick-2",
+      "arquivo": "efeitos/tick-2.wav",
+      "uso": "tick",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "pop-1",
+      "arquivo": "efeitos/pop-1.wav",
+      "uso": "pop",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "pop-2",
+      "arquivo": "efeitos/pop-2.wav",
+      "uso": "pop",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "digitar-1",
+      "arquivo": "efeitos/digitar-1.wav",
+      "uso": "digitar",
+      "fonte": "Kenney, UI Audio",
+      "link": "https://kenney.nl/assets/ui-audio",
+      "licenca": "CC0"
+    },
+    {
+      "id": "digitar-2",
+      "arquivo": "efeitos/digitar-2.wav",
+      "uso": "digitar",
+      "fonte": "Kenney, UI Audio",
+      "link": "https://kenney.nl/assets/ui-audio",
+      "licenca": "CC0"
+    },
+    {
+      "id": "impacto-1",
+      "arquivo": "efeitos/impacto-1.wav",
+      "uso": "impacto",
+      "fonte": "Kenney, Impact Sounds",
+      "link": "https://kenney.nl/assets/impact-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "impacto-2",
+      "arquivo": "efeitos/impacto-2.wav",
+      "uso": "impacto",
+      "fonte": "Kenney, Impact Sounds",
+      "link": "https://kenney.nl/assets/impact-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "sino-1",
+      "arquivo": "efeitos/sino-1.wav",
+      "uso": "sino",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "sino-2",
+      "arquivo": "efeitos/sino-2.wav",
+      "uso": "sino",
+      "fonte": "Kenney, Interface Sounds",
+      "link": "https://kenney.nl/assets/interface-sounds",
+      "licenca": "CC0"
+    },
+    {
+      "id": "whoosh-1",
+      "arquivo": "efeitos/whoosh-1.wav",
+      "uso": "whoosh",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/sound-effects/film-special-effects-short-swoosh-whoosh-sound-561933/",
+      "licenca": "Pixabay Content License"
+    },
+    {
+      "id": "caneta-1",
+      "arquivo": "efeitos/caneta-1.wav",
+      "uso": "caneta",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/sound-effects/film-special-effects-pencil-writing-on-paper-84424/",
+      "licenca": "Pixabay Content License"
+    },
+    {
+      "id": "caneta-2",
+      "arquivo": "efeitos/caneta-2.wav",
+      "uso": "caneta",
+      "fonte": "Pixabay",
+      "link": "https://pixabay.com/sound-effects/film-special-effects-hand-lettering-with-marker-pen-345733/",
+      "licenca": "Pixabay Content License"
+    }
+  ]
+}

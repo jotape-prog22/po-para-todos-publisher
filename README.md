@@ -177,6 +177,41 @@ Além do post, o Claude faz:
 - **Reel**: `vê um trecho legal do vídeo Y para postar` (o Claude sugere trechos, você escolhe; precisa do `yt-dlp` do item 7 e do vídeo já público) ou `faz um reel sobre X` (cenas do zero).
 - **Pacote**: `faz o pacote do vídeo Y` — post + story de aviso + reel, nessa ordem, com uma parada de aprovação em cada um.
 
+### Ver um vídeo do Instagram antes de gravar
+
+1. No terminal, na pasta do projeto, rode (troque a pasta pela sua):
+   `node design-system/scripts/gerar-reel.mjs instagram/2026-10-20-meu-reel --ver`
+2. No terminal aparece `Abri a prévia no navegador: <endereço>` e `Quando terminar de olhar, feche aqui com Ctrl+C.` O navegador abre com o vídeo, um botão **▶ Tocar** e uma barra de tempo. Aperte espaço para tocar/pausar; as setas andam um quadro.
+3. Para fechar, volte ao terminal e aperte **Ctrl+C**.
+4. Mudou o `reel.json`? Feche com Ctrl+C e rode o comando de novo: abre uma prévia nova (recarregar a página não relê o arquivo).
+
+Para stories, o comando é o mesmo com `gerar-story-video.mjs`; para o story de aviso, com `gerar-story-aviso.mjs`. Só vale para reel de cenas; o corte se confere no `reel.mp4`.
+
+### Pôr uma música nova na biblioteca
+
+Só entra música de graça e com licença clara (Pixabay, Biblioteca de áudio do YouTube "sem atribuição", ou CC0). No Pixabay, escolha só faixas sem "Content ID Registered" na página: com Content ID o Instagram pode reivindicar ou silenciar o som.
+
+1. Baixe o MP3 e salve em `design-system/audio/trilhas/` com um nome curto, sem espaços (ex.: `passos-curiosos.mp3`).
+2. Rode `node scripts/audio.mjs --medir design-system/audio/trilhas/passos-curiosos.mp3`. Aparece uma linha como `{"bpm":120,"primeira_batida":0.025,"duracao":135}` (BPM, primeira batida em segundos, duração em segundos). Se o BPM for o dobro ou a metade do que você ouve, rode de novo acrescentando `--bpm 70` (o que você ouve).
+3. Peça ao Claude: "registra a trilha passos-curiosos na biblioteca, clima leve, link <página da música>". Ele cuida do arquivo `design-system/audio/biblioteca.json`.
+4. Rode `node scripts/audio.mjs`. A trilha nova aparece na lista; se aparecer `erro: …`, a mensagem aponta o que falta (peça ao Claude para corrigir).
+5. Copie a música também para o backup: `cp design-system/audio/trilhas/passos-curiosos.mp3 ~/.po-para-todos/audio/trilhas/` (veja a seção abaixo). O MP3 não vai para o GitHub.
+
+Reel ou story que já está na agenda não é regerado quando a biblioteca muda.
+
+### O áudio não está no GitHub
+
+As músicas (`design-system/audio/trilhas/*.mp3`) e três efeitos (`whoosh-1.wav`, `caneta-1.wav`, `caneta-2.wav`) vêm do Pixabay. A licença do Pixabay deixa usar o som nos vídeos, mas proíbe distribuir o arquivo sozinho — e este repositório é público. Por isso esses arquivos ficam só no seu computador; o `.gitignore` não deixa o git levá-los. A lista (`biblioteca.json`) e os links continuam no GitHub, e os outros efeitos (Kenney, domínio público) também.
+
+- **Backup:** uma cópia fica em `~/.po-para-todos/audio/` (pastas `trilhas/` e `efeitos/`). Guarde essa pasta num lugar privado (pendrive, nuvem pessoal).
+- **Computador novo:** depois de baixar o projeto e trazer o backup para `~/.po-para-todos/audio/`, rode na pasta do projeto:
+  ```
+  cp -R ~/.po-para-todos/audio/* design-system/audio/
+  ```
+  Sem o backup, baixe de novo cada arquivo pelo link da tabela em `design-system/audio/LICENCAS.md` e salve com o nome da coluna "Arquivo".
+- **Como saber se falta algo:** rode `node scripts/audio.mjs`. Cada arquivo que falta aparece como `aviso: falta o arquivo …`, com onde copiar e onde baixar. Sem a música, o reel que a usa para com essa mesma mensagem; sem um efeito, o vídeo sai com os efeitos que existem.
+- **Música ou efeito novo do Pixabay:** além de salvar em `design-system/audio/`, copie para `~/.po-para-todos/audio/` (passo 5 acima). Efeito novo do Pixabay também precisa de uma linha no `.gitignore` (peça ao Claude).
+
 Antes de publicar, o Claude confere os fatos (a "Checagem") e mostra o que confirmou e o que não conseguiu confirmar — é você quem decide o que fica.
 
 ## Publicar na nuvem (agenda)

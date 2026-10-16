@@ -16,7 +16,7 @@ import { writeFileSync, unlinkSync } from "node:fs";
 import { resolve, relative, join } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
-import { acharNavegador } from "./gerar-story-video.mjs";
+import { acharNavegador } from "./navegador.mjs";
 
 const COMPUTADOR = { width: 1440, height: 720, deviceScaleFactor: 1 };
 const CELULAR = { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true };

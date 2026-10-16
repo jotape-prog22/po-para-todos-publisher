@@ -6,7 +6,7 @@ Para quem recebe um `instagram/<data>-<slug>/post.md` e precisa entregar `cards.
 
 1. **Leia `post.md`** (frontmatter `tipo`, seções `## …`). Se faltar título, autores ou link no `artigo`, nome no `aviso`, tema e fonte na `curiosidade`, ou origem na `citacao`, pergunte antes de escrever.
 2. **Escreva `cards.json`** (formato abaixo). `artigo`: `capa` + 1 a 8 `ideia` + `fim`, no máximo 10 cards; uma ideia por card, tirada do resumo, na ordem em que o artigo apresenta. `aviso`: um card `aviso`. `curiosidade`: um card `curiosidade` — `titulo` é o fato em até 80 caracteres (afirmativo, sem "você sabia" no texto: o kicker já diz), `texto` a explicação em até 320, `fonte` a referência em uma linha (autor, ano ou nome do site). A Checagem (passo 3) confere o fato na fonte do `post.md`; sem fonte acessível, a afirmação vai como `sem-acesso` em `checagem.json` e a pessoa decide na parada de aprovação (ADR-0009: a Checagem nunca bloqueia sozinha). `citacao`: rode `node scripts/citacao.mjs --candidatos <origem>`, mostre 2 a 3 à pessoa com a origem de cada um, e só depois escreva o card (`texto` ≤ 240, exatamente como está na origem — sem "melhorar" a frase; `origem` = título do vídeo ou do post). Kicker `DA AULA` para vídeo, `DO POST` para post. Sem Checagem: a origem já passou por ela.
-3. **Faça a Checagem** (ADR-0009) e escreva `checagem.json`. Para cada afirmação factual ou numérica dos cards (o que o artigo diz, um número, uma data, "prova que", "é o primeiro a"), uma entrada `{ "onde": "card N", "texto": "…", "tipo": "fonte" | "conta", "fonte": "<URL>", "resultado": "confirmada" | "nao-confirmada" | "sem-acesso", "como": "…" }`:
+3. **Faça a Checagem** (ADR-0009) e escreva `checagem.json`. Para cada afirmação factual ou numérica dos cards (o que o artigo diz, um número, uma data, "prova que", "é o primeiro a"), uma entrada `{ "onde": "card N" (reel ou stories de Cenas: "cena N"; sequência de stories de antes: "story N"), "texto": "…", "tipo": "fonte" | "conta", "fonte": "<URL>", "resultado": "confirmada" | "nao-confirmada" | "sem-acesso", "como": "…" }`:
    - `fonte`: busque a fonte pelo link do `post.md` (WebFetch do DOI/URL; se cair em página paga, tente o resumo/abstract ou a versão do autor). Compare o que o card afirma com o que o texto diz. `como` traz o trecho ou a seção que sustenta — ou, se não sustenta, o que o texto diz de diferente. Se o site do editor bloquear acesso automático (ams.org, JSTOR e sites parecidos retornam 403), antes de declarar `sem-acesso` tente a cópia do Wayback Machine (`https://web.archive.org/web/2024/<URL do PDF ou da página>`). Sem acesso: `"sem-acesso"` e diga em `como` onde tentou. Campo `"fonte"` é omitido quando `"tipo": "conta"`.
    - `conta`: refaça a conta por um caminho **diferente** do texto (enumere as combinações num `node -e "…"`, resolva de outro jeito) e cole a conta em `como`. Divergiu? Corrija o card ou o `resultado`.
    - `curiosidade`: a afirmação principal é o título; se o `post.md` traz link, é `fonte`; se traz só "li em tal lugar", procure a fonte primária (WebSearch) e registre a URL que usou.
@@ -44,6 +44,8 @@ Curiosidade: `{ "tipo": "curiosidade", "cards": [ { "tipo": "curiosidade", "titu
 
 ## Comandos
 
+Vídeos (reels, stories, story de aviso) são desenhados pelo motor de motion: tipos de Cena em `design-system/motion/GUIA.md`; som em `design-system/audio/` (ADR-0011, ADR-0012).
+
 ```bash
 node design-system/scripts/gerar-cards.mjs instagram/<pasta>            # card-NN.png
 node design-system/scripts/gerar-cards.mjs instagram/<pasta> --so-html  # só HTML, para inspecionar
@@ -54,12 +56,15 @@ node scripts/instagram.mjs --status                                     # conta,
 node scripts/instagram.mjs --publicar instagram/<pasta>                 # publica (skill post decide quando)
 node design-system/scripts/gerar-story.mjs videos/<slug>                # story.png de vídeo novo
 node design-system/scripts/gerar-story-video.mjs instagram/<pasta>      # story-NN.mp4 de stories.json (sequência didática; stickers à mão, ver stories.md)
-node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>          # story-aviso.mp4 (aviso de post novo, sem sticker)
+node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>          # story-aviso.mp4 (aviso de post novo, sem sticker); --ver abre a prévia
 node scripts/instagram.mjs --publicar-story instagram/<pasta> story-aviso.mp4  # publica um story sem sticker
 node scripts/instagram.mjs --publicar-stories instagram/<pasta>               # publica a sequência (stories.json com "publicacao": "api")
 node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>     # trechos para um post citacao
 node scripts/corte.mjs --candidatos videos/<slug>                             # trechos de vídeo público para um reel
 node design-system/scripts/gerar-reel.mjs instagram/<pasta>                   # reel.json → reel.mp4
+node design-system/scripts/gerar-reel.mjs instagram/<pasta> --ver         # prévia do reel no navegador, com som
+node design-system/scripts/gerar-story-video.mjs instagram/<pasta> --ver  # prévia dos stories
+node scripts/audio.mjs                                                    # Trilhas e Efeitos disponíveis (clima, BPM, licença)
 node scripts/legenda.mjs instagram/<pasta> --reel                             # reel-legenda.txt
 node scripts/instagram.mjs --publicar-reel instagram/<pasta>                  # publica o reel
 ```

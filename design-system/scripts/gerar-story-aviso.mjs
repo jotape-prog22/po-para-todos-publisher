@@ -2,13 +2,15 @@
 // Gera instagram/<pasta>/story-aviso.mp4 (+ story-aviso.png, último quadro): o story que avisa
 // de um post novo no feed, montado a partir de cards.json. Não tem sticker, então sai pela API:
 //   node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta>            # story-aviso.mp4
-//   node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta> --so-html  # só o HTML
+//   node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta> --ver      # prévia no navegador, com som
 //   node scripts/instagram.mjs --publicar-story instagram/<pasta> story-aviso.mp4   (a skill post chama, depois do post)
 
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve, relative, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { validar, renderizarCenas, ErroStoryVideo, LIMITES } from "./gerar-story-video.mjs";
+import { ehErroDoPipeline, validarCenas, gravarComposicao, LIMITES, USUARIO } from "./gerar-story-video.mjs";
+import { montarComposicao } from "../motion/composicao.mjs";
+import { verComposicoes } from "./motion/ver.mjs";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -40,23 +42,32 @@ export function cenaDoAviso(cards) {
   }
 }
 
-export async function gerarStoryAviso(pasta, { soHtml = false } = {}) {
+export function composicaoDoAviso(cards) {
+  const [cena] = validarCenas([cenaDoAviso(cards)]);
+  return montarComposicao([cena], { formato: "story", semSticker: true, usuario: USUARIO });
+}
+
+export async function gerarStoryAviso(pasta, { ver = false, ...injecoes } = {}) {
   const arquivo = join(pasta, "cards.json");
   if (!existsSync(arquivo)) throw new ErroStoryAviso(`não achei ${arquivo} — rode a skill post`);
-  const cena = cenaDoAviso(JSON.parse(readFileSync(arquivo, "utf8")));
-  const cenas = validar({ tipo: "stories", publicacao: "api", stories: [cena] });
-  const [saida] = await renderizarCenas(cenas, { pasta, prefixo: "story-aviso", numerar: false, soHtml, semSticker: true });
-  return saida;
+  const comp = composicaoDoAviso(JSON.parse(readFileSync(arquivo, "utf8")));
+  if (ver) return verComposicoes([{ nome: "story de aviso", comp }], injecoes);
+  return gravarComposicao(comp, { pasta, base: "story-aviso", ...injecoes });
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   const pasta = args.find((a) => !a.startsWith("--"));
-  if (!pasta) { console.error("uso: node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta> [--so-html]"); process.exit(1); }
+  if (!pasta) { console.error("uso: node design-system/scripts/gerar-story-aviso.mjs instagram/<pasta> [--ver]"); process.exit(1); }
   try {
-    console.log(relative(RAIZ, await gerarStoryAviso(resolve(pasta), { soHtml: args.includes("--so-html") })));
+    if (args.includes("--ver")) {
+      const { url } = await gerarStoryAviso(resolve(pasta), { ver: true });
+      console.log(`Abri a prévia no navegador: ${url}\nQuando terminar de olhar, feche aqui com Ctrl+C.`);
+    } else {
+      console.log(relative(RAIZ, await gerarStoryAviso(resolve(pasta))));
+    }
   } catch (e) {
-    if (e instanceof ErroStoryAviso || e instanceof ErroStoryVideo) { console.error(`erro: ${e.message}`); process.exit(1); }
+    if (ehErroDoPipeline(e)) { console.error(`erro: ${e.message}`); process.exit(1); }
     throw e;
   }
 }

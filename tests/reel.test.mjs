@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { validarReel, argsConcat, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
+import { spawnSync } from "node:child_process";
+import ffmpegPath from "ffmpeg-static";
+import { validarReel, gerarReel, ErroReel, DURACAO_REEL, TIPOS_DE_REEL, argsYtDlp, argsMoldura, temAudio, htmlDaMoldura, acharYtDlp } from "../design-system/scripts/gerar-reel.mjs";
 
 const cena = (extra = {}) => ({ duracao: 10, kicker: "UM DESAFIO", titulo: "PADARIA", linhas: ["Pão: 1 h"], ...extra });
 const legenda = { gancho: "G", corpo: "C", hashtags_tema: ["#A", "#B", "#C"] };
@@ -17,32 +19,44 @@ test("validarReel: cenas somam de 15 a 90 s; legenda obrigatória; tipo conhecid
   assert.ok(validarReel({ tipo: "cenas", cenas: [cena(), cena()] }).some((e) => e.includes('"legenda"')));
   assert.ok(validarReel({ tipo: "cenas", cenas: [cena({ duracao: 2 }), cena()], legenda }).some((e) => e.includes("cena 1")));
   assert.ok(validarReel({ tipo: "shorts" })[0].includes('tipo "shorts"'));
+  assert.ok(validarReel({ tipo: "cenas", trilha: "x", cenas: [cena(), cena()], legenda }, { biblioteca: { trilhas: [] } }).some((e) => e.includes('trilha "x"')));
 });
 
-test("argsConcat usa o demuxer concat sem recodificar", () => {
-  const a = argsConcat("/p/lista.txt", "/p/reel.mp4");
-  assert.deepEqual(a.slice(0, 8), ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i"]);
-  assert.ok(a.includes("/p/lista.txt") && a.includes("copy") && a.at(-1) === "/p/reel.mp4");
-});
+const bibLeve = { licencas_aceitas: [], trilhas: [{ id: "leve", arquivo: "trilhas/leve.mp3", bpm: 120, primeira_batida: 0.5 }], efeitos: [] };
 
-test("gerarReel (cenas): renderiza cada cena com prefixo reel-cena sem sticker, concatena e limpa", async () => {
+test("gerarReel (cenas): uma composição contínua, Trilha encaixada no compasso, capa no fim da 1ª Cena", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "reel-"));
-  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", cenas: [cena(), cena({ kicker: "DOIS" })], legenda }));
-  const htmls = await gerarReel(pasta, { soHtml: true });
-  assert.deepEqual(htmls.map((h) => h.slice(pasta.length + 1)), ["reel-cena-01.html", "reel-cena-02.html"]);
-  assert.ok(readFileSync(htmls[0], "utf8").includes("ig--sem-sticker ig--reel-cena"));
-  const chamadas = [];
-  const executar = async (bin, args) => { chamadas.push({ bin, args }); writeFileSync(args.at(-1), "mp4"); };
-  writeFileSync(join(pasta, "reel-cena-01.mp4"), "a"); writeFileSync(join(pasta, "reel-cena-02.mp4"), "b");
-  writeFileSync(join(pasta, "reel-cena-01.png"), "p");
-  const saida = await gerarReel(pasta, { executar, renderizar: async () => [join(pasta, "reel-cena-01.mp4"), join(pasta, "reel-cena-02.mp4")] });
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: [cena(), cena({ kicker: "DOIS" })], legenda }));
+  const visto = {};
+  const mixar = async (comp, o) => { visto.mix = o; return o.saida; };
+  const renderizar = async (comp, o) => { visto.comp = comp; visto.o = o; writeFileSync(o.mp4, "v"); return o.mp4; };
+  const saida = await gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve });
   assert.equal(saida, join(pasta, "reel.mp4"));
-  assert.equal(chamadas.length, 1);
-  assert.ok(chamadas[0].bin.includes("ffmpeg") && chamadas[0].args.includes("-f") && chamadas[0].args.at(-1) === saida);
-  assert.ok(!existsSync(join(pasta, "reel-cena-01.mp4")) && !existsSync(join(pasta, "lista-cenas.txt")));
-  assert.ok(existsSync(join(pasta, "reel.png")) && !existsSync(join(pasta, "reel-cena-01.png")));
+  assert.equal(visto.mix.trilhaId, "leve");
+  assert.deepEqual(visto.comp.cenas.map((c) => c.fim), [10.5, 20.5], "compasso de 2 s a partir de 0,5 s");
+  assert.ok(visto.comp.classes.includes("ig--reel-cena") && visto.comp.formato === "reel");
+  assert.ok(Math.abs(visto.o.capaEm - (10.5 - 0.35 - 0.1)) < 1e-9);
+  assert.ok(visto.o.png.endsWith("reel.png") && visto.o.audio.endsWith("mix.wav"));
+
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "nao-tem", cenas: [cena(), cena()], legenda }));
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), /trilha "nao-tem"/);
+
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: Array(9).fill(cena()), legenda }));
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), /90 s/, "90 s viram 90,5 no compasso: recusa");
+
   writeFileSync(join(pasta, "reel.json"), "{}");
-  await assert.rejects(gerarReel(pasta, { soHtml: true }), ErroReel);
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar, biblioteca: bibLeve }), ErroReel);
+});
+
+test("gerarReel (cenas): recusa reel que fica abaixo de 15 s depois do encaixe no compasso", async () => {
+  const pasta = mkdtempSync(join(tmpdir(), "reel-"));
+  // 7,5 + 7,5 = 15 s escritos; com batida em 0,5 s e compasso de 2 s, o fim cai em 14,5 s
+  writeFileSync(join(pasta, "reel.json"), JSON.stringify({ tipo: "cenas", trilha: "leve", cenas: [cena({ duracao: 7.5 }), cena({ duracao: 7.5 })], legenda }));
+  let gravou = false;
+  const renderizar = async (comp, o) => { gravou = true; return o.mp4; };
+  await assert.rejects(gerarReel(pasta, { renderizar, mixar: async (c, o) => o.saida, biblioteca: bibLeve }),
+    (e) => e instanceof ErroReel && /as cenas dão 14\.5 s; um reel tem pelo menos 15 s — alongue uma cena/.test(e.message));
+  assert.equal(gravou, false, "não grava nada");
 });
 
 const corte = { tipo: "corte", video: "folgas-complementares", inicio: "06:30", fim: "07:20", titulo: "EXEMPLO: O PRIMAL", faixa: "AULA COMPLETA NO CANAL", legenda };
@@ -65,12 +79,17 @@ test("argsYtDlp baixa só o trecho, em MP4 até 1080p, com o ffmpeg do projeto",
   assert.equal(a.at(-1), "https://youtu.be/x");
 });
 
-test("argsMoldura sobrepõe o vídeo 16:9 centrado na moldura 9:16, mantém o áudio e termina com o vídeo", () => {
-  const a = argsMoldura({ moldura: "/p/m.png", bruto: "/p/b.mp4", saida: "/p/reel.mp4" });
+test("argsMoldura põe o vídeo 16:9 centrado sobre a moldura animada (MP4), em 30 fps, com o áudio original", () => {
+  const a = argsMoldura({ moldura: "/p/reel-moldura.mp4", bruto: "/p/b.mp4", saida: "/p/reel.mp4" });
   const fc = a[a.indexOf("-filter_complex") + 1];
-  assert.ok(fc.includes("scale=1080:-2") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
-  assert.ok(a.includes("-loop") && a.includes("1:a?") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
-  assert.ok(a.indexOf("-framerate") >= 0 && a.indexOf("-framerate") < a.indexOf("-loop") && a[a.indexOf("-framerate") + 1] === "30", "moldura em 30 fps, antes do -loop");
+  assert.ok(fc.includes("scale=1080:-2") && fc.includes("fps=30") && fc.includes("overlay=0:(H-h)/2") && fc.includes("shortest=1") && fc.includes("yuv420p"));
+  assert.ok(!a.includes("-loop"), "a moldura agora é vídeo");
+  assert.ok(a.includes("/p/reel-moldura.mp4") && a.includes("1:a") && a.includes("aac") && a.at(-1) === "/p/reel.mp4");
+});
+
+test("validarReel (corte): recusa trilha — o Corte mantém a voz original", () => {
+  const e = validarReel({ ...corte, trilha: "qualquer" });
+  assert.ok(e.some((m) => m.includes("voz original") && m.includes('"trilha"')));
 });
 
 test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensagem útil", () => {
@@ -84,20 +103,42 @@ test("htmlDaMoldura traz título, faixa e o lockup; acharYtDlp falha com mensage
   assert.equal(acharYtDlp(() => "/usr/local/bin/yt-dlp\n"), "/usr/local/bin/yt-dlp");
 });
 
-test("gerarReel (corte): baixa o trecho, exporta a moldura, sobrepõe e limpa o bruto", async () => {
+test("gerarReel (corte): baixa o trecho, grava a moldura animada do tamanho do corte, sobrepõe e limpa", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "reel-"));
   const videos = join(pasta, "videos"); mkdirSync(join(videos, "folgas-complementares"), { recursive: true });
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
   writeFileSync(join(pasta, "reel.json"), JSON.stringify(corte));
-  const chamadas = [];
+  const chamadas = [], molduras = [];
   const executar = async (bin, args) => { chamadas.push({ bin, args }); const o = args.indexOf("-o"); writeFileSync(o >= 0 ? args[o + 1] : args.at(-1), "x"); };
-  const saida = await gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp", exportar: (html, png) => writeFileSync(png, "png") });
+  const renderizar = async (comp, o) => { molduras.push({ comp, o }); writeFileSync(o.mp4, "m"); writeFileSync(o.png, "p"); return o.mp4; };
+  const saida = await gerarReel(pasta, { executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" });
   assert.equal(saida, join(pasta, "reel.mp4"));
   assert.deepEqual(chamadas.map((c) => c.bin), ["/bin/yt-dlp", (await import("ffmpeg-static")).default]);
-  assert.ok(!existsSync(join(pasta, "corte-bruto.mp4")) && !existsSync(join(pasta, "reel-moldura.html")));
+  const [{ comp, o }] = molduras;
+  assert.equal(comp.formato, "moldura"); assert.equal(comp.duracao, 50); assert.equal(comp.cenas[0].titulo, "EXEMPLO: O PRIMAL");
+  assert.equal(o.audio, null, "a moldura não tem som; o áudio é o do vídeo");
+  assert.ok(chamadas[1].args.includes(join(pasta, "reel-moldura.mp4")));
+  assert.ok(!existsSync(join(pasta, "corte-bruto.mp4")) && !existsSync(join(pasta, "reel-moldura.mp4")));
   assert.ok(existsSync(join(pasta, "reel.png")));
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "private" }));
-  await assert.rejects(gerarReel(pasta, { executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
+  await assert.rejects(gerarReel(pasta, { executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /público/);
   writeFileSync(join(videos, "folgas-complementares", "publicacao.json"), JSON.stringify({ url: "https://youtu.be/x", privacidade: "public" }));
-  await assert.rejects(gerarReel(pasta, { soHtml: true, executar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--so-html/);
+  await assert.rejects(gerarReel(pasta, { ver: true, executar, renderizar, raizVideos: videos, ytDlp: "/bin/yt-dlp" }), /--ver/);
+});
+
+test("argsMoldura (integração, ffmpeg real): sempre sai com faixa de áudio — a do vídeo se houver, senão a muda da moldura", () => {
+  const dir = mkdtempSync(join(tmpdir(), "moldura-"));
+  const ff = (...a) => spawnSync(ffmpegPath, ["-y", "-loglevel", "error", ...a], { encoding: "utf8" });
+  const moldura = join(dir, "m.mp4"), mudo = join(dir, "mudo.mp4"), comSom = join(dir, "som.mp4");
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=black:s=1080x1920:r=30:d=1", "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100", "-shortest", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", moldura).status, 0);
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=red:s=640x360:r=25:d=1", "-c:v", "libx264", "-pix_fmt", "yuv420p", mudo).status, 0);
+  assert.equal(ff("-f", "lavfi", "-i", "color=c=red:s=640x360:r=25:d=1", "-f", "lavfi", "-i", "sine=frequency=440:duration=1", "-shortest", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", comSom).status, 0);
+  assert.equal(temAudio(mudo), false);
+  assert.equal(temAudio(comSom), true);
+  const nivel = (arq) => { const r = spawnSync(ffmpegPath, ["-i", arq, "-map", "0:a", "-af", "volumedetect", "-f", "null", "-"], { encoding: "utf8" }); return r.status === 0 ? Number(/mean_volume: (-?[\d.]+)/.exec(r.stderr)?.[1]) : null; };
+  const a = join(dir, "a.mp4"), b = join(dir, "b.mp4");
+  assert.equal(ff(...argsMoldura({ moldura, bruto: mudo, saida: a, semAudio: true }).slice(3)).status, 0);
+  assert.ok(nivel(a) < -60, "sem som no vídeo: faixa muda");
+  assert.equal(ff(...argsMoldura({ moldura, bruto: comSom, saida: b }).slice(3)).status, 0);
+  assert.ok(nivel(b) > -30, "com som: o áudio do vídeo (seno) passa");
 });

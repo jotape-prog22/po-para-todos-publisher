@@ -86,8 +86,20 @@ Passo que confere se as afirmações de um post (fatos, números, a resposta de 
 _Avoid_: fact-check, validação
 
 **Reel**:
-Vídeo curto vertical (9:16) do Instagram, publicado pela API. Nasce de um Corte de vídeo já publicado ou é escrito do zero como uma Curiosidade mais longa; nunca leva narração sintética.
+Vídeo curto vertical (9:16) do Instagram, publicado pela API. Nasce de um Corte de vídeo já publicado ou é escrito do zero, em Cenas, como uma Curiosidade mais longa. O de Cenas leva Trilha e Efeitos sonoros; nenhum Reel leva narração sintética.
 _Avoid_: vídeo curto, short
+
+**Cena**:
+Trecho animado de um Reel do zero ou um story de uma Sequência de stories, com um tipo: `texto`, `grafo`, `conta`, `odometro`, `impacto`, `grafico` ou `tabela`.
+_Avoid_: plate, slide, tela
+
+**Trilha**:
+Música de fundo de um Reel de Cenas, escolhida de uma biblioteca do repositório em que cada faixa tem fonte, licença gratuita explícita, clima e andamento; os cortes entre Cenas caem na batida dela. Nunca vai em Corte nem em story.
+_Avoid_: música, som de fundo, BGM
+
+**Efeito sonoro**:
+Som curto preso a uma animação (o traço da caneta, o número que para, a troca de Cena), da mesma biblioteca e com a mesma exigência de licença da Trilha. Vai em Reels de Cenas e, discreto, em stories.
+_Avoid_: SFX, barulhinho
 
 **Corte**:
 Trecho de um vídeo já publicado no YouTube, baixado pela pipeline para virar um Reel — o Gancho do roteiro ou um bloco `exemplo` autocontido, escolhido pela pessoa entre 2 a 3 candidatos sugeridos. Mantém o áudio original; a moldura vertical usa fundo de marca, nunca corte ou desfoque das bordas.

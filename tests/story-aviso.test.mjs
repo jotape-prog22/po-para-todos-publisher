@@ -52,13 +52,17 @@ test("cena da citação: kicker CITAÇÃO, origem como título, o trecho na linh
   assert.deepEqual(cena.linhas, ["Se sobrou, comprar mais não adianta."]);
 });
 
-test("gerarStoryAviso --so-html escreve story-aviso.html sem sticker com o título do post", async () => {
+test("gerarStoryAviso grava story-aviso.mp4 sem sticker com o título do post", async () => {
   const pasta = mkdtempSync(join(tmpdir(), "aviso-"));
   copyFileSync(join(exemplo, "cards.json"), join(pasta, "cards.json"));
-  const saida = await gerarStoryAviso(pasta, { soHtml: true });
-  assert.ok(saida.endsWith("story-aviso.html"));
-  const html = readFileSync(saida, "utf8");
-  assert.ok(html.includes("ig--sem-sticker") && html.includes("POST NOVO: RESUMO DE ARTIGO") && html.includes("VEJA NO FEED"));
+  const vistos = [];
+  const saida = await gerarStoryAviso(pasta, { renderizar: async (comp, o) => { vistos.push({ comp, o }); return o.mp4; }, mixar: async () => null, biblioteca: { licencas_aceitas: [], trilhas: [], efeitos: [] } });
+  assert.ok(saida.endsWith("story-aviso.mp4"));
+  const [{ comp, o }] = vistos;
+  assert.ok(comp.classes.includes("ig--sem-sticker"));
+  assert.equal(comp.cenas[0].kicker, "POST NOVO: RESUMO DE ARTIGO");
+  assert.equal(comp.cenas[0].faixa, "VEJA NO FEED");
+  assert.equal(o.audio, null);
   writeFileSync(join(pasta, "cards.json"), "{}");
-  await assert.rejects(gerarStoryAviso(pasta, { soHtml: true }), ErroStoryAviso);
+  await assert.rejects(gerarStoryAviso(pasta, { renderizar: async () => {}, mixar: async () => null }), ErroStoryAviso);
 });
