@@ -9,6 +9,7 @@ import * as pergunta from "../design-system/motion/cenas/pergunta.mjs";
 import * as riscado from "../design-system/motion/cenas/riscado.mjs";
 import * as digitado from "../design-system/motion/cenas/digitado.mjs";
 import * as spoiler from "../design-system/motion/cenas/spoiler.mjs";
+import * as mitoFato from "../design-system/motion/cenas/mito-fato.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -232,8 +233,33 @@ test("spoiler: impacto no número, pop na pergunta; padrão 'COMO?'", () => {
   desenharEm(spoiler, cena, [0, 99]);   // Review Focus 5
 });
 
+const mf = (extra = {}) => ({ tipo: "mito-fato", duracao: 4, afirmacao: "Preço sombra é o preço de mercado.", veredito: "mito", ...extra });
+
+test("mito-fato: veredito só mito ou fato", () => {
+  assert.deepEqual(validarCena(mf(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(mf({ veredito: "talvez" }), "cena 1", { formato: "reel" }).erros[0], /"veredito" é "mito" ou "fato"/);
+});
+
+test("mito-fato: caneta na afirmação; carimbo (impacto) nunca antes do mínimo", () => {
+  const r = movimento.ritmo.mito_fato;
+  const curta = validarCena(mf({ afirmacao: "Curta." }), "c", { formato: "reel" }).cena.linha;
+  assert.deepEqual(curta.eventos.map((e) => e.efeito), ["caneta", "impacto"]);
+  assert.equal(curta.eventos[1].t, r.carimbo_minimo);
+  // 90 caracteres escritos levam o carimbo para ~3,7 s: a Cena precisa de mais que 4 s para validar.
+  const longa = validarCena(mf({ afirmacao: "x".repeat(90), duracao: 6 }), "c", { formato: "reel" }).cena.linha;
+  assert.ok(longa.eventos[1].t > r.carimbo_minimo);
+});
+
+test("mito-fato: o carimbo só aparece depois do evento", () => {
+  const { cena } = validarCena(mf(), "c", { formato: "reel" });
+  const tc = cena.linha.eventos[1].t;
+  assert.ok(!textos(desenharEm(mitoFato, cena, [tc - 0.05])).some((x) => x.s === "MITO"));
+  assert.ok(textos(desenharEm(mitoFato, cena, [tc + 0.5])).some((x) => x.s === "MITO"));
+  desenharEm(mitoFato, cena, [0, 99]);   // Review Focus 5
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
-const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()]];
+const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()], [mitoFato, mf()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   for (const [mod, c] of COM_KICKER) {
     const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });
