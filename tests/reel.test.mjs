@@ -158,3 +158,9 @@ test("validarReel lista a regra das Chamadas junto dos outros erros", () => {
   const erros = validarReel({ tipo: "cenas", cenas: [perguntaAberta, cena()], legenda });
   assert.ok(erros.some((e) => /cena 1 é uma pergunta: a última cena precisa revelá-la/.test(e)), erros.join(" | "));
 });
+
+test("composicaoDoReel recusa reel que termina num desafio (Review Focus 4)", () => {
+  const desafio = { tipo: "desafio", duracao: 8, pergunta: "Cabe todo mundo?", segundos: 4 };
+  const dados = { tipo: "cenas", cenas: [cena(), desafio], legenda };
+  assert.throws(() => composicaoDoReel(dados, { biblioteca: { trilhas: [], efeitos: [] } }), (e) => e instanceof ErroReel && /cena 2: um desafio não fecha o reel/.test(e.message));
+});

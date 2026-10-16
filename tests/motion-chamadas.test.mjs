@@ -10,6 +10,7 @@ import * as riscado from "../design-system/motion/cenas/riscado.mjs";
 import * as digitado from "../design-system/motion/cenas/digitado.mjs";
 import * as spoiler from "../design-system/motion/cenas/spoiler.mjs";
 import * as mitoFato from "../design-system/motion/cenas/mito-fato.mjs";
+import * as desafio from "../design-system/motion/cenas/desafio.mjs";
 
 const imp = (extra = {}) => validarCena({ tipo: "impacto", duracao: 4, palavras: ["UMA RUA", "NOVA", "TODOS PIORAM"], ...extra }, "cena 1", { formato: "reel" });
 
@@ -258,8 +259,39 @@ test("mito-fato: o carimbo só aparece depois do evento", () => {
   desenharEm(mitoFato, cena, [0, 99]);   // Review Focus 5
 });
 
+const des = (extra = {}) => ({ tipo: "desafio", duracao: 8, pergunta: "3 bairros, 2 escolas: todos na mais perto cabe?", segundos: 4, ...extra });
+
+test("desafio: segundos de 3 a 5", () => {
+  assert.deepEqual(validarCena(des(), "cena 1", { formato: "reel" }).erros, []);
+  assert.match(validarCena(des({ segundos: 8 }), "cena 1", { formato: "reel" }).erros[0], /"segundos" é um inteiro de 3 a 5/);
+});
+
+test("desafio: caneta, um tick por segundo e sino no fim do tempo", () => {
+  const c = des();
+  const lt = validarCena(c, "c", { formato: "reel" }).cena.linha;
+  assert.deepEqual(lt.eventos.map((e) => e.efeito), ["caneta", "tick", "tick", "tick", "tick", "sino"]);
+  assert.equal(lt.eventos.at(-1).t - lt.eventos[1].t, 4);
+  assert.equal(lt.fim, lt.eventos.at(-1).t);
+});
+
+test("desafio: o número do relógio desce de segundos até 0", () => {
+  const { cena } = validarCena(des(), "c", { formato: "reel" });
+  const ini = cena.linha.eventos[1].t;
+  assert.ok(textos(desenharEm(desafio, cena, [ini + 0.1])).some((x) => x.s === "4"));
+  assert.ok(textos(desenharEm(desafio, cena, [ini + 3.5])).some((x) => x.s === "1"));
+  assert.ok(textos(desenharEm(desafio, cena, [ini + 4.2])).some((x) => x.s === "0"));
+  desenharEm(desafio, cena, [0, 99]);   // Review Focus 5
+});
+
+test("validarChamadas (Review Focus 4): desafio não fecha o reel", () => {
+  const cenas = [des()].map((c, i) => validarCena(c, `cena ${i + 1}`, { formato: "reel" }).cena);
+  assert.match(validarChamadas(cenas)[0], /cena 1: um desafio não fecha o reel/);
+  const comResposta = [des(), { duracao: 5, titulo: "NÃO CABE", linhas: ["x"] }].map((c, i) => validarCena(c, `cena ${i + 1}`, { formato: "reel" }).cena);
+  assert.deepEqual(validarChamadas(comResposta), []);
+});
+
 // Toda Chamada aceita "kicker": ele é digitado acima do bloco, com o som de digitar no começo.
-const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()], [mitoFato, mf()]];
+const COM_KICKER = [[pergunta, perg()], [riscado, risc()], [digitado, dig()], [spoiler, spo()], [mitoFato, mf()], [desafio, des()]];
 test("Chamadas: o kicker é digitado na tela e soa digitar", () => {
   for (const [mod, c] of COM_KICKER) {
     const { cena, erros } = validarCena({ ...c, kicker: "PENSE RÁPIDO", duracao: 12 }, "c", { formato: "reel" });
