@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Gera os vídeos de uma sequência de stories (1080×1920, MP4 H.264 com som) a partir de
 // instagram/<pasta>/stories.json: um vídeo por story, cada um uma Cena do motor de motion
-// (design-system/motion: texto, impacto, odometro, grafo, conta, grafico, tabela — ver motion/GUIA.md).
+// (design-system/motion: os tipos de Cena e as Chamadas — ver motion/GUIA.md).
 // Story leva só Efeitos sonoros discretos, nunca Trilha (ADR-0012). O sticker (quiz, enquete, link) não
 // sai daqui: a pessoa adiciona no app, no espaço livre acima do rodapé — o roteiro de qual sticker vai em
 // cada story fica em stories.md, na mesma pasta.

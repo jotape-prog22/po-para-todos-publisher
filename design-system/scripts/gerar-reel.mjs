@@ -17,7 +17,7 @@ import { dirname, join, resolve, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ehErroDoPipeline, validarCenas, gravarComposicao, USUARIO, ErroStoryVideo } from "./gerar-story-video.mjs";
 import { montarComposicao } from "../motion/composicao.mjs";
-import { INTERNAS } from "../motion/cenas/index.mjs";
+import { INTERNAS, validarChamadas } from "../motion/cenas/index.mjs";
 import { renderizar as renderizarMotion } from "./motion/renderizar.mjs";
 import { mixar as mixarAudio, rodar as rodarProcesso, MOVIMENTO } from "./motion/mixagem.mjs";
 import { verComposicoes } from "./motion/ver.mjs";
@@ -43,7 +43,7 @@ export function validarReel(dados, { biblioteca = null } = {}) {
     if (!Array.isArray(dados.cenas) || !dados.cenas.length) erros.push('tipo cenas precisa de uma lista "cenas"');
     else {
       try {
-        validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" });
+        erros.push(...validarChamadas(validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" })));
       } catch (e) {
         if (e instanceof ErroStoryVideo) erros.push(e.message); else throw e;
       }
@@ -121,6 +121,8 @@ async function ffmpeg() { return ffmpegEstatico; }
 
 export function composicaoDoReel(dados, { biblioteca }) {
   const cenas = validarCenas(dados.cenas, { formato: "reel", rotulo: "cena" });
+  const [erroChamada] = validarChamadas(cenas);
+  if (erroChamada) throw new ErroReel(erroChamada);
   const trilha = dados.trilha ? biblioteca.trilhas.find((t) => t.id === dados.trilha) : null;
   const comp = montarComposicao(cenas, { formato: "reel", trilha, usuario: USUARIO });
   if (comp.duracao > DURACAO_REEL.max) throw new ErroReel(`encaixadas no compasso da Trilha, as cenas dão ${comp.duracao} s; um reel tem até ${DURACAO_REEL.max} s — encurte uma cena`);

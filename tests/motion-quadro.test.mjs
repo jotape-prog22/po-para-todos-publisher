@@ -46,8 +46,8 @@ test("desenharQuadro: tipo de Cena desconhecido lança ErroMotion", async () => 
   assert.throws(() => desenharQuadro(ctxFalso(), comp, 1, kitFalso()), (e) => e instanceof ErroMotion && /nao-existe/.test(e.message));
 });
 
-test("o clarão do impacto é desenhado depois da marca, cobrindo a tela inteira", () => {
-  const c = validarCena({ tipo: "impacto", duracao: 3, palavras: ["AGORA"] }, "cena", { formato: "reel" }).cena;
+test("o clarão (spoiler) é desenhado depois da marca, cobrindo a tela inteira", () => {
+  const c = validarCena({ tipo: "spoiler", duracao: 3, valor: 42 }, "cena", { formato: "reel" }).cena;
   const comp = montarComposicao([c, c], { formato: "reel" });
   const ctx = ctxFalso();
   desenharQuadro(ctx, comp, 0.2, kitFalso());

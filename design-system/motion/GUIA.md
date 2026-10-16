@@ -2,16 +2,22 @@
 
 Cada Cena de `reel.json` (`"cenas"`) ou `stories.json` (`"stories"`) tem `duracao` (s) e um `tipo`. Sem `tipo`, é `texto`. Todo tipo aceita `faixa` (≤ 40, a linha acima do rodapé, ex.: "AULA COMPLETA NO CANAL"). O gerador recusa o que não cabe e diz a duração mínima de cada Cena.
 
-Ritmo do reel: 25 a 45 s no total (limite técnico 15 a 90), Cenas de 3 a 8 s, a primeira bate uma palavra em até 2 s (`impacto`). Story: cada um com pelo menos 5 s.
+Ritmo do reel: 25 a 45 s no total (limite técnico 15 a 90), Cenas de 3 a 8 s. A primeira Cena é a **Chamada** (`CONTEXT.md`): algo na tela em até 2 s, com um destes tipos — `impacto` (3 estilos), `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato`, `desafio` — ou, se o tema pedir, `odometro`, `grafo` ou `texto` com `pergunta`. Varie: veja as regras na skill `reel` e toque `npm run chamadas` para ver todas. Story: cada um com pelo menos 5 s.
 
 Quando usar cada tipo:
 - **texto** — explicar com frases: kicker, título, até 6 linhas ou 4 itens numerados, pergunta, ícone, dica. É o formato antigo.
-- **impacto** — gancho e viradas: 1 a 4 palavras grandes que batem uma por vez.
+- **impacto** — gancho e viradas: 1 a 4 palavras grandes que entram uma por vez.
 - **odometro** — um número que importa (ano, quantidade, resultado) girando até o valor.
 - **grafo** — redes, caminhos, árvores: nós numa grade 0–10, arestas (pares repetidos viram pontes paralelas), pesos e um caminho que acende.
 - **conta** — uma conta curta escrita à mão, linha a linha, com a linha do resultado em destaque.
 - **grafico** — programação linear em 2 variáveis: eixos, restrições, região viável e ponto ótimo.
 - **tabela** — comparar poucos números (até 6 linhas × 4 colunas), com uma célula em destaque.
+- **pergunta** — Chamada que abre uma dúvida com 2 ou 3 opções; a última Cena do reel repete a pergunta com `resposta` e acende a certa.
+- **riscado** — Chamada de virada: a crença comum ("parece") é riscada e a resposta ("é") bate.
+- **digitado** — Chamada calma: uma frase digitada com cursor e um trecho com marca-texto. Para temas sérios.
+- **spoiler** — Chamada que mostra o resultado final gigante e pergunta "COMO?"; o reel explica.
+- **mito-fato** — Chamada com uma afirmação e o carimbo MITO ou FATO.
+- **desafio** — Chamada com uma pergunta e um relógio de 3 a 5 s; a resposta vem na Cena 2.
 
 Números, contas e pesos que aparecem na tela entram na Checagem (`checagem.json`, `onde: "cena N"`).
 
@@ -28,6 +34,8 @@ Campos: `kicker` ≤ 40, `titulo` ≤ 60, `linhas` (até 6, ≤ 90) **ou** `iten
     { "tipo": "impacto", "duracao": 3, "palavras": ["7 PONTES", "1 PASSEIO"], "apoio": "sem repetir nenhuma" }
 
 Campos: `palavras` (1 a 4, ≤ 14 cada), `apoio` ≤ 60, `kicker`. Sem `titulo`. Cada palavra entra 0,55 s depois da anterior.
+
+`estilo`: `deslizar` (padrão: entram de lado, alternando, e ficam empilhadas), `trocar` (uma palavra por vez no mesmo lugar, com mola), `sublinhar` (todas juntas; a caneta sublinha a de número `destaque`, padrão a última). `destaque` só vale com `sublinhar`. Sem tremor nem clarão em nenhum estilo (o antigo `batida` e o `crescer` saíram depois da galeria).
 
 ## odometro
 
@@ -65,3 +73,39 @@ Campos: `eixos` (`x` e `y`, cada um com `max` > 0 e `rotulo` ≤ 16), `restricoe
       "linhas": [["Forno", "1 h", "2 h"], ["Lucro", "R$ 20", "R$ 50"]], "destaque": { "linha": 2, "coluna": 3 } }
 
 Campos: `colunas` (2 a 4, ≤ 12; a primeira pode ser `""` quando a coluna é de rótulos), `linhas` (1 a 6, mesmo número de células, cada célula ≤ 12), `destaque` `{ linha, coluna }` contando de 1 (sem o cabeçalho), `nota` ≤ 60, `kicker`, `titulo`. O cabeçalho sai em caixa alta; as células, como escritas. Todo número da tabela entra na Checagem.
+
+## pergunta
+
+    { "tipo": "pergunta", "duracao": 4, "pergunta": "Abrir um atalho deixa o trânsito…", "opcoes": ["Mais rápido", "Igual", "Mais lento"] }
+
+Campos: `pergunta` ≤ 60, `opcoes` (2 a 3, ≤ 30 cada), `resposta` (número da opção certa — só na Cena que revela), `kicker`. Reel que abre com `pergunta` precisa terminar com a mesma pergunta, as mesmas `opcoes` na mesma ordem e a `resposta`; o gerador recusa se faltar. Opção longa encolhe a fonte de todas.
+
+## riscado
+
+    { "tipo": "riscado", "duracao": 4, "parece": "Sobrar energia é bom", "e": "Vira problema" }
+
+Campos: `parece` ≤ 40, `e` ≤ 40, `kicker`. "PARECE" e "É" são fixos na tela.
+
+## digitado
+
+    { "tipo": "digitado", "duracao": 5, "frase": "37.719 pessoas esperam uma córnea no Brasil.", "marca": "37.719 pessoas" }
+
+Campos: `frase` ≤ 90 (sai como escrita, sem caixa alta), `marca` ≤ 30 (trecho exato da frase), `kicker`. Cada palavra do trecho é marcada na linha em que cair; prefira marca curta. A frase entra na Checagem.
+
+## spoiler
+
+    { "tipo": "spoiler", "duracao": 3, "valor": 80, "sufixo": "min", "pergunta": "COMO?" }
+
+Campos do número iguais aos do `odometro` (`valor`, `casas_decimais`, `prefixo`, `sufixo`; sem `rotulo`), `pergunta` ≤ 20 (padrão "COMO?"), `kicker`. O número entra na Checagem.
+
+## mito-fato
+
+    { "tipo": "mito-fato", "duracao": 4, "afirmacao": "Preço sombra é o preço de mercado.", "veredito": "mito" }
+
+Campos: `afirmacao` ≤ 90, `veredito` (`"mito"` ou `"fato"`), `kicker`. O carimbo bate logo abaixo da afirmação, pelo menos 1,5 s depois do começo. Afirmação e veredito entram na Checagem.
+
+## desafio
+
+    { "tipo": "desafio", "duracao": 8, "pergunta": "3 bairros, 2 escolas: todos na mais perto cabe?", "segundos": 4 }
+
+Campos: `pergunta` ≤ 90, `segundos` (3 a 5), `kicker`. Nunca é a última Cena: a Cena seguinte responde (o gerador recusa reel que termina em desafio).

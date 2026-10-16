@@ -23,7 +23,8 @@
     "corte": "node scripts/corte.mjs",
     "agenda": "node scripts/agenda.mjs",
     "revisar": "node scripts/revisar.mjs",
-    "calibrar": "node design-system/scripts/calibrar-instagram.mjs"
+    "calibrar": "node design-system/scripts/calibrar-instagram.mjs",
+    "chamadas": "node design-system/scripts/ver-chamadas.mjs"
   },
   "license": "MIT",
   "dependencies": {

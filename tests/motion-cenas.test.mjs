@@ -146,10 +146,10 @@ test("ritmoDe falha com ErroMotion quando movimento.json não tem o ritmo do tip
   assert.throws(() => ritmoDe("nao-existe"), (e) => e instanceof ErroMotion && /ritmo\.nao-existe/.test(e.message));
 });
 
-test("impacto: uma batida por palavra, recusa título e palavra longa", () => {
+test("impacto: um pop por palavra (deslizar, o padrão), recusa título e palavra longa", () => {
   const { cena, erros } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["7 pontes", "1 passeio"] }, "cena 1", { formato: "reel" });
   assert.deepEqual(erros, []);
-  assert.deepEqual(cena.linha.eventos, [{ t: 0.15, efeito: "impacto" }, { t: 0.7, efeito: "impacto" }]);
+  assert.deepEqual(cena.linha.eventos, [{ t: 0.15, efeito: "pop" }, { t: 0.7, efeito: "pop" }]);
   assert.equal(cena.minimo, 1.9);
   const erro = (c) => validarCena({ tipo: "impacto", duracao: 3, ...c }, "cena 1", { formato: "reel" }).erros[0] ?? "";
   assert.match(erro({ palavras: ["a", "b", "c", "d", "e"] }), /de 1 a 4/);
@@ -224,15 +224,16 @@ test("impacto: o kicker digitado gera o evento digitar e entra em fimEscrita só
   assert.deepEqual(lt.eventos[0], { t: movimento.ritmo.impacto.kicker, efeito: "digitar" });
 });
 
-test("impacto: tremor, mola, rampa, meia-vida e ruído vêm de movimento.json (impacto.*)", () => {
+test("batidas (clarão, mola, rampa, meia-vida) vêm de movimento.json (impacto.*); tremor saiu com o estilo batida", () => {
   const i = movimento.impacto;
-  for (const k of ["tremor", "clarao", "passar", "rampa", "meia_vida", "ruido"]) assert.equal(typeof i[k], "number", k);
+  for (const k of ["clarao", "passar", "rampa", "meia_vida"]) assert.equal(typeof i[k], "number", k);
+  for (const k of ["tremor", "ruido"]) assert.equal(i[k], undefined, k);
   assert.ok(i.clarao <= 0.05, "clarão quase imperceptível");
   assert.equal(typeof movimento.ritmo.odometro.aparecer, "number");
 });
 
-test("impacto: a mola nunca passa a palavra da largura útil, nem no pico (14 caracteres)", () => {
-  const { cena } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["MMMMMMMMMMMMMM"] }, "cena", { formato: "reel" });
+test("impacto trocar: a mola nunca passa a palavra da largura útil, nem no pico (14 caracteres)", () => {
+  const { cena } = validarCena({ tipo: "impacto", estilo: "trocar", duracao: 3, palavras: ["MMMMMMMMMMMMMM"] }, "cena", { formato: "reel" });
   const kit = kitFalso();
   let maior = 0;
   for (let t = 0.15; t < 0.6; t += 0.01) {
@@ -244,7 +245,7 @@ test("impacto: a mola nunca passa a palavra da largura útil, nem no pico (14 ca
   }
   assert.ok(maior <= kit.layout.area.w + 1e-6, `largura de pico ${maior} passa de ${kit.layout.area.w}`);
   // palavra curta mantém o soco
-  const { cena: curta } = validarCena({ tipo: "impacto", duracao: 3, palavras: ["7"] }, "cena", { formato: "reel" });
+  const { cena: curta } = validarCena({ tipo: "impacto", estilo: "trocar", duracao: 3, palavras: ["7"] }, "cena", { formato: "reel" });
   let pico = 1;
   for (let t = 0.15; t < 0.6; t += 0.01) { const ctx = ctxFalso(); ctx.scale = (a) => { pico = Math.max(pico, a); }; impacto.desenhar(ctx, curta, t, kit); }
   assert.ok(pico > 1.2);

@@ -18,6 +18,7 @@ Scripts (Node ≥ 22, `npm install` uma vez):
 - `node scripts/citacao.mjs --candidatos <videos/<slug> | instagram/<pasta>>` — trechos para um post `citacao`.
 - `node scripts/corte.mjs --candidatos videos/<slug>` — trechos de vídeo público para um reel.
 - `node design-system/scripts/gerar-reel.mjs instagram/<pasta>` — `reel.json` → `reel.mp4` (`--ver`: prévia no navegador, com som).
+- `npm run chamadas` — galeria das Chamadas (a Cena de abertura dos reels) no navegador, com som; `npm run chamadas -- <nome>` filtra.
 - `node scripts/audio.mjs [--medir <arquivo>]` — biblioteca de Trilhas e Efeitos sonoros (`design-system/audio/biblioteca.json`, só licença gratuita explícita, `docs/adr/0012`); `--medir` dá BPM e primeira batida de uma faixa nova.
 - `node scripts/agenda.mjs …` — a agenda de publicações (`--adicionar`, `--distribuir`, `--status`, `--mover`, `--reabrir`, `--remover`, `--enfileirar`, `--enviar`, `--atualizar`, `--configurar-nuvem`); `npm run revisar` abre a revisão em bloco.
 - `node scripts/publicar-agenda.mjs [--simular]` — o que o workflow `publicar-agenda.yml` roda a cada 30 min; `--simular` não toca na Meta. Quem acorda o workflow é um despertador no cron-job.org (`workflow_dispatch` às :00/:30); o cron do GitHub (:07/:37) é só reserva, porque atrasa horas (README, "Publicar na nuvem (agenda)").
@@ -33,7 +34,7 @@ Upload é sempre privado (`docs/adr/0003`). `canal.json` guarda links, playlists
 
 `/reel instagram/<data>-<slug>` (skill `reel`): corte de vídeo publicado (`scripts/corte.mjs --candidatos`, `yt-dlp`, `docs/adr/0008`) ou cenas do zero → `reel.json` → `gerar-reel.mjs` + `legenda.mjs --reel` → parada → `--publicar-reel`.
 
-Reels, stories e story de aviso saem do motor de motion (`design-system/motion/`, Canvas2D no Chrome, `docs/adr/0011`): cada Cena tem um `tipo` (`texto`, `impacto`, `odometro`, `grafo`, `conta`, `grafico`, `tabela` — `design-system/motion/GUIA.md`) e a geometria vem do mesmo CSS da calibração. Reel de Cenas leva Trilha e Efeitos; story só Efeitos; Corte só o áudio original. Mídia na agenda ou no branch `fila` não se regera.
+Reels, stories e story de aviso saem do motor de motion (`design-system/motion/`, Canvas2D no Chrome, `docs/adr/0011`): cada Cena tem um `tipo` (`texto`, `impacto`, `odometro`, `grafo`, `conta`, `grafico`, `tabela` e as Chamadas `pergunta`, `riscado`, `digitado`, `spoiler`, `mito-fato`, `desafio` — `design-system/motion/GUIA.md`) e a geometria vem do mesmo CSS da calibração. Reel de Cenas leva Trilha e Efeitos; story só Efeitos; Corte só o áudio original. Mídia na agenda ou no branch `fila` não se regera.
 
 `/pacote` (skill `pacote`): post + story de aviso + reel, nessa ordem, cada um com sua parada; só por pedido — `/video` nunca dispara nada do Instagram. Story de vídeo novo é sempre manual (sticker de link); story de aviso e sequências sem sticker saem pela API.
 
