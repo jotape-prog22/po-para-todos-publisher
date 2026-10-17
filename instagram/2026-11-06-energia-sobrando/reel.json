@@ -1,0 +1,113 @@
+{
+  "tipo": "cenas",
+  "trilha": "estudo-leve",
+  "cenas": [
+    {
+      "tipo": "riscado",
+      "duracao": 4,
+      "kicker": "ONS",
+      "parece": "Sobrar energia é bom",
+      "e": "Um problema para a rede"
+    },
+    {
+      "duracao": 6,
+      "kicker": "ONS · DOMINGO, 27/09/2026",
+      "titulo": "DEMANDA BAIXA, GERAÇÃO DEMAIS",
+      "linhas": [
+        "O ONS viu probabilidade média de acionar o Plano de Gestão de Excedentes",
+        "É quando a oferta passa da carga, mesmo após cortes"
+      ]
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5,
+      "kicker": "ONS · REVISÃO DE 19/09",
+      "titulo": "CARGA PREVISTA EM SETEMBRO",
+      "valor": 84285,
+      "sufixo": "MWm",
+      "rotulo": "alta de 4,9% sobre set/2025"
+    },
+    {
+      "tipo": "grafico",
+      "duracao": 10,
+      "kicker": "EXEMPLO · NÚMEROS INVENTADOS",
+      "titulo": "DESPACHO: MENOR CUSTO",
+      "eixos": {
+        "x": {
+          "rotulo": "solar",
+          "max": 7
+        },
+        "y": {
+          "rotulo": "térmica",
+          "max": 7
+        }
+      },
+      "restricoes": [
+        {
+          "a": -1,
+          "b": -1,
+          "c": -6,
+          "rotulo": "carga: x+y ≥ 6"
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "c": 5,
+          "rotulo": "solar: x ≤ 5"
+        },
+        {
+          "a": 0,
+          "b": -1,
+          "c": -2,
+          "rotulo": "mínimo: y ≥ 2"
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "c": 4,
+          "rotulo": "máximo: y ≤ 4"
+        }
+      ],
+      "otimo": {
+        "x": 4,
+        "y": 2,
+        "rotulo": "Z* = 10"
+      },
+      "nota": "custo: Z = x + 3y (exemplo)"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 8,
+      "kicker": "EXEMPLO",
+      "titulo": "ONDE SOBRA",
+      "linhas": [
+        "solar disponível: 5",
+        "térmica no mínimo: 2",
+        "5 + 2 = 7, mas a carga é 6",
+        "sobra 1: o ótimo corta o solar"
+      ],
+      "destaque": 4,
+      "nota": "números de exemplo, não do ONS"
+    },
+    {
+      "tipo": "impacto",
+      "duracao": 5,
+      "palavras": [
+        "NO EXEMPLO",
+        "O ÓTIMO CORTA",
+        "SOLAR"
+      ],
+      "apoio": "sobra de energia também é problema",
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Energia sobrando também é problema: o ONS avaliou acionar o Plano de Gestão de Excedentes.",
+    "corpo": "Em 25/09/2026, o ONS avaliou probabilidade média de acionar o Plano de Gestão de Excedentes para o domingo 27/09, com demanda baixa. O plano é uma medida preventiva para quando, mesmo após a redução coordenada da geração, a oferta ainda passa da carga e é preciso restringir a produção. A fonte não informa quanto seria cortado. A previsão de carga do SIN para setembro, de 19/09, é de 84.285 MWm, alta de 4,9% sobre o mesmo mês de 2025.\n\nNa Pesquisa Operacional isso é um problema de despacho: gerar ao menor custo, atendendo a carga e respeitando os limites de cada usina. O gráfico do reel é um exemplo didático com números inventados: com carga 6, solar disponível 5 e térmica com mínimo 2, a soma passa da carga, e o menor custo corta 1 de solar. Mínimos técnicos e carga baixa explicam como cortar geração limpa pode ser o ótimo.\n\nÉ esse tipo de modelo, variáveis, função objetivo e restrições, que a aula de Modelagem de PPL ensina no canal. Link na bio.",
+    "hashtags_tema": [
+      "#ProgramacaoLinear",
+      "#SetorEletrico",
+      "#DespachoDeEnergia"
+    ]
+  }
+}

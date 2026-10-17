@@ -1,0 +1,107 @@
+{
+  "tipo": "cenas",
+  "trilha": "faiscas-espertas",
+  "cenas": [
+    {
+      "tipo": "digitado",
+      "duracao": 5.5,
+      "kicker": "OVERBOOKING · EXEMPLO",
+      "frase": "Um avião com 180 lugares. Vender 196 passagens é a melhor escolha.",
+      "marca": "196 passagens"
+    },
+    {
+      "duracao": 6,
+      "kicker": "POR QUE VENDER A MAIS?",
+      "titulo": "NEM TODO MUNDO APARECE",
+      "linhas": [
+        "Parte de quem compra não embarca",
+        "No exemplo, 1 em cada 10 falta"
+      ]
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 7,
+      "kicker": "EXEMPLO · MÉDIAS POR VOO",
+      "titulo": "QUANTAS PASSAGENS VENDER?",
+      "colunas": [
+        "Vendidas",
+        "Voam",
+        "Em terra",
+        "Lucro"
+      ],
+      "linhas": [
+        [
+          "180",
+          "162",
+          "0",
+          "R$ 81 mil"
+        ],
+        [
+          "190",
+          "171",
+          "0,01",
+          "R$ 85,5 mil"
+        ],
+        [
+          "196",
+          "176",
+          "0,4",
+          "R$ 87,2 mil"
+        ],
+        [
+          "205",
+          "179,6",
+          "4,9",
+          "R$ 80,1 mil"
+        ]
+      ],
+      "destaque": {
+        "linha": 3,
+        "coluna": 4
+      },
+      "nota": "R$ 500 por quem voa; R$ 2.000 por quem fica"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "EXEMPLO",
+      "titulo": "A CONTA DO 196",
+      "linhas": [
+        "196 × 0,9 = 176,4 aparecem",
+        "acima de 180: 16,5% de chance",
+        "lucro = 500·voam − 2.000·ficam"
+      ],
+      "destaque": 2,
+      "nota": "às vezes alguém fica em terra, e compensa"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5,
+      "kicker": "196 CONTRA 180 PASSAGENS",
+      "titulo": "LUCRO MÉDIO A MAIS",
+      "valor": 7.6,
+      "casas_decimais": 1,
+      "sufixo": "%",
+      "rotulo": "R$ 87,2 mil contra R$ 81 mil por voo"
+    },
+    {
+      "duracao": 6,
+      "kicker": "SE ALGUÉM FICAR EM TERRA",
+      "titulo": "A REGRA DA ANAC",
+      "linhas": [
+        "Primeiro, procurar voluntários com troca negociada",
+        "Sem voluntários: 250 DES por passageiro em voo doméstico"
+      ],
+      "faixa": "MAIS PO NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Vender mais passagens do que lugares no avião pode ser a decisão ótima. A conta é de Pesquisa Operacional.",
+    "corpo": "Overbooking é vender mais passagens do que assentos. Parece erro, mas é uma conta: parte de quem compra não aparece, e assento vazio é receita perdida.\n\nNo nosso exemplo (números inventados): avião de 180 lugares, 1 em cada 10 passageiros falta, cada um que voa rende R$ 500 e cada um que fica em terra custa R$ 2.000. Vendendo só 180, o lucro médio é R$ 81 mil por voo. O melhor é vender 196: o lucro médio vai a R$ 87,2 mil (7,6% a mais), com 16,5% de chance de sobrar alguém. Vendendo 205, o lucro médio cai para R$ 80,1 mil, abaixo até de vender só 180. Conferimos com a distribuição binomial e com uma simulação de 400 mil voos.\n\nNo Brasil, a regra é da ANAC (Resolução 400): a companhia procura primeiro voluntários, com compensação negociada. Sem voluntários, paga na hora 250 DES por passageiro em voo doméstico (500 DES em internacional) e oferece reacomodação, reembolso ou outro transporte.",
+    "hashtags_tema": [
+      "#Overbooking",
+      "#Probabilidade",
+      "#AviacaoCivil"
+    ]
+  }
+}

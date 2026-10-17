@@ -1,0 +1,15 @@
+Supermercado com 3 caixas: uma fila por caixa ou uma fila única? A teoria de filas responde.
+
+No exemplo, cada caixa leva em média 2 minutos por cliente e chegam 1,35 cliente por minuto: os caixas ficam 90% do tempo ocupados. Chegadas e atendimentos são aleatórios, o modelo clássico da teoria de filas.
+
+Se cada pessoa entra numa fila qualquer e não troca, cada caixa vira uma fila sozinha, e a espera média é de 18 minutos. Com uma fila única para os 3 caixas, cai para cerca de 5,5 minutos (fórmula de Erlang C). Quem sempre escolhe a fila menor fica perto, com cerca de 6 minutos na nossa simulação de 2 milhões de clientes.
+
+A fila única evita o pior caso: um caixa parado enquanto outra fila espera. E perto de 100% de ocupação a espera explode: num caixa sozinho, passar de 90% para 95% leva a espera de 18 para 38 minutos.
+
+Números de exemplo, inventados para a conta.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #TeoriaDasFilas #FilaUnica #Supermercado #Otimização #UNIRIO

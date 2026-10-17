@@ -1,0 +1,73 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Parece: sobrar energia é bom. É: um problema para a rede.",
+      "tipo": "fonte",
+      "fonte": "https://cenarioenergia.com.br/2026/09/25/ons-aponta-probabilidade-media-para-acionamento-de-plano-de-gestao-de-excedentes-no-sin/",
+      "resultado": "confirmada",
+      "como": "Cenário Energia (25/09/2026, relido hoje): o ONS prevê 'a necessidade de restringir a produção de energia para assegurar o perfeito equilíbrio entre oferta e carga', 'preservando a estabilidade e a confiabilidade do Sistema Interligado Nacional'. Oferta acima da carga exige cortes para manter o sistema estável, então a sobra é um problema operacional. A página não detalha danos nem custos; a tela não afirma nada além de 'um problema para a rede'."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Domingo 27/09/2026, demanda baixa: o ONS viu probabilidade média de acionar o Plano de Gestão de Excedentes.",
+      "tipo": "fonte",
+      "fonte": "https://cenarioenergia.com.br/2026/09/25/ons-aponta-probabilidade-media-para-acionamento-de-plano-de-gestao-de-excedentes-no-sin/",
+      "resultado": "confirmada",
+      "como": "Cenário Energia (25/09/2026, lido): avaliação para 'domingo, 27 de setembro de 2026', 'probabilidade média de acionamento do Plano de Gestão de Excedentes de Energia', carga reduzida típica de fim de semana; decisão na programação de sábado 26/09."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "É quando a oferta passa da carga, mesmo após cortes.",
+      "tipo": "fonte",
+      "fonte": "https://cenarioenergia.com.br/2026/09/25/ons-aponta-probabilidade-media-para-acionamento-de-plano-de-gestao-de-excedentes-no-sin/",
+      "resultado": "confirmada",
+      "como": "Mesma página: medida preventiva para cenários em que 'mesmo após a redução da geração coordenada pelo órgão, persiste a necessidade de restringir a produção de energia', para equilibrar oferta e carga. A página não traz MW; o reel não cita valor. Não sei se o plano foi de fato acionado; o reel só diz que o ONS avaliou a probabilidade."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Carga de setembro prevista em 84.285 MWm, alta de 4,9% sobre set/2025, revisão de 19/09.",
+      "tipo": "fonte",
+      "fonte": "https://www.jornaldocomercio.com/economia/2026/09/1263890-ons-mantem-previsao-de-crescimento-de-49-para-carga-de-energia-em-setembro.html",
+      "resultado": "confirmada",
+      "como": "Jornal do Comércio (19/09/2026, lido): ONS projeta carga de 84.285 MWm (redução de 9 MWm), alta de 4,9% 'frente o mesmo mês do ano passado'. A página não traz data explícita de revisão, só a de publicação, 19/09; o reel diz 'revisão de 19/09'."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Exemplo: min Z = x + 3y; x+y ≥ 6; x ≤ 5; y ≥ 2; y ≤ 4; ótimo (4,2), Z* = 10.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Números inventados, rotulados 'EXEMPLO'. Resolvido por enumeração de vértices em Python (interseções de pares de restrições, incluindo x≥0 e y≥0): vértices viáveis (4,2) Z=10, (2,4) Z=14, (5,2) Z=11, (5,4) Z=17; mínimo = 10 em (4,2). Verificação à mão: Z=x+3y com x+y≥6 e y≥2 pesa mais a térmica, então y no mínimo e x=6−2=4: Z=4+6=10. As restrições ≥ entram como ≤ multiplicando por −1 (a=-1,b=-1,c=-6)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Solar 5 + térmica mínima 2 = 7 > carga 6; sobra 1 e o ótimo corta 1 de solar.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e 'console.log(5+2, 5+2-6, 5-4)' = 7 1 1: oferta mínima forçada 7, carga 6, sobra 1; o ótimo usa x=4 de 5 disponíveis, corte de 1. Mesmo ponto do gráfico (cena 4)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "No exemplo, o ótimo corta solar.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Segue das cenas 4 e 5 (x*=4 < 5 disponível). É afirmação sobre o exemplo; a fonte do ONS não diz qual tecnologia seria restringida."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Datas e conceitos do ONS e da carga (25/09, 27/09, 19/09, 84.285 MWm, 4,9%); a fonte não informa quanto seria cortado.",
+      "tipo": "fonte",
+      "fonte": "https://cenarioenergia.com.br/2026/09/25/ons-aponta-probabilidade-media-para-acionamento-de-plano-de-gestao-de-excedentes-no-sin/",
+      "resultado": "confirmada",
+      "como": "Ver cenas 2 e 3: as duas páginas foram lidas; a de Cenário Energia diz explicitamente que não informa MW restringidos."
+    },
+    {
+      "onde": "legenda",
+      "texto": "A aula de Modelagem de PPL ensina variáveis, função objetivo e restrições.",
+      "tipo": "fonte",
+      "fonte": "https://youtu.be/mw9Mpe-PvZ4",
+      "resultado": "confirmada",
+      "como": "videos/modelagem-ppl/metadados.json (objetivos: variáveis de decisão, função objetivo e restrições) e publicacao.json (privacidade public, id mw9Mpe-PvZ4)."
+    }
+  ]
+}

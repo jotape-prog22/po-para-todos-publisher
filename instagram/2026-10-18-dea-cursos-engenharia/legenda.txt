@@ -1,0 +1,15 @@
+E se cada curso de Engenharia pudesse escolher os pesos da própria nota? Um artigo fez essa conta com programação linear.
+
+O CPC dá o mesmo peso a cada indicador para todos os cursos do país. A Análise Envoltória de Dados (DEA) inverte a lógica: para cada curso, um PL escolhe os pesos que mais o favorecem, com uma única regra, a de que nenhum curso passe de nota 1 com esses mesmos pesos. Se mesmo assim o curso fica abaixo de 1, não há desculpa de pesos: há o que melhorar.
+
+As autoras e os autores (UEPA e UFSC) aplicaram o modelo a 73 cursos da rede federal com dados de 2019, com um freio de 50% em torno dos pesos oficiais. O curso da UNIRIO está na amostra, com nota 0,841, no grupo de alto desempenho.
+
+No canal, a aula de modelagem de PPL mostra como escrever um modelo assim, e a de dualidade explica de onde saem os cursos de referência.
+
+✍️ Autores: Renata Oliveira, Andreia Zanella, Vitor Martins, Nathalia Monteiro
+
+💾 Salve este post para ler depois · mais conteúdo no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #DEA #ProgramacaoLinear #EngenhariaDeProducao #AvaliacaoDoEnsinoSuperior #Otimização #UNIRIO

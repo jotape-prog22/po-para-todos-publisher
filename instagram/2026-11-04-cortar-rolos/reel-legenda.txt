@@ -1,0 +1,13 @@
+Numa fábrica de papel, cortar as bobinas com um modelo de programação inteira reduziu a perda em cerca de 1/4.
+
+Uma fábrica de papel corta bobinas de 96 polegadas (2,44 m) em fatias das larguras que os clientes pedem. Cada jeito de fatiar é um padrão de corte, e o que sobra na largura vira perda. Escolher quais padrões usar, e quantas vezes, é um problema de corte de estoque.
+
+No estudo de Tharmmaphornphilas, Puemsin e Siripongwutikorn (IMECS 2013), um modelo de programação inteira escolheu os padrões em 20 casos reais da empresa. A perda média ficou em 4,57%, contra 6,35% no método que a empresa usava, baseado na experiência dos operadores: uma queda média de 25,8% por caso. Com dois grupos de produtos, em 10 casos, a perda foi de 5,68% para 3,14%, uma queda média de 41,9%.
+
+A formulação clássica do corte de estoque com programação linear é de Gilmore e Gomory (Operations Research, 1961). No canal, a aula de Programação Inteira mostra esse tipo de decisão. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #CorteDeEstoque #ProgramacaoInteira #IndustriaDoPapel #Otimização #UNIRIO

@@ -1,0 +1,13 @@
+Energia sobrando também é problema: o ONS avaliou acionar o Plano de Gestão de Excedentes.
+
+Em 25/09/2026, o ONS avaliou probabilidade média de acionar o Plano de Gestão de Excedentes para o domingo 27/09, com demanda baixa. O plano é uma medida preventiva para quando, mesmo após a redução coordenada da geração, a oferta ainda passa da carga e é preciso restringir a produção. A fonte não informa quanto seria cortado. A previsão de carga do SIN para setembro, de 19/09, é de 84.285 MWm, alta de 4,9% sobre o mesmo mês de 2025.
+
+Na Pesquisa Operacional isso é um problema de despacho: gerar ao menor custo, atendendo a carga e respeitando os limites de cada usina. O gráfico do reel é um exemplo didático com números inventados: com carga 6, solar disponível 5 e térmica com mínimo 2, a soma passa da carga, e o menor custo corta 1 de solar. Mínimos técnicos e carga baixa explicam como cortar geração limpa pode ser o ótimo.
+
+É esse tipo de modelo, variáveis, função objetivo e restrições, que a aula de Modelagem de PPL ensina no canal. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProgramacaoLinear #SetorEletrico #DespachoDeEnergia #Otimização #UNIRIO

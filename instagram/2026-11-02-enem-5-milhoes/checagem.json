@@ -1,0 +1,71 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Spoiler: 5 milhões de inscritos no Enem 2026.",
+      "tipo": "fonte",
+      "fonte": "https://www.andifes.org.br/2026/07/08/enem-2026-mais-de-5-milhoes-tiveram-a-inscricao-confirmada-diz-inep/",
+      "resultado": "confirmada",
+      "como": "Andifes/g1 (lido): '5.055.818 pessoas tiveram suas inscrições confirmadas para o Enem 2026'; título da página: 'mais de 5 milhões'. Arredondamento: node -e 5055818/1e6 = 5,056 → 5 milhões (arredonda para baixo, sem exagerar). O valor exato aparece na cena 2."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Enem 2026: 5.055.818 inscrições confirmadas.",
+      "tipo": "fonte",
+      "fonte": "https://www.andifes.org.br/2026/07/08/enem-2026-mais-de-5-milhoes-tiveram-a-inscricao-confirmada-diz-inep/",
+      "resultado": "confirmada",
+      "como": "Li (curl) a página da Andifes, republicando matéria do g1: '5.055.818 pessoas tiveram suas inscrições confirmadas para o Enem 2026 ... divulgada nesta sexta-feira (3) pelo Inep'. Também aparece em vestibulandoweb.com.br e oimparcial.com.br (balanço do MEC). Não consegui abrir página gov.br/inep com o número (a notícia achada era a da abertura das inscrições), então a fonte é a republicação da informação do Inep."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "5,08% a mais que 2025 (4.811.338 inscrições em 2025).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e 'console.log((5055818/4811338-1)*100)' → 5,0813%. Os dois números vêm de O Imparcial (https://oimparcial.com.br/brasil/2026/07/enem-2026-registra-mais-de-5-milhoes-de-inscritos-confirmados/: 'crescimento de 5,08% ... 2025, que reuniu 4.811.338 participantes'), lido em curl; g1/Andifes diz '4,8 milhões' em 2025, coerente."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Provas em 8 e 15 de novembro de 2026.",
+      "tipo": "fonte",
+      "fonte": "https://www.andifes.org.br/2026/07/08/enem-2026-mais-de-5-milhoes-tiveram-a-inscricao-confirmada-diz-inep/",
+      "resultado": "confirmada",
+      "como": "Andifes: 'As provas do Enem 2026 serão aplicadas em 8 e 15 de novembro em todos os estados e no Distrito Federal.' Mesma data em vestibulandoweb e O Imparcial."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Exemplo inventado: bairros A, B, C com 40, 30, 30 candidatos; escolas E1 (60 vagas) e E2 (40 vagas); distâncias A: 1 e 4, B: 2 e 3, C: 1 e 3 km.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Dados do exemplo, rotulados como 'números inventados' na tela. Capacidade total 100 = demanda total 100 (40+30+30 = 60+40)."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Cada um na escola mais perto: A, B e C têm E1 como mais perto; E1 recebe 40+30+30 = 100 > 60 vagas.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: para cada bairro, argmin da distância → E1 em A (1<4), B (2<3) e C (1<3); soma 100 > 60. Custo desse plano (inviável): 40·1+30·2+30·1 = 130."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Ótimo: E1 recebe A 40 + C 20 = 60; E2 recebe B 30 + C 10 = 40; total 180 pessoa·km; o plano de cada um dava 130.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Enumeração em node de todas as alocações inteiras (a,b,c = pessoas de A,B,C na E1, 0..40, 0..30, 0..30) com E1 ≤ 60 e E2 ≤ 40: 751 viáveis; custo mínimo 180, só em (a,b,c) = (40,0,20), único. Conferência manual: 40·1 + 30·3 + (20·1 + 10·3) = 40+90+50 = 180."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O Inep informou 5.055.818 inscrições confirmadas, cerca de 5,08% a mais que as 4.811.338 de 2025, segundo balanço divulgado pelo MEC; provas em 8 e 15 de novembro.",
+      "tipo": "fonte",
+      "fonte": "https://oimparcial.com.br/brasil/2026/07/enem-2026-registra-mais-de-5-milhoes-de-inscritos-confirmados/",
+      "resultado": "confirmada",
+      "como": "O Imparcial: 'balanço preliminar divulgado pelo Ministério da Educação (MEC) ... 5.055.818 ... crescimento de 5,08% em comparação com a edição de 2025, que reuniu 4.811.338'. Andifes/g1 atribui a divulgação ao Inep. Por isso a legenda cita Inep e MEC. Conta conferida na cena 2."
+    },
+    {
+      "onde": "legenda",
+      "texto": "751 combinações viáveis testadas; 180 pessoa·km é o mínimo.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Mesma enumeração da cena 5: 751 viáveis, mínimo 180."
+    }
+  ]
+}

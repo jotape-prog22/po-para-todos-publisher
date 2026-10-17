@@ -1,0 +1,163 @@
+{
+  "tipo": "cenas",
+  "trilha": "tutorial-animado",
+  "cenas": [
+    {
+      "tipo": "spoiler",
+      "duracao": 3.5,
+      "kicker": "ENEM 2026 · INSCRITOS",
+      "valor": 5,
+      "sufixo": " milhões",
+      "pergunta": "COMO ENCAIXAR?"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5.5,
+      "kicker": "ENEM 2026",
+      "titulo": "INSCRIÇÕES CONFIRMADAS",
+      "valor": 5055818,
+      "rotulo": "5,08% a mais que 2025 · provas em 8 e 15/11"
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 8,
+      "kicker": "EXEMPLO · NÚMEROS INVENTADOS",
+      "titulo": "O TIPO DE PROBLEMA POR TRÁS",
+      "nos": [
+        {
+          "id": "A",
+          "x": 1,
+          "y": 2,
+          "rotulo": "A: 40"
+        },
+        {
+          "id": "B",
+          "x": 1,
+          "y": 5,
+          "rotulo": "B: 30"
+        },
+        {
+          "id": "C",
+          "x": 1,
+          "y": 8,
+          "rotulo": "C: 30"
+        },
+        {
+          "id": "E1",
+          "x": 6,
+          "y": 2,
+          "rotulo": "E1: 60 vagas"
+        },
+        {
+          "id": "E2",
+          "x": 9,
+          "y": 8,
+          "rotulo": "E2: 40 vagas"
+        }
+      ],
+      "arestas": [
+        {
+          "de": "A",
+          "para": "E1",
+          "peso": "1 km"
+        },
+        {
+          "de": "A",
+          "para": "E2",
+          "peso": "4 km"
+        },
+        {
+          "de": "B",
+          "para": "E1",
+          "peso": "2 km"
+        },
+        {
+          "de": "B",
+          "para": "E2",
+          "peso": "3 km"
+        },
+        {
+          "de": "C",
+          "para": "E1",
+          "peso": "1 km"
+        },
+        {
+          "de": "C",
+          "para": "E2",
+          "peso": "3 km"
+        }
+      ],
+      "legenda": "3 bairros e 2 escolas"
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 6,
+      "kicker": "A TENTAÇÃO",
+      "titulo": "CADA UM NA ESCOLA MAIS PERTO",
+      "colunas": [
+        "Bairro",
+        "Mais perto",
+        "Pessoas"
+      ],
+      "linhas": [
+        [
+          "A",
+          "E1",
+          "40"
+        ],
+        [
+          "B",
+          "E1",
+          "30"
+        ],
+        [
+          "C",
+          "E1",
+          "30"
+        ],
+        [
+          "E1 recebe",
+          "",
+          "100 > 60"
+        ]
+      ],
+      "destaque": {
+        "linha": 4,
+        "coluna": 3
+      },
+      "nota": "estoura a capacidade da E1"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "O ÓTIMO DO CONJUNTO",
+      "titulo": "MENOR DESLOCAMENTO TOTAL",
+      "linhas": [
+        "E1: A 40 + C 20 = 60 vagas",
+        "E2: B 30 + C 10 = 40 vagas",
+        "total: 180 pessoa·km"
+      ],
+      "destaque": 3,
+      "nota": "o de cada um dava 130, mas não cabe"
+    },
+    {
+      "duracao": 6,
+      "kicker": "A VIRADA",
+      "titulo": "O MELHOR DO CONJUNTO NÃO É O MELHOR DE CADA UM",
+      "linhas": [
+        "É um problema de transporte",
+        "Exemplo didático, não o modelo do Inep"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "5.055.818 inscrições confirmadas no Enem 2026. Como encaixar cada pessoa numa sala com vaga?",
+    "corpo": "O Inep informou 5.055.818 inscrições confirmadas para o Enem 2026, cerca de 5,08% a mais que as 4.811.338 de 2025, segundo balanço divulgado pelo MEC. As provas são nos domingos 8 e 15 de novembro.\n\nTodos esses candidatos precisam de um lugar de prova com vaga. Esse é o tipo de problema que a Pesquisa Operacional estuda: alocar pessoas a locais com capacidade, minimizando o deslocamento total. Não sabemos qual método o Inep usa; o vídeo mostra só o problema por trás, com um exemplo inventado.\n\nNo exemplo: 3 bairros (40, 30 e 30 candidatos) e 2 escolas (60 e 40 vagas). Mandar cada um para a escola mais perto coloca 100 pessoas na escola de 60 vagas. O melhor plano possível leva 180 pessoa·km no total, e foi conferido testando todas as 751 combinações viáveis. O ótimo do conjunto não é o ótimo de cada um.\n\nNo canal, a aula de Problema do Transporte explica como resolver isso. Link na bio.",
+    "hashtags_tema": [
+      "#Enem2026",
+      "#ProblemaDoTransporte",
+      "#Vestibular"
+    ]
+  }
+}

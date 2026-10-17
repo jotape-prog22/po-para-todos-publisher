@@ -1,0 +1,15 @@
+Quanto vale uma hora a mais de uma máquina? Kantorovich respondeu em 1939, e hoje chamamos isso de preço sombra.
+
+Em 1938, o matemático Leonid Kantorovich foi consultor do Laboratório do Trust do Compensado, em Leningrado. O problema era distribuir matéria-prima para maximizar a produtividade dos equipamentos; matematicamente, maximizar uma função linear sobre um poliedro convexo. Em 1939, a Universidade de Leningrado publicou o livreto "O Método Matemático de Organização e Planejamento da Produção", com o que ele chamou de método dos multiplicadores resolventes.
+
+Esses multiplicadores mostram quanto vale cada recurso na solução ótima. Koopmans os chamou de shadow prices, os preços sombra. Em 1975, os dois dividiram o Prêmio de Economia em memória de Alfred Nobel "por suas contribuições à teoria da alocação ótima de recursos".
+
+O exemplo da tela é didático, inventado por nós, e não é um dado histórico: uma marcenaria com mesas e cadeiras, lucro 3x + 2y (em R$ mil) e três limites (verniz, serra e madeira). O ótimo é 3 mesas e 1 cadeira, com Z = 11. Subindo o limite da serra de 4 para 5, o ótimo vira 13: a hora extra vale 2, o preço sombra da serra. A madeira sobra, então vale zero.
+
+No canal, a aula de Análise de Sensibilidade (Preço-Sombra e Custo Reduzido) mostra como ler isso na tabela Simplex final. Link na bio.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #PrecoSombra #Dualidade #Kantorovich #AnaliseDeSensibilidade #Otimização #UNIRIO

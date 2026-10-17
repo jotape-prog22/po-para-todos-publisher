@@ -1,0 +1,63 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Frase digitada (exemplo): 'Um avião com 180 lugares. Vender 196 passagens é a melhor escolha.'",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Exemplo inventado (kicker 'OVERBOOKING · EXEMPLO'): 180 lugares, cada passageiro aparece com probabilidade 0,9, independente; R$ 500 por quem voa, R$ 2.000 por quem fica em terra. Caminho 1, binomial exata em node para n = 180 a 215: lucro médio máximo em n = 196 (R$ 87.156). Caminho 2, simulação de 400 mil voos por n: 196 → R$ 87.152, acima de 190 (85.468) e 205 (80.126). 'Melhor escolha' vale para essas premissas, ditas na legenda."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Parte de quem compra não embarca; no exemplo, 1 em cada 10 falta.",
+      "tipo": "fonte",
+      "fonte": "https://www.gov.br/anac/pt-br/assuntos/passageiros/atrasos-cancelamentos-pretericao-e-assistencia-material",
+      "resultado": "confirmada",
+      "como": "A página da ANAC (lida, atualizada em 13/04/2026) cita a venda acima da capacidade da aeronave ('overbooking') entre as causas de preterição: a prática existe porque nem todos os compradores embarcam. A taxa de 10% é premissa do exemplo, sem afirmar dado real (fontes de taxa real encontradas eram antigas ou secundárias: Belobaba/MIT ~12% em 2005; GAO 1983, 6% em voos internacionais)."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Médias por voo: 180 vendidas → 162 voam, 0 em terra, R$ 81 mil; 190 → 171, 0,01, R$ 85,5 mil; 196 → 176, 0,4, R$ 87,2 mil; 205 → 179,6, 4,9, R$ 80,1 mil.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Binomial exata (node): n=180: E[voam]=162,0, E[em terra]=0,00, lucro 81.000; n=190: 171,0, 0,01, 85.473; n=196: 176,0, 0,42, 87.156; n=205: 179,6, 4,85, 80.116. Simulação (400 mil voos): 162,0/81.001; 171,0/85.468; 176,0/87.152; 179,6/80.126. Lucro = 500·E[min(X,180)] − 2.000·E[max(X−180,0)]."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "196 × 0,9 = 176,4 aparecem em média; 16,5% de chance de passar de 180; lucro = 500·voam − 2.000·ficam.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "196 × 0,9 = 176,4 (node). P(X > 180) com X ~ Binomial(196; 0,9): 16,5% pela soma exata e 16,5% na simulação. A tabela mostra 176 voam (não 176,4) porque quem passa de 180 não voa: E[min(X,180)] = 176,0."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Lucro médio 7,6% maior com 196 do que com 180: R$ 87,2 mil contra R$ 81 mil.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e (87156/81000 − 1)·100 = 7,60%. Pela simulação: (87152/81001 − 1)·100 = 7,59%."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Regra da ANAC: primeiro procurar voluntários com troca negociada; sem voluntários, 250 DES por passageiro em voo doméstico.",
+      "tipo": "fonte",
+      "fonte": "https://www.gov.br/anac/pt-br/assuntos/passageiros/atrasos-cancelamentos-pretericao-e-assistencia-material",
+      "resultado": "confirmada",
+      "como": "gov.br/ANAC (lida, atualizada em 13/04/2026): buscar 'voluntários que aceitem embarcar em outro voo', com vantagens negociadas; sem voluntários, 'compensação financeira a cada passageiro preterido no valor de 250 DES' (domésticos) 'ou de 500 DES, para voos internacionais'. Texto da Resolução 400/2016, arts. 23 e 24, transcrito no Parecer 1272/2019 da ANAC (PDF lido): 'I - 250 (duzentos e cinquenta) DES, no caso de voo doméstico; e II - 500 (quinhentos) DES, no caso de voo internacional'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Resolução 400 da ANAC: voluntários primeiro; sem voluntários, 250 DES (doméstico) ou 500 DES (internacional) pagos na hora, e reacomodação, reembolso ou outro transporte.",
+      "tipo": "fonte",
+      "fonte": "https://www.anac.gov.br/acesso-a-informacao/junta-recursal/decisoes-monocraticas/2019/outubro/00058-007574-2019-61/@@display-file/dlb_arquivo/SEI_00058.007574_2019_61.pdf",
+      "resultado": "confirmada",
+      "como": "Parecer 1272/2019 (PDF lido com pdftotext) transcreve o art. 24: 'efetuar, imediatamente, o pagamento de compensação financeira'; e o art. 23 sobre voluntários. Alternativas (reacomodação, reembolso integral, outra modalidade de transporte) na página gov.br da ANAC, atualizada em 13/04/2026."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Exemplo: 180 lugares, 10% faltam, R$ 500 e R$ 2.000; 180 → R$ 81 mil; 196 → R$ 87,2 mil (+7,6%), 16,5% de chance de sobrar alguém; 205 → R$ 80,1 mil.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Mesmas contas das cenas 3 a 5 (binomial exata e simulação de 400 mil voos)."
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "tipo": "cenas",
+  "trilha": "piano-inspirador",
+  "cenas": [
+    {
+      "tipo": "mito-fato",
+      "duracao": 4,
+      "kicker": "KANTOROVICH, 1939",
+      "afirmacao": "Preço sombra é o preço de mercado do recurso.",
+      "veredito": "mito"
+    },
+    {
+      "duracao": 7,
+      "kicker": "LENINGRADO, 1938",
+      "titulo": "UMA FÁBRICA DE COMPENSADO",
+      "linhas": [
+        "Kantorovich era consultor do Trust do Compensado",
+        "Distribuir trabalho entre máquinas virou maximizar uma função linear"
+      ]
+    },
+    {
+      "tipo": "grafico",
+      "duracao": 9,
+      "kicker": "EXEMPLO DIDÁTICO · MARCENARIA",
+      "titulo": "MESAS (x) E CADEIRAS (y)",
+      "eixos": {
+        "x": {
+          "rotulo": "mesas",
+          "max": 10
+        },
+        "y": {
+          "rotulo": "cadeiras",
+          "max": 5
+        }
+      },
+      "restricoes": [
+        {
+          "a": 1,
+          "b": 0,
+          "c": 3,
+          "rotulo": "x ≤ 3 verniz"
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "c": 4,
+          "rotulo": "x+y ≤ 4 serra"
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "c": 9,
+          "rotulo": "x+3y ≤ 9 madeira"
+        }
+      ],
+      "otimo": {
+        "x": 3,
+        "y": 1,
+        "rotulo": "Z* = 11 em (3, 1)"
+      },
+      "nota": "lucro 3x + 2y, em R$ mil"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "EXEMPLO · MAIS 1 HORA DE SERRA",
+      "titulo": "E SE A SERRA GANHAR 1 HORA?",
+      "linhas": [
+        "x + y ≤ 5: novo ótimo (3, 2)",
+        "Z = 3·3 + 2·2 = 13",
+        "13 − 11 = 2"
+      ],
+      "destaque": 3,
+      "nota": "1 hora de serra vale R$ 2 mil"
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 7,
+      "kicker": "EXEMPLO · O PREÇO SOMBRA",
+      "titulo": "QUANTO VALE CADA RECURSO",
+      "colunas": [
+        "Recurso",
+        "Sobra?",
+        "+1 unidade"
+      ],
+      "linhas": [
+        [
+          "Verniz",
+          "não",
+          "+R$ 1 mil"
+        ],
+        [
+          "Serra",
+          "não",
+          "+R$ 2 mil"
+        ],
+        [
+          "Madeira",
+          "sim",
+          "R$ 0"
+        ]
+      ],
+      "destaque": {
+        "linha": 2,
+        "coluna": 3
+      },
+      "nota": "quanto o lucro sobe com 1 unidade a mais"
+    },
+    {
+      "duracao": 6,
+      "kicker": "PREÇO SOMBRA",
+      "titulo": "QUANTO O LUCRO SOBE COM +1 DO RECURSO",
+      "linhas": [
+        "Não é preço de mercado: a madeira custa, mas sobra — aqui vale R$ 0",
+        "Kantorovich, 1939 · Koopmans: shadow prices"
+      ],
+      "faixa": "AULA COMPLETA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Quanto vale uma hora a mais de uma máquina? Kantorovich respondeu em 1939, e hoje chamamos isso de preço sombra.",
+    "corpo": "Em 1938, o matemático Leonid Kantorovich foi consultor do Laboratório do Trust do Compensado, em Leningrado. O problema era distribuir matéria-prima para maximizar a produtividade dos equipamentos; matematicamente, maximizar uma função linear sobre um poliedro convexo. Em 1939, a Universidade de Leningrado publicou o livreto \"O Método Matemático de Organização e Planejamento da Produção\", com o que ele chamou de método dos multiplicadores resolventes.\n\nEsses multiplicadores mostram quanto vale cada recurso na solução ótima. Koopmans os chamou de shadow prices, os preços sombra. Em 1975, os dois dividiram o Prêmio de Economia em memória de Alfred Nobel \"por suas contribuições à teoria da alocação ótima de recursos\".\n\nO exemplo da tela é didático, inventado por nós, e não é um dado histórico: uma marcenaria com mesas e cadeiras, lucro 3x + 2y (em R$ mil) e três limites (verniz, serra e madeira). O ótimo é 3 mesas e 1 cadeira, com Z = 11. Subindo o limite da serra de 4 para 5, o ótimo vira 13: a hora extra vale 2, o preço sombra da serra. A madeira sobra, então vale zero.\n\nNo canal, a aula de Análise de Sensibilidade (Preço-Sombra e Custo Reduzido) mostra como ler isso na tabela Simplex final. Link na bio.",
+    "hashtags_tema": [
+      "#PrecoSombra",
+      "#Dualidade",
+      "#Kantorovich",
+      "#AnaliseDeSensibilidade"
+    ]
+  }
+}
