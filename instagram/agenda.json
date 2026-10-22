@@ -437,11 +437,16 @@
       "formato": "reel",
       "quando": "2026-10-22T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "reel"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/reel/DezS2NnAtAy/",
+        "media_id": "17951638323300862"
+      },
       "erro": null
     },
     {
