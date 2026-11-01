@@ -1,0 +1,55 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    {
+      "duracao": 16,
+      "kicker": "UM DESAFIO",
+      "titulo": "3 CANDIDATOS, 1 VAGA: ACERTE O MELHOR",
+      "linhas": [
+        "Eles chegam um a um, em ordem aleatória",
+        "Você só vê se cada um é melhor que os anteriores",
+        "Recusou, perdeu: não dá para voltar atrás",
+        "Sua regra: pule o 1º e fique com o primeiro melhor que ele; se nenhum for, o último"
+      ],
+      "pergunta": "Em quantas das 6 ordens você acerta?",
+      "dica": "Chuta?"
+    },
+    {
+      "duracao": 16,
+      "kicker": "A RESPOSTA",
+      "titulo": "3 DE 6 ORDENS: 50% DE CHANCE",
+      "linhas": [
+        "Com 1 = o melhor, acerta em 213, 231 e 312",
+        "Escolhendo ao acaso, seria 1 em 3: cerca de 33%",
+        "Pular o 1º dá ao 2º e ao 3º uma régua para comparar",
+        "É um problema de parada ótima: decidir quando parar de olhar"
+      ],
+      "dica": "Acertou?"
+    },
+    {
+      "duracao": 18,
+      "kicker": "COMO A PO FUNCIONA",
+      "titulo": "A REGRA DOS 37%",
+      "itens": [
+        {
+          "titulo": "Modelar",
+          "texto": "n candidatos, ordem aleatória, decisão na hora, sem voltar"
+        },
+        {
+          "titulo": "A regra",
+          "texto": "Recuse os r−1 primeiros, depois pegue o primeiro melhor que todos"
+        },
+        {
+          "titulo": "Com n = 3",
+          "texto": "O melhor corte é pular 1: chance de 50%"
+        },
+        {
+          "titulo": "Com n grande",
+          "texto": "Pule cerca de 37%: a chance também é de cerca de 37% (Ferguson, 1989)"
+        }
+      ],
+      "faixa": "PO PARA TODOS NO YOUTUBE"
+    }
+  ]
+}

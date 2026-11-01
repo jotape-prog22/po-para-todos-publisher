@@ -1,0 +1,60 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "Forrester, do MIT, criou o jogo da cerveja.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News, 19/11/2016 (lido): 'Forrester created the Refrigerator Game, a supply chain simulation [...]'; 'It was later dubbed the Beer Game and remains a popular exercise during student orientation.' O card diz 'segundo o MIT' no texto. Wikipédia (Beer distribution game): 'Jay Wright Forrester created the game at the MIT Sloan School of Management in 1960' (data não usada no card; fontes divergem entre fim dos anos 1950 e 1960). Não afirmei que ele foi o único criador."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Jay Forrester morreu em 16/11/2016, há 10 anos.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News, publicada em 19/11/2016 (a URL traz 2016/…-1119): 'died Nov. 16. He was 98.' Conta de datas: 16/11/2016 + 10 anos = 16/11/2026; o post sai em 17/11/2026."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Desenvolveu a dinâmica de sistemas.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News: 'Forrester developed system dynamics — a model-based approach to analyzing complex organizations and systems —' ao estudar uma fábrica de eletrodomésticos da General Electric, em meados dos anos 1950."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "O jogo da geladeira, depois chamado de jogo da cerveja, é uma simulação de cadeia de suprimentos.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News: 'Refrigerator Game, a supply chain simulation that teaches the principles of system dynamics'; 'It was later dubbed the Beer Game'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Liderou o Projeto Whirlwind (projeto de computação digital do MIT) e é titular da patente da memória de núcleo magnético, uma forma inicial de RAM.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News: 'He led Project Whirlwind, an early MIT digital computing project' e 'magnetic core memory, an early form of RAM for which he holds the patent'. O ano da patente (1949, citado pela pesquisa) foi deixado de fora de propósito: não confirmei o ano no texto."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Morreu aos 98 anos; o jogo ainda era exercício popular na recepção dos alunos (em 2016); a dinâmica de sistemas surgiu em meados dos anos 1950, estudando uma fábrica da GE.",
+      "tipo": "fonte",
+      "fonte": "https://news.mit.edu/2016/professor-emeritus-jay-forrester-digital-computing-system-dynamics-pioneer-dies-1119",
+      "resultado": "confirmada",
+      "como": "MIT News: 'He was 98'; 'remains a popular exercise during student orientation' (presente do texto de 2016); 'in the mid-1950s' (dinâmica de sistemas) ao estudar 'a General Electric appliance factory'. A legenda não nomeia a escola onde o exercício é usado."
+    },
+    {
+      "onde": "legenda",
+      "texto": "No jogo, cada equipe cuida de uma etapa da cadeia, do varejo à fábrica, e decide só quanto pedir; as oscilações dos pedidos crescem à medida que sobem pela cadeia.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Beer_distribution_game",
+      "resultado": "confirmada",
+      "como": "Wikipédia (Beer distribution game), lida: cadeia de quatro etapas, 'Each team controls only its own stage', a decisão-chave é 'how many units are needed to order to maintain stock'; 'small variations in that demand, at the retail-end, tend to dramatically amplify themselves upstream'. A fonte lista os papéis como fabricante, distribuidor, fornecedor e varejista; por isso a legenda diz só 'do varejo à fábrica', sem nomear as etapas do meio. O nome 'efeito chicote' NÃO foi usado nem atribuído a Forrester."
+    }
+  ]
+}

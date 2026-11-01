@@ -1,0 +1,116 @@
+{
+  "tipo": "cenas",
+  "trilha": "pizzicato-misterio",
+  "cenas": [
+    {
+      "tipo": "pergunta",
+      "duracao": 4,
+      "kicker": "PROBLEMA DO MILÊNIO",
+      "pergunta": "P versus NP: já foi resolvido?",
+      "opcoes": [
+        "Sim, P = NP",
+        "Sim, P ≠ NP",
+        "Não, segue em aberto"
+      ]
+    },
+    {
+      "duracao": 7,
+      "kicker": "O EXEMPLO DO INSTITUTO CLAY",
+      "titulo": "400 ALUNOS, 100 VAGAS",
+      "linhas": [
+        "O decano entrega uma lista de pares de alunos incompatíveis",
+        "Escolher 100 alunos sem nenhum par da lista no grupo"
+      ]
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 7,
+      "kicker": "EXEMPLO · 4 AMIGOS",
+      "titulo": "QUEM BRIGA COM QUEM",
+      "nos": [
+        {
+          "id": "A",
+          "x": 1,
+          "y": 5
+        },
+        {
+          "id": "B",
+          "x": 4,
+          "y": 2
+        },
+        {
+          "id": "C",
+          "x": 7,
+          "y": 5
+        },
+        {
+          "id": "D",
+          "x": 4,
+          "y": 8
+        }
+      ],
+      "arestas": [
+        {
+          "de": "A",
+          "para": "B"
+        },
+        {
+          "de": "B",
+          "para": "C"
+        },
+        {
+          "de": "C",
+          "para": "D"
+        }
+      ],
+      "legenda": "cada linha é uma briga: A–B, B–C, C–D"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 10,
+      "kicker": "EXEMPLO · CONFERIR × ACHAR",
+      "titulo": "CONFERIR É FÁCIL",
+      "linhas": [
+        "proposta: A e C",
+        "A–C está na lista de brigas? Não",
+        "conferido: 1 olhada, serve",
+        "achar de zero: 6 pares a testar",
+        "400 alunos: ~2,2 × 10^96 grupos"
+      ],
+      "destaque": 5,
+      "nota": "grupos de 100 entre 400 alunos"
+    },
+    {
+      "tipo": "impacto",
+      "duracao": 5,
+      "palavras": [
+        "CONFERIR",
+        "É FÁCIL",
+        "ACHAR?"
+      ],
+      "apoio": "ninguém provou que achar é difícil"
+    },
+    {
+      "tipo": "pergunta",
+      "duracao": 5,
+      "kicker": "PROBLEMA DO MILÊNIO",
+      "pergunta": "P versus NP: já foi resolvido?",
+      "opcoes": [
+        "Sim, P = NP",
+        "Sim, P ≠ NP",
+        "Não, segue em aberto"
+      ],
+      "resposta": 3,
+      "faixa": "PO PARA TODOS NO YOUTUBE"
+    }
+  ],
+  "legenda": {
+    "gancho": "Conferir uma resposta é fácil. Achar a resposta é outra história: o que é P versus NP?",
+    "corpo": "P versus NP pergunta: se é fácil conferir que uma solução está certa, também é fácil encontrá-la? O Instituto Clay de Matemática lista o problema como não resolvido.\n\nO exemplo do próprio Clay é um dormitório: 400 alunos, 100 vagas e uma lista do decano com pares incompatíveis. Se um colega propõe um grupo de 100, conferir é fácil. Achar um grupo do zero parece tão difícil que testar tudo é inviável: são cerca de 2,2 × 10^96 grupos possíveis (conta nossa, com C(400,100)). O Clay diz que ninguém provou que esses problemas sejam tão difíceis quanto parecem.\n\nO exemplo do reel, com 4 amigos e as brigas A–B, B–C e C–D, é de brincadeira: números inventados só para mostrar a diferença entre conferir (uma olhada) e procurar. O Clay cita também o caminho hamiltoniano: visitar N cidades sem repetir nenhuma. Na Pesquisa Operacional, decidir entre combinações demais é o dia a dia.",
+    "hashtags_tema": [
+      "#PversusNP",
+      "#Complexidade",
+      "#Algoritmos"
+    ]
+  }
+}

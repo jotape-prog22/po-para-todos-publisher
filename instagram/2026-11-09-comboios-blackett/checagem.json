@@ -1,0 +1,59 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Mito-fato: 'Juntar mais navios num comboio aumenta o risco de cada um.' → MITO. Kicker: Atlântico Norte, 1941-1942.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Convoy_HX_300",
+      "resultado": "confirmada",
+      "como": "Wikipédia, 'Convoy HX 300', seção Background (lida): cientistas do Almirantado que avaliaram as batalhas de comboio de 1941 e 1942 'found that losses of ships in convoy were independent of convoy size' e variavam com o número de submarinos atacantes e, sem aviões de patrulha, com o número de escoltas. Resenha de McCue sobre 'Blackett's War' (Naval Submarine League, 2013, lida): 'large convoys were better because a smaller proportion of ships would be lost'. Logo, o risco de cada navio não cresce com o tamanho; o veredito MITO se sustenta. Fontes secundárias (a primária, Blackett, Studies of War, 1962, não foi lida)."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "O Almirantado britânico analisou os ataques de submarinos a comboios; Blackett chefiou a pesquisa operacional da Marinha entre 1942 e 1945.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Patrick_Blackett",
+      "resultado": "confirmada",
+      "como": "Wikipédia, 'Patrick Blackett' (lida): 'was director of Operational Research with the Admiralty from 1942 to 1945'. A análise das batalhas de comboio de 1941-42 pelos cientistas do Almirantado vem de 'Convoy HX 300', Background (lida). A resenha da Naval Submarine League (lida) diz que Blackett concebeu a análise operacional no início da guerra e estudou o tamanho dos comboios. Kicker 'Pesquisa operacional na guerra' e 'Marinha' = Marinha Real/Almirantado."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Tabela: submarinos pesam nas perdas (sim); escoltas pesam (sim; quando não há aviões de patrulha); tamanho do comboio não pesa (não).",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Convoy_HX_300",
+      "resultado": "confirmada",
+      "como": "Wikipédia, 'Convoy HX 300', Background (lida): perdas 'independent of convoy size'; 'varied with the number of attacking submarines' e, 'when patrol aircraft were unavailable', com 'the number of escorting warships'. A nota da cena traz exatamente a ressalva dos aviões. A resenha da Naval Submarine League diz que as perdas por comboio eram 'nearly independent' do tamanho (quase independentes): a tabela resume o resultado como a Wikipédia o descreve."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "EXEMPLO: comboio quadrado de lado L tem L² navios e borda 4L; lado 6 = 36 navios e borda 24; lado 12 = 144 navios e borda 48; navios ×4, borda ×2.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: for (const L of [6,12]) console.log(L, L*L, 4*L) → 6 36 24 / 12 144 48. 144/36 = 4 e 48/24 = 2. Modelo didático e simplificado, marcado EXEMPLO na tela e na legenda; não é dado histórico nem atribuído a Blackett. A resenha da Naval Submarine League (lida) diz que a explicação geométrica (navios no interior, escoltas no perímetro) veio de 'another analyst', depois de Blackett: a legenda diz isso."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Mais navios, menos risco, para cada navio do comboio.",
+      "tipo": "fonte",
+      "fonte": "https://archive.navalsubleague.org/2013/blacketts-war",
+      "resultado": "confirmada",
+      "como": "Resenha de McCue sobre 'Blackett's War' (lida): se o número de navios perdidos por comboio é quase independente do tamanho, 'large convoys were better because a smaller proportion of ships would be lost'. A frase da cena é a mesma conclusão em outras palavras (risco por navio = proporção perdida)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "As perdas variavam com submarinos e escoltas, não com o tamanho; comboio maior: menor proporção de navios perdidos.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Convoy_HX_300",
+      "resultado": "confirmada",
+      "como": "Mesmas passagens das cenas 1, 3 e 5 (Wikipédia 'Convoy HX 300', Background; resenha NSL). Nenhum percentual de perdas aparece no reel, porque as fontes divergem (nota da pesquisa)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Legenda: Blackett chefiou a pesquisa operacional do Almirantado de 1942 a 1945; a explicação geométrica veio de outro analista, segundo a resenha de Blackett's War.",
+      "tipo": "fonte",
+      "fonte": "https://archive.navalsubleague.org/2013/blacketts-war",
+      "resultado": "confirmada",
+      "como": "Resenha NSL (lida): 'Only afterward did another analyst provide the reasoning... the convoy's ships filled its interior whereas its escorts populated its perimeter'. Datas 1942-1945: Wikipédia 'Patrick Blackett' (lida)."
+    }
+  ]
+}

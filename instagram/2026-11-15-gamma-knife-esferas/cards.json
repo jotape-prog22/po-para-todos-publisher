@@ -1,0 +1,51 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    {
+      "tipo": "capa",
+      "titulo": "HYBRID OPTIMIZATION FOR THE 3D COVERING PROBLEM WITH SPHERES: INTEGRATING HEURISTICS, PATTERN MINING…",
+      "autores": "Pedro Henrique Gonzalez, Ana Flávia U. S. Macambira, Luidi Simonetti, Renan V. Pinto, Philippe Michelon, Nelson Maculan",
+      "onde": "Pesquisa Operacional, 2026"
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O problema",
+      "texto": "Como cobrir um sólido em 3D com esferas de raios diferentes? A motivação é o Gamma Knife, usado em tumores no cérebro: sua área de efeito é modelada como esferas de 2, 4, 7 ou 9 mm de raio. As esferas podem se sobrepor um pouco."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O que se quer maximizar",
+      "texto": "O objetivo é o volume total das esferas usadas, sem descontar a parte sobreposta (uma aproximação). Um parâmetro controla quanta sobreposição é permitida entre duas esferas, e os centros possíveis ficam numa grade finita de pontos."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Método exato",
+      "texto": "Branch and bound e branch and cut: busca organizada em ramos, com restrições extras (os cortes) para descartar caminhos sem chance. Quando terminam, provam que a solução é a melhor, mas o tempo pesa: o limite do estudo foi de uma hora."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Método híbrido",
+      "texto": "Uma heurística gera muitas soluções boas. A mineração de padrões acha os centros que aparecem juntos com frequência nelas. Depois, um método exato refina a solução só nesse espaço reduzido, bem menor que o problema inteiro."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Quanto sobrepor?",
+      "texto": "Os autores variaram o parâmetro de sobreposição entre 0,1 e 1,9. A DEA, que compara tempo de execução e cobertura, apontou 0,2 e 1,1 como valores eficientes. Esses dois foram usados nos testes."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O que os testes mostram",
+      "texto": "Foram 15 instâncias geradas aleatoriamente, caixas de 5 a 30 mm de lado, com limite de uma hora. Segundo os autores, o híbrido supera o método exato em cobertura e eficiência computacional."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O que o estudo não é",
+      "texto": "É um estudo computacional, com instâncias aleatórias. Não há pacientes nem teste clínico, e a dose de radiação não é tratada. O artigo mostra um método de otimização, não um tratamento."
+    },
+    {
+      "tipo": "fim",
+      "texto": "GONZALEZ, P. H.; MACAMBIRA, A. F. U. S.; SIMONETTI, L.; PINTO, R. V.; MICHELON, P.; MACULAN, N. Hybrid optimization for the 3D covering problem with spheres: integrating heuristics, pattern mining and branch and cut. Pesquisa Operacional, v. 46, 2026.",
+      "link": "doi.org/10.1590/0101-7438.2026.046.00301437"
+    }
+  ]
+}

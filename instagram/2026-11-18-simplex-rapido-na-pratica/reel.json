@@ -1,0 +1,24 @@
+{
+  "tipo": "cenas",
+  "trilha": "piano-inspirador",
+  "cenas": [
+    { "tipo": "riscado", "duracao": 4, "kicker": "MÉTODO SIMPLEX", "parece": "Na teoria, o simplex pode ser lento", "e": "Na prática, ele voa" },
+    { "duracao": 7, "kicker": "QUANTA · 13/10/2025", "titulo": "O PIOR CASO NÃO APARECE",
+      "linhas": ["Em 1972, provou-se que o tempo poderia crescer exponencialmente", "Na prática, o simplex sempre rodou rápido: ninguém o viu lento"] },
+    { "tipo": "grafico", "duracao": 10, "kicker": "EXEMPLO · NÚMEROS INVENTADOS", "titulo": "O SIMPLEX ANDA PELOS VÉRTICES",
+      "eixos": { "x": { "rotulo": "x", "max": 5 }, "y": { "rotulo": "y", "max": 5 } },
+      "restricoes": [{ "a": 1, "b": 1, "c": 4, "rotulo": "x+y ≤ 4" }, { "a": 1, "b": 0, "c": 3, "rotulo": "x ≤ 3" }],
+      "otimo": { "x": 3, "y": 1, "rotulo": "Z* = 11" }, "nota": "maximizar Z = 3x + 2y" },
+    { "tipo": "conta", "duracao": 8, "kicker": "EXEMPLO · Z = 3x + 2y", "titulo": "CAMINHO: (0,0) → (3,0) → (3,1)",
+      "linhas": ["(0,0): Z = 0", "(3,0): Z = 9", "(3,1): Z = 11", "os vizinhos dão 9 e 8: parou"], "destaque": 3,
+      "nota": "nenhum vizinho melhora, então é o ótimo" },
+    { "tipo": "impacto", "estilo": "sublinhar", "destaque": 2, "duracao": 4, "palavras": ["UMA PITADA DE", "ALEATORIEDADE"], "apoio": "Spielman e Teng, 2001: evita o pior caso" },
+    { "duracao": 8, "kicker": "BACH E HUIBERTS · 2025", "titulo": "UM LIMITE PARA ESSE CAMINHO",
+      "linhas": ["Melhoraram a garantia de tempo e provaram um limite nessa abordagem", "Um tempo linear nas restrições segue fora de alcance"], "faixa": "AULA COMPLETA NO CANAL" }
+  ],
+  "legenda": {
+    "gancho": "O simplex pode ser exponencial no pior caso, mas na prática é rápido. Em 2025, dois pesquisadores explicaram melhor por quê.",
+    "corpo": "Em 1972, provou-se que o tempo do método simplex poderia crescer exponencialmente com o número de restrições. Mesmo assim, na prática ele sempre rodou rápido. Em 2001, Spielman e Teng mostraram que uma pitada de aleatoriedade ajuda a evitar o pior caso (a chamada análise suavizada).\n\nEm 2025, Eleon Bach e Sophie Huiberts melhoraram a garantia de tempo dentro dessa abordagem e provaram que ela não pode ir além do valor que obtiveram (arXiv:2504.04197; reportagem da Quanta Magazine, 13/10/2025). É um resultado teórico: um tempo linear nas restrições segue fora de alcance.\n\nO exemplo da tela é didático, com números inventados: maximizar 3x + 2y com x + y ≤ 4 e x ≤ 3. O simplex vai de vértice em vértice, (0,0), (3,0) e (3,1), e para quando nenhum vizinho melhora: Z = 11.",
+    "hashtags_tema": ["#MetodoSimplex", "#ProgramacaoLinear", "#AnaliseSuavizada", "#Dantzig"]
+  }
+}

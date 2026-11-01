@@ -1,0 +1,22 @@
+{
+  "tipo": "cenas",
+  "trilha": "tutorial-animado",
+  "cenas": [
+    { "tipo": "desafio", "duracao": 9, "kicker": "MOCHILA DE 10 KG", "pergunta": "A pesa 6 e vale 30. B e C pesam 5 e valem 20 cada. Qual a melhor carga?", "segundos": 4 },
+    { "tipo": "tabela", "duracao": 7, "kicker": "EXEMPLO · NÚMEROS INVENTADOS", "titulo": "O JEITO GULOSO: MAIOR VALOR POR KG",
+      "colunas": ["Item", "Peso", "Valor", "Valor/kg"],
+      "linhas": [["A", "6", "30", "5"], ["B", "5", "20", "4"], ["C", "5", "20", "4"]],
+      "destaque": { "linha": 1, "coluna": 4 }, "nota": "o guloso pega primeiro o de maior valor por kg" },
+    { "tipo": "conta", "duracao": 8, "kicker": "EXEMPLO · CAPACIDADE 10", "titulo": "O GULOSO CONTRA B + C",
+      "linhas": ["guloso pega A: peso 6, valor 30", "sobram 4 kg: B e C não cabem", "B + C: peso 10, valor 40", "40 é maior que 30"], "destaque": 3,
+      "nota": "a melhor carga é B + C" },
+    { "tipo": "impacto", "estilo": "sublinhar", "destaque": 2, "duracao": 5, "palavras": ["RESULTADO BOM", "NÃO O MELHOR"], "apoio": "melhorar a cada passo não garante o melhor" },
+    { "duracao": 8, "kicker": "SCIENCE · 13/05/1983", "titulo": "ACEITAR PIORAR UM POUCO",
+      "linhas": ["Kirkpatrick, Gelatt e Vecchi: melhorar passo a passo costuma parar num ótimo local", "O recozimento simulado aceita, de forma controlada, passos que pioram"], "faixa": "PO PARA TODOS NO YOUTUBE" }
+  ],
+  "legenda": {
+    "gancho": "Escolher sempre o que parece melhor no momento leva ao melhor resultado? Nem sempre, e a mochila mostra por quê.",
+    "corpo": "Na mochila da tela, cabem 10 kg. O item A pesa 6 e vale 30; B e C pesam 5 e valem 20 cada. O jeito guloso pega primeiro o de maior valor por quilo: A rende 5 por kg, B e C rendem 4. Com A na mochila sobram 4 kg, e nem B nem C cabem: total 30. Mas B e C juntos pesam 10 e valem 40.\n\nÉ um resultado bom, mas não o melhor. Os números são um EXEMPLO didático, inventado por nós, e a mochila ilustra a ideia de parar num resultado que não é o ótimo; não é a busca local do artigo citado abaixo.\n\nNo artigo \"Optimization by Simulated Annealing\" (Kirkpatrick, Gelatt e Vecchi, Science, 13/05/1983), os autores notam que a melhoria passo a passo costuma ficar presa num ótimo local, e não global. O recozimento simulado aceita, de forma controlada, passos que pioram.",
+    "hashtags_tema": ["#OtimoLocal", "#AlgoritmoGuloso", "#ProblemaDaMochila", "#RecozimentoSimulado"]
+  }
+}

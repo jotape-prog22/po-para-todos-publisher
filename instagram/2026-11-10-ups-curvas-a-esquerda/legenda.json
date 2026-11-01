@@ -1,0 +1,6 @@
+{
+  "gancho": "A UPS evita curvas à esquerda? Não é uma proibição: é uma penalidade colocada na conta do sistema de rotas.",
+  "corpo": "O artigo em que a própria UPS conta como criou o ORION, publicado na revista Interfaces em 2017, explica o truque: a equipe percebeu que curvas à esquerda e zigue-zague em rua movimentada aumentam a chance de acidente. Então aumentou o custo, na função objetivo, dos trajetos entre clientes que levariam a esse comportamento. O modelo continua minimizando custo, mas esse custo agora inclui segurança, não só distância.\n\nO mesmo artigo é honesto sobre o limite: o ORION é uma heurística, um método rápido que não garante a melhor rota, e alguns motoristas conseguem fazer melhor. Segundo a UPS, construir e implantar o sistema custou mais de US$ 295 milhões.\n\nLição de PO: o resultado depende do que você coloca na função objetivo.",
+  "autores": null,
+  "hashtags_tema": ["#RoteirizacaoDeVeiculos", "#Logistica", "#Heuristicas", "#FuncaoObjetivo"]
+}

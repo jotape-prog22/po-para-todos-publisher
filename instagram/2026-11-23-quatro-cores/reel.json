@@ -1,0 +1,153 @@
+{
+  "tipo": "cenas",
+  "trilha": "faiscas-espertas",
+  "cenas": [
+    {
+      "tipo": "spoiler",
+      "duracao": 3,
+      "kicker": "TEOREMA DAS QUATRO CORES",
+      "valor": 4,
+      "sufixo": "cores",
+      "pergunta": "COMO?"
+    },
+    {
+      "duracao": 7,
+      "kicker": "INGLATERRA · 1852",
+      "titulo": "UM MAPA, QUATRO CORES",
+      "linhas": [
+        "Francis Guthrie pintava o mapa dos condados da Inglaterra",
+        "Regiões vizinhas precisam de cores diferentes",
+        "Percebeu que quatro cores bastavam"
+      ]
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 8,
+      "kicker": "MAPA VIRA GRAFO",
+      "titulo": "REGIÃO VIRA PONTO",
+      "nos": [
+        {
+          "id": "1",
+          "x": 5,
+          "y": 1
+        },
+        {
+          "id": "2",
+          "x": 1,
+          "y": 8
+        },
+        {
+          "id": "3",
+          "x": 9,
+          "y": 8
+        },
+        {
+          "id": "4",
+          "x": 5,
+          "y": 5
+        }
+      ],
+      "arestas": [
+        {
+          "de": "1",
+          "para": "2"
+        },
+        {
+          "de": "1",
+          "para": "3"
+        },
+        {
+          "de": "2",
+          "para": "3"
+        },
+        {
+          "de": "1",
+          "para": "4"
+        },
+        {
+          "de": "2",
+          "para": "4"
+        },
+        {
+          "de": "3",
+          "para": "4"
+        }
+      ],
+      "legenda": "4 regiões que se tocam: 4 cores"
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 8,
+      "kicker": "COMO CHEGARAM À PROVA",
+      "titulo": "UMA PROVA ERRADA, UM COMPUTADOR",
+      "colunas": [
+        "Ano",
+        "Quem",
+        "O quê"
+      ],
+      "linhas": [
+        [
+          "1852",
+          "Guthrie",
+          "nota 4 cores"
+        ],
+        [
+          "1879",
+          "Kempe",
+          "prova falha"
+        ],
+        [
+          "1890",
+          "Heawood",
+          "acha o erro"
+        ],
+        [
+          "1976",
+          "Appel/Haken",
+          "computador"
+        ]
+      ],
+      "destaque": {
+        "linha": 4,
+        "coluna": 3
+      },
+      "nota": "o computador fez a parte pesada da prova"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 10,
+      "kicker": "EXEMPLO · 5 PROVAS",
+      "titulo": "HORÁRIOS SEM CHOQUE",
+      "linhas": [
+        "choques: A–B A–C B–C C–D D–E",
+        "A, B e C se cruzam: 3 horários",
+        "D usa o horário de A",
+        "E usa o horário de C",
+        "3 horários bastam, e é o mínimo"
+      ],
+      "destaque": 5,
+      "nota": "ideia: colorir o grafo dos choques"
+    },
+    {
+      "tipo": "impacto",
+      "duracao": 5,
+      "palavras": [
+        "COLORIR",
+        "UM GRAFO",
+        "ORGANIZA",
+        "HORÁRIOS"
+      ],
+      "apoio": "o teorema é de mapas; horários usam a mesma ideia",
+      "faixa": "PO PARA TODOS NO YOUTUBE"
+    }
+  ],
+  "legenda": {
+    "gancho": "Quatro cores bastam para pintar qualquer mapa. A prova, de 1976, precisou de um computador.",
+    "corpo": "Em 1852, Francis Guthrie pintava o mapa dos condados da Inglaterra e notou que quatro cores bastavam para que regiões vizinhas nunca tivessem a mesma cor. Em 1879, Alfred Kempe publicou uma prova. Em 1890, Percy Heawood achou o erro. Só em 1976 Kenneth Appel e Wolfgang Haken anunciaram a prova, a primeira grande de um teorema com ajuda extensa de computador.\n\nO teorema vale para mapas desenhados no plano. O que a Pesquisa Operacional aproveita é a ideia: transformar o problema em um grafo, com um ponto por região (ou por prova) e uma linha entre as que se tocam (ou que têm alunos em comum), e colorir. No exemplo do reel, 5 provas com choques A–B, A–C, B–C, C–D e D–E cabem em 3 horários; os números são inventados, só para mostrar a ideia. Quatro cores é o limite para mapas planos, não para horários em geral.",
+    "hashtags_tema": [
+      "#TeoriaDosGrafos",
+      "#QuatroCores",
+      "#ColoracaoDeGrafos"
+    ]
+  }
+}

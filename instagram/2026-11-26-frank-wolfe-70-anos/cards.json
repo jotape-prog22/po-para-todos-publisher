@@ -1,0 +1,11 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    {
+      "tipo": "curiosidade",
+      "titulo": "O ALGORITMO FRANK–WOLFE FAZ 70 ANOS EM 2026",
+      "texto": "Marguerite Frank e Philip Wolfe propuseram o método em 1956. A cada passo, ele aproxima o problema por uma conta linear e avança na direção da melhor resposta dela, sem sair da região permitida.",
+      "fonte": "Frank e Wolfe, Naval Research Logistics, 1956"
+    }
+  ]
+}

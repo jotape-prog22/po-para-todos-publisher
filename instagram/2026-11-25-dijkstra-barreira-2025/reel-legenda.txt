@@ -1,0 +1,15 @@
+Em 2025, um artigo quebrou o limite de velocidade do método de Dijkstra, de 1956, em grafos esparsos.
+
+O algoritmo de Dijkstra acha o caminho mais curto visitando os pontos do mais perto ao mais longe, o que na prática produz uma lista ordenada por distância. Ordenar impõe um limite de velocidade: a chamada barreira da ordenação.
+
+Em abril de 2025, Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu e Longhui Yin mostraram um algoritmo determinístico com tempo O(m log^(2/3) n) para grafos direcionados com pesos não negativos, o primeiro a quebrar o limite O(m + n log n) de Dijkstra em grafos esparsos. O artigo foi o melhor do STOC 2025. A Quanta Magazine descreve o ganho como pequeno, vindo de um algoritmo bem mais intricado; a reportagem não discute uso prático, então isto não quer dizer que o GPS do seu celular ficou mais rápido.
+
+O grafo do reel é um exemplo com números inventados: de S até D o menor caminho vale 8, e Dijkstra encontra as distâncias na ordem 0, 2, 3, 5, 8.
+
+O método clássico está explicado passo a passo nas aulas de Caminho Mínimo e Dijkstra, no canal.
+
+▶️ O método clássico de Dijkstra, passo a passo, está nas aulas do canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #Dijkstra #CaminhoMinimo #TeoriaDosGrafos #Algoritmos #Otimização #UNIRIO

@@ -1,0 +1,48 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Desafio (EXEMPLO): mochila de 10 kg; A pesa 6 e vale 30; B e C pesam 5 e valem 20 cada; qual a melhor carga? (a resposta é B + C, com valor 40).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e (enumeração das 8 combinações): const it={A:[6,30],B:[5,20],C:[5,20]}; for m de 0 a 7, soma pesos e valores, descarta peso > 10 → combinações viáveis: {}, A (30), B (20), C (20), B+C (peso 10, valor 40); A+B e A+C pesam 11 e A+B+C pesa 16 (inviáveis). Melhor = B + C com 40. Números inventados, marcados EXEMPLO (kicker da cena 2 e legenda)."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Tabela: A peso 6, valor 30, valor/kg 5; B peso 5, valor 20, valor/kg 4; C peso 5, valor 20, valor/kg 4.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: Object.entries(it).map(([k,[w,v]])=>[k,v/w]) → A:5, B:4, C:4. Ordenando por valor/kg decrescente, o guloso começa por A."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Guloso pega A (peso 6, valor 30); sobram 4 kg, B e C não cabem; B + C pesa 10 e vale 40; 40 é maior que 30.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: guloso por valor/kg: pega A (cap 10→4, total 30); B (peso 5 > 4) e C (peso 5 > 4) não cabem; resultado guloso = 30. Enumeração: melhor = B+C = 40. 40 > 30."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Resultado bom, não o melhor: melhorar a cada passo não garante o melhor.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Mesma conta da cena 3: o guloso chega a 30, o melhor é 40. O exemplo ilustra a ideia de parar num resultado que não é o ótimo; a legenda e a cena não o chamam de busca local de Kirkpatrick et al. (a pesquisa alertou que o guloso da mochila não é a busca por vizinhança do artigo)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Kirkpatrick, Gelatt e Vecchi, Science, 13/05/1983: melhorar passo a passo costuma parar num ótimo local; o recozimento simulado aceita, de forma controlada, passos que pioram.",
+      "tipo": "fonte",
+      "fonte": "https://doi.org/10.1126/science.220.4598.671",
+      "resultado": "confirmada",
+      "como": "Texto do artigo lido (PDF em zhanggroup.org, via pdftotext; cabeçalho '13 May 1983, Volume 220, Number 4598 SCIENCE', 'Optimization by Simulated Annealing'): 'Since this search usually gets stuck in a local but not a global optimum, it is customary to carry out the process several times, starting from different randomly generated configurations'; 'The Metropolis procedure from statistical mechanics provides a generalization of iterative improvement in which controlled uphill steps can also be incorporated in the search for a better solution'; 'transitions out of a local optimum are always possible at nonzero temperature'. Em otimização para minimizar, 'uphill' = passo que piora o custo. O DOI é o da convenção da Science (não foi aberto o link do DOI; o texto foi lido na cópia do PDF)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Legenda: o artigo é 'Optimization by Simulated Annealing' (Kirkpatrick, Gelatt e Vecchi, Science, 13/05/1983).",
+      "tipo": "fonte",
+      "fonte": "https://doi.org/10.1126/science.220.4598.671",
+      "resultado": "confirmada",
+      "como": "Cabeçalho do PDF lido: 'Optimization by Simulated Annealing', 13 May 1983, Volume 220, Number 4598, Science. Autores S. Kirkpatrick, C. D. Gelatt Jr., M. P. Vecchi (conferidos no cabeçalho/primeira página do PDF)."
+    }
+  ]
+}

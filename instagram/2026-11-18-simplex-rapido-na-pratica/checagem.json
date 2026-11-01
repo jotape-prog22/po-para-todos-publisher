@@ -1,0 +1,58 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Parece: 'Na teoria, o simplex pode ser lento'. É: 'Na prática, ele voa'.",
+      "tipo": "fonte",
+      "fonte": "https://www.quantamagazine.org/researchers-discover-the-optimal-way-to-optimize-20251013/",
+      "resultado": "confirmada",
+      "como": "Quanta Magazine, 'Researchers Discover the Optimal Way To Optimize' (Steve Nadis, 13/10/2025, lida): 'In 1972, mathematicians proved that the time it takes to complete a task could rise exponentially with the number of constraints'; Huiberts: 'It has always run fast, and nobody's seen it not be fast.' 'Voa' é a figura de linguagem para 'rápido na prática'."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Em 1972, provou-se que o tempo poderia crescer exponencialmente; na prática, o simplex sempre rodou rápido: ninguém o viu lento. Kicker: Quanta, 13/10/2025.",
+      "tipo": "fonte",
+      "fonte": "https://www.quantamagazine.org/researchers-discover-the-optimal-way-to-optimize-20251013/",
+      "resultado": "confirmada",
+      "como": "Quanta (lida): 'In 1972, mathematicians proved that the time it takes to complete a task could rise exponentially with the number of constraints' (a reportagem não nomeia o resultado de 1972); Huiberts: 'It has always run fast, and nobody's seen it not be fast.' A reportagem também diz que o novo trabalho dá razões teóricas para os tempos exponenciais temidos não aparecerem na prática. Data da reportagem: 13/10/2025."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "EXEMPLO: maximizar Z = 3x + 2y com x + y ≤ 4 e x ≤ 3 (x, y ≥ 0); ótimo em (3, 1), Z* = 11.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: vértices da região {(0,0),(3,0),(3,1),(0,4)} → Z = 0, 9, 11, 8. Máximo 11 em (3,1). Enumeração de todos os pontos inteiros viáveis (x de 0 a 3, y de 0 a 4, x+y ≤ 4) dá o mesmo máximo: [11, 3, 1]. Números inventados, marcados EXEMPLO."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "EXEMPLO: (0,0): Z = 0; (3,0): Z = 9; (3,1): Z = 11; os vizinhos de (3,1) dão 9 e 8, então para; caminho (0,0) → (3,0) → (3,1).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: Z em (0,0)=0, (3,0)=9, (3,1)=11, (0,4)=8. Cada passo do caminho melhora Z (0 → 9 → 11); os vizinhos de (3,1) são (3,0) com 9 e (0,4) com 8, ambos piores, então não há aresta que melhore: é o ótimo (e a região é convexa, logo o ótimo local de vértice é o global em PL). A tela diz 'os vizinhos dão 9 e 8'."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Spielman e Teng, 2001: uma pitada de aleatoriedade evita o pior caso.",
+      "tipo": "fonte",
+      "fonte": "https://www.quantamagazine.org/researchers-discover-the-optimal-way-to-optimize-20251013/",
+      "resultado": "confirmada",
+      "como": "Quanta (lida): 'In 2001, Spielman and Teng proved that the tiniest bit of randomness can help prevent such an outcome' (o pior caso exponencial). arXiv:2504.04197 (abstract lido) confirma 'Spielman and Teng (STOC '01) introduced the smoothed analysis framework'."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Bach e Huiberts, 2025: melhoraram a garantia de tempo e provaram um limite nessa abordagem; um tempo linear nas restrições segue fora de alcance.",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.04197",
+      "resultado": "confirmada",
+      "como": "arXiv:2504.04197, 'Optimal Smoothed Analysis of the Simplex Method', Eleon Bach e Sophie Huiberts (submetido 05/04/2025; v2 de 23/05/2026; abstract lido): provam que existe um método simplex cuja complexidade suavizada tem um limite superior com dependência melhor do ruído, das variáveis e das restrições, e um limite inferior que combina com ele ('optimal noise dependence among all simplex methods'). Quanta (lida): 'an algorithm based on the approach established by Spielman and Teng cannot go any faster than the value they obtained'; linear nas restrições é 'the North Star... We are not at risk of achieving this anytime soon'. Resultado teórico, sem aplicação imediata; o reel não promete ganho prático."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Legenda: a chamada análise suavizada (smoothed analysis); referência arXiv:2504.04197 e Quanta de 13/10/2025; resultado teórico.",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.04197",
+      "resultado": "confirmada",
+      "como": "Abstract do arXiv (lido): 'Smoothed analysis is a method for analyzing the performance of algorithms'; 'Spielman and Teng (STOC '01) introduced the smoothed analysis framework'. A Quanta não usa o termo 'análise suavizada' (a pesquisa já tinha alertado); aqui o termo vem do arXiv. A aula do canal sobre o Simplex existe (videos/simplex, público), por isso a faixa 'AULA COMPLETA NO CANAL' e o CTA padrão."
+    }
+  ]
+}

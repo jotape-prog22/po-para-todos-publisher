@@ -1,0 +1,82 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "Van Dantzig (1956) mostrou que a altura ideal do dique equilibra custo e risco (soma do custo de elevar e das perdas esperadas).",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Lido o PDF escaneado (CWI, reimpressão do artigo de Econometrica 24(3), jul. 1956), pp. 278-280. Seção 3, p. 279: 'Taking account of the cost of dike-building, of the material losses when a dike-break occurs, and of the frequency distribution of different sea levels, determine the optimal height of the dikes.' Seção 4, p. 280: o custo é I(X) + L(X), com L = valor presente das perdas esperadas p(H)·V (eq. 2), e 'we now have to determine X so that I(X)+L(X) is minimal' (eq. 3); resultado X = (1/α) ln(100·p0·V·α/(δ·k)) (eq. 6)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Enchente de 1º/02/1953 na Holanda: mais de 1.800 mortos (dados de Maris, citados pelo artigo).",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 1, p. 276: 'On February 1, 1953 the Southwestern part of the Netherlands [...] According to the data given by A. G. Maris [5], there was a loss of over 1,800 human lives, over 150,000 hectares of land were flooded [...] 67 breaks of dikes'. O card usa 'mais de 1.800' (o número do artigo, atribuído a Maris), não os 1.836 de outras fontes."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Após a enchente de 1953, o matemático David van Dantzig tratou o dique como otimização: somou o custo de elevar o dique às perdas esperadas se rompesse e buscou a soma mínima.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/David_van_Dantzig",
+      "resultado": "confirmada",
+      "como": "Artigo (autor 'D. van Dantzig'), seção 3, p. 279: o dique rompe e a perda é total (S = V se h > H, S = 0 caso contrário); a perda esperada é p(H)·V. Wikipédia (David van Dantzig, 1900-1959, Amsterdã): depois da enchente de 1953 o governo holandês criou o Comitê Delta e pediu a ele um modelo matemático para as decisões econômicas de custo-benefício sobre a altura ótima dos diques; ele chefiava o Departamento de Estatística Matemática do Centro de Matemática. O nome 'David' vem dessa página."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Em 1956, ele avisou: a conta usa médias e dá o método, não números finais.",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 3, p. 278: 'the main task of the Mathematical Centre with respect to this problem was to provide a methodological procedure rather than to give actual numerical solutions' e 'the problem has been treated roughly only, by taking constant average values for quantities which really vary locally or in time.'"
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "A melhor altura é a que torna essa soma mínima (legenda: perto de 1 m no EXEMPLO).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Refeito com o EXEMPLO da legenda por varredura de 5 em 5 cm (node -e): custo = 40·X + 25·1000·0,01·2^(-X/0,25) = 40·X + 250·2^(-4X). Mínimo da grade em X = 1,05 m (total 55,6, dos quais 42 de elevar e 13,6 de perdas); fórmula fechada de van Dantzig (eq. 6) com α = ln2/0,25: X* = 1,029 m. O mínimo está no meio da faixa, não em X = 0 nem em X grande."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Mais de 150 mil hectares alagados; a Comissão Delta foi criada e o Centro de Matemática de Amsterdã foi consultor.",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 1, p. 276: 'over 150,000 hectares of land were flooded'; 'The government rapidly appointed a committee [...] it was called the Delta-Commission. To deal with special problems the committee enlisted several scientific institutions as advisors, including [...] the Mathematical Centre at Amsterdam'. Que van Dantzig trabalhava no Centro: Wikipédia (chefiava o Departamento de Estatística Matemática) e o artigo ('the main task of the Mathematical Centre...')."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Enunciado do problema de 1956 (custo de construir, perdas se rompe, frequência dos níveis do mar).",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Citação literal da seção 3, p. 279, traduzida (ver primeira entrada)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "EXEMPLO: valor 1.000, juros 4% a.a., chance anual 1%, cai pela metade a cada 25 cm, 40 por metro; totais 250; 82,5 (50 cm); 55,6 (1 m); 63,9 (1,5 m); 81 (2 m).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: perda esperada em valor presente = 100·p·V/δ = 25·p·V (eq. 2 do artigo, δ = 4); com p(X) = 0,01·2^(-X/0,25): X=0 → 250; X=0,5 → 20 + 62,5 = 82,5; X=1 → 40 + 15,63 = 55,63; X=1,5 → 60 + 3,91 = 63,91; X=2 → 80 + 0,98 = 80,98. Números inventados e marcados EXEMPLO na legenda; só a estrutura (custo linear por metro, probabilidade exponencial, perda total, valor presente 100·p·V/δ) vem do artigo."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O próprio artigo diz que a conta foi feita de forma grosseira, com valores médios.",
+      "tipo": "fonte",
+      "fonte": "https://ir.cwi.nl/pub/8233/8233D.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 3, p. 278: 'the problem has been treated roughly only, by taking constant average values for quantities which really vary locally or in time.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "Décadas depois, uma equipe holandesa usou programação inteira não linear e custo-benefício para rever as normas; o governo adotou os resultados em 2012 (Interfaces, 2014).",
+      "tipo": "fonte",
+      "fonte": "https://ideas.repec.org/a/inm/orinte/v44y2014i1p7-21.html",
+      "resultado": "confirmada",
+      "como": "Resumo do artigo de Eijgenraam et al., Interfaces 44(1):7-21, fev. 2014 (DOI 10.1287/inte.2013.0721; metadados conferidos no Crossref): a chamada da Segunda Comissão Delta (2008) para elevar dez vezes os padrões custaria cerca de 11,5 bilhões de euros; os autores usaram análise custo-benefício e programação inteira mista não linear e mostraram que elevar os padrões em três regiões críticas é eficiente; o governo holandês adotou as conclusões em 2012 (paráfrase do resumo, lido em ideas.repec.org). Lido pelo resumo (a página do editor não foi aberta)."
+    }
+  ]
+}

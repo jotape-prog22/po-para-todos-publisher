@@ -1,0 +1,24 @@
+{
+  "tipo": "cenas",
+  "trilha": "detetives-tensos",
+  "cenas": [
+    { "tipo": "mito-fato", "duracao": 4, "kicker": "ATLÂNTICO NORTE, 1941-1942", "afirmacao": "Juntar mais navios num comboio aumenta o risco de cada um.", "veredito": "mito" },
+    { "duracao": 6, "kicker": "PESQUISA OPERACIONAL NA GUERRA", "titulo": "CIENTISTAS CONTARAM OS NAUFRÁGIOS",
+      "linhas": ["O Almirantado britânico analisou os ataques de submarinos a comboios", "Blackett chefiou a pesquisa operacional da Marinha entre 1942 e 1945"] },
+    { "tipo": "tabela", "duracao": 6, "kicker": "O QUE A ANÁLISE ENCONTROU", "titulo": "O QUE PESA NAS PERDAS",
+      "colunas": ["Fator", "Pesa?"],
+      "linhas": [["Submarinos", "sim"], ["Escoltas", "sim"], ["Tamanho", "não"]],
+      "destaque": { "linha": 3, "coluna": 2 }, "nota": "escoltas pesam quando não há aviões de patrulha" },
+    { "tipo": "conta", "duracao": 8, "kicker": "EXEMPLO · MODELO SIMPLIFICADO", "titulo": "NAVIOS CRESCEM MAIS QUE A BORDA",
+      "linhas": ["lado 6: 36 navios, borda 24", "lado 12: 144 navios, borda 48", "navios ×4, borda ×2"], "destaque": 3,
+      "nota": "comboio quadrado de lado L: L² navios, borda 4L" },
+    { "tipo": "impacto", "duracao": 4, "palavras": ["MAIS NAVIOS", "MENOS RISCO"], "apoio": "para cada navio do comboio" },
+    { "duracao": 7, "kicker": "A LÓGICA DO COMBOIO", "titulo": "PERDAS NÃO DEPENDIAM DO TAMANHO",
+      "linhas": ["As perdas variavam com submarinos e escoltas, não com o tamanho", "Comboio maior: menor proporção de navios perdidos"], "faixa": "PO PARA TODOS NO YOUTUBE" }
+  ],
+  "legenda": {
+    "gancho": "Juntar mais navios num comboio aumenta o risco de cada um? A pesquisa operacional da guerra mostrou o contrário.",
+    "corpo": "No Atlântico Norte, entre 1941 e 1942, cientistas do Almirantado britânico analisaram os ataques de submarinos a comboios de navios mercantes. A conclusão: as perdas de um comboio variavam com o número de submarinos atacantes e, sem aviões de patrulha, com o número de escoltas, e não com o tamanho do comboio. Se as perdas não crescem com o tamanho, comboios grandes perdem uma proporção menor de navios.\n\nPatrick Blackett chefiou a pesquisa operacional do Almirantado de 1942 a 1945. A explicação geométrica costuma ser contada assim: os navios ocupam a área do comboio e as escoltas cobrem a borda, e a área cresce mais rápido que a borda. Segundo uma resenha do livro Blackett's War, essa explicação veio depois, de outro analista, e não de Blackett.\n\nOs números do quadrado (lado 6 e lado 12) são um EXEMPLO didático, num modelo simplificado, e não dados históricos. O reel não traz percentuais de perdas porque as fontes divergem.",
+    "hashtags_tema": ["#HistoriaDaPO", "#Blackett", "#Comboios", "#SegundaGuerra"]
+  }
+}

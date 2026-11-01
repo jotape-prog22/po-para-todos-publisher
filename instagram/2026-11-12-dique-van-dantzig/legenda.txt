@@ -1,0 +1,15 @@
+Qual é a altura certa de um dique? Depois da enchente de 1953, um matemático holandês respondeu com uma conta de otimização.
+
+Em 1º de fevereiro de 1953, o mar do Norte atingiu o sudoeste dos Países Baixos. Pelos dados que van Dantzig cita, foram mais de 1.800 mortos e mais de 150 mil hectares alagados. O governo criou a Comissão Delta, e o Centro de Matemática de Amsterdã, onde David van Dantzig trabalhava, foi um dos consultores (não confunda com George Dantzig, do simplex).
+
+O problema, nas palavras do artigo de 1956: levando em conta o custo de construir diques, as perdas quando um dique rompe e a frequência dos diferentes níveis do mar, qual é a altura ótima? Dique mais alto custa mais; dique mais baixo deixa as perdas esperadas maiores. O melhor está no equilíbrio entre os dois.
+
+EXEMPLO, com números inventados (só a estrutura vem do artigo): valor protegido 1.000, juros de 4% ao ano, chance anual de enchente de 1% hoje, que cai pela metade a cada 25 cm de dique, e 40 de custo por metro elevado. Somando o custo de elevar e as perdas esperadas, o total é 250 sem elevar, 82,5 com 50 cm, 55,6 com 1 m, 63,9 com 1,5 m e 81 com 2 m. O mínimo fica perto de 1 m: nem o dique mais baixo, nem o mais alto.
+
+O próprio artigo diz que a conta foi feita de forma grosseira, com valores médios, para dar um método e não números finais. Décadas depois, uma equipe holandesa usou programação inteira não linear e análise de custo-benefício para rever as normas de proteção contra enchentes; o governo adotou os resultados em 2012 (Interfaces, 2014).
+
+💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #GestaoDeRisco #Holanda #HistoriaDaPO #DecisaoSobIncerteza #Otimização #UNIRIO

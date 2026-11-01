@@ -1,0 +1,27 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1 e cena 2",
+      "texto": "Com 5 azuis contra 3 vermelhos, mesmo poder de fogo por soldado e fogo à distância, sobram 4 azuis (A² − B² = 25 − 9 = 16, √16 = 4), e não 2.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Refeita por simulação numérica (método de Euler), sem usar a fórmula: node -e \"function euler(A,B,dt){let t=0;while(B>0&&A>0){A+=-B*dt;B+=-A*dt;t+=dt}return {A,B,t}};for(const dt of [0.01,0.001,0.0001])console.log(dt,euler(5,3,dt))\" → dt 0,01: t=0,700, A=3,9861; dt 0,001: t=0,694, A=3,9986; dt 0,0001: t=0,693, A=3,9999 (B≈0). Converge para 4. Conferi também a solução fechada A(t)=5cosh t−3sinh t, B(t)=3cosh t−5sinh t: B=0 em tanh t=3/5 (t=0,6931) e A=4,0000. E o invariante ao longo da simulação até t=2: o desvio máximo de A²−B² em relação a 16 foi 6,9e-3 (erro de Euler com dt=1e-4). A conta 'um contra um' (lei linear) dá 5−3=2, que é a resposta ingênua do card."
+    },
+    {
+      "onde": "cena 2 e cena 3",
+      "texto": "No modelo dA/dt = −B, dB/dt = −A (mesmo poder de fogo), A² − B² permanece constante.",
+      "tipo": "fonte",
+      "fonte": "https://www.futilitycloset.com/2016/03/20/lanchesters-laws/",
+      "resultado": "confirmada",
+      "como": "Segunda fonte independente da Wikipédia: Futility Closet, 'Lanchester's Laws' (20/03/2016): equações dA/dt = −bB e dB/dt = −aA e o invariante 'bB² − aA² = C', onde C é uma constante. Terceira: derivação em https://sites.google.com/view/lanchester-war-model/derivation: 'Ay² − Bx² = constant' (dividindo as duas equações e integrando). Com a=b=1: A² − B² = constante. A Wikipédia em inglês (https://en.wikipedia.org/wiki/Lanchester%27s_laws) traz as equações e a lei do quadrado, mas a página lida NÃO traz o invariante nem o √(A²−B²); essa parte vem das duas outras fontes e da minha derivação/simulação."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "A lei do quadrado de Lanchester vale para combate de fogo à distância (modelo simplificado); Lanchester a publicou em 1916 (Aircraft in Warfare); Osipov chegou a equações parecidas de forma independente em 1915.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Lanchester%27s_laws",
+      "resultado": "confirmada",
+      "como": "Wikipédia (inglês), 'Lanchester's laws': 'In 1915 and 1916 during World War I, M. Osipov and Frederick Lanchester independently devised a series of differential equations to demonstrate the power relationships between opposing forces'; cita Aircraft in Warfare (1916); a lei do quadrado vale para 'modern combat with long-range weapons such as firearms', 'only works where each unit ... can kill only one equivalent unit at a time', 'does not apply to machine guns, artillery with unguided munitions, or nuclear weapons'. O story 3 só diz 'Lanchester (1916)' e 'modelo simplificado: não prevê batalhas reais'; o story 1 diz 'modelo simplificado' e 'mesma medida' de acerto por soldado. Futility Closet (segunda fonte) confirma que as equações valem para combate moderno de longo alcance e que no combate antigo o sobrevivente é a diferença (um contra um). Não li o livro de 1916 digitalizado."
+    }
+  ]
+}

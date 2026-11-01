@@ -1,0 +1,57 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "story 2",
+      "texto": "Com a regra \"pule o 1º e fique com o primeiro melhor que ele; se nenhum for, o último\", acerta-se o melhor em 3 das 6 ordens (213, 231 e 312, com 1 = o melhor): 50%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Enumerei as 6 ordens por node -e: const perms=[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]];for(const p of perms){let pick=p[2];for(let i=1;i<3;i++){if(p[i]<Math.min(...p.slice(0,i))){pick=p[i];break;}}console.log(p.join(\"\"),pick,pick===1)} => 123 fica com 3 (erra); 132 fica com 2 (erra); 213 fica com 1 (acerta); 231 fica com 1 (acerta); 312 fica com 1 (acerta); 321 fica com 2 (erra). 3 acertos em 6 = 50%. Para r=1 (aceitar o 1º) e r=3 (ficar com o último) o mesmo laço dá 2/6 cada; só pular o 1º chega a 3/6."
+    },
+    {
+      "onde": "story 2",
+      "texto": "Escolhendo ao acaso, a chance de pegar o melhor seria 1 em 3, cerca de 33%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Escolher um dos 3 candidatos ao acaso: 1/3 = 0,333. Conferido também pelas regras de corte 1 e 3 (aceitar o 1º ou ficar com o último), que são escolhas sem informação: node -e acima com r=1 e r=3 dá 2/6 = 1/3 em cada."
+    },
+    {
+      "onde": "story 2",
+      "texto": "É um problema de parada ótima: decidir quando parar de olhar.",
+      "tipo": "fonte",
+      "fonte": "https://www.or.mist.i.u-tokyo.ac.jp/takeda/FreshmanCourse/Ferguson.pdf",
+      "resultado": "confirmada",
+      "como": "Ferguson (1989), seção 3: Dynkin (1963) trata o problema como aplicação da teoria de tempos de parada de Markov (\"Markov stopping times\"); a seção 1 descreve o campo como \"probability-optimization\". A expressão \"parada ótima\" é o nome usual dessa teoria; a tela só diz que é decidir quando parar de olhar, o que é o próprio enunciado (aceitar ou recusar na hora)."
+    },
+    {
+      "onde": "story 1",
+      "texto": "Regras do problema: candidatos chegam um a um em ordem aleatória, você só compara com os já vistos, quem é recusado não volta.",
+      "tipo": "fonte",
+      "fonte": "https://www.or.mist.i.u-tokyo.ac.jp/takeda/FreshmanCourse/Ferguson.pdf",
+      "resultado": "confirmada",
+      "como": "Ferguson (1989), Statistical Science 4(3):282-289, seção 1 (PDF aberto e lido via pdftotext): itens 3 (entrevistados sequencialmente em ordem aleatória, todas igualmente prováveis), 4 (a decisão se baseia só nos postos relativos dos já entrevistados) e 5 (um candidato rejeitado não pode ser chamado de volta)."
+    },
+    {
+      "onde": "story 3",
+      "texto": "Regra ótima: recusar os r-1 primeiros e escolher o próximo que seja o melhor entre os observados.",
+      "tipo": "fonte",
+      "fonte": "https://www.or.mist.i.u-tokyo.ac.jp/takeda/FreshmanCourse/Ferguson.pdf",
+      "resultado": "confirmada",
+      "como": "Ferguson (1989), seção 1: a atenção pode se restringir a regras que, para algum r>1, rejeitam os r-1 primeiros candidatos e escolhem o próximo que é o melhor na classificação relativa dos observados."
+    },
+    {
+      "onde": "story 3",
+      "texto": "Com n = 3, o melhor corte é pular 1 candidato (r = 2), chance de 50%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: para r=1,2,3 contei os acertos nas 6 ordens com a regra \"recuse os r-1 primeiros e fique com o primeiro melhor que todos os vistos; se nenhum for, o último\": r=1 -> 2/6, r=2 -> 3/6, r=3 -> 2/6. O máximo é r=2 (pular 1), 3/6 = 50%."
+    },
+    {
+      "onde": "story 3",
+      "texto": "Com n grande, pular cerca de 37% dos candidatos dá chance de sucesso também de cerca de 37% (1/e).",
+      "tipo": "fonte",
+      "fonte": "https://www.or.mist.i.u-tokyo.ac.jp/takeda/FreshmanCourse/Ferguson.pdf",
+      "resultado": "confirmada",
+      "como": "Ferguson (1989), eqs. 2.2-2.3: o x ótimo é 1/e = 0,367879... e a probabilidade ótima é 1/e; \"para n grande, é aproximadamente ótimo esperar até cerca de 37% dos candidatos terem sido entrevistados\", e a probabilidade de sucesso também é cerca de 37%."
+    }
+  ]
+}

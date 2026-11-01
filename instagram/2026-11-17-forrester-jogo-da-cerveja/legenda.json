@@ -1,0 +1,11 @@
+{
+  "gancho": "Faz 10 anos que morreu Jay Forrester, do MIT. Você já jogou o jogo da cerveja, que o MIT diz ter sido criado por ele?",
+  "corpo": "Jay Forrester morreu em 16 de novembro de 2016, aos 98 anos. No MIT, liderou o Projeto Whirlwind, um dos primeiros projetos de computação digital da universidade, e é o titular da patente da memória de núcleo magnético, uma forma inicial de RAM. Em meados dos anos 1950, ao estudar uma fábrica de eletrodomésticos da General Electric, desenvolveu a dinâmica de sistemas, uma forma de analisar organizações e sistemas complexos por meio de modelos.\n\nSegundo o MIT, ele criou também o jogo da geladeira, uma simulação de cadeia de suprimentos mais tarde chamada de jogo da cerveja, que em 2016 ainda era um exercício popular na recepção de alunos.\n\nNo jogo, cada equipe cuida de uma etapa da cadeia, do varejo à fábrica, e decide só quanto pedir. As oscilações dos pedidos tendem a crescer à medida que sobem pela cadeia: uma pequena variação na demanda do varejo pode virar um solavanco lá no começo. É um bom jeito de ver por que olhar só a sua etapa não basta e por que simular o sistema inteiro ajuda a decidir.",
+  "autores": null,
+  "hashtags_tema": [
+    "#JayForrester",
+    "#DinamicaDeSistemas",
+    "#JogoDaCerveja",
+    "#CadeiaDeSuprimentos"
+  ]
+}

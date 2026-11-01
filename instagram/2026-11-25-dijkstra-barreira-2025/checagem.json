@@ -1,0 +1,74 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "O limite de Dijkstra (barreira da ordenação), de 1956, caiu em 2025 (Chamada em estilo trocar: \"O LIMITE / DE 1956 / CAIU EM 2025\"; apoio: limite de Dijkstra no caminho mais curto).",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.17033",
+      "resultado": "confirmada",
+      "como": "arXiv 2504.17033 (v1 23/04/2025, v2 30/07/2025), resumo: \"the first result to break the O(m+n log n) time bound of Dijkstra's algorithm on sparse graphs, showing that Dijkstra's algorithm is not optimal for SSSP\". Quanta (06/08/2025): o método foi \"devised by ... Edsger Dijkstra in 1956\" e a barreira da ordenação limita sua velocidade. Nuance: o método é de 1956; a cota O(m+n log n) como é citada hoje vem de versões posteriores do algoritmo; a tela diz \"o limite de Dijkstra\", sem datar a cota."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Dijkstra acha o caminho mais curto até cada ponto, visitando do mais perto ao mais longe, e o resultado sai numa lista ordenada por distância; ordenar impõe a barreira da ordenação.",
+      "tipo": "fonte",
+      "fonte": "https://www.quantamagazine.org/new-method-is-the-fastest-way-to-find-the-best-routes-20250806/",
+      "resultado": "confirmada",
+      "como": "Quanta (lida): o método trabalha a partir da origem para fora; sua saída é uma lista ordenada de caminhos mais curtos, e \"the sorting barrier sets a fundamental limit on how fast the algorithm can run\"."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Exemplo inventado: S→A 2, S→B 3, A→C 3, B→C 4, C→D 3; menor caminho de S até D = 8, por S-A-C-D.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Refeito por Bellman-Ford (caminho diferente de Dijkstra): node -e \"const E=[['S','A',2],['S','B',3],['A','C',3],['B','C',4],['C','D',3]];const d={S:0,A:Infinity,B:Infinity,C:Infinity,D:Infinity};for(let k=0;k<5;k++)for(const [u,v,w] of E)if(d[u]+w<d[v])d[v]=d[u]+w;console.log(d)\" => { S: 0, A: 2, B: 3, C: 5, D: 8 }. Caminho S-A-C-D = 2+3+3 = 8; por B, C seria 3+4 = 7 e D 10. Grafo e pesos são EXEMPLO (marcado na tela e na legenda)."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Distâncias em ordem crescente: S 0, A 2, B 3, C 5 (por A; por B seria 7), D 8.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Mesmo node -e da cena 3: 0, 2, 3, 5, 8, já em ordem crescente (a ordem em que Dijkstra as fecha); C por B = 3+4 = 7 > 5."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Tempo de Dijkstra: m + n log n; novo algoritmo: m log^(2/3) n; o novo não ordena.",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.17033",
+      "resultado": "confirmada",
+      "como": "arXiv 2504.17033: \"deterministic O(m log^{2/3} n)-time algorithm for single-source shortest paths on directed graphs with real non-negative edge weights\"; quebra o limite O(m+n log n) de Dijkstra em grafos esparsos. Quanta: o novo algoritmo \"doesn't sort, and it runs faster than any algorithm that does\". A coluna \"Ganho em esparsos\" refere-se ao \"on sparse graphs\" do resumo."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Autores: Duan, Mao, Mao, Shu e Yin (Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, Longhui Yin).",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.17033",
+      "resultado": "confirmada",
+      "como": "Lista de autores da página do arXiv 2504.17033, conferida hoje."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "O artigo foi o melhor do STOC 2025 (Best Paper).",
+      "tipo": "fonte",
+      "fonte": "https://sigact.org/prizes/best_paper.html",
+      "resultado": "confirmada",
+      "como": "Página de prêmios Best Paper da SIGACT (lida hoje): sob STOC 2025 consta \"Breaking the Sorting Barrier for Directed Single-Source Shortest Paths\", de Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu e Longhui Yin. A página do arXiv e a Quanta não citam o STOC; a fonte é a SIGACT (e o MPI-INF, segundo a pesquisa prévia, não reaberto por mim)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Mais rápido na teoria; ganho pequeno e algoritmo bem mais complicado.",
+      "tipo": "fonte",
+      "fonte": "https://www.quantamagazine.org/new-method-is-the-fastest-way-to-find-the-best-routes-20250806/",
+      "resultado": "confirmada",
+      "como": "Quanta: \"if you chop up the graph in the right way, it runs slightly faster than the best version of Dijkstra's algorithm\"; descreve o algoritmo como \"considerably more intricate\". A página não discute GPS nem uso prático; por isso o reel não afirma ganho prático."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Em abril de 2025 os cinco autores mostraram um algoritmo determinístico O(m log^(2/3) n) para grafos direcionados com pesos não negativos.",
+      "tipo": "fonte",
+      "fonte": "https://arxiv.org/abs/2504.17033",
+      "resultado": "confirmada",
+      "como": "arXiv 2504.17033, v1 de 23/04/2025: \"deterministic O(m log^{2/3} n)-time algorithm ... on directed graphs with real non-negative edge weights in the comparison-addition model\"."
+    }
+  ]
+}

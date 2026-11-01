@@ -1,0 +1,66 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Um nome para esconder matemática, segundo o próprio Bellman.",
+      "tipo": "fonte",
+      "fonte": "https://web.cs.miami.edu/home/odelia/teaching/csc317_fall19/syllabus/dy_birth.pdf",
+      "resultado": "confirmada",
+      "como": "Dreyfus, 'Richard Bellman on the Birth of Dynamic Programming', Operations Research 50(1), 2002 (PDF baixado e lido), citando 'Eye of the Hurricane' (1984), p. 159: 'I felt I had to do something to shield Wilson and the Air Force from the fact that I was really doing mathematics inside the RAND Corporation... Thus, I thought dynamic programming was a good name.' A cena usa 'segundo o próprio Bellman' porque é anedota autobiográfica."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "RAND, outono de 1950: Bellman procurava um nome para decisões em várias etapas; o secretário de Defesa, Wilson, tinha horror à palavra pesquisa; 'dinâmico' é impossível de usar em sentido ruim.",
+      "tipo": "fonte",
+      "fonte": "https://web.cs.miami.edu/home/odelia/teaching/csc317_fall19/syllabus/dy_birth.pdf",
+      "resultado": "confirmada",
+      "como": "Dreyfus 2002 (lido), citando Bellman 1984: 'I spent the Fall quarter (of 1950) at RAND. My first task was to find a name for multistage decision processes'; 'a very interesting gentleman in Washington named Wilson. He was Secretary of Defense, and he actually had a pathological fear and hatred of the word, research'; 'it's impossible to use the word, dynamic, in a pejorative sense'. A cena apresenta tudo como o que Bellman 'contou'."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "EXEMPLO: grafo S→A 3, S→B 2, A→C 2, A→D 6, B→D 1, C→T 6, D→T 3; o menor caminho é S, B, D, T, com custo 6.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e (enumeração de todos os caminhos de S a T): S-A-C-T = 3+2+6 = 11; S-A-D-T = 3+6+3 = 12; S-B-D-T = 2+1+3 = 6. Menor = 6 por S, B, D, T. Números inventados, marcados EXEMPLO."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "EXEMPLO: de trás para frente: D = 3 e C = 6; B = 1+3 = 4; A = o menor de 2+6 e 6+3 = 8; S = o menor de 3+8 e 2+4 = 6.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e (memoização recursiva, outro caminho que a enumeração): memo(n) = min(peso + memo(vizinho)); memo(T)=0 → C=6, D=3, A=8, B=4, S=6. Bate com a enumeração da cena 3 (6)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "O primeiro artigo de Bellman sobre programação dinâmica é de 1952; Wilson assumiu como secretário de Defesa em 28/01/1953.",
+      "tipo": "fonte",
+      "fonte": "https://millercenter.org/node/957",
+      "resultado": "confirmada",
+      "como": "Conferido pelo coordenador em 29/10/2026 em fontes independentes da Wikipédia: (1) a lista de referências de um artigo de Bellman no PNAS de 1954 (PMC) cita \"On the Theory of Dynamic Programming\", PNAS 38(8):716–719, ago. 1952, doi 10.1073/pnas.38.8.716; MacTutor (biografia de Bellman) diz que a primeira publicação dele sobre programação dinâmica é de 1952. (2) Miller Center e DoD History: Charles E. Wilson assumiu em 28/01/1953. Não li o texto do artigo de 1952 (só a referência), mas a data da publicação está na referência bibliográfica."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Russell e Norvig: o primeiro artigo de Bellman com o termo é de 1952, antes de Wilson ser secretário, em 1953.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Dynamic_programming",
+      "resultado": "sem-acesso",
+      "como": "A atribuição da observação a Russell e Norvig vem só da Wikipédia (\"Dynamic programming\", History); não li o livro AIMA. Os fatos em si (1952 e 1953) foram confirmados na entrada anterior; o que fica sem acesso é só a autoria da observação. A legenda atribui a observação \"segundo a Wikipédia\"."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Uma decisão grande vira decisões menores, uma dentro da outra; a história do nome é a versão de Bellman, com ressalva.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Dynamic_programming",
+      "resultado": "confirmada",
+      "como": "Wikipédia 'Dynamic programming' (lida): 'By 1953, he refined this to the modern meaning', isto é, aninhar problemas de decisão menores dentro de maiores. A parte 'versão de Bellman, com ressalva' resume as cenas 2 e 5 (e a entrada nao-confirmada da cena 5)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Legenda: Kushner relata outra versão, em que Bellman teria dito que queria ofuscar a programação linear de Dantzig; Eye of the Hurricane é de 1984.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Dynamic_programming",
+      "resultado": "confirmada",
+      "como": "Wikipédia (lida): Kushner relatou que Bellman 'replied that he was trying to upstage Dantzig's linear programming by adding dynamic'; 'Perhaps both motivations were true.' A legenda atribui a versão à Wikipédia/Kushner e diz 'teria dito'. Eye of the Hurricane (World Scientific, Singapura, 1984): citado no artigo de Dreyfus lido."
+    }
+  ]
+}

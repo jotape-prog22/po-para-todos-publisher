@@ -1,0 +1,67 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "66 Wrens; um tabuleiro; uma batalha simulada no chão de Liverpool.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia (WATU, lida): \"A total of sixty-six Wrens served at WATU from 1942 to 1945\"; os jogos usavam um tabuleiro pintado no chão do quartel Derby House, em Liverpool. A Dstl/GOV.UK não dá o número de Wrens; segundo a Wikipedia o número é de quem serviu ao longo de 1942-45, não ao mesmo tempo (a tela diz só \"66 Wrens\")."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Janeiro de 1942, Liverpool: a Western Approaches Tactical Unit, sob o capitão Gilbert Roberts, criada para desenvolver táticas contra os submarinos alemães com jogos de guerra.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia: WATU \"created in January 1942\" (Roberts designado em 01/01/1942, início oficial 23/02/1942), \"Director of WATU\", capitão Gilbert Roberts, \"to develop and disseminate new tactics to counter German submarine attacks on trans-Atlantic shipping convoys\", principal ferramenta os wargames. Dstl/GOV.UK confirma Liverpool, \"Captain Roberts\" e war gaming, sem dar o ano. Não atribuo a vitória no Atlântico à unidade."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Tabuleiro pintado no chão, quadrado de 10 polegadas = 1 milha náutica; navios e submarinos eram modelos de madeira; jogadores davam as ordens; as Wrens calculavam o resultado com os dados de desempenho de cada navio.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia: \"The gridlines were spaced ten inches apart, representing one nautical mile\"; \"The ships and surfaced U-boats were represented on the game board by tiny wooden models\"; \"The Wrens would then get down on the floor and compute the outcomes of the players' orders\"; Roberts \"provided the Wrens with the performance characteristics of all ships concerned\". (A Wikipedia fala em navios e submarinos na superfície; a tela diz \"navios e submarinos\".)"
+    },
+    {
+      "onde": "cena 4",
+      "texto": "20/09/1943: primeiro uso do torpedo acústico alemão (comboio ON 202); 23/09/1943: a manobra Step Aside chega aos escoltas por rádio; diferença de 3 dias.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Wikipedia: \"The first use of this torpedo was on 20 September 1943 against convoy ON 202\"; \"Step Aside was communicated by radio to escort commanders at sea on 23 September 1943\". node -e \"console.log((new Date('1943-09-23')-new Date('1943-09-20'))/86400000)\" => 3 dias."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "A manobra Step Aside foi criada pela equipe de Roberts na WATU.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia: \"Roberts and his team at WATU developed a manoeuvre known as Step Aside.\" A Dstl diz que as Wrens descobriram o torpedo acústico e modelaram uma resposta; a tela atribui a manobra à equipe, sem separar as Wrens. A página não diz se a manobra funcionou e o reel não afirma isso."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Cerca de 5.000 oficiais treinados de 1942 a 1945, em cursos semanais.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia: \"had trained close to 5,000 officers\"; cursos semanais de fev/1942 a julho/1945, unidade encerrada no fim de julho de 1945. Dstl/GOV.UK: \"more than 5,000 officers were trained by the women\". As duas fontes divergem pouco; a tela diz \"cerca de 5.000\"."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Os jogos serviam para estudar ataques de submarinos e ensaiar contramedidas, isto é, simulação: testar a tática no modelo sem arriscar navios.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Western_Approaches_Tactical_Unit",
+      "resultado": "confirmada",
+      "como": "Wikipedia: os wargames eram usados \"to study U-boat attacks and develop countermeasures\". A frase \"sem arriscar navios de verdade\" é a definição de simulação que a legenda explica; não é afirmação histórica das fontes. O reel não diz que o jogo decidiu a batalha: a Wikipedia só cita elogios da época (Horton, Noble) e a Dstl chama as Wrens de analistas operacionais."
+    },
+    {
+      "onde": "legenda",
+      "texto": "As Wrens eram mulheres do serviço naval feminino (Women's Royal Naval Service).",
+      "tipo": "fonte",
+      "fonte": "https://gov.uk/government/news/women-winning-battles-recreating-the-wrens-unit-which-helped-win-the-war",
+      "resultado": "confirmada",
+      "como": "Dstl/GOV.UK: unidade \"formed of officers and rating from the Women's Royal Naval Service, or Wrens\", com \"operational analysts\" e war gaming."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+O Google adia certas tarefas dos centros de dados para as horas em que a energia da rede é mais limpa.
+
+A quantidade de CO₂ emitida por quilowatt-hora varia ao longo do dia. O Google descreveu, em artigo de 2021, um sistema que prevê a intensidade de carbono da rede e a demanda do dia seguinte e, com otimização com risco, gera uma curva de capacidade virtual por hora para cada grupo de máquinas. Essa curva limita o que as tarefas flexíveis podem usar nas horas mais sujas, sem mudar a capacidade total do dia: tudo termina em 24 horas.
+
+O exemplo da tela é didático, com números inventados por nós: 3 tarefas de 1 hora e 6 horas, cada uma com um valor de carbono. Rodar nas 3 horas mais limpas dá 7, contra 10 de rodar logo no começo. É a ideia de mover carga no tempo, sem mudar o total.
+
+Em abril de 2026, o INFORMS listou o Google entre os finalistas do Prêmio Edelman, com o trabalho "Carbon and Power Aware Computing at Google". Uma página da Electricity Maps, de 29/10/2026, descreve que o sistema também pode mover trabalho para outro centro de dados, numa região com energia mais limpa. A página é de uma empresa que fornece os dados de previsão e não traz números de ganho, então não citamos percentuais.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #EnergiaLimpa #CentroDeDados #Sustentabilidade #PremioEdelman #Otimização #UNIRIO

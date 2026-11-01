@@ -1,0 +1,11 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    {
+      "tipo": "curiosidade",
+      "titulo": "A ALTURA IDEAL DO DIQUE EQUILIBRA CUSTO E RISCO, MOSTROU VAN DANTZIG",
+      "texto": "Após a enchente de 1953, o matemático David van Dantzig tratou o dique como otimização. Ele somou o custo de elevar o dique às perdas esperadas se rompesse e buscou a soma mínima. Em 1956, avisou: a conta usa médias e dá o método, não números finais.",
+      "fonte": "D. van Dantzig, Econometrica, 1956"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tipo": "cenas",
+  "trilha": "faiscas-espertas",
+  "cenas": [
+    { "tipo": "digitado", "duracao": 6, "kicker": "COMPUTAÇÃO E ENERGIA", "frase": "O Google adia tarefas flexíveis para as horas em que a rede elétrica está mais limpa.", "marca": "adia tarefas flexíveis" },
+    { "duracao": 7, "kicker": "GOOGLE · ARTIGO DE 2021", "titulo": "UMA CURVA DE CAPACIDADE POR HORA",
+      "linhas": ["O sistema prevê o carbono da rede e a demanda do dia seguinte", "Uma otimização com risco define limites por hora para as tarefas que aceitam esperar"] },
+    { "tipo": "tabela", "duracao": 8, "kicker": "EXEMPLO · NÚMEROS INVENTADOS", "titulo": "3 TAREFAS, 6 HORAS",
+      "colunas": ["Hora", "Carbono", "Rodar?"],
+      "linhas": [["1", "5", "não"], ["2", "3", "sim"], ["3", "2", "sim"], ["4", "2", "sim"], ["5", "4", "não"], ["6", "6", "não"]],
+      "destaque": { "linha": 3, "coluna": 3 }, "nota": "cada tarefa dura 1 hora; escolhe as 3 horas mais limpas" },
+    { "tipo": "conta", "duracao": 8, "kicker": "EXEMPLO · NÚMEROS INVENTADOS", "titulo": "O MESMO TRABALHO, MENOS CARBONO",
+      "linhas": ["logo (horas 1 a 3): 5+3+2 = 10", "limpas (horas 2 a 4): 3+2+2 = 7", "10 − 7 = 3 unidades a menos"], "destaque": 3,
+      "nota": "unidades de carbono inventadas" },
+    { "tipo": "impacto", "estilo": "sublinhar", "destaque": 2, "duracao": 4, "palavras": ["MESMO TRABALHO", "OUTRA HORA"], "apoio": "o total do dia continua o mesmo" },
+    { "duracao": 7, "kicker": "INFORMS · PRÊMIO EDELMAN 2026", "titulo": "FINALISTA DO PRÊMIO EDELMAN",
+      "linhas": ["O Google foi finalista com o trabalho de computação consciente do carbono", "A Electricity Maps diz que o sistema também pode levar trabalho a outra região"], "faixa": "PO PARA TODOS NO YOUTUBE" }
+  ],
+  "legenda": {
+    "gancho": "O Google adia certas tarefas dos centros de dados para as horas em que a energia da rede é mais limpa.",
+    "corpo": "A quantidade de CO₂ emitida por quilowatt-hora varia ao longo do dia. O Google descreveu, em artigo de 2021, um sistema que prevê a intensidade de carbono da rede e a demanda do dia seguinte e, com otimização com risco, gera uma curva de capacidade virtual por hora para cada grupo de máquinas. Essa curva limita o que as tarefas flexíveis podem usar nas horas mais sujas, sem mudar a capacidade total do dia: tudo termina em 24 horas.\n\nO exemplo da tela é didático, com números inventados por nós: 3 tarefas de 1 hora e 6 horas, cada uma com um valor de carbono. Rodar nas 3 horas mais limpas dá 7, contra 10 de rodar logo no começo. É a ideia de mover carga no tempo, sem mudar o total.\n\nEm abril de 2026, o INFORMS listou o Google entre os finalistas do Prêmio Edelman, com o trabalho \"Carbon and Power Aware Computing at Google\". Uma página da Electricity Maps, de 29/10/2026, descreve que o sistema também pode mover trabalho para outro centro de dados, numa região com energia mais limpa. A página é de uma empresa que fornece os dados de previsão e não traz números de ganho, então não citamos percentuais.",
+    "hashtags_tema": ["#EnergiaLimpa", "#CentroDeDados", "#Sustentabilidade", "#PremioEdelman"]
+  }
+}

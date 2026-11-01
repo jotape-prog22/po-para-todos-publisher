@@ -1,0 +1,13 @@
+Escolher sempre o que parece melhor no momento leva ao melhor resultado? Nem sempre, e a mochila mostra por quê.
+
+Na mochila da tela, cabem 10 kg. O item A pesa 6 e vale 30; B e C pesam 5 e valem 20 cada. O jeito guloso pega primeiro o de maior valor por quilo: A rende 5 por kg, B e C rendem 4. Com A na mochila sobram 4 kg, e nem B nem C cabem: total 30. Mas B e C juntos pesam 10 e valem 40.
+
+É um resultado bom, mas não o melhor. Os números são um EXEMPLO didático, inventado por nós, e a mochila ilustra a ideia de parar num resultado que não é o ótimo; não é a busca local do artigo citado abaixo.
+
+No artigo "Optimization by Simulated Annealing" (Kirkpatrick, Gelatt e Vecchi, Science, 13/05/1983), os autores notam que a melhoria passo a passo costuma ficar presa num ótimo local, e não global. O recozimento simulado aceita, de forma controlada, passos que pioram.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #OtimoLocal #AlgoritmoGuloso #ProblemaDaMochila #RecozimentoSimulado #Otimização #UNIRIO

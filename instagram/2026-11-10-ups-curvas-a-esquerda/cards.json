@@ -1,0 +1,11 @@
+{
+  "tipo": "curiosidade",
+  "cards": [
+    {
+      "tipo": "curiosidade",
+      "titulo": "A UPS PÕE UMA PENALIDADE NAS CURVAS À ESQUERDA",
+      "texto": "No ORION, curva à esquerda custa a mais na função objetivo, por segurança. O sistema traça a rota diária de 55 mil motoristas da UPS. O artigo admite: sendo heurística, o ORION nem sempre acerta, e alguns motoristas fazem melhor.",
+      "fonte": "Holland et al., Interfaces, 2017"
+    }
+  ]
+}

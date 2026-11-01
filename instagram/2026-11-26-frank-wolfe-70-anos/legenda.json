@@ -1,0 +1,11 @@
+{
+  "gancho": "Faz 70 anos que Marguerite Frank e Philip Wolfe propuseram um algoritmo que ainda leva o nome dos dois.",
+  "corpo": "Marguerite Frank nasceu em Paris, em 1927. Em 1954 descobriu uma nova classe de álgebras de Lie simples, um resultado de álgebra pura, e também fez parte do grupo de otimização de Princeton chefiado por Albert Tucker.\n\nEm 1956, com Philip Wolfe, publicou \"An algorithm for quadratic programming\" na Naval Research Logistics Quarterly. O método, também chamado de gradiente condicional, trata de otimização com restrições. A cada passo, ele troca a função por uma aproximação linear, acha o melhor ponto dela dentro da região permitida e avança em direção a esse ponto. Por isso a solução nunca sai da região permitida.\n\nSetenta anos depois, o algoritmo segue em uso: aparece em problemas de tráfego e de fluxo em redes de transporte, e também em aprendizado de máquina e processamento de sinais.\n\nFrank também escreveu, em 1981, sobre o paradoxo de Braess.",
+  "autores": null,
+  "hashtags_tema": [
+    "#FrankWolfe",
+    "#MargueriteFrank",
+    "#HistoriaDaPO",
+    "#OtimizacaoConvexa"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "O algoritmo Frank–Wolfe faz 70 anos em 2026 (proposto em 1956).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "2026 − 1956 = 70. O ano de 1956 vem de MacTutor ('originally proposed by Marguerite Frank and Philip Wolfe in 1956'), da Wikipédia ('originally proposed by Marguerite Frank and Philip Wolfe in 1956') e dos metadados do Crossref para o DOI 10.1002/nav.3800030109 (publicado em mar. 1956). Só o ano: o card não crava mês nem dia."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Marguerite Frank e Philip Wolfe propuseram o método em 1956.",
+      "tipo": "fonte",
+      "fonte": "https://mathshistory.st-andrews.ac.uk/Extras/Frank-Wolfe_algorithm",
+      "resultado": "confirmada",
+      "como": "MacTutor (Extras, 'The Frank-Wolfe algorithm'), lido: 'The Frank-Wolfe algorithm was originally proposed by Marguerite Frank and Philip Wolfe in 1956', artigo 'An algorithm for quadratic programming'. Segunda fonte: Wikipédia (Frank–Wolfe algorithm), lida, mesma frase. Terceira: Crossref (api.crossref.org/works/10.1002/nav.3800030109) lista os dois autores, Frank como primeira autora. O texto do artigo original não foi lido (ver entrada 'sem-acesso')."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "A cada passo, o método aproxima o problema por uma conta linear e avança na direção da melhor resposta dela, sem sair da região permitida.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Frank%E2%80%93Wolfe_algorithm",
+      "resultado": "confirmada",
+      "como": "Wikipédia (Frank–Wolfe algorithm), lida: o método 'considers a linear approximation of the objective function, and moves towards a minimizer of this linear function (taken over the same domain)'; como cada passo resolve um problema sobre o mesmo conjunto, 'the algorithm automatically stays in the feasible set'. MacTutor (Extras) descreve o passo do artigo original: parte de um ponto viável, acha 'by the simplex routine a secondary basic feasible point' e procura o ponto ótimo no segmento que une os dois, o que é coerente com a descrição acima (a busca é no segmento, não em todo o espaço). A frase do card é simplificação para leigo."
+    },
+    {
+      "onde": "card 1 (fonte)",
+      "texto": "O artigo original: M. Frank e P. Wolfe, 'An algorithm for quadratic programming', Naval Research Logistics Quarterly 3(1–2), 1956, pp. 95–110.",
+      "tipo": "fonte",
+      "fonte": "https://doi.org/10.1002/nav.3800030109",
+      "resultado": "sem-acesso",
+      "como": "Referência bibliográfica conferida: Crossref (título, autores Marguerite Frank e Philip Wolfe, periódico Naval Research Logistics Quarterly, vol. 3, nº 1-2, pp. 95-110, mar. 1956) e MacTutor (vol. 3, pp. 95-110). O TEXTO do artigo não foi lido: o DOI redireciona para onlinelibrary.wiley.com, que deu 403 a acesso automático, e o Wayback Machine foi recusado pela ferramenta; não achei PDF aberto. As afirmações sobre o método estão apoiadas em MacTutor e Wikipédia, não no artigo."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Marguerite Frank nasceu em Paris, em 1927; em 1954 descobriu uma nova classe de álgebras de Lie simples; fez parte do grupo de otimização de Princeton chefiado por Albert Tucker.",
+      "tipo": "fonte",
+      "fonte": "https://mathshistory.st-andrews.ac.uk/Biographies/Frank_Marguerite/",
+      "resultado": "confirmada",
+      "como": "MacTutor (biografia), lida: nascida em 8 de setembro de 1927, em Paris; 'Her 1954 paper was A new class of simple Lie algebras'; 'Marguerite Frank joined the optimisation group at Princeton run by Albert Tucker'. A legenda não dá o ano em que ela entrou no grupo (a página não permite ordenar os dois fatos). O ano de morte foi omitido de propósito (MacTutor diz 2025; o INFORMS Open Forum, 2024)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O método também é chamado de gradiente condicional; trata de otimização com restrições.",
+      "tipo": "fonte",
+      "fonte": "https://mathshistory.st-andrews.ac.uk/Extras/Frank-Wolfe_algorithm",
+      "resultado": "confirmada",
+      "como": "MacTutor (Extras): 'an iterative first-order optimisation algorithm for constrained convex optimisation', 'sometimes called the conditional gradient method, the reduced gradient algorithm, or the convex combination algorithm'. Wikipédia: 'also called the conditional gradient method'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Setenta anos depois o algoritmo segue em uso: em tráfego e fluxo em redes de transporte e em aprendizado de máquina e processamento de sinais.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Frank%E2%80%93Wolfe_algorithm",
+      "resultado": "confirmada",
+      "como": "Wikipédia (Frank–Wolfe algorithm), lida: 'can be used to compute a Wardrop equilibrium' (alocação de tráfego), 'sparse greedy optimization in machine learning and signal processing', 'optimizing minimum-cost flows in transportation networks'. MacTutor (biografia, notas do vídeo): o artigo de 1956 'paved the way for various currently important and broadly used optimisation algorithms, in particular sparse methods in signal processing and machine learning'. INFORMS Open Forum (Nagurney, dez. 2024): 'Many of us in transportation and logistics are quite familiar with the Frank-Wolfe algorithm.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "Frank também escreveu, em 1981, sobre o paradoxo de Braess.",
+      "tipo": "fonte",
+      "fonte": "https://mathshistory.st-andrews.ac.uk/Biographies/Frank_Marguerite/",
+      "resultado": "confirmada",
+      "como": "MacTutor (biografia): entre seus artigos de transporte consta 'The Braess paradox' (1981). INFORMS Open Forum (Nagurney) diz que ela 'shared with me a fascination with the Braess Paradox'."
+    }
+  ]
+}

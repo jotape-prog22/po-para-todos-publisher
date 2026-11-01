@@ -1,0 +1,13 @@
+Juntar mais navios num comboio aumenta o risco de cada um? A pesquisa operacional da guerra mostrou o contrário.
+
+No Atlântico Norte, entre 1941 e 1942, cientistas do Almirantado britânico analisaram os ataques de submarinos a comboios de navios mercantes. A conclusão: as perdas de um comboio variavam com o número de submarinos atacantes e, sem aviões de patrulha, com o número de escoltas, e não com o tamanho do comboio. Se as perdas não crescem com o tamanho, comboios grandes perdem uma proporção menor de navios.
+
+Patrick Blackett chefiou a pesquisa operacional do Almirantado de 1942 a 1945. A explicação geométrica costuma ser contada assim: os navios ocupam a área do comboio e as escoltas cobrem a borda, e a área cresce mais rápido que a borda. Segundo uma resenha do livro Blackett's War, essa explicação veio depois, de outro analista, e não de Blackett.
+
+Os números do quadrado (lado 6 e lado 12) são um EXEMPLO didático, num modelo simplificado, e não dados históricos. O reel não traz percentuais de perdas porque as fontes divergem.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #HistoriaDaPO #Blackett #Comboios #SegundaGuerra #Otimização #UNIRIO

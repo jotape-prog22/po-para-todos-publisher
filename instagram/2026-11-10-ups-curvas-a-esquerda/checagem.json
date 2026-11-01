@@ -1,0 +1,52 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título e texto)",
+      "texto": "Para desencorajar curvas à esquerda e zigue-zague, a equipe aumentou a penalidade na função objetivo dos trajetos entre clientes que levariam a comportamento inseguro; a curva à esquerda e o zigue-zague em rua movimentada custam a mais na função objetivo, pela chance de acidente.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Li o artigo completo (PDF da cópia do Bilkent, DOI 10.1287/inte.2016.0875), seção sobre a modelagem: 'making left turns and zigzagging (Figure 3) on a busy street are likely to increase the probability of accidents. Hence, to discourage left turns and zigzagging, we increased the objective function penalty for traveling between pairs of customer locations if such traveling would result in unsafe behavior.' O card diz penalidade e segurança; não diz 'proibição', 'nunca' nem combustível."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "O ORION traça a rota diária dos 55 mil motoristas da UPS nos EUA.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Resumo: 'Every day, ORION provides an optimized route for each of UPS' 55,000 U.S. drivers based on the packages to be picked up and delivered on that day.'"
+    },
+    {
+      "onde": "card 1 (texto) e legenda",
+      "texto": "O artigo admite que o ORION é uma heurística que nem sempre acerta e que alguns motoristas fazem melhor.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Seção 'How good is ORION?': 'The bad news is that it is not as good as it can be. Being a heuristic, albeit a fast one, it misses many elements that a human would easily notice. [...] Some drivers can do better than ORION.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "Artigo da própria UPS (Holland et al.), publicado em Interfaces em 2017, descreve a criação do ORION.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Cabeçalho do PDF: 'UPS Optimizes Delivery Routes. Chuck Holland, Jack Levis, Ranganath Nuggehalli, Bob Santilli, Jeff Winters. INFORMS Journal on Applied Analytics 47(1):8-23, 2017', 'Interfaces, 2017, vol. 47, no. 1, pp. 8–23'. Os autores são da UPS (o artigo se descreve como feito pela empresa: 'we increased...')."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Segundo a UPS, construir e implantar o sistema custou mais de US$ 295 milhões.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Resumo: 'Costing more than $295 million to build and deploy, ORION is expected to save UPS $300–$400 million annually.' Seção de impacto: 'UPS estimates the total cost of ORION development and deployment to be $295 million.' Valor atribuído à UPS na legenda."
+    },
+    {
+      "onde": "legenda",
+      "texto": "ORION é uma heurística, um método rápido que não garante a melhor rota; o modelo continua minimizando custo, que passa a incluir segurança.",
+      "tipo": "fonte",
+      "fonte": "https://courses.ie.bilkent.edu.tr/ie102/wp-content/uploads/sites/16/2022/03/UPS-Optimizes-Delivery-Routes.pdf",
+      "resultado": "confirmada",
+      "como": "Resumo: 'a metaheuristic optimization system'; seção do algoritmo: 'The ORION algorithm is a metaheuristic that contains variants of the Lin-Kernighan k-Opt procedure'. A definição de heurística ('não garante a melhor rota') é a explicação didática da legenda, coerente com 'it is not as good as it can be'."
+    }
+  ]
+}

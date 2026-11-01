@@ -1,0 +1,24 @@
+{
+  "tipo": "cenas",
+  "trilha": "jazz-foco",
+  "cenas": [
+    { "tipo": "impacto", "estilo": "deslizar", "duracao": 5, "palavras": ["UM NOME", "PARA ESCONDER", "MATEMÁTICA"], "apoio": "segundo o próprio Bellman" },
+    { "duracao": 7, "kicker": "RAND, OUTONO DE 1950", "titulo": "COMO NASCEU O NOME",
+      "linhas": ["Bellman procurava um nome para decisões em várias etapas", "Contou que o secretário de Defesa, Wilson, tinha horror à palavra pesquisa", "E que dinâmico é um adjetivo impossível de usar em sentido ruim"] },
+    { "tipo": "grafo", "duracao": 8, "kicker": "EXEMPLO · NÚMEROS INVENTADOS", "titulo": "DE S ATÉ T, DE TRÁS PARA FRENTE", "dirigido": true,
+      "nos": [{ "id": "S", "x": 1, "y": 5 }, { "id": "A", "x": 4, "y": 2 }, { "id": "B", "x": 4, "y": 8 }, { "id": "C", "x": 7, "y": 2 }, { "id": "D", "x": 7, "y": 8 }, { "id": "T", "x": 9, "y": 5 }],
+      "arestas": [{ "de": "S", "para": "A", "peso": "3" }, { "de": "S", "para": "B", "peso": "2" }, { "de": "A", "para": "C", "peso": "2" }, { "de": "A", "para": "D", "peso": "6" }, { "de": "B", "para": "D", "peso": "1" }, { "de": "C", "para": "T", "peso": "6" }, { "de": "D", "para": "T", "peso": "3" }],
+      "caminho": ["S", "B", "D", "T"], "legenda": "menor caminho: custo 6" },
+    { "tipo": "conta", "duracao": 8, "kicker": "EXEMPLO · MELHOR CUSTO ATÉ T", "titulo": "GUARDA O MELHOR DE CADA PONTO",
+      "linhas": ["D: 3 e C: 6", "B: 1 + 3 = 4", "A: o menor de 2+6 e 6+3 = 8", "S: o menor de 3+8 e 2+4 = 6"], "destaque": 4,
+      "nota": "do fim para o começo, uma vez por ponto" },
+    { "tipo": "odometro", "duracao": 5, "kicker": "A RESSALVA · RUSSELL E NORVIG", "titulo": "O PRIMEIRO ARTIGO COM O TERMO", "valor": 1952, "rotulo": "antes de Wilson ser secretário, em 1953" },
+    { "duracao": 7, "kicker": "O QUE FICA", "titulo": "DECIDIR DE TRÁS PARA FRENTE",
+      "linhas": ["Uma decisão grande vira decisões menores, uma dentro da outra", "A história do nome é a versão de Bellman, com ressalva"], "faixa": "PO PARA TODOS NO YOUTUBE" }
+  ],
+  "legenda": {
+    "gancho": "Por que a programação dinâmica tem esse nome? Segundo Bellman, para proteger o trabalho de um secretário de Defesa.",
+    "corpo": "No outono de 1950, no RAND, Richard Bellman precisava de um nome para seu trabalho com decisões em várias etapas. Na autobiografia \"Eye of the Hurricane\" (1984), ele conta que o secretário de Defesa, Wilson, tinha horror às palavras pesquisa e matemática, e que \"dinâmico\" é um adjetivo impossível de usar em sentido pejorativo. Daí \"programação dinâmica\".\n\nHá uma ressalva: segundo a Wikipédia, Russell e Norvig notam que o primeiro artigo de Bellman com o termo é de 1952, antes de Wilson assumir o cargo, em 1953. A mesma fonte registra outra versão, de Kushner: Bellman teria dito que queria ofuscar a programação linear de Dantzig. Por isso contamos como a versão de Bellman.\n\nO exemplo da tela é didático, com números inventados: o menor caminho de S até T calculado de trás para frente, guardando o melhor custo de cada ponto. O resultado é 6, pelo caminho S, B, D, T.",
+    "hashtags_tema": ["#ProgramacaoDinamica", "#Bellman", "#HistoriaDaPO", "#MenorCaminho"]
+  }
+}

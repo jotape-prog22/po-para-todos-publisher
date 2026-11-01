@@ -1,0 +1,15 @@
+EXEMPLO: um terminal tira 5 em sinalização e 1 em fila na segurança. A média diz 3. Será que a média conta a história?
+
+A nota média é o jeito mais comum de resumir uma pesquisa de satisfação, mas ela compensa o ponto fraco com o ponto forte. Um artigo da revista Pesquisa Operacional propõe o contrário: um método de classificação multicritério, o ELECTRE TRI ME, em que um desempenho ruim num critério não é pago por um desempenho bom em outro.
+
+Os autores aplicaram o método a avaliações de cerca de 19 mil passageiros em 15 terminais brasileiros com voos internacionais, no segundo trimestre de 2019. Cada passageiro avalia só os critérios que usou, e nenhuma nota é preenchida com valor inventado. O resultado são 4 grupos de terminais, cada um com prioridades de melhoria próprias.
+
+O post mostra o método, não um ranking de aeroportos: os dados são de 2019 e todos os critérios têm o mesmo peso. As notas do gancho e do card 3 são um EXEMPLO inventado.
+
+✍️ Autores: Phelipe M. da Rocha, Leonardo Antônio M. Pessoa, Helder G. Costa
+
+💾 Salve este post para ler depois · mais conteúdo no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ApoioMulticriterio #ELECTRE #TomadaDeDecisao #Aeroportos #Otimização #UNIRIO
