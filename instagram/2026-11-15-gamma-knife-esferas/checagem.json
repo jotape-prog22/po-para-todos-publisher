@@ -1,0 +1,76 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 e 9",
+      "texto": "Título, autores (ordem: Gonzalez, Macambira, Simonetti, Pinto, Michelon, Maculan), Pesquisa Operacional v. 46, 2026.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). Ordem e títulos conferidos também no Crossref (https://api.crossref.org/works/10.1590/0101-7438.2026.046.00301437): Pedro Henrique Gonzalez; Ana Flávia U. S. Macambira; Luidi Simonetti; Renan Vicente Pinto; Philippe Michelon; Nelson Maculan; container Pesquisa Operacional, volume 46, 2026, licença CC BY 4.0. A pesquisa prévia listava outra ordem; vale a do Crossref e da página. A capa abrevia 'Renan Vicente' para 'Renan V.' só por causa do limite de 120 caracteres; a legenda traz o nome por extenso."
+    },
+    {
+      "onde": "card 2",
+      "texto": "O Gamma Knife é usado em tumores no cérebro e sua área de efeito é modelada como esferas de 2, 4, 7 ou 9 mm de raio; as esferas podem se sobrepor um pouco.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). Texto: 'a specific treatment of brain tumors in which equipment is placed on the patient's head'; 'its area of effect can be modeled as spheres of 2, 4, 7, or 9 mm radii'. Resumo: cobertura 3D com esferas de raios variados 'allowing partial overlap'."
+    },
+    {
+      "onde": "card 3",
+      "texto": "O objetivo é o volume total das esferas usadas, sem descontar a sobreposição; um parâmetro controla a sobreposição máxima entre duas esferas; centros numa grade finita.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). Resumo/modelo: 'maximizes the total volume of the used spheres, but it does not consider the volume of the overlapped regions'; 'The parameters α control the maximum amount of overlap allowed between pairs of spheres'; o sólido é discretizado e há um conjunto finito de centros candidatos."
+    },
+    {
+      "onde": "card 4",
+      "texto": "Branch and bound e branch and cut, com cortes (restrições extras); quando terminam provam a melhor solução; limite do estudo de uma hora.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). O trabalho propõe 'the integration of clique cuts into the Branch-and-Bound method', que vira Branch-and-Cut. Provas de otimalidade: em β=0,2 o B&C provou 'the optimality of 6 instances out of 15'; em β=1,1, 3 pelo B&C e 2 pelo B&B. 'The maximum execution time was set to one hour for all methods.' Explicação do que são 'cortes' é didática, não do artigo."
+    },
+    {
+      "onde": "card 5",
+      "texto": "Heurística gera muitas soluções boas; mineração de padrões acha os centros que aparecem juntos nelas; depois um método exato refina em espaço reduzido.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). LocalSolver 'rapidly generating several high-quality solutions'; mineração com FPmax* de 'maximal frequent item-sets' de centros num conjunto elite de soluções; formulação que força os centros minerados e resolve o resto por B&B ou B&C. Resumo: 'refines them with exact search on a reduced space'."
+    },
+    {
+      "onde": "card 6",
+      "texto": "Parâmetro de sobreposição variado de 0,1 a 1,9; a DEA (tempo de execução como entrada, cobertura como saída) apontou 0,2 e 1,1 como eficientes.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). 'the values of β were restricted to the interval [0.1, 1.9]'; 'DEA identified β = 0.2 and β = 1.1 as efficient values', 'considering execution time as input and percentage coverage as output'. Observação: o texto diz que a DEA foi aplicada a 'five instances' enquanto as tabelas têm 15; o card não cita esse número."
+    },
+    {
+      "onde": "card 7",
+      "texto": "15 instâncias geradas aleatoriamente, caixas de 5 a 30 mm de lado, limite de uma hora; segundo os autores, o híbrido supera o exato em cobertura e eficiência computacional.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). '15 randomly generated parallelepiped instances' com 'side lengths ranging from 5 mm to 30 mm'; 'The maximum execution time was set to one hour for all methods'. Resumo: 'the hybrid method outperforms the exact method in both coverage and computational efficiency'. Ressalva: nos testes o texto diz que os números de cobertura não são usados para comparação entre métodos, então a frase do resumo está só parcialmente apoiada nas tabelas; por isso o card a atribui aos autores ('segundo os autores')."
+    },
+    {
+      "onde": "card 8",
+      "texto": "Estudo computacional com instâncias aleatórias, sem pacientes nem teste clínico; a dose de radiação não é tratada.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). Instâncias sintéticas (paralelepípedos aleatórios); nenhum dado de paciente ou plano de tratamento; sobre a dose: 'this issue is not treated in this work'."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Pesquisadores da UFRJ, da UFPB e da Universidade de Avignon.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/rcGTd6KfsR6mfTdSKbbqJqt/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, por trechos; DOI 10.1590/0101-7438.2026.046.00301437). Afiliações: Universidade Federal do Rio de Janeiro, Universidade Federal da Paraíba, Université d'Avignon (conferidas na página e na pesquisa prévia)."
+    }
+  ]
+}

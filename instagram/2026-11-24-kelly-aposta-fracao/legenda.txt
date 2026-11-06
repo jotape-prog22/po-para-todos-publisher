@@ -1,0 +1,15 @@
+Com 60% de chance de ganhar, quanto apostar? Apostar demais faz o capital encolher, mesmo com a vantagem a seu favor.
+
+Em 1956, J. L. Kelly Jr., dos Bell Labs, publicou um artigo sobre a taxa de transmissão de informação em que um apostador usa o que sabe para apostar. Ele mostra que apostar o capital inteiro maximiza o valor esperado, mas deixa o jogador sem nada com probabilidade 1 se o jogo não tem fim. Já quem aposta sempre uma fração fixa do capital o vê crescer exponencialmente.
+
+EXEMPLO, com números inventados: uma moeda viciada dá cara em 60% das vezes e a aposta paga 1 para 1. A fração ótima do capital é 20% (a conta de Kelly para este caso: 0,6 − 0,4 = 0,2). Apostando 20% por rodada, o capital cresce cerca de 2,03% a cada rodada no longo prazo. Com 40%, ele encolhe 0,24% por rodada; com 60%, encolhe 8,1%. Apostando tudo, a chance de ainda ter dinheiro depois de 10 rodadas é de 0,6%.
+
+Ou seja: dobrar a fração ótima já basta para o capital encolher, mesmo com a moeda a favor. A conta supõe que se conheça a probabilidade de cada resultado.
+
+Isto é matemática, não recomendação de aposta nem de investimento.
+
+💾 Salve este post para lembrar depois · mais curiosidades de PO no link da bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #RegraDeKelly #GestaoDeRisco #TeoriaDaInformacao #Probabilidade #Otimização #UNIRIO

@@ -1,0 +1,56 @@
+{
+  "tipo": "stories",
+  "publicacao": "api",
+  "stories": [
+    {
+      "duracao": 14,
+      "kicker": "UM DESAFIO",
+      "titulo": "5 SOLDADOS CONTRA 3: QUANTOS SOBRAM?",
+      "linhas": [
+        "Dois exércitos atiram de longe, e cada soldado acerta na mesma medida",
+        "Azuis: 5 soldados. Vermelhos: 3 soldados",
+        "A luta vai até um dos lados acabar (modelo simplificado)"
+      ],
+      "pergunta": "Quantos azuis sobram no fim?",
+      "dica": "Chuta?"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 14,
+      "kicker": "A RESPOSTA",
+      "titulo": "SOBRAM 4 AZUIS, NÃO 2",
+      "linhas": [
+        "azuis A = 5, vermelhos B = 3",
+        "A² − B² = 25 − 9 = 16",
+        "no fim, B = 0, então A² = 16",
+        "A = √16 = 4 azuis"
+      ],
+      "destaque": 4,
+      "nota": "e não 5 − 3 = 2 (conta de um contra um)"
+    },
+    {
+      "duracao": 16,
+      "kicker": "COMO A PO FUNCIONA",
+      "titulo": "A LEI DO QUADRADO",
+      "itens": [
+        {
+          "titulo": "Modelar",
+          "texto": "Cada lado perde soldados no ritmo do tamanho do outro: dA/dt = −B e dB/dt = −A"
+        },
+        {
+          "titulo": "O que não muda",
+          "texto": "Nessa luta, A² − B² permanece igual do começo ao fim"
+        },
+        {
+          "titulo": "Resolver",
+          "texto": "Com ele sai o resultado sem simular: √(25 − 9) = 4 azuis"
+        },
+        {
+          "titulo": "Cuidado",
+          "texto": "Modelo simplificado de Lanchester (1916): não prevê batalhas reais"
+        }
+      ],
+      "faixa": "PO PARA TODOS NO YOUTUBE"
+    }
+  ]
+}

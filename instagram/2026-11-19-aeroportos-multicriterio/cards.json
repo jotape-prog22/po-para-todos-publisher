@@ -1,0 +1,51 @@
+{
+  "tipo": "artigo",
+  "cards": [
+    {
+      "tipo": "capa",
+      "titulo": "A TOTALLY NON-COMPENSATORY SORTING METHOD FOR HETEROGENEOUS EVALUATORS: APPLICATION TO IMPROVE AIRPORT…",
+      "autores": "Phelipe M. da Rocha, Leonardo Antônio M. Pessoa, Helder G. Costa",
+      "onde": "Pesquisa Operacional, 2026"
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O problema da média",
+      "texto": "Pesquisa de satisfação costuma resumir tudo numa nota média, e a média compensa o ruim com o bom. EXEMPLO dos autores: um passageiro dá três notas \"ruim\" e uma \"muito bom\"; a média sai 2,75, um valor que nem existe na escala de 1 a 5."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Compensar ou não",
+      "texto": "EXEMPLO, notas inventadas: 5 para a sinalização e 1 para a fila na segurança. A média é 3, \"regular\", mas nenhum dos dois aspectos foi regular. Um método não compensatório não deixa o 5 pagar o 1: o ponto fraco continua visível."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O método",
+      "texto": "ELECTRE TRI ME coloca cada terminal numa de cinco categorias ordenadas, de \"muito bom\" a \"muito ruim\", comparando com perfis-limite. O grau de credibilidade é a fração dos critérios em que o terminal atinge o limite. Os autores usam o procedimento pessimista."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Cada passageiro, do seu jeito",
+      "texto": "Cada passageiro avalia só os critérios que usou. O método aceita isso: nenhuma avaliação é descartada, nenhuma nota que falta é preenchida com valor inventado, e as avaliações não são promediadas entre passageiros."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Os dados",
+      "texto": "Notas de 1 a 5 de cerca de 19 mil passageiros, em 15 terminais brasileiros com voos internacionais, no segundo trimestre de 2019, cedidas pela Secretaria de Aviação Civil. Todos os critérios têm o mesmo peso: a importância deles não foi perguntada."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "Quatro grupos",
+      "texto": "Variando o nível de corte de 0,05 a 1, os autores contam quantas vezes cada terminal cai na melhor categoria. Com isso formam 4 grupos, de A a D, e cada grupo recebe prioridades de melhoria próprias, em vez de uma nota única."
+    },
+    {
+      "tipo": "ideia",
+      "titulo": "O que olhar com cuidado",
+      "texto": "Os dados são de 2019 e valem para esse recorte no Brasil. O agrupamento foi feito de forma visual, sem algoritmo de agrupamento. Aqui o que importa é o método: segundo os autores, a lógica serve além de aeroportos."
+    },
+    {
+      "tipo": "fim",
+      "texto": "ROCHA, P. M.; PESSOA, L. A. M.; COSTA, H. G. A totally non-compensatory sorting method for heterogeneous evaluators: application to improve airport service quality. Pesquisa Operacional, v. 46, 2026.",
+      "link": "doi.org/10.1590/0101-7438.2026.046.00299077"
+    }
+  ]
+}

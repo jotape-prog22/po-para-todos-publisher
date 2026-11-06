@@ -1,0 +1,6 @@
+{
+  "gancho": "Cobrir um tumor com esferas: como escolher onde colocar cada uma? Um artigo brasileiro mostra um método para isso.",
+  "corpo": "No Gamma Knife, aparelho usado em tumores no cérebro, a área de efeito pode ser modelada como esferas de 2, 4, 7 ou 9 mm de raio. Um artigo da revista Pesquisa Operacional, de pesquisadores da UFRJ, da UFPB e da Universidade de Avignon, transforma isso num problema de otimização: cobrir um sólido em 3D com esferas, deixando que se sobreponham um pouco.\n\nOs autores propõem um método exato (branch and bound e branch and cut) e um híbrido: uma heurística gera soluções boas, a mineração de padrões descobre os centros que aparecem juntos nelas, e um método exato refina só esse espaço menor. A DEA ajuda a escolher o parâmetro de sobreposição.\n\nÉ um estudo computacional, com instâncias aleatórias: não há pacientes, nem teste clínico, e a dose de radiação não é tratada. Mostra um método de otimização, não um tratamento.",
+  "autores": "Pedro Henrique Gonzalez, Ana Flávia U. S. Macambira, Luidi Simonetti, Renan Vicente Pinto, Philippe Michelon, Nelson Maculan",
+  "hashtags_tema": ["#BranchAndCut", "#Heuristicas", "#ProblemaDeCobertura", "#OtimizacaoEmSaude"]
+}

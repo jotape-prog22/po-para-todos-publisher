@@ -1,0 +1,11 @@
+Quatro cores bastam para pintar qualquer mapa. A prova, de 1976, precisou de um computador.
+
+Em 1852, Francis Guthrie pintava o mapa dos condados da Inglaterra e notou que quatro cores bastavam para que regiões vizinhas nunca tivessem a mesma cor. Em 1879, Alfred Kempe publicou uma prova. Em 1890, Percy Heawood achou o erro. Só em 1976 Kenneth Appel e Wolfgang Haken anunciaram a prova, a primeira grande de um teorema com ajuda extensa de computador.
+
+O teorema vale para mapas desenhados no plano. O que a Pesquisa Operacional aproveita é a ideia: transformar o problema em um grafo, com um ponto por região (ou por prova) e uma linha entre as que se tocam (ou que têm alunos em comum), e colorir. No exemplo do reel, 5 provas com choques A–B, A–C, B–C, C–D e D–E cabem em 3 horários; é um EXEMPLO inventado, só para mostrar a ideia. Quatro cores é o limite para mapas planos, não para horários em geral.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #TeoriaDosGrafos #QuatroCores #ColoracaoDeGrafos #Otimização #UNIRIO

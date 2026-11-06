@@ -1,0 +1,81 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "P versus NP segue em aberto (resposta: Não, segue em aberto).",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Página do Clay Mathematics Institute (lida hoje): o cabeçalho marca o problema como \"Unsolved\". Não afirmo nada sobre prêmio nem ano: a página não os menciona e não os uso."
+    },
+    {
+      "onde": "cena 1",
+      "texto": "P versus NP: se é fácil conferir que uma solução está certa, também é fácil encontrá-la? (legenda)",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Clay abre com: \"If it is easy to check that a solution to a problem is correct, is it also easy to solve the problem?\""
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Exemplo do Clay: 400 alunos, 100 vagas no dormitório, lista do decano com pares incompatíveis.",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Clay: \"a group of four hundred university students\", \"only one hundred of the students will receive places in the dormitory\", \"the Dean has provided you with a list of pairs of incompatible students\"."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Conferir um grupo proposto é fácil; achar um grupo do zero parece tão difícil que testar tudo é inviável.",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Clay: \"it is easy to check if a given choice of one hundred students proposed by a coworker is satisfactory\"; achar uma lista do zero parece impraticável e a força bruta é descartada porque o número de combinações supera o de átomos do universo conhecido."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Exemplo: 4 amigos A, B, C, D, brigas A–B, B–C e C–D (EXEMPLO inventado).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Exemplo didático nosso, marcado EXEMPLO na tela e na legenda; não vem do Clay (que usa 400 alunos). Os pares possíveis e as brigas estão na enumeração da próxima entrada."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Proposta A e C: A–C não está na lista de brigas; achar de zero obriga a testar 6 pares.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"const br=[['A','B'],['B','C'],['C','D']];const L='ABCD';const pares=[];for(let i=0;i<4;i++)for(let j=i+1;j<4;j++)pares.push([L[i],L[j]]);const ok=pares.filter(([x,y])=>!br.some(([p,q])=>(p===x&&q===y)||(p===y&&q===x)));console.log(pares.length,ok.map(p=>p.join('')).join(' '))\" => 6 pares possíveis (C(4,2)=6); os que não brigam: AC AD BD. Logo A e C serve; conferi com 1 olhada na lista."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "Com 400 alunos e grupos de 100, são cerca de 2,2 × 10^96 grupos possíveis.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"let c=1n;for(let i=1n;i<=100n;i++){c=c*(300n+i)/i;}const s=c.toString();console.log(s.length,s.slice(0,3))\" => 97 dígitos começando em 224, ou seja C(400,100) = 2,24 × 10^96, arredondado para 2,2 × 10^96. É conta nossa (o Clay só diz que supera o número de átomos do universo conhecido); legenda diz \"conta nossa\"."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Ninguém provou que esses problemas sejam tão difíceis quanto parecem.",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Clay: \"no one has managed to prove that any of them really are so hard as they appear\" (sobre problemas como o do dormitório e o caminho hamiltoniano)."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "Resposta: P versus NP segue em aberto (Não, segue em aberto).",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Mesma página: marcada \"Unsolved\"; nenhuma resolução afirmada. Conferido hoje (29/10/2026) só nessa página; não pesquisei notícias de reivindicações de prova, que não estão na fonte."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O Clay cita também o caminho hamiltoniano: visitar N cidades sem repetir nenhuma.",
+      "tipo": "fonte",
+      "fonte": "https://www.claymath.org/millennium/p-vs-np/",
+      "resultado": "confirmada",
+      "como": "Clay: \"given N cities to visit, how can one do this without visiting a city twice?\" (caminho hamiltoniano)."
+    }
+  ]
+}

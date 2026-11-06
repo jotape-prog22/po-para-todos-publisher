@@ -1,0 +1,13 @@
+Por que a programação dinâmica tem esse nome? Segundo Bellman, para proteger o trabalho de um secretário de Defesa.
+
+No outono de 1950, no RAND, Richard Bellman precisava de um nome para seu trabalho com decisões em várias etapas. Na autobiografia "Eye of the Hurricane" (1984), ele conta que o secretário de Defesa, Wilson, tinha horror às palavras pesquisa e matemática, e que "dinâmico" é um adjetivo impossível de usar em sentido pejorativo. Daí "programação dinâmica".
+
+Há uma ressalva: segundo a Wikipédia, Russell e Norvig notam que o primeiro artigo de Bellman com o termo é de 1952, antes de Wilson assumir o cargo, em 1953. A mesma fonte registra outra versão, de Kushner: Bellman teria dito que queria ofuscar a programação linear de Dantzig. Por isso contamos como a versão de Bellman.
+
+O exemplo da tela é didático, com números inventados: o menor caminho de S até T calculado de trás para frente, guardando o melhor custo de cada ponto. O resultado é 6, pelo caminho S, B, D, T.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #ProgramacaoDinamica #Bellman #HistoriaDaPO #MenorCaminho #Otimização #UNIRIO

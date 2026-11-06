@@ -1,0 +1,74 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 e 9",
+      "texto": "Título, autores (Rocha, Pessoa, Costa), Pesquisa Operacional v. 46, 2026.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). Ordem de autores, título, volume e ano conferidos no Crossref (https://api.crossref.org/works/10.1590/0101-7438.2026.046.00299077): Phelipe M. da Rocha; Leonardo Antônio M. Pessoa; Helder G. Costa; Pesquisa Operacional 46, 2026, CC BY 4.0. A capa corta o título no limite de 110 caracteres; o título completo está no post.md."
+    },
+    {
+      "onde": "card 2",
+      "texto": "A nota média compensa o ruim com o bom; exemplo dos autores: três notas 'ruim' e uma 'muito bom' dão média 2,75, valor que nem existe na escala.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). Seção 3.1: um avaliador com três 'Poor' e um 'Very Good' teria média 2,75, que 'appears problematic since the original scale is not continuous'. Resumo: avaliações tradicionais agregam de modo compensatório e isso pode mascarar fragilidades. O exemplo é hipotético do artigo, marcado EXEMPLO no card."
+    },
+    {
+      "onde": "card 2",
+      "texto": "3 notas 'ruim' (2) e 1 'muito bom' (5) dão média 2,75, fora da escala inteira 1 a 5.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"const n=[2,2,2,5];const m=n.reduce((a,b)=>a+b)/n.length;console.log(m,Number.isInteger(m))\" → 2.75 false. Escala de 1 (muito ruim) a 5 (muito bom), com 'ruim' = 2, como no artigo."
+    },
+    {
+      "onde": "card 3",
+      "texto": "EXEMPLO inventado: notas 5 e 1 têm média 3 ('regular'), mas nenhum dos dois aspectos foi regular.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"console.log((5+1)/2)\" → 3. Cada nota isolada (5 e 1) difere de 3, então a média não coincide com nenhuma das duas. Números inventados, marcados EXEMPLO no card e no gancho da legenda. A ideia de método não compensatório (um ponto fraco não é pago por um ponto forte) é a do artigo: 'Very Poor' não deve virar 'Regular' pela média."
+    },
+    {
+      "onde": "card 4",
+      "texto": "ELECTRE TRI ME coloca cada terminal em cinco categorias ordenadas (muito bom a muito ruim) comparando com perfis-limite; grau de credibilidade = fração dos critérios em que o terminal atinge o limite; procedimento pessimista.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). Categorias C1 'Very Good' a C5 'Very Bad' com fronteiras (boundaries) entre elas; grau de credibilidade simplificado (Eq. 5): 'computed as a ratio of concordance criteria counts to the total number of weighted criteria'; 'This paper deliberately employs the pessimistic procedure in our proposed ELECTRE TRI ME extension'. Observação: a descrição de 'fração dos critérios' é a simplificação do artigo (sem limiares de preferência e veto)."
+    },
+    {
+      "onde": "card 5",
+      "texto": "Cada passageiro avalia só os critérios que usou; nenhuma avaliação é descartada nem nota faltante é preenchida; avaliações não são promediadas entre passageiros.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). 'Each evaluator has their own criteria set and criteria weights'; 'without discarding evaluations or variables or even populating empty cells with synthetic values'; o método estende o ELECTRE TRI ME para vários avaliadores tratando cada avaliação como um vetor próprio, sem fazer média entre avaliadores."
+    },
+    {
+      "onde": "card 6",
+      "texto": "Notas de 1 a 5, cerca de 19 mil passageiros, 15 terminais brasileiros com voos internacionais, segundo trimestre de 2019, cedidos pela Secretaria de Aviação Civil; todos os critérios com o mesmo peso porque a importância não foi perguntada.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). 'Each interviewed passenger assigned grades from 1 ... up to 5'; 'composed by 15 airport terminals of passenger (ATP) located in Brazil, all of them operating international flights'; 'The data used in this study were provided by SAC'; período na seção de limitações: 'during the second quarter of 2019'; 'The form applied in the survey did not collect perceptions about the importance of criteria'; 'equality of the criteria was adopted'. Tamanho da amostra: o resumo e a conclusão dizem 19.643, o corpo (seção 5.1.2) diz n = 19.240 e a soma da Tabela 10 bate com 19.240; o card diz 'cerca de 19 mil', que vale para os dois. SAC aparece como 'Secretaria Nacional de Aviação Civil' na seção 5.1 e 'Secretaria de Aviação Civil' na seção de disponibilidade de dados; o card usa a segunda forma."
+    },
+    {
+      "onde": "card 7",
+      "texto": "Variando o nível de corte de 0,05 a 1, conta-se quantas vezes cada terminal cai na melhor categoria; isso forma 4 grupos, A a D, cada um com prioridades de melhoria próprias.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). Seção 5.4: 'The classification logic primarily used the frequency of classifications in stratum C1 in the analyzed cutlevels space'; níveis de corte (lambda) de 0,05 a 1,00; Tabela 18: 'ATPs organized into K = 4 groups'; resultados: prioridades de melhoria distintas por grupo. O resumo diz que os grupos vêm das 'similarities profile in the credibility degree'; o corpo usa a frequência em C1, que é o que o card descreve. Os terminais NÃO são nomeados nem ranqueados no post."
+    },
+    {
+      "onde": "card 8",
+      "texto": "Dados de 2019, valem para esse recorte no Brasil; agrupamento visual, sem algoritmo de agrupamento; segundo os autores, a lógica serve além de aeroportos.",
+      "tipo": "fonte",
+      "fonte": "https://www.scielo.br/j/pope/a/nYM85nwymnyBmvdFxxkGrGR/?lang=en&ilang=en",
+      "resultado": "confirmada",
+      "como": "Li o artigo no SciELO (WebFetch, as primeiras 100 mil de 114 mil caracteres; DOI 10.1590/0101-7438.2026.046.00299077). Limitações declaradas: resultados específicos do Brasil e dos dados de 2019; agrupamento feito visualmente em vez de algoritmicamente. Conclusão: 'the method's logic can be applied beyond airports'. Pendência: não li os últimos 14 mil caracteres da página (referências, anexos); a conclusão foi lida."
+    }
+  ]
+}

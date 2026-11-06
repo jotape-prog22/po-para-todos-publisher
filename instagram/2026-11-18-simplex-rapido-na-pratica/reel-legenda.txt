@@ -1,0 +1,13 @@
+O simplex pode ser exponencial no pior caso, mas na prática é rápido. Em 2025, dois pesquisadores explicaram melhor por quê.
+
+Em 1972, provou-se que o tempo do método simplex poderia crescer exponencialmente com o número de restrições. Mesmo assim, na prática ele sempre rodou rápido. Em 2001, Spielman e Teng mostraram que uma pitada de aleatoriedade ajuda a evitar o pior caso (a chamada análise suavizada).
+
+Em 2025, Eleon Bach e Sophie Huiberts melhoraram a garantia de tempo dentro dessa abordagem e provaram que ela não pode ir além do valor que obtiveram (arXiv:2504.04197; reportagem da Quanta Magazine, 13/10/2025). É um resultado teórico: um tempo linear nas restrições segue fora de alcance.
+
+O exemplo da tela é didático, com números inventados: maximizar 3x + 2y com x + y ≤ 4 e x ≤ 3. O simplex vai de vértice em vértice, (0,0), (3,0) e (3,1), e para quando nenhum vizinho melhora: Z = 11.
+
+▶️ A explicação completa está no canal · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #MetodoSimplex #ProgramacaoLinear #AnaliseSuavizada #Dantzig #Otimização #UNIRIO

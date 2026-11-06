@@ -1,0 +1,13 @@
+Conferir uma resposta é fácil. Achar a resposta é outra história: o que é P versus NP?
+
+P versus NP pergunta: se é fácil conferir que uma solução está certa, também é fácil encontrá-la? O Instituto Clay de Matemática lista o problema como não resolvido.
+
+O exemplo do próprio Clay é um dormitório: 400 alunos, 100 vagas e uma lista do decano com pares incompatíveis. Se um colega propõe um grupo de 100, conferir é fácil. Achar um grupo do zero parece tão difícil que testar tudo é inviável: são cerca de 2,2 × 10^96 grupos possíveis (conta nossa, com C(400,100)). O Clay diz que ninguém provou que esses problemas sejam tão difíceis quanto parecem.
+
+O EXEMPLO do reel, com 4 amigos e as brigas A–B, B–C e C–D, é inventado, só para mostrar a diferença entre conferir (uma olhada) e procurar. O Clay cita também o caminho hamiltoniano: visitar N cidades sem repetir nenhuma. Na Pesquisa Operacional, decidir entre combinações demais é o dia a dia.
+
+▶️ Quer aprender a modelar problemas assim? Aulas gratuitas no canal PO para Todos no YouTube · link na bio.
+
+📚 PO para Todos — projeto de extensão da UNIRIO que leva Pesquisa Operacional a todo mundo.
+
+#PesquisaOperacional #PO #PversusNP #Complexidade #Algoritmos #Otimização #UNIRIO
