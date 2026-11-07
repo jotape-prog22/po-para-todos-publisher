@@ -638,11 +638,19 @@
       "formato": "stories",
       "quando": "2026-11-07T18:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "stories"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "media_ids": [
+          "18089472212301444",
+          "18196351279401503",
+          "17994477293852865"
+        ]
+      },
       "erro": null
     },
     {
