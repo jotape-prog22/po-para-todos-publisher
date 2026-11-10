@@ -696,11 +696,17 @@
       "formato": "post",
       "quando": "2026-11-10T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "post",
+        "story-aviso"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/p/DfkN8HqkY2i/",
+        "media_id": "18223496974356316"
+      },
       "erro": null
     },
     {
