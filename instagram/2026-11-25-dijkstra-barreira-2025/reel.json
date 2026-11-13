@@ -1,0 +1,162 @@
+{
+  "tipo": "cenas",
+  "trilha": "tutorial-animado",
+  "cenas": [
+    {
+      "tipo": "impacto",
+      "estilo": "trocar",
+      "duracao": 5,
+      "palavras": [
+        "O LIMITE",
+        "DE 1956",
+        "CAIU EM 2025"
+      ],
+      "apoio": "limite de Dijkstra no caminho mais curto"
+    },
+    {
+      "duracao": 7,
+      "kicker": "O MÉTODO DE DIJKSTRA",
+      "titulo": "VISITA DO MAIS PERTO AO MAIS LONGE",
+      "linhas": [
+        "Ele acha o caminho mais curto até cada ponto",
+        "O resultado sai numa lista ordenada por distância",
+        "Ordenar tem custo: a barreira da ordenação"
+      ]
+    },
+    {
+      "tipo": "grafo",
+      "duracao": 7,
+      "kicker": "EXEMPLO · NÚMEROS INVENTADOS",
+      "titulo": "DE S ATÉ CADA PONTO",
+      "dirigido": true,
+      "nos": [
+        {
+          "id": "S",
+          "x": 1,
+          "y": 5
+        },
+        {
+          "id": "A",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "B",
+          "x": 4,
+          "y": 9
+        },
+        {
+          "id": "C",
+          "x": 7,
+          "y": 5
+        },
+        {
+          "id": "D",
+          "x": 10,
+          "y": 5
+        }
+      ],
+      "arestas": [
+        {
+          "de": "S",
+          "para": "A",
+          "peso": "2"
+        },
+        {
+          "de": "S",
+          "para": "B",
+          "peso": "3"
+        },
+        {
+          "de": "A",
+          "para": "C",
+          "peso": "3"
+        },
+        {
+          "de": "B",
+          "para": "C",
+          "peso": "4"
+        },
+        {
+          "de": "C",
+          "para": "D",
+          "peso": "3"
+        }
+      ],
+      "caminho": [
+        "S",
+        "A",
+        "C",
+        "D"
+      ],
+      "legenda": "menor caminho de S até D: 8"
+    },
+    {
+      "tipo": "conta",
+      "duracao": 7,
+      "kicker": "EXEMPLO",
+      "titulo": "A LISTA ORDENADA",
+      "linhas": [
+        "S: 0",
+        "A: 2   B: 3",
+        "C: 5 (por A; por B seria 7)",
+        "D: 8 (por C)"
+      ],
+      "destaque": 4,
+      "nota": "distâncias em ordem: 0, 2, 3, 5, 8"
+    },
+    {
+      "tipo": "tabela",
+      "duracao": 8,
+      "kicker": "DUAN, MAO, MAO, SHU E YIN",
+      "titulo": "O QUE MUDOU EM 2025",
+      "colunas": [
+        "",
+        "Dijkstra",
+        "Novo"
+      ],
+      "linhas": [
+        [
+          "Tempo",
+          "m + n log n",
+          "m log^2/3 n"
+        ],
+        [
+          "Ordena?",
+          "sim",
+          "não"
+        ],
+        [
+          "Ganho em",
+          "—",
+          "esparsos"
+        ]
+      ],
+      "destaque": {
+        "linha": 2,
+        "coluna": 3
+      },
+      "nota": "melhor artigo do STOC 2025"
+    },
+    {
+      "tipo": "impacto",
+      "duracao": 5,
+      "palavras": [
+        "MAIS RÁPIDO",
+        "NA TEORIA"
+      ],
+      "apoio": "ganho pequeno, algoritmo bem mais complicado",
+      "faixa": "AULA DE DIJKSTRA NO CANAL"
+    }
+  ],
+  "legenda": {
+    "gancho": "Em 2025, um artigo quebrou o limite de velocidade do método de Dijkstra, de 1956, em grafos esparsos.",
+    "corpo": "O algoritmo de Dijkstra acha o caminho mais curto visitando os pontos do mais perto ao mais longe, o que na prática produz uma lista ordenada por distância. Ordenar impõe um limite de velocidade: a chamada barreira da ordenação.\n\nEm abril de 2025, Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu e Longhui Yin mostraram um algoritmo determinístico com tempo O(m log^(2/3) n) para grafos direcionados com pesos não negativos, o primeiro a quebrar o limite O(m + n log n) de Dijkstra em grafos esparsos. O artigo foi o melhor do STOC 2025. A Quanta Magazine descreve o ganho como pequeno, vindo de um algoritmo bem mais intricado; a reportagem não discute uso prático, então isto não quer dizer que o GPS do seu celular ficou mais rápido.\n\nO grafo do reel é um exemplo com números inventados: de S até D o menor caminho vale 8, e Dijkstra encontra as distâncias na ordem 0, 2, 3, 5, 8.\n\nO método clássico está explicado passo a passo nas aulas de Caminho Mínimo e Dijkstra, no canal.",
+    "hashtags_tema": [
+      "#Dijkstra",
+      "#CaminhoMinimo",
+      "#TeoriaDosGrafos",
+      "#Algoritmos"
+    ]
+  }
+}

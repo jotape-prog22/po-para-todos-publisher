@@ -1,0 +1,57 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título)",
+      "texto": "Apostar demais arruína, mesmo com vantagem.",
+      "tipo": "fonte",
+      "fonte": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "resultado": "confirmada",
+      "como": "Kelly (BSTJ 35(4), jul. 1956, pp. 917-926; PDF lido por inteiro até a seção 'when there is a track take'), seção 'The gambler with a private wire': apostar o capital inteiro 'would maximize the expected value of his capital, <VN> = (2q)^N V0. This would be little comfort, however, since when N was large he would probably be broke and, in fact, would be broke with probability one if he continued indefinitely.' Ele então aposta uma fração l do capital, e o que usa a fração ótima 'will, with probability one, eventually get ahead and stay ahead of one using any other l'. Para frações acima da ótima mas abaixo de 1 (o caso de 40% do EXEMPLO), 'encolhe' é consequência da conta abaixo, não afirmação literal do artigo."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "EXEMPLO: moeda com 60% de cara, aposta paga 1 para 1; 20% do capital por rodada faz crescer cerca de 2% por rodada; 40% encolhe 0,24%; 60% encolhe 8,1%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e, caminho 1 (fórmula): taxa de crescimento geométrico por rodada g(f) = 0,6·ln(1+f) + 0,4·ln(1−f). f=0,2: g=0,02014 → e^g−1 = +2,03%; f=0,4: g=−0,00245 → −0,24%; f=0,6: g=−0,08451 → −8,10%. Caminho 2 (simulação, 2 milhões de rodadas, gerador congruencial, média geométrica): +2,03%, −0,26%, −8,13% (o ruído da simulação explica a diferença de 0,02 ponto em 40%). Caminho 3 (enumeração binomial exata em 10 rodadas): f=0,2 → +2,03%; f=0,4 → −0,24%. Varredura de f em passos de 0,001: máximo em f=0,200 e g<0 a partir de f≈0,390. A fração 20% também sai da fórmula do artigo: para o canal com prob. q de acerto e pagamento 1 para 1, '(1+l) = 2q', ou seja l = 2q−1 = 0,2 para q = 0,6."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Kelly, dos Bell Labs, 1956, escreveu um artigo sobre a taxa de transmissão de informação em que um apostador usa o que sabe para apostar.",
+      "tipo": "fonte",
+      "fonte": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "resultado": "confirmada",
+      "como": "Cabeçalho do PDF: 'A New Interpretation of Information Rate, reproduced with permission of AT&T, By J. L. Kelly, jr., (Manuscript received March 21, 1956)'; BSTJ, July 1956. Resumo: 'a gambler can use the knowledge given him by the received symbols to cause his money to grow exponentially. The maximum exponential rate of growth of the gambler's capital is equal to the rate of transmission of information over the channel.' Afiliação 'Bell Labs': não aparece na cópia do PDF; conferida na Wikipédia (John Larry Kelly Jr.): 'an American scientist who worked at Bell Labs', autor do artigo de 1956 'A New Interpretation of Information Rate' na Bell System Technical Journal (fonte secundária, uma só)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Apostar o capital inteiro maximiza o valor esperado, mas deixa o jogador sem nada com probabilidade 1 se o jogo não tem fim; quem aposta uma fração fixa vê o capital crescer exponencialmente.",
+      "tipo": "fonte",
+      "fonte": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "resultado": "confirmada",
+      "como": "Ver trecho citado na primeira entrada (seção 'The gambler with a private wire') e o resumo: 'a gambler can use the knowledge [...] to cause his money to grow exponentially'. O artigo apresenta isso no caso do canal binário ruidoso; o EXEMPLO da moeda tem a mesma conta (q = 0,6, pagamento 1 para 1)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "Apostando tudo, a chance de ainda ter dinheiro depois de 10 rodadas é de 0,6%.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e: 0,6^10 = 0,006047 → 0,60%. Conferido também no gerador de exemplo: 0,6 elevado a 10, 50 e 100 rodadas = 6,05e-3, 8,08e-12, 6,53e-23."
+    },
+    {
+      "onde": "legenda",
+      "texto": "A fração ótima é 20% (0,6 − 0,4 = 0,2); dobrar a fração ótima (40%) já faz o capital encolher.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "Ver entrada do card: f* = 0,200 por varredura numérica; g(0,4) = −0,00245 < 0 (g torna-se negativa a partir de f ≈ 0,39). A expressão 'a conta de Kelly para este caso: 0,6 − 0,4' é o caso l = q − p do artigo (q = 0,6; p = 0,4)."
+    },
+    {
+      "onde": "legenda",
+      "texto": "A conta supõe que se conheça a probabilidade de cada resultado.",
+      "tipo": "fonte",
+      "fonte": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "resultado": "confirmada",
+      "como": "No artigo as probabilidades p(s), p(r/s) do canal são dadas como conhecidas ('the gambler [...] bets a fraction l of his capital' com p e q fixos). A legenda só descreve o pressuposto do modelo; não afirma nada sobre o mundo real."
+    }
+  ]
+}

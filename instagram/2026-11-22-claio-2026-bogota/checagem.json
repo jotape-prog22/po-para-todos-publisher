@@ -1,0 +1,51 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "card 1 (título, data)",
+      "texto": "XXIII CLAIO, em Bogotá, de 23 a 26/11/2026.",
+      "tipo": "fonte",
+      "fonte": "https://asociocolombia.org/site/claio-2026-home/",
+      "resultado": "confirmada",
+      "como": "Página oficial (ASOCIO Colombia), lida em 29/10/2026: 'XXIII edition of CLAIO', 'from November 23 to November 26, 2026', 'hosted by Pontificia Universidad Javeriana in Bogotá, Colombia'. Segunda fonte, a lista de atividades da EURO (https://www.euro-online.org/web/pages/1591/activities-list): 'CLAIO 2026 - The 23rd Latin-Iberoamerican Conference on Operations Research', '23-26 November 2026', Bogotá, Colombia. As duas coincidem. A página de 'Important Dates' do site não traz as datas do evento (só prazos de submissão e de inscrição antecipada)."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Congresso Latino-Ibero-Americano de Pesquisa Operacional, na Pontificia Universidad Javeriana, junto com a 6ª conferência da ASOCIO.",
+      "tipo": "fonte",
+      "fonte": "https://asociocolombia.org/site/claio-2026-home/",
+      "resultado": "confirmada",
+      "como": "Página oficial: 'The Latin-Iberoamerican Conference on Operations Research (CLAIO)'; 'hosted by Pontificia Universidad Javeriana in Bogotá, Colombia'; 'jointly with the 6th edition of the ASOCIO Conference'; organizador: ASOCIO, Colombian Association of Operations Research. 'Congresso Latino-Ibero-Americano de Pesquisa Operacional' é tradução do nome oficial em inglês."
+    },
+    {
+      "onde": "card 1 (texto)",
+      "texto": "Começa amanhã (o post sai em 22/11).",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "22/11/2026 é domingo (node -e: new Date('2026-11-22').getUTCDay() = 0) e o congresso começa em 23/11/2026, segunda-feira. Se a data de publicação na agenda mudar, o texto 'Começa amanhã' precisa ser trocado."
+    },
+    {
+      "onde": "card 1 (link)",
+      "texto": "Link oficial: asociocolombia.org/site/claio-2026-home",
+      "tipo": "fonte",
+      "fonte": "https://asociocolombia.org/site/claio-2026-home/",
+      "resultado": "confirmada",
+      "como": "URL da página oficial do congresso; abriu e foi lida em 29/10/2026. O card não menciona prazos: a página 'Important Dates' lista só 1/06/2026 (resumos) e 1/09/2026 (inscrição antecipada), ambos já vencidos; a página de inscrição não diz se ainda está aberta, por isso não prometemos inscrição."
+    },
+    {
+      "onde": "legenda",
+      "texto": "O CLAIO é o evento principal da ALIO (associação das sociedades latino-ibero-americanas de PO), a cada dois anos, desde 1982, em cidades diferentes.",
+      "tipo": "fonte",
+      "fonte": "https://asociocolombia.org/site/claio-2026-home/",
+      "resultado": "confirmada",
+      "como": "Página oficial: 'CLAIO is the flagship conference of the Association of Latin-Iberoamerican Operational Research Societies (ALIO)'; 'Since 1982, it has been held biennially in different Latin American cities.'"
+    },
+    {
+      "onde": "legenda",
+      "texto": "A EURO lista o evento com as mesmas datas e uma palestra plenária de José Fernando Oliveira sobre problemas de corte retangular em duas dimensões.",
+      "tipo": "fonte",
+      "fonte": "https://www.euro-online.org/web/pages/1591/activities-list",
+      "resultado": "confirmada",
+      "como": "EURO, lista de atividades: 'EURO Plenary Speaker: José Fernando Oliveira'; 'Geometry Matters: Modelling Two-Dimensional Rectangular Cutting Problems'. A legenda traduz o título para 'problemas de corte retangular em duas dimensões'. A EURO se descreve (https://www.euro-online.org/web/pages/1/about, lido) como 'Association of European Operational Research Societies', por isso a legenda diz 'associação das sociedades europeias de PO'."
+    }
+  ]
+}

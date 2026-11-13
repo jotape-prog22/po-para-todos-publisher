@@ -1,0 +1,74 @@
+{
+  "afirmacoes": [
+    {
+      "onde": "cena 1",
+      "texto": "Quatro cores bastam para colorir qualquer mapa de modo que regiões vizinhas tenham cores diferentes.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Four_color_theorem",
+      "resultado": "confirmada",
+      "como": "Wikipedia, Four color theorem (lida): \"no more than four colors are required to color the regions of any map so that no two adjacent regions have the same color\"; vizinhas = compartilham um trecho de fronteira, não só um canto. Barbeau (PDF lido via pdftotext) trata mapas desenhados no plano ou na esfera."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Em 1852, Francis Guthrie pintava o mapa dos condados da Inglaterra e percebeu que quatro cores bastavam.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/barbeau/fn32.pdf",
+      "resultado": "confirmada",
+      "como": "Barbeau: \"In 1852, Francis Guthrie, an English geography student, noted that he could colour a map of the counties...\" (mesmo fato na Wikipedia, que data a conjectura de 23/10/1852). Duas fontes independentes."
+    },
+    {
+      "onde": "cena 2",
+      "texto": "Regiões vizinhas precisam de cores diferentes.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Four_color_theorem",
+      "resultado": "confirmada",
+      "como": "Definição do enunciado (Wikipedia): nenhum par de regiões adjacentes tem a mesma cor."
+    },
+    {
+      "onde": "cena 3",
+      "texto": "Mapa vira grafo: região vira ponto; 4 regiões que se tocam todas entre si exigem 4 cores.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"const n=4;for(let k=1;k<=4;k++){let ok=false;for(let m=0;m<Math.pow(k,n)&&!ok;m++){const col=[];let x=m;for(let i=0;i<n;i++){col.push(x%k);x=Math.floor(x/k);}ok=true;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)if(col[i]===col[j])ok=false;}console.log(k,ok)}\" => 1, 2 e 3 cores: false; 4 cores: true. O grafo da tela (4 pontos, 6 linhas) é o K4, que se desenha no plano (um ponto no meio do triângulo), então 4 regiões que se tocam duas a duas existem num mapa."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "1879: Kempe publicou uma prova, depois achada errada por Heawood em 1890.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/barbeau/fn32.pdf",
+      "resultado": "confirmada",
+      "como": "Barbeau: \"In 1879, Alfred Kempe claimed a proof, but this was found to be flawed by Percy Heawood in 1890\". Wikipedia: a prova de Kempe de 1879 foi aclamada até Heawood mostrar em 1890 que estava errada. Duas fontes."
+    },
+    {
+      "onde": "cena 4",
+      "texto": "1976: Appel e Haken provaram o teorema com computador; o computador fez a parte pesada.",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/barbeau/fn32.pdf",
+      "resultado": "confirmada",
+      "como": "Barbeau: a solução exigiu uma análise detalhada que só um computador conseguia fazer; Appel e Haken (Univ. de Illinois) apresentaram em 1976. Wikipedia: anunciada em 21/06/1976, \"the first major theorem to be proved with extensive computer assistance\". Não cito número de configurações (as fontes divergem)."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Exemplo: 5 provas A–E, choques A–B, A–C, B–C, C–D, D–E: 3 horários bastam, e é o mínimo.",
+      "tipo": "conta",
+      "resultado": "confirmada",
+      "como": "node -e \"const V='ABCDE',ed=[['A','B'],['A','C'],['B','C'],['C','D'],['D','E']];for(let k=1;k<=4;k++){let ok=false;for(let m=0;m<Math.pow(k,5)&&!ok;m++){const col={};let x=m;for(const v of V){col[v]=x%k;x=Math.floor(x/k);}if(ed.every(([a,b])=>col[a]!==col[b])){ok=true;console.log(k,JSON.stringify(col));}}if(!ok)console.log(k,'não dá');}\" => 1 não dá; 2 não dá; 3 serve com A=2, B=1, C=0, D=1, E=0. A atribuição da tela também é válida: D com o horário de A e E com o de C, pois A–D e C–E não são choques (conferido à mão na lista de 5 choques). Mínimo = 3, porque A, B e C formam um triângulo. Provas e choques são EXEMPLO inventado."
+    },
+    {
+      "onde": "cena 5",
+      "texto": "Horários sem choque se modelam colorindo um grafo: um ponto por prova, uma linha por choque, uma cor por horário.",
+      "tipo": "fonte",
+      "fonte": "https://en.wikipedia.org/wiki/Graph_coloring",
+      "resultado": "confirmada",
+      "como": "Wikipedia, Graph coloring (lida até o caractere 100000): \"Vertex coloring models to a number of scheduling problems\"; vértice por tarefa, aresta para cada par em conflito, número cromático = tempo mínimo sem conflito; \"exam timetabling\" aparece na lista de aplicações práticas. A página não detalha provas como vértices; a ligação com provas é a do modelo geral de tarefas e horários."
+    },
+    {
+      "onde": "cena 6",
+      "texto": "O teorema é de mapas; horários usam a mesma ideia (colorir grafos).",
+      "tipo": "fonte",
+      "fonte": "https://www.math.utoronto.ca/barbeau/fn32.pdf",
+      "resultado": "confirmada",
+      "como": "Barbeau: o teorema trata de mapas no plano ou na esfera. A ponte para horários é a coloração de grafos (entrada da cena 5); a tela diz \"a mesma ideia\", não que o teorema das quatro cores se aplica a horários, e a legenda explicita que 4 cores é limite de mapas planos, não de horários."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "tipo": "cenas",
+  "trilha": "piano-reflexivo",
+  "cenas": [
+    {
+      "tipo": "impacto",
+      "estilo": "sublinhar",
+      "destaque": 3,
+      "duracao": 5,
+      "palavras": [
+        "66 WRENS",
+        "UM TABULEIRO",
+        "UMA BATALHA"
+      ],
+      "apoio": "o Atlântico, simulado no chão de Liverpool"
+    },
+    {
+      "duracao": 7,
+      "kicker": "LIVERPOOL · JANEIRO DE 1942",
+      "titulo": "A UNIDADE QUE DESENVOLVIA TÁTICAS",
+      "linhas": [
+        "A Western Approaches Tactical Unit, sob o capitão Gilbert Roberts",
+        "Nasceu para criar táticas contra os submarinos alemães",
+        "A ferramenta: jogos de guerra"
+      ]
+    },
+    {
+      "duracao": 9,
+      "kicker": "COMO ERA O JOGO",
+      "titulo": "UM TABULEIRO PINTADO NO CHÃO",
+      "linhas": [
+        "Cada quadrado de 10 polegadas valia 1 milha náutica",
+        "Navios e submarinos eram modelos de madeira",
+        "Os jogadores davam as ordens",
+        "As Wrens calculavam o resultado, com os dados de cada navio"
+      ]
+    },
+    {
+      "tipo": "conta",
+      "duracao": 8,
+      "kicker": "ATLÂNTICO · SETEMBRO DE 1943",
+      "titulo": "DO TORPEDO À RESPOSTA",
+      "linhas": [
+        "20/09: torpedo acústico estreia",
+        "23/09: Step Aside por rádio",
+        "23 − 20 = 3 dias"
+      ],
+      "destaque": 3,
+      "nota": "Step Aside: manobra criada pela equipe de Roberts"
+    },
+    {
+      "tipo": "odometro",
+      "duracao": 5,
+      "kicker": "DE 1942 A 1945",
+      "titulo": "OFICIAIS TREINADOS",
+      "valor": 5000,
+      "rotulo": "cerca de 5.000, em cursos semanais"
+    },
+    {
+      "tipo": "impacto",
+      "duracao": 5,
+      "palavras": [
+        "TESTAR",
+        "NO MODELO",
+        "ANTES DO MAR"
+      ],
+      "apoio": "ensaiar a tática sem arriscar navios de verdade",
+      "faixa": "PO PARA TODOS NO YOUTUBE"
+    }
+  ],
+  "legenda": {
+    "gancho": "Em Liverpool, 66 Wrens calculavam o resultado de batalhas simuladas no chão. Era assim que se treinava contra submarinos.",
+    "corpo": "Em janeiro de 1942, foi criada em Liverpool a Western Approaches Tactical Unit, sob o capitão Gilbert Roberts, para desenvolver táticas contra os submarinos alemães usando jogos de guerra. O tabuleiro era pintado no chão, cada quadrado de 10 polegadas valia 1 milha náutica e os navios eram modelos de madeira. Os jogadores davam as ordens; as Wrens, mulheres do serviço naval feminino, calculavam o resultado com os dados de desempenho de cada navio.\n\nSessenta e seis Wrens serviram na unidade entre 1942 e 1945, e cerca de 5.000 oficiais foram treinados ali. Em setembro de 1943, a manobra Step Aside, criada pela equipe de Roberts, chegou aos escoltas por rádio três dias depois do primeiro uso do torpedo acústico alemão. O reel não atribui o resultado da batalha do Atlântico à unidade: a história é de muitas pessoas.\n\nPara a Pesquisa Operacional, a lição é a simulação: testar uma tática em um modelo antes de gastar navios de verdade.",
+    "hashtags_tema": [
+      "#Simulacao",
+      "#HistoriaDaPO",
+      "#WrensDeLiverpool"
+    ]
+  }
+}
