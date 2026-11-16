@@ -810,11 +810,16 @@
       "formato": "reel",
       "quando": "2026-11-16T12:00:00-03:00",
       "aprovado": true,
-      "estado": "agendado",
-      "feitos": [],
-      "tentativas": 0,
+      "estado": "publicado",
+      "feitos": [
+        "reel"
+      ],
+      "tentativas": 1,
       "ajuste": null,
-      "resultado": null,
+      "resultado": {
+        "url": "https://www.instagram.com/reel/DfzquN5lL23/",
+        "media_id": "17892012573620428"
+      },
       "erro": null
     },
     {
